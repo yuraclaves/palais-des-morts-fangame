@@ -1,5 +1,15 @@
 # Notes de patch : A Godless Realm
 
+## v5.5e : Changement d’étage animé et partie suspendue (23/10/2026)
+- Plus d'écran à valider entre deux étages : une courte animation affiche le numéro de l'étage, puis le combat commence tout de suite.
+- Touche l'écran pour passer l'animation. Les étages de gardien et de boss ont leur propre version, rouge et or, un peu plus longue.
+- Nouveau bouton Menu en combat et sur l'écran des récompenses : Objets et bonus, aide, Suspendre la partie et Abandonner (avec confirmation).
+- Hors combat, tu peux toujours boire une potion ou un éther depuis le menu, sur l'écran des récompenses.
+- Suspendre la partie : ton exploration solo est gardée sur ton appareil, même si tu fermes le jeu. Tu peux aller jouer en ligne puis revenir.
+- À l'Avant-poste, le bouton Reprendre la partie te ramène où tu étais. Si tu suspends en plein combat, tu reprends au début de cet étage, dans le même combat.
+- Une partie en ligne ne remplace plus jamais ta partie solo en cours.
+- Commencer une nouvelle partie alors qu'une autre est suspendue demande confirmation. Une partie suspendue n'est envoyée au classement qu'une fois terminée.
+
 ## v5.5d : Étages plus rapides et actions plus claires (23/10/2026)
 - Chaque étage, c'est maintenant un seul combat, puis 3 récompenses au choix. Plus de chemin à choisir.
 - Environ un étage sur quatre ou cinq, une des 3 récompenses est remplacée par une salle spéciale : Marchand, repos, trésor ou rencontre.

@@ -1062,6 +1062,41 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 .status .b-buff{border-color:#ffd76a;color:#fff0b8}.status .b-bad{border-color:#ff8a8a;color:#ffc4c4}
 .sk2 .skb{gap:2px;min-width:0}.sk2 .skb .skr{gap:2px;flex-shrink:1;min-width:0}.sk2 .skc{padding:2px 3px;letter-spacing:-.2px}.sk2 .rtag{padding:2px 3px;letter-spacing:0}
 .sk2 .skn.skn-l{font-size:11px;letter-spacing:-.2px}
+
+/* v5.5e : transition d'étage */
+.ftr{position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;pointer-events:auto;overflow:hidden;
+ background:radial-gradient(ellipse at 50% 48%,rgba(30,44,96,.92),rgba(4,6,18,.98) 70%);animation:ftrIn .32s ease-out both;contain:strict}
+.ftr.boss{background:radial-gradient(ellipse at 50% 48%,rgba(110,20,22,.9),rgba(14,3,6,.98) 72%)}
+.ftr.big{background:radial-gradient(ellipse at 50% 48%,rgba(140,28,18,.94),rgba(18,4,4,.99) 74%)}
+.ftr.out{animation:ftrOut .42s ease-in both;pointer-events:none}
+.ftr-sweep{position:absolute;inset:-20% -60%;background:linear-gradient(100deg,transparent 40%,rgba(200,220,255,.16) 49%,rgba(255,255,255,.32) 50%,rgba(200,220,255,.16) 51%,transparent 60%);
+ transform:translateX(-60%);animation:ftrSweep .9s .1s cubic-bezier(.3,.6,.3,1) both;will-change:transform}
+.ftr.boss .ftr-sweep{background:linear-gradient(100deg,transparent 40%,rgba(255,200,120,.18) 49%,rgba(255,226,150,.38) 50%,rgba(255,200,120,.18) 51%,transparent 60%)}
+.ftr-c{position:relative;text-align:center;padding:0 18px;animation:ftrTxt .7s .08s cubic-bezier(.2,.8,.3,1) both}
+.ftr-n{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:52px;letter-spacing:.14em;line-height:1.08;color:#eef3ff;text-shadow:0 0 14px rgba(120,165,255,.85),0 0 34px rgba(90,130,255,.45),0 3px 0 #000}
+.ftr.boss .ftr-n{color:#ffe08a;text-shadow:0 0 14px rgba(255,90,50,.9),0 0 36px rgba(255,60,30,.5),0 3px 0 #2a0400}
+.ftr-line{height:1px;width:220px;margin:8px auto;background:linear-gradient(90deg,transparent,rgba(210,225,255,.9),transparent);transform:scaleX(0);animation:ftrLine .6s .25s ease-out both}
+.ftr.boss .ftr-line{background:linear-gradient(90deg,transparent,#ffd77a,transparent)}
+.ftr-s{font-family:'Cinzel',Georgia,serif;font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:#c8d6ff;opacity:0;animation:ftrSub .5s .4s ease-out both}
+.ftr.boss .ftr-s{color:#ffd9a0}
+.ftr-tag{display:inline-block;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:14px;letter-spacing:.3em;padding:4px 12px 4px 16px;margin-bottom:6px;
+ color:#2a0a04;background:linear-gradient(180deg,#ffe9a8,#e0a43a);border-radius:3px;box-shadow:0 0 16px rgba(255,120,60,.6);animation:ftrTag .5s .35s cubic-bezier(.2,1.6,.4,1) both}
+.ftr-tag.el{color:#1a0628;background:linear-gradient(180deg,#e8d0ff,#a070e0);box-shadow:0 0 14px rgba(170,110,255,.55)}
+.ftr-motes{position:absolute;inset:0;pointer-events:none}
+.ftr-motes i{position:absolute;bottom:-10px;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle,#fff,rgba(160,200,255,.8) 40%,transparent 70%);
+ transform:scale(var(--s));opacity:0;animation:ftrMote 1.6s ease-out infinite;will-change:transform,opacity}
+.ftr.boss .ftr-motes i{background:radial-gradient(circle,#fff4d0,rgba(255,170,70,.85) 40%,transparent 70%)}
+@keyframes ftrIn{from{opacity:0}to{opacity:1}}
+@keyframes ftrOut{to{opacity:0}}
+@keyframes ftrSweep{to{transform:translateX(60%)}}
+@keyframes ftrTxt{from{opacity:0;transform:scale(1.18);letter-spacing:.4em}to{opacity:1;transform:none}}
+@keyframes ftrLine{to{transform:scaleX(1)}}
+@keyframes ftrSub{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes ftrTag{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes ftrMote{0%{opacity:0;transform:translateY(0) scale(var(--s))}15%{opacity:.95}100%{opacity:0;transform:translateY(-70vh) scale(var(--s))}}
+.field.fin{animation:fieldIn .9s .3s ease-out both}
+@keyframes fieldIn{from{opacity:0;filter:brightness(.3)}to{opacity:1;filter:none}}
+@media (prefers-reduced-motion:reduce){.ftr-motes,.ftr-sweep{display:none}.ftr-c{animation:none}}
 </style>
 </head>
 <body>
@@ -1688,7 +1723,12 @@ function defaultSave(){ return { created:false, name:'Aventurier', gils:0, unloc
 let S;
 function loadSave(){ try{ const s=JSON.parse(localStorage.getItem(SAVE_KEY)); if(s && typeof s==='object'){ const d=defaultSave(); const o=Object.assign(d,s,{upgrades:Object.assign(d.upgrades,s.upgrades||{}),stats:Object.assign(d.stats,s.stats||{}),loadouts:s.loadouts||{}, comps:s.comps||{}}); if(typeof o.frag!=='number') o.frag=10; if(o.run && o.run.v!==3) o.run=null; return o; } }catch(e){} return defaultSave(); }
 function persist(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(S)); }catch(e){} }
+/* v5.5e : seule une exploration SOLO est enregistrée dans S.run ; une partie en ligne ne l'écrase jamais */
+function saveRun(){ if (R && !R.duo) S.run=R; persist(); }
+const clone = o => JSON.parse(JSON.stringify(o));
 S = loadSave();
+if (S.run && S.run.duo) S.run=null; // ancienne version : une partie en ligne avait pu écraser la sauvegarde solo
+if (S.run && S.run.inC && S.run.fs){ S.run=S.run.fs; S.run.inC=0; } // fermé en plein combat : on reprend au début de l'étage
 let R = S.run; // exploration en cours
 if (R && Array.isArray(R.rs)) RS = R.rs;
 let C = null;  // combat en cours
@@ -1929,6 +1969,16 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.5e', date:'23/10/2026', img:'assets/bg/b10.webp', title:'Changement d’étage animé et partie suspendue', notes:[
+    'Plus d’écran à valider entre deux étages : une courte animation affiche le numéro de l’étage, puis le combat commence tout de suite.',
+    'Touche l’écran pour passer l’animation. Les étages de gardien et de boss ont leur propre version, rouge et or, un peu plus longue.',
+    'Nouveau bouton Menu en combat et sur l’écran des récompenses : Objets et bonus, aide, Suspendre la partie et Abandonner (avec confirmation).',
+    'Hors combat, tu peux toujours boire une potion ou un éther depuis le menu, sur l’écran des récompenses.',
+    'Suspendre la partie : ton exploration solo est gardée sur ton appareil, même si tu fermes le jeu. Tu peux aller jouer en ligne puis revenir.',
+    'À l’Avant-poste, le bouton Reprendre la partie te ramène où tu étais. Si tu suspends en plein combat, tu reprends au début de cet étage, dans le même combat.',
+    'Une partie en ligne ne remplace plus jamais ta partie solo en cours.',
+    'Commencer une nouvelle partie alors qu’une autre est suspendue demande confirmation. Une partie suspendue n’est envoyée au classement qu’une fois terminée.'
+  ]},
   {v:'v5.5d', date:'23/10/2026', img:'assets/band/v_rencontre.webp', title:'Étages plus rapides et actions plus claires', notes:[
     'Chaque étage, c’est maintenant un seul combat, puis 3 récompenses au choix. Plus de chemin à choisir.',
     'Environ un étage sur quatre ou cinq, une des 3 récompenses est remplacée par une salle spéciale : Marchand, repos, trésor ou rencontre.',
@@ -2129,7 +2179,7 @@ SCREENS.title = function(){
   <h1 class="tlogo lg" aria-label="A Godless Realm">${logoSVG(S.logoV)}</h1>
   <div style="flex:1"></div>
   <nav class="tmenu">
-    ${S.created ? `<button class="tm main" data-k="continue" id="bCont">${R?'Reprendre l’exploration':'Continuer'}</button>` : `<button class="tm main" data-k="new" data-go="create">Nouvelle aventure</button>`}
+    ${S.created ? `<button class="tm main" data-k="continue" id="bCont">${S.run?'Reprendre l’exploration':'Continuer'}</button>` : `<button class="tm main" data-k="new" data-go="create">Nouvelle aventure</button>`}
     <button class="tm" data-k="online" id="bOnlineT" onclick="Online.open('title')">Jouer en ligne</button>
     <button class="tm" data-k="patchnotes" id="bPN2">Notes de patch</button>
     <button class="tm" data-k="settings" id="bSetT">Paramètres</button>
@@ -2138,7 +2188,7 @@ SCREENS.title = function(){
   bind(app);
   document.getElementById('bPN2').onclick=patchNotes;
   document.getElementById('bSetT').onclick=()=>SCREENS.settings('title');
-  const bc=document.getElementById('bCont'); if(bc) bc.onclick=()=> R ? SCREENS.map() : SCREENS.hub();
+  const bc=document.getElementById('bCont'); if(bc) bc.onclick=()=> S.run ? resumeSolo() : SCREENS.hub();
 };
 let createSel = 'paladin';
 SCREENS.create = function(){
@@ -2186,6 +2236,7 @@ SCREENS.hub = function(){
       <div class="hero-t"><h2>${esc(S.name)}</h2><div class="hero-j">${jgi(S.job)} ${j.name} ${roleTag(S.job)}</div>
       <div class="muted">Record : étage ${S.stats.best||'—'} / 50 · Victoires : ${S.stats.wins}</div></div>
     </div>
+    ${S.run && !S.run.duo ? `<button class="btn goldb" data-k="resume" id="bResume" style="width:100%;margin:6px 0">Reprendre la partie (${runLabel(S.run)})</button>` : ''}
     <button class="htile wide" data-k="enter" id="bEnter" style="--img:url(assets/hub/prep.webp)"><span class="ht-tx"><b>Préparer l’exploration</b><small>Entrer dans le Palais des Morts</small></span><span class="ht-go">${rsym('up')}</span></button>
     <div class="htiles">
       ${tile('jobs','Jobs',`${S.unlocked.length} / ${JOB_ORDER.length} débloqués`,spr(S.job,'idle'),'data-go="jobs"')}
@@ -2209,6 +2260,7 @@ SCREENS.hub = function(){
   </div>`;
   bind(app);
   document.getElementById('bEnter').onclick = SCREENS.prep;
+  { const br=document.getElementById('bResume'); if (br) br.onclick = resumeSolo; }
   document.getElementById('bHubComps').onclick = ()=>SCREENS.comps('hub');
 };
 ['prep','jobs','shop','gacha','comps'].forEach(k=>{ const i=new Image(); i.src='assets/hub/'+k+'.webp'; });
@@ -2305,7 +2357,9 @@ SCREENS.prep = function(){
     SCREENS.prep();
   });
   document.getElementById('bPrepComp').onclick=()=>SCREENS.comps('prep');
-  document.getElementById('bGoRun').onclick=()=>{ S.loadouts[k]=ids.slice(); persist(); startRun(); };
+  document.getElementById('bGoRun').onclick=()=>{ S.loadouts[k]=ids.slice(); persist();
+    if (S.run && !S.run.duo) return confirmBox(`Une partie est suspendue (${runLabel(S.run)}). Commencer une nouvelle partie abandonne l’ancienne : tu gardes ses Gils et fragments. Continuer ?`, ()=>{ abandonSuspended(); startRun(); }, 'Nouvelle partie');
+    startRun(); };
 };
 SCREENS.jobs = function(){
   app.innerHTML = `
@@ -2384,7 +2438,7 @@ function startRun(){
     comp: cid ? {id:cid, rank:S.comps[cid], revived:false} : null };
   recalcStats(); R.hp=R.maxhp; R.mp=R.maxmp;
   R.plan = planFloor(1);
-  S.stats.runs++; S.run=R; persist();
+  S.stats.runs++; saveRun(); /*solo*/
   HOOKS.emit('runStart',{seed:R.seed.slice(), job:R.job});
   floorIntro();
 }
@@ -2395,8 +2449,17 @@ const potionPct = () => 0.4 + pk('potion');
 function isBossNode(){ const P=R.plan; return !!(P && P.steps[P.i] && P.steps[P.i][0]==='boss'); }
 function topbarRun(title){ return `<div class="win topbar"><b class="grow">${title}</b>${R.frags?`<span class="frag">${ic('gem')}${R.frags}</span>`:''}<span class="gold">${R.gilsEarned} G</span></div>`; }
 function floorIntro(){
-  const f=R.floor; if (R.plan && R.plan.one) try{ scrEnter('map'); }catch(e){}
+  const f=R.floor;
   S.stats.best=Math.max(S.stats.best,f); persist();
+  if (R.plan && R.plan.one){ // v5.5e : plus d'écran à valider, une courte animation puis le combat
+    const kind=R.plan.steps[0][0];
+    if (!R.duo){ R.fs=null; R.inC=0; const snap=clone(R); R.fs=snap; R.inC=1; } // point de reprise : début de l'étage
+    saveRun();
+    try{ scrEnter('map'); }catch(e){}
+    enterRoom(kind); // l'état du combat est créé tout de suite (identique chez tous les joueurs en groupe)
+    floorTransition(f, kind);
+    return;
+  }
   const tip=FLOOR_TIPS[f];
   const g=GUARDIAN_OF[f];
   app.innerHTML = `<div style="flex:1"></div><div class="win center col" style="padding:22px 12px;align-items:center">
@@ -2406,7 +2469,7 @@ function floorIntro(){
     ${tip?`<div class="tip">${ic('tip')} ${tip}</div>`:''}</div>
     <div style="flex:1"></div>${R.plan.one?`${playerPanelHTML()}<div class="row"><button class="btn small grow" data-k="items" id="bItems">Objets & bonus</button><button class="btn small redb" data-k="abandon" id="bAb">Abandonner</button></div>`:''}<button class="btn goldb" data-k="next" id="bN">${R.plan.one?(R.plan.steps[0][0]==='combat'?'Combattre':'Affronter'):'Avancer'}</button>`;
   if (R.plan.one){
-    S.run=R; persist();
+    saveRun();
     document.getElementById('bN').onclick = ()=>enterRoom(R.plan.steps[0][0]);
     document.getElementById('bAb').onclick=()=>confirmBox('Abandonner l’exploration ? Tu gardes les Gils et fragments déjà gagnés.', ()=>endRun(false,true), 'Abandonner');
     document.getElementById('bItems').onclick=itemsMenuMap;
@@ -2512,7 +2575,7 @@ SCREENS.map = function(){
   if (R.rew) return showRewards();
   if (!R.plan) R.plan=planFloor(R.floor);
   if (R.plan.one && R.plan.i===0) return floorIntro();
-  S.run=R; persist();
+  saveRun();
   const P=R.plan, step=P.steps[P.i];
   const dots=P.steps.map((s,i)=>`<i class="${s[0]==='boss'?'boss ':''}${i<P.i?'done':i===P.i?'cur':''}"></i>`);
   const bossKey = GUARDIAN_OF[R.floor];
@@ -2531,15 +2594,17 @@ SCREENS.map = function(){
 };
 function pomList(){ const c={}; R.taken.forEach(id=>c[id]=(c[id]||0)+1); return Object.keys(c).filter(id=>REW[id]).map(id=>REW[id].name+(c[id]>1?' ×'+c[id]:'')).join(', ') || 'aucun'; }
 function itemsMenuMap(){
-  showModal(`<h2>Objets</h2><p class="muted">Bonus obtenus : ${pomList()}</p>
+  showModal(`<h2>Objets</h2><p class="muted">Potions : ${R.potions} · Éthers : ${R.ethers} · PV ${Math.ceil(R.hp)}/${R.maxhp} · PM ${Math.floor(R.mp)}/${R.maxmp}</p>${C?'<p class="muted">En combat, utilise le bouton Objets : cela prend ton tour.</p>':''}<p class="muted">Bonus obtenus : ${pomList()}</p>
    ${R.comp?`<p class="muted">Compagnon : <b>${COMPANIONS[R.comp.id].name}</b> ${starsIc(COMPANIONS[R.comp.id].star)} · rang ${R.comp.rank} — ${COMPANIONS[R.comp.id].sig}</p>`:''}
    <p class="muted">Compétences : ${R.loadout.map(id=>JOBS[R.job].opts.find(o=>o.id===id).name).join(', ')}</p>
    <div class="col" style="margin-top:8px">
-   <button class="btn" id="uP" ${R.potions&&R.hp<R.maxhp?'':'disabled'}>Potion (${R.potions}) — soigne ${Math.round(potionPct()*100)} %</button>
-   <button class="btn" id="uE" ${R.ethers&&R.mp<R.maxmp?'':'disabled'}>Éther (${R.ethers}) — rend 50 % des PM</button>
+   ${isDuo()?'<p class="muted">En groupe, les objets s’utilisent pendant le combat (bouton Objets).</p>':''}
+   <button class="btn" id="uP" ${!isDuo()&&!C&&R.potions&&R.hp<R.maxhp?'':'disabled'}>Potion (${R.potions}) — soigne ${Math.round(potionPct()*100)} %</button>
+   <button class="btn" id="uE" ${!isDuo()&&!C&&R.ethers&&R.mp<R.maxmp?'':'disabled'}>Éther (${R.ethers}) — rend 50 % des PM</button>
    <button class="btn small" id="uC" style="width:100%">Fermer</button></div>`);
-  document.getElementById('uP').onclick=()=>{ R.potions--; healR(R.maxhp*potionPct()); closeModal(); SCREENS.map(); };
-  document.getElementById('uE').onclick=()=>{ R.ethers--; R.mp=Math.min(R.maxmp,R.mp+Math.round(R.maxmp*0.5)); closeModal(); SCREENS.map(); };
+  const back=()=>{ closeModal(); if (C) return; if (R.rew) return showRewards(); if (!(R.plan&&R.plan.one)) SCREENS.map(); };
+  document.getElementById('uP').onclick=()=>{ R.potions--; healR(R.maxhp*potionPct()); saveRun(); back(); };
+  document.getElementById('uE').onclick=()=>{ R.ethers--; R.mp=Math.min(R.maxmp,R.mp+Math.round(R.maxmp*0.5)); saveRun(); back(); };
   document.getElementById('uC').onclick=closeModal;
 }
 function playerPanelHTML(inCombat){
@@ -2582,13 +2647,13 @@ function nextFloor(){
   gainGils(BAL.gf*(R.floor-1));
   if (R.curse && R.curse.until<R.floor) R.curse=null;
   R.plan=planFloor(R.floor);
-  S.run=R; persist(); floorIntro();
+  saveRun(); floorIntro();
 }
 function advanceNode(){
   const P=R.plan; if(!P){ R.plan=planFloor(R.floor); return SCREENS.map(); }
   P.i++;
   if (P.i>=P.steps.length) return nextFloor();
-  S.run=R; persist(); SCREENS.map();
+  saveRun(); SCREENS.map();
 }
 function enterRoom(t){
   if (t==='combat') return startCombat('normal');
@@ -2600,7 +2665,7 @@ function enterRoom(t){
 const EV_SYM = {icon_rencontre:'rencontre',icon_combat:'combat',icon_elite:'elite',icon_coffre:'coffre',icon_autel:'autel',icon_repos:'repos',icon_piege:'piege',icon_marchand:'marchand',icon_pomandre:'pomandre',icon_maudite:'maudite',icon_cristal:'autel'};
 function evSym(icon){ const t=EV_SYM[icon]; if (!t) return spr(icon,'idle','width:96px;margin:10px'); const c=(PATH[t]||PATH.rencontre)[2]; return `<span class="orb big" style="--pc:${c}">${rsym(t)}</span>`; }
 function eventScreen(title, icon, text, next, label='Continuer'){
-  S.run=R; persist();
+  saveRun();
   app.innerHTML = `${topbarRun('Étage '+R.floor)}
    <div style="flex:1"></div>
    <div class="win col center" style="align-items:center;padding:20px 12px"><h2>${title}</h2>${evSym(icon)}<p style="font-size:16px">${text}</p></div>
@@ -2616,7 +2681,7 @@ const CH_FILL = [
     fn:()=>{ R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*0.1)); eventScreen('Un instant de calme', 'icon_repos', 'Tu reprends ton souffle avant de repartir.'); }}),
 ];
 function choiceScreen(title, icon, text, choices, more){
-  S.run=R; persist();
+  saveRun();
   choices=choices.slice(); const lv=choices.findIndex(c=>c.fn===advanceNode);
   if (choices.length<3){ let k=0; while (choices.length<3 && k<CH_FILL.length){ const f=CH_FILL[k++](); if (lv>=0) choices.splice(choices.length-1,0,f); else choices.push(f); } }
   const evt=EV_SYM[icon]||'rencontre', col=(PATH[evt]||PATH.rencontre)[2];
@@ -2660,10 +2725,11 @@ function showRewardsOverlay(w, opts, cost, can){
     <div class="rw-h">Choisis une récompense</div>
     <div class="bands rw-bands">${withSp(w, opts.slice(0,3).map((x,i)=>bandHTML({cls:'b-rew rw-b '+RARITY[x.r].cls, col:REW_COL[x.r]||'#c8d2e6', name:`<img class="rw-ic" src="${rewImg(x)}" alt="" aria-hidden="true">${x.name} <span class="rar">${RARITY[x.r].n}</span>`,
       sub:`${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}`, d:120+i*90, attrs:`data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"`})), 'rw-b')}</div>
-    <button class="btn small" style="width:100%" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost?cost+' Gils':'gratuit'}${w.rr?` (relance n°${w.rr+1})`:''}</button></div>`;
+    <div class="row" style="gap:6px"><button class="btn small" style="width:auto;padding:2px 12px" data-k="menu" id="bRwItems">Menu</button><button class="btn small grow" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost?cost+' Gils':'gratuit'}${w.rr?` (relance n°${w.rr+1})`:''}</button></div></div>`;
+  ov.querySelector('#bRwItems').onclick=runMenu;
 }
 function showRewards(){
-  const w=R.rew; S.run=R; persist();
+  const w=R.rew; saveRun();
   const opts=w.opts.map(id=>REW[id]).filter(Boolean), cost=rerollCost(), can=R.gilsEarned>=cost;
   if (!w.fixed && document.getElementById('field')) showRewardsOverlay(w, opts, cost, can); // sur l'écran de combat assombri
   else app.innerHTML = `${topbarRun(w.title)}
@@ -2672,9 +2738,10 @@ function showRewards(){
     <div class="bands">${(()=>{ const arts=bandArts(opts.slice(0,3).map(x=>bandArt('rew',x.id))); return withSp(w, opts.slice(0,3).map((x,i)=>bandHTML({art:arts[i], cls:'b-rew '+RARITY[x.r].cls, col:REW_COL[x.r]||'#c8d2e6', sym:EV_SYM[rewIcon(x)]||'autel', name:`${x.name} <span class="rar">${RARITY[x.r].n}</span>`,
       sub:`${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}`, d:300+i*140, attrs:`data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"`})), ''); })()}</div>
     ${w.fixed?'':`<button class="btn small" style="width:100%" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost?cost+' Gils':'gratuit'}${w.rr?` (relance n°${w.rr+1})`:''}</button>`}
-   </div>${playerPanelHTML()}`;
+   </div>${playerPanelHTML()}<button class="btn small" style="width:100%" data-k="menu" id="bRwMenu">Menu</button>`;
+  { const bm=document.getElementById('bRwMenu'); if (bm) bm.onclick=runMenu; }
   app.querySelectorAll('[data-rew]').forEach(b=>b.onclick=()=>{ const x=opts[+b.dataset.rew]; R.rew=null; takeReward(x); advanceNode(); });
-  const bSp=app.querySelector('[data-sp]'); if (bSp) bSp.onclick=()=>{ const t=w.sp; R.rew=null; if (R.plan) R.plan.spUsed=1; app.classList.remove('rw-on'); S.run=R; persist(); (EVENTS[t]||advanceNode)(); };
+  const bSp=app.querySelector('[data-sp]'); if (bSp) bSp.onclick=()=>{ const t=w.sp; R.rew=null; if (R.plan) R.plan.spUsed=1; app.classList.remove('rw-on'); saveRun(); (EVENTS[t]||advanceNode)(); };
   const bRr=document.getElementById('bReroll'); if (bRr) bRr.onclick=()=>{
     if (!spendGils(cost)) return;
     w.rr++; const n=w.sp?2:3;
@@ -2714,7 +2781,7 @@ function endRun(victory, abandoned){
       if (duo && Online.endDuo) Online.endDuo();
     }catch(e){ console.warn(e); }
   }
-  R=null; S.run=null; C=null; persist();
+  if (!runRef.duo) S.run=null; R=null; C=null; persist();
   app.innerHTML = `<div style="flex:1"></div>
    <div class="endart ${victory?'win':'ko'}" style="background-image:url(assets/bg/t5.webp)"></div>
    <div class="win col center fanfare end ${victory?'':'ko'}" style="align-items:center;padding:22px 12px">
@@ -2811,7 +2878,7 @@ function idleDesync(root){ (root||document).querySelectorAll('#field img.idle').
   im.style.animationDelay=(-((performance.now()/1000+off)%d)).toFixed(2)+'s'; }); }
 function renderCombat(){
   app.innerHTML = `
-  <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button></div>
+  <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto;margin-left:6px" data-k="menu" id="bMenu">Menu</button></div>
   <div class="field ${R.comp?'withc':'solo'}" id="field" style="background-image:url(${roomBG()}),url(${PH[floorBG(R.floor).slice(10,12)]||''})">
     <div class="enemies" id="enemies"></div>
     <div id="aoe"></div>
@@ -2823,6 +2890,64 @@ function renderCombat(){
   <div id="ppw"></div>
   <div class="skills" id="skills"></div>`;
   document.getElementById('bHelp').onclick = helpModal;
+  document.getElementById('bMenu').onclick = runMenu;
+}
+/* Menu de l'exploration (v5.5e) : bonus, objets hors combat, aide, abandon (avec confirmation) */
+function runMenu(){
+  showModal(`<h2>Menu</h2><p class="muted">Étage ${R.floor} / ${MAX_FLOOR} · ${R.gilsEarned} Gils${R.frags?' · '+R.frags+' fragments':''}</p>
+   <div class="col" style="margin-top:8px">
+   <button class="btn" id="mO">Objets et bonus</button>
+   <button class="btn" id="mH">Aide des actions</button>
+   ${R.duo?'':'<button class="btn goldb" id="mS">Suspendre la partie</button>'}
+   <button class="btn redb" id="mA">Abandonner</button>
+   <button class="btn small" id="mC" style="width:100%">Fermer</button></div>`);
+  document.getElementById('mO').onclick=()=>{ closeModal(); itemsMenuMap(); };
+  document.getElementById('mH').onclick=()=>{ closeModal(); helpModal(); };
+  const mS=document.getElementById('mS'); if (mS) mS.onclick=()=>{ if (C && C.busy){ toast('Attends la fin du tour.'); return; } closeModal(); suspendRun(); };
+  document.getElementById('mA').onclick=()=>{ if (C && C.busy){ toast('Attends la fin du tour.'); return; } closeModal(); confirmBox('Abandonner l’exploration ? Tu gardes les Gils et fragments déjà gagnés.', ()=>{ C=null; endRun(false,true); }, 'Abandonner'); };
+  document.getElementById('mC').onclick=closeModal;
+}
+/* Suspendre / reprendre une exploration solo (v5.5e) */
+function suspendRun(){
+  if (!R || R.duo) return;
+  let snap;
+  if (C && R.inC && R.fs){ snap=clone(R.fs); snap.inC=0; } // en plein combat : on reprendra au début de l'étage
+  else { snap=clone(R); snap.inC=0; }
+  snap.suspendedAt=Date.now();
+  S.run=snap; R=null; C=null; persist();
+  try{ document.getElementById('ftr')&&document.getElementById('ftr').remove(); }catch(e){}
+  app.classList.remove('rw-on');
+  toast('Partie suspendue. Reprends-la depuis l’Avant-poste.');
+  SCREENS.hub();
+}
+function abandonSuspended(){ // ferme proprement l'ancienne partie (classement, Gils), sans l'afficher
+  if (!S.run || S.run.duo){ S.run=null; return; }
+  R=clone(S.run); if (R.inC && R.fs) R=R.fs; if (Array.isArray(R.rs)) RS=R.rs; C=null; endRun(false,true);
+}
+function resumeSolo(){
+  if (!S.run || S.run.duo){ S.run=null; persist(); return SCREENS.hub(); }
+  R=clone(S.run); if (R.inC && R.fs) R=R.fs; R.inC=0; delete R.suspendedAt;
+  if (Array.isArray(R.rs)) RS=R.rs; R.rs=RS;
+  S.run=R; persist(); C=null; SCREENS.map();
+}
+const runLabel = r => `Étage ${r.floor}, ${(JOBS[r.job]||{}).name||''}`;
+/* Transition d'étage (v5.5e) : fondu, « Étage N » en grandes lettres, particules, puis le combat apparaît. Touche pour passer. */
+function floorTransition(f, kind){
+  if (FAST) return;
+  const old=document.getElementById('ftr'); if (old) old.remove();
+  const boss = kind==='boss', big = boss && isBigBoss(f), g=GUARDIAN_OF[f];
+  const hold = boss ? 2100 : 1500;
+  const d=document.createElement('div'); d.id='ftr'; d.className='ftr'+(boss?' boss':'')+(big?' big':'')+(kind==='elite'?' elite':'');
+  d.style.setProperty('--hold', hold+'ms');
+  const motes=Array.from({length:18},(_,i)=>{ const h=bandH('m'+f+'#'+i); return `<i style="left:${h%100}%;animation-delay:${(h>>>8)%900}ms;animation-duration:${1400+(h>>>4)%900}ms;--s:${0.5+((h>>>12)%10)/10}"></i>`; }).join('');
+  const tag = boss ? `<div class="ftr-tag">${big?'Boss':'Gardien'}</div>` : kind==='elite' ? '<div class="ftr-tag el">Élite</div>' : '';
+  const sub = boss && g && ENEMIES[g] ? ENEMIES[g].name : 'Palais des Morts';
+  d.innerHTML = `<div class="ftr-sweep"></div><div class="ftr-motes">${motes}</div><div class="ftr-c">${tag}<div class="ftr-line"></div><div class="ftr-n">Étage ${f}</div><div class="ftr-line"></div><div class="ftr-s">${esc(sub)}</div></div>`;
+  document.body.appendChild(d);
+  const field=document.getElementById('field'); if (field) field.classList.add('fin');
+  let done=false; const end=()=>{ if (done) return; done=true; d.classList.add('out'); setTimeout(()=>d.remove(), 450); };
+  d.addEventListener('pointerdown', e=>{ e.preventDefault(); e.stopPropagation(); end(); });
+  setTimeout(end, hold);
 }
 function helpModal(){
   showModal(`<h2>${JOBS[R.job].name} — Actions</h2>${skillListHTML(R.job, R.loadout)}
@@ -3185,7 +3310,7 @@ function victoryHTML(kind, gil, fr){
   </div>`;
 }
 function winCombat(){
-  const kind=C.kind, g0=C.g0; C=null;
+  const kind=C.kind, g0=C.g0; C=null; R.inC=0; R.fs=null;
   if (kind==='boss') R.bosses=(R.bosses||0)+1;
   if (!R.lvB){ R.lvB=1; partyLevel(); } // premier combat gagné : niveau +1 (progression rapide au début)
   healR(R.maxhp*(R.curse&&R.curse.noHeal?0:BAL.heal)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*BAL.mpw));
@@ -4594,7 +4719,7 @@ async function duoCombatTurn(acts){
   await duoCheckEnd();
 }
 /* ---- interception des choix : en duo, un clic = une proposition envoyée au partenaire ---- */
-const DUO_LOCAL = /^(help|item|items|enemy-|online|scores|atelier)/;
+const DUO_LOCAL = /^(help|menu|item|items|enemy-|online|scores|atelier)/;
 function duoKeyOf(el){ const b=el && el.closest && el.closest('[data-k]'); return b ? b : null; }
 document.addEventListener('click', e=>{
   if (!isDuo() || DUO.applying || typeof Online==='undefined' || !Online.isDuo) return;
