@@ -12,6 +12,7 @@
 - Nouvel écran d'accueil : menu en texte stylisé sur un décor officiel, avec un bouton principal bien visible.
 - Les menus hors combat adoptent un style moderne et les écrans s'enchaînent avec un léger fondu.
 - L'Atelier des sprites est supprimé, puisque tous les sprites sont maintenant officiels ; les anciens sprites personnalisés sont ignorés.
+- Correctif : un sprite introuvable ne peut plus bloquer l'affichage d'un écran.
 
 ## v5 (23/10/2026)
 - Comptes en ligne : inscription avec un pseudo et un mot de passe, sans adresse e-mail.

@@ -545,7 +545,8 @@ function spriteURL(key){
   const cfg = SPRITES[key];
   if (cfg && cfg._ok) return cfg.src;
   if (typeof ASSET!=='undefined' && ASSET[key] && !ASSET_FAIL[key]) return ASSET[key].src;
-  return SPR_CACHE[key] || (SPR_CACHE[key] = builtinURL(key));
+  if (typeof ASSET!=='undefined' && ASSET[key]) return ASSET[key].src; // jamais de dessin de remplacement
+  try { return SPR_CACHE[key] || (SPR_CACHE[key] = builtinURL(key)); } catch(e){ return 'data:image/gif;base64,R0lGODlhAQABAAAAACw='; }
 }
 function refreshSprite(k){ document.querySelectorAll(`img[data-spr="${k}"]`).forEach(el=>el.src=spriteURL(k)); }
 const ASSET_FAIL = {};
@@ -1097,6 +1098,7 @@ const CHANGELOG = [
     'Nouvel écran d’accueil : menu en texte stylisé sur un décor officiel, avec un bouton principal bien visible.',
     'Les menus hors combat adoptent un style moderne et les écrans s’enchaînent avec un léger fondu.',
     'L’Atelier des sprites est supprimé, puisque tous les sprites sont maintenant officiels ; les anciens sprites personnalisés sont ignorés.',
+    'Correctif : un sprite introuvable ne peut plus bloquer l’affichage d’un écran.',
   ]},
   {v:'v5', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', notes:[
     'Comptes en ligne : inscription avec un pseudo et un mot de passe, sans adresse e-mail.',
