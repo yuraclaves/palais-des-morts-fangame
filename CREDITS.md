@@ -121,5 +121,15 @@ Aucun sprite libre, aucun dessin fait main et aucune image générée par IA ne 
 © SQUARE ENIX CO., LTD. All Rights Reserved.
 
 ## Écran titre (v5.4b)
-- Fond de l'écran titre (`assets/bg/title_ew.webp`) : illustration officielle des crédits de FINAL FANTASY XIV: Endwalker (Square Enix), 1360x765, via Creative Uncut (https://www.creativeuncut.com/), recompressée en WebP sans autre modification. © SQUARE ENIX CO., LTD.
+- Fond de l'écran titre (`assets/bg/title_amaurot.webp`, depuis v5.5) : illustration officielle d'Amaurot, écran de chargement de FINAL FANTASY XIV: Shadowbringers (Square Enix), 1920x872, via le FINAL FANTASY Wiki (https://finalfantasy.fandom.com/wiki/File:FFXIV_Amaurot_loading_screen_art.png), recompressée en WebP. Aucun personnage. © SQUARE ENIX CO., LTD.
 - Logo du titre : uniquement de la typographie (police Cinzel, OFL) et des traits CSS, aucune image.
+
+## Sprites des compagnons de FINAL FANTASY XIV (v5.5)
+Tous officiels, via le FINAL FANTASY Wiki (finalfantasy.fandom.com, API MediaWiki). Aucun sprite de fan.
+- Alphinaud, Alisaie, Estinien, Haurchefant, Cid nan Garlond : planches de sprites de FINAL FANTASY Record Keeper (Square Enix / DeNA), fichiers « FFRK <nom> sprites.png ». Image de repos et image KO extraites, retournées pour regarder vers la droite.
+- Urianger, Lyse : sprites de PICTLOGICA FINAL FANTASY (Square Enix), fichiers « PFF Urianger.png » et « PFF Lyse.png ».
+- Tataru : rendu officiel de la mascotte « Tataru miniature » de FINAL FANTASY XIV (« FFXIV Tataru Minion.png »).
+- Krile : rendu officiel de FINAL FANTASY XIV (« FFXIV Krile.png »).
+- G'raha Tia : rendu officiel de FINAL FANTASY XIV patch 5.3 (« G'raha Tia 5.3 render from Final Fantasy XIV.png »).
+- Les images KO d'Urianger, Lyse, Tataru, Krile et G'raha Tia sont la même image couchée et assombrie.
+© SQUARE ENIX CO., LTD.

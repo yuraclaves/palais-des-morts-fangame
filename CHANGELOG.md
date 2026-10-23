@@ -1,5 +1,15 @@
 # Notes de patch : Le Palais des Morts
 
+## v5.5 : Combats plus lisibles et vrais compagnons (23/10/2026)
+- Les dix compagnons de FINAL FANTASY XIV qui n'avaient qu'une lettre ont enfin un vrai sprite officiel.
+- En combat, ton équipe est à gauche et les monstres à droite, placés en diagonale comme dans les anciens FINAL FANTASY.
+- Les compagnons se tiennent en retrait, un peu plus petits, derrière les joueurs.
+- Le champ de bataille n'a plus de cadre : ses bords se fondent doucement dans l'écran.
+- La flèche de cible disparaît : le monstre visé brille légèrement et son nom passe en doré.
+- Les personnages et les monstres ne respirent plus tous en même temps.
+- L'écran titre retrouve ses boutons en texte simple, plus petits et plus serrés.
+- Nouveau fond d'écran titre : la cité d'Amaurot, une illustration officielle sans personnage.
+
 ## v5.4b : Nouvel écran titre et classement (23/10/2026)
 - Sur iPhone, le jeu remplit enfin tout l'écran, sans bande vide en bas.
 - Nouvel écran titre : un logo plus élégant sur une illustration officielle de FINAL FANTASY XIV.

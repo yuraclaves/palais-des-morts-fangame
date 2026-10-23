@@ -700,7 +700,7 @@ body.modern::before{top:calc(-1 * env(safe-area-inset-top,0px));height:calc(100l
 .home-bg{top:-4%;height:calc(100lvh * 1.08)}
 #modal{bottom:auto;height:100vh;height:100dvh}
 /* v5.4b : écran titre */
-body.home .home-bg{background:url(assets/bg/title_ew.webp) 50% 30%/cover no-repeat}
+body.home .home-bg{background:url(assets/bg/title_amaurot.webp) 47% 50%/cover no-repeat}
 body.home .home-bg::after{background:linear-gradient(180deg,rgba(6,8,24,.55) 0%,rgba(6,8,24,.08) 30%,rgba(6,8,24,.25) 55%,rgba(6,8,24,.92) 82%)}
 .tlogo{margin:7vh auto 0;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;font-weight:400;line-height:1;filter:drop-shadow(0 4px 18px rgba(0,0,0,.65))}
 .tlogo .tl-a{font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:clamp(15px,4.6vw,20px);letter-spacing:.5em;margin-right:-.5em;text-transform:uppercase;color:#f3e6c4}
@@ -710,14 +710,10 @@ body.home .home-bg::after{background:linear-gradient(180deg,rgba(6,8,24,.55) 0%,
 .tlogo .tl-rule i{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(243,222,170,.85))}
 .tlogo .tl-rule i:last-child{transform:scaleX(-1)}
 .tlogo .tl-rule b{width:9px;height:9px;transform:rotate(45deg);background:linear-gradient(135deg,#bfe6ff,#5a9fe0);box-shadow:0 0 10px rgba(140,200,255,.9)}
-body.home .tmenu{gap:10px;margin:0 auto 10px;width:min(300px,82vw)}
-body.home .tm{width:100%;font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:15px;letter-spacing:.1em;padding:11px 16px;border-radius:10px;
- color:#f3e6c4;background:linear-gradient(180deg,rgba(20,24,44,.72),rgba(10,12,26,.72));border:1px solid rgba(230,204,143,.42);text-shadow:none;
- -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .12s,border-color .2s,background .2s;animation:none}
-body.home .tm::before,body.home .tm::after{display:none}
-body.home .tm:hover{border-color:rgba(240,214,150,.85);letter-spacing:.1em;color:#fff3d6}
-body.home .tm:active{transform:scale(.975);letter-spacing:.1em}
-body.home .tm.main{font-size:17px;color:#2a1c06;background:linear-gradient(180deg,#f7e2a6,#d9ad55);border-color:#f3d48a;box-shadow:0 4px 18px rgba(0,0,0,.45)}
+body.home .tmenu{gap:0;margin:0 auto 12px}
+body.home .tm{font-size:17px;padding:8px 26px}
+body.home .tm.main{font-size:23px}
+body.home .tm:active{color:#ffe7a8;opacity:.85}
 body.home .legal{position:relative;z-index:1;color:#c9cde0;text-shadow:0 1px 2px #000}
 .btn.danger{border-color:rgba(230,110,100,.55)!important;color:#ffb4a8!important}
 
@@ -738,6 +734,44 @@ body.home .legal{position:relative;z-index:1;color:#c9cde0;text-shadow:0 1px 2px
 .rk-t small,.rk-f small{font-size:12px;color:#a9adc6;white-space:nowrap}
 .rk-f{text-align:right}.rk-f b{font-family:'Cinzel',Georgia,serif;font-size:14.5px;color:#f3dfa8;white-space:nowrap}
 .rk-you{font-style:normal;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#2a1c06;background:#e9c979;border-radius:6px;padding:1px 5px;margin-left:4px;vertical-align:2px}
+img.spr.art.smooth{image-rendering:auto}
+
+/* v5.5 combat : champ sans cadre, alliés à gauche en échelon, ennemis à droite */
+#field.field{border:0;border-radius:0;box-shadow:none;background-color:transparent;
+ -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(180deg,transparent,#000 7%,#000 90%,transparent);
+ -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(180deg,transparent,#000 7%,#000 90%,transparent);mask-composite:intersect}
+#field .enemies{position:absolute;display:block;left:47%;right:3%;top:auto;bottom:6%;height:74%;width:auto}
+#field .en{position:absolute;left:calc(var(--x) * 1%);bottom:calc(var(--y) * 1%);translate:-50% 0;scale:var(--s);transform-origin:50% 100%;min-width:0;width:auto;padding-top:0;margin:0!important}
+#field .en .intent{position:static}
+#field .en img.spr.art{width:min(calc(var(--w) * 1.5px),22vw);max-height:min(112px,16vh)}
+#field .en.boss img.spr.art{width:min(calc(var(--w) * 1.9px),46vw);max-height:min(200px,30vh)}
+#field .en .ename{font-size:11px}
+#field .en .bar{width:62px}
+#field .en .stx:empty{display:none}
+#field .esp{position:relative;display:block}
+#field .esp::after{content:"";position:absolute;left:12%;right:12%;bottom:-3px;height:9px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.45),transparent);z-index:-1}
+#field .en.tgt .esp::after{background:radial-gradient(closest-side,rgba(255,226,150,.55),rgba(255,200,90,.18) 60%,transparent)}
+#field .en.tgt img.spr{filter:drop-shadow(0 0 4px rgba(255,224,150,.55)) brightness(1.1)}
+#field .en.tgt .ename{color:var(--gold)}
+#field .cursor{display:none}
+#field .player{left:27%;bottom:7%;translate:-50% 0;z-index:6}
+#field.solo .player{left:27%;bottom:9%}
+#field .player img.spr.art:not(.tile){width:min(calc(var(--w) * 1.7px),23vw)}
+#field .comp{scale:.72;transform-origin:50% 100%;translate:-50% 0;z-index:3}
+#field .comp:not(.partner){left:9%;bottom:24%}
+#field.duo .comp:not(.partner){left:7%;bottom:8%;z-index:4}
+#field .comp.partner{left:17%;bottom:31%;scale:.9;z-index:5}
+#field .comp.partner.p3{left:8%;bottom:54%;scale:.8;z-index:2}
+#field .comp img.spr.art{width:min(calc(var(--w) * 1.5px),20vw)}
+#field .comp .cname{font-size:10px;background:none;text-shadow:0 1px 2px #000}
+#field .comp.partner .cname{font-size:11px;font-weight:700}
+#field .comp.partner .php{width:54px;margin-top:2px}
+@media (max-width:370px){#field .enemies{left:46%;right:2%}#field .en .bar{width:54px}}
+#field .enemies{left:46%;right:5%;bottom:4%;height:84%}
+#field .enemies[data-n="4"] img.spr.art,#field .enemies[data-n="5"] img.spr.art{max-height:min(84px,12vh)}
+#field .enemies[data-n="4"] .ename,#field .enemies[data-n="5"] .ename{font-size:10px}
+#field .enemies[data-n="4"] .bar,#field .enemies[data-n="5"] .bar{width:50px}
+#field.duo .comp:not(.partner){left:6%;bottom:3%}
 </style>
 </head>
 <body>
@@ -912,7 +946,7 @@ const ASSET_FAIL = {};
 function sprFail(img){ const k=img.dataset.spr; if(/\.webp$/.test(img.getAttribute('src')||'')){ img.src=img.getAttribute('src').replace(/\.webp$/,'.png'); return; } if(!k||ASSET_FAIL[k]) return; ASSET_FAIL[k]=1; img.style.visibility='hidden'; } /* pas de dessin de remplacement : uniquement des sprites officiels */
 function spr(key, cls='', style=''){
   const u=spriteURL(key), a=(typeof ASSET!=='undefined')&&ASSET[key]&&u===ASSET[key].src;
-  return `<img class="spr ${cls} ${a?'art':''} ${a&&ASSET[key].tile?'tile':''} ${a&&ASSET[key].glyph?'glyph':''}" data-spr="${key}" src="${u}" style="${a?`--w:${ASSET[key].w};--h:${ASSET[key].h};`:''}${style}" onerror="sprFail(this)" decoding="async" alt="">`;
+  return `<img class="spr ${cls} ${a?'art':''} ${a&&ASSET[key].tile?'tile':''} ${a&&ASSET[key].glyph?'glyph':''} ${a&&ASSET[key].smooth?'smooth':''}" data-spr="${key}" src="${u}" style="${a?`--w:${ASSET[key].w};--h:${ASSET[key].h};`:''}${style}" onerror="sprFail(this)" decoding="async" alt="">`;
 }
 function loadCustomSprites(){
   Object.keys(SPRITES).forEach(k=>{
@@ -949,7 +983,7 @@ function floorBG(f){
   return 'assets/bg/t'+tier+'.webp';
 }
 /* Pixel art libre (voir CREDITS.md) : assets/ */
-const ASSET = {"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":50,"h":61,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"","w":64,"h":64,"medal":1},"c_alisaie":{"src":"","w":64,"h":64,"medal":1},"c_urianger":{"src":"","w":64,"h":64,"medal":1},"c_graha":{"src":"","w":64,"h":64,"medal":1},"c_estinien":{"src":"","w":64,"h":64,"medal":1},"c_haurchefant":{"src":"","w":64,"h":64,"medal":1},"c_tataru":{"src":"","w":64,"h":64,"medal":1},"c_lyse":{"src":"","w":64,"h":64,"medal":1},"c_krile":{"src":"","w":64,"h":64,"medal":1},"c_cid":{"src":"","w":64,"h":64,"medal":1},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/ui/emotes.webp","w":64,"h":64,"glyph":1},"icon_combat":{"src":"assets/ui/stance.webp","w":64,"h":64,"glyph":1},"icon_elite":{"src":"assets/ui/pvp_profile.webp","w":64,"h":64,"glyph":1},"icon_coffre":{"src":"assets/ui/armoury_chest.webp","w":64,"h":64,"glyph":1},"icon_cristal":{"src":"assets/ui/aether_currents.webp","w":64,"h":64,"glyph":1},"icon_autel":{"src":"assets/ui/challenge_log.webp","w":64,"h":64,"glyph":1},"icon_marchand":{"src":"assets/ui/currency.webp","w":64,"h":64,"glyph":1},"icon_maudite":{"src":"assets/ui/blacklist.webp","w":64,"h":64,"glyph":1},"icon_piege":{"src":"assets/ui/waymarks.webp","w":64,"h":64,"glyph":1},"icon_pomandre":{"src":"assets/ui/key_items.webp","w":64,"h":64,"glyph":1},"icon_repos":{"src":"assets/ui/housing.webp","w":64,"h":64,"glyph":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
+const ASSET = {"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":50,"h":61,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"assets/chars/c_alphinaud.webp","w":48,"h":69,"ko":"assets/chars/c_alphinaud_ko.webp"},"c_alisaie":{"src":"assets/chars/c_alisaie.webp","w":48,"h":69,"ko":"assets/chars/c_alisaie_ko.webp"},"c_urianger":{"src":"assets/chars/c_urianger.webp","w":42,"h":72,"ko":"assets/chars/c_urianger_ko.webp"},"c_graha":{"src":"assets/chars/c_graha.webp","w":26,"h":70,"ko":"assets/chars/c_graha_ko.webp","smooth":1},"c_estinien":{"src":"assets/chars/c_estinien.webp","w":48,"h":72,"ko":"assets/chars/c_estinien_ko.webp"},"c_haurchefant":{"src":"assets/chars/c_haurchefant.webp","w":45,"h":72,"ko":"assets/chars/c_haurchefant_ko.webp"},"c_tataru":{"src":"assets/chars/c_tataru.webp","w":37,"h":54,"ko":"assets/chars/c_tataru_ko.webp","smooth":1},"c_lyse":{"src":"assets/chars/c_lyse.webp","w":45,"h":72,"ko":"assets/chars/c_lyse_ko.webp"},"c_krile":{"src":"assets/chars/c_krile.webp","w":34,"h":60,"ko":"assets/chars/c_krile_ko.webp","smooth":1},"c_cid":{"src":"assets/chars/c_cid.webp","w":45,"h":72,"ko":"assets/chars/c_cid_ko.webp"},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/ui/emotes.webp","w":64,"h":64,"glyph":1},"icon_combat":{"src":"assets/ui/stance.webp","w":64,"h":64,"glyph":1},"icon_elite":{"src":"assets/ui/pvp_profile.webp","w":64,"h":64,"glyph":1},"icon_coffre":{"src":"assets/ui/armoury_chest.webp","w":64,"h":64,"glyph":1},"icon_cristal":{"src":"assets/ui/aether_currents.webp","w":64,"h":64,"glyph":1},"icon_autel":{"src":"assets/ui/challenge_log.webp","w":64,"h":64,"glyph":1},"icon_marchand":{"src":"assets/ui/currency.webp","w":64,"h":64,"glyph":1},"icon_maudite":{"src":"assets/ui/blacklist.webp","w":64,"h":64,"glyph":1},"icon_piege":{"src":"assets/ui/waymarks.webp","w":64,"h":64,"glyph":1},"icon_pomandre":{"src":"assets/ui/key_items.webp","w":64,"h":64,"glyph":1},"icon_repos":{"src":"assets/ui/housing.webp","w":64,"h":64,"glyph":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
 /* Icônes pixel maison (SVG 8x8) — aucun emoji dans le jeu */
 const IC_PAL = { w:'#ffffff', k:'#101018', y:'#ffd84a', o:'#ff8a2a', r:'#ff4a4a', g:'#5aff6a', G:'#1f9a3a', b:'#6ab8ff', B:'#2a5adf', p:'#c070ff', s:'#c8d0e0', S:'#7a8298', n:'#a0662a', c:'#9ff0ff' };
 const IC_GRID = {
@@ -1489,7 +1523,17 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
-  {v:'v5.4b', date:'23/10/2026', img:'assets/bg/title_ew.webp', title:'Nouvel écran titre et classement', notes:[
+  {v:'v5.5', date:'23/10/2026', img:'assets/bg/title_amaurot.webp', title:'Combats plus lisibles et vrais compagnons', notes:[
+    'Les dix compagnons de FINAL FANTASY XIV qui n’avaient qu’une lettre ont enfin un vrai sprite officiel.',
+    'En combat, ton équipe est à gauche et les monstres à droite, placés en diagonale comme dans les anciens FINAL FANTASY.',
+    'Les compagnons se tiennent en retrait, un peu plus petits, derrière les joueurs.',
+    'Le champ de bataille n’a plus de cadre : ses bords se fondent doucement dans l’écran.',
+    'La flèche de cible disparaît : le monstre visé brille légèrement et son nom passe en doré.',
+    'Les personnages et les monstres ne respirent plus tous en même temps.',
+    'L’écran titre retrouve ses boutons en texte simple, plus petits et plus serrés.',
+    'Nouveau fond d’écran titre : la cité d’Amaurot, une illustration officielle sans personnage.'
+  ]},
+  {v:'v5.4b', date:'23/10/2026', img:'assets/bg/title_amaurot.webp', title:'Nouvel écran titre et classement', notes:[
     'Sur iPhone, le jeu remplit enfin tout l’écran, sans bande vide en bas.',
     'Nouvel écran titre : un logo plus élégant sur une illustration officielle de FINAL FANTASY XIV.',
     'Les trois boutons de l’écran titre sont plus petits, mieux espacés et bien visibles.',
@@ -1712,9 +1756,9 @@ SCREENS.settings = function(){
       <p><b>Sprites des personnages et monstres :</b> FINAL FANTASY BRAVE EXVIUS (Square Enix, Alim).</p>
       <p><b>Icônes, sons, jingles et décors :</b> FINAL FANTASY XIV, Fan Kit officiel et illustrations officielles.</p>
       <p><b>Illustrations des bannières :</b> rendus officiels FINAL FANTASY VII, X, XIII, XIV et XV.</p>
-      <p><b>Fond de l’écran titre :</b> illustration officielle des crédits de FINAL FANTASY XIV: Endwalker.</p>
+      <p><b>Fond de l’écran titre :</b> illustration officielle d’Amaurot (écran de chargement de FINAL FANTASY XIV: Shadowbringers).</p>
       <p><b>Polices :</b> Cinzel (Natanael Gama) et Source Sans 3 (Adobe), licence SIL Open Font License.</p>
-      <p><b>Sprites de fans :</b> aucun pour l’instant. Les compagnons sans sprite officiel Brave Exvius sont représentés par un médaillon à leur initiale, dessiné pour le jeu.</p>
+      <p><b>Sprites des compagnons de FINAL FANTASY XIV :</b> Alphinaud, Alisaie, Estinien, Haurchefant et Cid : FINAL FANTASY Record Keeper (Square Enix, DeNA). Urianger et Lyse : PICTLOGICA FINAL FANTASY (Square Enix). Tataru, Krile et G’raha Tia : rendus officiels de FINAL FANTASY XIV. Aucun sprite de fan utilisé.</p>
       <p class="legal">${LEGAL_TXT}</p>
     </section>
   </div>`;
@@ -2132,6 +2176,19 @@ function startCombat(kind){
   updateCombat();
 }
 function curTarget(){ let e=C.enemies[C.target]; if(!e||e.dead){ e=alive()[0]; C.target=C.enemies.indexOf(e); } return e; }
+/* Disposition du champ de bataille : ennemis en échelon à droite (avant = bas, près du centre) */
+const EN_SLOTS={1:[[46,16,1]],2:[[30,8,1],[70,34,.9]],3:[[24,4,1],[56,28,.92],[78,54,.84]],
+  4:[[22,0,1],[66,10,.96],[34,40,.9],[76,52,.86]],5:[[20,0,1],[64,6,.97],[30,36,.9],[76,44,.88],[50,70,.8]]};
+const EN_ADDS=[[16,0,.9],[20,52,.82],[6,26,.86],[40,66,.78]];
+function enSlot(i,n,list){ const b=list.findIndex(z=>z.boss);
+  let p; if (b>=0){ if(i===b) p=[60,10,1]; else { const j=list.slice(0,i).filter(z=>!z.boss).length; p=EN_ADDS[j%EN_ADDS.length]; } }
+  else p=(EN_SLOTS[Math.min(5,n)]||EN_SLOTS[5])[i%5];
+  return [p[0],p[1],p[2],100-Math.round(p[1])]; }
+/* Respiration désynchronisée : chaque sprite a sa propre durée et sa phase, continue entre deux rendus */
+function idleDesync(root){ (root||document).querySelectorAll('#field img.idle').forEach(im=>{
+  const host=im.closest('[id]'); const id=(host&&host.id)||'x'; let h=0; for(const c of id) h=(h*31+c.charCodeAt(0))>>>0;
+  const d=0.85+(h%7)*0.07, off=(h%1000)/1000*d; im.style.animationDuration=d.toFixed(2)+'s';
+  im.style.animationDelay=(-((performance.now()/1000+off)%d)).toFixed(2)+'s'; }); }
 function renderCombat(){
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button></div>
@@ -2171,7 +2228,7 @@ function resTags(e){ const t=[]; const r=e.res; if(r.phys>=0.3) t.push('Phys−'
 function updateCombat(){
   if (!C) return;
   const tgt = curTarget();
-  const en = document.getElementById('enemies'); if(!en) return;
+  const en = document.getElementById('enemies'); if(!en) return; en.dataset.n=C.enemies.length;
   en.innerHTML = C.enemies.map((e,i)=>{
     let it='';
     if (!e.dead && e.intent){
@@ -2194,9 +2251,8 @@ function updateCombat(){
     if (e.flyT>0) sx.push(''+ic('wing')+'En vol');
     if (e.enrageAt){ const left=e.enrageAt-e.t; if (left<=0) sx.push('<b style="color:#ff80ff">ENRAGÉ</b>'); else if (left<=6) sx.push(''+ic('clock')+''+left); }
     const wind=!e.dead&&e.intent&&(e.intent.kind==='charge'||e.intent.big||e.intent.kind==='buffAll'||e.intent.kind==='summon');
-    return `<div class="en ${e.boss?'boss':''} ${e===tgt?'tgt':''} ${e.dead?'dead':''} ${wind?'winding':''} ${wind&&canInterrupt(e)?'cut':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
-      ${it}${e===tgt && alive().length>1 ? spr('icon_curseur','cursor') : ''}
-      ${spr(e.key,'idle')}<div class="ename">${e.name}</div>${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
+    const sl=enSlot(i,C.enemies.length,C.enemies); return `<div style="--x:${sl[0]};--y:${sl[1]};--s:${sl[2]};z-index:${sl[3]}" class="en ${e.boss?'boss':''} ${e===tgt&&alive().length>1?'tgt':''} ${e.dead?'dead':''} ${wind?'winding':''} ${wind&&canInterrupt(e)?'cut':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
+      ${it}<span class="esp">${spr(e.key,'idle')}</span><div class="ename">${e.name}</div>${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
   }).join('');
   en.querySelectorAll('[data-ei]').forEach(el=>el.onclick=()=>{ const i=+el.dataset.ei; if(!C.enemies[i].dead){ C.target=i; updateCombat(); } });
   const al = alive();
@@ -2205,7 +2261,7 @@ function updateCombat(){
   document.getElementById('banner').innerHTML = (false && big) ? `<div class="banner">${big.intent.kind==='charge' ? `${ic('hour')} ${big.name} prépare « ${big.intent.then.name} »${canInterrupt(big)?' — interromps-le '+ic('bolt')+'':''} !` : big.intent.meteor ? `${ic('meteor')} « ${big.intent.name} » ! Protège-toi ou c’est la fin !` : `${ic('warn')} « ${big.intent.name} » imminent ! Défends-toi !`}</div>` : '';
   document.getElementById('log').innerHTML = C.msg || '&nbsp;';
   document.getElementById('ppw').innerHTML = playerPanelHTML(true);
-  renderSkills();
+  renderSkills(); idleDesync();
 }
 function combatSkills(){ const j=JOBS[R.job]; return [j.basic].concat(R.loadout.map(id=>j.opts.find(o=>o.id===id))); }
 function skillState(s){
@@ -3750,7 +3806,7 @@ renderCombat = function(){
   const o=R.party[1-DUO.my];
   const d=document.createElement('div'); d.className='comp partner'; d.id='partner';
   d.innerHTML=`<div class="cbub" id="pbub"></div>${spr(o.job,'idle')}<div class="cname">${esc(o.pname)}</div><div class="bar php"><i style="width:0"></i></div>`;
-  f.appendChild(d);
+  f.appendChild(d); idleDesync(f);
 };
 updateCombat = function(){
   if (!isDuo()) return _updateCombat();
