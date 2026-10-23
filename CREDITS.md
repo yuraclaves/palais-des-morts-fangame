@@ -69,7 +69,7 @@ Sprites de combat officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, déve
 
 ## Matériel officiel FINAL FANTASY XIV
 - **FINAL FANTASY XIV Fan Kit** (icônes officielles), https://na.finalfantasyxiv.com/lodestone/special/fankit/icon/
-  - Icônes de mascottes (minions) pour les compagnons sans sprite Brave Exvius et la Mimique :
+  - (jusqu'à la v5.2) Icônes de mascottes (minions) pour les compagnons sans sprite Brave Exvius et la Mimique :
     - `c_alphinaud` : FFXIV Fan Kit minion icon wind-up_alphinaud
     - `c_alisaie` : FFXIV Fan Kit minion icon wind-up_alisaie
     - `c_urianger` : FFXIV Fan Kit minion icon wind-up_urianger
@@ -98,10 +98,24 @@ Décors officiels de FINAL FANTASY BRAVE EXVIUS, téléchargés depuis le Final 
 
 ## Illustrations des bannières d'invocation (`assets/art/`)
 Rendus officiels SQUARE ENIX, téléchargés depuis le Final Fantasy Wiki via l'API MediaWiki :
-- `yshtola` : Y'shtola NPC Render 2.png (https://static.wikia.nocookie.net/finalfantasy/images/2/24/Y%27shtola_NPC_Render_2.png)
-- `cloud` : Cloud Strife from FFVII Rebirth promo render.png (https://static.wikia.nocookie.net/finalfantasy/images/e/ec/Cloud_Strife_from_FFVII_Rebirth_promo_render.png)
-- `yuna` : FFX HD Yuna Render.png (https://static.wikia.nocookie.net/finalfantasy/images/c/c6/FFX_HD_Yuna_Render.png)
-- `noctis` : DFFNT Noctis CG Render.png (https://static.wikia.nocookie.net/finalfantasy/images/9/9b/DFFNT_Noctis_CG_Render.png)
-- `lightning` : LRFFXIII Lightning CG alternate render.png (https://static.wikia.nocookie.net/finalfantasy/images/4/42/LRFFXIII_Lightning_CG_alternate_render.png)
+Depuis la v5.3, haute résolution (rognés au personnage, jamais réduits sous ~2x la taille affichée, WebP qualité 92 avec alpha sans perte) :
+- `yshtola` : FFXIV SH Y'shtola 2.png, rendu officiel FINAL FANTASY XIV: Shadowbringers, 1395x1915 (https://static.wikia.nocookie.net/finalfantasy/images/7/72/FFXIV_SH_Y%27shtola_2.png)
+- `cloud` : Cloud Strife from FFVII Remake battle render.png, 2970x4368, ramené à 1800 px de haut (https://static.wikia.nocookie.net/finalfantasy/images/a/af/Cloud_Strife_from_FFVII_Remake_battle_render.png)
+- `yuna` : Yuna from DFFOO render.png, 817x1035, résolution d'origine (https://static.wikia.nocookie.net/finalfantasy/images/0/0d/Yuna_from_DFFOO_render.png)
+- `noctis` : DFFNT Noctis CG Render.png, 388x989, résolution d'origine ; aucun rendu officiel détouré plus grand n'a été trouvé (https://static.wikia.nocookie.net/finalfantasy/images/9/9b/DFFNT_Noctis_CG_Render.png)
+- `lightning` : Lightning XIII Action Render.png, 769x1021, résolution d'origine, fond réellement transparent (https://static.wikia.nocookie.net/finalfantasy/images/f/f1/Lightning_XIII_Action_Render.png)
+Jusqu'à la v5.2 : Y'shtola NPC Render 2, Cloud Strife from FFVII Rebirth promo render, FFX HD Yuna Render, LRFFXIII Lightning CG alternate render.
 
 Aucun sprite libre, aucun dessin fait main et aucune image générée par IA ne sont utilisés. Les petits pictogrammes d'interface (étoiles, gemme, épée) sont des icônes vectorielles de 8×8 tracées en code.
+
+
+## v5.3 : direction artistique
+- **Polices** (`assets/fonts/`) : Cinzel (Natanael Gama) et Source Sans 3 (Adobe), licence SIL Open Font License 1.1, fichiers Google Fonts auto-hébergés. Les polices propriétaires de FFXIV ne sont pas incluses.
+- **Glyphes dorés** (`assets/ui/*.webp`, avant-poste et paramètres) : dérivés des icônes MainCommand du FINAL FANTASY XIV Fan Kit officiel (https://na.finalfantasyxiv.com/lodestone/special/fankit/icon/), recadrés et recolorés.
+- **Marqueur de quête principale** (`assets/ui/msq.webp`) : icône officielle de l'interface de FINAL FANTASY XIV (icône 071001, version HD), via l'API publique documentée XIVAPI (https://xivapi.com/i/071000/071001_hr1.png). Elle n'existe qu'en 64 px et est agrandie pour un usage en fond très discret.
+- **Décors des bannières** (`assets/bgb/`) : illustrations officielles de FINAL FANTASY XIV (Gridania, Gold Saucer, Limsa Lominsa, Ishgard, Cristarium), via le FINAL FANTASY Wiki (Fandom), recadrées et compressées.
+- **Lightning** (`assets/art/lightning.webp`) : rendu officiel « Lightning XIII Action Render » de FINAL FANTASY XIII, via le FINAL FANTASY Wiki.
+- **Symboles des salles, des menus et médaillons des compagnons** : dessinés pour le jeu en SVG (aucune image générée).
+- **Compagnons sans sprite Brave Exvius** (Alphinaud, Alisaie, Urianger, G'raha Tia, Estinien, Haurchefant, Tataru, Lyse, Krile, Cid) : aucun sprite de fan au style Brave Exvius avec une autorisation explicite de réutilisation n'a été trouvé (les portraits F2U de Tobiki sur feuniverse.us ne sont pas des sprites de combat Brave Exvius). Ils sont affichés avec un médaillon à leur initiale.
+
+© SQUARE ENIX CO., LTD. All Rights Reserved.

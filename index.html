@@ -389,6 +389,200 @@ body[data-scr=combat] #sndBox{top:auto;bottom:calc(env(safe-area-inset-bottom,0p
 .snd-pop[hidden]{display:none}
 .snd-pop input[type=range]{width:100%;accent-color:#d9b75f}
 .snd-mute{font-size:12px;padding:6px 8px;background:transparent;border:1px solid rgba(220,200,140,.35);color:#e9dcb4;border-radius:8px}
+/* ===== v5.3 : direction artistique FFXIV (menus hors combat) ===== */
+@font-face{font-family:'Cinzel';src:url(assets/fonts/cinzel-latin.woff2) format('woff2');font-weight:400 900;font-display:swap}
+@font-face{font-family:'Source Sans 3';src:url(assets/fonts/sourcesans3-latin.woff2) format('woff2');font-weight:200 900;font-display:swap}
+:root{--xg:#e6cc8f;--xg2:#b8924f;--xs:#c9d2e0;--xpanel:linear-gradient(180deg,rgba(22,20,28,.80),rgba(10,10,16,.86))}
+body.modern{font-family:'Source Sans 3',system-ui,sans-serif;font-weight:500}
+body.modern h1,body.modern h2,body.modern h3,body.modern .topbar b,body.modern .tm,body.modern .xh,body.modern .path-n,body.modern .ff-title{font-family:'Cinzel',Georgia,serif;font-weight:600;letter-spacing:.06em}
+body.modern .topbar{background:linear-gradient(180deg,rgba(8,8,12,.85),rgba(8,8,12,.35));border:0;border-bottom:0;box-shadow:none;position:relative}
+body.modern .topbar::after{content:"";position:absolute;left:8%;right:8%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--xg),transparent);opacity:.55}
+body.modern .topbar b{color:#f3e6c4;font-size:17px}
+.tb-back{background:none;border:0;color:var(--xg);padding:4px 6px 4px 0;margin-right:4px;display:flex;align-items:center;cursor:pointer;min-height:0}
+.tb-back:active{filter:drop-shadow(0 0 6px var(--xg))}
+body.modern .win:not(.topbar){background:var(--xpanel);border:0;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.45),inset 0 1px 0 rgba(230,204,143,.28);backdrop-filter:blur(4px)}
+body.modern .xsec{padding:12px 4px 8px;position:relative}
+body.modern .xsec+.xsec{margin-top:4px}
+body.modern .xh{font-size:15px;color:var(--xg);margin:0 0 8px;padding-bottom:6px;position:relative;display:flex;align-items:center;gap:8px}
+body.modern .xh::after{content:"";position:absolute;left:0;right:30%;bottom:0;height:1px;background:linear-gradient(90deg,var(--xg2),transparent)}
+body.modern .muted{color:#aab3c4}
+/* boutons FFXIV : pastille dégradée, sans cadre */
+body.modern .btn{border:0;border-radius:999px;background:linear-gradient(180deg,rgba(70,64,56,.62),rgba(26,24,24,.78));color:#f1ead8;box-shadow:inset 0 1px 0 rgba(255,240,200,.18),0 4px 14px rgba(0,0,0,.35);font-family:'Source Sans 3',sans-serif;font-weight:700;letter-spacing:.02em;text-shadow:0 1px 2px #000}
+body.modern .btn:disabled{opacity:.45;filter:grayscale(.6)}
+body.modern .btn.goldb{background:linear-gradient(180deg,#f2dca0,#c39a52 55%,#94702f);color:#2a1c06;text-shadow:0 1px 0 rgba(255,240,200,.6);box-shadow:0 0 18px rgba(230,190,110,.35),inset 0 1px 0 #fff6d8}
+body.modern .btn.redb{background:linear-gradient(180deg,#a8423a,#5a1814);color:#fff}
+body.modern .btn.small{min-height:40px}
+/* glyphes officiels (une seule famille dorée) */
+.gi{width:30px;height:30px;object-fit:contain;flex:none;filter:drop-shadow(0 0 4px rgba(230,200,140,.35))}
+.gi.sm{width:20px;height:20px}
+img.spr.glyph{width:44px;height:auto;image-rendering:auto}
+/* héros de l'avant-poste : sprite sur halo, sans cadre */
+.hero{display:flex;align-items:center;gap:14px;padding:10px 4px 6px}
+.hero .hero-sp{position:relative;flex:none;width:92px;display:flex;justify-content:center}
+.hero .hero-sp::before{content:"";position:absolute;inset:-10px -16px -4px;background:radial-gradient(ellipse at 50% 70%,rgba(230,200,140,.35),transparent 65%);z-index:-1}
+.hero .hero-sp img.spr{width:84px}
+.hero.sm .hero-sp{width:64px}.hero.sm .hero-sp img.spr{width:56px}
+.hero h2{font-size:22px;color:#f6ecd2;margin:0}
+.hero-j{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+/* liste plate de l'avant-poste */
+.xbtn{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 12px;border:0;background:linear-gradient(90deg,rgba(230,204,143,.10),rgba(230,204,143,.02) 70%,transparent);color:#efe6cf;text-align:left;cursor:pointer;position:relative;border-radius:0}
+.xbtn::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:1px;background:linear-gradient(90deg,rgba(230,204,143,.28),transparent)}
+.xbtn b{display:block;font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:16px;letter-spacing:.05em}
+.xbtn small{display:block;font-size:12.5px;color:#a9b1c0}
+.xbtn:active{background:linear-gradient(90deg,rgba(230,204,143,.28),transparent 80%)}
+.xbtn.prime{min-height:72px;margin:6px 0 10px;background:linear-gradient(90deg,rgba(242,220,160,.32),rgba(195,154,82,.14) 60%,transparent);border-radius:4px;animation:primeGlow 3.2s ease-in-out infinite}
+.xbtn.prime b{font-size:19px;color:#fbefc8}.xbtn.prime .gi{width:40px;height:40px}
+@keyframes primeGlow{50%{box-shadow:0 0 22px rgba(240,205,130,.30)}}
+.xlist{display:flex;flex-direction:column}
+.ledger .stat{border:0;background:none;padding:3px 2px}
+.setrow{display:flex;align-items:center;gap:12px;margin:6px 0 10px}.setrow input{flex:1;accent-color:var(--xg)}
+.credits p{font-size:13.5px;line-height:1.45;margin:6px 0}
+/* cartes (jobs, compagnons) : jamais encadrées */
+body.modern .btn.card{border-radius:8px;background:radial-gradient(ellipse at 50% 35%,rgba(230,204,143,.12),transparent 70%);box-shadow:none;flex-direction:column;gap:3px}
+body.modern .btn.card.sel{background:radial-gradient(ellipse at 50% 40%,rgba(240,210,140,.38),transparent 72%);box-shadow:none}
+body.modern .btn.card.locked img.spr{filter:grayscale(1) brightness(.55)}
+.jn{display:flex;align-items:center;gap:4px;font-size:13px}
+.jpick{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.jp{display:flex;flex-direction:column;align-items:center;gap:4px;border:0;padding:8px 2px;background:radial-gradient(ellipse at 50% 45%,rgba(230,204,143,.10),transparent 70%);color:#efe6cf;cursor:pointer;font-weight:700}
+.jp img.spr{width:58px}.jp.sel{background:radial-gradient(ellipse at 50% 45%,rgba(240,210,140,.40),transparent 72%)}
+.jp span{display:flex;align-items:center;gap:4px}
+/* liste de sorts simplifiée */
+.sklite{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+.sk-lite{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:10px;text-align:left}
+.sk-ic{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle,rgba(230,204,143,.25),transparent 70%)}
+.sk-t b{display:block;font-size:15px;color:#f3e9cf}.sk-t span{display:block;font-size:13px;color:#aab3c4;line-height:1.3}
+.sk-lite em{font-style:normal;font-weight:800;color:var(--xg);font-size:13.5px;white-space:nowrap}
+body.modern .btn.skopt{border-radius:10px;padding:8px 12px;justify-content:stretch;min-height:58px}
+body.modern .btn.skopt .sk-lite{width:100%}
+body.modern .btn.skopt.on{background:linear-gradient(90deg,rgba(242,220,160,.34),rgba(195,154,82,.12));box-shadow:0 0 16px rgba(230,190,110,.25)}
+/* marchand */
+.shrow{display:flex;align-items:center;gap:10px;padding:8px 0;position:relative}
+.shrow+.shrow::before{content:"";position:absolute;top:0;left:0;right:20%;height:1px;background:linear-gradient(90deg,rgba(230,204,143,.22),transparent)}
+.shrow img.spr{width:44px;flex:none}
+.pricebox{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.pricebox s{color:#8d94a3;font-size:12px}
+.ptag{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#2a1c06;background:linear-gradient(90deg,#f2dca0,#c39a52);padding:1px 7px;border-radius:999px}
+/* invocation : bannière demi-écran, sans cadre */
+.gscroll{padding-top:0}
+body.modern .gcar{border-radius:0;box-shadow:none;margin:0 -10px}
+body.modern .gban{height:max(300px,50vh);min-height:0;background:#06070d;-webkit-mask-image:linear-gradient(180deg,#000 78%,transparent);mask-image:linear-gradient(180deg,#000 78%,transparent)}
+body.modern .gban::after{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,transparent 28%,transparent 60%,rgba(6,7,13,.85) 100%)}
+.gbg{position:absolute;inset:-6%;background-size:cover;background-position:center;opacity:.85;animation:kenburns 26s ease-in-out infinite alternate;will-change:transform}
+@keyframes kenburns{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.12) translate(-3%,-2%)}}
+body.modern .gart{inset:4% -6% 0 22%;opacity:1;filter:drop-shadow(0 0 18px var(--gl));animation:gartIn .7s ease-out both,artPar 9s ease-in-out 0.7s infinite alternate}
+@keyframes artPar{to{transform:translate(-8px,-6px) scale(1.015)}}
+body.modern .gshade{background:radial-gradient(ellipse at 22% 85%,var(--gl) -40%,transparent 55%),linear-gradient(90deg,rgba(6,7,13,.85) 0%,transparent 60%);opacity:.8}
+.gsweep{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.16) 50%,transparent 60%);background-size:250% 100%;animation:sweep 6s ease-in-out infinite}
+@keyframes sweep{0%{background-position:120% 0}45%,100%{background-position:-120% 0}}
+body.modern .gfeat{animation:bobF 2.8s ease-in-out infinite}
+@keyframes bobF{50%{transform:translateY(-6px)}}
+.garr{display:none!important}
+body.modern .gdots{gap:8px;margin:2px 0 8px}
+body.modern .gdots span{width:6px;height:6px;border:0;background:rgba(255,255,255,.28)}
+body.modern .gdots span.on{background:var(--xg);box-shadow:0 0 6px var(--xg)}
+body.modern .gcard{border:0;background:radial-gradient(ellipse at 50% 40%,rgba(255,255,255,.08),transparent 70%)}
+body.modern .gcard.s4{background:radial-gradient(ellipse at 50% 40%,rgba(200,144,255,.35),transparent 72%)}
+body.modern .gcard.s5{background:radial-gradient(ellipse at 50% 40%,rgba(255,200,80,.5),transparent 72%);box-shadow:none}
+.gres{padding:8px 0}
+/* récompenses : jamais encadrées, apparition une par une */
+body.modern .btn.reward,.btn.reward{border:0;border-radius:10px;box-shadow:none;background:linear-gradient(90deg,rgba(200,210,230,.12),transparent 85%);animation:rewIn .45s ease-out both;animation-delay:var(--d,0ms);padding:10px 14px}
+.btn.reward.r-r{background:linear-gradient(90deg,rgba(74,138,255,.28),transparent 85%);box-shadow:none}
+.btn.reward.r-e{background:linear-gradient(90deg,rgba(192,80,255,.34),transparent 85%);box-shadow:none}
+.btn.reward:active,.btn.reward:focus-visible{box-shadow:0 0 22px rgba(240,210,140,.45)}
+@keyframes rewIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+/* fanfare de fin de combat / d'exploration */
+.fanfare{position:relative;overflow:hidden}
+.ff-title{font-family:'Cinzel',Georgia,serif;font-size:34px;font-weight:700;letter-spacing:.12em;line-height:1.1;margin:4px 0}
+.ff-title i{display:inline-block;font-style:normal;background:linear-gradient(180deg,#fff6d6,#e6c06a 55%,#a87a2c);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #000) drop-shadow(0 0 10px rgba(255,210,120,.55));animation:ffL .55s cubic-bezier(.2,1.6,.4,1) both}
+.fanfare.ko .ff-title i{background:linear-gradient(180deg,#e6e8ee,#8c94a6);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 2px 0 #000)}
+@keyframes ffL{from{opacity:0;transform:translateY(-18px) scale(1.6)}to{opacity:1;transform:none}}
+.ff-line{height:1px;width:70%;margin:4px auto 8px;background:linear-gradient(90deg,transparent,var(--xg),transparent);animation:ffLine .7s .35s ease-out both}
+@keyframes ffLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.ff-sub{animation:rewIn .5s .5s ease-out both}
+.stagger>*{animation:rewIn .4s ease-out both}
+.stagger>*:nth-child(1){animation-delay:.55s}.stagger>*:nth-child(2){animation-delay:.7s}.stagger>*:nth-child(3){animation-delay:.85s}.stagger>*:nth-child(4){animation-delay:1s}.stagger>*:nth-child(5){animation-delay:1.15s}.stagger>*:nth-child(6){animation-delay:1.3s}.stagger>*:nth-child(7){animation-delay:1.45s}.stagger>*:nth-child(8){animation-delay:1.6s}.stagger>*:nth-child(9){animation-delay:1.75s}.stagger>*:nth-child(10){animation-delay:1.9s}.stagger>*:nth-child(11){animation-delay:2.05s}
+.endart{position:fixed;inset:0;z-index:-1;background-size:cover;background-position:center 30%;animation:kenburns 30s ease-in-out infinite alternate}
+.endart::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,rgba(255,210,120,.18),transparent 60%),linear-gradient(180deg,rgba(6,6,12,.55),rgba(6,6,12,.92))}
+.endart.ko{filter:grayscale(.7) brightness(.7)}
+.end-sp img.spr{width:88px;animation:idle 1.6s ease-in-out infinite}
+/* combat : télégraphe par le sprite uniquement */
+.intent{display:none!important}
+.en.winding img.spr{animation:windUp .9s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(255,120,60,.9)) drop-shadow(0 0 14px rgba(255,80,40,.5))}
+.en.winding.cut img.spr{filter:drop-shadow(0 0 6px rgba(255,240,160,.95)) drop-shadow(0 0 16px rgba(255,200,80,.55))}
+@keyframes windUp{0%,100%{transform:translateX(0)}25%{transform:translateX(-1.5px)}75%{transform:translateX(1.5px)}50%{transform:scale(1.03)}}
+/* choix du chemin : escalier, trois cercles, escalier */
+.prog2{display:flex;gap:5px;justify-content:center;margin-top:6px}
+.prog2 i{width:22px;height:3px;border-radius:3px;background:rgba(255,255,255,.2)}
+.prog2 i.done{background:var(--xg)}.prog2 i.cur{background:#fff;box-shadow:0 0 6px #fff}.prog2 i.boss{background:#c0392b;width:30px}
+body[data-scr="map"] #app::before,body[data-scr="event"] #app::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,.15),rgba(0,0,0,.65) 80%),linear-gradient(180deg,rgba(6,6,14,.55),rgba(6,6,14,.8))}
+.paths{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin:18px -4px 8px}
+.stair{flex:none;width:24px;color:rgba(230,204,143,.55);margin-top:26px}
+.stair .rsym{width:24px;height:24px}
+.stair.up{color:var(--xg);filter:drop-shadow(0 0 4px rgba(230,204,143,.6))}
+.path{flex:1 1 0;min-width:0;max-width:150px;display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:radial-gradient(ellipse at 50% 30%,color-mix(in srgb,var(--pc) 26%,transparent),transparent 68%);color:#f4f0e6;cursor:pointer;padding:4px 2px 10px;border-radius:14px;animation:rewIn .45s ease-out both;animation-delay:var(--d,0ms);text-shadow:0 1px 3px #000,0 0 8px rgba(0,0,0,.8);-webkit-tap-highlight-color:transparent}
+.orb{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:radial-gradient(circle at 38% 32%,color-mix(in srgb,var(--pc) 55%,#fff) 0%,var(--pc) 42%,color-mix(in srgb,var(--pc) 45%,#000) 100%);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 70%,transparent),0 6px 14px rgba(0,0,0,.5);transition:transform .15s}
+.orb .rsym{width:36px;height:36px}
+.orb.big{width:96px;height:96px;margin:10px auto}.orb.big .rsym{width:52px;height:52px}
+.rsym{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.path-n{font-family:'Cinzel',Georgia,serif;font-size:17px;font-weight:700;color:color-mix(in srgb,var(--pc) 35%,#fff);letter-spacing:.03em}
+.path-d{font-size:12.5px;line-height:1.3;color:#e6e2d8;text-align:center;font-weight:600}
+.path:active .orb,.path:focus-visible .orb{transform:scale(1.08);box-shadow:0 0 30px var(--pc),0 6px 14px rgba(0,0,0,.5)}
+.path .orb{animation:orbPulse 3s ease-in-out infinite}
+@keyframes orbPulse{50%{box-shadow:0 0 26px color-mix(in srgb,var(--pc) 85%,transparent),0 6px 14px rgba(0,0,0,.5)}}
+.paths.n1 .path{max-width:200px}
+.path.boss .orb{width:84px;height:84px}
+/* préparation : marqueur de quête principale officiel, très discret */
+.msq-bg{position:fixed;left:50%;top:52%;width:min(88vw,420px);aspect-ratio:1;transform:translate(-50%,-50%);background:url(assets/ui/msq.webp) center/contain no-repeat;opacity:.10;z-index:-1;pointer-events:none;filter:blur(.5px) drop-shadow(0 0 30px rgba(255,210,120,.6));animation:msqGlow 9s ease-in-out infinite}
+@keyframes msqGlow{50%{opacity:.14;transform:translate(-50%,-50%) rotate(3deg) scale(1.02)}}
+/* écran titre : art officiel en Ken Burns, poussières de lumière */
+.home-bg{position:fixed;inset:-4%;z-index:-1;background:url(assets/bg/t5.webp) center 30%/cover;animation:kenburns 34s ease-in-out infinite alternate;pointer-events:none}
+.home-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,8,24,.45),rgba(6,8,24,.9) 75%)}
+.motes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.motes i{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:#ffe9b8;box-shadow:0 0 8px 2px rgba(255,220,150,.6);opacity:0;animation:mote 11s linear infinite}
+@keyframes mote{0%{transform:translate(0,0);opacity:0}10%{opacity:.85}100%{transform:translate(30px,-105vh);opacity:0}}
+body.home .tmenu,body.home .title-logo{position:relative;z-index:1}
+body.home .title-logo h1{font-family:'Cinzel',Georgia,serif;font-weight:700}
+@media (prefers-reduced-motion:reduce){
+ .gbg,.gart,.gsweep,.gfeat,.home-bg,.motes,.msq-bg,.endart,.xbtn.prime,.path .orb,.tm.main,body.modern::after{animation:none!important}
+ .motes,.gsweep{display:none}
+ .ff-title i,.stagger>*,.btn.reward,.path,.ff-line,.ff-sub{animation-duration:.01s!important;animation-delay:0s!important}
+}
+
+body.modern .btn.card,body.modern .btn.card.sel,body.modern .btn.skopt,body.modern .btn.skopt.on,body.modern .jp{border:0!important;outline:0!important}
+body.modern .btn.card.sel{box-shadow:0 0 0 0 transparent!important}
+body.modern .gcar .gban{height:max(300px,50vh)!important;min-height:0!important}
+.path-n{font-size:clamp(12.5px,3.9vw,16px);letter-spacing:0;overflow-wrap:anywhere;text-align:center;line-height:1.15}
+.path-d{font-size:clamp(11.5px,3.3vw,13px)}
+.orb{width:clamp(54px,16vw,68px);height:clamp(54px,16vw,68px)}
+.path{background:radial-gradient(ellipse at 50% 28%,color-mix(in srgb,var(--pc) 42%,transparent),color-mix(in srgb,var(--pc) 10%,transparent) 55%,transparent 75%)}
+.path::after{content:"";display:block;width:60%;height:2px;margin-top:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--pc),transparent);opacity:.8}
+body[data-scr="event"] .win.center{background:radial-gradient(ellipse at 50% 30%,rgba(255,255,255,.06),transparent 70%)!important;box-shadow:none!important;backdrop-filter:none}
+body[data-scr="event"] .btn[data-ch]{border:0;border-radius:10px;background:linear-gradient(90deg,rgba(230,204,143,.16),transparent 85%)}
+
+/* v5.3b : DA sur tout le site hors combat, rien d'encadré */
+.xv{width:44px;flex:none;display:flex;align-items:center;justify-content:center}
+.xv img.spr{width:40px;max-height:46px;object-fit:contain}
+.rsym.hg{width:28px;height:28px;color:var(--xg);filter:drop-shadow(0 0 5px rgba(230,204,143,.45))}
+.xbtn.prime .rsym.hg{width:34px;height:34px}
+body.modern .win:not(.topbar):not(.fanfare){background:linear-gradient(180deg,rgba(8,8,14,.62),rgba(8,8,14,.30));box-shadow:none;border-radius:0;backdrop-filter:none}
+body.modern #modal .win{background:linear-gradient(180deg,rgba(14,13,20,.97),rgba(8,8,12,.97))!important;box-shadow:0 20px 60px rgba(0,0,0,.6)!important;border:0!important;border-radius:4px}
+body.modern #modal .win::before{content:"";display:block;height:1px;margin:-4px 10% 10px;background:linear-gradient(90deg,transparent,var(--xg),transparent)}
+body.modern .fanfare{background:linear-gradient(180deg,rgba(24,20,14,.85),rgba(8,8,12,.85))!important;box-shadow:inset 0 1px 0 rgba(230,204,143,.4),0 10px 30px rgba(0,0,0,.5)!important;border-radius:6px}
+body.modern .btn.door{border:0;border-radius:10px;background:linear-gradient(90deg,rgba(230,204,143,.14),transparent 85%);box-shadow:none}
+body.modern .tag{border:0}
+.orb.big{background:none!important;box-shadow:none!important;color:var(--pc);filter:drop-shadow(0 0 14px var(--pc))}
+.orb.big .rsym{width:84px;height:84px;stroke-width:1.4}
+body.modern input.name{border:0;border-bottom:1px solid rgba(230,204,143,.5);background:linear-gradient(180deg,transparent,rgba(230,204,143,.08));border-radius:0;color:#f6ecd2}
+body.modern .gban .gside img.spr.glyph,body.modern .gside img.spr.glyph{width:min(40px,10vw)}
+
+/* v5.3 gacha art HD */
+body.modern .gart{inset:3% -4% 0 20%;background-position:right 0 bottom 0;image-rendering:auto;filter:drop-shadow(0 0 10px color-mix(in srgb,var(--gl) 55%,transparent));will-change:transform;backface-visibility:hidden}
+
+/* v5.3 frameless skill rows */
+body.modern .btn.skopt{background:transparent!important;box-shadow:none!important;border-radius:0;min-height:52px;position:relative}
+body.modern .btn.skopt:not(:last-child)::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(230,200,140,.18),transparent)}
+body.modern .btn.skopt.on{background:linear-gradient(90deg,rgba(242,210,140,.26),rgba(242,210,140,.06) 60%,transparent)!important}
+body.modern .btn.skopt.on .sk-n,body.modern .btn.skopt.on b{color:#f3d58a}
 </style>
 </head>
 <body>
@@ -563,7 +757,7 @@ const ASSET_FAIL = {};
 function sprFail(img){ const k=img.dataset.spr; if(/\.webp$/.test(img.getAttribute('src')||'')){ img.src=img.getAttribute('src').replace(/\.webp$/,'.png'); return; } if(!k||ASSET_FAIL[k]) return; ASSET_FAIL[k]=1; img.style.visibility='hidden'; } /* pas de dessin de remplacement : uniquement des sprites officiels */
 function spr(key, cls='', style=''){
   const u=spriteURL(key), a=(typeof ASSET!=='undefined')&&ASSET[key]&&u===ASSET[key].src;
-  return `<img class="spr ${cls} ${a?'art':''} ${a&&ASSET[key].tile?'tile':''}" data-spr="${key}" src="${u}" style="${a?`--w:${ASSET[key].w};--h:${ASSET[key].h};`:''}${style}" onerror="sprFail(this)" decoding="async" alt="">`;
+  return `<img class="spr ${cls} ${a?'art':''} ${a&&ASSET[key].tile?'tile':''} ${a&&ASSET[key].glyph?'glyph':''}" data-spr="${key}" src="${u}" style="${a?`--w:${ASSET[key].w};--h:${ASSET[key].h};`:''}${style}" onerror="sprFail(this)" decoding="async" alt="">`;
 }
 function loadCustomSprites(){
   Object.keys(SPRITES).forEach(k=>{
@@ -575,7 +769,12 @@ function loadCustomSprites(){
   });
 }
 const BG_CACHE = {};
-const PH = {"t0": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAwCdASoSABMAPtFiqU+oJaOiKAgBABoJaQAAPPSwt1H8Ge24AAD+8R7mOqZ1RsFZdtjYOKCsiX1oSyqTTuOWAAA=", "t1": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAwCdASoSABMAPtFepU6oJSMiKAqpABoJZQC2FBEdF6ThMJixu8/oAP72iBM0NbccXIijtryGmx++Y27i/7fDtE7Zy7TrgCiZfOqUNKvvq+6yVysKM1IXfOvNTA96frwAAA==", "t2": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADQBACdASoSABMAPtFcpU6oJSMiKAqpABoJZQDE2BEZD1srJJLhqMY+1p3EVZ7jFgD+9Fk08FkyrdFdqJMqH806kvwkaNW24yxdJtWiHkX8pDGsCHTLRcH//WB4Fy86dxIdw6AE+XfG6N7sKs3unQxAVAAAAA==", "t3": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADQBACdASoSABMAPtFapU0oJSOiMBgIAQAaCUAWnQIiP2KGQwDW3tFHRhhZ5SPrAAD+9CXUPIKsAlW7FG+7UenootYQfvdRYj/YsGSJS9B66dePl52IERjtcyxfXDZQ9QrgHB2gSisXp4TwZIqdO4AZZ45fHr+CNtoipwAA", "t4": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAwBQCdASoSABMAPtFcp04oJSOiKAqpABoJZQDKG1gAJ9+J04XOba2185gBZbzGotX8AAD+9FkIRaXavHWMF7Z/FsP8+aWzzEBLYWdTAuyvVIDEHq450bQPW6MAHeidW3Lt5IglbT+h44FxaYcdzIqMomdsZ3UMAAAAAA==", "t5": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACwBACdASoSABMAPtFepE6oJSMiKAqpABoJYgDCgBInxvSKLNN28gSPgL5qhTLEAP7s3Z0UnJfNo0me6nufYxuf7IG7EyI3O2eMbCNTzvfHV0BUIQblFypArZQNeDPrsXdwXYpLvprAAk/ObHepaS3qpudsUYZhJpdWIwV/8vSLQkgJZfsyo+FNvl5rMSp5NQsmBgAA", "art_yshtola": "data:image/webp;base64,UklGRnACAABXRUJQVlA4WAoAAAAQAAAACwAAJAAAQUxQSD0BAAABkHPbtrG9wte99/lsm90XW53tlLZtVq7S2a7T2bZt204e7CgiJgDAONyEDMw/2MrtS7AAhqVSv/9YainQOf415L+X1hADYNn8S7sKsYCj9VHpdhZgSDmpMND9EnAsli/5Goul4pMiKdBaYpksX/9s86j3VpEUftchxiuKJIU/9bHzd4X6/5crCvVfX4e2Bv8LtD/99j6FkkKtTKD9W0VSqLfD8OgsSb5uzoyFykCRvkQHWsRC7kf90pxd80mExGfSQ2afwkLOB6k7A+5goKX0KpteDwCaSFErxt7G4FgoPTXzzmBxtNMPjR30GHA0U6CDzT5nYyz5n/TzV/OzPXEYLvycq0+dMjA4Nqnosi41xOIxR2lLpZF4eCzSyJPahAWPZfqoLw2wGKoeaEqNCgwYjuphPtYCHuM0kFgLAABWUDggDAEAAFAFAJ0BKgwAJQA+wVCfS6ekoqG1SADwGAlkALD9/+LWRiMAE22UGj2NZ3ZikHOxF1ZR+AD+4ZC/eivCdofl2I2lyd+tg69T9pT0f8aGJG6AXV1iRi4WyMvAU3v6ZxnRVsFyK3DAbN7MawJpYP19pjlWcI+ypf1N84iPP01PQd9GKq1xOher84WjWo59aTMpVUDwP/erPD86SGPMrFbZyr7XZigeenpNgYquuI9d0640mA8gsF5n4MfpMf+nmxexw/bnsE1wvd75Bj7bGkEDJ3uI3i2zqHoI0+UrEh9eDRW98HpklXIz95ILTzgOOmYn2BR7VphW4yf/tVMJ0pWM7zTe5UuFuny+FGpoAAA=", "art_yuna": "data:image/webp;base64,UklGRvABAABXRUJQVlA4WAoAAAAQAAAACwAAIAAAQUxQSAIBAAABkLpt2/m/0u+Pfv7NdlNTtl13LNqrtm17S0vrtm3bSsaLK7zvImIC2l81k5UqehJHZ2WRp/zjqNLIZwxblUXeOh60Vh5peobf/2aoCHQR65mgIpHWXMF5yzxlqT7iwVs25En2LcD/41CVNvsA/nGtvSZgAww3VfMVDvC8HKZ2Dh/pIY3GAI7HRaplEcN+5dr1n+nKdRAbWa1chyOWo0p1GQc4XpeqeBw4rg4vU52PeCyrGytRqx94DFNUJnXygGGRcmkILlgVjMUGm4OZWNxvDiiT1mPx/JqjVOr0Dq7s66NUkm7DUOWpJNV6BS/6lyls+BX/kzXKJCVjrzC3fkMlkgBWUDggyAAAABAFAJ0BKgwAIQA+wUyeS6ekIqG1SADwGAljAKwBi2jvInnqUaUporxefWKJO5KbfgAA/CGb/pxTfX9d9YxrH/iAl4L2nmHYqgU6aHWFgBukO154+ccrwHmEy2tt4VIiO89H7fZEDWffVez/yzGzmLYnAsgHv+HyLyqREmngwB5FL6KtXgvBf1TswyVzT49hXi0iOXyNACUJ3K1D1KjTWq44dc++n3ReQVRso5JIcyO7VtXodQsp8gk9v6L8ii9h8WzEE6Lm6gAA", "art_cloud": "data:image/webp;base64,UklGRuYBAABXRUJQVlA4WAoAAAAQAAAACwAAGwAAQUxQSAABAAABkLpt2/m/0q8X7WdbM6NtRttbWtuxZnvNSFZasm0m2/Y+vKeImABm5GOssfw7YBg2u5j/moUlrA664IDir3O6S4exwPrDJ+JQa/Aw4tNdJYlmVGK4EwZpqlSf6mNX7931TGmiK4UYHFMUR1qCx3vrLinQPhzgGadIX5tiwdFTSaTZePBMVhRrJ/af9YoktQKDvalEsbaCpY2USgrb41ilSFKi/cA1hcE/Hw2lb/XhkZJIBzzTpMfP9WOvpsNJ6c473am63ZW6QNr8SmfpXmrYr2TUa13HGM8yPSq8GjbGGUdvTeXIIzA4er4r4La2NMN4xv7KYMCIC/OwnoFqieVfVlA4IMAAAACQBACdASoMABwAPtFUo0uoJKMhsAgBABoJYwCw7Yxs5uSiCYEyibDMBS2nILYA/tvWKTwp3IGTpWmMloZ3FDfj9PgRYX4WrBXiHp3XXGWFZeUZIJ1supVLlma1Uxeh9PvLFan03O8mjj3rTUvvWBeuing3g7geGQV2EV+WY0hKKv+vZn+YQzt4hO/lWQthFE/KrLq+oA+/djr2fuqUJY95c0jkVNn15JF70Aish1CxHPdgJQ5rEW+XkBKyG8mAAAA=", "art_noctis": "data:image/webp;base64,UklGRgwCAABXRUJQVlA4WAoAAAAQAAAACwAAHQAAQUxQSBQBAAABkCvbtmlbfeHe+2zbts3cthUZmW1Etm2Htm2b2cU6azx9RERMAGDoPo5/jXF0VWyMA+OsvyOt+GdUcZK2SYP/aTq5Nv2lvnjgsB5/lX5tyIyZd/iDElJUY1z+S0pEJfQwE6bOPgUpQxPxmKwzFaK+FsRgOa2QoZ04oHyaYkLX+bfvwzRFhfJYWLJOQUHtcLQ6c1hBGVqOp+2+Awox6AqGJI4rxJhQb7xlu+KXjKiPBfAMl0aeUbw8A09vqcsAaV25Ip6OUpO8P7Uf56gl1WKy3uTBYJ+qNK2kylhKp4bSsFK9sTTUq8yGbtpFMuW1D0/O7y+8Y4QW4x2zVX7S9jSdwToaasiosxtHdMFYqmoO/3fU0zZWUDgg0gAAANAEAJ0BKgwAHgA+0VSjS6gkoyGwCAEAGgljALsFeAbHpFAFfCADwlEEwDnKj+4AAP7a014RjPxgHSedvK1xU3hkRJ7iZVblLSRMXAIpyx2i1LczfkzIk/iDTCdFZTvuWMcv7jEulYlQn1xUpeBAmxKzWDIFBJsB4oLZPkU8Q8a+n4U8zcElzPshZZ5/40jbmvv5C/pKlQjkfDQsPSjABgv83VALwcnQuMZflZEk+RvDUAb/0rpLqk8BD86wpY9KJGUaz/scf0Ql839tJsDtRaQAAA==", "art_lightning": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAAAQAgCdASoMAAwAAsBMJZQC7H8AFx+cANngAP76rQsZjf4wBuyTgJIkYMde7Ox1Enhe8DVeifq2qsuGsK89Q8K5dad6NVdoZnop0YQcQXXu2+3QlcXEeCSTJLyVbURECYAAAA=="};
+function medalSrc(name){ const L=(name||'?').replace(/^[^A-Za-zÀ-ÿ]+/,'')[0]||'?';
+  return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><radialGradient id="g" cx="50%" cy="40%" r="55%"><stop offset="0" stop-color="#f6e3b0" stop-opacity=".95"/><stop offset=".55" stop-color="#b8904a" stop-opacity=".55"/><stop offset="1" stop-color="#3a2a10" stop-opacity="0"/></radialGradient></defs><linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3cf"/><stop offset=".6" stop-color="#e2bb68"/><stop offset="1" stop-color="#9a6e2a"/></linearGradient><text x="32" y="48" text-anchor="middle" font-family="Georgia,serif" font-size="46" fill="url(#t)" stroke="#2a1c08" stroke-width="1.2">${L}</text></svg>`); }
+const gi = (n, cls='') => `<img class="gi ${cls}" src="assets/ui/${n}.webp" alt="" decoding="async">`;
+const JOB_GLYPH = {paladin:'paladin',guerrier:'warrior',moine:'monk',barde:'bard',mageblanc:'whitemage',magenoir:'blackmage',erudit:'scholar',samourai:'samurai',dragoon:'dragoon'};
+const jgi = () => '';
+const PH = {"t0":"data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAwCdASoSABMAPtFiqU+oJaOiKAgBABoJaQAAPPSwt1H8Ge24AAD+8R7mOqZ1RsFZdtjYOKCsiX1oSyqTTuOWAAA=","t1":"data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAwCdASoSABMAPtFepU6oJSMiKAqpABoJZQC2FBEdF6ThMJixu8/oAP72iBM0NbccXIijtryGmx++Y27i/7fDtE7Zy7TrgCiZfOqUNKvvq+6yVysKM1IXfOvNTA96frwAAA==","t2":"data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADQBACdASoSABMAPtFcpU6oJSMiKAqpABoJZQDE2BEZD1srJJLhqMY+1p3EVZ7jFgD+9Fk08FkyrdFdqJMqH806kvwkaNW24yxdJtWiHkX8pDGsCHTLRcH//WB4Fy86dxIdw6AE+XfG6N7sKs3unQxAVAAAAA==","t3":"data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADQBACdASoSABMAPtFapU0oJSOiMBgIAQAaCUAWnQIiP2KGQwDW3tFHRhhZ5SPrAAD+9CXUPIKsAlW7FG+7UenootYQfvdRYj/YsGSJS9B66dePl52IERjtcyxfXDZQ9QrgHB2gSisXp4TwZIqdO4AZZ45fHr+CNtoipwAA","t4":"data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAwBQCdASoSABMAPtFcp04oJSOiKAqpABoJZQDKG1gAJ9+J04XOba2185gBZbzGotX8AAD+9FkIRaXavHWMF7Z/FsP8+aWzzEBLYWdTAuyvVIDEHq450bQPW6MAHeidW3Lt5IglbT+h44FxaYcdzIqMomdsZ3UMAAAAAA==","t5":"data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACwBACdASoSABMAPtFepE6oJSMiKAqpABoJYgDCgBInxvSKLNN28gSPgL5qhTLEAP7s3Z0UnJfNo0me6nufYxuf7IG7EyI3O2eMbCNTzvfHV0BUIQblFypArZQNeDPrsXdwXYpLvprAAk/ObHepaS3qpudsUYZhJpdWIwV/8vSLQkgJZfsyo+FNvl5rMSp5NQsmBgAA","art_yshtola":"data:image/webp;base64,UklGRnACAABXRUJQVlA4WAoAAAAQAAAACwAAJAAAQUxQSD0BAAABkHPbtrG9wte99/lsm90XW53tlLZtVq7S2a7T2bZt204e7CgiJgDAONyEDMw/2MrtS7AAhqVSv/9YainQOf415L+X1hADYNn8S7sKsYCj9VHpdhZgSDmpMND9EnAsli/5Goul4pMiKdBaYpksX/9s86j3VpEUftchxiuKJIU/9bHzd4X6/5crCvVfX4e2Bv8LtD/99j6FkkKtTKD9W0VSqLfD8OgsSb5uzoyFykCRvkQHWsRC7kf90pxd80mExGfSQ2afwkLOB6k7A+5goKX0KpteDwCaSFErxt7G4FgoPTXzzmBxtNMPjR30GHA0U6CDzT5nYyz5n/TzV/OzPXEYLvycq0+dMjA4Nqnosi41xOIxR2lLpZF4eCzSyJPahAWPZfqoLw2wGKoeaEqNCgwYjuphPtYCHuM0kFgLAABWUDggDAEAAFAFAJ0BKgwAJQA+wVCfS6ekoqG1SADwGAlkALD9/+LWRiMAE22UGj2NZ3ZikHOxF1ZR+AD+4ZC/eivCdofl2I2lyd+tg69T9pT0f8aGJG6AXV1iRi4WyMvAU3v6ZxnRVsFyK3DAbN7MawJpYP19pjlWcI+ypf1N84iPP01PQd9GKq1xOher84WjWo59aTMpVUDwP/erPD86SGPMrFbZyr7XZigeenpNgYquuI9d0640mA8gsF5n4MfpMf+nmxexw/bnsE1wvd75Bj7bGkEDJ3uI3i2zqHoI0+UrEh9eDRW98HpklXIz95ILTzgOOmYn2BR7VphW4yf/tVMJ0pWM7zTe5UuFuny+FGpoAAA=","art_yuna":"data:image/webp;base64,UklGRvABAABXRUJQVlA4WAoAAAAQAAAACwAAIAAAQUxQSAIBAAABkLpt2/m/0u+Pfv7NdlNTtl13LNqrtm17S0vrtm3bSsaLK7zvImIC2l81k5UqehJHZ2WRp/zjqNLIZwxblUXeOh60Vh5peobf/2aoCHQR65mgIpHWXMF5yzxlqT7iwVs25En2LcD/41CVNvsA/nGtvSZgAww3VfMVDvC8HKZ2Dh/pIY3GAI7HRaplEcN+5dr1n+nKdRAbWa1chyOWo0p1GQc4XpeqeBw4rg4vU52PeCyrGytRqx94DFNUJnXygGGRcmkILlgVjMUGm4OZWNxvDiiT1mPx/JqjVOr0Dq7s66NUkm7DUOWpJNV6BS/6lyls+BX/kzXKJCVjrzC3fkMlkgBWUDggyAAAABAFAJ0BKgwAIQA+wUyeS6ekIqG1SADwGAljAKwBi2jvInnqUaUporxefWKJO5KbfgAA/CGb/pxTfX9d9YxrH/iAl4L2nmHYqgU6aHWFgBukO154+ccrwHmEy2tt4VIiO89H7fZEDWffVez/yzGzmLYnAsgHv+HyLyqREmngwB5FL6KtXgvBf1TswyVzT49hXi0iOXyNACUJ3K1D1KjTWq44dc++n3ReQVRso5JIcyO7VtXodQsp8gk9v6L8ii9h8WzEE6Lm6gAA","art_cloud":"data:image/webp;base64,UklGRuYBAABXRUJQVlA4WAoAAAAQAAAACwAAGwAAQUxQSAABAAABkLpt2/m/0q8X7WdbM6NtRttbWtuxZnvNSFZasm0m2/Y+vKeImABm5GOssfw7YBg2u5j/moUlrA664IDir3O6S4exwPrDJ+JQa/Aw4tNdJYlmVGK4EwZpqlSf6mNX7931TGmiK4UYHFMUR1qCx3vrLinQPhzgGadIX5tiwdFTSaTZePBMVhRrJ/af9YoktQKDvalEsbaCpY2USgrb41ilSFKi/cA1hcE/Hw2lb/XhkZJIBzzTpMfP9WOvpsNJ6c473am63ZW6QNr8SmfpXmrYr2TUa13HGM8yPSq8GjbGGUdvTeXIIzA4er4r4La2NMN4xv7KYMCIC/OwnoFqieVfVlA4IMAAAACQBACdASoMABwAPtFUo0uoJKMhsAgBABoJYwCw7Yxs5uSiCYEyibDMBS2nILYA/tvWKTwp3IGTpWmMloZ3FDfj9PgRYX4WrBXiHp3XXGWFZeUZIJ1supVLlma1Uxeh9PvLFan03O8mjj3rTUvvWBeuing3g7geGQV2EV+WY0hKKv+vZn+YQzt4hO/lWQthFE/KrLq+oA+/djr2fuqUJY95c0jkVNn15JF70Aish1CxHPdgJQ5rEW+XkBKyG8mAAAA=","art_noctis":"data:image/webp;base64,UklGRgwCAABXRUJQVlA4WAoAAAAQAAAACwAAHQAAQUxQSBQBAAABkCvbtmlbfeHe+2zbts3cthUZmW1Etm2Htm2b2cU6azx9RERMAGDoPo5/jXF0VWyMA+OsvyOt+GdUcZK2SYP/aTq5Nv2lvnjgsB5/lX5tyIyZd/iDElJUY1z+S0pEJfQwE6bOPgUpQxPxmKwzFaK+FsRgOa2QoZ04oHyaYkLX+bfvwzRFhfJYWLJOQUHtcLQ6c1hBGVqOp+2+Awox6AqGJI4rxJhQb7xlu+KXjKiPBfAMl0aeUbw8A09vqcsAaV25Ip6OUpO8P7Uf56gl1WKy3uTBYJ+qNK2kylhKp4bSsFK9sTTUq8yGbtpFMuW1D0/O7y+8Y4QW4x2zVX7S9jSdwToaasiosxtHdMFYqmoO/3fU0zZWUDgg0gAAANAEAJ0BKgwAHgA+0VSjS6gkoyGwCAEAGgljALsFeAbHpFAFfCADwlEEwDnKj+4AAP7a014RjPxgHSedvK1xU3hkRJ7iZVblLSRMXAIpyx2i1LczfkzIk/iDTCdFZTvuWMcv7jEulYlQn1xUpeBAmxKzWDIFBJsB4oLZPkU8Q8a+n4U8zcElzPshZZ5/40jbmvv5C/pKlQjkfDQsPSjABgv83VALwcnQuMZflZEk+RvDUAb/0rpLqk8BD86wpY9KJGUaz/scf0Ql839tJsDtRaQAAA==","art_lightning":"data:image/webp;base64,UklGRhwCAABXRUJQVlA4WAoAAAAQAAAAEAAAFQAAQUxQSBABAAABkGvb1rE9+7dt2/8F2DZa26j+yrZtVn9nx6hs27aT99vR++UWImIC8LfrogL+U2VpRF86pZwTPwJlpJBLOi7ZeDMHKdUu/Dz3VvIyX03M4tXLeyRbIC4/RAl3pi5ZicHrM5mPzhop8n5SWFM3Wk0SKyK3K5ZV3E+miWSScYrnDpj4H/H7SzWyXGATPD7dDPQ5ZgJAxSaA/BqGLH4ZODApCwD5JK8YoIW8dM4LUEm+R3JTFbId5PcZYJLkD84CkOkhX9i3fePj7nThmRkAlV1y/MOPSmfI7mMKAKST7zbYCMD//RoAnS1SiHz/zgqKDQ+EMpOwQySHUcARIPYF+VJCPi2XBWa/hgMDFPhso8oZAFZQOCDmAAAAcAUAnQEqEQAWAD7taK9QqaWkIqgKqTAdiWIAyPyBzMlAA5UoyjtVpBKsP/U9ayM0t6IIAADh+C7TPF7zotT70T72ZvN1nZXkV+ajGqRXE25dlDlmZE1XMoEj6z8hUlYdqNBSo3TW003ehk0jDKbF6DOiznbHG9M4ag+wXm3Ca+48H//uS52CGAotpardU5jwJtP/0MeuHCyKXNum4llYgsALsBW9Ccdfsm2Vc9K8yLK1VP3loS+iMSTlIE7gp69g4wJSFw50b4Y6/ROhkla+3vY/VkFRS4Hu9yKqFiOoqfDVKDMCAAA=","bgb_yshtola":"data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADwBACdASoSABYAPuFeqU2opSQiMAwBEBwJYgCACJAAzqN43OlcclQEImyKbdwngAAA/vNwFlbOjiDDB1EbcMUwiOdLWDGTE3uaXDi/A6kvaXCj6/wgEtRpymumEmud6IT0aNuiWZ0CTilkJoE3PpLX9c1SheHJDXDojAAA","bgb_cloud":"data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAABQBQCdASoSABYAPu1qr1AppaSiqAqpMB2JZACdIUgJ/gG4rWZ2WtRARrOPCLb7KLISiKAA/vFPjYISOGZLaeQ4AkN4AnA2nxug6hwW1rGct1/Ub2EOUZSPPD6uc8ribOMxDRSFlzRCUJUanb5r4yRJiCDzsA4IvUBkhC+gCcqZ+P9nAficHXkZPbjp+THkvo9iApoVSHbWZuvjscZgIkPLq4cdaovFUS3eZxAXQAA=","bgb_yuna":"data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAQBQCdASoSABYAPu1sqlGppaOiqAqpMB2JYwDCoTTJjgIHuMyvwtN4PqV3cklLFGSAAP5UhMupH+tGfrGYwn3YW0+X6cN1aSIBdWhFU6P1jMWF8aPbxorMu5nTFCZs7RuaEY8XUByv5AQQChT2KYEKYpkpxJ9gcgyZ4Kv2vr9MnLioYb/MuSQm8iEzf1dT/c2nqBVkfQ/lX2fxA9Au3Zl2Zyol0I9P+DgAAA==","bgb_noctis":"data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAADwBACdASoSABYAPu1qq08ppiOiMBgIATAdiUAY/IIVTqyzsKyJHxZ8iu3d8z0lBqAA/vN1MMFhOqDuBSVAqHJ/43EJli+XkyZEzicNc4e1GIoA/Fya2wQgMYhORuc8FoLGiGcTSDfVzdE9Lw8ODTd4ap2TZqaxX3+avsblHxpKPbChmeDP4AirnvwSK3eUxhX4AA==","bgb_lightning":"data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBQCdASoSABYAPu1or1CppaQiqAqpMB2JZQC3yf/gHolrTZrJboYD7P5z85N/AE2AAP7hhpFS6H5VJuLsMBiwskBf6khcyM6zbb4l6loGhn+CH56vxo/31f/s5IRMtOshrS6jBxNOY8vhxbRQiuJIjRFpVYcBzq3mAQob8jjsOFKdLn0xyK/cChwpgVAAynkAAA=="};
 /* Préchargement des images pendant les temps morts : décodage avant affichage */
 const PRE = (()=>{ const seen=new Map(), q=[]; let busy=0;
   const idle = f => (window.requestIdleCallback ? requestIdleCallback(f,{timeout:800}) : setTimeout(f,60));
@@ -595,7 +794,7 @@ function floorBG(f){
   return 'assets/bg/t'+tier+'.webp';
 }
 /* Pixel art libre (voir CREDITS.md) : assets/ */
-const ASSET = {"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":50,"h":61,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"assets/chars/c_alphinaud.webp","w":38,"h":38,"tile":1},"c_alisaie":{"src":"assets/chars/c_alisaie.webp","w":38,"h":38,"tile":1},"c_urianger":{"src":"assets/chars/c_urianger.webp","w":38,"h":38,"tile":1},"c_graha":{"src":"assets/chars/c_graha.webp","w":38,"h":38,"tile":1},"c_estinien":{"src":"assets/chars/c_estinien.webp","w":38,"h":38,"tile":1},"c_haurchefant":{"src":"assets/chars/c_haurchefant.webp","w":38,"h":38,"tile":1},"c_tataru":{"src":"assets/chars/c_tataru.webp","w":38,"h":38,"tile":1},"c_lyse":{"src":"assets/chars/c_lyse.webp","w":38,"h":38,"tile":1},"c_krile":{"src":"assets/chars/c_krile.webp","w":38,"h":38,"tile":1},"c_cid":{"src":"assets/chars/c_cid.webp","w":38,"h":38,"tile":1},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/icons/icon_rencontre.webp","w":32,"h":32,"tile":1},"icon_combat":{"src":"assets/icons/icon_combat.webp","w":32,"h":32,"tile":1,"icon":1},"icon_elite":{"src":"assets/icons/icon_elite.webp","w":32,"h":32,"tile":1,"icon":1},"icon_coffre":{"src":"assets/icons/icon_coffre.webp","w":32,"h":32,"tile":1,"icon":1},"icon_cristal":{"src":"assets/icons/icon_cristal.webp","w":32,"h":32,"tile":1,"icon":1},"icon_autel":{"src":"assets/icons/icon_autel.webp","w":32,"h":32,"tile":1,"icon":1},"icon_marchand":{"src":"assets/icons/icon_marchand.webp","w":32,"h":32,"tile":1,"icon":1},"icon_maudite":{"src":"assets/icons/icon_maudite.webp","w":32,"h":32,"tile":1,"icon":1},"icon_piege":{"src":"assets/icons/icon_piege.webp","w":32,"h":32,"tile":1,"icon":1},"icon_pomandre":{"src":"assets/icons/icon_pomandre.webp","w":32,"h":32,"tile":1,"icon":1},"icon_repos":{"src":"assets/icons/icon_repos.webp","w":32,"h":32,"tile":1,"icon":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
+const ASSET = {"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":50,"h":61,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"","w":64,"h":64,"medal":1},"c_alisaie":{"src":"","w":64,"h":64,"medal":1},"c_urianger":{"src":"","w":64,"h":64,"medal":1},"c_graha":{"src":"","w":64,"h":64,"medal":1},"c_estinien":{"src":"","w":64,"h":64,"medal":1},"c_haurchefant":{"src":"","w":64,"h":64,"medal":1},"c_tataru":{"src":"","w":64,"h":64,"medal":1},"c_lyse":{"src":"","w":64,"h":64,"medal":1},"c_krile":{"src":"","w":64,"h":64,"medal":1},"c_cid":{"src":"","w":64,"h":64,"medal":1},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/ui/emotes.webp","w":64,"h":64,"glyph":1},"icon_combat":{"src":"assets/ui/stance.webp","w":64,"h":64,"glyph":1},"icon_elite":{"src":"assets/ui/pvp_profile.webp","w":64,"h":64,"glyph":1},"icon_coffre":{"src":"assets/ui/armoury_chest.webp","w":64,"h":64,"glyph":1},"icon_cristal":{"src":"assets/ui/aether_currents.webp","w":64,"h":64,"glyph":1},"icon_autel":{"src":"assets/ui/challenge_log.webp","w":64,"h":64,"glyph":1},"icon_marchand":{"src":"assets/ui/currency.webp","w":64,"h":64,"glyph":1},"icon_maudite":{"src":"assets/ui/blacklist.webp","w":64,"h":64,"glyph":1},"icon_piege":{"src":"assets/ui/waymarks.webp","w":64,"h":64,"glyph":1},"icon_pomandre":{"src":"assets/ui/key_items.webp","w":64,"h":64,"glyph":1},"icon_repos":{"src":"assets/ui/housing.webp","w":64,"h":64,"glyph":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
 /* Icônes pixel maison (SVG 8x8) — aucun emoji dans le jeu */
 const IC_PAL = { w:'#ffffff', k:'#101018', y:'#ffd84a', o:'#ff8a2a', r:'#ff4a4a', g:'#5aff6a', G:'#1f9a3a', b:'#6ab8ff', B:'#2a5adf', p:'#c070ff', s:'#c8d0e0', S:'#7a8298', n:'#a0662a', c:'#9ff0ff' };
 const IC_GRID = {
@@ -670,7 +869,7 @@ function starsIc(n){ return Array.from({length:n},()=>ic('star')).join(''); }
    invuln, holm, regen:[%,tours], buff:[%,tours], nextCrit, mpGain, cleanse}. */
 const ROLES = { tank:{n:'Tank',c:'role-tank'}, heal:{n:'Soigneur',c:'role-heal'}, melee:{n:'DPS mêlée',c:'role-dps'}, ranged:{n:'DPS distance',c:'role-dps'}, caster:{n:'DPS magique',c:'role-dps'} };
 const JOBS = {
-  paladin:{ name:'Paladin', cls:'Gladiateur', role:'tank', start:true, price:150, hp:165, mp:60, atk:16, mag:14, def:0.2, crit:0.05,
+  paladin:{ name:'Paladin', cls:'Gladiateur', role:'tank', start:true, price:1200, hp:165, mp:60, atk:16, mag:14, def:0.2, crit:0.05,
     desc:'Chevalier sacré. Très résistant, peut interrompre et devenir invincible.',
     basic:{id:'coup', name:'Coup rapide', target:'enemy', power:1.0, fx:'slash', desc:'Attaque à l’épée.'},
     opts:[
@@ -681,7 +880,7 @@ const JOBS = {
       {id:'invincible', name:'Invincible', target:'self', cd:10, self:{invuln:1}, fx:'holy', desc:'Immunité totale aux dégâts pendant 1 tour.'},
       {id:'clemence', name:'Clémence', target:'self', mp:25, cd:3, self:{healPct:0.3}, fx:'heal', desc:'Soigne 30 % des PV.'},
     ], def4:['esprit','cercle','bouclier','rempart']},
-  moine:{ name:'Moine', cls:'Pugiliste', role:'melee', start:true, price:150, hp:135, mp:40, atk:21, mag:8, def:0.1, crit:0.15,
+  moine:{ name:'Moine', cls:'Pugiliste', role:'melee', start:true, price:1200, hp:135, mp:40, atk:21, mag:8, def:0.1, crit:0.15,
     desc:'Artiste martial. Gros dégâts et critiques, mais peu de défense.',
     basic:{id:'frappe', name:'Coup du dragon', target:'enemy', power:1.0, fx:'slash', desc:'Coup de poing rapide.'},
     opts:[
@@ -692,7 +891,7 @@ const JOBS = {
       {id:'rosace', name:'Rosace', target:'all', power:0.8, cd:2, fx:'slash', desc:'Coup de pied circulaire sur tous.'},
       {id:'uppercut', name:'Uppercut', target:'enemy', power:0.6, stun:1, cd:4, fx:'chakra', desc:'Étourdit 1 tour : interrompt.'},
     ], def4:['chakra','demolition','enigme','uppercut']},
-  barde:{ name:'Barde', cls:'Archer', role:'ranged', start:true, price:150, hp:140, mp:50, atk:20, mag:10, def:0.12, crit:0.1,
+  barde:{ name:'Barde', cls:'Archer', role:'ranged', start:true, price:1200, hp:140, mp:50, atk:20, mag:10, def:0.12, crit:0.1,
     desc:'Archer-musicien. Polyvalent : zone, contrôle et soutien.',
     basic:{id:'tir', name:'Tir puissant', target:'enemy', power:1.0, fx:'arrow', desc:'Tir à l’arc.'},
     opts:[
@@ -703,7 +902,7 @@ const JOBS = {
       {id:'tetanie', name:'Flèche tétanisante', target:'enemy', power:0.5, stun:1, cd:4, fx:'arrow', desc:'Étourdit 1 tour : interrompt.'},
       {id:'pean', name:'Péan de paix', target:'self', cd:5, self:{healPct:0.18, cleanse:1}, fx:'heal', desc:'Soigne 18 % et dissipe les altérations.'},
     ], def4:['salve','barrage','troubadour','tetanie']},
-  mageblanc:{ name:'Mage blanc', cls:'Élémentaliste', role:'heal', start:true, price:150, hp:120, mp:120, atk:9, mag:20, def:0.06, crit:0.05,
+  mageblanc:{ name:'Mage blanc', cls:'Élémentaliste', role:'heal', start:true, price:1200, hp:120, mp:120, atk:9, mag:20, def:0.06, crit:0.05,
     desc:'Soigneur sacré. Survit longtemps, mais gère bien tes PM.',
     basic:{id:'pierre', name:'Pierre', target:'enemy', power:1.0, stat:'mag', fx:'stone', desc:'Sort de terre (magique).'},
     opts:[
@@ -714,7 +913,7 @@ const JOBS = {
       {id:'divine', name:'Bienveillance divine', target:'self', cd:5, self:{shield:0.3}, fx:'shield', desc:'Bouclier = 30 % des PV max.'},
       {id:'saintete', name:'Sainteté', target:'all', power:0.8, stat:'mag', mp:40, cd:6, stun:1, fx:'holy', desc:'Zone sacrée qui étourdit tous les ennemis.'},
     ], def4:['soin','miracle','saintete','divine']},
-  guerrier:{ name:'Guerrier', cls:'Maraudeur', role:'tank', price:300, hp:180, mp:40, atk:17, mag:8, def:0.2, crit:0.05,
+  guerrier:{ name:'Guerrier', cls:'Maraudeur', role:'tank', price:1200, hp:180, mp:40, atk:17, mag:8, def:0.2, crit:0.05,
     desc:'Colosse à la hache. Se soigne en encaissant, refuse de mourir.',
     basic:{id:'brutal', name:'Coup brutal', target:'enemy', power:1.0, fx:'slash', desc:'Coup de hache.'},
     opts:[
@@ -725,7 +924,7 @@ const JOBS = {
       {id:'tete', name:'Coup de tête', target:'enemy', power:0.6, stun:1, cd:4, fx:'slash', desc:'Étourdit 1 tour : interrompt.'},
       {id:'equilibre', name:'Équilibre', target:'self', cd:6, self:{healPct:0.3}, fx:'heal', desc:'Soigne 30 % des PV.'},
     ], def4:['fendoir','soif','tete','equilibre']},
-  dragoon:{ name:'Chevalier dragon', cls:'Maître d’hast', role:'melee', price:400, hp:145, mp:40, atk:22, mag:8, def:0.14, crit:0.1,
+  dragoon:{ name:'Chevalier dragon', cls:'Maître d’hast', role:'melee', price:1200, hp:145, mp:40, atk:22, mag:8, def:0.14, crit:0.1,
     desc:'Lancier aérien. Esquive les gros coups en sautant.',
     basic:{id:'percee', name:'Percée', target:'enemy', power:1.0, fx:'slash', desc:'Coup de lance.'},
     opts:[
@@ -736,7 +935,7 @@ const JOBS = {
       {id:'lance', name:'Lance tétanisante', target:'enemy', power:0.6, stun:1, cd:4, fx:'jump', desc:'Étourdit 1 tour : interrompt.'},
       {id:'second', name:'Second souffle', target:'self', cd:6, self:{healPct:0.2, cleanse:1}, fx:'heal', desc:'Soigne 20 % et dissipe les altérations.'},
     ], def4:['saut','chaos','lance','second']},
-  magenoir:{ name:'Mage noir', cls:'Occultiste', role:'caster', price:500, hp:105, mp:150, atk:8, mag:24, def:0.05, crit:0.06,
+  magenoir:{ name:'Mage noir', cls:'Occultiste', role:'caster', price:1200, hp:105, mp:150, atk:8, mag:24, def:0.05, crit:0.06,
     desc:'Maître des éléments. Puissance brute, tout repose sur les PM.',
     basic:{id:'glace', name:'Glace', target:'enemy', power:0.8, stat:'mag', self:{mpGain:20}, fx:'ice', desc:'Sort de glace. Rend 20 PM.'},
     opts:[
@@ -747,7 +946,7 @@ const JOBS = {
       {id:'entrave', name:'Entrave', target:'enemy', power:0.5, stat:'mag', mp:15, cd:4, stun:1, fx:'ice', desc:'Étourdit 1 tour : interrompt.'},
       {id:'fontaine', name:'Fontaine de mana', target:'self', cd:9, self:{mpGain:70}, fx:'shield', desc:'Rend 70 PM.'},
     ], def4:['feu','brasier','barriere','entrave']},
-  erudit:{ name:'Érudit', cls:'Arcaniste', role:'heal', price:500, hp:125, mp:130, atk:9, mag:18, def:0.08, crit:0.05,
+  erudit:{ name:'Érudit', cls:'Arcaniste', role:'heal', price:1200, hp:125, mp:130, atk:9, mag:18, def:0.08, crit:0.05,
     desc:'Stratège accompagné d’une fée. Boucliers, régénération et poisons.',
     basic:{id:'ruine', name:'Ruine', target:'enemy', power:1.0, stat:'mag', fx:'dark', desc:'Sort d’ombre (magique).'},
     opts:[
@@ -758,7 +957,7 @@ const JOBS = {
       {id:'eclat', name:'Éclat féerique', target:'enemy', power:0.6, stat:'mag', cd:4, stun:1, fx:'holy', desc:'Étourdit 1 tour : interrompt.'},
       {id:'solsacre', name:'Sol sacré', target:'self', cd:6, self:{mitig:[0.25,3], regen:[0.05,3]}, fx:'shield', desc:'−25 % de dégâts (3 tours) + régénération.'},
     ], def4:['bacterie','reconfort','eclat','solsacre']},
-  samourai:{ name:'Samouraï', cls:'Rōnin', role:'melee', price:650, hp:135, mp:30, atk:24, mag:8, def:0.12, crit:0.12,
+  samourai:{ name:'Samouraï', cls:'Rōnin', role:'melee', price:1200, hp:135, mp:30, atk:24, mag:8, def:0.12, crit:0.12,
     desc:'Lame légendaire. Accumule les Sen pour un Midare Setsugekka.',
     basic:{id:'hakaze', name:'Hakaze', target:'enemy', power:1.0, fx:'slash', sen:1, desc:'Coup de katana. +1 Sen.'},
     opts:[
@@ -772,11 +971,14 @@ const JOBS = {
 };
 const JOB_ORDER = ['paladin','moine','barde','mageblanc','guerrier','dragoon','magenoir','erudit','samourai'];
 const allSkills = k => [JOBS[k].basic].concat(JOBS[k].opts);
+const JOB_PRICE = 1200, JOB_PROMO = 400;
+const promoOK = () => !S.promoUsed && (S.unlocked||[]).length<=1;
+const jobPrice = () => promoOK() ? JOB_PROMO : JOB_PRICE;
 const UPGRADES = {
-  hp:{ name:'Bénédiction d’Hydaelyn', desc:'+5 % de PV max par rang.', costs:[150,300,500], icon:'icon_cristal' },
-  dmg:{ name:'Pierre d’aiguisage', desc:'+4 % de dégâts par rang.', costs:[200,400,650], icon:'icon_combat' },
-  potion:{ name:'Sacoche d’aventurier', desc:'+1 potion au début de chaque exploration.', costs:[120,300], icon:'icon_coffre' },
-  gil:{ name:'Bourse de la Guilde', desc:'+15 % de Gils gagnés par rang.', costs:[250,500], icon:'icon_autel' },
+  hp:{ name:'Vitalité permanente', desc:'+5 % de PV max par rang.', costs:[400,800,1200], icon:'icon_cristal' },
+  dmg:{ name:'Armes affûtées', desc:'+4 % de dégâts par rang.', costs:[500,900,1400], icon:'icon_combat' },
+  potion:{ name:'Sacoche de potions', desc:'+1 potion au début de chaque exploration.', costs:[300,700], icon:'icon_coffre' },
+  gil:{ name:'Bourse du marchand', desc:'+15 % de Gils gagnés par rang.', costs:[500,1000], icon:'icon_autel' },
 };
 
 /* ===================== DONNÉES : MONSTRES =====================
@@ -940,19 +1142,19 @@ const ENRAGE_AT = { roiflan:28, chevalier:30, grandahriman:30, reinebombo:32, se
 
 /* ===================== POMANDRES / RÉCOMPENSES ===================== */
 const POMS = [
-  {id:'force', name:'Pomandre de force', desc:'+5 % de dégâts (max ×6).', w:10, max:6, apply:R=>{R.mods.dmg+=0.05;}},
-  {id:'acier', name:'Pomandre d’acier', desc:'Réduit les dégâts subis de 3 % (max ×4).', w:8, max:4, apply:R=>{R.mods.def+=0.03;}},
-  {id:'vitalite', name:'Pomandre de vitalité', desc:'+6 % de PV max et soigne 15 % (max ×6).', w:10, max:6, apply:R=>{R.mods.hpMul+=0.06; recalcStats(); healR(R.maxhp*0.15);}},
-  {id:'perspi', name:'Pomandre de perspicacité', desc:'+4 % de chances de critique (max ×4).', w:6, max:4, apply:R=>{R.mods.crit+=0.04;}},
-  {id:'vampi', name:'Pomandre de vampirisme', desc:'Récupère 3 % des dégâts infligés en PV (max ×3).', w:4, max:3, apply:R=>{R.mods.vamp+=0.03;}},
-  {id:'rajeu', name:'Pomandre de rajeunissement', desc:'Restaure 60 % des PV et tous les PM.', w:7, apply:R=>{healR(R.maxhp*0.6); R.mp=R.maxmp;}},
+  {id:'force', name:'Bénédiction de force', desc:'+5 % de dégâts (max ×6).', w:10, max:6, apply:R=>{R.mods.dmg+=0.05;}},
+  {id:'acier', name:'Bénédiction de défense', desc:'Réduit les dégâts subis de 3 % (max ×4).', w:8, max:4, apply:R=>{R.mods.def+=0.03;}},
+  {id:'vitalite', name:'Bonus de vitalité', desc:'+6 % de PV max et soigne 15 % (max ×6).', w:10, max:6, apply:R=>{R.mods.hpMul+=0.06; recalcStats(); healR(R.maxhp*0.15);}},
+  {id:'perspi', name:'Bénédiction de précision', desc:'+4 % de chances de critique (max ×4).', w:6, max:4, apply:R=>{R.mods.crit+=0.04;}},
+  {id:'vampi', name:'Lame vampirique', desc:'Récupère 3 % des dégâts infligés en PV (max ×3).', w:4, max:3, apply:R=>{R.mods.vamp+=0.03;}},
+  {id:'rajeu', name:'Grand élixir', desc:'Restaure 60 % des PV et tous les PM.', w:7, apply:R=>{healR(R.maxhp*0.6); R.mp=R.maxmp;}},
   {id:'potions', name:'Potion', desc:'+1 potion (soin de 40 %, max 5 en sac).', w:10, apply:R=>{R.potions=Math.min(5,R.potions+1);}},
   {id:'ether', name:'Éther', desc:'+1 éther (rend 50 % des PM, max 3).', w:5, apply:R=>{R.ethers=Math.min(3,R.ethers+1);}},
-  {id:'fortune', name:'Pomandre de fortune', desc:'+20 % de Gils gagnés pour cette exploration.', w:4, max:2, apply:R=>{R.mods.gil+=0.2;}},
-  {id:'serenite', name:'Pomandre de sérénité', desc:'+50 % de régénération de PM (max ×2).', w:4, max:2, apply:R=>{R.mods.mpr+=0.5;}},
-  {id:'celerite', name:'Pomandre de célérité', desc:'Temps de recharge réduits d’1 tour.', w:2, max:1, apply:R=>{R.mods.cdr=1;}},
-  {id:'bourse', name:'Bourse oubliée', desc:'Des Gils (selon l’étage).', w:9, apply:R=>{gainGils(6+R.floor);}},
-  {id:'soin', name:'Eau bénite', desc:'Soigne 30 % des PV.', w:9, apply:R=>{healR(R.maxhp*0.3);}},
+  {id:'fortune', name:'Porte-bonheur', desc:'+20 % de Gils gagnés pour cette exploration.', w:4, max:2, apply:R=>{R.mods.gil+=0.2;}},
+  {id:'serenite', name:'Bénédiction de mana', desc:'+50 % de régénération de PM (max ×2).', w:4, max:2, apply:R=>{R.mods.mpr+=0.5;}},
+  {id:'celerite', name:'Bénédiction de vitesse', desc:'Temps de recharge réduits d’1 tour.', w:2, max:1, apply:R=>{R.mods.cdr=1;}},
+  {id:'bourse', name:'Bourse de Gils', desc:'Des Gils (selon l’étage).', w:9, apply:R=>{gainGils(6+R.floor);}},
+  {id:'soin', name:'Élixir de soin', desc:'Soigne 30 % des PV.', w:9, apply:R=>{healR(R.maxhp*0.3);}},
 ];
 const GOOD_POMS = ['force','vitalite','perspi','rajeu','acier'];
 const pomCount = id => R.taken.filter(x=>x===id).length;
@@ -990,55 +1192,55 @@ const addPk = (k, v) => { R.perk[k] = (R.perk[k]||0) + v; };
 const hasMP = () => JOBS[R.job].mp >= 80;
 const REWARDS = [
   // --- Communs ---
-  {id:'force', r:'c', name:'Pomandre de force', desc:'+3 % de dégâts.', max:4, v:6, apply:()=>{ R.mods.dmg+=0.03; }},
-  {id:'acier', r:'c', name:'Pomandre d’acier', desc:'−2 % de dégâts subis.', max:4, v:5, apply:()=>{ R.mods.def+=0.02; }},
-  {id:'vitalite', r:'c', name:'Pomandre de vitalité', desc:'+4 % de PV max et soigne 20 %.', max:4, v:6, tag:'heal', apply:()=>{ R.mods.hpMul+=0.04; recalcStats(); healR(R.maxhp*0.2); }},
-  {id:'perspi', r:'c', name:'Pomandre de perspicacité', desc:'+3 % de chances de critique.', max:3, v:4, apply:()=>{ R.mods.crit+=0.03; }},
+  {id:'force', r:'c', name:'Bénédiction de force', desc:'+3 % de dégâts.', max:4, v:6, apply:()=>{ R.mods.dmg+=0.03; }},
+  {id:'acier', r:'c', name:'Bénédiction de défense', desc:'−2 % de dégâts subis.', max:4, v:5, apply:()=>{ R.mods.def+=0.02; }},
+  {id:'vitalite', r:'c', name:'Bonus de vitalité', desc:'+4 % de PV max et soigne 20 %.', max:4, v:6, tag:'heal', apply:()=>{ R.mods.hpMul+=0.04; recalcStats(); healR(R.maxhp*0.2); }},
+  {id:'perspi', r:'c', name:'Bénédiction de précision', desc:'+3 % de chances de critique.', max:3, v:4, apply:()=>{ R.mods.crit+=0.03; }},
   {id:'potions', r:'c', name:'Potion', desc:'+1 potion (max 5 en sac).', v:4, tag:'heal', req:()=>R.potions<5, apply:()=>{ R.potions=Math.min(5,R.potions+1); }},
   {id:'ether', r:'c', name:'Éther', desc:'+1 éther (max 3 en sac).', v:3, req:()=>R.ethers<3 && hasMP(), apply:()=>{ R.ethers=Math.min(3,R.ethers+1); }},
-  {id:'bourse', r:'c', name:'Bourse oubliée', desc:'Des Gils (selon l’étage).', v:2, apply:()=>{ gainGils(8+R.floor); }},
-  {id:'soin', r:'c', name:'Eau bénite', desc:'Soigne 35 % des PV.', v:2, tag:'heal', apply:()=>{ healR(R.maxhp*0.35); }},
-  {id:'serenite', r:'c', name:'Pomandre de sérénité', desc:'+50 % de régénération de PM.', max:2, v:3, req:hasMP, apply:()=>{ R.mods.mpr+=0.5; }},
-  {id:'fortune', r:'c', name:'Pomandre de fortune', desc:'+20 % de Gils gagnés.', max:2, v:2, apply:()=>{ R.mods.gil+=0.2; }},
-  {id:'garde', r:'c', name:'Pierre de garde', desc:'Commence chaque combat avec un bouclier de 4 % des PV.', max:2, v:4, apply:()=>addPk('shieldStart',0.04)},
-  {id:'pickpocket', r:'c', name:'Doigts agiles', desc:'+3 Gils par ennemi vaincu.', max:3, v:2, apply:()=>addPk('gilKill',3)},
-  {id:'ouverture', r:'c', name:'Lame d’ouverture', desc:'+15 % de dégâts contre les ennemis à plus de 80 % de PV.', max:2, v:3, apply:()=>addPk('opener',0.15)},
-  {id:'alchimie', r:'c', name:'Mortier d’alchimiste', desc:'Les potions soignent 10 % de plus.', max:2, v:3, tag:'heal', apply:()=>addPk('potion',0.1)},
-  {id:'brisebouclier', r:'c', name:'Marteau brise-garde', desc:'+30 % de dégâts contre les boucliers '+ic('shield')+'.', max:2, v:3, apply:()=>addPk('vsShield',0.3)},
-  {id:'rajeu', r:'c', name:'Pomandre de rajeunissement', desc:'Restaure 60 % des PV et tous les PM.', v:3, tag:'heal', apply:()=>{ healR(R.maxhp*0.6); R.mp=R.maxmp; }},
+  {id:'bourse', r:'c', name:'Bourse de Gils', desc:'Des Gils (selon l’étage).', v:2, apply:()=>{ gainGils(8+R.floor); }},
+  {id:'soin', r:'c', name:'Élixir de soin', desc:'Soigne 35 % des PV.', v:2, tag:'heal', apply:()=>{ healR(R.maxhp*0.35); }},
+  {id:'serenite', r:'c', name:'Bénédiction de mana', desc:'+50 % de régénération de PM.', max:2, v:3, req:hasMP, apply:()=>{ R.mods.mpr+=0.5; }},
+  {id:'fortune', r:'c', name:'Porte-bonheur', desc:'+20 % de Gils gagnés.', max:2, v:2, apply:()=>{ R.mods.gil+=0.2; }},
+  {id:'garde', r:'c', name:'Petit bouclier de cristal', desc:'Commence chaque combat avec un bouclier de 4 % des PV.', max:2, v:4, apply:()=>addPk('shieldStart',0.04)},
+  {id:'pickpocket', r:'c', name:'Bourse du chasseur', desc:'+3 Gils par ennemi vaincu.', max:3, v:2, apply:()=>addPk('gilKill',3)},
+  {id:'ouverture', r:'c', name:'Frappe d’entrée', desc:'+15 % de dégâts contre les ennemis à plus de 80 % de PV.', max:2, v:3, apply:()=>addPk('opener',0.15)},
+  {id:'alchimie', r:'c', name:'Potions renforcées', desc:'Les potions soignent 10 % de plus.', max:2, v:3, tag:'heal', apply:()=>addPk('potion',0.1)},
+  {id:'brisebouclier', r:'c', name:'Brise-bouclier', desc:'+30 % de dégâts contre les boucliers '+ic('shield')+'.', max:2, v:3, apply:()=>addPk('vsShield',0.3)},
+  {id:'rajeu', r:'c', name:'Grand élixir', desc:'Restaure 60 % des PV et tous les PM.', v:3, tag:'heal', apply:()=>{ healR(R.maxhp*0.6); R.mp=R.maxmp; }},
   // --- Rares ---
-  {id:'vampi', r:'r', name:'Pomandre de vampirisme', desc:'Récupère 2 % des dégâts infligés en PV.', max:2, v:6, apply:()=>{ R.mods.vamp+=0.02; }},
-  {id:'interruption', r:'r', name:'Gantelet d’interruption', desc:'Interrompre une action '+ic('bolt')+' te soigne 8 % et inflige des dégâts.', max:2, v:6, apply:()=>addPk('onInterrupt',1)},
+  {id:'vampi', r:'r', name:'Lame vampirique', desc:'Récupère 2 % des dégâts infligés en PV.', max:2, v:6, apply:()=>{ R.mods.vamp+=0.02; }},
+  {id:'interruption', r:'r', name:'Gant d’interruption', desc:'Interrompre une action '+ic('bolt')+' te soigne 8 % et inflige des dégâts.', max:2, v:6, apply:()=>addPk('onInterrupt',1)},
   {id:'parade', r:'r', name:'Parade réflexe', desc:'−12 % de dégâts des attaques '+ic('warn')+' télégraphiées.', max:2, v:7, apply:()=>addPk('bigRed',0.12)},
-  {id:'fleau', r:'r', name:'Fléau des soigneurs', desc:'+30 % de dégâts contre les soutiens '+ic('cross')+' '+ic('horn')+'.', max:1, v:4, apply:()=>addPk('vsSupport',0.3)},
-  {id:'venin', r:'r', name:'Venin concentré', desc:'Tes dégâts sur la durée '+ic('poison')+' sont augmentés de 40 %.', max:2, v:4, req:()=>allSkills(R.job).some(s=>s.dot), apply:()=>addPk('dotUp',0.4)},
-  {id:'robe', r:'r', name:'Étole runique', desc:'−10 % de dégâts magiques subis.', max:2, v:5, apply:()=>addPk('magRed',0.1)},
-  {id:'sablier', r:'r', name:'Sablier figé', desc:'La rage des ennemis arrive 3 tours plus tard.', max:1, v:6, apply:()=>addPk('enrageDelay',3)},
+  {id:'fleau', r:'r', name:'Chasseur de soigneurs', desc:'+30 % de dégâts contre les soutiens '+ic('cross')+' '+ic('horn')+'.', max:1, v:4, apply:()=>addPk('vsSupport',0.3)},
+  {id:'venin', r:'r', name:'Poison renforcé', desc:'Tes dégâts sur la durée '+ic('poison')+' sont augmentés de 40 %.', max:2, v:4, req:()=>allSkills(R.job).some(s=>s.dot), apply:()=>addPk('dotUp',0.4)},
+  {id:'robe', r:'r', name:'Cape anti-magie', desc:'−10 % de dégâts magiques subis.', max:2, v:5, apply:()=>addPk('magRed',0.1)},
+  {id:'sablier', r:'r', name:'Sablier ralenti', desc:'La rage des ennemis arrive 3 tours plus tard.', max:1, v:6, apply:()=>addPk('enrageDelay',3)},
   {id:'grace', r:'r', name:'Coup de grâce', desc:'+20 % de dégâts contre les ennemis sous 30 % de PV.', max:1, v:4, apply:()=>addPk('execute',0.2)},
   {id:'onde', r:'r', name:'Onde de choc', desc:'+15 % de dégâts pour les attaques de zone.', max:2, v:3, req:()=>allSkills(R.job).some(s=>s.target==='all'), apply:()=>addPk('aoe',0.15)},
-  {id:'cristalether', r:'r', name:'Cristal d’éther', desc:'+8 PM à chaque ennemi vaincu.', max:2, v:4, req:hasMP, apply:()=>addPk('mpKill',8)},
-  {id:'ame', r:'r', name:'Récolte d’âmes', desc:'+3 % de PV à chaque ennemi vaincu.', max:1, v:5, tag:'heal', apply:()=>addPk('hpKill',0.03)},
-  {id:'initiative', r:'r', name:'Initiative', desc:'+35 % de dégâts au premier tour de chaque combat.', max:1, v:3, apply:()=>addPk('firstTurn',0.35)},
-  {id:'regen', r:'r', name:'Aura de régénération', desc:'Soigne 1,5 % des PV à chaque tour de combat.', max:1, v:6, tag:'heal', apply:()=>addPk('regen',0.015)},
+  {id:'cristalether', r:'r', name:'Cristal de mana', desc:'+8 PM à chaque ennemi vaincu.', max:2, v:4, req:hasMP, apply:()=>addPk('mpKill',8)},
+  {id:'ame', r:'r', name:'Récolte de vie', desc:'+3 % de PV à chaque ennemi vaincu.', max:1, v:5, tag:'heal', apply:()=>addPk('hpKill',0.03)},
+  {id:'initiative', r:'r', name:'Premier assaut', desc:'+35 % de dégâts au premier tour de chaque combat.', max:1, v:3, apply:()=>addPk('firstTurn',0.35)},
+  {id:'regen', r:'r', name:'Régénération', desc:'Soigne 1,5 % des PV à chaque tour de combat.', max:1, v:6, tag:'heal', apply:()=>addPk('regen',0.015)},
   {id:'geants', r:'r', name:'Tueur de géants', desc:'+8 % de dégâts contre les gardiens et les boss.', max:1, v:5, apply:()=>addPk('boss',0.08)},
   {id:'percearmure', r:'r', name:'Perce-armure', desc:'Ignore 35 % des résistances ennemies.', max:1, v:4, apply:()=>addPk('pierce',0.35)},
   {id:'volonte', r:'r', name:'Volonté de fer', desc:'Immunité à Affaibli ↓.', max:1, v:3, apply:()=>addPk('noWeak',1)},
-  {id:'antidote', r:'r', name:'Talisman antidote', desc:'Immunité aux poisons '+ic('poison')+' ennemis.', max:1, v:3, apply:()=>addPk('noDot',1)},
+  {id:'antidote', r:'r', name:'Talisman anti-poison', desc:'Immunité aux poisons '+ic('poison')+' ennemis.', max:1, v:3, apply:()=>addPk('noDot',1)},
   {id:'opportun', r:'r', name:'Frappe opportuniste', desc:'+25 % de dégâts contre les ennemis étourdis '+ic('stun')+'.', max:2, v:4, apply:()=>addPk('stunned',0.25)},
   {id:'epines', r:'r', name:'Armure d’épines', desc:'Renvoie 15 % des dégâts subis à l’attaquant.', max:1, v:4, apply:()=>addPk('thorns',0.15)},
-  {id:'econome', r:'r', name:'Sceau d’économie', desc:'Les compétences coûtent 25 % de PM en moins.', max:1, v:4, req:()=>allSkills(R.job).some(s=>s.mp), apply:()=>addPk('mpSave',0.25)},
-  {id:'superpotion', r:'r', name:'Super-potions', desc:'+2 potions (max 5 en sac).', v:4, tag:'heal', req:()=>R.potions<4, apply:()=>{ R.potions=Math.min(5,R.potions+2); }},
+  {id:'econome', r:'r', name:'Économie de mana', desc:'Les compétences coûtent 25 % de PM en moins.', max:1, v:4, req:()=>allSkills(R.job).some(s=>s.mp), apply:()=>addPk('mpSave',0.25)},
+  {id:'superpotion', r:'r', name:'Lot de potions', desc:'+2 potions (max 5 en sac).', v:4, tag:'heal', req:()=>R.potions<4, apply:()=>{ R.potions=Math.min(5,R.potions+2); }},
   {id:'lien', r:'r', name:'Lien d’amitié', desc:'La compétence de ton compagnon recharge 1 tour plus vite.', max:1, v:4, req:()=>!!R.comp, apply:()=>addPk('compCd',1)},
   // --- Épiques ---
-  {id:'celerite', r:'e', name:'Pomandre de célérité', desc:'Temps de recharge réduits d’1 tour.', max:1, v:8, apply:()=>{ R.mods.cdr=1; }},
+  {id:'celerite', r:'e', name:'Bénédiction de vitesse', desc:'Temps de recharge réduits d’1 tour.', max:1, v:8, apply:()=>{ R.mods.cdr=1; }},
   {id:'phenix', r:'e', name:'Queue de phénix', desc:'Une fois : te relève à 40 % des PV au lieu de mourir.', max:1, v:9, apply:()=>addPk('phoenix',1)},
-  {id:'egide', r:'e', name:'Égide d’Halone', desc:'Commence chaque combat avec un bouclier de 9 % des PV.', max:1, v:7, apply:()=>addPk('shieldStart',0.09)},
+  {id:'egide', r:'e', name:'Bouclier de cristal', desc:'Commence chaque combat avec un bouclier de 9 % des PV.', max:1, v:7, apply:()=>addPk('shieldStart',0.09)},
   {id:'abondance', r:'e', name:'Corne d’abondance', desc:'Les écrans de récompense proposent 4 choix.', max:1, v:5, apply:()=>addPk('extraReward',1)},
-  {id:'elan', r:'e', name:'Élan du chasseur', desc:'Vaincre un ennemi réduit tes recharges d’1 tour.', max:1, v:7, apply:()=>addPk('cdrKill',1)},
-  {id:'destin', r:'e', name:'Lame du destin', desc:'Tes critiques infligent ×1,8 au lieu de ×1,5.', max:1, v:6, apply:()=>addPk('critMul',0.3)},
-  {id:'sang', r:'e', name:'Sang bouillant', desc:'+12 % de dégâts, mais −8 % de PV max.', max:1, v:6, apply:()=>{ R.mods.dmg+=0.12; R.mods.hpMul-=0.08; recalcStats(); R.hp=Math.min(R.hp,R.maxhp); }},
+  {id:'elan', r:'e', name:'Élan de victoire', desc:'Vaincre un ennemi réduit tes recharges d’1 tour.', max:1, v:7, apply:()=>addPk('cdrKill',1)},
+  {id:'destin', r:'e', name:'Critiques dévastateurs', desc:'Tes critiques infligent ×1,8 au lieu de ×1,5.', max:1, v:6, apply:()=>addPk('critMul',0.3)},
+  {id:'sang', r:'e', name:'Rage du berserker', desc:'+12 % de dégâts, mais −8 % de PV max.', max:1, v:6, apply:()=>{ R.mods.dmg+=0.12; R.mods.hpMul-=0.08; recalcStats(); R.hp=Math.min(R.hp,R.maxhp); }},
   {id:'fragment', r:'e', name:'Fragment de cristal', desc:'+1 Fragment de cristal (invocation de compagnons).', max:2, v:2, apply:()=>{ R.frags=(R.frags||0)+1; }},
-  {id:'benediction', r:'e', name:'Bénédiction de Nald’thal', desc:'+6 % de dégâts et −3 % de dégâts subis.', max:1, v:8, apply:()=>{ R.mods.dmg+=0.06; R.mods.def+=0.03; }},
+  {id:'benediction', r:'e', name:'Bénédiction divine', desc:'+6 % de dégâts et −3 % de dégâts subis.', max:1, v:8, apply:()=>{ R.mods.dmg+=0.06; R.mods.def+=0.03; }},
 ];
 const REW = Object.fromEntries(REWARDS.map(x=>[x.id,x]));
 const rewCount = id => R.taken.filter(x=>x===id).length;
@@ -1099,6 +1301,27 @@ function skillListHTML(k, only){
   const list = only ? [JOBS[k].basic].concat(JOBS[k].opts.filter(o=>only.includes(o.id))) : allSkills(k);
   return `<div class="sklist">${list.map((s,i)=>`<div class="it"><b>${s.name}</b>${i===0?' <span class="tag">Base</span>':''} <span class="muted">${skillTag(s)}</span><br>${s.desc}</div>`).join('')}</div>`;
 }
+function skillLite(k, s){
+  const j=JOBS[k], sf=s.self||{}, st=(s.stat==='mag'||s.type==='mag')?j.mag:j.atk;
+  let num='', ico='sword', txt='';
+  if (s.power){ num=Math.round(s.power*(s.hits||1)*st)+' dégâts'; ico=(s.stat==='mag'||s.type==='mag')?'magic':'sword'; }
+  if (s.target==='all'){ ico='zone'; txt='Frappe tous les ennemis.'; }
+  else if (s.hits>1) txt='Enchaîne plusieurs coups rapides.';
+  else if (s.power) txt=(s.stat==='mag'||s.type==='mag')?'Frappe un ennemi par magie.':'Frappe un ennemi.';
+  if (s.stun){ ico='bolt'; txt=s.power?'Frappe et étourdit l’ennemi.':'Étourdit l’ennemi.'; }
+  if (s.dot){ ico='poison'; txt=s.power?'Frappe et empoisonne l’ennemi.':'Empoisonne l’ennemi.'; }
+  if (sf.healPct||sf.heal){ const h=sf.healPct?Math.round(sf.healPct*100)+' % PV':sf.heal+' PV'; if(!s.power){ num='Soin '+h; ico='heal'; txt='Te soigne.'; } else txt=txt.replace(/\.$/,'')+' et te soigne.'; }
+  if (sf.regen && !s.power){ ico='heal'; num=num||'Régén.'; txt='Soigne un peu à chaque tour.'; }
+  if (sf.mitig && !s.power){ ico='shield'; num='−'+Math.round(sf.mitig[0]*100)+' % dégâts'; txt='Réduit les dégâts reçus.'; }
+  if (sf.invuln){ ico='shield'; num='Invulnérable'; txt='Aucun dégât pendant un tour.'; }
+  if ((sf.shield||sf.holm) && !s.power){ ico='shield'; num=num||'Bouclier'; txt='Crée un bouclier protecteur.'; }
+  if ((sf.buff||sf.nextCrit) && !s.power){ ico='up'; num=sf.buff?'+'+Math.round((Array.isArray(sf.buff)?sf.buff[0]:sf.buff)*100)+' % dégâts':'Critique'; txt=sf.nextCrit?'Ton prochain coup sera critique.':'Augmente tes dégâts un moment.'; }
+  if (sf.mpGain && !s.power){ ico='drop'; num='+PM'; txt='Rend des PM.'; }
+  if (sf.cleanse && !s.power && !txt){ ico='heal'; txt='Retire les effets négatifs.'; }
+  if (!txt) txt=(s.desc||'').split(/[.:]/)[0].split(' ').slice(0,8).join(' ')+'.';
+  return `<div class="sk-lite"><span class="sk-ic">${ic(ico)}</span><div class="sk-t"><b>${s.name}</b><span>${txt}</span></div>${num?`<em>${num}</em>`:''}</div>`;
+}
+function skillLiteList(k){ return `<div class="sklite">${allSkills(k).map(s=>skillLite(k,s)).join('')}</div>`; }
 function jobStatsHTML(k){
   const j=JOBS[k];
   return `<div class="grid2" style="gap:2px 14px">
@@ -1111,6 +1334,34 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.3', date:'23/10/2026', img:'assets/bgb/yshtola.webp', notes:[
+    'Nouvelle direction artistique inspirée de FINAL FANTASY XIV sur tous les écrans hors combat : panneaux sombres translucides, dégradés doux, fins accents dorés et plus aucun cadre.',
+    'Nouvelles polices libres hébergées avec le jeu : Cinzel pour les titres et Source Sans 3 pour les textes.',
+    'L’avant-poste devient une liste claire à un seul niveau, avec sprites et petits symboles dessinés ; le bouton Retour devient une simple flèche en haut à gauche.',
+    'Nouvel écran Paramètres : volume, notes de patch et crédits complets.',
+    'L’écran titre s’anime : illustration officielle en lent mouvement, poussières de lumière et lueur sur le menu principal (désactivé si le téléphone demande moins d’animations).',
+    'Invocation : bannières sur la moitié de l’écran, sans cadre ni flèches, avec décors officiels de FFXIV, mouvement lent, reflet lumineux et personnage qui respire ; on glisse pour changer de bannière.',
+    'La bannière de Lightning utilise un rendu officiel détouré, placé comme les autres.',
+'Les illustrations de toutes les bannières passent en haute résolution, avec des bords nets et lisses, sans pixels ni halo.',
+'Nouveaux rendus officiels plus grands pour Y\'shtola, Cloud et Yuna.',
+    'Le bouton « Mes compagnons » quitte l’écran d’invocation : les compagnons restent accessibles depuis l’avant-poste.',
+    'Les compagnons sans sprite officiel affichent désormais un médaillon doré à leur initiale au lieu d’une icône de mascotte.',
+    'Prix unique de 1 200 Gils pour tous les cristaux de job, calé sur les gains moyens d’une exploration de débutant.',
+    'Premier cristal à 400 Gils au lieu de 1 200 (une seule fois, pour les sauvegardes avec un seul job).',
+    'Les améliorations permanentes ont été recalibrées sur ces gains (de 300 à 1 400 Gils).',
+    'Les fiches de job indiquent la « Classe d’origine » (par exemple Gladiateur pour Paladin).',
+    'Création du personnage et fiches de job : chaque sort tient en une ligne claire (symbole, nom, un chiffre clé et une courte phrase) ; le détail complet reste dans le combat.',
+    'Combat : les pastilles d’intention et les étiquettes de résistance disparaissent au-dessus des monstres.',
+    'Combat : le bandeau « X prépare… » disparaît ; un monstre qui prépare une grosse attaque brille et tremble, en doré quand on peut l’interrompre.',
+    'Les cartes de récompense ne sont plus encadrées : elles apparaissent une par une, teintées selon leur rareté.',
+    'Nouvelle fanfare de victoire : titre doré animé lettre par lettre et récompenses qui apparaissent une à une.',
+    'Nouvel écran de fin d’exploration : illustration officielle en fond, titre animé et bilan qui s’affiche ligne par ligne.',
+    'Bonus et objets renommés avec des noms clairs (Bénédiction de force, Porte-bonheur, Bouclier de cristal, Potions renforcées…).',
+    '« Choisis ton chemin » redessiné : escalier d’où tu viens, trois cercles colorés avec un symbole dessiné, escalier vers l’étage suivant.',
+    'Chaque type de salle a sa couleur et son symbole : rouge combat, or trésor, vert repos, bleu événement, violet élite.',
+    'Les écrans d’événement reprennent le symbole et la couleur de la salle, sur un fond dégradé lisible.',
+    'Préparation de l’exploration : le marqueur officiel de quête principale de FFXIV brille discrètement en fond.',
+  ]},
   {v:'v5.2', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', notes:[
     'Les illustrations, les décors et les sprites se chargent beaucoup plus vite : images recompressées en WebP, environ deux fois plus légères.',
     'Les images du prochain écran (décor de l’étage, sprites de l’équipe et des monstres, illustrations des bannières) sont préchargées et décodées pendant les temps morts.',
@@ -1179,9 +1430,9 @@ SCREENS.title = function(){
   C=null;
   document.body.classList.add('home');
   app.innerHTML = `
+  <div class="home-bg" aria-hidden="true"></div><div class="motes" aria-hidden="true">${Array.from({length:18},(_,i)=>`<i style="left:${(i*53)%100}%;animation-delay:${(i*0.7)%9}s;animation-duration:${9+(i%5)*2}s"></i>`).join('')}</div>
   <button class="pnlink" data-k="patchnotes" id="bPN">Notes de patch</button>
   <div class="title-logo">
-    ${spr('icon_cristal','crystal')}
     <h1>LE PALAIS<br>DES MORTS</h1>
     <div class="sub">Fan game FINAL FANTASY XIV — non officiel, entre amis</div>
     <div class="sub">50 étages · 9 jobs · 30 compagnons</div>
@@ -1208,22 +1459,22 @@ SCREENS.create = function(){
   app.innerHTML = `
   <div class="win topbar"><b>Création du personnage</b></div>
   <div class="scroll">
-    <div class="win col">
-      <h3>Nom de l’aventurier</h3>
+    <section class="xsec">
+      <h3 class="xh">Nom de l’aventurier</h3>
       <input class="name" id="nm" maxlength="14" value="${esc(S.name)}" autocomplete="off" autocapitalize="words" spellcheck="false">
-    </div>
-    <div class="win col">
-      <h3>Classe de départ</h3>
-      <div class="grid2">
-        ${starts.map(k=>`<button class="btn card ${k===createSel?'sel':''}" data-k="cls-${k}" data-cls="${k}">${spr(k,'idle')}<span>${JOBS[k].name}</span>${roleTag(k)}</button>`).join('')}
+    </section>
+    <section class="xsec">
+      <h3 class="xh">Job de départ</h3>
+      <div class="jpick">
+        ${starts.map(k=>`<button class="jp ${k===createSel?'sel':''}" data-k="cls-${k}" data-cls="${k}">${spr(k,'idle')}<span>${jgi(k)}${JOBS[k].name}</span></button>`).join('')}
       </div>
-    </div>
-    <div class="win col">
-      <div class="row"><h3 class="grow">${j.name}</h3>${roleTag(createSel)}</div>
-      <p class="muted">${j.desc}</p>
-      ${jobStatsHTML(createSel)}
-      ${skillListHTML(createSel)}
-    </div>
+    </section>
+    <section class="xsec jsheet">
+      <div class="row"><h2 class="grow">${jgi(createSel,'big')} ${j.name}</h2>${roleTag(createSel)}</div>
+      <div class="muted">Classe d’origine : ${j.cls}</div>
+      <p>${j.desc}</p>
+      ${skillLiteList(createSel)}
+    </section>
   </div>
   <button class="btn goldb" data-k="start" id="bGo">Commencer l’aventure</button>`;
   const nameVal = ()=> (document.getElementById('nm').value.trim()||'Aventurier').slice(0,14);
@@ -1234,38 +1485,71 @@ SCREENS.hub = function(){
   C=null;
   if (!S.unlocked.includes(S.job)) S.job=S.unlocked[0];
   const j=JOBS[S.job];
+  const vis={ jobs:spr(S.job,''), shop:rsym('marchand','hg'), gacha:spr('c_'+curBanner().f5,''), comps:S.comp?spr('c_'+S.comp,''):rsym('online','hg'),
+    online:rsym('online','hg'), scores:rsym('scores','hg'), settings:rsym('settings','hg'), title:rsym('door','hg') };
+  const item=(k,icon,t,sub,extra='')=>`<button class="xbtn" data-k="${k}" ${extra}><span class="xv">${vis[k]||''}</span><span><b>${t}</b><small>${sub}</small></span></button>`;
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Avant-poste du Palais</b><span class="gold">${S.gils} Gils</span></div>
   <div class="scroll">
-    <div class="win row" style="gap:14px">
-      ${spr(S.job,'idle','width:88px')}
-      <div class="grow col" style="gap:4px">
-        <h2>${esc(S.name)}</h2>
-        <div>${j.name} ${roleTag(S.job)}</div>
-        <div class="muted">Record : étage ${S.stats.best||'—'} / 50 · Victoires : ${S.stats.wins}</div>
-      </div>
+    <div class="hero">
+      <div class="hero-sp">${spr(S.job,'idle')}</div>
+      <div class="hero-t"><h2>${esc(S.name)}</h2><div class="hero-j">${jgi(S.job)} ${j.name} ${roleTag(S.job)}</div>
+      <div class="muted">Record : étage ${S.stats.best||'—'} / 50 · Victoires : ${S.stats.wins}</div></div>
     </div>
-    <button class="btn goldb" style="min-height:64px;font-size:19px" data-k="enter" id="bEnter">${spr('icon_combat','','width:32px')} Préparer l’exploration</button>
-    <div class="grid2">
-      <button class="btn" data-k="jobs" data-go="jobs">${spr('icon_cristal','','width:26px')} Jobs</button>
-      <button class="btn" data-k="shop" data-go="shop">${spr('icon_coffre','','width:26px')} Marchand</button>
-      <button class="btn" data-k="gacha" data-go="gacha">${spr('icon_cristal','','width:26px')} Invocation <span class="frag" style="font-size:13px">${ic('gem')}${S.frag||0}</span></button>
-      <button class="btn" data-k="online" id="bOnlineH" onclick="Online.open('hub')">${ic('lb')} En ligne</button>
-      <button class="btn" data-k="scores" id="bScores" onclick="scoresModal()">${ic('star')} Scores</button>
-      <button class="btn" data-k="comps" id="bHubComps">${S.comp?spr('c_'+S.comp,'','width:26px'):spr('icon_rencontre','','width:26px')} Compagnons</button>
+    <button class="xbtn prime" data-k="enter" id="bEnter"><span class="xv">${rsym('up','hg')}</span><span><b>Préparer l’exploration</b><small>Entrer dans le Palais des Morts</small></span></button>
+    <div class="xlist">
+      ${item('jobs','actions_and_traits','Jobs',`${S.unlocked.length} / ${JOB_ORDER.length} débloqués`,'data-go="jobs"')}
+      ${item('shop','currency','Marchand','Cristaux de job et améliorations','data-go="shop"')}
+      ${item('gacha','gold_saucer','Invocation',`${S.frag||0} fragments de cristal`,'data-go="gacha"')}
+      ${item('comps','companions','Compagnons',S.comp?COMPANIONS[S.comp].name:'Aucun compagnon','id="bHubComps"')}
+      ${item('online','party_finder','En ligne','Amis, groupe et classement','id="bOnlineH" onclick="Online.open(\'hub\')"')}
+      ${item('scores','achievements','Scores','Tes meilleures explorations','id="bScores" onclick="scoresModal()"')}
+      ${item('settings','system_configuration','Paramètres','Son, notes de patch, crédits','data-go="settings"')}
+      ${item('title','log_out','Écran titre','Retour au menu principal','data-go="title"')}
     </div>
-    <div class="win col" style="gap:4px">
-      <h3>Registre de l’aventurier</h3>
+    <section class="xsec ledger">
+      <h3 class="xh">Registre de l’aventurier</h3>
       <div class="stat"><span>Explorations</span><b>${S.stats.runs}</b></div>
       <div class="stat"><span>Monstres vaincus</span><b>${S.stats.kills}</b></div>
       <div class="stat"><span>Gils gagnés au total</span><b>${S.stats.totalGils}</b></div>
-      <div class="stat"><span>Jobs débloqués</span><b>${S.unlocked.length}/${JOB_ORDER.length}</b></div>
-    </div>
-    <button class="btn small" style="width:100%" data-k="title" data-go="title">Écran titre</button>
+      <div class="stat"><span>Jobs débloqués</span><b>${S.unlocked.length} / ${JOB_ORDER.length}</b></div>
+    </section>
   </div>`;
   bind(app);
   document.getElementById('bEnter').onclick = SCREENS.prep;
   document.getElementById('bHubComps').onclick = ()=>SCREENS.comps('hub');
+};
+/* Paramètres : son, notes de patch, crédits (menu plat) */
+SCREENS.settings = function(){
+  const v=Math.round((+(localStorage.getItem('pdm_vol') ?? 0.6))*100), m=localStorage.getItem('pdm_mute')==='1';
+  app.innerHTML = `
+  <div class="win topbar"><b class="grow">Paramètres</b></div>
+  <div class="scroll">
+    <section class="xsec">
+      <h3 class="xh">Son</h3>
+      <label class="setrow"><span>Volume</span><input type="range" id="stVol" min="0" max="100" step="5" value="${v}"></label>
+      <button class="btn small" id="stMute" data-k="mute">${m?'Activer le son':'Couper le son'}</button>
+    </section>
+    <section class="xsec">
+      <h3 class="xh">Notes de patch</h3>
+      <button class="btn small" id="stPN" data-k="patchnotes">Lire les notes de patch</button>
+    </section>
+    <section class="xsec credits">
+      <h3 class="xh">Crédits</h3>
+      <p><b>Jeu de fan non officiel et non commercial.</b> Aucun achat en argent réel.</p>
+      <p><b>Sprites des personnages et monstres :</b> FINAL FANTASY BRAVE EXVIUS (Square Enix, Alim).</p>
+      <p><b>Icônes, sons, jingles et décors :</b> FINAL FANTASY XIV, Fan Kit officiel et illustrations officielles.</p>
+      <p><b>Illustrations des bannières :</b> rendus officiels FINAL FANTASY VII, X, XIII, XIV et XV.</p>
+      <p><b>Polices :</b> Cinzel (Natanael Gama) et Source Sans 3 (Adobe), licence SIL Open Font License.</p>
+      <p><b>Sprites de fans :</b> aucun pour l’instant. Les compagnons sans sprite officiel Brave Exvius sont représentés par un médaillon à leur initiale, dessiné pour le jeu.</p>
+      <p class="legal">${LEGAL_TXT}</p>
+    </section>
+  </div>`;
+  const r=document.getElementById('stVol');
+  r.oninput=()=>{ const sv=document.getElementById('sndVol'); if (sv){ sv.value=r.value; sv.dispatchEvent(new Event('input')); } else localStorage.setItem('pdm_vol', r.value/100); };
+  document.getElementById('stMute').onclick=()=>{ const sm=document.getElementById('sndMute'); if (sm) sm.click(); else localStorage.setItem('pdm_mute', localStorage.getItem('pdm_mute')==='1'?'0':'1'); setTimeout(()=>{ document.getElementById('stMute').textContent=localStorage.getItem('pdm_mute')==='1'?'Activer le son':'Couper le son'; },30); };
+  document.getElementById('stPN').onclick=patchNotes;
+  backIcon('hub');
 };
 /* Préparation : choix de 4 compétences parmi 6 */
 let prepSel = null;
@@ -1274,11 +1558,11 @@ SCREENS.prep = function(){
   if (!prepSel || prepSel.job!==k) prepSel = {job:k, ids:getLoadout(k)};
   const ids=prepSel.ids;
   app.innerHTML = `
-  <div class="win topbar"><b class="grow">Préparation — ${j.name}</b><span class="gold">${ids.length}/4</span></div>
+  <div class="msq-bg" aria-hidden="true"></div><div class="win topbar"><b class="grow">Préparation — ${j.name}</b><span class="gold">${ids.length}/4</span></div>
   <div class="scroll">
-    <div class="win row" style="gap:10px">${spr(k,'idle','width:56px')}<div class="grow"><b>Choisis 4 compétences</b><div class="muted">Attaque de base toujours disponible : <b>${j.basic.name}</b>. Pense à garder une défense et un étourdissement (${ic('bolt')}) !</div></div></div>
-    <button class="btn door" data-k="prepcomp" id="bPrepComp">${S.comp?spr('c_'+S.comp,'idle'):spr('icon_rencontre')}<div><div>${S.comp?'Compagnon : '+COMPANIONS[S.comp].name+' '+starsIc(COMPANIONS[S.comp].star):'Aucun compagnon'}</div><div class="d">${S.comp?COMPANIONS[S.comp].sig+' (rang '+S.comps[S.comp]+')':'Invoque des héros avec des fragments '+ic('gem')+' (Avant-poste → Invocation).'} Touche pour changer.</div></div></button>
-    ${j.opts.map(s=>`<button class="btn skopt ${ids.includes(s.id)?'on':''}" data-k="opt-${s.id}" data-opt="${s.id}"><div>${s.name} <small class="muted">${skillTag(s)}</small></div><div class="d">${s.desc}</div></button>`).join('')}
+    <div class="hero sm"><div class="hero-sp">${spr(k,'idle')}</div><div class="grow"><b>Choisis 4 compétences</b><div class="muted">Attaque de base toujours disponible : <b>${j.basic.name}</b>. Pense à garder une défense et un étourdissement (${ic('bolt')}) !</div></div></div>
+    <button class="btn door" data-k="prepcomp" id="bPrepComp">${S.comp?spr('c_'+S.comp,'idle'):''}<div><div>${S.comp?'Compagnon : '+COMPANIONS[S.comp].name+' '+starsIc(COMPANIONS[S.comp].star):'Aucun compagnon'}</div><div class="d">${S.comp?COMPANIONS[S.comp].sig+' (rang '+S.comps[S.comp]+')':'Invoque des héros avec des fragments '+ic('gem')+' (Avant-poste → Invocation).'} Touche pour changer.</div></div></button>
+    ${j.opts.map(s=>`<button class="btn skopt ${ids.includes(s.id)?'on':''}" data-k="opt-${s.id}" data-opt="${s.id}">${skillLite(k,s)}</button>`).join('')}
   </div>
   <div class="row"><button class="btn small" data-k="back" data-go="hub" style="width:auto">Retour</button>
   <button class="btn goldb grow" data-k="go" id="bGoRun" ${ids.length===4?'':'disabled'}>Entrer dans le Palais</button></div>`;
@@ -1296,9 +1580,9 @@ SCREENS.jobs = function(){
   <div class="win topbar"><b class="grow">Changer de job</b><span class="gold">${S.gils} Gils</span></div>
   <div class="scroll">
     <div class="grid3">
-      ${JOB_ORDER.map(k=>{ const un=S.unlocked.includes(k); return `<button class="btn card ${un?'':'locked'} ${k===S.job?'sel':''}" data-k="job-${k}" data-job="${k}">${spr(k,un&&k===S.job?'idle':'')}<span style="font-size:13px">${JOBS[k].name}</span>${un?roleTag(k):`<span class="lock">${JOBS[k].price} Gils</span>`}</button>`; }).join('')}
+      ${JOB_ORDER.map(k=>{ const un=S.unlocked.includes(k); return `<button class="btn card ${un?'':'locked'} ${k===S.job?'sel':''}" data-k="job-${k}" data-job="${k}">${spr(k,un&&k===S.job?'idle':'')}<span class="jn">${jgi(k)}${JOBS[k].name}</span>${un?roleTag(k):`<span class="lock">Cristal de job</span>`}</button>`; }).join('')}
     </div>
-    <p class="muted center">Les jobs verrouillés s’obtiennent avec un Cristal de job chez le marchand. Chaque job joue différemment : aucun n’est simplement « meilleur ».</p>
+    <p class="muted center">9 jobs. Les jobs verrouillés s’obtiennent avec un Cristal de job chez le marchand. Chaque job joue différemment : aucun n’est simplement « meilleur ».</p>
   </div>
   <button class="btn" data-k="back" data-go="hub">Retour</button>`;
   bind(app);
@@ -1306,8 +1590,8 @@ SCREENS.jobs = function(){
 };
 function jobDetail(k){
   const j=JOBS[k], un=S.unlocked.includes(k);
-  showModal(`<div class="row">${spr(k,'idle','width:64px')}<div class="grow"><h2>${j.name}</h2><div class="muted">${j.cls}</div>${roleTag(k)}</div></div>
-   <p class="muted">${j.desc}</p>${jobStatsHTML(k)}${skillListHTML(k)}
+  showModal(`<div class="row">${spr(k,'idle','width:64px')}<div class="grow"><h2>${jgi(k,'big')} ${j.name}</h2><div class="muted">Classe d’origine : ${j.cls}</div>${roleTag(k)}</div></div>
+   <p class="muted">${j.desc}</p>${skillLiteList(k)}
    <div class="row" style="margin-top:10px"><button class="btn small grow" id="mC">Fermer</button>
    ${un?`<button class="btn small goldb grow" data-k="pick" id="mP">Choisir</button>`:`<button class="btn small goldb grow" id="mS">Marchand</button>`}</div>`);
   document.getElementById('mC').onclick=closeModal;
@@ -1315,25 +1599,26 @@ function jobDetail(k){
   const s=document.getElementById('mS'); if(s) s.onclick=()=>{ closeModal(); SCREENS.shop(); };
 }
 SCREENS.shop = function(){
-  const crystals = JOB_ORDER.filter(k=>!S.unlocked.includes(k));
+  const crystals = JOB_ORDER.filter(k=>!S.unlocked.includes(k)), price=jobPrice(), promo=promoOK();
   app.innerHTML = `
-  <div class="win topbar"><b class="grow">Marchand de cristaux</b><span class="gold">${S.gils} Gils</span></div>
+  <div class="win topbar"><b class="grow">Marchand</b><span class="gold">${S.gils} Gils</span></div>
   <div class="scroll">
-    <div class="win col">
-      <h3>Cristaux de job</h3>
-      ${crystals.length? crystals.map(k=>`<div class="row">${spr(k,'','width:44px')}<div class="grow"><b>Cristal : ${JOBS[k].name}</b><br>${roleTag(k)}<span class="muted">${JOBS[k].cls}</span></div>
-        <button class="btn small ${S.gils>=JOBS[k].price?'goldb':''}" data-k="buy-${k}" data-buyjob="${k}" ${S.gils>=JOBS[k].price?'':'disabled'}>${JOBS[k].price} G</button></div>`).join('') : '<p class="muted">Tous les jobs sont débloqués !</p>'}
-    </div>
-    <div class="win col">
-      <h3>Améliorations permanentes</h3>
+    <section class="xsec">
+      <h3 class="xh">Cristaux de job</h3>
+      <p class="muted">Un cristal débloque un job pour toujours. Prix unique : ${JOB_PRICE} Gils.</p>
+      ${crystals.length? crystals.map(k=>`<div class="shrow">${spr(k,'')}<div class="grow"><b>${jgi(k)} ${JOBS[k].name}</b><br>${roleTag(k)} <span class="muted">Classe d’origine : ${JOBS[k].cls}</span></div>
+        <div class="pricebox">${promo?`<span class="ptag">Premier cristal</span><s>${JOB_PRICE} G</s>`:''}<button class="btn small ${S.gils>=price?'goldb':''}" data-k="buy-${k}" data-buyjob="${k}" ${S.gils>=price?'':'disabled'}>${price} G</button></div></div>`).join('') : '<p class="muted">Tous les jobs sont débloqués !</p>'}
+    </section>
+    <section class="xsec">
+      <h3 class="xh">Améliorations permanentes</h3>
       ${Object.keys(UPGRADES).map(k=>{ const u=UPGRADES[k], lv=S.upgrades[k], max=lv>=u.costs.length, cost=u.costs[lv];
-        return `<div class="row">${spr(u.icon,'','width:36px')}<div class="grow"><b>${u.name}</b> <span class="gold">${'◆'.repeat(lv)}${'◇'.repeat(u.costs.length-lv)}</span><br><span class="muted">${u.desc}</span></div>
+        return `<div class="shrow">${''}<div class="grow"><b>${u.name}</b> <span class="gold">${'◆'.repeat(lv)}${'◇'.repeat(u.costs.length-lv)}</span><br><span class="muted">${u.desc}</span></div>
         ${max?'<span class="gold">MAX</span>':`<button class="btn small ${S.gils>=cost?'goldb':''}" data-k="up-${k}" data-up="${k}" ${S.gils>=cost?'':'disabled'}>${cost} G</button>`}</div>`; }).join('')}
-    </div>
+    </section>
   </div>
   <button class="btn" data-k="back" data-go="hub">Retour</button>`;
   bind(app);
-  app.querySelectorAll('[data-buyjob]').forEach(b=>b.onclick=()=>{ const k=b.dataset.buyjob; confirmBox(`Acheter le Cristal de job <b>${JOBS[k].name}</b> pour <span class="gold">${JOBS[k].price} Gils</span> ?`, ()=>{ if(S.gils<JOBS[k].price) return; S.gils-=JOBS[k].price; S.unlocked.push(k); S.job=k; persist(); toast(`${JOBS[k].name} débloqué !`); SCREENS.shop(); }, 'Acheter'); });
+  app.querySelectorAll('[data-buyjob]').forEach(b=>b.onclick=()=>{ const k=b.dataset.buyjob, pr=jobPrice(); confirmBox(`Acheter le Cristal de job <b>${JOBS[k].name}</b> pour <span class="gold">${pr} Gils</span> ?`, ()=>{ if(S.gils<pr) return; S.gils-=pr; if (promoOK()) S.promoUsed=true; S.unlocked.push(k); S.job=k; persist(); toast(`${JOBS[k].name} débloqué !`); SCREENS.shop(); }, 'Acheter'); });
   app.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{ const k=b.dataset.up, cost=UPGRADES[k].costs[S.upgrades[k]]; confirmBox(`Acheter <b>${UPGRADES[k].name}</b> pour <span class="gold">${cost} Gils</span> ?`, ()=>{ if(S.gils<cost) return; S.gils-=cost; S.upgrades[k]++; persist(); toast('Amélioration acquise !'); SCREENS.shop(); }, 'Acheter'); });
 };
 
@@ -1382,7 +1667,6 @@ function floorIntro(){
   const tip=FLOOR_TIPS[f];
   const g=GUARDIAN_OF[f];
   app.innerHTML = `<div style="flex:1"></div><div class="win center col" style="padding:22px 12px;align-items:center">
-    ${spr('icon_cristal','crystal','width:64px')}
     <div class="muted">Palais des Morts · Niveau d’aether ${R.level}</div><h1 style="font-size:34px">Étage ${f}</h1>
     <p class="muted">${g?`${isBigBoss(f)?'Boss':'Gardien'} de l’étage : <b>${ENEMIES[g].name}</b>`:f===1?'Ton niveau d’aether repart à 1 : il monte à chaque étage.':'L’air devient plus lourd…'}</p>
     <p class="muted">${R.plan.steps.length} salles à traverser.${R.curse?' <span style="color:#ff9aff">Malédiction active.</span>':''}</p>
@@ -1423,6 +1707,37 @@ const ROOM = {
   pomandre:{ n:'Pomandre abandonnée', d:'Une pomandre traîne au sol.', icon:'icon_pomandre' },
   maudite:{ n:'Salle maudite', d:'Une malédiction contre un grand pouvoir.', icon:'icon_maudite', red:1 },
 };
+/* Symboles de salles dessinés à la main (SVG maison, même trait partout) */
+const RSYM = {
+  combat:'<path d="M5 5l9 9M19 5l-9 9M12 16l-2 2M12 16l2 2M8 14l-3 3 2 2 3-3M16 14l3 3-2 2-3-3"/><path d="M5 5h3v3M19 5h-3v3"/>',
+  elite:'<path d="M7 9C5 7 4 5 4 3c2 1 3.5 2 4.5 3.5M17 9c2-2 3-4 3-6-2 1-3.5 2-4.5 3.5"/><path d="M7 13a5 5 0 1 1 10 0v3h-2v3H9v-3H7z"/><circle cx="10" cy="13" r="1.2"/><circle cx="14" cy="13" r="1.2"/>',
+  coffre:'<path d="M4 10a8 5 0 0 1 16 0v9H4z"/><path d="M4 12h16M11 12v3h2v-3"/>',
+  repos:'<path d="M12 3c3 4 4 6 2 9 1-2-1-3-2-4 0 2-3 3-2 6-3-2-2-6 2-11z"/><path d="M5 20l14-4M5 16l14 4"/>',
+  rencontre:'<path d="M9 9a3 3 0 1 1 4 2.8c-.8.4-1 1-1 2V15"/><circle cx="12" cy="18.5" r=".6"/><circle cx="12" cy="12" r="9"/>',
+  autel:'<path d="M12 3l2.4 5 5.4.7-4 3.7 1 5.4L12 15.3 7.2 17.8l1-5.4-4-3.7 5.4-.7z"/>',
+  piege:'<path d="M3 19l3-8 3 8 3-11 3 11 3-8 3 8z"/>',
+  marchand:'<path d="M9 5h6l-1.5 3c4 1.5 5.5 5 5.5 7.5 0 3-3 4.5-7 4.5s-7-1.5-7-4.5C5 13 6.5 9.5 10.5 8z"/><path d="M12 11v6M10 12.5h3a1 1 0 0 1 0 2h-2a1 1 0 0 0 0 2h3"/>',
+  pomandre:'<path d="M10 3h4M11 3v5l-5 8a3 3 0 0 0 2.6 4.5h6.8A3 3 0 0 0 18 16l-5-8V3"/><path d="M8 15h8"/>',
+  maudite:'<path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M12 9v6"/>',
+  boss:'<path d="M4 18L3 7l5 4 4-6 4 6 5-4-1 11z"/><path d="M4 21h16"/>',
+  online:'<circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 19c0-3 2.5-5 5-5s5 2 5 5M11 19c0-3 2.5-5 5-5s5 2 5 5"/>',
+  scores:'<path d="M8 4h8v4a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 12v4M8 20h8M9.5 16h5v4h-5z"/>',
+  settings:'<path d="M4 7h10M18 7h2M4 12h3M11 12h9M4 17h12M20 17h0"/><circle cx="16" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="18" cy="17" r="2"/>',
+  door:'<path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16M3 21h18"/><circle cx="14.5" cy="12" r=".8"/>',
+  down:'<path d="M2 6h5v4h5v4h5v4h5"/><path d="M5 13l3 3"/>',
+  up:'<path d="M2 18h5v-4h5v-4h5V6h5"/><path d="M18 2l3 3-3 3"/>',
+};
+const rsym = (k, cls='') => `<svg class="rsym ${cls}" viewBox="0 0 24 24" aria-hidden="true">${RSYM[k]||RSYM.rencontre}</svg>`;
+const PATH = { combat:['Combat','Un combat, 3 récompenses au choix.','#e0524a'], elite:['Élite','Plus dur, meilleur butin.','#a874ff'],
+  coffre:['Trésor','Du butin… ou une Mimique ?','#f2c35a'], autel:['Autel','Un pari avec les dieux.','#5fc8e8'],
+  repos:['Repos','Rends des PV et des PM.','#5ccf86'], piege:['Piège','Risqué, mais du butin.','#f08a3c'],
+  marchand:['Marchand','Dépense tes Gils.','#e0a84a'], rencontre:['Événement','Quelqu’un t’attend…','#5f9cff'],
+  pomandre:['Bonus','Un bonus offert.','#4fd2c2'], maudite:['Malédiction','Grand pouvoir, lourd prix.','#e050a8'] };
+function pathHTML(t,i,n,bossKey){
+  const boss=t==='boss', P=boss?[isBigBoss(R.floor)?'Boss':'Gardien', ENEMIES[bossKey].name+' t’attend.','#ff3b30']:PATH[t];
+  return `<button class="path ${boss?'boss':''}" style="--pc:${P[2]};--d:${120+i*110}ms" data-k="room-${t}" data-room="${i}">
+    <span class="orb">${rsym(boss?'boss':t)}</span><b class="path-n">${P[0]}</b><span class="path-d">${P[1]}</span></button>`;
+}
 SCREENS.map = function(){
   C=null;
   if (!R){ SCREENS.hub(); return; }
@@ -1436,11 +1751,9 @@ SCREENS.map = function(){
   ${topbarRun(`Étage ${R.floor} / ${MAX_FLOOR} · salle ${P.i+1}/${P.steps.length}`)}
   ${playerPanelHTML()}
   <div class="scroll">
-    <div class="center"><h3>${step[0]==='boss'?'La salle du gardien':step.length>1?'Choisis ton chemin':'Une seule voie'}</h3><div class="prog">${dots.join('')}</div></div>
+    <div class="center"><h3>${step[0]==='boss'?'La salle du gardien':step.length>1?'Choisis ton chemin':'Une seule voie'}</h3><div class="prog2">${dots.join('')}</div></div>
     ${R.curse?`<div class="tip" style="border-color:#ff80ff;color:#ffc8ff">${ic('skull')} ${R.curse.name}</div>`:''}
-    ${step.map((t,i)=> t==='boss'
-      ? `<button class="btn redb door" data-k="room-boss" data-room="${i}">${spr(bossKey,'','width:52px')}<div><div>${ENEMIES[bossKey].name}</div><div class="d">${isBigBoss(R.floor)?'Boss':'Gardien'} de l’étage ${R.floor}. Observe ses attaques !</div></div></button>`
-      : `<button class="btn door ${ROOM[t].red?'redb':''}" data-k="room-${t}" data-room="${i}">${spr(ROOM[t].icon)}<div><div>${ROOM[t].n}</div><div class="d">${ROOM[t].d}</div></div></button>`).join('')}
+    <div class="paths n${step.length}"><span class="stair down" title="D’où tu viens">${rsym('down')}</span>${step.map((t,i)=>pathHTML(t,i,step.length,bossKey)).join('')}<span class="stair up" title="Étage suivant">${rsym('up')}</span></div>
   </div>
   <div class="row"><button class="btn small grow" data-k="items" id="bItems">Objets & bonus</button><button class="btn small redb" data-k="abandon" id="bAb">Abandonner</button></div>`;
   app.querySelectorAll('[data-room]').forEach(b=>b.onclick=()=>enterRoom(step[+b.dataset.room]));
@@ -1508,11 +1821,13 @@ function enterRoom(t){
   if (EVENTS[t]) return EVENTS[t]();
   advanceNode();
 }
+const EV_SYM = {icon_rencontre:'rencontre',icon_combat:'combat',icon_elite:'elite',icon_coffre:'coffre',icon_autel:'autel',icon_repos:'repos',icon_piege:'piege',icon_marchand:'marchand',icon_pomandre:'pomandre',icon_maudite:'maudite',icon_cristal:'autel'};
+function evSym(icon){ const t=EV_SYM[icon]; if (!t) return spr(icon,'idle','width:96px;margin:10px'); const c=(PATH[t]||PATH.rencontre)[2]; return `<span class="orb big" style="--pc:${c}">${rsym(t)}</span>`; }
 function eventScreen(title, icon, text, next, label='Continuer'){
   S.run=R; persist();
   app.innerHTML = `${topbarRun('Étage '+R.floor)}
    <div style="flex:1"></div>
-   <div class="win col center" style="align-items:center;padding:20px 12px"><h2>${title}</h2>${spr(icon,'idle','width:96px;margin:10px')}<p style="font-size:16px">${text}</p></div>
+   <div class="win col center" style="align-items:center;padding:20px 12px"><h2>${title}</h2>${evSym(icon)}<p style="font-size:16px">${text}</p></div>
    <div style="flex:1"></div>${playerPanelHTML()}
    <button class="btn goldb" data-k="ok" id="bOk">${label}</button>`;
   document.getElementById('bOk').onclick = next || advanceNode;
@@ -1539,7 +1854,7 @@ function showRewards(){
   app.innerHTML = `${topbarRun(w.title)}
    <div class="scroll">${w.extra||''}
     <div class="center"><h3>Choisis une récompense</h3></div>
-    ${opts.map((x,i)=>`<button class="btn reward ${RARITY[x.r].cls}" data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}">${spr(rewIcon(x))}<div><div>${x.name} <span class="rar">${RARITY[x.r].n}</span></div><div class="muted" style="font-weight:600">${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}</div></div></button>`).join('')}
+    ${opts.map((x,i)=>`<button class="btn reward ${RARITY[x.r].cls}" style="--d:${300+i*140}ms" data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"><div><div>${x.name} <span class="rar">${RARITY[x.r].n}</span></div><div class="muted" style="font-weight:600">${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}</div></div></button>`).join('')}
     ${w.fixed?'':`<button class="btn small" style="width:100%" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost} Gils${w.rr?` (relance n°${w.rr+1})`:''}</button>`}
    </div>${playerPanelHTML()}`;
   app.querySelectorAll('[data-rew]').forEach(b=>b.onclick=()=>{ const x=opts[+b.dataset.rew]; R.rew=null; takeReward(x); advanceNode(); });
@@ -1583,11 +1898,13 @@ function endRun(victory, abandoned){
   }
   R=null; S.run=null; C=null; persist();
   app.innerHTML = `<div style="flex:1"></div>
-   <div class="win col center" style="align-items:center;padding:22px 12px">
-    <h1 style="font-size:28px;${victory?'color:var(--gold)':''}">${victory?'VICTOIRE !':abandoned?'Retraite…':'K.O.'}</h1>
-    ${victory?spr('icon_cristal','crystal'):spr(job,'','width:80px;filter:grayscale(1) brightness(.6);transform:rotate(90deg);margin:10px')}
+   <div class="endart ${victory?'win':'ko'}" style="background-image:url(assets/bg/t5.webp)"></div>
+   <div class="win col center fanfare end ${victory?'':'ko'}" style="align-items:center;padding:22px 12px">
+    ${victory?`<div class="end-sp">${spr(runRef.job,'idle')}</div>`:''}
+    <div class="ff-title">${[...(victory?'Victoire':abandoned?'Retraite':'K.O.')].map((c,i)=>`<i style="animation-delay:${i*50}ms">${c}</i>`).join('')}</div><div class="ff-line"></div>
+    ${victory?'':spr(job,'','width:80px;filter:grayscale(1) brightness(.6);transform:rotate(90deg);margin:10px')}
     <p>${victory?'Le Souverain du Néant est tombé. Le Palais des Morts est purifié !':abandoned?'Tu quittes le palais par un passage secret.':'Ton aventurier a succombé dans les profondeurs…'}</p>
-    <div class="col" style="width:100%;gap:2px;margin-top:6px">
+    <div class="col stagger" style="width:100%;gap:2px;margin-top:6px">
       <div class="stat"><span>Score</span><b class="gold" style="font-size:20px">${SC.score.toLocaleString('fr-FR')}</b></div>
       <div class="stat"><span>Meilleur score</span><b>${bestScore.toLocaleString('fr-FR')}</b></div>
       <div class="stat" id="olRank" style="display:none"></div>
@@ -1695,14 +2012,15 @@ function updateCombat(){
       else if (x.kind==='summon') it=`<div class="intent charge">${ic('skull')} ${x.name}</div>`;
       else if (x.kind==='fly') it=`<div class="intent charge">${ic('wing')} ${x.name}</div>`;
     }
-    const sx=[...resTags(e)];
+    it=''; const sx=[];
     if (e.dots.length) sx.push(''+ic('poison')+''+e.dots.reduce((s,d)=>s+d.dmg,0));
     if (e.shield>0) sx.push(''+ic('shield')+''+Math.round(e.shield));
     if (e.buffT>0) sx.push(''+ic('rage')+'+'+Math.round(e.buff*100)+'%');
     if (e.rage>0) sx.push('Rage×'+e.rage);
     if (e.flyT>0) sx.push(''+ic('wing')+'En vol');
     if (e.enrageAt){ const left=e.enrageAt-e.t; if (left<=0) sx.push('<b style="color:#ff80ff">ENRAGÉ</b>'); else if (left<=6) sx.push(''+ic('clock')+''+left); }
-    return `<div class="en ${e.boss?'boss':''} ${e===tgt?'tgt':''} ${e.dead?'dead':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
+    const wind=!e.dead&&e.intent&&(e.intent.kind==='charge'||e.intent.big||e.intent.kind==='buffAll'||e.intent.kind==='summon');
+    return `<div class="en ${e.boss?'boss':''} ${e===tgt?'tgt':''} ${e.dead?'dead':''} ${wind?'winding':''} ${wind&&canInterrupt(e)?'cut':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
       ${it}${e===tgt && alive().length>1 ? spr('icon_curseur','cursor') : ''}
       ${spr(e.key,'idle')}<div class="ename">${e.name}</div>${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
   }).join('');
@@ -1710,7 +2028,7 @@ function updateCombat(){
   const al = alive();
   const big = al.find(e=>e.intent && (e.intent.big || e.intent.kind==='charge'));
   document.getElementById('aoe').innerHTML = al.some(e=>e.intent&&e.intent.big&&e.intent.kind==='atk') ? '<div class="aoe"></div>' : '';
-  document.getElementById('banner').innerHTML = big ? `<div class="banner">${big.intent.kind==='charge' ? `${ic('hour')} ${big.name} prépare « ${big.intent.then.name} »${canInterrupt(big)?' — interromps-le '+ic('bolt')+'':''} !` : big.intent.meteor ? `${ic('meteor')} « ${big.intent.name} » ! Protège-toi ou c’est la fin !` : `${ic('warn')} « ${big.intent.name} » imminent ! Défends-toi !`}</div>` : '';
+  document.getElementById('banner').innerHTML = (false && big) ? `<div class="banner">${big.intent.kind==='charge' ? `${ic('hour')} ${big.name} prépare « ${big.intent.then.name} »${canInterrupt(big)?' — interromps-le '+ic('bolt')+'':''} !` : big.intent.meteor ? `${ic('meteor')} « ${big.intent.name} » ! Protège-toi ou c’est la fin !` : `${ic('warn')} « ${big.intent.name} » imminent ! Défends-toi !`}</div>` : '';
   document.getElementById('log').innerHTML = C.msg || '&nbsp;';
   document.getElementById('ppw').innerHTML = playerPanelHTML(true);
   renderSkills();
@@ -2001,7 +2319,7 @@ function winCombat(){
   healR(R.maxhp*(R.curse&&R.curse.noHeal?0:0.12)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*0.3));
   const fr=fragDrop(kind);
   if (kind==='boss' && R.floor===MAX_FLOOR) return endRun(true);
-  const extra = `<div class="win center"><h2>Victoire !</h2><p>Gils de l’exploration : <span class="gold">${R.gilsEarned}</span>${fr?`<br><span class="frag">${ic('gem')} +${fr} Fragment${fr>1?'s':''} de cristal !</span>`:''}</p></div>`;
+  const extra = `<div class="win center fanfare${kind==='boss'?' boss':''}"><div class="ff-title">${[...'Victoire'].map((c,i)=>`<i style="animation-delay:${i*45}ms">${c}</i>`).join('')}</div><div class="ff-line"></div><p class="ff-sub">Gils de l’exploration : <span class="gold">${R.gilsEarned}</span>${fr?`<br><span class="frag">${ic('gem')} +${fr} Fragment${fr>1?'s':''} de cristal !</span>`:''}</p></div>`;
   if (kind==='boss'){ healR(R.maxhp*(isBigBoss(R.floor)?1:0.5)); R.mp=R.maxmp; return fightRewards('boss', isBigBoss(R.floor)?'Boss vaincu !':'Gardien vaincu !', extra); }
   fightRewards(kind, 'Combat terminé', extra);
 }
@@ -2292,6 +2610,7 @@ async function compAct(){
   await sleep(380);
 }
 /* --- Invocation : bannières avec héros mis en avant --- */
+Object.keys(ASSET).forEach(k=>{ if (ASSET[k].medal && COMPANIONS[k.slice(2)]) ASSET[k].src=medalSrc(COMPANIONS[k.slice(2)].name); });
 const GACHA = { x1:5, x10:45, pity:40, p5:0.03, p4:0.22, up5:0.5, up4:0.5 };
 const BANNERS = [
   {id:'etoile', name:'Lames de l’Étoile', game:'FINAL FANTASY XIV', f5:'yshtola', f4:['thancred','alphinaud'], c1:'#3a4aa8', c2:'#0c1238', glow:'#8fd0ff'},
@@ -2329,7 +2648,7 @@ const stars = n => `<span class="stars s${n}">${starsIc(n)}</span>`;
 function bannerHTML(b){
   const parts = Array.from({length:14},(_,i)=>`<i style="left:${(i*37)%100}%;animation-delay:${(i*0.37)%3}s;animation-duration:${2.6+(i%4)*0.6}s"></i>`).join('');
   return `<div class="gban" style="--c1:${b.c1};--c2:${b.c2};--gl:${b.glow}">
-    <div class="gart" style="background-image:url(assets/art/${b.f5}.webp),url(${PH['art_'+b.f5]||''})"></div><div class="gshade"></div>
+    <div class="gbg" style="background-image:url(assets/bgb/${b.f5}.webp),url(${PH['bgb_'+b.f5]||''})"></div><div class="gart" style="background-image:url(assets/art/${b.f5}.webp)"></div><div class="gshade"></div><div class="gsweep"></div>
     <div class="gpart">${parts}</div>
     <div class="gfeat">${spr('c_'+b.f5,'idle')}</div>
     <div class="gside">${b.f4.map(k=>spr('c_'+k,'idle')).join('')}</div>
@@ -2361,30 +2680,26 @@ SCREENS.gacha = function(results){
   const left = GACHA.pity-(S.pity||0), bi=Math.min(BANNERS.length-1, S.banner||0);
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Invocation de héros</b><span class="frag">${ic('gem')} ${S.frag||0}</span></div>
-  <div class="scroll">
+  <div class="scroll gscroll">
     <div class="gcar" id="gcar">
       <div class="gtrack" id="gtrack" style="transform:translateX(${-bi*100}%)">${BANNERS.map(bannerHTML).join('')}</div>
-      <button class="garr l" id="gPrev" data-k="bprev" aria-label="Bannière précédente">‹</button><button class="garr r" id="gNext" data-k="bnext" aria-label="Bannière suivante">›</button>
     </div>
     <div class="gdots">${BANNERS.map((b,i)=>`<span class="${i===bi?'on':''}" data-dot="${i}"></span>`).join('')}</div>
     <div class="row" style="justify-content:space-between;align-items:center;margin:2px 4px">
       <span class="muted" style="font-size:13px"><b class="gold">5${ic('star')} garanti dans ${left}</b> · ×10 : au moins un 4${ic('star')}</span>
       <button class="btn small" style="width:auto;min-height:34px;padding:2px 10px" data-k="rules" id="bRules">Taux et règles</button></div>
-    ${results?`<div class="win col"><h3>Résultat</h3><div class="grid5">${results.map(o=>`<div class="gcard s${o.st}${o.up?' up':''}">${spr('c_'+o.id,'idle')}<div class="gn">${COMPANIONS[o.id].name}</div>${stars(o.st)}<div class="gt">${o.res==='new'?'NOUVEAU !':o.res==='rank'?'Rang '+o.rank:'+2 '+ic('gem')+''}</div></div>`).join('')}</div></div>`:''}
+    ${results?`<div class="gres"><h3 class="xh">Résultat</h3><div class="grid5">${results.map(o=>`<div class="gcard s${o.st}${o.up?' up':''}">${spr('c_'+o.id,'idle')}<div class="gn">${COMPANIONS[o.id].name}</div>${stars(o.st)}<div class="gt">${o.res==='new'?'NOUVEAU !':o.res==='rank'?'Rang '+o.rank:'+2 '+ic('gem')+''}</div></div>`).join('')}</div></div>`:''}
     <div class="grid2">
       <button class="btn goldb" data-k="pull1" id="bPull1" ${S.frag>=GACHA.x1?'':'disabled'}>Invoquer ×1<small style="display:block;font-size:12px">${GACHA.x1} ${ic('gem')}</small></button>
       <button class="btn goldb" data-k="pull10" id="bPull10" ${S.frag>=GACHA.x10?'':'disabled'}>Invoquer ×10<small style="display:block;font-size:12px">${GACHA.x10} ${ic('gem')}</small></button>
     </div>
     <p class="muted center" style="font-size:13px">Les fragments ${ic('gem')} se gagnent en jouant : monstres, élites, Mimiques, pièges, fins d’étage, gardiens et boss. Aucun achat en argent réel.</p>
-    <button class="btn" data-k="comps" id="bComps">Mes compagnons (${Object.keys(S.comps).length}/${COMP_ORDER.length})</button>
   </div>
   <button class="btn" data-k="back" data-go="hub">Retour</button>`;
   bind(app);
   const go=i=>{ S.banner=(i+BANNERS.length)%BANNERS.length; persist();
     document.getElementById('gtrack').style.transform=`translateX(${-S.banner*100}%)`;
     document.querySelectorAll('.gdots span').forEach((d,k)=>d.classList.toggle('on',k===S.banner)); };
-  document.getElementById('gPrev').onclick=()=>go((S.banner||0)-1);
-  document.getElementById('gNext').onclick=()=>go((S.banner||0)+1);
   document.querySelectorAll('[data-dot]').forEach(d=>d.onclick=()=>go(+d.dataset.dot));
   const car=document.getElementById('gcar'); let x0=null, y0=0;
   car.addEventListener('touchstart',e=>{ x0=e.touches[0].clientX; y0=e.touches[0].clientY; },{passive:true});
@@ -2393,7 +2708,6 @@ SCREENS.gacha = function(results){
   document.getElementById('bRules').onclick=gachaRules;
   document.getElementById('bPull1').onclick=()=>{ const r=doPull(1); if(r) SCREENS.gacha(r); };
   document.getElementById('bPull10').onclick=()=>{ const r=doPull(10); if(r) SCREENS.gacha(r); };
-  document.getElementById('bComps').onclick=()=>SCREENS.comps('gacha');
 };
 
 let compBack='hub';
@@ -2402,7 +2716,7 @@ SCREENS.comps = function(back){
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Compagnons</b><span class="frag">${ic('gem')} ${S.frag||0}</span></div>
   <div class="scroll">
-    <div class="win row" style="gap:10px">${S.comp?spr('c_'+S.comp,'idle','width:56px'):''}<div class="grow"><b>${S.comp?'Compagnon choisi : '+COMPANIONS[S.comp].name:'Aucun compagnon choisi'}</b><div class="muted">Touche un compagnon pour le choisir. Il t’accompagnera dans la prochaine exploration.</div></div></div>
+    <div class="hero sm">${S.comp?`<div class="hero-sp">${spr('c_'+S.comp,'idle')}</div>`:''}<div class="grow"><b>${S.comp?'Compagnon choisi : '+COMPANIONS[S.comp].name:'Aucun compagnon choisi'}</b><div class="muted">Touche un compagnon pour le choisir. Il t’accompagnera dans la prochaine exploration.</div></div></div>
     <div class="grid3">
       ${COMP_ORDER.map(k=>{ const c=COMPANIONS[k], rk=S.comps[k]; return `<button class="btn card ${rk?'':'locked'} ${k===S.comp?'sel':''}" data-k="comp-${k}" data-comp="${k}">${spr('c_'+k,rk?'idle':'')}<span style="font-size:12px">${c.name}</span>${stars(c.star)}${rk?`<span class="muted" style="font-size:11px">Rang ${rk}</span>`:'<span class="lock">?</span>'}</button>`; }).join('')}
     </div>
@@ -3414,14 +3728,24 @@ if (typeof Online!=='undefined' && Online && Online.attachEngine){
 document.addEventListener('gesturestart', e=>e.preventDefault());
 let lastTouch=0; document.addEventListener('touchend', e=>{ const n=Date.now(); if(n-lastTouch<300 && !(e.target.closest&&e.target.closest('canvas'))) e.preventDefault(); lastTouch=n; }, {passive:false});
 /* v5.1 : navigation — fondu/glissement entre écrans, thème moderne hors expédition */
-const MODERN_SCR = /^(title|create|hub|prep|jobs|shop|gacha|comps|online|leaderboard)$/;
+const MODERN_SCR = /^(title|create|hub|prep|jobs|shop|gacha|comps|online|leaderboard|settings|map|rewards|event)$/;
+function backIcon(to){
+  const tb=app.querySelector('.topbar'); if (!tb || tb.querySelector('.tb-back')) return;
+  let b=app.querySelector(':scope > [data-k="back"], :scope > .row > [data-k="back"]');
+  if (!b && to){ b=document.createElement('button'); b.dataset.k='back'; b.onclick=()=>SCREENS[to](); }
+  if (!b) return;
+  const row=b.parentElement; b.className='tb-back'; b.setAttribute('aria-label','Retour'); b.innerHTML='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  b.style.width=''; tb.insertBefore(b, tb.firstChild);
+  if (row && row!==app && row.classList.contains('row') && !row.children.length) row.remove();
+}
 function scrEnter(k){
   const b=document.body; b.classList.toggle('modern', MODERN_SCR.test(k)); b.classList.toggle('home', k==='title'); b.dataset.scr=k;
   if (k==='title'||k==='hub') SND.music('home');
   try{ if (k==='title'||k==='map') setTimeout(PRE.forRun, k==='title'?400:0); if (k==='hub'||k==='gacha') PRE.forHub(); }catch(e){}
   if (k!=='combat'){ app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter'); }
 }
-Object.keys(SCREENS).forEach(k=>{ const f=SCREENS[k]; if (typeof f!=='function') return; SCREENS[k]=function(...a){ scrEnter(k); return f.apply(this,a); }; });
+Object.keys(SCREENS).forEach(k=>{ const f=SCREENS[k]; if (typeof f!=='function') return; SCREENS[k]=function(...a){ scrEnter(k); const r=f.apply(this,a); if (/^(prep|jobs|shop|gacha|comps)$/.test(k)) backIcon(); return r; }; });
+{ const _sr=showRewards; showRewards=function(...a){ scrEnter('rewards'); return _sr.apply(this,a); }; const _ev=eventScreen; eventScreen=function(...a){ scrEnter('event'); return _ev.apply(this,a); }; }
 { const _rc=renderCombat; renderCombat=function(...a){ scrEnter('combat'); return _rc.apply(this,a); }; }
 document.addEventListener('pointerdown', e=>{ const b=e.target.closest&&e.target.closest('button'); if(b&&!b.disabled){ b.classList.remove('tap'); void b.offsetWidth; b.classList.add('tap'); } }, {passive:true});
 /* ===== AUDIO : sons officiels FINAL FANTASY XIV (Fan Kit, sonneries officielles) ===== */

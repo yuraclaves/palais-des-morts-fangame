@@ -1,5 +1,33 @@
 # Notes de patch : Le Palais des Morts
 
+## v5.3 (23/10/2026)
+- Nouvelle direction artistique inspirée de FINAL FANTASY XIV sur tous les écrans hors combat : panneaux sombres translucides, dégradés doux, fins accents dorés et plus aucun cadre.
+- Nouvelles polices libres hébergées avec le jeu : Cinzel pour les titres et Source Sans 3 pour les textes.
+- L'avant-poste devient une liste claire à un seul niveau, avec sprites et petits symboles dessinés ; le bouton Retour devient une simple flèche en haut à gauche.
+- Nouvel écran Paramètres : volume, notes de patch et crédits complets.
+- L'écran titre s'anime : illustration officielle en lent mouvement, poussières de lumière et lueur sur le menu principal (désactivé si le téléphone demande moins d'animations).
+- Invocation : bannières sur la moitié de l'écran, sans cadre ni flèches, avec décors officiels de FFXIV, mouvement lent, reflet lumineux et personnage qui respire ; on glisse pour changer de bannière.
+- La bannière de Lightning utilise un rendu officiel détouré, placé comme les autres.
+- Les illustrations de toutes les bannières passent en haute résolution, avec des bords nets et lisses, sans pixels ni halo.
+- Nouveaux rendus officiels plus grands pour Y'shtola, Cloud et Yuna.
+- Le bouton « Mes compagnons » quitte l'écran d'invocation : les compagnons restent accessibles depuis l'avant-poste.
+- Les compagnons sans sprite officiel affichent désormais un médaillon doré à leur initiale au lieu d'une icône de mascotte.
+- Prix unique de 1 200 Gils pour tous les cristaux de job, calé sur les gains moyens d'une exploration de débutant.
+- Premier cristal à 400 Gils au lieu de 1 200 (une seule fois, pour les sauvegardes avec un seul job).
+- Les améliorations permanentes ont été recalibrées sur ces gains (de 300 à 1 400 Gils).
+- Les fiches de job indiquent la « Classe d'origine » (par exemple Gladiateur pour Paladin).
+- Création du personnage et fiches de job : chaque sort tient en une ligne claire (symbole, nom, un chiffre clé et une courte phrase) ; le détail complet reste dans le combat.
+- Combat : les pastilles d'intention et les étiquettes de résistance disparaissent au-dessus des monstres.
+- Combat : le bandeau « X prépare… » disparaît ; un monstre qui prépare une grosse attaque brille et tremble, en doré quand on peut l'interrompre.
+- Les cartes de récompense ne sont plus encadrées : elles apparaissent une par une, teintées selon leur rareté.
+- Nouvelle fanfare de victoire : titre doré animé lettre par lettre et récompenses qui apparaissent une à une.
+- Nouvel écran de fin d'exploration : illustration officielle en fond, titre animé et bilan qui s'affiche ligne par ligne.
+- Bonus et objets renommés avec des noms clairs (Bénédiction de force, Porte-bonheur, Bouclier de cristal, Potions renforcées…).
+- « Choisis ton chemin » redessiné : escalier d'où tu viens, trois cercles colorés avec un symbole dessiné, escalier vers l'étage suivant.
+- Chaque type de salle a sa couleur et son symbole : rouge combat, or trésor, vert repos, bleu événement, violet élite.
+- Les écrans d'événement reprennent le symbole et la couleur de la salle, sur un fond dégradé lisible.
+- Préparation de l'exploration : le marqueur officiel de quête principale de FFXIV brille discrètement en fond.
+
 ## v5.2 (23/10/2026)
 - Les illustrations, les décors et les sprites se chargent beaucoup plus vite : images recompressées en WebP, environ deux fois plus légères.
 - Les images du prochain écran (décor de l'étage, sprites de l'équipe et des monstres, illustrations des bannières) sont préchargées et décodées pendant les temps morts.
