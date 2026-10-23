@@ -1,5 +1,15 @@
 # Notes de patch : A Godless Realm
 
+## v5.4h : Jouer en groupe (23/10/2026)
+- Le mode en ligne accepte maintenant 2 ou 3 joueurs dans le même salon.
+- Pour les chemins et les événements, chacun vote : la majorité l'emporte, et en cas d'égalité le jeu tire au sort.
+- Tu vois le nom de tes amis sur la bande qu'ils ont choisie.
+- Les effets d'un événement (soins, dégâts, bonus, objets) s'appliquent à tout le groupe.
+- Après un combat, chaque joueur choisit sa propre récompense.
+- Les explorations en groupe sont envoyées au classement pour chaque joueur, en duo comme en trio.
+- Les petites pastilles rondes à gauche des bandes de choix ont été retirées.
+- Les personnages et les monstres sont un peu plus petits en combat, pour une scène plus aérée.
+
 ## v5.4g : Victoire, combats et choix illustrés (23/10/2026)
 - Le titre A Godless Realm a été redessiné : grandes lettres argentées, plus fines et mieux équilibrées.
 - L'écran titre a un bouton Paramètres et une image d'Amaurot bien plus nette.

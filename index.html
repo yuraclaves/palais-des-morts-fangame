@@ -949,6 +949,26 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 #field.trio .comp.partner.p3{left:29%;bottom:64%;scale:.78;z-index:4;filter:brightness(.94)}
 #field.trio .comp:not(.partner){left:9%;bottom:18%;scale:.52}
 #field .comp.partner img.spr.art{width:min(calc(var(--w) * 1.7px),23vw)}
+
+/* v5.4h : bandes sans pastille ronde ; repères de vote ; sprites de combat ~17 % plus petits (scène plus aérée) */
+.band .b-ic{display:none}
+.band{padding-left:16px}
+.band .vmks .vmark,.band>.vmark{display:inline-block;font:700 10px/1 'Source Sans 3',sans-serif;color:#10131c;background:#e9d9a6;border-radius:3px;padding:3px 6px;box-shadow:0 1px 3px rgba(0,0,0,.5);max-width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.band>.vmark{position:absolute;right:44px;top:6px;z-index:2}
+#field .en img.spr.art{width:min(calc(var(--w) * 1.25px),28vw);max-height:min(98px,13.3vh)}
+#field .enemies[data-n="3"] img.spr.art{max-height:min(92px,11.2vh)}
+#field .enemies[data-n="4"] img.spr.art,#field .enemies[data-n="5"] img.spr.art{width:min(calc(var(--w) * 1.25px),18.5vw);max-height:min(83px,10.4vh)}
+#field .en.boss img.spr.art{width:min(calc(var(--w) * 1.58px),38vw);max-height:min(190px,26vh)}
+#field .enemies[data-b="1"]:not([data-n="1"]) .en.boss img.spr.art{width:min(calc(var(--w) * 1.33px),27.5vw);max-height:min(141px,20vh)}
+#field .enemies[data-b="1"][data-n="5"] .en.boss img.spr.art{width:min(calc(var(--w) * 1.08px),20vw);max-height:min(108px,15vh)}
+#field .enemies[data-b="1"]:not([data-n="1"]) .en:not(.boss) img.spr.art{max-height:min(70px,9.2vh);width:min(calc(var(--w) * 1.16px),16vw)}
+#field .player img.spr.art:not(.tile){width:min(calc(var(--w) * 1.41px),19vw)}
+#field .comp img.spr.art{width:min(calc(var(--w) * 1.25px),16.6vw)}
+#field .comp.partner img.spr.art{width:min(calc(var(--w) * 1.41px),19vw)}
+#field .comp img.spr.tile,#field .player img.spr.tile{width:min(50px,13.3vw)}
+.ol-slots.trio{grid-template-columns:1fr 1fr 1fr;gap:6px}
+.ol-slots.trio .ol-slot b{font-size:13px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ol-slots.trio .ol-slot small{font-size:11px}
 </style>
 </head>
 <body>
@@ -1713,6 +1733,16 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.4h', date:'23/10/2026', img:'assets/band/v_rencontre.webp', title:'Jouer en groupe', notes:[
+    'Le mode en ligne accepte maintenant 2 ou 3 joueurs dans le même salon.',
+    'Pour les chemins et les événements, chacun vote : la majorité l’emporte, et en cas d’égalité le jeu tire au sort.',
+    'Tu vois le nom de tes amis sur la bande qu’ils ont choisie.',
+    'Les effets d’un événement (soins, dégâts, bonus, objets) s’appliquent à tout le groupe.',
+    'Après un combat, chaque joueur choisit sa propre récompense.',
+    'Les explorations en groupe sont envoyées au classement pour chaque joueur, en duo comme en trio.',
+    'Les petites pastilles rondes à gauche des bandes de choix ont été retirées.',
+    'Les personnages et les monstres sont un peu plus petits en combat, pour une scène plus aérée.'
+  ]},
   {v:'v5.4g', date:'23/10/2026', img:'assets/band/v_autel.webp', title:'Victoire, combats et choix illustrés', notes:[
     'Le titre A Godless Realm a été redessiné : grandes lettres argentées, plus fines et mieux équilibrées.',
     'L’écran titre a un bouton Paramètres et une image d’Amaurot bien plus nette.',
@@ -2108,7 +2138,7 @@ function startRun(){
   HOOKS.emit('runStart',{seed:R.seed.slice(), job:R.job});
   floorIntro();
 }
-function healR(n){ R.hp = Math.min(R.maxhp, Math.round(R.hp + n)); }
+function healR(n){ if (typeof DUO!=='undefined' && DUO.rec) DUO.heal=1; R.hp = Math.min(R.maxhp, Math.round(R.hp + n)); }
 function gainGils(n){ const g=Math.round(n*(1+R.mods.gil+(R.comp&&R.comp.id==='tataru'?0.25*compPot():0))); R.gilsEarned+=g; return g; }
 function spendGils(n){ if (R.gilsEarned<n) return false; R.gilsEarned-=n; return true; }
 const potionPct = () => 0.4 + pk('potion');
@@ -2204,7 +2234,7 @@ function bandArt(type, key){
 function bandArts(list){ const used=new Set(); return list.map(a=>{ let k=a; if (used.has(k) && /^r\d/.test(k)){ let n=+k.slice(1); for (let j=0;j<BAND_RW&&used.has('r'+n);j++) n=(n+1)%BAND_RW; k='r'+n; } used.add(k); return k; }); }
 const bandsNear = f => { const t=bgTier(f), o=['t'+t+'b','t'+t+'c','e'+t].concat(BAND_EV.map(k=>'v_'+k)); for(let i=0;i<BAND_RW;i++) o.push('r'+i); if (f%10>=5||f%10===0) o.push('b'+Math.min(50,Math.ceil(f/10)*10)); return o.map(k=>'assets/band/'+k+'.webp'); };
 function bandHTML({cls='',col='#8fa6d8',sym='rencontre',name='',sub='',attrs='',dis=false,tail='',d=0,art=''}){
-  return `<button class="band ${cls}${art?' has-art':''}" style="--bc:${col};--d:${d}ms" ${attrs} ${dis?'disabled':''}>${art?`<span class="b-art" aria-hidden="true" style="background-image:url(assets/band/${art}.webp)"></span>`:''}<span class="b-ic">${rsym(sym)}</span><span class="b-tx"><b>${name}</b>${sub?`<small>${sub}</small>`:''}</span><span class="vmks"></span>${tail}</button>`;
+  return `<button class="band ${cls}${art?' has-art':''}" style="--bc:${col};--d:${d}ms" ${attrs} ${dis?'disabled':''}>${art?`<span class="b-art" aria-hidden="true" style="background-image:url(assets/band/${art}.webp)"></span>`:''}<span class="b-tx"><b>${name}</b>${sub?`<small>${sub}</small>`:''}</span><span class="vmks"></span>${tail}</button>`;
 }
 function pathHTML(t,i,n,bossKey){
   const boss=t==='boss', P=boss?[isBigBoss(R.floor)?'Boss':'Gardien', ENEMIES[bossKey].name+' t’attend.','#ff3b30']:PATH[t];
@@ -2377,9 +2407,9 @@ function endRun(victory, abandoned){
   HOOKS.emit('runEnd', {victory:!!victory, floor:fl, score:SC.score, parts:SC.parts, job, seed:runRef.seed});
   let olP = null;
   if (typeof Online!=='undefined' && Online && Online.submitRun){ // victoire, K.O. ou abandon : tout compte, avec l’étage atteint
-    try{ const duo=Online.isDuo, other=duo?Online.players[1-Online.mySlot]:null;
+    try{ const duo=Online.isDuo, other=duo?(Online.players||[]).find((x,i)=>i!==Online.mySlot):null;
       olP = Online.submitRun({ job, companion: runRef.comp ? runRef.comp.id : null, floor:fl, score:SC.score, duration_s:SC.dur, victory:!!victory, seed:runRef.seed,
-        mode: duo?'duo':'solo', partner_pseudo: other?other.pseudo:null, partner_job: other?other.job:null });
+        mode: duo?'duo':'solo', partner_pseudo: other?other.pseudo:null, partner_job: other?other.job:null, party_size: duo?(Online.players||[]).length:1 });
       if (duo && Online.endDuo) Online.endDuo();
     }catch(e){ console.warn(e); }
   }
@@ -3439,7 +3469,7 @@ const Online = (function(){
   }
   async function fetchLeaderboard(f){
     await init(); f = f || {};
-    let q = st.sb.from('pdm_runs').select('id,user_id,pseudo,job,companion,floor,score,duration_s,victory,mode,partner_pseudo,partner_job,created_at').order('score', { ascending:false }).order('created_at', { ascending:true }).limit(f.limit || 50);
+    let q = st.sb.from('pdm_runs').select('id,user_id,pseudo,job,companion,floor,score,duration_s,victory,mode,partner_pseudo,partner_job,party_size,created_at').order('score', { ascending:false }).order('created_at', { ascending:true }).limit(f.limit || 50);
     if (f.mode && f.mode !== 'all') q = q.eq('mode', f.mode);
     if (f.job && f.job !== 'all') q = q.eq('job', f.job);
     if (f.mine && st.user) q = q.eq('user_id', st.user.id);
@@ -3454,6 +3484,7 @@ const Online = (function(){
       p_duration_s: Math.max(5, Math.min(86400, Math.round(r.duration_s||0))), p_victory: !!r.victory,
       p_mode: r.mode === 'duo' ? 'duo' : 'solo', p_partner_pseudo: r.mode==='duo' ? (r.partner_pseudo||null) : null,
       p_partner_job: r.mode==='duo' && r.partner_job ? String(r.partner_job).toLowerCase() : null,
+      p_party_size: r.mode==='duo' ? Math.max(2, Math.min(3, r.party_size||2)) : 1,
       p_seed: r.seed == null ? null : (Array.isArray(r.seed) ? r.seed.join('-') : String(r.seed)).slice(0,80) };
   }
   async function submitRun(r){
@@ -3543,6 +3574,10 @@ const Online = (function(){
   };
   const partner = () => room.players.find(p => p.id !== myId()) || Object.values(room.peers).find(p => p.id !== myId()) || null;
   const partnerSlot = () => room.slot === 0 ? 1 : 0;
+  const nSlots = () => Math.max(2, Math.min(3, (room.players||[]).length || 2));
+  const otherSlots = () => { const o=[]; for (let i=0;i<nSlots();i++) if (i!==room.slot) o.push(i); return o; };
+  const missingSlots = s => { const p = room.pend[s] || []; return otherSlots().filter(i => p[i] === undefined); };
+  const awaySlots = () => (room.players||[]).map((p,i)=>i).filter(i => i!==room.slot && !room.peers[(room.players[i]||{}).id]);
 
   function saveRoomSession(){ if (room.started) SS.setItem('pdm_room', JSON.stringify({ code:room.code, host:room.host, slot:room.slot, players:room.players, at:Date.now() })); }
   function clearRoomSession(){ SS.removeItem('pdm_room'); }
@@ -3574,7 +3609,7 @@ const Online = (function(){
     for (let i=0;i<16;i++){ if (Object.values(room.peers).some(p => p.id !== myId())) break; await wait(250); }
     const others = Object.values(room.peers).filter(p => p.id !== myId());
     if (!others.length){ leaveRoom(); throw new Error('Salon introuvable ou vide.'); }
-    if (!room.awaitResume && Object.keys(room.peers).length > 2){ leaveRoom(); throw new Error('Ce salon est déjà complet.'); }
+    if (!room.awaitResume && Object.keys(room.peers).length > 3){ leaveRoom(); throw new Error('Ce salon est déjà complet (3 joueurs).'); }
     room.ch.send({ type:'broadcast', event:'hello', payload:{ id: myId(), resume: !!room.awaitResume } });
     emitRoom(); return code;
   }
@@ -3597,7 +3632,7 @@ const Online = (function(){
     room.peers = peers;
     const p = partner();
     if (room.started && p){
-      const here = !!peers[p.id];
+      const gone = awaySlots(); const here = gone.length === 0;
       if (!here && !room.partnerAway){ room.partnerAway = Date.now(); startGrace(); emit('partner', { online:false, pseudo:p.pseudo }); }
       else if (here && room.partnerAway){ room.partnerAway = 0; clearInterval(room.graceT); room.graceT = null; room.bot = false; emit('partner', { online:true, pseudo:p.pseudo }); if (room.host) setTimeout(sendSync, 700); }
     }
@@ -3611,20 +3646,22 @@ const Online = (function(){
       if (!room.partnerAway || Date.now() - room.partnerAway < CFG.graceMs) return;
       clearInterval(room.graceT); room.graceT = null;
       // l'autre ne revient pas : on continue seul (ses actions deviennent automatiques)
-      if (!room.host){ room.host = true; note('L’hôte ne revient pas : tu reprends la main.'); }
+      const hostGone = !room.peers[(room.players[0]||{}).id] && !room.host;
+      const present = (room.players||[]).map((x,i)=>i).filter(i => i===room.slot || room.peers[(room.players[i]||{}).id]);
+      if (!room.host && hostGone && present[0] === room.slot){ room.host = true; note('L’hôte ne revient pas : tu reprends la main.'); }
       room.bot = true; emit('partner', { online:false, bot:true }); autoFillPartner();
     }, 1000);
   }
 
   /* lancement (hôte) */
-  function canStart(){ const ps = Object.values(room.peers); return room.host && ps.length === 2 && ps.every(p => p.ready) && !!engine; }
+  function canStart(){ const ps = Object.values(room.peers); return room.host && ps.length >= 2 && ps.length <= 3 && ps.every(p => p.ready) && !!engine; }
   function startDuo(){
     if (!room.host) return false;
     const ps = Object.values(room.peers);
-    if (ps.length !== 2) { note('Il faut deux joueurs.'); return false; }
+    if (ps.length < 2 || ps.length > 3) { note('Il faut deux ou trois joueurs.'); return false; }
     if (!engine){ note('Le mode duo n’est pas encore branché dans cette version.'); return false; }
-    const me = ps.find(p => p.id === myId()), other = ps.find(p => p.id !== myId());
-    const players = [me, other].map((p, i) => ({ slot:i, id:p.id, pseudo:p.pseudo, job:p.job, comp:p.comp, loadout:p.loadout }));
+    const me = ps.find(p => p.id === myId()), others = ps.filter(p => p.id !== myId()).sort((a,b) => String(a.id).localeCompare(String(b.id)));
+    const players = [me, ...others].map((p, i) => ({ slot:i, id:p.id, pseudo:p.pseudo, job:p.job, comp:p.comp, loadout:p.loadout }));
     const seed = [rnd32(), rnd32(), rnd32(), rnd32()];
     const msg = { seed, players, hostId: myId(), startedAt: Date.now(), cfg:{ turnTimeoutMs: CFG.turnTimeoutMs } };
     room.startAck = false;
@@ -3636,8 +3673,9 @@ const Online = (function(){
   function beginRun(msg){
     Object.assign(room, { started:true, players: msg.players, seed: msg.seed, step:0, pend:{}, mine:{}, hashes:{}, guestHashes:{}, startedAt: msg.startedAt, partnerAway:0, bot:false });
     room.slot = msg.players.findIndex(p => p.id === myId());
+    if (room.slot < 0){ room.started = false; leaveRoom(); note('La partie a commencé sans toi. Demande à l’hôte de relancer un salon.'); return; }
     saveRoomSession(); emitRoom(); showNetBar();
-    try { engine && engine.startDuoRun({ seed: msg.seed.slice(), players: msg.players, mySlot: room.slot, isHost: room.host }); }
+    try { engine && engine.startDuoRun({ seed: msg.seed.slice(), players: msg.players, mySlot: room.slot, isHost: room.host, startedAt: msg.startedAt }); }
     catch(e){ console.error('[online] startDuoRun', e); }
     clearInterval(room.resendT); room.resendT = setInterval(resendTick, CFG.resendMs);
   }
@@ -3659,7 +3697,7 @@ const Online = (function(){
       case 'hash':
         if (!room.host) return;
         if (room.hashes[m.s] !== undefined){ if (room.hashes[m.s] !== m.h) desync(m.s); }
-        else room.guestHashes[m.s] = m.h;
+        else (room.guestHashes[m.s] = room.guestHashes[m.s] || []).push(m.h);
         return;
       case 'sync': return onSync(m);
       case 'hint': emit('hint', m); return;
@@ -3686,7 +3724,7 @@ const Online = (function(){
   }
   function hint(data){ if (room.started) send('hint', { slot: room.slot, s: room.step, d: data }); } // aperçu (vote en cours, cible survolée…)
   function onAct(m){
-    if (typeof m.s !== 'number' || (m.slot !== 0 && m.slot !== 1)) return;
+    if (typeof m.s !== 'number' || !(m.slot >= 0 && m.slot < nSlots())) return;
     if (m.s < room.step){ if (m.slot !== room.slot && room.mine[m.s] !== undefined) send('act', { s:m.s, slot:room.slot, a: room.mine[m.s], v:CFG.protocol }); return; }
     const p = room.pend[m.s] = room.pend[m.s] || [];
     if (m.slot === room.slot && !m.forced) return;
@@ -3699,31 +3737,32 @@ const Online = (function(){
     room.waitT = setTimeout(() => {
       if (room.step !== s || !room.started) return;
       const p = room.pend[s] || [];
-      if (p[partnerSlot()] === undefined) forcePartner(s);
+      missingSlots(s).forEach(i => forcePartner(s, i));
     }, CFG.turnTimeoutMs);
   }
   function defaultActionFor(slot, s){ try{ return (engine && engine.defaultAction) ? engine.defaultAction(slot, s) : { type:'auto' }; }catch(e){ return { type:'auto' }; } }
-  function forcePartner(s){
-    const ps = partnerSlot(), a = defaultActionFor(ps, s);
+  function forcePartner(s, slot){
+    const ps = slot == null ? partnerSlot() : slot, a = defaultActionFor(ps, s);
     (room.pend[s] = room.pend[s] || [])[ps] = a;
     send('act', { s, slot: ps, a, forced:true, v:CFG.protocol });
     emit('partnerTimeout', { step:s, slot:ps });
     tryResolve();
   }
-  function autoFillPartner(){ const s = room.step; if (room.host && room.bot && room.mine[s] !== undefined && (room.pend[s]||[])[partnerSlot()] === undefined) forcePartner(s); }
+  function autoFillPartner(){ const s = room.step; if (room.host && room.bot && room.mine[s] !== undefined){ const p = room.pend[s]||[]; awaySlots().forEach(i => { if (p[i] === undefined) forcePartner(s, i); }); } }
   async function tryResolve(){
     while (room.started && !room.busy){
       const s = room.step, p = room.pend[s];
-      if (!p || p[0] === undefined || p[1] === undefined) break;
+      const n = nSlots(); let full = !!p; for (let i=0;i<n && full;i++) if (p[i] === undefined) full = false;
+      if (!full) break;
       room.busy = true; clearTimeout(room.waitT);
-      const actions = [p[0], p[1]];
+      const actions = p.slice(0, n);
       try { if (engine) await engine.applyActions(actions, { step:s, mySlot:room.slot, isHost:room.host }); }
       catch(e){ console.error('[online] applyActions', e); }
       delete room.pend[s];
       room.step = s + 1; room.busy = false;
       Object.keys(room.mine).forEach(k => { if (+k < s - 20) delete room.mine[k]; });
       const h = stateHash();
-      if (room.host){ room.hashes[s] = h; if (room.guestHashes[s] !== undefined && room.guestHashes[s] !== h) desync(s); delete room.guestHashes[s]; Object.keys(room.hashes).forEach(k => { if (+k < s-30) delete room.hashes[k]; }); }
+      if (room.host){ room.hashes[s] = h; if (room.guestHashes[s] !== undefined && [].concat(room.guestHashes[s]).some(x => x !== h)) desync(s); delete room.guestHashes[s]; Object.keys(room.hashes).forEach(k => { if (+k < s-30) delete room.hashes[k]; }); }
       else send('hash', { s, h, v:CFG.protocol });
       saveRoomSession(); updateNetBar(); emit('step', { step: room.step }); emitRoom();
       if (room.pendingSync){ const ps = room.pendingSync; room.pendingSync = null; onSync(ps); }
@@ -3735,7 +3774,7 @@ const Online = (function(){
   function sendSync(){
     if (!room.started || !engine) return;
     if (room.busy){ setTimeout(sendSync, 300); return; }
-    send('sync', { step: room.step, state: engine.getState(), players: room.players, hostId: room.host ? myId() : (partner()||{}).id, seed: room.seed, startedAt: room.startedAt, mine: room.mine[room.step], mySlot: room.slot, v:CFG.protocol });
+    send('sync', { step: room.step, state: engine.getState(), players: room.players, hostId: room.host ? myId() : (partner()||{}).id, seed: room.seed, startedAt: room.startedAt, mine: room.mine[room.step], mySlot: room.slot, pend: room.pend[room.step] || [], v:CFG.protocol });
   }
   function onSync(m){
     if (room.busy){ room.pendingSync = m; return; }
@@ -3756,13 +3795,14 @@ const Online = (function(){
     Object.keys(room.pend).forEach(k => { if (+k < m.step) delete room.pend[k]; });
     room.step = m.step;
     if (m.mine !== undefined && m.mySlot !== room.slot) (room.pend[m.step] = room.pend[m.step] || [])[m.mySlot] = m.mine;
+    if (Array.isArray(m.pend)) m.pend.forEach((a,i) => { if (a != null && i !== room.slot) (room.pend[m.step] = room.pend[m.step] || [])[i] = a; });
     if (room.mine[m.step] !== undefined) send('act', { s:m.step, slot:room.slot, a:room.mine[m.step], v:CFG.protocol });
     saveRoomSession(); updateNetBar(); emitRoom(); tryResolve();
   }
   function resendTick(){
     if (!room.started) return;
     const s = room.step;
-    if (room.mine[s] !== undefined && (room.pend[s]||[])[partnerSlot()] === undefined) send('act', { s, slot:room.slot, a:room.mine[s], v:CFG.protocol });
+    if (room.mine[s] !== undefined && missingSlots(s).length) send('act', { s, slot:room.slot, a:room.mine[s], v:CFG.protocol });
     updateNetBar();
   }
   function endDuo(){ clearRoomSession(); room.started = false; [room.resendT, room.waitT, room.graceT].forEach(t => t && clearInterval(t)); hideNetBar(); emitRoom(); }
@@ -3887,7 +3927,7 @@ const Online = (function(){
     const f = st.lbFilter;
     const jobs = (typeof JOB_ORDER !== 'undefined') ? JOB_ORDER : [];
     mount('leaderboard', `${topbar('Classement')}
-      <div class="ol-tabs">${[['all','Tous'],['solo','Solo'],['duo','Duo']].map(([k,n]) => `<button class="btn small ${f.mode===k?'sel':''}" data-m="${k}">${n}</button>`).join('')}${st.profile?`<button class="btn small ${f.mine?'sel':''}" id="olMine">Mes runs</button>`:''}</div>
+      <div class="ol-tabs">${[['all','Tous'],['solo','Solo'],['duo','Groupe']].map(([k,n]) => `<button class="btn small ${f.mode===k?'sel':''}" data-m="${k}">${n}</button>`).join('')}${st.profile?`<button class="btn small ${f.mine?'sel':''}" id="olMine">Mes runs</button>`:''}</div>
       <div class="ol-chips">${['all'].concat(jobs).map(k => `<button class="ol-chip ${f.job===k?'sel':''}" data-j="${k}">${k==='all'?'Tous les jobs':sprite(k,22)+'<span>'+E(jobName(k))+'</span>'}</button>`).join('')}</div>
       <div class="scroll" id="olLb"></div>`, async a => {
       a.querySelectorAll('[data-m]').forEach(b => b.onclick = () => { f.mode = b.dataset.m; SCR.leaderboard(); });
@@ -3904,7 +3944,7 @@ const Online = (function(){
             <div class="ol-rk">${i+1}</div>
             <div class="ol-sp">${sprite(r.job,34)}${r.mode==='duo'&&r.partner_job?`<span class="ol-sp2">${sprite(r.partner_job,26)}</span>`:''}</div>
             <div class="grow ol-who"><b>${E(r.pseudo)}${r.mode==='duo'?` <span class="muted">&amp;</span> ${E(r.partner_pseudo||'?')}`:''}</b>
-              <small>${E(jobName(r.job))}${r.companion?' · '+E(compName(r.companion)):''} · ${r.victory?'<span class="gold">Victoire</span>':'Étage '+r.floor}${r.mode==='duo'?' · <span class="ol-duo">Duo</span>':''}</small>
+              <small>${E(jobName(r.job))}${r.companion?' · '+E(compName(r.companion)):''} · ${r.victory?'<span class="gold">Victoire</span>':'Étage '+r.floor}${r.mode==='duo'?' · <span class="ol-duo">'+(r.party_size===3?'Trio':'Duo')+'</span>':''}</small>
               <small class="muted">${fmtDur(r.duration_s)} · ${fmtDate(r.created_at)}</small></div>
             <div class="ol-sc"><b>${fmtNum(r.score)}</b><small>Ét. ${r.floor}</small></div>
           </div>`).join('')}</div>`;
@@ -3984,16 +4024,16 @@ const Online = (function(){
     const ps = Object.values(room.peers).sort((a,b) => (b.host?1:0)-(a.host?1:0));
     const me = room.peers[myId()] || meInfo();
     const slotHTML = p => p ? `<div class="ol-slot ${p.ready?'ready':''}">${sprite(p.job,64)}<b>${E(p.pseudo)}</b><small>${E(jobName(p.job))}${p.comp?' · '+E(compName(p.comp)):''}</small><span class="ol-tag">${p.host?'Hôte':'Invité'}</span><span class="ol-rdy">${p.ready?icon('check',14)+' Prêt':'Pas prêt'}</span></div>`
-      : `<div class="ol-slot empty"><span class="ol-spin"></span><small>En attente d’un joueur…</small></div>`;
+      : `<div class="ol-slot empty"><span class="ol-spin"></span><small>Place libre (2 ou 3 joueurs)</small></div>`;
     const url = CFG.site + '?salon=' + room.code;
     mount('room', `${topbar('Salon')}
     <div class="scroll">
       <div class="win col center" style="align-items:center"><div class="muted">Code du salon</div><div class="ol-bigcode">${E(room.code)}</div>
         <div class="row"><button class="btn small" id="olShare">${icon('link')} Partager le lien</button><button class="btn small" id="olCopy">Copier le code</button></div></div>
-      <div class="ol-slots">${slotHTML(ps[0])}${slotHTML(ps[1])}</div>
+      <div class="ol-slots trio">${slotHTML(ps[0])}${slotHTML(ps[1])}${slotHTML(ps[2])}</div>
       <div class="win col"><div class="muted">Ton job et ton compagnon sont ceux choisis à l’avant-poste.</div>
         <button class="btn ${room.ready?'':'goldb'}" id="olReady">${room.ready?'Je ne suis plus prêt':'Je suis prêt'}</button>
-        ${room.host ? `<button class="btn goldb" id="olStart" ${canStart()?'':'disabled'}>Lancer l’exploration à deux</button>${!engine?'<div class="ol-ko">Le moteur duo n’est pas encore branché dans cette version du jeu.</div>':''}` : `<div class="muted center">L’hôte lance la partie quand vous êtes prêts.</div>`}
+        ${room.host ? `<button class="btn goldb" id="olStart" ${canStart()?'':'disabled'}>Lancer l’exploration (${Object.keys(room.peers).length} joueurs)</button>${!engine?'<div class="ol-ko">Le moteur duo n’est pas encore branché dans cette version du jeu.</div>':''}` : `<div class="muted center">L’hôte lance la partie quand vous êtes prêts.</div>`}
       </div>
       ${st.profile ? `<div class="win col"><h3>Inviter un ami</h3><div id="olCoopFr"></div></div>` : ''}
       <button class="btn small redb" id="olLeave">Quitter le salon</button>
@@ -4014,7 +4054,7 @@ const Online = (function(){
   function showInvite(inv){
     if (!HAS_DOM) return;
     if (room.started){ replyInvite(inv, false); return; }
-    const html = `<h3>${icon('swords',20)} Invitation</h3><p><b>${E(inv.fromPseudo)}</b> t’invite à explorer le Palais à deux.</p>
+    const html = `<h3>${icon('swords',20)} Invitation</h3><p><b>${E(inv.fromPseudo)}</b> t’invite à explorer le Palais en groupe.</p>
       <div class="grid2"><button class="btn small" id="olInvNo">Refuser</button><button class="btn small goldb" id="olInvYes">Rejoindre</button></div>`;
     if (typeof showModal === 'function'){
       showModal(html);
@@ -4030,13 +4070,15 @@ const Online = (function(){
   function hideNetBar(){ if (netBar){ netBar.remove(); netBar = null; } }
   function updateNetBar(){
     if (!netBar || !room.started) return;
-    const p = partner() || {}; const s = room.step, pend = room.pend[s] || [];
-    const iDid = room.mine[s] !== undefined, heDid = pend[partnerSlot()] !== undefined;
+    const p = Object.assign({}, partner() || {}); const s = room.step, pend = room.pend[s] || [];
+    const iDid = room.mine[s] !== undefined, miss = otherSlots().filter(i => pend[i] === undefined), heDid = miss.length === 0;
+    const names = (room.players||[]).filter((x,i) => i !== room.slot).map(x => x.pseudo);
+    if (miss.length) p.pseudo = miss.map(i => (room.players[i]||{}).pseudo).join(' et ');
     let txt, cls = '';
     if (room.partnerAway){ const left = Math.max(0, Math.ceil((CFG.graceMs - (Date.now()-room.partnerAway))/1000)); txt = room.bot ? `${E(p.pseudo||'Partenaire')} est absent : actions automatiques` : `${E(p.pseudo||'Partenaire')} s’est déconnecté… ${left} s`; cls = 'warn'; }
     else if (iDid && !heDid){ const left = room.host ? Math.max(0, Math.ceil((CFG.turnTimeoutMs - (Date.now()-room.waitSince))/1000)) : null; txt = `En attente de ${E(p.pseudo||'ton partenaire')}…${left!=null?` ${left} s`:''}`; cls = 'wait'; }
     else if (heDid && !iDid){ txt = `${E(p.pseudo||'Partenaire')} a choisi. À toi !`; cls = 'go'; }
-    else txt = `Duo avec ${E(p.pseudo||'?')}`;
+    else txt = `${names.length > 1 ? 'Trio' : 'Duo'} avec ${E(names.join(' et ')||'?')}`;
     netBar.className = cls;
     netBar.innerHTML = `${dot(!room.partnerAway)}<span class="grow">${txt}</span><span class="ol-code-s">${E(room.code||'')}</span>`;
   }
@@ -4081,6 +4123,9 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Online;
 const DUO = { on:false, my:0, applying:false };
 const HERO_F = ['pname','job','loadout','up','def','crit','mods','potions','ethers','hp','maxhp','mp','maxmp','atk','mag','perk','taken','level'];
 const isDuo = () => !!(DUO.on && R && R.party);
+const NP = () => (R && R.party ? R.party.length : 1);
+const others = () => R.party.map((h,i)=>i).filter(i=>i!==DUO.my);
+const pidOf = i => { const o=others().indexOf(i); return o<=0 ? 'partner' : 'partner'+(o+1); };
 function heroOut(){ if(!R||!R.party) return; const h=R.party[R.cur||0]; HERO_F.forEach(k=>h[k]=R[k]); if(C){ h.st=C.st; h.cds=C.cds; } }
 function heroIn(i){ if(!R||!R.party) return; if((R.cur||0)!==i) heroOut(); const h=R.party[i]; HERO_F.forEach(k=>R[k]=h[k]); if(C && h.st){ C.st=h.st; C.cds=h.cds; } R.cur=i; }
 function withHero(i, fn){ if(!isDuo()) return fn(); const p=R.cur||0; heroIn(i); try{ return fn(); } finally { heroIn(p); } }
@@ -4091,13 +4136,14 @@ function makeHero(p, up){
     mods:{dmg:0.04*up.dmg, def:0, crit:0, vamp:0, gil:0.15*up.gil, cdr:0, hpMul:1, mpr:0}, potions:2+up.potion, ethers:(j.mp>=100?1:0),
     perk:{}, taken:[], hp:0, maxhp:0, mp:0, maxmp:0, atk:0, mag:0, st:null, cds:{} };
 }
-function startDuoRun({seed, players, mySlot}){
+function startDuoRun({seed, players, mySlot, startedAt}){
   const up={hp:0,dmg:0,potion:0,gil:0}; // duo : départ équitable, sans améliorations
   seedRNG(seed.slice()); DUO.on=true; DUO.my=mySlot||0;
-  const ps=[0,1].map(i=>players.find(p=>p.slot===i)||players[i]||{pseudo:'Joueur '+(i+1), job:'paladin'});
-  R = { v:3, duo:true, seed:seed.slice(), rs:RS, floor:1, gilsEarned:0, kills:0, bosses:0, revives:0, startedAt:Date.now(), uidn:0,
+  const N=Math.max(2,Math.min(3,players.length||2));
+  const ps=Array.from({length:N},(_,i)=>players.find(p=>p.slot===i)||players[i]||{pseudo:'Joueur '+(i+1), job:'paladin'});
+  R = { v:3, duo:true, seed:seed.slice(), rs:RS, floor:1, gilsEarned:0, kills:0, bosses:0, revives:0, startedAt:(+startedAt||Date.now()), uidn:0,
     frags:0, curse:null, rew:null, plan:null, comp:null, party:ps.map(p=>makeHero(p,up)), cur:0 };
-  for (const i of [1,0]){ R.cur=i; heroIn(i); recalcStats(); R.hp=R.maxhp; R.mp=R.maxmp; heroOut(); }
+  for (const i of R.party.map((_,j)=>j).reverse()){ R.cur=i; heroIn(i); recalcStats(); R.hp=R.maxhp; R.mp=R.maxmp; heroOut(); }
   R.cur=0; heroIn(0);
   R.plan=planFloor(1); C=null;
   HOOKS.emit('runStart',{seed:R.seed.slice(), duo:true});
@@ -4109,22 +4155,23 @@ renderCombat = function(){
   if (!isDuo()) return _renderCombat();
   const p=R.cur||0; heroIn(DUO.my); _renderCombat(); heroIn(p);
   const f=document.getElementById('field'); if(!f) return;
-  f.classList.remove('solo'); f.classList.add('withc','duo');
-  const o=R.party[1-DUO.my];
-  const d=document.createElement('div'); d.className='comp partner'; d.id='partner';
-  d.innerHTML=`<div class="cbub" id="pbub"></div>${spr(o.job,'idle')}<div class="cname">${esc(o.pname)}</div><div class="bar php"><i style="width:0"></i></div>`;
-  f.appendChild(d); idleDesync(f);
+  f.classList.remove('solo'); f.classList.add('withc','duo'); f.classList.toggle('trio', NP()>2);
+  others().forEach((i,n)=>{ const o=R.party[i];
+    const d=document.createElement('div'); d.className='comp partner'+(n?' p3':''); d.id=pidOf(i);
+    d.innerHTML=`<div class="cbub" id="pbub${n?n+1:''}"></div>${spr(o.job,'idle')}<div class="cname">${esc(o.pname)}</div><div class="bar php"><i style="width:0"></i></div>`;
+    f.appendChild(d); });
+  idleDesync(f);
 };
 updateCombat = function(){
   if (!isDuo()) return _updateCombat();
   const p=R.cur||0; heroOut(); heroIn(DUO.my); _updateCombat(); heroIn(p);
-  const o=R.party[1-DUO.my], pe=document.getElementById('partner');
-  if (pe){ const b=pe.querySelector('.php i'); if(b) b.style.width=Math.max(0,Math.round(100*o.hp/Math.max(1,o.maxhp)))+'%'; pe.classList.toggle('ko', o.hp<=0); }
+  others().forEach(i=>{ const o=R.party[i], pe=document.getElementById(pidOf(i));
+    if (pe){ const b=pe.querySelector('.php i'); if(b) b.style.width=Math.max(0,Math.round(100*o.hp/Math.max(1,o.maxhp)))+'%'; pe.classList.toggle('ko', o.hp<=0); } });
   const me=document.getElementById('player'); if (me) me.classList.toggle('ko', R.party[DUO.my].hp<=0);
   if (DUO.waiting){ const sk=document.getElementById('skills'); if(sk) sk.querySelectorAll('button').forEach(b=>b.disabled=true); }
 };
 const _plEl = plEl;
-plEl = () => (isDuo() && (R.cur||0)!==DUO.my) ? (document.getElementById('partner')||_plEl()) : _plEl();
+plEl = () => (isDuo() && (R.cur||0)!==DUO.my) ? (document.getElementById(pidOf(R.cur||0))||_plEl()) : _plEl();
 const _playerPanelHTML = playerPanelHTML;
 playerPanelHTML = function(inC){ if(!isDuo()) return _playerPanelHTML(inC); const p=R.cur||0; heroOut(); heroIn(DUO.my); const h=_playerPanelHTML(inC); heroIn(p); return h; };
 const _startCombat = startCombat;
@@ -4137,14 +4184,16 @@ startCombat = function(kind){
 /* ennemis : chaque attaque vise un héros encore debout (tirage rand() commun) */
 const _enemyAct = enemyAct;
 enemyAct = async function(e){
-  if (isDuo()){ heroOut(); const al=[0,1].filter(i=>R.party[i].hp>0); const t = al.length>1 ? (rand()<0.5?0:1) : (al[0]||0); heroIn(t); }
+  if (isDuo()){ heroOut(); const al=R.party.map((_,i)=>i).filter(i=>R.party[i].hp>0); const t = al.length>1 ? al[Math.min(al.length-1, Math.floor(rand()*al.length))] : (al[0]||0); heroIn(t); }
   return _enemyAct(e);
 };
 const _winCombat = winCombat;
 winCombat = function(){
   if (!isDuo()) return _winCombat();
   heroOut();
-  heroIn(1); if (R.hp<=0) R.hp=1; healR(R.maxhp*(R.curse&&R.curse.noHeal?0:0.12)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*0.3)); heroOut();
+  const bk=C&&C.kind==='boss';
+  for (let i=1;i<NP();i++){ heroIn(i); if (R.hp<=0) R.hp=1; healR(R.maxhp*(R.curse&&R.curse.noHeal?0:0.12)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*0.3));
+    if (bk && R.floor!==MAX_FLOOR){ healR(R.maxhp*(isBigBoss(R.floor)?1:0.5)); R.mp=R.maxmp; } heroOut(); }
   heroIn(0); if (R.hp<=0) R.hp=1;
   return _winCombat();
 };
@@ -4159,15 +4208,15 @@ function duoTick(i){ // début de tour pour le héros i (copie de startPlayerTur
 async function duoCheckEnd(){
   if (!C || C.ending) return true;
   heroOut();
-  for (const i of [0,1]) if (R.party[i].hp<=0){ heroIn(i); if (R.hp<=0 && tryRevive()) heroOut(); }
+  for (let i=0;i<NP();i++) if (R.party[i].hp<=0){ heroIn(i); if (R.hp<=0 && tryRevive()) heroOut(); }
   heroIn(0);
-  if (R.party.every(h=>h.hp<=0)){ C.ending=true; C.busy=true; C.msg='Les deux aventuriers s’effondrent…'; updateCombat(); await sleep(1100); endRun(false); return true; }
+  if (R.party.every(h=>h.hp<=0)){ C.ending=true; C.busy=true; C.msg=NP()>2?'Les trois aventuriers s’effondrent…':'Les deux aventuriers s’effondrent…'; updateCombat(); await sleep(1100); endRun(false); return true; }
   if (alive().length===0){ C.ending=true; C.busy=true; C.msg='Victoire !'; updateCombat(); await sleep(600); winCombat(); return true; }
   return false;
 }
 async function duoCombatTurn(acts){
   C.busy=true;
-  for (const i of [0,1]){
+  for (let i=0;i<NP();i++){
     heroOut(); if (R.party[i].hp<=0) continue;
     heroIn(i);
     const a=acts[i]||{};
@@ -4193,7 +4242,7 @@ async function duoCombatTurn(acts){
   heroIn(0);
   if (await duoCheckEnd()) return;
   C.turn++;
-  duoTick(1); heroOut(); duoTick(0); heroOut(); heroIn(0);
+  for (let i=NP()-1;i>=0;i--){ duoTick(i); heroOut(); } heroIn(0);
   planIntents();
   C.busy=false; DUO.waiting=false;
   updateCombat();
@@ -4213,27 +4262,81 @@ document.addEventListener('click', e=>{
   const tgt = C && C.enemies[C.target] ? C.enemies[C.target].uid : null;
   if (k==='potion'||k==='ether'){ try{ closeModal(); }catch(_){} }
   const ok = Online.submit({t:'k', k, tgt});
-  if (ok!==false){ DUO.waiting=true; b.classList.add('sel'); toast('Choix envoyé — en attente du partenaire'); if (C) updateCombat(); }
+  if (ok!==false && !/^skill-|^potion$|^ether$/.test(k) && Online.hint) try{ Online.hint({vote:k}); }catch(_){}
+  if (ok!==false){ DUO.waiting=true; b.classList.add('sel'); toast(NP()>2?'Choix envoyé, en attente des autres joueurs':'Choix envoyé, en attente du partenaire'); if (C) updateCombat(); }
 }, true);
 function duoClick(k){
   const el=document.querySelector(`#app [data-k="${CSS.escape(k)}"]`) || document.querySelector(`[data-k="${CSS.escape(k)}"]`);
   if (el && !el.disabled){ el.click(); return true; }
   return false;
 }
+/* en groupe : tous les héros montent de niveau ensemble à chaque étage */
+{ const _nf=nextFloor; nextFloor=function(){ if (isDuo() && R.floor<MAX_FLOOR){ heroOut(); const c=R.cur||0; R.party.forEach((h,i)=>{ if (i===c) return; heroIn(i); R.level=R.floor+1; recalcStats(); heroOut(); }); heroIn(c); } return _nf.apply(this, arguments); }; }
+/* vote : la majorité l'emporte ; en cas d'égalité, tirage commun (même graine des deux côtés) */
+function duoVote(K){
+  const n={}; K.forEach(k=>{ if (k) n[k]=(n[k]||0)+1; });
+  const ks=Object.keys(n); if (!ks.length) return '';
+  const mx=Math.max(...ks.map(k=>n[k])), top=ks.filter(k=>n[k]===mx).sort();
+  return top.length>1 ? top[Math.min(top.length-1, Math.floor(rand()*top.length))] : top[0];
+}
+/* effets partagés : ce que l'événement fait au héros 0 est reproduit sur les autres membres du groupe */
+const SHARE_N = ['potions','ethers','def','crit'];
+function duoSnap(){
+  if (!isDuo()) return null; heroOut(); heroIn(0);
+  DUO.heal=0; DUO.rec=true;
+  return { hp:R.hp, maxhp:R.maxhp, mp:R.mp, maxmp:R.maxmp, mods:Object.assign({},R.mods), perk:Object.assign({},R.perk||{}), nT:(R.taken||[]).length, n:SHARE_N.map(k=>R[k]||0),
+    np:R.nextPoison||0, nw:R.nextWeak||0 };
+}
+function duoShare(sn){
+  DUO.rec=false; if (!sn || !isDuo()) return;
+  heroOut(); const h0=R.party[0]; if (!h0) return;
+  const gain=Math.max(0,h0.maxhp-sn.maxhp), dHp=(h0.hp-sn.hp-gain)/Math.max(1,h0.maxhp);
+  const fullHp = h0.hp>=h0.maxhp && h0.hp>sn.hp && !DUO.heal, fullMp = h0.mp>=h0.maxmp && h0.mp>sn.mp;
+  const dMp=(h0.mp-sn.mp)/Math.max(1,h0.maxmp), newT=(h0.taken||[]).slice(sn.nT);
+  const dMods={}; Object.keys(h0.mods||{}).forEach(k=>{ const d=(+h0.mods[k]||0)-(+sn.mods[k]||0); if (d) dMods[k]=d; });
+  const dPerk={}; Object.keys(h0.perk||{}).forEach(k=>{ const a=h0.perk[k], b=sn.perk[k]; if (typeof a==='number'){ const d=a-(+b||0); if (d) dPerk[k]=d; } else if (a!==b) dPerk[k]={v:a}; });
+  const dN=SHARE_N.map((k,i)=>(h0[k]||0)-sn.n[i]);
+  const any = Math.abs(dHp)>1e-6 || fullHp || fullMp || Math.abs(dMp)>1e-6 || newT.length || Object.keys(dMods).length || Object.keys(dPerk).length || dN.some(Boolean);
+  if (any) for (let i=1;i<NP();i++){
+    heroIn(i);
+    Object.keys(dMods).forEach(k=>R.mods[k]=(+R.mods[k]||0)+dMods[k]);
+    R.perk=R.perk||{}; Object.keys(dPerk).forEach(k=>{ const d=dPerk[k]; R.perk[k] = (typeof d==='object') ? d.v : (+R.perk[k]||0)+d; });
+    SHARE_N.forEach((k,j)=>{ if (dN[j]) R[k]=(R[k]||0)+dN[j]; });
+    R.potions=clamp(R.potions,0,9); R.ethers=clamp(R.ethers,0,9);
+    R.taken=(R.taken||[]).concat(newT);
+    recalcStats();
+    if (fullHp) R.hp=R.maxhp; else if (R.hp>0) R.hp=clamp(Math.round(R.hp+dHp*R.maxhp), 1, R.maxhp);
+    if (fullMp) R.mp=R.maxmp; else R.mp=clamp(Math.round(R.mp+dMp*R.maxmp), 0, R.maxmp);
+    heroOut();
+  }
+  if (h0.nextPoison) R.party.forEach(h=>h.nextPoison=1);
+  heroIn(0);
+}
+/* repères de vote : on voit ce que les autres ont choisi */
+function duoMark(slot, k){
+  if (!isDuo() || slot===DUO.my || !k) return;
+  const h=R.party[slot]; if (!h) return;
+  document.querySelectorAll(`#app .vmark[data-s="${slot}"]`).forEach(x=>x.remove());
+  const el=document.querySelector(`#app [data-k="${CSS.escape(k)}"]`); if (!el || /^skill-/.test(k)) return;
+  const m=document.createElement('span'); m.className='vmark'; m.dataset.s=slot; m.textContent=h.pname||('Joueur '+(slot+1));
+  (el.querySelector('.vmks')||el).appendChild(m);
+}
+if (typeof Online!=='undefined' && Online && Online.on) Online.on('hint', m=>{ try{ if (m && m.d && m.d.vote) duoMark(m.slot, m.d.vote); }catch(e){} });
 async function duoApply(actions){
   DUO.applying=true;
   try{
-    const a0=actions[0]||{}, a1=actions[1]||{}, k0=String(a0.k||''), k1=String(a1.k||'');
+    const A=Array.from({length:NP()},(_,i)=>actions[i]||{}), K=A.map(a=>String(a.k||'')), k0=K[0];
     const isCb = k => /^skill-/.test(k) || k==='potion' || k==='ether';
-    if (C && !C.ending && (isCb(k0) || isCb(k1))){ await duoCombatTurn([isCb(k0)?a0:{k:''}, isCb(k1)?a1:{k:''}]); }
+    if (C && !C.ending && K.some(isCb)){ await duoCombatTurn(A.map((a,i)=>isCb(K[i])?a:{k:''})); }
     else if (/^rew-/.test(k0) && R && R.rew){
-      // récompense individuelle : le joueur 1 reçoit la sienne, puis le choix du joueur 0 fait avancer
-      const w=R.rew, i1=/^rew-\d+$/.test(k1)? +k1.slice(4) : 0, x1=REW[w.opts[i1]];
-      if (x1 && R.party[1]){ heroIn(1); takeReward(x1); recalcStats(); heroOut(); heroIn(0); }
+      // récompense individuelle : chaque invité reçoit la sienne, puis le choix du joueur 0 fait avancer
+      const w=R.rew;
+      for (let i=1;i<NP();i++){ const ii=/^rew-\d+$/.test(K[i])? +K[i].slice(4) : 0, x=REW[w.opts[ii]];
+        if (x && R.party[i]){ heroIn(i); takeReward(x); recalcStats(); heroOut(); heroIn(0); } }
       duoClick(k0);
     }
-    else { // choix commun : l'hôte tranche en cas de désaccord
-      const k = k0 || k1; if (k) duoClick(k);
+    else { // choix commun : vote à la majorité, égalité tranchée au hasard (tirage commun)
+      const k = duoVote(K); if (k){ const sn=duoSnap(); duoClick(k); duoShare(sn); }
     }
   } finally { if (R && R.party){ heroOut(); heroIn(0); } DUO.applying=false; DUO.waiting=false; if (C) updateCombat(); }
 }
