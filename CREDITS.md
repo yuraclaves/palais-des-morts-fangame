@@ -111,7 +111,7 @@ Aucun sprite libre, aucun dessin fait main et aucune image générée par IA ne 
 
 ## v5.3 : direction artistique
 - **Polices** (`assets/fonts/`) : Cinzel (Natanael Gama) et Source Sans 3 (Adobe), licence SIL Open Font License 1.1, fichiers Google Fonts auto-hébergés. Les polices propriétaires de FFXIV ne sont pas incluses.
-- **Glyphes dorés** (`assets/ui/*.webp`, avant-poste et paramètres) : dérivés des icônes MainCommand du FINAL FANTASY XIV Fan Kit officiel (https://na.finalfantasyxiv.com/lodestone/special/fankit/icon/), recadrés et recolorés.
+- **Glyphes dorés** (`assets/ui/*.webp`, avant-poste et paramètres) : dérivés des icônes MainCommand du FINAL FANTASY XIV Fan Kit officiel (https://na.finalfantasyxiv.com/lodestone/special/fankit/icon/), recadrés et recolorés. Aussi utilisés comme icônes des récompenses de combat (depuis v5.5).
 - **Marqueur de quête principale** (`assets/ui/msq.webp`) : icône officielle de l'interface de FINAL FANTASY XIV (icône 071001, version HD), via l'API publique documentée XIVAPI (https://xivapi.com/i/071000/071001_hr1.png). Elle n'existe qu'en 64 px et est agrandie pour un usage en fond très discret.
 - **Décors des bannières** (`assets/bgb/`) : illustrations officielles de FINAL FANTASY XIV (Gridania, Gold Saucer, Limsa Lominsa, Ishgard, Cristarium), via le FINAL FANTASY Wiki (Fandom), recadrées et compressées.
 - **Lightning** (`assets/art/lightning.webp`) : rendu officiel « Lightning XIII Action Render » de FINAL FANTASY XIII, via le FINAL FANTASY Wiki.

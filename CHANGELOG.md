@@ -1,5 +1,13 @@
 # Notes de patch : A Godless Realm
 
+## v5.5 : Combats plus rapides (23/10/2026)
+- Les combats normaux durent 2 à 3 tours, les gardiens et les boss 7 à 10.
+- Les monstres frappent plus fort, mais un seul coup ne peut plus te mettre K.O.
+- Tu passes au niveau 2 dès ton premier combat gagné.
+- Plus de Gils sur les premiers étages.
+- Après un combat, la victoire et le choix de récompense s'affichent directement sur l'écran de combat.
+- Chaque récompense a maintenant son icône.
+
 ## v5.4j : Musique plus douce (23/10/2026)
 - Les changements de musique se font en fondu, sans coupure brusque.
 - Si la même musique continue d'un écran à l'autre, elle ne recommence plus au début.
