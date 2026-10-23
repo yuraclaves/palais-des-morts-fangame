@@ -1257,6 +1257,13 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 .lbtn small{font-size:11.5px;color:#aeb5c8;font-weight:600}
 .lbtn:active{background:rgba(232,207,150,.18);transform:scale(.98)}
 .lbtn[disabled]{opacity:.45;cursor:default}
+
+/* v5.5g2 : textes du marchand uniformes */
+.shop .sv{color:#f3d58d;font-weight:700}
+.scard .snow{font-size:13px;color:#dfe4ee}
+.scard .snow.none{color:#9aa1ae}
+.scard .snext{font-size:12px;color:#aeb5c8}
+.scard .snext.max{color:#8fd88f}
 </style>
 </head>
 <body>
@@ -1679,22 +1686,24 @@ const jobPrice = () => promoOK() ? JOB_PROMO : JOB_PRICE;
    cat = rubrique de la boutique ; per = gain par rang ; costs = prix de chaque rang (Gils). */
 const UP_CATS = [['force','Puissance'],['garde','Endurance'],['res','Ressources'],['grace','Bénédictions']];
 const UPGRADES = {
-  atk:{ cat:'force', name:'Force d’Halone', icon:'atk', per:2, costs:[450,900,1500], fx:v=>`+${v} % d’Attaque (dégâts physiques)` },
-  mag:{ cat:'force', name:'Savoir de Sharlayan', icon:'mag', per:2, costs:[450,900,1500], fx:v=>`+${v} % de Magie (dégâts des sorts)` },
-  dmg:{ cat:'force', name:'Armes affûtées', icon:'dmg', per:3, costs:[500,900,1400], fx:v=>`+${v} % de tous les dégâts infligés` },
-  crit:{ cat:'force', name:'Matéria de critique', icon:'crit', per:2, costs:[500,1000,1600], fx:v=>`+${v} % de chances de coup critique` },
-  hp:{ cat:'garde', name:'Vitalité de l’Étoile', icon:'hp', per:4, costs:[400,800,1200,1800], fx:v=>`+${v} % de PV max` },
-  mp:{ cat:'garde', name:'Puits d’éther', icon:'mp', per:8, costs:[300,600,1000], fx:v=>`+${v} % de PM max` },
-  def:{ cat:'garde', name:'Rempart d’Ishgard', icon:'def', per:2, costs:[450,900,1400], fx:v=>`−${v} % de dégâts subis` },
-  shield:{ cat:'garde', name:'Voile du cristal', icon:'shield', per:2, costs:[400,800,1300], fx:v=>`Chaque combat commence avec un bouclier de ${v} % des PV max` },
-  heal:{ cat:'garde', name:'Grâce de Menphina', icon:'heal', per:2, costs:[350,700,1100], fx:v=>`+${v} % de PV max rendus après chaque combat` },
-  potion:{ cat:'res', name:'Sacoche de potions', icon:'potion', per:1, costs:[300,700], fx:v=>`+${v} potion${v>1?'s':''} au départ de chaque exploration` },
-  ether:{ cat:'res', name:'Fiole d’éther', icon:'ether', per:1, costs:[400,900], fx:v=>`+${v} éther${v>1?'s':''} au départ de chaque exploration` },
-  gil:{ cat:'res', name:'Bourse de Nald’thal', icon:'gil', per:15, costs:[500,1000], fx:v=>`+${v} % de Gils gagnés en exploration` },
-  reroll:{ cat:'res', name:'Dés de Tataru', icon:'reroll', per:1, costs:[600,1200], fx:v=>`${v} relance${v>1?'s':''} de récompense gratuite${v>1?'s':''} par exploration` },
-  hyd:{ cat:'grace', name:'Bénédiction d’Hydaelyn', icon:'hyd', per:1, costs:[2000], fx:()=>`Une fois par exploration, un coup mortel te laisse à 1 PV` },
+  atk:{ cat:'force', name:'Force', icon:'atk', per:2, costs:[450,900,1500], st:'Attaque', fmt:v=>'+'+v+' %' },
+  mag:{ cat:'force', name:'Intelligence', icon:'mag', per:2, costs:[450,900,1500], st:'Magie', fmt:v=>'+'+v+' %' },
+  dmg:{ cat:'force', name:'Affûtage', icon:'dmg', per:3, costs:[500,900,1400], st:'Dégâts infligés', fmt:v=>'+'+v+' %' },
+  crit:{ cat:'force', name:'Précision', icon:'crit', per:2, costs:[500,1000,1600], st:'Coups critiques', fmt:v=>'+'+v+' %' },
+  hp:{ cat:'garde', name:'Vitalité', icon:'hp', per:4, costs:[400,800,1200,1800], st:'PV max', fmt:v=>'+'+v+' %' },
+  mp:{ cat:'garde', name:'Esprit', icon:'mp', per:8, costs:[300,600,1000], st:'PM max', fmt:v=>'+'+v+' %' },
+  def:{ cat:'garde', name:'Rempart', icon:'def', per:2, costs:[450,900,1400], st:'Dégâts subis', fmt:v=>'−'+v+' %' },
+  shield:{ cat:'garde', name:'Voile', icon:'shield', per:2, costs:[400,800,1300], st:'Bouclier au départ', fmt:v=>'+'+v+' % des PV' },
+  heal:{ cat:'garde', name:'Récupération', icon:'heal', per:2, costs:[350,700,1100], st:'Soin après combat', fmt:v=>'+'+v+' %' },
+  potion:{ cat:'res', name:'Sacoche', icon:'potion', per:1, costs:[300,700], st:'Potions au départ', fmt:v=>'+'+v },
+  ether:{ cat:'res', name:'Fiole', icon:'ether', per:1, costs:[400,900], st:'Éthers au départ', fmt:v=>'+'+v },
+  gil:{ cat:'res', name:'Bourse', icon:'gil', per:15, costs:[500,1000], st:'Gils gagnés', fmt:v=>'+'+v+' %' },
+  reroll:{ cat:'res', name:'Dés', icon:'reroll', per:1, costs:[600,1200], st:'Relances gratuites', fmt:v=>'+'+v },
+  hyd:{ cat:'grace', name:'Bénédiction', icon:'hyd', per:1, costs:[2000], st:'Survit une fois à un coup fatal', fmt:null },
 };
 const UP_KEYS = Object.keys(UPGRADES);
+/* v5.5g2 : textes uniformes « Stat +valeur » ; fx = texte simple, fxh = valeur mise en avant */
+UP_KEYS.forEach(k=>{ const u=UPGRADES[k]; u.fx = v => u.fmt ? `${u.st} ${u.fmt(v)}` : u.st; u.fxh = v => u.fmt ? `${u.st} <b class="sv">${u.fmt(v)}</b>` : u.st; });
 const upZero = () => Object.fromEntries(UP_KEYS.map(k=>[k,0]));
 /* nettoie un objet d'améliorations (sauvegarde ou joueur distant) : entiers bornés par le nombre de rangs */
 const cleanUp = u => Object.fromEntries(UP_KEYS.map(k=>[k, Math.max(0, Math.min(UPGRADES[k].costs.length, Math.floor(+((u||{})[k])||0)))]));
@@ -2351,6 +2360,11 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.5g2', date:'23/10/2026', img:'assets/up/gil.webp', title:'Marchand plus clair', notes:[
+    'Les noms et les effets des améliorations sont plus courts et écrits de la même façon : la stat, puis la valeur.',
+    'Le niveau suivant est affiché pareil partout, avec la valeur en doré.',
+    'Les cristaux de job indiquent simplement : Débloque le job.'
+  ]},
   {v:'v5.5g', date:'23/10/2026', img:'assets/up/hyd.webp', title:'Nouveau marchand et nouvel écran de victoire', notes:[
     'Le marchand a été refait : d’abord les cristaux de job, puis les améliorations permanentes, rangées par catégorie et par prix.',
     '14 améliorations permanentes à acheter avec tes Gils, avec plusieurs rangs chacune : Force d’Halone, Savoir de Sharlayan, Armes affûtées, Matéria de critique, Vitalité de l’Étoile, Puits d’éther, Rempart d’Ishgard, Voile du cristal, Grâce de Menphina, Sacoche de potions, Fiole d’éther, Bourse de Nald’thal, Dés de Tataru et Bénédiction d’Hydaelyn.',
@@ -2795,14 +2809,14 @@ function jobDetail(k){
 const SOUL_GLOW={paladin:'#bfeaf2',moine:'#e0b030',barde:'#b8d860',mageblanc:'#fff3d0',guerrier:'#e0303a',dragoon:'#5b8cff',magenoir:'#a070e0',erudit:'#7a74e0',samourai:'#f08a3a',magerouge:'#e03a5a'};
 SCREENS.shop = function(glow){
   const crystals = JOB_ORDER.filter(k=>!S.unlocked.includes(k)), price=jobPrice(), promo=promoOK();
-  const pips = (lv,max) => `<span class="pips" aria-label="Rang ${lv} sur ${max}">${Array.from({length:max},(_,i)=>`<i class="${i<lv?'on':''}"></i>`).join('')}</span>`;
+  const pips = (lv,max) => `<span class="pips" aria-label="Niveau ${lv} sur ${max}">${Array.from({length:max},(_,i)=>`<i class="${i<lv?'on':''}"></i>`).join('')}</span>`;
   const buyBtn = (attr, cost, ok, label) => `<button class="sbuy ${ok?'':'off'}" ${attr} ${ok?'':'disabled'}><span>${label||'Acheter'}</span><b>${cost} G</b></button>`;
   const upCard = k => { const u=UPGRADES[k], max=u.costs.length, lv=Math.min(max,S.upgrades[k]||0), done=lv>=max, cost=u.costs[lv], ok=!done && S.gils>=cost;
     return `<div class="scard${done?' max':''}${glow===k?' glow':''}" data-card="${k}">
       <img class="sico" src="assets/up/${u.icon}.webp" alt="">
       <div class="sbody"><div class="stop"><b>${u.name}</b>${pips(lv,max)}</div>
-        <div class="snow${lv?'':' none'}">${lv?u.fx(lv*u.per):'Pas encore acquise'}</div>
-        ${done?'<div class="snext max">Rang maximum atteint</div>':`<div class="snext">Rang ${lv+1} : ${u.fx((lv+1)*u.per)}</div>`}</div>
+        <div class="snow">${u.fxh(u.per)}</div>
+        <div class="snext${done?' max':''}">${done?`Niv. max → <b class="sv">${u.fmt?u.fmt(lv*u.per):'actif'}</b>`:`Niv. ${lv+1} → <b class="sv">${u.fmt?u.fmt((lv+1)*u.per):'actif'}</b>`}</div></div>
       ${done?'<span class="smax">Max</span>':buyBtn(`data-k="up-${k}" data-up="${k}"`, cost, ok)}</div>`; };
   const cats = UP_CATS.map(([c,t])=>{ const ks=UP_KEYS.filter(k=>UPGRADES[k].cat===c).sort((a,b)=>{ const ca=UPGRADES[a].costs[S.upgrades[a]]??1e9, cb=UPGRADES[b].costs[S.upgrades[b]]??1e9; return ca-cb; });
     return `<h4 class="ssub">${t}</h4>${ks.map(upCard).join('')}`; }).join('');
@@ -2812,14 +2826,14 @@ SCREENS.shop = function(glow){
   <div class="scroll shop">
     <section class="xsec">
       <h3 class="xh">Cristaux de job</h3>
-      <p class="sintro">Un cristal débloque un job pour toujours.${promo?` Ton premier cristal ne coûte que ${JOB_PROMO} Gils.`:''}</p>
+      ${promo?`<p class="sintro">Premier cristal : <b class="sv">${JOB_PROMO}${'\u00a0'}G</b></p>`:''}
       ${crystals.length? crystals.map(k=>`<div class="scard job${glow===k?' glow':''}"><img class="soul" src="assets/soul/${k}.webp" alt="Cristal de job ${JOBS[k].name}" style="--g:${SOUL_GLOW[k]}">
-        <div class="sbody"><div class="stop"><b>${JOBS[k].name}</b>${roleTag(k)}</div><div class="snext">${clsLine(JOBS[k])}</div></div>
+        <div class="sbody"><div class="stop"><b>${JOBS[k].name}</b>${roleTag(k)}</div><div class="snow">Débloque le job</div></div>
         <div class="spr-col">${promo?`<s>${JOB_PRICE} G</s>`:''}${buyBtn(`data-k="buy-${k}" data-buyjob="${k}"`, price, S.gils>=price)}</div></div>`).join('') : '<p class="sintro">Tous les jobs sont débloqués.</p>'}
     </section>
     <section class="xsec">
       <h3 class="xh">Améliorations permanentes <small class="scount">${owned} / ${total}</small></h3>
-      <p class="sintro">Actives au début de chaque exploration, en solo comme en ligne.</p>
+      <p class="sintro">Actives à chaque exploration, solo et en ligne.</p>
       ${cats}
     </section>
   </div>
@@ -2829,7 +2843,7 @@ SCREENS.shop = function(glow){
   const bought = (k,msg) => { persist(); try{ SND.sfx('levelup'); }catch(e){} toast(msg); SCREENS.shop(k); };
   app.querySelectorAll('[data-buyjob]').forEach(b=>b.onclick=()=>{ const k=b.dataset.buyjob, pr=jobPrice(); confirmBox(`<img class="cfi" src="assets/soul/${k}.webp" alt="">Acheter le Cristal de job <b>${JOBS[k].name}</b> pour <span class="gold">${pr} Gils</span> ?`, ()=>{ if(S.gils<pr) return; S.gils-=pr; if (promoOK()) S.promoUsed=true; S.unlocked.push(k); S.job=k; bought(k, `${JOBS[k].name} débloqué !`); }, 'Acheter'); });
   app.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{ const k=b.dataset.up, u=UPGRADES[k], lv=S.upgrades[k]||0, cost=u.costs[lv]; if (cost==null) return;
-    confirmBox(`<img class="cfi" src="assets/up/${u.icon}.webp" alt="">Acheter <b>${u.name}</b> rang ${lv+1} pour <span class="gold">${cost} Gils</span> ?<br><span class="muted">${u.fx((lv+1)*u.per)}</span>`, ()=>{ if(S.gils<cost || (S.upgrades[k]||0)!==lv) return; S.gils-=cost; S.upgrades[k]=lv+1; bought(k, `${u.name} : rang ${lv+1}`); }, 'Acheter'); });
+    confirmBox(`<img class="cfi" src="assets/up/${u.icon}.webp" alt="">Acheter <b>${u.name}</b> niv. ${lv+1} pour <span class="gold">${cost} Gils</span> ?<br><span class="muted">${u.fx((lv+1)*u.per)}</span>`, ()=>{ if(S.gils<cost || (S.upgrades[k]||0)!==lv) return; S.gils-=cost; S.upgrades[k]=lv+1; bought(k, `${u.name} : niveau ${lv+1}`); }, 'Acheter'); });
 };
 
 function scoresModal(){

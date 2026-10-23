@@ -1,5 +1,10 @@
 # Notes de patch : A Godless Realm
 
+## v5.5g2 : Marchand plus clair (23/10/2026)
+- Les noms et les effets des améliorations sont plus courts et écrits de la même façon : la stat, puis la valeur.
+- Le niveau suivant est affiché pareil partout, avec la valeur en doré.
+- Les cristaux de job indiquent simplement : Débloque le job.
+
 ## v5.5g : Nouveau marchand et nouvel écran de victoire (23/10/2026)
 - Le marchand a été refait : d'abord les cristaux de job, puis les améliorations permanentes, rangées par catégorie et par prix.
 - 14 améliorations permanentes à acheter avec tes Gils, avec plusieurs rangs chacune : Force d'Halone, Savoir de Sharlayan, Armes affûtées, Matéria de critique, Vitalité de l'Étoile, Puits d'éther, Rempart d'Ishgard, Voile du cristal, Grâce de Menphina, Sacoche de potions, Fiole d'éther, Bourse de Nald'thal, Dés de Tataru et Bénédiction d'Hydaelyn.
