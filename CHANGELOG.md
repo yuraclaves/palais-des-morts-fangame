@@ -1,5 +1,14 @@
 # Notes de patch : Le Palais des Morts
 
+## v5.2 (23/10/2026)
+- Les illustrations, les décors et les sprites se chargent beaucoup plus vite : images recompressées en WebP, environ deux fois plus légères.
+- Les images du prochain écran (décor de l'étage, sprites de l'équipe et des monstres, illustrations des bannières) sont préchargées et décodées pendant les temps morts.
+- Les décors et les illustrations s'affichent d'abord en aperçu flou puis deviennent nets, au lieu d'apparaître d'un coup.
+- Après la première visite, les images et les sons restent en cache sur le téléphone : les écrans suivants s'ouvrent sans attendre le réseau.
+- Ajout du son : jingles officiels de FINAL FANTASY XIV à l'accueil, au début des combats, contre les gardiens, à la victoire et à la défaite, avec un fondu enchaîné entre eux.
+- Bruitages officiels de FINAL FANTASY XIV pour les menus (clic, validation, retour), les attaques, les sorts, les soins, les dégâts subis et les invocations.
+- Un petit bouton haut-parleur sur l'accueil et en combat permet de régler le volume ou de couper le son ; le réglage est mémorisé sur l'appareil.
+
 ## v5.1 (23/10/2026)
 - Les jobs et les compagnons utilisent désormais les sprites officiels de FINAL FANTASY BRAVE EXVIUS, en vue de côté et tournés vers la droite.
 - Les monstres et le Néant utilisent aussi des sprites officiels de Brave Exvius, placés à droite et tournés vers la gauche.

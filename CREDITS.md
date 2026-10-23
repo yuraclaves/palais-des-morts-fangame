@@ -84,8 +84,17 @@ Sprites de combat officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, déve
   - Icônes de salles de la carte (`assets/icons/`) : icônes de commandes principales du kit (auto-attack, hunting_log, inventory, teleport, materia_assimilating, currency, blacklist, disengage, aether_currents, housing, target_forward) et la mascotte wind-up_moogle pour les rencontres.
   - Bannières des notes de patch (`assets/patchnotes/`) composées à partir des icônes de jobs officielles.
 
+## Sons (`assets/snd/`)
+Uniquement des sons officiels de FINAL FANTASY XIV, tirés des sonneries officielles du **FINAL FANTASY XIV Fan Kit** (Smartphone Ringtones, archive Android .mp3), https://na.finalfantasyxiv.com/lodestone/special/fankit/smartphone_ringtone/ . Ré-encodés en mono 56 kb/s pour alléger le jeu, sans autre modification. © SQUARE ENIX CO., LTD. All Rights Reserved.
+- `home` : FFXIV_Start_Game ; `battle` : FFXIV_FATE01_Start ; `boss` : FFXIV_FATE02_Start
+- `victory` : FFXIV_FATE01_Complete ; `bossvictory` : FFXIV_FATE02_Complete ; `runwin` : FFXIV_Quest_Complete ; `fail` : FFXIV_Instance_Failed ; `levelup` : FFXIV_Level_Up
+- `gacha` : FFXIV_Win_Lot ; `gacha5` : FFXIV_Feature_Unlocked
+- `click` : FFXIV_Open_Window ; `confirm` : FFXIV_Confirm ; `cancel` : FFXIV_Cancel
+- `cast` : FFXIV_Limit_Break_Unlocked ; `hit` : FFXIV_Switch_Target ; `hurt` : FFXIV_Aggro ; `heal` : FFXIV_Obtain_Item
+Aucun son libre de droits, généré ou inventé.
+
 ## Décors de combat (`assets/bg/`)
-Décors officiels de FINAL FANTASY BRAVE EXVIUS, téléchargés depuis le Final Fantasy Wiki (finalfantasy.fandom.com) via l'API MediaWiki : t0 Grandshelt Catacombs, t1 Cave of Shadows, t2 Rotten Shrine, t3 Lordless Castle (intérieur), t4 The Abyss, t5 The Crystal Tower (aussi utilisé comme fond des menus).
+Décors officiels de FINAL FANTASY BRAVE EXVIUS, téléchargés depuis le Final Fantasy Wiki (finalfantasy.fandom.com) via l'API MediaWiki : t0 Grandshelt Catacombs, t1 Cave of Shadows, t2 Rotten Shrine, t3 Lordless Castle (intérieur), t4 The Abyss, t5 The Crystal Tower (aussi utilisé comme fond des menus). Recompressés en WebP (720 px de large) ; les originaux JPEG restent fournis.
 
 ## Illustrations des bannières d'invocation (`assets/art/`)
 Rendus officiels SQUARE ENIX, téléchargés depuis le Final Fantasy Wiki via l'API MediaWiki :
