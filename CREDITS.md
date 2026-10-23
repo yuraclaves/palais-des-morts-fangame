@@ -137,3 +137,28 @@ Tous officiels, via le FINAL FANTASY Wiki (finalfantasy.fandom.com, API MediaWik
 ## Cristaux de job de la boutique (v5.4e)
 
 Icônes officielles des objets « Soul of the Paladin, Monk, Bard, White Mage, Warrior, Dragoon, Black Mage, Scholar, Samurai » de FINAL FANTASY XIV (© SQUARE ENIX), obtenues via l'API publique documentée XIVAPI (v2.xivapi.com, ui/icon/026000). Seul le fond gris d'icône a été retiré.
+
+## Décors de combat supplémentaires (v5.4f, `assets/bg/`)
+
+Décors de combat officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, Alim), via le FINAL FANTASY Wiki (finalfantasy.fandom.com, API MediaWiki), redimensionnés en 720x768 WebP :
+
+- `t0b` (variante de palier) : FFBE Ancient Ruins BG 1 BG
+- `t0c` (variante de palier) : FFBE Ancient Ruins BG 2 BG
+- `t1b` (variante de palier) : FFBE Dalnakya Cavern BG
+- `t1c` (variante de palier) : FFBE Gronoa Shrine Interior BG
+- `t2b` (variante de palier) : FFBE Earth Shrine BG
+- `t2c` (variante de palier) : FFBE Castle Hein BG
+- `t3b` (variante de palier) : FFBE Eroded Castle BG
+- `t3c` (variante de palier) : FFBE Alexandria Castle BG
+- `t4b` (variante de palier) : FFBE Gronoa Shrine Depths BG 1 BG
+- `t4c` (variante de palier) : FFBE Gigantic Underground Ruins BG
+- `e0` (salle maudite (élite)) : FFBE Gronoa Shrine Entrance BG
+- `e1` (salle maudite (élite)) : FFBE Crystallis Cave BG
+- `e2` (salle maudite (élite)) : FFBE Gagara Sand Cavern BG
+- `e3` (salle maudite (élite)) : FFBE Inner Chamber BG
+- `e4` (salle maudite (élite)) : FFBE Land of Darkness BG
+- `b10` (boss) : FFBE Heavensplit Peaks BG
+- `b20` (boss) : FFBE Inferno Hollow BG
+- `b30` (boss) : FFBE Crystal Room BG
+- `b40` (boss) : FFBE Electric Tower BG
+- `b50` (boss) : FFBE Chamber of Arms BG

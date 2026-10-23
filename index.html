@@ -1088,11 +1088,24 @@ const PRE = (()=>{ const seen=new Map(), q=[]; let busy=0;
   function sprites(keys){ return keys.map(k=>ASSET[k]&&ASSET[k].src).filter(Boolean); }
   function forRun(){ const f=(typeof R!=='undefined'&&R)?R.floor:1; const job=(typeof R!=='undefined'&&R&&R.job)||S.job;
     const comps=Object.keys(S.comps||{}).map(k=>'c_'+k);
-    add([floorBG(f), floorBG(Math.min(50,f+10))].concat(sprites([job].concat(comps))), true);
+    add(bgsNear(f).concat(bgsNear(Math.min(50,f+10))).concat(sprites([job].concat(comps))), true);
     add(sprites(Object.keys(ASSET).filter(k=>/monsters\//.test(ASSET[k].src)))); }
   function forHub(){ add((typeof BANNERS!=='undefined'?BANNERS:[]).map(b=>'assets/art/'+b.f5+'.webp'), true); add(sprites(Object.keys(ASSET))); }
   return { add, forRun, forHub };
 })();
+/* Décors de combat : 3 variantes par palier, une par palier pour les élites, une par boss (choix stable selon la graine de la partie) */
+const BG_TIER=[['t0','t0b','t0c'],['t1','t1b','t1c'],['t2','t2b','t2c'],['t3','t3b','t3c'],['t4','t4b','t4c']];
+const BG_ELITE=['e0','e1','e2','e3','e4'];
+const bgTier = f => Math.min(4, Math.floor((Math.max(1,f)-1)/10));
+function roomBG(){
+  const f=R.floor, kind=C&&C.kind, t=bgTier(f);
+  if (kind==='boss' && isBigBoss(f)) return 'assets/bg/b'+Math.min(50,f)+'.webp';
+  if (kind==='elite') return 'assets/bg/'+BG_ELITE[t]+'.webp';
+  let h=2166136261; const key=(R.seed||[]).join(',')+'|'+f+'|'+((R.plan&&R.plan.i)||0);
+  for (const c of key) h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;
+  const L=BG_TIER[t]; return 'assets/bg/'+L[h%L.length]+'.webp';
+}
+const bgsNear = f => { const t=bgTier(f), out=BG_TIER[t].concat([BG_ELITE[t]]).map(k=>'assets/bg/'+k+'.webp'); const nb=Math.ceil(f/10)*10; if(nb<=50) out.push('assets/bg/b'+nb+'.webp'); return out; };
 function floorBG(f){
   const tier = f>=50 ? 5 : Math.min(4, Math.floor((f-1)/10));
   return 'assets/bg/t'+tier+'.webp';
@@ -1638,6 +1651,12 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.4f', date:'23/10/2026', img:'assets/bg/b20.webp', title:'Des décors de combat variés', notes:[
+    'Chaque palier de 10 étages a maintenant 3 décors de combat, tirés selon la salle.',
+    'Les salles maudites ont leur propre décor, différent à chaque palier.',
+    'Chaque grand boss (étages 10, 20, 30, 40 et 50) a son décor à lui.',
+    'En groupe, tout le monde voit le même décor.'
+  ]},
   {v:'v5.4e', date:'23/10/2026', img:'assets/hub/prep.webp', title:'Menus illustrés et cristaux de job', notes:[
     'L’Avant-poste n’est plus une liste : de grandes tuiles illustrées mènent aux Jobs, au Marchand, à l’Invocation et aux Compagnons.',
     'Les raccourcis En ligne, Classement, Paramètres et Écran titre tiennent sur une seule ligne.',
@@ -1896,6 +1915,7 @@ SCREENS.settings = function(){
       <p><b>Fond de l’écran titre :</b> illustration officielle d’Amaurot (écran de chargement de FINAL FANTASY XIV: Shadowbringers).</p>
       <p><b>Polices :</b> Cinzel (Natanael Gama) et Source Sans 3 (Adobe), licence SIL Open Font License.</p>
       <p><b>Sprites des compagnons de FINAL FANTASY XIV :</b> Alphinaud, Alisaie, Estinien, Haurchefant et Cid : FINAL FANTASY Record Keeper (Square Enix, DeNA). Urianger et Lyse : PICTLOGICA FINAL FANTASY (Square Enix). Tataru, Krile et G’raha Tia : rendus officiels de FINAL FANTASY XIV. Aucun sprite de fan utilisé.</p>
+      <p><b>Décors de combat</b> : décors officiels de FINAL FANTASY BRAVE EXVIUS (Square Enix, Alim), trois par palier, un par palier pour les salles maudites et un par boss.</p>
       <p><b>Cristaux de job (Marchand)</b> : icônes officielles des objets « Soul of the … » de FINAL FANTASY XIV, via l’API publique XIVAPI.</p>
       <p class="legal">${LEGAL_TXT}</p>
     </section>
@@ -2351,7 +2371,7 @@ function idleDesync(root){ (root||document).querySelectorAll('#field img.idle').
 function renderCombat(){
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button></div>
-  <div class="field ${R.comp?'withc':'solo'}" id="field" style="background-image:url(${floorBG(R.floor)}),url(${PH[floorBG(R.floor).slice(10,12)]||''})">
+  <div class="field ${R.comp?'withc':'solo'}" id="field" style="background-image:url(${roomBG()}),url(${PH[floorBG(R.floor).slice(10,12)]||''})">
     <div class="enemies" id="enemies"></div>
     <div id="aoe"></div>
     <div class="player" id="player">${spr(R.job,'idle')}</div>

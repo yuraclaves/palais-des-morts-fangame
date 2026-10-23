@@ -1,5 +1,11 @@
 # Notes de patch : A Godless Realm
 
+## v5.4f : Des décors de combat variés (23/10/2026)
+- Chaque palier de 10 étages a maintenant 3 décors de combat, tirés selon la salle.
+- Les salles maudites ont leur propre décor, différent à chaque palier.
+- Chaque grand boss (étages 10, 20, 30, 40 et 50) a son décor à lui.
+- En groupe, tout le monde voit le même décor.
+
 ## v5.4e : Menus illustrés et cristaux de job (23/10/2026)
 - L'Avant-poste n'est plus une liste : de grandes tuiles illustrées mènent aux Jobs, au Marchand, à l'Invocation et aux Compagnons.
 - Les raccourcis En ligne, Classement, Paramètres et Écran titre tiennent sur une seule ligne.
