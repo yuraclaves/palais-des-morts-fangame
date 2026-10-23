@@ -1,5 +1,13 @@
 # Notes de patch : Le Palais des Morts
 
+## v5.4b : Nouvel écran titre et classement (23/10/2026)
+- Sur iPhone, le jeu remplit enfin tout l'écran, sans bande vide en bas.
+- Nouvel écran titre : un logo plus élégant sur une illustration officielle de FINAL FANTASY XIV.
+- Les trois boutons de l'écran titre sont plus petits, mieux espacés et bien visibles.
+- « Recommencer à zéro » quitte l'écran titre et passe dans Paramètres, avec une double confirmation.
+- Nouveau Classement dans l'avant-poste : les 3 meilleures explorations de chaque joueur, visibles par tous.
+- Dans le Classement, tes propres explorations sont entourées de doré.
+
 ## v5.4 : Boutons plus clairs (23/10/2026)
 - Les boutons ont de nouveau un léger contour et un fond doux : on voit tout de suite ce qui se touche.
 - Les boutons qui ouvrent un autre écran ont une petite flèche à droite.

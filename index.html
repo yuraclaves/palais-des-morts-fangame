@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#0a1248">
+<meta name="theme-color" content="#070a1c">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -690,6 +690,54 @@ body.modern .xbtn.prime{height:auto!important;min-height:64px;padding-top:10px!i
 body.modern .xbtn.prime b{font-size:clamp(15px,4.6vw,19px)!important;line-height:1.15;white-space:nowrap}
 body.modern .topbar b.grow,body.modern .topbar>b{font-size:clamp(13px,4.1vw,17px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 body.modern .hero .muted,body.modern .hero small{white-space:normal}
+
+/* v5.4b : plein écran iPhone (pas de bande en bas) */
+html{background:#070a1c;height:100%;height:-webkit-fill-available}
+body{background-color:#070a1c;min-height:100vh;min-height:-webkit-fill-available;min-height:100svh;min-height:100dvh}
+#app{bottom:auto;height:100vh;height:-webkit-fill-available;height:100dvh}
+body.modern::before,.home-bg,.endart,.motes,body[data-scr="map"] #app::before,body[data-scr="event"] #app::before{bottom:auto;height:100vh;height:100lvh;min-height:100%}
+body.modern::before{top:calc(-1 * env(safe-area-inset-top,0px));height:calc(100lvh + env(safe-area-inset-top,0px) + env(safe-area-inset-bottom,0px))}
+.home-bg{top:-4%;height:calc(100lvh * 1.08)}
+#modal{bottom:auto;height:100vh;height:100dvh}
+/* v5.4b : écran titre */
+body.home .home-bg{background:url(assets/bg/title_ew.webp) 50% 30%/cover no-repeat}
+body.home .home-bg::after{background:linear-gradient(180deg,rgba(6,8,24,.55) 0%,rgba(6,8,24,.08) 30%,rgba(6,8,24,.25) 55%,rgba(6,8,24,.92) 82%)}
+.tlogo{margin:7vh auto 0;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;font-weight:400;line-height:1;filter:drop-shadow(0 4px 18px rgba(0,0,0,.65))}
+.tlogo .tl-a{font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:clamp(15px,4.6vw,20px);letter-spacing:.5em;margin-right:-.5em;text-transform:uppercase;color:#f3e6c4}
+.tlogo .tl-b{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(38px,12.4vw,56px);letter-spacing:.06em;text-transform:uppercase;
+ background:linear-gradient(180deg,#fffaf0 0%,#f6e2ae 45%,#c9993e 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tlogo .tl-rule{display:flex;align-items:center;gap:8px;margin:8px 0 6px;width:min(74vw,300px)}
+.tlogo .tl-rule i{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(243,222,170,.85))}
+.tlogo .tl-rule i:last-child{transform:scaleX(-1)}
+.tlogo .tl-rule b{width:9px;height:9px;transform:rotate(45deg);background:linear-gradient(135deg,#bfe6ff,#5a9fe0);box-shadow:0 0 10px rgba(140,200,255,.9)}
+body.home .tmenu{gap:10px;margin:0 auto 10px;width:min(300px,82vw)}
+body.home .tm{width:100%;font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:15px;letter-spacing:.1em;padding:11px 16px;border-radius:10px;
+ color:#f3e6c4;background:linear-gradient(180deg,rgba(20,24,44,.72),rgba(10,12,26,.72));border:1px solid rgba(230,204,143,.42);text-shadow:none;
+ -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .12s,border-color .2s,background .2s;animation:none}
+body.home .tm::before,body.home .tm::after{display:none}
+body.home .tm:hover{border-color:rgba(240,214,150,.85);letter-spacing:.1em;color:#fff3d6}
+body.home .tm:active{transform:scale(.975);letter-spacing:.1em}
+body.home .tm.main{font-size:17px;color:#2a1c06;background:linear-gradient(180deg,#f7e2a6,#d9ad55);border-color:#f3d48a;box-shadow:0 4px 18px rgba(0,0,0,.45)}
+body.home .legal{position:relative;z-index:1;color:#c9cde0;text-shadow:0 1px 2px #000}
+.btn.danger{border-color:rgba(230,110,100,.55)!important;color:#ffb4a8!important}
+
+/* v5.4b : classement public */
+.rk-intro{margin:2px 4px 10px;color:#c9cbe0;font-size:13.5px;text-align:center}
+.rk-list{display:flex;flex-direction:column;gap:10px;padding-bottom:14px}
+.rk-g{background:rgba(10,12,22,.52);border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden}
+.rk-g.me{border-color:rgba(240,214,150,.7);background:linear-gradient(180deg,rgba(242,214,150,.14),rgba(10,12,22,.55));box-shadow:0 0 0 1px rgba(240,214,150,.18) inset}
+.rk-r{display:grid;grid-template-columns:24px 44px 1fr auto;align-items:center;gap:8px;padding:6px 10px 6px 8px;min-height:50px}
+.rk-r+.rk-r{border-top:1px solid rgba(255,255,255,.06)}
+.rk-r:not(.first){opacity:.86}
+.rk-n{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:17px;color:#e8cf8f;text-align:center}
+.rk-g:nth-child(1) .rk-n{color:#ffd76a}.rk-g:nth-child(2) .rk-n{color:#dfe6f0}.rk-g:nth-child(3) .rk-n{color:#e0a46c}
+.rk-sp{width:44px;height:44px;display:flex;align-items:flex-end;justify-content:center;overflow:visible}
+.rk-sp .spr{max-height:44px;max-width:52px;transform:scaleX(-1)}
+.rk-t,.rk-f{display:flex;flex-direction:column;min-width:0}
+.rk-t b{font-size:15px;color:#f2ecdc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk-t small,.rk-f small{font-size:12px;color:#a9adc6;white-space:nowrap}
+.rk-f{text-align:right}.rk-f b{font-family:'Cinzel',Georgia,serif;font-size:14.5px;color:#f3dfa8;white-space:nowrap}
+.rk-you{font-style:normal;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#2a1c06;background:#e9c979;border-radius:6px;padding:1px 5px;margin-left:4px;vertical-align:2px}
 </style>
 </head>
 <body>
@@ -1441,6 +1489,14 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.4b', date:'23/10/2026', img:'assets/bg/title_ew.webp', title:'Nouvel écran titre et classement', notes:[
+    'Sur iPhone, le jeu remplit enfin tout l’écran, sans bande vide en bas.',
+    'Nouvel écran titre : un logo plus élégant sur une illustration officielle de FINAL FANTASY XIV.',
+    'Les trois boutons de l’écran titre sont plus petits, mieux espacés et bien visibles.',
+    '« Recommencer à zéro » quitte l’écran titre et passe dans Paramètres, avec une double confirmation.',
+    'Nouveau Classement dans l’avant-poste : les 3 meilleures explorations de chaque joueur, visibles par tous.',
+    'Dans le Classement, tes propres explorations sont entourées de doré.'
+  ]},
   {v:'v5.4', date:'23/10/2026', img:'assets/bgb/cloud.webp', title:'Boutons plus clairs', notes:[
     'Les boutons ont de nouveau un léger contour et un fond doux : on voit tout de suite ce qui se touche.',
     'Les boutons qui ouvrent un autre écran ont une petite flèche à droite.',
@@ -1526,26 +1582,17 @@ SCREENS.title = function(){
   document.body.classList.add('home');
   app.innerHTML = `
   <div class="home-bg" aria-hidden="true"></div><div class="motes" aria-hidden="true">${Array.from({length:18},(_,i)=>`<i style="left:${(i*53)%100}%;animation-delay:${(i*0.7)%9}s;animation-duration:${9+(i%5)*2}s"></i>`).join('')}</div>
-  <button class="pnlink" data-k="patchnotes" id="bPN">Notes de patch</button>
-  <div class="title-logo">
-    <h1>LE PALAIS<br>DES MORTS</h1>
-    <div class="sub">Fan game FINAL FANTASY XIV — non officiel, entre amis</div>
-    <div class="sub">50 étages · 9 jobs · 30 compagnons</div>
-  </div>
+  <h1 class="tlogo" aria-label="Le Palais des Morts"><span class="tl-a">Le Palais</span><span class="tl-rule" aria-hidden="true"><i></i><b></b><i></i></span><span class="tl-b">des Morts</span></h1>
   <div style="flex:1"></div>
   <nav class="tmenu">
     ${S.created ? `<button class="tm main" data-k="continue" id="bCont">${R?'Reprendre l’exploration':'Continuer'}</button>` : `<button class="tm main" data-k="new" data-go="create">Nouvelle aventure</button>`}
-    <button class="tm" data-k="online" id="bOnlineT" onclick="Online.open('title')">${(typeof Online!=='undefined'&&Online.state&&Online.state().user)?'Jouer en ligne':'Se connecter / Créer un compte'}</button>
+    <button class="tm" data-k="online" id="bOnlineT" onclick="Online.open('title')">Jouer en ligne</button>
     <button class="tm" data-k="patchnotes" id="bPN2">Notes de patch</button>
-    ${S.created ? `<button class="tm minor" data-k="reset" id="bReset">Recommencer à zéro</button>`:''}
   </nav>
-  <p class="muted center" style="margin-top:6px">Sauvegarde automatique sur cet appareil</p>
   <p class="legal">${LEGAL_TXT}</p>`;
   bind(app);
-  document.getElementById('bPN').onclick=patchNotes;
   document.getElementById('bPN2').onclick=patchNotes;
   const bc=document.getElementById('bCont'); if(bc) bc.onclick=()=> R ? SCREENS.map() : SCREENS.hub();
-  const br=document.getElementById('bReset'); if(br) br.onclick=()=>confirmBox('Effacer toute la sauvegarde (Gils, cristaux, améliorations) ?', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Effacer');
 };
 let createSel = 'paladin';
 SCREENS.create = function(){
@@ -1581,7 +1628,7 @@ SCREENS.hub = function(){
   if (!S.unlocked.includes(S.job)) S.job=S.unlocked[0];
   const j=JOBS[S.job];
   const vis={ jobs:spr(S.job,''), shop:rsym('marchand','hg'), gacha:spr('c_'+curBanner().f5,''), comps:S.comp?spr('c_'+S.comp,''):rsym('online','hg'),
-    online:rsym('online','hg'), scores:rsym('scores','hg'), settings:rsym('settings','hg'), title:rsym('door','hg') };
+    online:rsym('online','hg'), ranking:rsym('scores','hg'), settings:rsym('settings','hg'), title:rsym('door','hg') };
   const item=(k,icon,t,sub,extra='')=>`<button class="xbtn" data-k="${k}" ${extra}><span class="xv">${vis[k]||''}</span><span><b>${t}</b><small>${sub}</small></span></button>`;
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Avant-poste du Palais</b><span class="gold">${S.gils} Gils</span></div>
@@ -1598,7 +1645,7 @@ SCREENS.hub = function(){
       ${item('gacha','gold_saucer','Invocation',`${S.frag||0} fragments de cristal`,'data-go="gacha"')}
       ${item('comps','companions','Compagnons',S.comp?COMPANIONS[S.comp].name:'Aucun compagnon','id="bHubComps"')}
       ${item('online','party_finder','En ligne','Amis, groupe et classement','id="bOnlineH" onclick="Online.open(\'hub\')"')}
-      ${item('scores','achievements','Scores','Tes meilleures explorations','id="bScores" onclick="scoresModal()"')}
+      ${item('ranking','achievements','Classement','Les meilleurs aventuriers','data-go="ranking"')}
       ${item('settings','system_configuration','Paramètres','Son, notes de patch, crédits','data-go="settings"')}
       ${item('title','log_out','Écran titre','Retour au menu principal','data-go="title"')}
     </div>
@@ -1613,6 +1660,31 @@ SCREENS.hub = function(){
   bind(app);
   document.getElementById('bEnter').onclick = SCREENS.prep;
   document.getElementById('bHubComps').onclick = ()=>SCREENS.comps('hub');
+};
+/* Classement public : les 3 meilleures explorations de chaque joueur */
+SCREENS.ranking = function(){
+  C=null;
+  app.innerHTML = `<div class="win topbar"><b class="grow">Classement</b></div>
+  <div class="scroll"><p class="rk-intro">Les 3 meilleures explorations de chaque joueur, classées par étage atteint.</p><div class="rk-list" id="rkL"><p class="muted center">Chargement…</p></div></div>`;
+  backIcon('hub');
+  const box=document.getElementById('rkL');
+  if (typeof Online==='undefined' || !Online.fetchTop3){ box.innerHTML='<p class="muted center">Classement indisponible.</p>'; return; }
+  Online.fetchTop3().then(rows=>{
+    if (!document.body.contains(box)) return;
+    if (!rows.length){ box.innerHTML='<p class="muted center">Aucune exploration enregistrée pour l’instant. Connecte-toi à un compte et termine une exploration pour apparaître ici.</p>'; return; }
+    const me=Online.myUserId, by={};
+    rows.forEach(r=>{ (by[r.user_id]=by[r.user_id]||[]).push(r); });
+    const cmp=(a,b)=>(b.floor-a.floor)||(b.score-a.score)||((a.duration_s||0)-(b.duration_s||0));
+    const players=Object.values(by).map(L=>L.sort(cmp)).sort((a,b)=>cmp(a[0],b[0]));
+    const fmtD=s=>{ s=Math.max(0,s|0); const h=Math.floor(s/3600), m=Math.floor(s%3600/60); return h?`${h} h ${String(m).padStart(2,'0')}`:`${m} min`; };
+    box.innerHTML = players.map((L,pi)=>`<div class="rk-g${L[0].user_id===me?' me':''}">${L.map((r,ri)=>`
+      <div class="rk-r${ri===0?' first':''}">
+        <span class="rk-n">${ri===0?pi+1:''}</span>
+        <span class="rk-sp">${spr(JOBS[r.job]?r.job:'paladin','')}</span>
+        <span class="rk-t"><b>${esc(r.pseudo||'?')}${L[0].user_id===me&&ri===0?' <i class="rk-you">toi</i>':''}</b><small>${JOBS[r.job]?JOBS[r.job].name:esc(r.job)}${r.mode==='duo'?` · ${r.party_size===3?'Trio':'Duo'}`:''}</small></span>
+        <span class="rk-f"><b>${r.victory&&r.floor>=50?'Victoire':'Étage '+r.floor}</b><small>${(r.score||0).toLocaleString('fr-FR')} pts · ${fmtD(r.duration_s)}</small></span>
+      </div>`).join('')}</div>`).join('');
+  }).catch(()=>{ if (document.body.contains(box)) box.innerHTML='<p class="muted center">Classement indisponible pour le moment. Vérifie ta connexion.</p>'; });
 };
 /* Paramètres : son, notes de patch, crédits (menu plat) */
 SCREENS.settings = function(){
@@ -1629,12 +1701,18 @@ SCREENS.settings = function(){
       <h3 class="xh">Notes de patch</h3>
       <button class="btn small" id="stPN" data-k="patchnotes">Lire les notes de patch</button>
     </section>
+    <section class="xsec">
+      <h3 class="xh">Sauvegarde</h3>
+      <p class="muted">Ta progression est enregistrée automatiquement sur cet appareil.</p>
+      <button class="btn small danger" id="stReset" data-k="reset">Recommencer à zéro</button>
+    </section>
     <section class="xsec credits">
       <h3 class="xh">Crédits</h3>
       <p><b>Jeu de fan non officiel et non commercial.</b> Aucun achat en argent réel.</p>
       <p><b>Sprites des personnages et monstres :</b> FINAL FANTASY BRAVE EXVIUS (Square Enix, Alim).</p>
       <p><b>Icônes, sons, jingles et décors :</b> FINAL FANTASY XIV, Fan Kit officiel et illustrations officielles.</p>
       <p><b>Illustrations des bannières :</b> rendus officiels FINAL FANTASY VII, X, XIII, XIV et XV.</p>
+      <p><b>Fond de l’écran titre :</b> illustration officielle des crédits de FINAL FANTASY XIV: Endwalker.</p>
       <p><b>Polices :</b> Cinzel (Natanael Gama) et Source Sans 3 (Adobe), licence SIL Open Font License.</p>
       <p><b>Sprites de fans :</b> aucun pour l’instant. Les compagnons sans sprite officiel Brave Exvius sont représentés par un médaillon à leur initiale, dessiné pour le jeu.</p>
       <p class="legal">${LEGAL_TXT}</p>
@@ -1644,6 +1722,7 @@ SCREENS.settings = function(){
   r.oninput=()=>{ const sv=document.getElementById('sndVol'); if (sv){ sv.value=r.value; sv.dispatchEvent(new Event('input')); } else localStorage.setItem('pdm_vol', r.value/100); };
   document.getElementById('stMute').onclick=()=>{ const sm=document.getElementById('sndMute'); if (sm) sm.click(); else localStorage.setItem('pdm_mute', localStorage.getItem('pdm_mute')==='1'?'0':'1'); setTimeout(()=>{ document.getElementById('stMute').textContent=localStorage.getItem('pdm_mute')==='1'?'Activer le son':'Couper le son'; },30); };
   document.getElementById('stPN').onclick=patchNotes;
+  document.getElementById('stReset').onclick=()=>confirmBox('Recommencer à zéro ? Toute ta progression sur cet appareil sera effacée (Gils, cristaux, jobs, compagnons, améliorations). C’est définitif.', ()=>confirmBox('Vraiment tout effacer ?', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Tout effacer'), 'Continuer');
   backIcon('hub');
 };
 /* Préparation : choix de 4 compétences parmi 6 */
@@ -2990,6 +3069,11 @@ const Online = (function(){
   }
 
   /* ---------- classement des explorations ---------- */
+  async function fetchTop3(){
+    await init();
+    const { data, error } = await st.sb.from('pdm_top3').select('id,user_id,pseudo,job,floor,score,duration_s,victory,mode,party_size,rk').order('floor', { ascending:false }).order('score', { ascending:false }).limit(900);
+    if (error) throw error; return data || [];
+  }
   async function fetchLeaderboard(f){
     await init(); f = f || {};
     let q = st.sb.from('pdm_runs').select('id,user_id,pseudo,job,companion,floor,score,duration_s,victory,mode,partner_pseudo,partner_job,created_at').order('score', { ascending:false }).order('created_at', { ascending:true }).limit(f.limit || 50);
@@ -3614,7 +3698,7 @@ const Online = (function(){
     // comptes
     signUp, signIn, signOut, setPseudo, pseudoAvailable, pseudoEmail,
     // classement
-    submitRun, fetchLeaderboard, flushPendingRuns,
+    submitRun, fetchLeaderboard, fetchTop3, flushPendingRuns, get myUserId(){ return st.user ? st.user.id : null; },
     // amis
     searchPlayers, fetchFriends, requestFriend, respondFriend, removeFriend, inviteFriend, get friends(){ return st.friends; }, get onlineIds(){ return st.onlineIds; },
     // duo
@@ -3823,7 +3907,7 @@ if (typeof Online!=='undefined' && Online && Online.attachEngine){
 document.addEventListener('gesturestart', e=>e.preventDefault());
 let lastTouch=0; document.addEventListener('touchend', e=>{ const n=Date.now(); if(n-lastTouch<300 && !(e.target.closest&&e.target.closest('canvas'))) e.preventDefault(); lastTouch=n; }, {passive:false});
 /* v5.1 : navigation — fondu/glissement entre écrans, thème moderne hors expédition */
-const MODERN_SCR = /^(title|create|hub|prep|jobs|shop|gacha|comps|online|leaderboard|settings|notes|map|rewards|event)$/;
+const MODERN_SCR = /^(title|create|hub|prep|jobs|shop|gacha|comps|online|leaderboard|settings|notes|map|rewards|event|ranking)$/;
 function backIcon(to){
   const tb=app.querySelector('.topbar'); if (!tb || tb.querySelector('.tb-back')) return;
   let b=app.querySelector(':scope > [data-k="back"], :scope > .row > [data-k="back"]');

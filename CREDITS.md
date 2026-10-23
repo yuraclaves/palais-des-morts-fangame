@@ -119,3 +119,7 @@ Aucun sprite libre, aucun dessin fait main et aucune image générée par IA ne 
 - **Compagnons sans sprite Brave Exvius** (Alphinaud, Alisaie, Urianger, G'raha Tia, Estinien, Haurchefant, Tataru, Lyse, Krile, Cid) : aucun sprite de fan au style Brave Exvius avec une autorisation explicite de réutilisation n'a été trouvé (les portraits F2U de Tobiki sur feuniverse.us ne sont pas des sprites de combat Brave Exvius). Ils sont affichés avec un médaillon à leur initiale.
 
 © SQUARE ENIX CO., LTD. All Rights Reserved.
+
+## Écran titre (v5.4b)
+- Fond de l'écran titre (`assets/bg/title_ew.webp`) : illustration officielle des crédits de FINAL FANTASY XIV: Endwalker (Square Enix), 1360x765, via Creative Uncut (https://www.creativeuncut.com/), recompressée en WebP sans autre modification. © SQUARE ENIX CO., LTD.
+- Logo du titre : uniquement de la typographie (police Cinzel, OFL) et des traits CSS, aucune image.
