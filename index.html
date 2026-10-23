@@ -7,7 +7,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Le Palais des Morts — fan game FFXIV (non officiel)</title>
+<title>A Godless Realm — fan game FFXIV (non officiel)</title>
+<meta name="application-name" content="A Godless Realm">
+<meta name="apple-mobile-web-app-title" content="A Godless Realm">
 <style>
 :root{--w1:#4a68e0;--w2:#1b2b8f;--w3:#0a1248;--gold:#ffe27a;--tank:#5b8cff;--heal:#5fd36b;--dps:#ff6a62}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -772,6 +774,57 @@ img.spr.art.smooth{image-rendering:auto}
 #field .enemies[data-n="4"] .ename,#field .enemies[data-n="5"] .ename{font-size:10px}
 #field .enemies[data-n="4"] .bar,#field .enemies[data-n="5"] .bar{width:50px}
 #field.duo .comp:not(.partner){left:6%;bottom:3%}
+
+/* v5.4d : bandes de choix */
+.bands{display:flex;flex-direction:column;gap:10px;margin:10px -12px 10px;position:relative}
+.band{all:unset;box-sizing:border-box;position:relative;display:flex;align-items:center;gap:14px;width:100%;min-height:78px;padding:12px 18px 12px 22px;cursor:pointer;
+ background:linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--bc) 34%,rgba(8,10,24,.78)) 14%,color-mix(in srgb,var(--bc) 16%,rgba(8,10,24,.72)) 62%,transparent 100%);
+ animation:bandIn .42s ease-out both;animation-delay:var(--d,0ms);transition:transform .12s,filter .15s;-webkit-tap-highlight-color:transparent}
+.band::before,.band::after{content:"";position:absolute;left:6%;right:6%;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--bc) 70%,#fff 10%),transparent);opacity:.55;pointer-events:none}
+.band::before{top:0}.band::after{bottom:0;opacity:.3}
+.band:active{transform:scale(.985);filter:brightness(1.25)}
+.band:focus-visible{filter:brightness(1.2);outline:none}
+.band[disabled]{cursor:default;filter:saturate(.35) brightness(.7)}
+.band .b-ic{flex:none;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;
+ background:radial-gradient(circle at 38% 32%,color-mix(in srgb,var(--bc) 60%,#fff) 0,var(--bc) 45%,color-mix(in srgb,var(--bc) 45%,#000) 100%);
+ box-shadow:0 0 18px color-mix(in srgb,var(--bc) 60%,transparent),inset 0 -3px 6px rgba(0,0,0,.35)}
+.band .b-ic .rsym{width:28px;height:28px}
+.band .b-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;text-align:left}
+.band .b-tx b{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:16px;letter-spacing:.03em;color:#fff;text-shadow:0 1px 3px #000}
+.band .b-tx small{font-size:13px;line-height:1.3;color:#d6dcf0;font-weight:600;text-shadow:0 1px 2px #000}
+.band .b-go{flex:none;width:26px;height:26px;color:color-mix(in srgb,var(--bc) 60%,#fff);opacity:.85}
+.band .b-go .rsym{width:26px;height:26px}
+.band.b-ch:not(.leave)::marker{content:none}
+.band.b-ch::after,.band.b-rew::after{content:"";position:absolute}
+.band:not(.b-path) .b-tx{padding-right:14px}
+.band:not(.b-path)::after{content:"";right:14px;left:auto;top:50%;bottom:auto;width:9px;height:9px;background:none;border:solid color-mix(in srgb,var(--bc) 55%,#fff);border-width:2px 2px 0 0;transform:translateY(-50%) rotate(45deg);opacity:.7}
+.band.boss{min-height:96px}.band.boss .b-ic{width:62px;height:62px}
+.band.r-e .b-ic{box-shadow:0 0 24px color-mix(in srgb,var(--bc) 80%,transparent)}
+.band.leave .b-ic{width:40px;height:40px;background:none;box-shadow:none;color:#b9c0d6}
+.band .vmks{position:absolute;right:44px;bottom:6px;display:flex;gap:4px}
+.band .vmks:empty{display:none}
+.b-stair{display:flex;align-items:center;gap:8px;padding:0 18px;font-size:12px;color:rgba(230,204,143,.7);letter-spacing:.05em}
+.b-stair .rsym{width:22px;height:22px}
+.b-stair.up{justify-content:flex-end;color:var(--xg,#e6cc8f)}
+.b-more{display:block;width:100%;margin-top:4px}
+@keyframes bandIn{from{opacity:0;transform:translateX(-14px)}}
+@media (prefers-reduced-motion:reduce){.band{animation:none}}
+body[data-scr="map"] .paths{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin:8px -12px}
+body[data-scr="map"] .paths::before{display:none}
+
+/* A Godless Realm : logo façon extension FFXIV (typographie seule) */
+.tlogo{margin:8vh auto 0;gap:0}
+.tlogo .tl-a{display:flex;align-items:center;gap:12px;letter-spacing:0;margin:0 0 2px;font-size:clamp(15px,4.4vw,20px);font-weight:700;color:#e9eef8;text-shadow:0 1px 0 #fff6,0 2px 6px #000}
+.tlogo .tl-a i{display:block;width:min(22vw,92px);height:1px;background:linear-gradient(90deg,transparent,rgba(220,230,245,.85))}
+.tlogo .tl-a i:last-child{transform:scaleX(-1)}
+.tlogo .tl-b{position:relative;display:block;white-space:nowrap;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(23px,7.5vw,40px);letter-spacing:.12em;margin-right:-.12em;
+ background:linear-gradient(180deg,#ffffff 0%,#e8edf6 26%,#a3aec4 49%,#f6f8fc 53%,#c3cbdb 74%,#7c879e 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+ -webkit-text-stroke:.4px rgba(255,255,255,.35)}
+.tlogo .tl-b::before{content:attr(data-t);position:absolute;inset:0;z-index:-1;color:#0a0e1a;-webkit-text-stroke:0;
+ text-shadow:0 -1px 0 rgba(255,255,255,.55),0 1px 0 #3a4560,0 2px 0 #222a3d,0 3px 0 #141a28,0 5px 8px rgba(0,0,0,.85),0 0 22px rgba(0,0,0,.9),0 0 40px rgba(120,160,230,.25)}
+.tlogo .tl-rule{width:min(80vw,330px);margin:10px 0 0}
+.tlogo .tl-rule i{background:linear-gradient(90deg,transparent,rgba(215,226,245,.8))}
+.tlogo .tl-rule b{background:linear-gradient(135deg,#ffffff,#9fb3d6);box-shadow:0 0 10px rgba(190,215,255,.9)}
 </style>
 </head>
 <body>
@@ -1424,7 +1477,7 @@ const REWARDS = [
   {id:'celerite', r:'e', name:'Bénédiction de vitesse', desc:'Temps de recharge réduits d’1 tour.', max:1, v:8, apply:()=>{ R.mods.cdr=1; }},
   {id:'phenix', r:'e', name:'Queue de phénix', desc:'Une fois : te relève à 40 % des PV au lieu de mourir.', max:1, v:9, apply:()=>addPk('phoenix',1)},
   {id:'egide', r:'e', name:'Bouclier de cristal', desc:'Commence chaque combat avec un bouclier de 9 % des PV.', max:1, v:7, apply:()=>addPk('shieldStart',0.09)},
-  {id:'abondance', r:'e', name:'Corne d’abondance', desc:'Les écrans de récompense proposent 4 choix.', max:1, v:5, apply:()=>addPk('extraReward',1)},
+  {id:'abondance', r:'e', name:'Corne d’abondance', desc:'La première relance de chaque écran de récompense est gratuite.', max:1, v:5, apply:()=>addPk('extraReward',1)},
   {id:'elan', r:'e', name:'Élan de victoire', desc:'Vaincre un ennemi réduit tes recharges d’1 tour.', max:1, v:7, apply:()=>addPk('cdrKill',1)},
   {id:'destin', r:'e', name:'Critiques dévastateurs', desc:'Tes critiques infligent ×1,8 au lieu de ×1,5.', max:1, v:6, apply:()=>addPk('critMul',0.3)},
   {id:'sang', r:'e', name:'Rage du berserker', desc:'+12 % de dégâts, mais −8 % de PV max.', max:1, v:6, apply:()=>{ R.mods.dmg+=0.12; R.mods.hpMul-=0.08; recalcStats(); R.hp=Math.min(R.hp,R.maxhp); }},
@@ -1523,7 +1576,16 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
-  {v:'v5.5', date:'23/10/2026', img:'assets/bg/title_amaurot.webp', title:'Combats plus lisibles et vrais compagnons', notes:[
+  {v:'v5.4d', date:'23/10/2026', img:'assets/bg/title_amaurot.webp', title:'A Godless Realm et nouveaux choix', notes:[
+    'Le jeu s’appelle désormais A Godless Realm, avec un nouveau logo argenté. Le donjon reste le Palais des Morts.',
+    'Les choix (chemins, récompenses, événements) sont de grandes bandes horizontales, faciles à toucher.',
+    'Il y a toujours exactement 3 choix : chaque salle du chemin propose 3 portes, sauf celle du gardien.',
+    'Certains événements proposent un nouveau choix : fouiller les environs ou reprendre ton souffle.',
+    'Les pomandres, l’entraînement et l’autel de Thaliak proposent 3 récompenses au lieu de 2.',
+    'Le marchand propose 3 articles, et le bouton Partir est à part.',
+    'La Corne d’abondance offre maintenant la première relance gratuite à chaque écran de récompense.'
+  ]},
+  {v:'v5.4c', date:'23/10/2026', img:'assets/bg/title_amaurot.webp', title:'Combats plus lisibles et vrais compagnons', notes:[
     'Les dix compagnons de FINAL FANTASY XIV qui n’avaient qu’une lettre ont enfin un vrai sprite officiel.',
     'En combat, ton équipe est à gauche et les monstres à droite, placés en diagonale comme dans les anciens FINAL FANTASY.',
     'Les compagnons se tiennent en retrait, un peu plus petits, derrière les joueurs.',
@@ -1612,10 +1674,10 @@ const CHANGELOG = [
     'Première version jouable : étages, combats au tour par tour et premiers jobs.'
   ]},
 ];
-const LEGAL_TXT = '© SQUARE ENIX CO., LTD. All Rights Reserved. FINAL FANTASY BRAVE EXVIUS © 2015-2023 SQUARE ENIX CO., LTD. Developed by Alim Co., Ltd. FINAL FANTASY XIV © 2010-2026 SQUARE ENIX CO., LTD. Fan game non officiel, non commercial.';
+const LEGAL_TXT = '© SQUARE ENIX CO., LTD. All Rights Reserved. FINAL FANTASY BRAVE EXVIUS © 2015-2023 SQUARE ENIX CO., LTD. Developed by Alim Co., Ltd. FINAL FANTASY XIV © 2010-2026 SQUARE ENIX CO., LTD. A Godless Realm : fan game non officiel, non commercial.';
 function patchNotes(){ const from=document.body.dataset.scr; SCREENS.notes(/^(title|hub|settings)$/.test(from)?from:'title'); }
 SCREENS.notes = function(back){
-  app.innerHTML=`<div class="win topbar"><b class="grow">Notes de patch</b></div><div class="scroll pn-page">${CHANGELOG.map((c,i)=>`<section class="pn" style="--d:${Math.min(i,4)*90}ms">
+  app.innerHTML=`<div class="win topbar"><b class="grow">Notes de patch</b></div><div class="scroll pn-page"><p class="muted center" style="margin:2px 0 8px;font-family:Cinzel,Georgia,serif;letter-spacing:.12em">A GODLESS REALM</p>${CHANGELOG.map((c,i)=>`<section class="pn" style="--d:${Math.min(i,4)*90}ms">
     <div class="pn-ban" style="background-image:url(${c.img})"><b>${c.v}</b><span>${c.date}</span></div><h3 class="pn-t">${c.title||''}</h3>
     <ul>${c.notes.map(n=>`<li>${n}</li>`).join('')}</ul></section>`).join('')}
     <p class="legal">Bannières réalisées avec les icônes officielles du FINAL FANTASY XIV Fan Kit. ${LEGAL_TXT}</p></div>`;
@@ -1626,7 +1688,7 @@ SCREENS.title = function(){
   document.body.classList.add('home');
   app.innerHTML = `
   <div class="home-bg" aria-hidden="true"></div><div class="motes" aria-hidden="true">${Array.from({length:18},(_,i)=>`<i style="left:${(i*53)%100}%;animation-delay:${(i*0.7)%9}s;animation-duration:${9+(i%5)*2}s"></i>`).join('')}</div>
-  <h1 class="tlogo" aria-label="Le Palais des Morts"><span class="tl-a">Le Palais</span><span class="tl-rule" aria-hidden="true"><i></i><b></b><i></i></span><span class="tl-b">des Morts</span></h1>
+  <h1 class="tlogo" aria-label="A Godless Realm"><span class="tl-a"><i></i><span>A</span><i></i></span><span class="tl-b" data-t="GODLESS REALM">GODLESS REALM</span><span class="tl-rule" aria-hidden="true"><i></i><b></b><i></i></span></h1>
   <div style="flex:1"></div>
   <nav class="tmenu">
     ${S.created ? `<button class="tm main" data-k="continue" id="bCont">${R?'Reprendre l’exploration':'Continuer'}</button>` : `<button class="tm main" data-k="new" data-go="create">Nouvelle aventure</button>`}
@@ -1904,11 +1966,14 @@ function planFloor(f){
   shuffle([...Array(nReg).keys()]).slice(0,nF).forEach(i=>kinds[i]='fight');
   const steps=[], used={}; let prev=[];
   for (let i=0;i<nReg;i++){
-    if (kinds[i]==='fight'){ const o=['combat']; if (f>=4 && rand()<0.55) o.push('elite'); steps.push(o); prev=[]; continue; }
+    if (kinds[i]==='fight'){ const o=['combat']; if (f>=4 && rand()<0.55) o.push('elite');
+      const w=EV_W(f); w.repos=0; ['marchand','maudite'].forEach(k=>{ if(used[k]) w[k]=0; });
+      while (o.length<3){ const t=wpick(w, o); o.push(t); used[t]=1; } steps.push(o); prev=[]; continue; }
     const w=EV_W(f); if(i===0) w.repos=0; if(boss && i===nReg-1) w.repos*=3;
     ['repos','marchand','maudite'].forEach(k=>{ if(used[k]) w[k]=0; });
-    const a=wpick(w, prev), b=wpick(w, prev.concat([a]));
-    const o=[a,b]; o.forEach(t=>used[t]=1); steps.push(o); prev=o;
+    const av=x=>Object.keys(w).some(k=>w[k]>0&&!x.includes(k)), pk3=(cur)=>wpick(w, av(prev.concat(cur))?prev.concat(cur):cur);
+    const a=pk3([]), b=pk3([a]), c=pk3([a,b]);
+    const o=[a,b,c]; o.forEach(t=>used[t]=1); steps.push(o); prev=o;
   }
   if (boss) steps.push(['boss']);
   return {steps, i:0};
@@ -1951,10 +2016,13 @@ const PATH = { combat:['Combat','Un combat, 3 récompenses au choix.','#e0524a']
   repos:['Repos','Rends des PV et des PM.','#5ccf86'], piege:['Piège','Risqué, mais du butin.','#f08a3c'],
   marchand:['Marchand','Dépense tes Gils.','#e0a84a'], rencontre:['Événement','Quelqu’un t’attend…','#5f9cff'],
   pomandre:['Bonus','Un bonus offert.','#4fd2c2'], maudite:['Malédiction','Grand pouvoir, lourd prix.','#e050a8'] };
+/* v5.4d : bandes de choix horizontales (toujours 3), séparées par des dégradés, sans bordure */
+function bandHTML({cls='',col='#8fa6d8',sym='rencontre',name='',sub='',attrs='',dis=false,tail='',d=0}){
+  return `<button class="band ${cls}" style="--bc:${col};--d:${d}ms" ${attrs} ${dis?'disabled':''}><span class="b-ic">${rsym(sym)}</span><span class="b-tx"><b>${name}</b>${sub?`<small>${sub}</small>`:''}</span><span class="vmks"></span>${tail}</button>`;
+}
 function pathHTML(t,i,n,bossKey){
   const boss=t==='boss', P=boss?[isBigBoss(R.floor)?'Boss':'Gardien', ENEMIES[bossKey].name+' t’attend.','#ff3b30']:PATH[t];
-  return `<button class="path ${boss?'boss':''}" style="--pc:${P[2]};--d:${120+i*110}ms" data-k="room-${t}" data-room="${i}">
-    <span class="orb">${rsym(boss?'boss':t)}</span><b class="path-n">${P[0]}</b><span class="path-d">${P[1]}</span></button>`;
+  return bandHTML({cls:'b-path '+(boss?'boss':'t-'+t), col:P[2], sym:boss?'boss':t, name:P[0], sub:P[1], attrs:`data-k="room-${t}" data-room="${i}"`, d:120+i*110, tail:`<span class="b-go">${rsym('up')}</span>`});
 }
 SCREENS.map = function(){
   C=null;
@@ -1971,7 +2039,7 @@ SCREENS.map = function(){
   <div class="scroll">
     <div class="center"><h3>${step[0]==='boss'?'La salle du gardien':step.length>1?'Choisis ton chemin':'Une seule voie'}</h3><div class="prog2">${dots.join('')}</div></div>
     ${R.curse?`<div class="tip" style="border-color:#ff80ff;color:#ffc8ff">${ic('skull')} ${R.curse.name}</div>`:''}
-    <div class="paths n${step.length}"><span class="stair down" title="D’où tu viens">${rsym('down')}</span>${step.map((t,i)=>pathHTML(t,i,step.length,bossKey)).join('')}<span class="stair up" title="Étage suivant">${rsym('up')}</span></div>
+    <div class="bands paths n${step.length}"><div class="b-stair down">${rsym('down')}<span>D’où tu viens</span></div>${step.map((t,i)=>pathHTML(t,i,step.length,bossKey)).join('')}<div class="b-stair up"><span>Vers l’étage suivant</span>${rsym('up')}</div></div>
   </div>
   <div class="row"><button class="btn small grow" data-k="items" id="bItems">Objets & bonus</button><button class="btn small redb" data-k="abandon" id="bAb">Abandonner</button></div>`;
   app.querySelectorAll('[data-room]').forEach(b=>b.onclick=()=>enterRoom(step[+b.dataset.room]));
@@ -2051,19 +2119,32 @@ function eventScreen(title, icon, text, next, label='Continuer'){
   document.getElementById('bOk').onclick = next || advanceNode;
 }
 /* choix : [{label, sub, fn, ai, dis}] — ai = valeur indicative pour les robots de test */
-function choiceScreen(title, icon, text, choices){
+const CH_FILL = [
+  ()=>({label:'Fouiller les environs', sub:'60 % : quelques Gils. 40 % : une égratignure (−5 % PV).', ai:0.3, filler:1,
+    fn:()=>{ if (rand()<0.6){ const g=gainGils(6+R.floor); eventScreen('Fouille', 'icon_coffre', `Tu trouves <span class="gold">${g} Gils</span>.`); } else { const l=Math.max(1,Math.round(R.maxhp*0.05)); R.hp=Math.max(1,R.hp-l); eventScreen('Aïe…', 'icon_piege', `Une pierre se détache. <b style="color:#ff8080">−${l} PV</b>`); } }}),
+  ()=>({label:'Reprendre ton souffle', sub:'Récupère 10 % de tes PM, puis repars.', ai:0.2, filler:1,
+    fn:()=>{ R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*0.1)); eventScreen('Un instant de calme', 'icon_repos', 'Tu reprends ton souffle avant de repartir.'); }}),
+];
+function choiceScreen(title, icon, text, choices, more){
   S.run=R; persist();
+  choices=choices.slice(); const lv=choices.findIndex(c=>c.fn===advanceNode);
+  if (choices.length<3){ let k=0; while (choices.length<3 && k<CH_FILL.length){ const f=CH_FILL[k++](); if (lv>=0) choices.splice(choices.length-1,0,f); else choices.push(f); } }
+  const evt=EV_SYM[icon]||'rencontre', col=(PATH[evt]||PATH.rencontre)[2];
   app.innerHTML = `${topbarRun('Étage '+R.floor)}
    <div class="scroll"><div class="win col center" style="align-items:center;padding:14px 10px"><h2>${title}</h2>${spr(icon,'idle','width:84px;margin:6px')}<p style="font-size:15px">${text}</p></div>
-   ${choices.map((c,i)=>`<button class="btn reward" data-k="ch-${i}" data-ch="${i}" data-ai="${c.dis?-99:(c.ai||0)}" ${c.dis?'disabled':''}><div><div>${c.label}</div>${c.sub?`<div class="muted" style="font-weight:600">${c.sub}</div>`:''}</div></button>`).join('')}
+   <div class="bands">${choices.slice(0,3).map((c,i)=>bandHTML({cls:'b-ch '+(c.fn===advanceNode?'leave':c.filler?'filler':'t-'+evt), col:c.fn===advanceNode?'#8a93ad':c.filler?'#b9a77a':col, sym:c.fn===advanceNode?'door':c.filler?'pomandre':evt,
+      name:c.label, sub:c.sub||'', dis:c.dis, d:200+i*110, attrs:`data-k="ch-${i}" data-ch="${i}" data-ai="${c.dis?-99:(c.ai||0)}"`})).join('')}</div>
+   ${more?`<button class="btn small b-more" data-k="ch-more" id="bMore">${more.label}</button>`:''}
    </div>${playerPanelHTML()}`;
+  const bm=document.getElementById('bMore'); if (bm) bm.onclick=more.fn;
   app.querySelectorAll('[data-ch]').forEach(b=>b.onclick=()=>{ const c=choices[+b.dataset.ch]; if(!c.dis) c.fn(); });
 }
 /* --- Récompenses après chaque combat : 3 au choix + Relancer --- */
+const REW_COL = {c:'#c8d2e6', r:'#5b9bff', e:'#c46bff'};
 const rewIcon = x => x.id==='potions'||x.id==='superpotion'||x.id==='ether'?'icon_coffre': x.id==='fragment'?'icon_cristal' : x.r==='e'?'icon_pomandre':'icon_autel';
-const rerollCost = () => Math.round((10 + 2*R.floor) * (1 + R.rew.rr));
+const rerollCost = () => (pk('extraReward')>0 && !R.rew.rr) ? 0 : Math.round((10 + 2*R.floor) * (1 + R.rew.rr));
 function fightRewards(kind, title, extra){
-  R.rew = {kind, title, extra, opts:drawRewards(3+pk('extraReward'), kind).map(x=>x.id), rr:0};
+  R.rew = {kind, title, extra, opts:drawRewards(3, kind).map(x=>x.id), rr:0};
   showRewards();
 }
 function showRewards(){
@@ -2072,13 +2153,14 @@ function showRewards(){
   app.innerHTML = `${topbarRun(w.title)}
    <div class="scroll">${w.extra||''}
     <div class="center"><h3>Choisis une récompense</h3></div>
-    ${opts.map((x,i)=>`<button class="btn reward ${RARITY[x.r].cls}" style="--d:${300+i*140}ms" data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"><div><div>${x.name} <span class="rar">${RARITY[x.r].n}</span></div><div class="muted" style="font-weight:600">${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}</div></div></button>`).join('')}
-    ${w.fixed?'':`<button class="btn small" style="width:100%" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost} Gils${w.rr?` (relance n°${w.rr+1})`:''}</button>`}
+    <div class="bands">${opts.slice(0,3).map((x,i)=>bandHTML({cls:'b-rew '+RARITY[x.r].cls, col:REW_COL[x.r]||'#c8d2e6', sym:EV_SYM[rewIcon(x)]||'autel', name:`${x.name} <span class="rar">${RARITY[x.r].n}</span>`,
+      sub:`${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}`, d:300+i*140, attrs:`data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"`})).join('')}</div>
+    ${w.fixed?'':`<button class="btn small" style="width:100%" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost?cost+' Gils':'gratuit'}${w.rr?` (relance n°${w.rr+1})`:''}</button>`}
    </div>${playerPanelHTML()}`;
   app.querySelectorAll('[data-rew]').forEach(b=>b.onclick=()=>{ const x=opts[+b.dataset.rew]; R.rew=null; takeReward(x); advanceNode(); });
   const bRr=document.getElementById('bReroll'); if (bRr) bRr.onclick=()=>{
     if (!spendGils(cost)) return;
-    w.rr++; const n=3+pk('extraReward');
+    w.rr++; const n=3;
     let nw=drawRewards(n, w.kind, w.opts); if (nw.length<n) nw=drawRewards(n, w.kind);
     w.opts=nw.map(x=>x.id); showRewards();
   };
@@ -2643,8 +2725,8 @@ const SHRINES = [
         R.mods.hpMul-=0.08; recalcStats(); R.hp=Math.min(R.hp,R.maxhp); eventScreen('Face…', 'icon_autel', 'Un fardeau pèse sur toi : <b style="color:#ff8080">−8 % de PV max</b>.'); }},
     {label:'Ne pas jouer', ai:0, fn:advanceNode}]}),
   ()=>({ name:'Autel de Thaliak', text:'« Le savoir a un prix. »', ch:[
-    {label:'Offrir une potion', sub:'Choisis une récompense rare ou épique parmi 2.', ai:R.potions>=2?5:1, dis:!R.potions,
-      fn:()=>{ R.potions--; pickRewardsScreen('Autel de Thaliak','Le savoir de Thaliak t’éclaire.', drawRewards(2,'shrine')); }},
+    {label:'Offrir une potion', sub:'Choisis une récompense rare ou épique parmi 3.', ai:R.potions>=2?5:1, dis:!R.potions,
+      fn:()=>{ R.potions--; pickRewardsScreen('Autel de Thaliak','Le savoir de Thaliak t’éclaire.', drawRewards(3,'shrine')); }},
     {label:'Refuser', ai:0, fn:advanceNode}]}),
   ()=>({ name:'Autel de Menphina', text:'« La lune soigne, mais attise les ténèbres. »', ch:[
     {label:'Accepter la bénédiction', sub:'PV et PM restaurés, mais ennemis +15 % de dégâts jusqu’à la fin de l’étage suivant.', ai: hpPct()<0.5?5:-1,
@@ -2655,15 +2737,14 @@ EVENTS.autel = function(){ const sh=pick(SHRINES)(); choiceScreen(sh.name, 'icon
 /* --- Marchand mystérieux --- */
 EVENTS.marchand = function(){
   const f=R.floor, price={c:18+2*f, r:35+3*f, e:70+5*f};
-  const offers = drawRewards(3,'elite').map(x=>({x, p:price[x.r], sold:false}));
+  const offers = drawRewards(2,'elite').map(x=>({x, p:price[x.r], sold:false})); const svc = rand()<0.5 ? 'heal' : 'frag';
   const heal = {p:15+f, sold:false}, frag={p:90+5*f, sold:false};
   const show = ()=>{
     const ch = offers.map(o=>({label:`${o.x.name} <span class="rar ${RARITY[o.x.r].cls}">${RARITY[o.x.r].n}</span> — <span class="gold">${o.p} G</span>`, sub:o.x.desc, dis:o.sold||R.gilsEarned<o.p || !rewOK(o.x),
         ai: o.x.v - o.p/(12+f) , fn:()=>{ if(!spendGils(o.p)) return; o.sold=true; takeReward(o.x); toast(o.x.name+' !'); show(); }}));
-    ch.push({label:`Soins complets — <span class="gold">${heal.p} G</span>`, sub:'PV et PM au maximum.', dis:heal.sold||R.gilsEarned<heal.p, ai:(1-hpPct())*10-2, fn:()=>{ if(!spendGils(heal.p)) return; heal.sold=true; R.hp=R.maxhp; R.mp=R.maxmp; show(); }});
-    ch.push({label:`Fragment de cristal ${ic('gem')} — <span class="gold">${frag.p} G</span>`, sub:'Pour invoquer des compagnons à l’Avant-poste.', dis:frag.sold||R.gilsEarned<frag.p, ai:0.5, fn:()=>{ if(!spendGils(frag.p)) return; frag.sold=true; R.frags=(R.frags||0)+1; show(); }});
-    ch.push({label:'Partir', ai:0.3, fn:advanceNode});
-    choiceScreen('Marchand mystérieux', 'icon_marchand', '« Psst… aventurier. J’ai ce qu’il te faut, si tu as les Gils. »<br><span class="muted">Payé avec les Gils de l’exploration.</span>', ch);
+    if (svc==='heal') ch.push({label:`Soins complets — <span class="gold">${heal.p} G</span>`, sub:'PV et PM au maximum.', dis:heal.sold||R.gilsEarned<heal.p, ai:(1-hpPct())*10-2, fn:()=>{ if(!spendGils(heal.p)) return; heal.sold=true; R.hp=R.maxhp; R.mp=R.maxmp; show(); }});
+    else ch.push({label:`Fragment de cristal ${ic('gem')} — <span class="gold">${frag.p} G</span>`, sub:'Pour invoquer des compagnons à l’Avant-poste.', dis:frag.sold||R.gilsEarned<frag.p, ai:0.5, fn:()=>{ if(!spendGils(frag.p)) return; frag.sold=true; R.frags=(R.frags||0)+1; show(); }});
+    choiceScreen('Marchand mystérieux', 'icon_marchand', '« Psst… aventurier. J’ai ce qu’il te faut, si tu as les Gils. »<br><span class="muted">Payé avec les Gils de l’exploration.</span>', ch, {label:'Partir', fn:advanceNode});
   };
   show();
 };
@@ -2710,10 +2791,10 @@ const ENCOUNTERS = [
 function canSkip(){ const P=R.plan; const nx=P.steps[P.i+1]; return !!nx && nx[0]!=='boss'; }
 EVENTS.rencontre = function(){ const e=pick(ENCOUNTERS)(); choiceScreen(e.t, e.icon, e.text, e.ch); };
 /* --- Pomandre au sol, repos, salle maudite --- */
-EVENTS.pomandre = function(){ pickRewardsScreen('Pomandre abandonnée', 'Deux pomandres brillent au sol. Tu ne peux en prendre qu’une.', drawRewards(2,'normal')); };
+EVENTS.pomandre = function(){ pickRewardsScreen('Pomandre abandonnée', 'Trois pomandres brillent au sol. Tu ne peux en prendre qu’une.', drawRewards(3,'normal')); };
 EVENTS.repos = function(){
   const ch=[{label:'Se reposer', sub:'PV +45 %, PM au maximum.', ai:(1-hpPct())*10, fn:()=>{ healR(R.maxhp*0.45); R.mp=R.maxmp; eventScreen('Source d’aether', 'icon_repos', 'L’aether pur te revigore. PV +45 %, PM restaurés.'); }},
-    {label:'S’entraîner', sub:'Choisis 1 récompense parmi 2.', ai:hpPct()>0.75?5:0, fn:()=>pickRewardsScreen('Entraînement','Tu t’entraînes près de la source.', drawRewards(2,'normal'), 'icon_repos')}];
+    {label:'S’entraîner', sub:'Choisis 1 récompense parmi 3.', ai:hpPct()>0.75?5:0, fn:()=>pickRewardsScreen('Entraînement','Tu t’entraînes près de la source.', drawRewards(3,'normal'), 'icon_repos')}];
   if (R.curse) ch.push({label:'Purifier la malédiction', sub:'Lève la malédiction, PV +15 %.', ai:6, fn:()=>{ R.curse=null; healR(R.maxhp*0.15); eventScreen('Purification','icon_repos','La malédiction se dissipe dans l’aether.'); }});
   choiceScreen('Source d’aether', 'icon_repos', 'Une source d’aether pur. Un moment de calme.', ch);
 };
@@ -3527,7 +3608,7 @@ const Online = (function(){
     const s = state();
     if (s.needPseudo) return mount('account', `${topbar('Ton pseudo')}
       <div class="scroll"><div class="win col">
-        <p>Ce compte n’a pas encore de pseudo pour <b>Le Palais des Morts</b>. Il sera affiché dans le classement et pour tes amis.</p>
+        <p>Ce compte n’a pas encore de pseudo pour <b>A Godless Realm</b>. Il sera affiché dans le classement et pour tes amis.</p>
         <input class="name" id="olPs" maxlength="16" placeholder="Pseudo (3 à 16)" autocomplete="nickname" value="${E((s.user.user_metadata||{}).pdm_pseudo || (typeof S!=='undefined'&&S?S.name:'') || '')}">
         <div class="muted" id="olPsInfo">Lettres, chiffres, _ et -</div>
         <button class="btn goldb" id="olPsOk">Valider</button>
@@ -3691,7 +3772,7 @@ const Online = (function(){
       ${st.profile ? `<div class="win col"><h3>Inviter un ami</h3><div id="olCoopFr"></div></div>` : ''}
       <button class="btn small redb" id="olLeave">Quitter le salon</button>
     </div>`, a => {
-      a.querySelector('#olShare').onclick = () => { if (navigator.share) navigator.share({ title:'Le Palais des Morts', text:`Rejoins-moi dans le Palais des Morts ! Code : ${room.code}`, url }).catch(()=>{}); else copy(url); };
+      a.querySelector('#olShare').onclick = () => { if (navigator.share) navigator.share({ title:'A Godless Realm', text:`Rejoins-moi dans A Godless Realm ! Code : ${room.code}`, url }).catch(()=>{}); else copy(url); };
       a.querySelector('#olCopy').onclick = () => copy(room.code);
       a.querySelector('#olReady').onclick = () => setReady(!room.ready);
       const s = a.querySelector('#olStart'); if (s) s.onclick = () => startDuo();

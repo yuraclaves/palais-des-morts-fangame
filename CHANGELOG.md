@@ -1,6 +1,15 @@
-# Notes de patch : Le Palais des Morts
+# Notes de patch : A Godless Realm
 
-## v5.5 : Combats plus lisibles et vrais compagnons (23/10/2026)
+## v5.4d : A Godless Realm et nouveaux choix (23/10/2026)
+- Le jeu s'appelle désormais A Godless Realm, avec un nouveau logo argenté. Le donjon reste le Palais des Morts.
+- Les choix (chemins, récompenses, événements) sont de grandes bandes horizontales, faciles à toucher.
+- Il y a toujours exactement 3 choix : chaque salle du chemin propose 3 portes, sauf celle du gardien.
+- Certains événements proposent un nouveau choix : fouiller les environs ou reprendre ton souffle.
+- Les pomandres, l'entraînement et l'autel de Thaliak proposent 3 récompenses au lieu de 2.
+- Le marchand propose 3 articles, et le bouton Partir est à part.
+- La Corne d'abondance offre maintenant la première relance gratuite à chaque écran de récompense.
+
+## v5.4c : Combats plus lisibles et vrais compagnons (23/10/2026)
 - Les dix compagnons de FINAL FANTASY XIV qui n'avaient qu'une lettre ont enfin un vrai sprite officiel.
 - En combat, ton équipe est à gauche et les monstres à droite, placés en diagonale comme dans les anciens FINAL FANTASY.
 - Les compagnons se tiennent en retrait, un peu plus petits, derrière les joueurs.

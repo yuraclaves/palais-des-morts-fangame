@@ -1,4 +1,4 @@
-# Crédits — « Le Palais des Morts » (fan game non officiel, non commercial)
+# Crédits — « A Godless Realm » (anciennement « Le Palais des Morts ») (fan game non officiel, non commercial)
 
 ## Mention légale Square Enix
 
