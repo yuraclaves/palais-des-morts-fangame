@@ -176,6 +176,43 @@ input.name.search{font-size:16px;padding:8px}
 .comp .cbub:empty{display:none}
 .comp .cbub.pop{animation:bubpop .35s}
 @keyframes bubpop{0%{transform:scale(.6)}70%{transform:scale(1.08)}100%{transform:scale(1)}}
+/* ---- v4 : art libre, mise en page centrée, icônes pixel ---- */
+.ic{width:1.05em;height:1.05em;display:inline-block;vertical-align:-.15em;image-rendering:pixelated;flex:none}
+.stars .ic{width:12px;height:12px;margin-right:-1px}
+.field{background-size:cover;background-position:center 70%}
+.field::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,40,.55),rgba(8,10,40,.05) 45%,rgba(0,0,0,.25));pointer-events:none}
+.enemies{top:5%;gap:6px;align-items:flex-end}
+.en{width:auto;max-width:none;flex:0 1 auto;min-width:72px;padding-top:28px}
+.en img.spr.art{aspect-ratio:auto;width:min(calc(var(--w) * 2px),30vw);max-height:min(140px,24vh);object-fit:contain;filter:drop-shadow(0 3px 0 rgba(0,0,0,.45))}
+.en.boss img.spr.art{width:min(calc(var(--w) * 2px),78vw);max-height:min(220px,34vh)}
+.player{left:50%;bottom:3%;transform:translateX(-50%)}
+.field.withc .player{left:37%}
+.comp{left:63%;bottom:3%;transform:translateX(-50%)}
+.player img.spr.art{aspect-ratio:auto;width:min(calc(var(--w) * 1.9px),27vw);filter:drop-shadow(0 3px 0 rgba(0,0,0,.5))}
+.comp img.spr.art{aspect-ratio:auto;width:min(calc(var(--w) * 1.6px),23vw);filter:drop-shadow(0 3px 0 rgba(0,0,0,.5))}
+.aoe{left:50%;transform:translateX(-50%);bottom:0;width:min(260px,70vw)}
+.lunge{animation:lungeUp .32s}
+@keyframes lungeUp{50%{transform:translateY(-22px) scale(1.06)}}
+.en.lunge{animation:lungeDown .32s}
+@keyframes lungeDown{50%{transform:translateY(18px)}}
+.player.lunge,.comp.lunge{animation:lungeUpC .32s}
+@keyframes lungeUpC{0%,100%{transform:translateX(-50%)}50%{transform:translate(-50%,-22px) scale(1.06)}}
+.player.cast,.comp.cast{animation:castC .4s}
+@keyframes castC{0%,100%{transform:translateX(-50%)}50%{transform:translate(-50%,-8px);filter:brightness(1.6) drop-shadow(0 0 8px #fff)}}
+.player.shake,.comp.shake{animation:shakeC .3s}
+@keyframes shakeC{0%,100%{transform:translateX(-50%)}20%{transform:translateX(calc(-50% - 6px))}40%{transform:translateX(calc(-50% + 6px))}60%{transform:translateX(calc(-50% - 4px))}}
+.skills{grid-template-columns:repeat(3,1fr);gap:5px}
+.sk{min-height:50px;padding:3px 2px;gap:2px;font-size:13px;line-height:1.1}
+.sk .skn{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:2px 5px;justify-content:center;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:1px;font-size:11px;font-weight:700;color:#f4f6ff;text-shadow:1px 1px 0 #000}
+.chip .ic{width:12px;height:12px}
+.chip.mp b{color:#9fd4ff}.chip.cd b{color:#ffe27a}
+.sk .cdv{gap:3px;font-size:22px}.sk .cdv .ic{width:18px;height:18px}
+.tipbox{position:fixed;z-index:9999;max-width:min(300px,86vw);background:linear-gradient(180deg,#2a3a9a,#0e1450);border:2px solid #f0f2ff;box-shadow:0 0 0 2px #000,0 6px 18px #000a;border-radius:7px;padding:6px 9px;font-size:13px;color:#fff;pointer-events:none;display:none;text-shadow:1px 1px 0 #000;line-height:1.3}
+.tipbox .tchips{display:flex;gap:6px;margin:2px 0 3px;flex-wrap:wrap}
+.cursor{left:50%;top:auto;bottom:-6px;transform:translateX(-50%) rotate(-90deg);width:22px;animation:bobv .4s steps(2) infinite alternate}
+@keyframes bobv{to{bottom:-2px}}
 </style>
 </head>
 <body>
@@ -351,10 +388,16 @@ function spriteURL(key){
   if (CUSTOM[key]) return CUSTOM[key];
   const cfg = SPRITES[key];
   if (cfg && cfg._ok) return cfg.src;
+  if (typeof ASSET!=='undefined' && ASSET[key] && !ASSET_FAIL[key]) return ASSET[key].src;
   return SPR_CACHE[key] || (SPR_CACHE[key] = builtinURL(key));
 }
 function refreshSprite(k){ document.querySelectorAll(`img[data-spr="${k}"]`).forEach(el=>el.src=spriteURL(k)); }
-function spr(key, cls='', style=''){ return `<img class="spr ${cls}" data-spr="${key}" src="${spriteURL(key)}" style="${style}" alt="">`; }
+const ASSET_FAIL = {};
+function sprFail(img){ const k=img.dataset.spr; if(!k||ASSET_FAIL[k]) return; ASSET_FAIL[k]=1; img.classList.remove('art'); img.src=spriteURL(k); }
+function spr(key, cls='', style=''){
+  const u=spriteURL(key), a=(typeof ASSET!=='undefined')&&ASSET[key]&&u===ASSET[key].src;
+  return `<img class="spr ${cls} ${a?'art':''}" data-spr="${key}" src="${u}" style="${a?`--w:${ASSET[key].w};--h:${ASSET[key].h};`:''}${style}" onerror="sprFail(this)" alt="">`;
+}
 function loadCustomSprites(){
   Object.keys(SPRITES).forEach(k=>{
     const cfg = SPRITES[k]; if(!cfg || !cfg.src) return;
@@ -366,16 +409,76 @@ function loadCustomSprites(){
 }
 const BG_CACHE = {};
 function floorBG(f){
-  const tier = Math.min(4, Math.floor((f-1)/10));
-  if (BG_CACHE[tier]) return BG_CACHE[tier];
-  const cols = [['#2a2440','#221c36','#17122a'],['#20303a','#1a2830','#101c22'],['#3a2420','#301c1a','#1e1010'],['#1c3424','#162a1c','#0c1a10'],['#2a1838','#20102c','#12081c']][tier];
-  const c=document.createElement('canvas'); c.width=16;c.height=16; const x=c.getContext('2d');
-  x.fillStyle=cols[2]; x.fillRect(0,0,16,16);
-  x.fillStyle=cols[0]; x.fillRect(0,0,7,7); x.fillRect(8,0,8,7); x.fillRect(0,8,3,7); x.fillRect(4,8,8,7); x.fillRect(13,8,3,7);
-  x.fillStyle=cols[1]; x.fillRect(1,5,6,2); x.fillRect(9,5,7,2); x.fillRect(5,13,7,2);
-  x.fillStyle='rgba(255,255,255,.06)'; x.fillRect(0,0,7,1); x.fillRect(8,0,8,1); x.fillRect(4,8,8,1);
-  return (BG_CACHE[tier] = c.toDataURL());
+  const tier = f>=50 ? 5 : Math.min(4, Math.floor((f-1)/10));
+  return 'assets/bg/t'+tier+'.png';
 }
+/* Pixel art libre (voir CREDITS.md) : assets/ */
+const ASSET = {"barde":{"src":"assets/chars/barde_front.png","w":54,"h":58,"ko":"assets/chars/barde_ko.png"},"c_aerith":{"src":"assets/chars/c_aerith_front.png","w":54,"h":58,"ko":"assets/chars/c_aerith_ko.png"},"c_alisaie":{"src":"assets/chars/c_alisaie_front.png","w":54,"h":58,"ko":"assets/chars/c_alisaie_ko.png"},"c_alphinaud":{"src":"assets/chars/c_alphinaud_front.png","w":54,"h":58,"ko":"assets/chars/c_alphinaud_ko.png"},"c_auron":{"src":"assets/chars/c_auron_front.png","w":54,"h":58,"ko":"assets/chars/c_auron_ko.png"},"c_bartz":{"src":"assets/chars/c_bartz_front.png","w":54,"h":58,"ko":"assets/chars/c_bartz_ko.png"},"c_cecil":{"src":"assets/chars/c_cecil_front.png","w":54,"h":58,"ko":"assets/chars/c_cecil_ko.png"},"c_cid":{"src":"assets/chars/c_cid_front.png","w":54,"h":58,"ko":"assets/chars/c_cid_ko.png"},"c_cloud":{"src":"assets/chars/c_cloud_front.png","w":54,"h":58,"ko":"assets/chars/c_cloud_ko.png"},"c_estinien":{"src":"assets/chars/c_estinien_front.png","w":54,"h":58,"ko":"assets/chars/c_estinien_ko.png"},"c_graha":{"src":"assets/chars/c_graha_front.png","w":54,"h":58,"ko":"assets/chars/c_graha_ko.png"},"c_haurchefant":{"src":"assets/chars/c_haurchefant_front.png","w":54,"h":58,"ko":"assets/chars/c_haurchefant_ko.png"},"c_kain":{"src":"assets/chars/c_kain_front.png","w":54,"h":58,"ko":"assets/chars/c_kain_ko.png"},"c_krile":{"src":"assets/chars/c_krile_front.png","w":54,"h":58,"ko":"assets/chars/c_krile_ko.png"},"c_lightning":{"src":"assets/chars/c_lightning_front.png","w":54,"h":58,"ko":"assets/chars/c_lightning_ko.png"},"c_locke":{"src":"assets/chars/c_locke_front.png","w":54,"h":58,"ko":"assets/chars/c_locke_ko.png"},"c_lyse":{"src":"assets/chars/c_lyse_front.png","w":54,"h":58,"ko":"assets/chars/c_lyse_ko.png"},"c_minfilia":{"src":"assets/chars/c_minfilia_front.png","w":54,"h":58,"ko":"assets/chars/c_minfilia_ko.png"},"c_noctis":{"src":"assets/chars/c_noctis_front.png","w":54,"h":58,"ko":"assets/chars/c_noctis_ko.png"},"c_rosa":{"src":"assets/chars/c_rosa_front.png","w":54,"h":58,"ko":"assets/chars/c_rosa_ko.png"},"c_squall":{"src":"assets/chars/c_squall_front.png","w":54,"h":58,"ko":"assets/chars/c_squall_ko.png"},"c_tataru":{"src":"assets/chars/c_tataru_front.png","w":54,"h":58,"ko":"assets/chars/c_tataru_ko.png"},"c_terra":{"src":"assets/chars/c_terra_front.png","w":54,"h":58,"ko":"assets/chars/c_terra_ko.png"},"c_thancred":{"src":"assets/chars/c_thancred_front.png","w":54,"h":58,"ko":"assets/chars/c_thancred_ko.png"},"c_tidus":{"src":"assets/chars/c_tidus_front.png","w":54,"h":58,"ko":"assets/chars/c_tidus_ko.png"},"c_tifa":{"src":"assets/chars/c_tifa_front.png","w":54,"h":58,"ko":"assets/chars/c_tifa_ko.png"},"c_urianger":{"src":"assets/chars/c_urianger_front.png","w":54,"h":58,"ko":"assets/chars/c_urianger_ko.png"},"c_vivi":{"src":"assets/chars/c_vivi_front.png","w":54,"h":58,"ko":"assets/chars/c_vivi_ko.png"},"c_yshtola":{"src":"assets/chars/c_yshtola_front.png","w":54,"h":58,"ko":"assets/chars/c_yshtola_ko.png"},"c_yuna":{"src":"assets/chars/c_yuna_front.png","w":54,"h":58,"ko":"assets/chars/c_yuna_ko.png"},"c_zidane":{"src":"assets/chars/c_zidane_front.png","w":54,"h":58,"ko":"assets/chars/c_zidane_ko.png"},"dragoon":{"src":"assets/chars/dragoon_front.png","w":54,"h":58,"ko":"assets/chars/dragoon_ko.png"},"erudit":{"src":"assets/chars/erudit_front.png","w":54,"h":58,"ko":"assets/chars/erudit_ko.png"},"guerrier":{"src":"assets/chars/guerrier_front.png","w":54,"h":58,"ko":"assets/chars/guerrier_ko.png"},"mageblanc":{"src":"assets/chars/mageblanc_front.png","w":54,"h":58,"ko":"assets/chars/mageblanc_ko.png"},"magenoir":{"src":"assets/chars/magenoir_front.png","w":54,"h":58,"ko":"assets/chars/magenoir_ko.png"},"magerouge":{"src":"assets/chars/magerouge_front.png","w":54,"h":58,"ko":"assets/chars/magerouge_ko.png"},"moine":{"src":"assets/chars/moine_front.png","w":54,"h":58,"ko":"assets/chars/moine_ko.png"},"paladin":{"src":"assets/chars/paladin_front.png","w":54,"h":58,"ko":"assets/chars/paladin_ko.png"},"samourai":{"src":"assets/chars/samourai_front.png","w":54,"h":58,"ko":"assets/chars/samourai_ko.png"},"ahriman":{"src":"assets/monsters/ahriman.png","w":23,"h":31},"behemoth":{"src":"assets/monsters/behemoth.png","w":177,"h":107},"bombo":{"src":"assets/monsters/bombo.png","w":29,"h":29},"chevalier":{"src":"assets/monsters/chevalier.png","w":78,"h":110},"diablotin":{"src":"assets/monsters/diablotin.png","w":58,"h":60},"dragonnet":{"src":"assets/monsters/dragonnet.png","w":63,"h":51},"flan":{"src":"assets/monsters/flan.png","w":28,"h":23},"flannoir":{"src":"assets/monsters/flannoir.png","w":28,"h":23},"gobelin":{"src":"assets/monsters/gobelin.png","w":37,"h":36},"golem":{"src":"assets/monsters/golem.png","w":86,"h":84},"grandahriman":{"src":"assets/monsters/grandahriman.png","w":78,"h":80},"grenade":{"src":"assets/monsters/grenade.png","w":52,"h":67},"neant":{"src":"assets/monsters/neant.png","w":123,"h":154},"reinebombo":{"src":"assets/monsters/reinebombo.png","w":78,"h":102},"roiflan":{"src":"assets/monsters/roiflan.png","w":56,"h":46},"seigneur":{"src":"assets/monsters/seigneur.png","w":126,"h":105},"sentinelle":{"src":"assets/monsters/sentinelle.png","w":45,"h":65},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.png","w":68,"h":144},"spectre":{"src":"assets/monsters/spectre.png","w":50,"h":57},"squelette":{"src":"assets/monsters/squelette.png","w":33,"h":39},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.png","w":89,"h":58},"sylphe":{"src":"assets/monsters/sylphe.png","w":47,"h":64},"wyverne":{"src":"assets/monsters/wyverne.png","w":134,"h":112}};
+/* Icônes pixel maison (SVG 8x8) — aucun emoji dans le jeu */
+const IC_PAL = { w:'#ffffff', k:'#101018', y:'#ffd84a', o:'#ff8a2a', r:'#ff4a4a', g:'#5aff6a', G:'#1f9a3a', b:'#6ab8ff', B:'#2a5adf', p:'#c070ff', s:'#c8d0e0', S:'#7a8298', n:'#a0662a', c:'#9ff0ff' };
+const IC_GRID = {
+  sword:  ['......ws','.....wsS','....wsS.','.k.wsS..','.kwsS...','..nk....','.n.kk...','n.......'],
+  heal:   ['.g....g.','...gg...','..gGGg..','.gGggGg.','.gGggGg.','..gGGg..','...gg..g','g.......'],
+  shield: ['.bbbbbb.','bBwwwwBb','bBwBBwBb','bBwBBwBb','.bBwwBb.','.bBBBBb.','..bBBb..','...bb...'],
+  clock:  ['..wwww..','.wSkkSw.','wSkkwkSw','wkkkwkkw','wkkkwwkw','wSkkkkSw','.wSkkSw.','..wwww..'],
+  drop:   ['...b....','...b....','..bbb...','.bbcbb..','.bcbbb..','.bbbbb..','..bbb...','........'],
+  bolt:   ['....yy..','...yy...','..yy....','.yyyyy..','...yy...','..yy....','.yy.....','.y......'],
+  warn:   ['...rr...','..rwwr..','..rwwr..','.rrwwrr.','.rrwwrr.','rrrrrrrr','rrrwwrrr','rrrrrrrr'],
+  hour:   ['wwwwwww.','.wyyyw..','..wyw...','...w....','..w.w...','.w.y.w..','wwyyyww.','wwwwwww.'],
+  star:   ['...y....','...y....','yyyyyyy.','.yyyyy..','..yyy...','.yy.yy..','.y...y..','........'],
+  gem:    ['.cccccc.','cwcbbcbc','bbbbbbbb','.bbBBbb.','..bBBb..','...BB...','........','........'],
+  poison: ['..g..g..','...gg...','.ggGGgg.','gGGkkGGg','gGkGGkGg','.gGGGGg.','..gggg..','........'],
+  skull:  ['.wwwwww.','wwwwwwww','wkkwwkkw','wkkwwkkw','wwwkkwww','.wwwwww.','.w.ww.w.','........'],
+  wing:   ['......ww','....wwws','..wwwss.','.wwwss..','wwwss...','.wss....','ws......','........'],
+  up:     ['...oo...','..oooo..','.oooooo.','oo.oo.oo','...oo...','...oo...','...oo...','........'],
+  down:   ['...pp...','...pp...','...pp...','pp.pp.pp','.pppppp.','..pppp..','...pp...','........'],
+  magic:  ['...p....','...p....','..ppp...','ppp.ppp.','..ppp...','...p....','...p....','........'],
+  search: ['.www....','w...w...','w...w...','w...w...','.www....','....ww..','.....ww.','......ww'],
+  import: ['...ww...','...ww...','.wwwwww.','..wwww..','...ww...','w......w','w......w','wwwwwwww'],
+  stun:   ['.y..y..y','..y.y.y.','...yyy..','yyyywyyy','...yyy..','..y.y.y.','.y..y..y','........'],
+  tip:    ['..yyyy..','.yywwyy.','.ywwwwy.','.yywwyy.','..yyyy..','...ss...','...SS...','...ss...'],
+  dice:   ['wwwwwww.','wkwwwkw.','wwwwwww.','wwwkwww.','wwwwwww.','wkwwwkw.','wwwwwww.','........'],
+  cursor: ['w.......','ww......','wyw.....','wyyw....','wyyyw...','wyyw....','wyw.....','ww......'],
+  rage:   ['r..r..r.','.r.r.r..','..rrr...','rrr.rrr.','..rrr...','.r.r.r..','r..r..r.','........'],
+  meteor: ['......oo','.....oo.','....oo..','.rrro...','rrryr...','rryyr...','rrrr....','.rr.....'],
+  feather:['......ww','....wwsw','...wwsw.','..wwsw..','.wwsw...','.wsw....','.s......','s.......'],
+  spark:  ['...y....','...y..y.','.yyyyy..','...y....','.y.y....','......y.','.....yyy','......y.'],
+  check:  ['.......g','......gg','.....gg.','g...gg..','gg.gg...','.ggg....','..g.....','........'],
+  zone:   ['..oooo..','.o....o.','o..oo..o','o.oooo.o','o.oooo.o','o..oo..o','.o....o.','..oooo..'],
+  cross:  ['...gg...','...gg...','.gggggg.','.gggggg.','...gg...','...gg...','...gg...','........'],
+  horn:   ['......yy','....yyyy','yyyyyyny','yyyyyyny','....yyyy','......yy','........','........'],
+  gil:    ['..yyyy..','.yynnyy.','yynyyyyy','yyynnyyy','yyyyynyy','.yynnyy.','..yyyy..','........'],
+  lb:     ['y......y','.y.yy.y.','..yyyy..','.yywwyy.','.yywwyy.','..yyyy..','.y.yy.y.','y......y'],
+};
+const IC_CACHE = {};
+function ic(n, cls=''){
+  const k=n+'|'+cls; if (IC_CACHE[k]) return IC_CACHE[k];
+  const g=IC_GRID[n]||IC_GRID.star; let r='';
+  g.forEach((row,y)=>{ for(let x=0;x<8;x++){ const c=row[x]; if(c&&c!=='.') r+=`<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${IC_PAL[c]}"/>`; } });
+  return (IC_CACHE[k] = `<svg class="ic ${cls}" viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true">${r}</svg>`);
+}
+function starsIc(n){ return Array.from({length:n},()=>ic('star')).join(''); }
+/* Info-bulles : survol (ordinateur) et appui long (mobile) sur [data-tip] */
+(function(){
+  let tipEl=null, lpT=null, lpFired=false;
+  function show(t, x, y){
+    if(!tipEl){ tipEl=document.createElement('div'); tipEl.className='tipbox'; document.body.appendChild(tipEl); }
+    tipEl.innerHTML=t; tipEl.style.display='block';
+    const w=tipEl.offsetWidth, h=tipEl.offsetHeight, W=innerWidth;
+    tipEl.style.left=Math.max(4,Math.min(W-w-4,x-w/2))+'px'; tipEl.style.top=Math.max(4,y-h-12)+'px';
+  }
+  function hide(){ if(tipEl) tipEl.style.display='none'; }
+  const tipOf = el => el && el.closest && el.closest('[data-tip]');
+  document.addEventListener('mouseover', e=>{ if (e.pointerType==='touch') return; const t=tipOf(e.target); if(t && matchMedia('(hover:hover)').matches){ const b=t.getBoundingClientRect(); show(t.dataset.tip, b.left+b.width/2, b.top); } else if(!t) hide(); });
+  document.addEventListener('touchstart', e=>{ const t=tipOf(e.target); clearTimeout(lpT); lpFired=false; if(!t) { hide(); return; }
+    lpT=setTimeout(()=>{ lpFired=true; const b=t.getBoundingClientRect(); show(t.dataset.tip, b.left+b.width/2, b.top); }, 420); }, {passive:true});
+  document.addEventListener('touchend', ()=>{ clearTimeout(lpT); if(lpFired) setTimeout(hide, 1600); }, {passive:true});
+  document.addEventListener('touchmove', ()=>clearTimeout(lpT), {passive:true});
+  // un appui long ne déclenche pas l'action
+  document.addEventListener('click', e=>{ if(lpFired && tipOf(e.target)){ e.stopPropagation(); e.preventDefault(); lpFired=false; } }, true);
+  document.addEventListener('contextmenu', e=>{ if(tipOf(e.target)) e.preventDefault(); });
+  window.TIP = { show, hide };
+})();
 
 /* ===================== DONNÉES : JOBS =====================
    Chaque job : 1 attaque de base (toujours dispo) + 6 compétences au choix.
@@ -511,7 +614,7 @@ const ENEMIES = {
   flannoir:{ name:'Flan noir', hp:90, atk:11, ai:'dflan', res:{phys:0.6} },
   squelettemaudit:{ name:'Squelette maudit', hp:95, atk:11, ai:'cursed', res:{phys:0.2, mag:-0.2} },
   dragonnet:{ name:'Dragonnet', hp:90, atk:12, ai:'drake', res:{mag:0.25} },
-  // Gardiens (étages 5/15/25/35/45) — insensibles à l'étourdissement sauf sorts marqués ✋
+  // Gardiens (étages 5/15/25/35/45) — insensibles à l'étourdissement sauf sorts marqués (bolt)
   roiflan:{ name:'Roi Flan', hp:240, atk:10, ai:'kingflan', res:{phys:0.4, mag:-0.2}, boss:true, guardian:true },
   chevalier:{ name:'Chevalier squelette', hp:270, atk:12, ai:'knight', res:{phys:0.2}, boss:true, guardian:true },
   grandahriman:{ name:'Grand Ahriman', hp:270, atk:12, ai:'bigeye', boss:true, guardian:true },
@@ -541,13 +644,13 @@ const Lf = lv => 1 + BAL.lv*(lv-1);
 function eMul(f){ const r=Math.min(1,(f-1)/BAL.ramp), late=Math.max(0,f-10); return { h:Lf(f)*(BAL.h0+(1-BAL.h0)*r+BAL.hL*late), a:Lf(f)*(BAL.a0+(1-BAL.a0)*r+BAL.aL*late) }; }
 const FLOOR_TIPS = {
   1:'Les Flans résistent aux coups physiques mais craignent la magie. Touche un ennemi pour voir ses résistances.',
-  4:'Les Squelettes préparent de gros coups (⏳ puis ⚠) : utilise une défense au bon moment, ou étourdis-les (✋).',
-  5:'Gardien en vue ! Les gardiens sont insensibles aux étourdissements, sauf pour les sorts marqués ✋.',
+  4:'Les Squelettes préparent de gros coups ('+ic('hour')+' puis '+ic('warn')+') : utilise une défense au bon moment, ou étourdis-les ('+ic('bolt')+').',
+  5:'Gardien en vue ! Les gardiens sont insensibles aux étourdissements, sauf pour les sorts marqués '+ic('bolt')+'.',
   7:'Les Grenades finissent par exploser : achève-les vite ou protège-toi.',
   10:'Le Golem de cristal se couvre d’une armure : brise son bouclier avant sa Surcharge !',
   11:'Nouveaux ennemis : les Sylphes soignent leurs alliés et les Gobelins chamans les renforcent. Élimine ou interromps-les en priorité !',
   15:'Les Sentinelles posent une barrière : leur Rayon double de puissance si la barrière tient encore.',
-  20:'Le Seigneur des Damnés invoque des morts et draine ton âme (✋ interromps-le !).',
+  20:'Le Seigneur des Damnés invoque des morts et draine ton âme ('+ic('bolt')+' interromps-le !).',
   21:'Spectres et Flans noirs : très résistants aux coups physiques. Les dégâts magiques et les poisons sont tes amis.',
   30:'La Wyverne s’envole (−50 % de dégâts reçus) puis plonge. Garde tes gros coups pour quand elle est au sol.',
   31:'Les Squelettes maudits deviennent plus forts à chaque coup : abats-les vite. Les Dragonnets crachent du feu.',
@@ -557,8 +660,8 @@ const FLOOR_TIPS = {
 
 /* ===================== IA DES MONSTRES =====================
    Chaque monstre annonce son intention (affichée au-dessus de lui).
-   windup:1 => tour de préparation (⏳) puis grosse attaque (⚠) au tour suivant.
-   Les préparations peuvent être interrompues par un étourdissement (✋), sauf
+   windup:1 => tour de préparation (hour) puis grosse attaque (warn) au tour suivant.
+   Les préparations peuvent être interrompues par un étourdissement (bolt), sauf
    chez les gardiens/boss où seules celles marquées interruptible le sont. */
 const A = (name, power, o={}) => Object.assign({kind:'atk', name, power, type:'phys'}, o);
 const alive = () => C ? C.enemies.filter(e=>!e.dead) : [];
@@ -719,14 +822,14 @@ const REWARDS = [
   {id:'pickpocket', r:'c', name:'Doigts agiles', desc:'+3 Gils par ennemi vaincu.', max:3, v:2, apply:()=>addPk('gilKill',3)},
   {id:'ouverture', r:'c', name:'Lame d’ouverture', desc:'+20 % de dégâts contre les ennemis à plus de 80 % de PV.', max:2, v:3, apply:()=>addPk('opener',0.2)},
   {id:'alchimie', r:'c', name:'Mortier d’alchimiste', desc:'Les potions soignent 10 % de plus.', max:2, v:3, tag:'heal', apply:()=>addPk('potion',0.1)},
-  {id:'brisebouclier', r:'c', name:'Marteau brise-garde', desc:'+30 % de dégâts contre les boucliers 🛡.', max:2, v:3, apply:()=>addPk('vsShield',0.3)},
+  {id:'brisebouclier', r:'c', name:'Marteau brise-garde', desc:'+30 % de dégâts contre les boucliers '+ic('shield')+'.', max:2, v:3, apply:()=>addPk('vsShield',0.3)},
   {id:'rajeu', r:'c', name:'Pomandre de rajeunissement', desc:'Restaure 60 % des PV et tous les PM.', v:3, tag:'heal', apply:()=>{ healR(R.maxhp*0.6); R.mp=R.maxmp; }},
   // --- Rares ---
   {id:'vampi', r:'r', name:'Pomandre de vampirisme', desc:'Récupère 3 % des dégâts infligés en PV.', max:2, v:6, apply:()=>{ R.mods.vamp+=0.03; }},
-  {id:'interruption', r:'r', name:'Gantelet d’interruption', desc:'Interrompre une action ✋ te soigne 8 % et inflige des dégâts.', max:2, v:6, apply:()=>addPk('onInterrupt',1)},
-  {id:'parade', r:'r', name:'Parade réflexe', desc:'−15 % de dégâts des attaques ⚠ télégraphiées.', max:2, v:7, apply:()=>addPk('bigRed',0.15)},
-  {id:'fleau', r:'r', name:'Fléau des soigneurs', desc:'+40 % de dégâts contre les soutiens ✚ 📯.', max:1, v:4, apply:()=>addPk('vsSupport',0.4)},
-  {id:'venin', r:'r', name:'Venin concentré', desc:'Tes dégâts sur la durée ☣ sont augmentés de 40 %.', max:2, v:4, req:()=>allSkills(R.job).some(s=>s.dot), apply:()=>addPk('dotUp',0.4)},
+  {id:'interruption', r:'r', name:'Gantelet d’interruption', desc:'Interrompre une action '+ic('bolt')+' te soigne 8 % et inflige des dégâts.', max:2, v:6, apply:()=>addPk('onInterrupt',1)},
+  {id:'parade', r:'r', name:'Parade réflexe', desc:'−15 % de dégâts des attaques '+ic('warn')+' télégraphiées.', max:2, v:7, apply:()=>addPk('bigRed',0.15)},
+  {id:'fleau', r:'r', name:'Fléau des soigneurs', desc:'+40 % de dégâts contre les soutiens '+ic('cross')+' '+ic('horn')+'.', max:1, v:4, apply:()=>addPk('vsSupport',0.4)},
+  {id:'venin', r:'r', name:'Venin concentré', desc:'Tes dégâts sur la durée '+ic('poison')+' sont augmentés de 40 %.', max:2, v:4, req:()=>allSkills(R.job).some(s=>s.dot), apply:()=>addPk('dotUp',0.4)},
   {id:'robe', r:'r', name:'Étole runique', desc:'−15 % de dégâts magiques subis.', max:2, v:5, apply:()=>addPk('magRed',0.15)},
   {id:'sablier', r:'r', name:'Sablier figé', desc:'La rage des ennemis arrive 3 tours plus tard.', max:1, v:6, apply:()=>addPk('enrageDelay',3)},
   {id:'grace', r:'r', name:'Coup de grâce', desc:'+30 % de dégâts contre les ennemis sous 30 % de PV.', max:1, v:4, apply:()=>addPk('execute',0.3)},
@@ -738,8 +841,8 @@ const REWARDS = [
   {id:'geants', r:'r', name:'Tueur de géants', desc:'+12 % de dégâts contre les gardiens et les boss.', max:1, v:5, apply:()=>addPk('boss',0.12)},
   {id:'percearmure', r:'r', name:'Perce-armure', desc:'Ignore 50 % des résistances ennemies.', max:1, v:4, apply:()=>addPk('pierce',0.5)},
   {id:'volonte', r:'r', name:'Volonté de fer', desc:'Immunité à Affaibli ↓.', max:1, v:3, apply:()=>addPk('noWeak',1)},
-  {id:'antidote', r:'r', name:'Talisman antidote', desc:'Immunité aux poisons ☣ ennemis.', max:1, v:3, apply:()=>addPk('noDot',1)},
-  {id:'opportun', r:'r', name:'Frappe opportuniste', desc:'+35 % de dégâts contre les ennemis étourdis 💫.', max:2, v:4, apply:()=>addPk('stunned',0.35)},
+  {id:'antidote', r:'r', name:'Talisman antidote', desc:'Immunité aux poisons '+ic('poison')+' ennemis.', max:1, v:3, apply:()=>addPk('noDot',1)},
+  {id:'opportun', r:'r', name:'Frappe opportuniste', desc:'+35 % de dégâts contre les ennemis étourdis '+ic('stun')+'.', max:2, v:4, apply:()=>addPk('stunned',0.35)},
   {id:'epines', r:'r', name:'Armure d’épines', desc:'Renvoie 20 % des dégâts subis à l’attaquant.', max:1, v:4, apply:()=>addPk('thorns',0.2)},
   {id:'econome', r:'r', name:'Sceau d’économie', desc:'Les compétences coûtent 25 % de PM en moins.', max:1, v:4, req:()=>allSkills(R.job).some(s=>s.mp), apply:()=>addPk('mpSave',0.25)},
   {id:'superpotion', r:'r', name:'Super-potions', desc:'+2 potions (max 5 en sac).', v:4, tag:'heal', req:()=>R.potions<4, apply:()=>{ R.potions=Math.min(5,R.potions+2); }},
@@ -792,16 +895,24 @@ function toast(t){ const d=document.createElement('div'); d.className='toast'; d
 function roleTag(job){ const r=ROLES[JOBS[job].role]; return `<span class="tag ${r.c}">${r.n}</span>`; }
 function bar(cur,max,cls='',shield=0){ const p=clamp(cur/max*100,0,100); const sp=clamp(shield/max*100,0,100-p); return `<div class="bar ${cls}"><i style="width:${p}%"></i>${shield?`<span class="sh" style="left:${p}%;width:${sp}%"></span>`:''}</div>`; }
 function bind(root){ root.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>SCREENS[b.dataset.go]()); }
+function chip(icn, txt, cls=''){ return `<span class="chip ${cls}">${ic(icn)}${txt!=null&&txt!==''?`<b>${txt}</b>`:''}</span>`; }
 function skillTag(s){
-  const t=[];
-  if (s.power) t.push((s.target==='all'?'Zone ':'')+Math.round(s.power*100*(s.hits||1))+'%'+((s.stat==='mag'||s.type==='mag')?' ✦':''));
-  if (s.stun) t.push('✋');
-  if (s.mp) t.push(s.mp+' PM');
-  if (s.req) t.push(s.req+' Sen');
-  if (s.cd) t.push('⟳'+s.cd);
-  if (!s.power && s.self){ if(s.self.mitig||s.self.invuln||s.self.shield||s.self.holm) t.push('Défense'); else if(s.self.heal||s.self.healPct||s.self.regen) t.push('Soin'); else if(s.self.buff||s.self.nextCrit) t.push('Bonus'); else if(s.self.mpGain) t.push('PM'); }
-  return t.join(' · ');
+  const t=[], sf=s.self||{};
+  if (s.power) t.push(chip(s.target==='all'?'zone':((s.stat==='mag'||s.type==='mag')?'magic':'sword'), Math.round(s.power*100*(s.hits||1))+'%'));
+  if (sf.heal||sf.healPct) t.push(chip('heal', sf.healPct?Math.round(sf.healPct*100)+'%':sf.heal));
+  if (sf.regen) t.push(chip('heal','+'));
+  if (sf.mitig) t.push(chip('shield', '-'+Math.round(sf.mitig[0]*100)+'%'));
+  else if (sf.invuln||sf.shield||sf.holm) t.push(chip('shield',''));
+  if (sf.buff||sf.nextCrit) t.push(chip('up',''));
+  if (sf.mpGain) t.push(chip('drop','+'));
+  if (s.stun) t.push(chip('bolt',''));
+  if (s.dot) t.push(chip('poison',''));
+  if (s.mp) t.push(chip('drop', s.mp,'mp'));
+  if (s.req) t.push(`<span class="chip"><b>${s.req} Sen</b></span>`);
+  if (s.cd) t.push(chip('clock', s.cd,'cd'));
+  return t.join('');
 }
+function skillTip(s){ return `<b>${s.name}</b><div class="tchips">${skillTag(s)}</div>${s.desc||''}`.replace(/"/g,'&quot;'); }
 function skillListHTML(k, only){
   const list = only ? [JOBS[k].basic].concat(JOBS[k].opts.filter(o=>only.includes(o.id))) : allSkills(k);
   return `<div class="sklist">${list.map((s,i)=>`<div class="it"><b>${s.name}</b>${i===0?' <span class="tag">Base</span>':''} <span class="muted">${skillTag(s)}</span><br>${s.desc}</div>`).join('')}</div>`;
@@ -885,7 +996,7 @@ SCREENS.hub = function(){
     <div class="grid2">
       <button class="btn" data-k="jobs" data-go="jobs">${spr('icon_cristal','','width:26px')} Jobs</button>
       <button class="btn" data-k="shop" data-go="shop">${spr('icon_coffre','','width:26px')} Marchand</button>
-      <button class="btn" data-k="gacha" data-go="gacha">${spr('icon_cristal','','width:26px')} Invocation <span class="frag" style="font-size:13px">💎${S.frag||0}</span></button>
+      <button class="btn" data-k="gacha" data-go="gacha">${spr('icon_cristal','','width:26px')} Invocation <span class="frag" style="font-size:13px">${ic('gem')}${S.frag||0}</span></button>
       <button class="btn" data-k="comps" id="bHubComps">${S.comp?spr('c_'+S.comp,'','width:26px'):spr('icon_rencontre','','width:26px')} Compagnons</button>
     </div>
     <button class="btn" data-k="atelier" id="bAtelier">${spr('icon_autel','','width:26px')} Atelier des sprites</button>
@@ -912,8 +1023,8 @@ SCREENS.prep = function(){
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Préparation — ${j.name}</b><span class="gold">${ids.length}/4</span></div>
   <div class="scroll">
-    <div class="win row" style="gap:10px">${spr(k,'idle','width:56px')}<div class="grow"><b>Choisis 4 compétences</b><div class="muted">Attaque de base toujours disponible : <b>${j.basic.name}</b>. Pense à garder une défense et un étourdissement (✋) !</div></div></div>
-    <button class="btn door" data-k="prepcomp" id="bPrepComp">${S.comp?spr('c_'+S.comp,'idle'):spr('icon_rencontre')}<div><div>${S.comp?'Compagnon : '+COMPANIONS[S.comp].name+' '+'★'.repeat(COMPANIONS[S.comp].star):'Aucun compagnon'}</div><div class="d">${S.comp?COMPANIONS[S.comp].sig+' (rang '+S.comps[S.comp]+')':'Invoque des héros avec des fragments 💎 (Avant-poste → Invocation).'} Touche pour changer.</div></div></button>
+    <div class="win row" style="gap:10px">${spr(k,'idle','width:56px')}<div class="grow"><b>Choisis 4 compétences</b><div class="muted">Attaque de base toujours disponible : <b>${j.basic.name}</b>. Pense à garder une défense et un étourdissement (${ic('bolt')}) !</div></div></div>
+    <button class="btn door" data-k="prepcomp" id="bPrepComp">${S.comp?spr('c_'+S.comp,'idle'):spr('icon_rencontre')}<div><div>${S.comp?'Compagnon : '+COMPANIONS[S.comp].name+' '+starsIc(COMPANIONS[S.comp].star):'Aucun compagnon'}</div><div class="d">${S.comp?COMPANIONS[S.comp].sig+' (rang '+S.comps[S.comp]+')':'Invoque des héros avec des fragments '+ic('gem')+' (Avant-poste → Invocation).'} Touche pour changer.</div></div></button>
     ${j.opts.map(s=>`<button class="btn skopt ${ids.includes(s.id)?'on':''}" data-k="opt-${s.id}" data-opt="${s.id}"><div>${s.name} <small class="muted">${skillTag(s)}</small></div><div class="d">${s.desc}</div></button>`).join('')}
   </div>
   <div class="row"><button class="btn small" data-k="back" data-go="hub" style="width:auto">Retour</button>
@@ -1000,7 +1111,7 @@ function gainGils(n){ const g=Math.round(n*(1+R.mods.gil+(R.comp&&R.comp.id==='t
 function spendGils(n){ if (R.gilsEarned<n) return false; R.gilsEarned-=n; return true; }
 const potionPct = () => 0.4 + pk('potion');
 function isBossNode(){ const P=R.plan; return !!(P && P.steps[P.i] && P.steps[P.i][0]==='boss'); }
-function topbarRun(title){ return `<div class="win topbar"><b class="grow">${title}</b>${R.frags?`<span class="frag">💎${R.frags}</span>`:''}<span class="gold">${R.gilsEarned} G</span></div>`; }
+function topbarRun(title){ return `<div class="win topbar"><b class="grow">${title}</b>${R.frags?`<span class="frag">${ic('gem')}${R.frags}</span>`:''}<span class="gold">${R.gilsEarned} G</span></div>`; }
 function floorIntro(){
   const f=R.floor;
   S.stats.best=Math.max(S.stats.best,f); persist();
@@ -1011,7 +1122,7 @@ function floorIntro(){
     <div class="muted">Palais des Morts · Niveau d’aether ${R.level}</div><h1 style="font-size:34px">Étage ${f}</h1>
     <p class="muted">${g?`${isBigBoss(f)?'Boss':'Gardien'} de l’étage : <b>${ENEMIES[g].name}</b>`:f===1?'Ton niveau d’aether repart à 1 : il monte à chaque étage.':'L’air devient plus lourd…'}</p>
     <p class="muted">${R.plan.steps.length} salles à traverser.${R.curse?' <span style="color:#ff9aff">Malédiction active.</span>':''}</p>
-    ${tip?`<div class="tip">💡 ${tip}</div>`:''}</div>
+    ${tip?`<div class="tip">${ic('tip')} ${tip}</div>`:''}</div>
     <div style="flex:1"></div><button class="btn goldb" data-k="next" id="bN">Avancer</button>`;
   document.getElementById('bN').onclick = SCREENS.map;
 }
@@ -1062,7 +1173,7 @@ SCREENS.map = function(){
   ${playerPanelHTML()}
   <div class="scroll">
     <div class="center"><h3>${step[0]==='boss'?'La salle du gardien':step.length>1?'Choisis ton chemin':'Une seule voie'}</h3><div class="prog">${dots.join('')}</div></div>
-    ${R.curse?`<div class="tip" style="border-color:#ff80ff;color:#ffc8ff">☠ ${R.curse.name}</div>`:''}
+    ${R.curse?`<div class="tip" style="border-color:#ff80ff;color:#ffc8ff">${ic('skull')} ${R.curse.name}</div>`:''}
     ${step.map((t,i)=> t==='boss'
       ? `<button class="btn redb door" data-k="room-boss" data-room="${i}">${spr(bossKey,'','width:52px')}<div><div>${ENEMIES[bossKey].name}</div><div class="d">${isBigBoss(R.floor)?'Boss':'Gardien'} de l’étage ${R.floor}. Observe ses attaques !</div></div></button>`
       : `<button class="btn door ${ROOM[t].red?'redb':''}" data-k="room-${t}" data-room="${i}">${spr(ROOM[t].icon)}<div><div>${ROOM[t].n}</div><div class="d">${ROOM[t].d}</div></div></button>`).join('')}
@@ -1075,7 +1186,7 @@ SCREENS.map = function(){
 function pomList(){ const c={}; R.taken.forEach(id=>c[id]=(c[id]||0)+1); return Object.keys(c).filter(id=>REW[id]).map(id=>REW[id].name+(c[id]>1?' ×'+c[id]:'')).join(', ') || 'aucun'; }
 function itemsMenuMap(){
   showModal(`<h2>Objets</h2><p class="muted">Bonus obtenus : ${pomList()}</p>
-   ${R.comp?`<p class="muted">Compagnon : <b>${COMPANIONS[R.comp.id].name}</b> ${'★'.repeat(COMPANIONS[R.comp.id].star)} · rang ${R.comp.rank} — ${COMPANIONS[R.comp.id].sig}</p>`:''}
+   ${R.comp?`<p class="muted">Compagnon : <b>${COMPANIONS[R.comp.id].name}</b> ${starsIc(COMPANIONS[R.comp.id].star)} · rang ${R.comp.rank} — ${COMPANIONS[R.comp.id].sig}</p>`:''}
    <p class="muted">Compétences : ${R.loadout.map(id=>JOBS[R.job].opts.find(o=>o.id===id).name).join(', ')}</p>
    <div class="col" style="margin-top:8px">
    <button class="btn" id="uP" ${R.potions&&R.hp<R.maxhp?'':'disabled'}>Potion (${R.potions}) — soigne ${Math.round(potionPct()*100)} %</button>
@@ -1094,7 +1205,7 @@ function playerPanelHTML(inCombat){
     if (st.invulnT>0) sts.push(`Invincible (${st.invulnT})`);
     if (st.holmT>0) sts.push(`Holmgang (${st.holmT})`);
     if (st.shield>0) sts.push(`Bouclier ${Math.round(st.shield)}`);
-    if (st.absorb>0) sts.push(`<span style="color:#9fe0ff">Protégé (⚠ absorbé)</span>`);
+    if (st.absorb>0) sts.push(`<span style="color:#9fe0ff">Protégé (${ic('warn')} absorbé)</span>`);
     if (st.regenT>0) sts.push(`Régén. (${st.regenT})`);
     if (st.buffT>0) sts.push(`+${Math.round(st.buff*100)}% dég. (${st.buffT})`);
     if (st.nextCrit) sts.push('Critique prêt');
@@ -1164,7 +1275,7 @@ function showRewards(){
    <div class="scroll">${w.extra||''}
     <div class="center"><h3>Choisis une récompense</h3></div>
     ${opts.map((x,i)=>`<button class="btn reward ${RARITY[x.r].cls}" data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}">${spr(rewIcon(x))}<div><div>${x.name} <span class="rar">${RARITY[x.r].n}</span></div><div class="muted" style="font-weight:600">${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}</div></div></button>`).join('')}
-    ${w.fixed?'':`<button class="btn small" style="width:100%" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>🎲 Relancer — ${cost} Gils${w.rr?` (relance n°${w.rr+1})`:''}</button>`}
+    ${w.fixed?'':`<button class="btn small" style="width:100%" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost} Gils${w.rr?` (relance n°${w.rr+1})`:''}</button>`}
    </div>${playerPanelHTML()}`;
   app.querySelectorAll('[data-rew]').forEach(b=>b.onclick=()=>{ const x=opts[+b.dataset.rew]; R.rew=null; takeReward(x); advanceNode(); });
   const bRr=document.getElementById('bReroll'); if (bRr) bRr.onclick=()=>{
@@ -1194,7 +1305,7 @@ function endRun(victory, abandoned){
       <div class="stat"><span>Monstres vaincus</span><b>${kills}</b></div>
       ${victory?'<div class="stat"><span>Bonus de victoire</span><b class="gold">500</b></div>':''}
       <div class="stat"><span>Gils conservés</span><b class="gold">+${earned}</b></div>
-      <div class="stat"><span>Fragments de cristal</span><b class="frag">+${frags} 💎</b></div>
+      <div class="stat"><span>Fragments de cristal</span><b class="frag">+${frags} ${ic('gem')}</b></div>
     </div>
    </div><div style="flex:1"></div>
    <button class="btn goldb" data-k="camp" id="bCamp">Retour à l’avant-poste</button>`;
@@ -1238,7 +1349,7 @@ function curTarget(){ let e=C.enemies[C.target]; if(!e||e.dead){ e=alive()[0]; C
 function renderCombat(){
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button></div>
-  <div class="field" id="field" style="background-image:url(${floorBG(R.floor)})">
+  <div class="field ${R.comp?'withc':'solo'}" id="field" style="background-image:url(${floorBG(R.floor)})">
     <div class="enemies" id="enemies"></div>
     <div id="aoe"></div>
     <div class="player" id="player">${spr(R.job,'idle')}</div>
@@ -1254,13 +1365,13 @@ function helpModal(){
   showModal(`<h2>${JOBS[R.job].name} — Actions</h2>${skillListHTML(R.job, R.loadout)}
    ${R.comp?`<div class="sklist"><div class="it"><b>Compagnon : ${COMPANIONS[R.comp.id].name}</b><br>${COMPANIONS[R.comp.id].sig} Il agit tout seul après toi, au bon moment.</div></div>`:''}
    <div class="sklist"><div class="it"><b>Objets</b><br>Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM. Utiliser un objet prend le tour.</div>
-   <div class="it"><b>Lire les ennemis</b><br>Touche un ennemi pour le cibler (▶). Au-dessus : sa prochaine action.<br>
-   ⏳ = il prépare une grosse attaque. <span class="gold">⚠ rouge</span> = elle part ce tour-ci : défends-toi (Rempart, bouclier…), soigne-toi ou achève-le.<br>
-   ✋ = interruptible : un étourdissement (compétences ✋) l’annule. Gardiens et boss ne sont interruptibles que sur les actions ✋.<br>
-   ✚ soigneur, 📯 renforce ses alliés : à éliminer ou interrompre en priorité.<br>
-   🛡 bouclier : à briser (certaines attaques doublent si le bouclier tient).<br>
-   ⏰ compte à rebours avant la rage (dégâts ×2,5).<br>
-   Résistances : « Phys− » = résiste aux coups physiques, « Mag+ » = faible à la magie (✦).</div></div>
+   <div class="it"><b>Lire les ennemis</b><br>Touche un ennemi pour le cibler (${ic('cursor')}). Au-dessus : sa prochaine action.<br>
+   ${ic('hour')} = il prépare une grosse attaque. <span class="gold">${ic('warn')} rouge</span> = elle part ce tour-ci : défends-toi (Rempart, bouclier…), soigne-toi ou achève-le.<br>
+   ${ic('bolt')} = interruptible : un étourdissement (compétences ${ic('bolt')}) l’annule. Gardiens et boss ne sont interruptibles que sur les actions ${ic('bolt')}.<br>
+   ${ic('cross')} soigneur, ${ic('horn')} renforce ses alliés : à éliminer ou interrompre en priorité.<br>
+   ${ic('shield')} bouclier : à briser (certaines attaques doublent si le bouclier tient).<br>
+   ${ic('clock')} compte à rebours avant la rage (dégâts ×2,5).<br>
+   Résistances : « Phys− » = résiste aux coups physiques, « Mag+ » = faible à la magie (${ic('magic')}).</div></div>
    <button class="btn small" style="width:100%;margin-top:8px" id="hC">Fermer</button>`);
   document.getElementById('hC').onclick=closeModal;
 }
@@ -1278,24 +1389,24 @@ function updateCombat(){
   en.innerHTML = C.enemies.map((e,i)=>{
     let it='';
     if (!e.dead && e.intent){
-      const x=e.intent, ic=canInterrupt(e)?' ✋':'';
-      if (x.kind==='stun') it=`<div class="intent stun">💫 Étourdi</div>`;
-      else if (x.kind==='interrupted') it=`<div class="intent stun">✋ Interrompu</div>`;
-      else if (x.kind==='charge') it=`<div class="intent charge ${ic?'int':''}">⏳ ${x.then.name}${ic}</div>`;
-      else if (x.kind==='atk') it=`<div class="intent ${x.big?'big':''} ${enraged(e)?'enr':''} ${ic?'int':''}">${x.big?'⚠ '+x.name+' ':'⚔ '}${intentEst(e,x)}${x.dot?' ☣':''}${x.weaken?' ↓':''}${ic}</div>`;
-      else if (x.kind==='heal') it=`<div class="intent ${ic?'int':''}">✚ ${x.name}${ic}</div>`;
-      else if (x.kind==='buffAll') it=`<div class="intent big ${ic?'int':''}">📯 ${x.name}${ic}</div>`;
-      else if (x.kind==='shield') it=`<div class="intent">🛡 ${x.name}</div>`;
-      else if (x.kind==='summon') it=`<div class="intent charge">☠ ${x.name}</div>`;
-      else if (x.kind==='fly') it=`<div class="intent charge">🪽 ${x.name}</div>`;
+      const x=e.intent, icx=canInterrupt(e)?' '+ic('bolt')+'':'';
+      if (x.kind==='stun') it=`<div class="intent stun">${ic('stun')} Étourdi</div>`;
+      else if (x.kind==='interrupted') it=`<div class="intent stun">${ic('bolt')} Interrompu</div>`;
+      else if (x.kind==='charge') it=`<div class="intent charge ${icx?'int':''}">${ic('hour')} ${x.then.name}${icx}</div>`;
+      else if (x.kind==='atk') it=`<div class="intent ${x.big?'big':''} ${enraged(e)?'enr':''} ${icx?'int':''}">${x.big?''+ic('warn')+' '+x.name+' ':''+ic('sword')+' '}${intentEst(e,x)}${x.dot?' '+ic('poison')+'':''}${x.weaken?' ↓':''}${icx}</div>`;
+      else if (x.kind==='heal') it=`<div class="intent ${icx?'int':''}">${ic('cross')} ${x.name}${icx}</div>`;
+      else if (x.kind==='buffAll') it=`<div class="intent big ${icx?'int':''}">${ic('horn')} ${x.name}${icx}</div>`;
+      else if (x.kind==='shield') it=`<div class="intent">${ic('shield')} ${x.name}</div>`;
+      else if (x.kind==='summon') it=`<div class="intent charge">${ic('skull')} ${x.name}</div>`;
+      else if (x.kind==='fly') it=`<div class="intent charge">${ic('wing')} ${x.name}</div>`;
     }
     const sx=[...resTags(e)];
-    if (e.dots.length) sx.push('☣'+e.dots.reduce((s,d)=>s+d.dmg,0));
-    if (e.shield>0) sx.push('🛡'+Math.round(e.shield));
-    if (e.buffT>0) sx.push('💢+'+Math.round(e.buff*100)+'%');
+    if (e.dots.length) sx.push(''+ic('poison')+''+e.dots.reduce((s,d)=>s+d.dmg,0));
+    if (e.shield>0) sx.push(''+ic('shield')+''+Math.round(e.shield));
+    if (e.buffT>0) sx.push(''+ic('rage')+'+'+Math.round(e.buff*100)+'%');
     if (e.rage>0) sx.push('Rage×'+e.rage);
-    if (e.flyT>0) sx.push('🪽En vol');
-    if (e.enrageAt){ const left=e.enrageAt-e.t; if (left<=0) sx.push('<b style="color:#ff80ff">ENRAGÉ</b>'); else if (left<=6) sx.push('⏰'+left); }
+    if (e.flyT>0) sx.push(''+ic('wing')+'En vol');
+    if (e.enrageAt){ const left=e.enrageAt-e.t; if (left<=0) sx.push('<b style="color:#ff80ff">ENRAGÉ</b>'); else if (left<=6) sx.push(''+ic('clock')+''+left); }
     return `<div class="en ${e.boss?'boss':''} ${e===tgt?'tgt':''} ${e.dead?'dead':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
       ${it}${e===tgt && alive().length>1 ? spr('icon_curseur','cursor') : ''}
       ${spr(e.key,'idle')}<div class="ename">${e.name}</div>${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
@@ -1304,7 +1415,7 @@ function updateCombat(){
   const al = alive();
   const big = al.find(e=>e.intent && (e.intent.big || e.intent.kind==='charge'));
   document.getElementById('aoe').innerHTML = al.some(e=>e.intent&&e.intent.big&&e.intent.kind==='atk') ? '<div class="aoe"></div>' : '';
-  document.getElementById('banner').innerHTML = big ? `<div class="banner">${big.intent.kind==='charge' ? `⏳ ${big.name} prépare « ${big.intent.then.name} »${canInterrupt(big)?' — interromps-le ✋':''} !` : big.intent.meteor ? `☄ « ${big.intent.name} » ! Protège-toi ou c’est la fin !` : `⚠ « ${big.intent.name} » imminent ! Défends-toi !`}</div>` : '';
+  document.getElementById('banner').innerHTML = big ? `<div class="banner">${big.intent.kind==='charge' ? `${ic('hour')} ${big.name} prépare « ${big.intent.then.name} »${canInterrupt(big)?' — interromps-le '+ic('bolt')+'':''} !` : big.intent.meteor ? `${ic('meteor')} « ${big.intent.name} » ! Protège-toi ou c’est la fin !` : `${ic('warn')} « ${big.intent.name} » imminent ! Défends-toi !`}</div>` : '';
   document.getElementById('log').innerHTML = C.msg || '&nbsp;';
   document.getElementById('ppw').innerHTML = playerPanelHTML(true);
   renderSkills();
@@ -1320,8 +1431,8 @@ function skillState(s){
 function renderSkills(){
   const el=document.getElementById('skills'); if(!el) return;
   el.innerHTML = combatSkills().map(s=>{ const st=skillState(s);
-    return `<button class="btn sk ${st.ok?'':'na'}" data-k="skill-${s.id}" data-sk="${s.id}" ${C.busy?'disabled':''}>${s.name}<small>${skillTag(s)||'&nbsp;'}</small>${st.cd?`<span class="cdv">${st.cd}</span>`:''}</button>`; }).join('')
-    + `<button class="btn sk" data-k="item" id="bItem" ${C.busy?'disabled':''}>Objets<small>Pot. ${R.potions} · Éth. ${R.ethers}</small></button>`;
+    return `<button class="btn sk ${st.ok?'':'na'}" data-k="skill-${s.id}" data-sk="${s.id}" data-tip="${skillTip(s)}" ${C.busy?'disabled':''}><span class="skn">${s.name}</span><span class="chips">${skillTag(s)}</span>${st.cd?`<span class="cdv">${ic('clock')}${st.cd}</span>`:''}</button>`; }).join('')
+    + `<button class="btn sk" data-k="item" id="bItem" data-tip="&lt;b&gt;Objets&lt;/b&gt;&lt;br&gt;Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM." ${C.busy?'disabled':''}><span class="skn">Objets</span><span class="chips">${chip('heal',R.potions)}${chip('drop',R.ethers,'mp')}</span></button>`;
   el.querySelectorAll('[data-sk]').forEach(b=>b.onclick=()=>playerAction(b.dataset.sk));
   document.getElementById('bItem').onclick=combatItems;
 }
@@ -1578,8 +1689,8 @@ async function checkEnd(){
 }
 function tryRevive(){
   const pel=plEl();
-  if (pk('phoenix')>0){ R.perk.phoenix--; R.hp=Math.round(R.maxhp*0.4); C.msg='🪶 La Queue de phénix te relève !'; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
-  if (R.comp && COMPANIONS[R.comp.id].kind==='revive' && !R.comp.revived){ R.comp.revived=true; R.hp=Math.round(R.maxhp*0.25*compPot()); C.msg=`✨ ${COMPANIONS[R.comp.id].name} te relève (Vercoeur) !`; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
+  if (pk('phoenix')>0){ R.perk.phoenix--; R.hp=Math.round(R.maxhp*0.4); C.msg=''+ic('feather')+' La Queue de phénix te relève !'; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
+  if (R.comp && COMPANIONS[R.comp.id].kind==='revive' && !R.comp.revived){ R.comp.revived=true; R.hp=Math.round(R.maxhp*0.25*compPot()); C.msg=`${ic('spark')} ${COMPANIONS[R.comp.id].name} te relève (Vercoeur) !`; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
   return false;
 }
 function fragDrop(kind){
@@ -1592,7 +1703,7 @@ function winCombat(){
   healR(R.maxhp*(R.curse&&R.curse.noHeal?0:0.12)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*0.3));
   const fr=fragDrop(kind);
   if (kind==='boss' && R.floor===MAX_FLOOR) return endRun(true);
-  const extra = `<div class="win center"><h2>Victoire !</h2><p>Gils de l’exploration : <span class="gold">${R.gilsEarned}</span>${fr?`<br><span class="frag">💎 +${fr} Fragment${fr>1?'s':''} de cristal !</span>`:''}</p></div>`;
+  const extra = `<div class="win center"><h2>Victoire !</h2><p>Gils de l’exploration : <span class="gold">${R.gilsEarned}</span>${fr?`<br><span class="frag">${ic('gem')} +${fr} Fragment${fr>1?'s':''} de cristal !</span>`:''}</p></div>`;
   if (kind==='boss'){ healR(R.maxhp*(isBigBoss(R.floor)?1:0.5)); R.mp=R.maxmp; return fightRewards('boss', isBigBoss(R.floor)?'Boss vaincu !':'Gardien vaincu !', extra); }
   fightRewards(kind, 'Combat terminé', extra);
 }
@@ -1615,7 +1726,7 @@ const TRAPS = [
   {id:'pointes', name:'Dalles à pointes', type:'phys', text:'Des dalles branlantes cachent des pointes acérées.', fail:'Les pointes jaillissent !', hp:0.16},
   {id:'fosse', name:'Fosse dissimulée', type:'phys', text:'Le sol sonne creux sur plusieurs mètres.', fail:'Le sol cède sous tes pieds !', hp:0.2},
   {id:'rune', name:'Rune de sommeil', type:'mag', text:'Une rune violette pulse au sol, presque invisible.', fail:'La rune t’engourdit l’esprit : PM perdus.', hp:0.06, mp:0.5},
-  {id:'gaz', name:'Bouches à gaz', type:'mag', text:'Des tuyaux rouillés sifflent le long des murs.', fail:'Un gaz toxique t’enveloppe : tu commenceras le prochain combat empoisonné ☣.', hp:0.08, poison:1},
+  {id:'gaz', name:'Bouches à gaz', type:'mag', text:'Des tuyaux rouillés sifflent le long des murs.', fail:'Un gaz toxique t’enveloppe : tu commenceras le prochain combat empoisonné '+ic('poison')+'.', hp:0.08, poison:1},
   {id:'alarme', name:'Glyphe d’alarme', type:'mag', text:'Un glyphe d’alerte protège ce couloir.', fail:'L’alarme retentit ! Des monstres surgissent pendant que tu es encore affaibli ↓.', hp:0, fight:1},
 ];
 function trapChance(t){
@@ -1703,7 +1814,7 @@ EVENTS.marchand = function(){
     const ch = offers.map(o=>({label:`${o.x.name} <span class="rar ${RARITY[o.x.r].cls}">${RARITY[o.x.r].n}</span> — <span class="gold">${o.p} G</span>`, sub:o.x.desc, dis:o.sold||R.gilsEarned<o.p || !rewOK(o.x),
         ai: o.x.v - o.p/(12+f) , fn:()=>{ if(!spendGils(o.p)) return; o.sold=true; takeReward(o.x); toast(o.x.name+' !'); show(); }}));
     ch.push({label:`Soins complets — <span class="gold">${heal.p} G</span>`, sub:'PV et PM au maximum.', dis:heal.sold||R.gilsEarned<heal.p, ai:(1-hpPct())*10-2, fn:()=>{ if(!spendGils(heal.p)) return; heal.sold=true; R.hp=R.maxhp; R.mp=R.maxmp; show(); }});
-    ch.push({label:`Fragment de cristal 💎 — <span class="gold">${frag.p} G</span>`, sub:'Pour invoquer des compagnons à l’Avant-poste.', dis:frag.sold||R.gilsEarned<frag.p, ai:0.5, fn:()=>{ if(!spendGils(frag.p)) return; frag.sold=true; R.frags=(R.frags||0)+1; show(); }});
+    ch.push({label:`Fragment de cristal ${ic('gem')} — <span class="gold">${frag.p} G</span>`, sub:'Pour invoquer des compagnons à l’Avant-poste.', dis:frag.sold||R.gilsEarned<frag.p, ai:0.5, fn:()=>{ if(!spendGils(frag.p)) return; frag.sold=true; R.frags=(R.frags||0)+1; show(); }});
     ch.push({label:'Partir', ai:0.3, fn:advanceNode});
     choiceScreen('Marchand mystérieux', 'icon_marchand', '« Psst… aventurier. J’ai ce qu’il te faut, si tu as les Gils. »<br><span class="muted">Payé avec les Gils de l’exploration.</span>', ch);
   };
@@ -1713,7 +1824,7 @@ EVENTS.marchand = function(){
 const ENCOUNTERS = [
   ()=>({ t:'Un mog égaré', icon:'icon_rencontre', text:'« Kupo ! Je me suis perdu en livrant le courrier, kupo… »', ch:[
     {label:'Le raccompagner', sub:'Chemin dangereux : −10 % PV. Il te récompensera.', ai:hpPct()>0.5?4:-2, fn:()=>{ R.hp=Math.max(1,R.hp-Math.round(R.maxhp*0.1)); pickRewardsScreen('Merci, kupo !','Le mog fouille dans son sac…', drawRewards(3,'normal'), 'icon_rencontre'); }},
-    {label:'Lui donner une potion', sub:'Les mogs savent se montrer généreux.', dis:!R.potions, ai:1.5, fn:()=>{ R.potions--; if (rand()<0.35){ R.frags=(R.frags||0)+1; eventScreen('Kupopo !','icon_rencontre','Le mog t’offre un <span class="frag">💎 Fragment de cristal</span> !'); } else { const g=gainGils(25+3*R.floor); eventScreen('Kupo !','icon_rencontre',`Le mog te donne <span class="gold">${g} Gils</span>.`); } }},
+    {label:'Lui donner une potion', sub:'Les mogs savent se montrer généreux.', dis:!R.potions, ai:1.5, fn:()=>{ R.potions--; if (rand()<0.35){ R.frags=(R.frags||0)+1; eventScreen('Kupopo !','icon_rencontre','Le mog t’offre un <span class="frag">'+ic('gem')+' Fragment de cristal</span> !'); } else { const g=gainGils(25+3*R.floor); eventScreen('Kupo !','icon_rencontre',`Le mog te donne <span class="gold">${g} Gils</span>.`); } }},
     {label:'Passer ton chemin', ai:0, fn:advanceNode}]}),
   ()=>({ t:'Éthérite endommagée', icon:'icon_cristal', text:'Un éclat d’éthérite grésille, son aether s’échappe.', ch:[
     {label:'L’harmoniser', sub:'−50 % de tes PM actuels, soigne 35 % des PV.', ai:hpPct()<0.7?4:0, fn:()=>{ R.mp=Math.round(R.mp*0.5); healR(R.maxhp*0.35); eventScreen('Harmonisation','icon_cristal','L’aether apaisé te soigne.'); }},
@@ -1747,7 +1858,7 @@ const ENCOUNTERS = [
     {label:'Prier', sub:R.curse?'Lève la malédiction et soigne 15 %.':'+3 % de réduction des dégâts.', ai:R.curse?5:2, fn:()=>{ if (R.curse){ R.curse=null; healR(R.maxhp*0.15); eventScreen('Purifié','icon_cristal','La malédiction se dissipe.'); } else { R.mods.def+=0.03; eventScreen('Bénédiction','icon_cristal','La lumière d’Hydaelyn te protège : <b>−3 % de dégâts subis</b>.'); } }},
     {label:'Continuer', ai:0, fn:advanceNode}]}),
   ()=>({ t:'Lettre d’un mog facteur', icon:'icon_rencontre', text:'Un mog facteur t’apporte une lettre : « Courrier spécial, kupo ! »', ch:[
-    {label:'Lire la lettre', sub:'Un ami t’envoie quelque chose…', ai:2, fn:()=>{ if (rand()<0.25){ R.frags=(R.frags||0)+1; eventScreen('Courrier','icon_rencontre','La lettre contient un <span class="frag">💎 Fragment de cristal</span> !'); } else { const g=gainGils(20+2*R.floor); eventScreen('Courrier','icon_rencontre',`La lettre contient <span class="gold">${g} Gils</span>.`); } }}]}),
+    {label:'Lire la lettre', sub:'Un ami t’envoie quelque chose…', ai:2, fn:()=>{ if (rand()<0.25){ R.frags=(R.frags||0)+1; eventScreen('Courrier','icon_rencontre','La lettre contient un <span class="frag">'+ic('gem')+' Fragment de cristal</span> !'); } else { const g=gainGils(20+2*R.floor); eventScreen('Courrier','icon_rencontre',`La lettre contient <span class="gold">${g} Gils</span>.`); } }}]}),
 ];
 function canSkip(){ const P=R.plan; const nx=P.steps[P.i+1]; return !!nx && nx[0]!=='boss'; }
 EVENTS.rencontre = function(){ const e=pick(ENCOUNTERS)(); choiceScreen(e.t, e.icon, e.text, e.ch); };
@@ -1931,7 +2042,7 @@ SCREENS.atelier = function(){
   <div class="win topbar"><b class="grow">Atelier des sprites</b><span class="gold">${n} perso.</span></div>
   <div class="scroll" id="atScroll">
     <div class="win col" style="gap:6px">
-      <div class="tip">1. Touche <b>🔍 Trouver</b> : la recherche s’ouvre. Enregistre l’image (appui long → Enregistrer).<br>2. Reviens ici, touche <b>📥 Importer</b> et choisis l’image : le sprite est découpé et attribué tout seul.</div>
+      <div class="tip">1. Touche <b>${ic('search')} Trouver</b> : la recherche s’ouvre. Enregistre l’image (appui long → Enregistrer).<br>2. Reviens ici, touche <b>${ic('import')} Importer</b> et choisis l’image : le sprite est découpé et attribué tout seul.</div>
       <div class="row"><button class="btn small grow ${AT.flip?'sel':''}" data-k="atflip" id="atFlip">Miroir ↔ : ${AT.flip?'oui':'non'}</button><button class="btn small grow" data-k="atsheets" id="atSheets" ${AT.sheets.length?'':'disabled'}>Planches chargées (${AT.sheets.length})</button></div>
       <div class="row"><button class="btn small grow" data-k="atbatch" id="atBatch">Importer des planches</button><button class="btn small grow" data-k="atpackin" id="atPackIn">Importer un pack</button></div>
       <button class="btn small" style="width:100%" data-k="atpackout" id="atPackOut" ${n?'':'disabled'}>Exporter / partager mon pack</button>
@@ -1959,9 +2070,9 @@ function atRenderList(){
     if (!ks.length) return;
     html+=`<div class="grp">${g}</div>`+ks.map(k=>`<div class="win row" style="padding:6px 8px;gap:8px">
       <button class="btn small" style="width:58px;min-height:58px;padding:2px" data-k="atinfo-${k}" data-info="${k}">${spr(k,'','width:48px')}</button>
-      <div class="grow" style="min-width:0"><b style="font-size:14px">${spriteLabel(k)}</b>${CUSTOM[k]?'<div class="badge">★ Personnalisé</div>':''}</div>
-      <a class="btn small" style="padding:4px 8px;font-size:13px;text-decoration:none" data-k="atfind-${k}" href="${srURL(k)}" target="_blank" rel="noopener noreferrer">🔍 Trouver</a>
-      <button class="btn small goldb" style="padding:4px 8px;font-size:13px" data-k="atimp-${k}" data-imp="${k}">📥 Importer</button></div>`).join('');
+      <div class="grow" style="min-width:0"><b style="font-size:14px">${spriteLabel(k)}</b>${CUSTOM[k]?'<div class="badge">'+ic('star')+' Personnalisé</div>':''}</div>
+      <a class="btn small" style="padding:4px 8px;font-size:13px;text-decoration:none" data-k="atfind-${k}" href="${srURL(k)}" target="_blank" rel="noopener noreferrer">${ic('search')} Trouver</a>
+      <button class="btn small goldb" style="padding:4px 8px;font-size:13px" data-k="atimp-${k}" data-imp="${k}">${ic('import')} Importer</button></div>`).join('');
   });
   el.innerHTML = html || '<p class="muted center">Aucun résultat.</p>';
   el.querySelectorAll('[data-imp]').forEach(b=>b.onclick=async()=>{ const k=b.dataset.imp; const files=await pickFiles(false,'image/*'); await atImportSheets(files, k); });
@@ -1987,9 +2098,9 @@ async function atImportSheets(files, target){
 function atTargetModal(k){
   showModal(`<div class="row">${spr(k,'idle','width:72px')}<div class="grow"><h2>${spriteLabel(k)}</h2><div class="muted">${spriteGroup(k)}${CUSTOM[k]?' · <span class="gold">Personnalisé</span>':''}</div></div></div>
    <div class="col" style="margin-top:10px">
-    <a class="btn" style="text-decoration:none" id="tmSR" href="${srURL(k)}" target="_blank" rel="noopener noreferrer">🔍 Trouver sur The Spriters Resource</a>
+    <a class="btn" style="text-decoration:none" id="tmSR" href="${srURL(k)}" target="_blank" rel="noopener noreferrer">${ic('search')} Trouver sur The Spriters Resource</a>
     <a class="btn small" style="width:100%;text-decoration:none" id="tmGG" href="${ggURL(k)}" target="_blank" rel="noopener noreferrer">Recherche Google (Record Keeper)</a>
-    <button class="btn goldb" id="tmImp">📥 Importer une image</button>
+    <button class="btn goldb" id="tmImp">${ic('import')} Importer une image</button>
     ${AT.sheets.length?`<button class="btn" id="tmPick">Choisir dans les planches chargées</button>`:''}
     ${CUSTOM[k]?`<button class="btn small" style="width:100%" id="tmFlip">Retourner (miroir) le sprite actuel</button><button class="btn small redb" style="width:100%" id="tmReset">Réinitialiser (pixel art d’origine)</button>`:''}
     <button class="btn small" style="width:100%" id="tmC">Fermer</button></div>`);
@@ -2014,7 +2125,7 @@ SCREENS.atSheet = function(si, target){
   app.innerHTML = `
   <div class="win topbar"><b class="grow" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${target?'Sprite de '+esc(spriteLabel(target)):'Planche : '+esc(sh.name)}</b><span class="muted">${sh.sprites.length} sprites</span></div>
   ${target?`<div class="row" style="gap:8px"><div class="field atprev grow" style="background-image:url(${floorBG(ENEMIES[target]&&ENEMIES[target].boss?30:1)})">${mockSceneHTML(target)}</div>
-    <div class="atout">${spr(target,'')}<small>${CUSTOM[target]?'Attribué ✔':'Original'}</small></div></div>`:''}
+    <div class="atout">${spr(target,'')}<small>${CUSTOM[target]?'Attribué '+ic('check')+'':'Original'}</small></div></div>`:''}
   ${AT.sheets.length>1?`<div class="row" style="gap:6px;overflow-x:auto;flex:none">${AT.sheets.map((s,i)=>`<button class="btn small ${i===si?'sel':''}" style="flex:none;font-size:12px;min-height:38px" data-k="sheet-${i}" data-sheet="${i}">${esc(s.name.slice(0,14))}</button>`).join('')}</div>`:''}
   <div class="muted center" style="font-size:12px">${target?'Pas le bon ? Touche une autre vignette.':'Touche une vignette puis choisis à qui l’attribuer.'} Fond détecté : ${sh.bg}</div>
   <div class="scroll"><div class="grid4" id="thumbs">
@@ -2207,7 +2318,7 @@ async function initCustomSprites(){
 
 /* ===================== COMPAGNONS & INVOCATION (GACHA) =====================
    Les compagnons se battent à tes côtés et agissent seuls. Ce sont des alternatives (soutien, contrôle, sauvetage…),
-   pas des bonus de puissance brute : un 5★ n’est pas plus fort qu’un 3★, il est plus singulier.
+   pas des bonus de puissance brute : un 5star n’est pas plus fort qu’un 3star, il est plus singulier.
    Rang 1 à 5 (doublons) : +8 % d’efficacité par rang, recharge −1 au rang 5. */
 const COMP_HEADS = {
   spiky:["....K.K..K......","...KHKHKKHK.K...","..KHHHHHHHHKHK..","..KHHHHHHHHHHK..","...KHHHHHHHHK...","...KHSSSSSSHK...","...KSSESSESSK...","...KSSSSSSSSK...","....KSSSSSSK...."],
@@ -2219,19 +2330,19 @@ const COMP_KINDS = { interrupt:5, heal:4, regen:5, cleanse:4, shield:4, absorb:6
 const C_ = (name, game, star, kind, sig, en, art, o={}) => Object.assign({name, game, star, kind, sig, en, art}, o);
 const COMPANIONS = {
   // --- FINAL FANTASY XIV ---
-  yshtola:C_('Y’shtola','FFXIV',5,'cleanse','Esuna : dissipe Affaibli ↓ et le poison ☣, et soigne.','Y\'shtola',{h:'long',ears:1,body:'robe',w:'magenoir',pal:{H:'#e8e8f0',A:'#2a2a3a',B:'#c8c8d8',C:'#6a5aa8'}}),
-  thancred:C_('Thancred','FFXIV',4,'interrupt','Coup de crosse : interrompt une action ✋. Repère les pièges (+15 %).','Thancred',{h:'short',body:'armor',w:'samourai',pal:{H:'#d8d8e0',A:'#3a3a48',B:'#6a6a7a',L:'#1a1a24'}}),
-  alphinaud:C_('Alphinaud','FFXIV',4,'shield','Adloquium : bouclier avant une attaque ⚠.','Alphinaud',{h:'short',body:'robe',w:'erudit',pal:{H:'#f4f4ff',A:'#2a6ac8',B:'#f0f0f0',C:'#e8c547'}}),
+  yshtola:C_('Y’shtola','FFXIV',5,'cleanse','Esuna : dissipe Affaibli ↓ et le poison '+ic('poison')+', et soigne.','Y\'shtola',{h:'long',ears:1,body:'robe',w:'magenoir',pal:{H:'#e8e8f0',A:'#2a2a3a',B:'#c8c8d8',C:'#6a5aa8'}}),
+  thancred:C_('Thancred','FFXIV',4,'interrupt','Coup de crosse : interrompt une action '+ic('bolt')+'. Repère les pièges (+15 %).','Thancred',{h:'short',body:'armor',w:'samourai',pal:{H:'#d8d8e0',A:'#3a3a48',B:'#6a6a7a',L:'#1a1a24'}}),
+  alphinaud:C_('Alphinaud','FFXIV',4,'shield','Adloquium : bouclier avant une attaque '+ic('warn')+'.','Alphinaud',{h:'short',body:'robe',w:'erudit',pal:{H:'#f4f4ff',A:'#2a6ac8',B:'#f0f0f0',C:'#e8c547'}}),
   alisaie:C_('Alisaie','FFXIV',5,'revive','Vercoeur : te relève une fois par exploration. Attaque à la rapière.','Alisaie',{h:'long',body:'armor',w:'samourai',pal:{H:'#f4f4ff',A:'#c82a3a',B:'#f0f0f0',L:'#3a1a1a'}}),
   urianger:C_('Urianger','FFXIV',4,'regen','Bénéfice astral : régénération quand tes PV baissent.','Urianger',{h:'hood',body:'robe',w:'mageblanc',pal:{A:'#2a3a6a',B:'#c8b070',C:'#c8b070',S:'#a07858'}}),
-  graha:C_('G’raha Tia','FFXIV',5,'delay','Lame du temps : repousse la rage ⏰ des ennemis de 2 tours.','G\'raha Tia',{h:'short',ears:1,body:'robe',w:'barde',pal:{H:'#c83a2a',A:'#e8e0d0',B:'#c82a2a',C:'#c8a050'}}),
-  estinien:C_('Estinien','FFXIV',5,'burst','Saut céleste : énorme coup, et esquive une attaque ⚠.','Estinien',{head:'dragoon',body:'armor',w:'dragoon',pal:{M:'#2a2a40',A:'#3a3a5a',B:'#6a6a8a',L:'#141420'}},{dodge:1}),
-  haurchefant:C_('Haurchefant','FFXIV',4,'absorb','Bouclier vivant : encaisse entièrement une attaque ⚠ à ta place.','Haurchefant',{h:'short',body:'armor',w:'paladin',pal:{H:'#e8e8f0',A:'#d8d8e8',B:'#3a5cc8',M:'#c8c8d8'}}),
+  graha:C_('G’raha Tia','FFXIV',5,'delay','Lame du temps : repousse la rage '+ic('clock')+' des ennemis de 2 tours.','G\'raha Tia',{h:'short',ears:1,body:'robe',w:'barde',pal:{H:'#c83a2a',A:'#e8e0d0',B:'#c82a2a',C:'#c8a050'}}),
+  estinien:C_('Estinien','FFXIV',5,'burst','Saut céleste : énorme coup, et esquive une attaque '+ic('warn')+'.','Estinien',{head:'dragoon',body:'armor',w:'dragoon',pal:{M:'#2a2a40',A:'#3a3a5a',B:'#6a6a8a',L:'#141420'}},{dodge:1}),
+  haurchefant:C_('Haurchefant','FFXIV',4,'absorb','Bouclier vivant : encaisse entièrement une attaque '+ic('warn')+' à ta place.','Haurchefant',{h:'short',body:'armor',w:'paladin',pal:{H:'#e8e8f0',A:'#d8d8e8',B:'#3a5cc8',M:'#c8c8d8'}}),
   minfilia:C_('Minfilia','FFXIV',3,'heal','Lumière d’Hydaelyn : soigne quand tes PV baissent.','Minfilia',{h:'long',body:'robe',pal:{H:'#e8c860',A:'#f0f0f0',B:'#3a5cc8',C:'#3a5cc8'}}),
   tataru:C_('Tataru','FFXIV',3,'loot','Comptabilité : +25 % de Gils gagnés. Coup de sac à main.','Tataru',{h:'long',body:'robe',pal:{H:'#c84a2a',A:'#e8a8c8',B:'#f0f0f0',C:'#c84a2a'}}),
-  lyse:C_('Lyse','FFXIV',3,'interrupt','Poing d’acier : interrompt une action ✋.','Lyse',{h:'long',body:'armor',w:'moine',pal:{H:'#e8c860',A:'#3a8a5a',B:'#d83a3a',L:'#2a2a2a'}}),
+  lyse:C_('Lyse','FFXIV',3,'interrupt','Poing d’acier : interrompt une action '+ic('bolt')+'.','Lyse',{h:'long',body:'armor',w:'moine',pal:{H:'#e8c860',A:'#3a8a5a',B:'#d83a3a',L:'#2a2a2a'}}),
   krile:C_('Krile','FFXIV',4,'mp','Écho : rend des PM (ou soigne les jobs sans PM).','Krile',{h:'hood',body:'robe',w:'mageblanc',pal:{A:'#e8e0c8',B:'#c83a3a',C:'#c83a3a'}}),
-  cid:C_('Cid Garlond','FFXIV',3,'breakshield','Clé à molette : brise les boucliers 🛡 ennemis.','Cid Garlond',{h:'short',body:'armor',w:'guerrier',pal:{H:'#2a2a2a',A:'#7a6a4a',B:'#e8c547',L:'#3a2a1a'}}),
+  cid:C_('Cid Garlond','FFXIV',3,'breakshield','Clé à molette : brise les boucliers '+ic('shield')+' ennemis.','Cid Garlond',{h:'short',body:'armor',w:'guerrier',pal:{H:'#2a2a2a',A:'#7a6a4a',B:'#e8c547',L:'#3a2a1a'}}),
   // --- Autres FINAL FANTASY ---
   cloud:C_('Cloud','FFVII',5,'burst','Omnislash : énorme coup sur la cible.','Cloud Strife',{h:'spiky',body:'armor',w:'guerrier',pal:{H:'#f0d860',A:'#3a3a8a',B:'#8a8a9a',L:'#2a2a3a'}}),
   tifa:C_('Tifa','FFVII',4,'stagger','Coup de grâce : dégâts énormes contre un ennemi étourdi ou interrompu.','Tifa Lockhart',{h:'long',body:'armor',w:'moine',pal:{H:'#2a1a1a',A:'#f0f0f0',B:'#2a2a2a',L:'#2a2a2a'}}),
@@ -2240,12 +2351,12 @@ const COMPANIONS = {
   zidane:C_('Zidane','FFIX',4,'loot','Vol : dérobe des Gils, et parfois un Fragment après un combat. Repère les pièges.','Zidane Tribal',{h:'spiky',body:'armor',w:'moine',pal:{H:'#f0d060',A:'#3a5ac8',B:'#e8e0c8',L:'#3a5ac8'}}),
   vivi:C_('Vivi','FFIX',4,'aoe','Brasier : magie sur tous les ennemis.','Vivi Ornitier',{head:'magenoir',body:'robe',w:'magenoir',pal:{P:'#8a6a3a',A:'#3a5ac8',B:'#6a8ad8',D:'#100818',Y:'#ffe85a'}}),
   tidus:C_('Tidus','FFX',4,'haste','Hâte : réduit tes temps de recharge d’1 tour.','Tidus',{h:'spiky',body:'armor',w:'samourai',pal:{H:'#f0d060',A:'#3a6ac8',B:'#e8c547',L:'#2a2a3a'}}),
-  yuna:C_('Yuna','FFX',5,'absorb','Invocation de Valefor : absorbe entièrement une attaque ⚠.','Yuna',{h:'long',body:'robe',w:'mageblanc',pal:{H:'#5a3a20',A:'#f0f0f8',B:'#3a5cc8',C:'#d83a3a'}}),
-  auron:C_('Auron','FFX',4,'breakshield','Brise-armure : brise les boucliers 🛡 et réduit les résistances.','Auron',{h:'short',body:'armor',w:'guerrier',pal:{H:'#d8d8d8',A:'#c82a2a',B:'#2a2a2a',L:'#2a2a2a'}},{resDown:1}),
+  yuna:C_('Yuna','FFX',5,'absorb','Invocation de Valefor : absorbe entièrement une attaque '+ic('warn')+'.','Yuna',{h:'long',body:'robe',w:'mageblanc',pal:{H:'#5a3a20',A:'#f0f0f8',B:'#3a5cc8',C:'#d83a3a'}}),
+  auron:C_('Auron','FFX',4,'breakshield','Brise-armure : brise les boucliers '+ic('shield')+' et réduit les résistances.','Auron',{h:'short',body:'armor',w:'guerrier',pal:{H:'#d8d8d8',A:'#c82a2a',B:'#2a2a2a',L:'#2a2a2a'}},{resDown:1}),
   lightning:C_('Lightning','FFXIII',5,'burst','Lame de foudre : énorme coup qui ignore les boucliers.','Lightning',{h:'long',body:'armor',w:'samourai',pal:{H:'#e8a0b8',A:'#e8e8f0',B:'#a82a2a',L:'#5a3a2a'}},{pierce:1}),
   terra:C_('Terra','FFVI',5,'aoe','Ultima : magie puissante sur tous les ennemis.','Terra Branford',{h:'long',body:'robe',w:'magenoir',pal:{H:'#5fd36b',A:'#d83a3a',B:'#a82a5a',C:'#e8c547'}}),
-  cecil:C_('Cecil','FFIV',4,'mitig','Couverture : −40 % de dégâts face à une attaque ⚠.','Cecil Harvey',{head:'paladin',body:'armor',w:'paladin',pal:{M:'#e8e8f8',A:'#c8c8e8',B:'#f0f0ff',R:'#e8c547'}}),
-  kain:C_('Kain','FFIV',3,'burst','Saut : gros coup, et esquive une attaque ⚠.','Kain Highwind',{head:'dragoon',body:'armor',w:'dragoon',pal:{M:'#3a5cc8',A:'#2a3a8a',B:'#a8b0d0'}},{dodge:1}),
+  cecil:C_('Cecil','FFIV',4,'mitig','Couverture : −40 % de dégâts face à une attaque '+ic('warn')+'.','Cecil Harvey',{head:'paladin',body:'armor',w:'paladin',pal:{M:'#e8e8f8',A:'#c8c8e8',B:'#f0f0ff',R:'#e8c547'}}),
+  kain:C_('Kain','FFIV',3,'burst','Saut : gros coup, et esquive une attaque '+ic('warn')+'.','Kain Highwind',{head:'dragoon',body:'armor',w:'dragoon',pal:{M:'#3a5cc8',A:'#2a3a8a',B:'#a8b0d0'}},{dodge:1}),
   bartz:C_('Bartz','FFV',3,'random','Mime : s’adapte (bouclier, soin ou attaque).','Bartz Klauser',{h:'short',body:'armor',w:'samourai',pal:{H:'#8a5426',A:'#3a6ac8',B:'#e8e0c8',L:'#5a3a1a'}}),
   noctis:C_('Noctis','FFXV',5,'burst','Éclipse : téléportation et coup qui ignore les résistances.','Noctis',{h:'spiky',body:'armor',w:'samourai',pal:{H:'#1a1a2a',A:'#1a1a24',B:'#5a5a6a',L:'#101018'}},{pierceRes:1}),
   rosa:C_('Rosa','FFIV',3,'heal','Soin : soigne quand tes PV baissent.','Rosa',{h:'long',body:'robe',w:'barde',pal:{H:'#f0d860',A:'#f0f0f0',B:'#e8c547',C:'#e8c547'}}),
@@ -2290,13 +2401,13 @@ async function compAct(){
       regen:()=>{ if (hpPct()>=0.75 || st.regenT>0) return null; st.regen=0.06*pot; st.regenT=3; fxAt(pel,'heal'); return 'lance une régénération'; },
       cleanse:()=>{ if (!(st.weakT>0||st.pdotT>0||hpPct()<0.45)) return null; st.weakT=0; st.pdotT=0; const b=R.hp; healR(R.maxhp*0.15*pot); fxAt(pel,'heal'); floatAt(pel,'+'+Math.round(R.hp-b),'heal'); return 'lance Esuna'; },
       shield:()=>{ if (!(bigIncoming()||hpPct()<0.4)) return null; st.shield=Math.max(st.shield, Math.round(R.maxhp*0.18*pot)); fxAt(pel,'shield'); floatAt(pel,'Bouclier','mp'); return 'te protège d’un bouclier'; },
-      absorb:()=>{ if (!bigIncoming() || st.absorb>0) return null; st.absorb=1; fxAt(pel,'shield'); floatAt(pel,'Protégé','info'); return 'se prépare à encaisser l’attaque ⚠'; },
+      absorb:()=>{ if (!bigIncoming() || st.absorb>0) return null; st.absorb=1; fxAt(pel,'shield'); floatAt(pel,'Protégé','info'); return 'se prépare à encaisser l’attaque '+ic('warn')+''; },
       mitig:()=>{ if (!bigIncoming()) return null; st.mitig=Math.max(st.mitigT>0?st.mitig:0, Math.min(0.6,0.4*pot)); st.mitigT=Math.max(st.mitigT,1); fxAt(pel,'shield'); return 'te couvre'; },
       revive:()=>{ compHit(tgt,1.0*pot); return 'frappe à la rapière'; },
       burst:()=>{ if (d.dodge && !(bigIncoming()||cp.cd<=-2)) return null; compHit(tgt, (d.dodge?1.6:1.8)*pot, 'phys', d); if (d.dodge && bigIncoming()){ st.invulnT=Math.max(st.invulnT,1); floatAt(pel,'Esquive préparée','info'); } return 'déchaîne sa technique'; },
       aoe:()=>{ if (alive().length<2 && cp.cd>-1) return null; alive().forEach(e=>compHit(e,0.9*pot,'mag')); return 'lance un sort de zone'; },
       breakshield:()=>{ const e=alive().find(x=>x.shield>0) || (d.resDown && cp.cd<=-2 ? tgt : null); if(!e) return null; if(e.shield>0){ e.shield=0; floatAt(enEl(e),'Bouclier brisé !','info'); } if(d.resDown) e.resDown=0.2; compHit(e,0.8); return 'brise la garde de '+e.name; },
-      delay:()=>{ const es=alive().filter(x=>x.enrageAt && x.enrageAt-x.t<=10); if(!es.length || cp.uses>=3) return null; es.forEach(x=>{ x.enrageAt+=2; floatAt(enEl(x),'⏰ +2','info'); }); compHit(tgt,0.8,'mag'); return 'ralentit le temps'; },
+      delay:()=>{ const es=alive().filter(x=>x.enrageAt && x.enrageAt-x.t<=10); if(!es.length || cp.uses>=3) return null; es.forEach(x=>{ x.enrageAt+=2; floatAt(enEl(x),'Rage +2','info'); }); compHit(tgt,0.8,'mag'); return 'ralentit le temps'; },
       haste:()=>{ if (!Object.values(C.cds).some(v=>v>1)) return null; Object.keys(C.cds).forEach(k=>{ if(C.cds[k]>0) C.cds[k]--; }); floatAt(pel,'Hâte','info'); return 'te lance Hâte'; },
       mp:()=>{ if (hasMP()){ if (R.mp>=R.maxmp*0.4) return null; const m=Math.round(R.maxmp*0.35*pot); R.mp=Math.min(R.maxmp,R.mp+m); floatAt(pel,'+'+m+' PM','mp'); return 'te rend des PM'; }
         if (hpPct()>=0.5) return null; healR(R.maxhp*0.15*pot); fxAt(pel,'heal'); return 'te soigne'; },
@@ -2334,25 +2445,25 @@ function doPull(n){
   if (!S.comp) S.comp = out[0].id;
   persist(); return out;
 }
-const stars = n => `<span class="stars s${n}">${'★'.repeat(n)}</span>`;
+const stars = n => `<span class="stars s${n}">${starsIc(n)}</span>`;
 SCREENS.gacha = function(results){
   const left = GACHA.pity-(S.pity||0);
   app.innerHTML = `
-  <div class="win topbar"><b class="grow">Invocation de héros</b><span class="frag">💎 ${S.frag||0}</span></div>
+  <div class="win topbar"><b class="grow">Invocation de héros</b><span class="frag">${ic('gem')} ${S.frag||0}</span></div>
   <div class="scroll">
     <div class="win col center gbanner" style="align-items:center">
       <div class="row" style="justify-content:center;gap:4px">${['c_cloud','c_yshtola','c_noctis','c_yuna','c_estinien'].map(k=>spr(k,'idle','width:52px')).join('')}</div>
       <h2>Cristal des héros</h2>
       <p class="muted">Des héros de tout Final Fantasy répondent à l’appel du cristal. Ils t’accompagnent dans le Palais.</p>
-      <div class="muted" style="font-size:13px">5★ ${Math.round(GACHA.p5*100)} % · 4★ ${Math.round(GACHA.p4*100)} % · 3★ ${100-Math.round((GACHA.p5+GACHA.p4)*100)} % · ×10 : au moins un 4★<br>
-      <b class="gold">5★ garanti dans ${left} invocation${left>1?'s':''}</b> · Doublon = rang +1 (max 5), puis 2 💎 rendus.</div>
+      <div class="muted" style="font-size:13px">5${ic('star')} ${Math.round(GACHA.p5*100)} % · 4${ic('star')} ${Math.round(GACHA.p4*100)} % · 3${ic('star')} ${100-Math.round((GACHA.p5+GACHA.p4)*100)} % · ×10 : au moins un 4${ic('star')}<br>
+      <b class="gold">5${ic('star')} garanti dans ${left} invocation${left>1?'s':''}</b> · Doublon = rang +1 (max 5), puis 2 ${ic('gem')} rendus.</div>
     </div>
-    ${results?`<div class="win col"><h3>Résultat</h3><div class="grid5">${results.map(o=>`<div class="gcard s${o.st}">${spr('c_'+o.id,'idle')}<div class="gn">${COMPANIONS[o.id].name}</div>${stars(o.st)}<div class="gt">${o.res==='new'?'NOUVEAU !':o.res==='rank'?'Rang '+o.rank:'+2 💎'}</div></div>`).join('')}</div></div>`:''}
+    ${results?`<div class="win col"><h3>Résultat</h3><div class="grid5">${results.map(o=>`<div class="gcard s${o.st}">${spr('c_'+o.id,'idle')}<div class="gn">${COMPANIONS[o.id].name}</div>${stars(o.st)}<div class="gt">${o.res==='new'?'NOUVEAU !':o.res==='rank'?'Rang '+o.rank:'+2 '+ic('gem')+''}</div></div>`).join('')}</div></div>`:''}
     <div class="grid2">
-      <button class="btn goldb" data-k="pull1" id="bPull1" ${S.frag>=GACHA.x1?'':'disabled'}>Invoquer ×1<small style="display:block;font-size:12px">${GACHA.x1} 💎</small></button>
-      <button class="btn goldb" data-k="pull10" id="bPull10" ${S.frag>=GACHA.x10?'':'disabled'}>Invoquer ×10<small style="display:block;font-size:12px">${GACHA.x10} 💎</small></button>
+      <button class="btn goldb" data-k="pull1" id="bPull1" ${S.frag>=GACHA.x1?'':'disabled'}>Invoquer ×1<small style="display:block;font-size:12px">${GACHA.x1} ${ic('gem')}</small></button>
+      <button class="btn goldb" data-k="pull10" id="bPull10" ${S.frag>=GACHA.x10?'':'disabled'}>Invoquer ×10<small style="display:block;font-size:12px">${GACHA.x10} ${ic('gem')}</small></button>
     </div>
-    <p class="muted center" style="font-size:13px">Les fragments 💎 tombent rarement des monstres, plus souvent des élites, Mimiques, gardiens et boss. Ils sont conservés entre les explorations.</p>
+    <p class="muted center" style="font-size:13px">Les fragments ${ic('gem')} tombent rarement des monstres, plus souvent des élites, Mimiques, gardiens et boss. Ils sont conservés entre les explorations.</p>
     <button class="btn" data-k="comps" id="bComps">Mes compagnons (${Object.keys(S.comps).length}/${COMP_ORDER.length})</button>
   </div>
   <button class="btn" data-k="back" data-go="hub">Retour</button>`;
@@ -2365,7 +2476,7 @@ let compBack='hub';
 SCREENS.comps = function(back){
   if (back) compBack=back;
   app.innerHTML = `
-  <div class="win topbar"><b class="grow">Compagnons</b><span class="frag">💎 ${S.frag||0}</span></div>
+  <div class="win topbar"><b class="grow">Compagnons</b><span class="frag">${ic('gem')} ${S.frag||0}</span></div>
   <div class="scroll">
     <div class="win row" style="gap:10px">${S.comp?spr('c_'+S.comp,'idle','width:56px'):''}<div class="grow"><b>${S.comp?'Compagnon choisi : '+COMPANIONS[S.comp].name:'Aucun compagnon choisi'}</b><div class="muted">Touche un compagnon pour le choisir. Il t’accompagnera dans la prochaine exploration.</div></div></div>
     <div class="grid3">
