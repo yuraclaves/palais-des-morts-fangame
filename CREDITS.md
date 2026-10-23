@@ -22,7 +22,7 @@ Sprites de combat officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, déve
 - `magenoir` : FFBE unit 211000103
 - `erudit` : FFBE unit 205000203
 - `samourai` : FFBE unit 100006404
-- `magerouge` : FFBE unit 206000703
+- `magerouge` : FFBE unit 100004203 (Ludmille, job Mage rouge), image de repos et image KO (v5.5c ; l’ancienne image venait par erreur de l’unité 206000703, Celes)
 - `c_yshtola` : FFBE unit 214000105
 - `c_thancred` : FFBE unit 214000203
 - `c_minfilia` : FFBE unit 214000304
@@ -137,7 +137,7 @@ Tous officiels, via le FINAL FANTASY Wiki (finalfantasy.fandom.com, API MediaWik
 
 ## Cristaux de job de la boutique (v5.4e)
 
-Icônes officielles des objets « Soul of the Paladin, Monk, Bard, White Mage, Warrior, Dragoon, Black Mage, Scholar, Samurai » de FINAL FANTASY XIV (© SQUARE ENIX), obtenues via l'API publique documentée XIVAPI (v2.xivapi.com, ui/icon/026000). Seul le fond gris d'icône a été retiré.
+Icônes officielles des objets « Soul of the Paladin, Monk, Bard, White Mage, Warrior, Dragoon, Black Mage, Scholar, Samurai, Red Mage » de FINAL FANTASY XIV (© SQUARE ENIX), obtenues via l'API publique documentée XIVAPI (v2.xivapi.com, ui/icon/026000). Seul le fond gris d'icône a été retiré.
 
 ## Décors de combat supplémentaires (v5.4f, `assets/bg/`)
 

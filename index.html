@@ -1041,7 +1041,7 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 const SPRITES = {
   // --- Jobs ---
   paladin:{src:null}, moine:{src:null}, barde:{src:null}, mageblanc:{src:null}, guerrier:{src:null},
-  dragoon:{src:null}, magenoir:{src:null}, erudit:{src:null}, samourai:{src:null},
+  dragoon:{src:null}, magenoir:{src:null}, erudit:{src:null}, samourai:{src:null}, magerouge:{src:null},
   // --- Monstres ---
   flan:{src:null}, bombo:{src:null}, diablotin:{src:null}, squelette:{src:null}, ahriman:{src:null},
   mimique:{src:null}, grenade:{src:null}, gobelin:{src:null}, sylphe:{src:null}, sentinelle:{src:null},
@@ -1089,6 +1089,7 @@ const HEADS = {
   magenoir:[".........K......","........KPK.....",".......KPPK.....","......KPPPPK....","..KKKKPPPPPPKKK.",".KPPPPPPPPPPPPK.","...KDDYDDYDDK...","...KDDDDDDDDK...","....KDDDDDDK...."],
   erudit:["................","..KKKKKKKKKKKK..","..KPPPPPPPPPPK..","...KKPPPPPPKK...","...KHHHHHHHHK...","...KHSSSSSSHK...","...KSSESSESSK...","...KSSESSESSK...","....KSSSSSSK...."],
   samourai:["......KKK.......","......KHHK......",".....KKHHKK.....","...KHHHHHHHHK...","...KHHHHHHHHK...","...KWWWWWWWWK...","...KSSESSESSK...","...KSSESSESSK...","....KSSSSSSK...."],
+  magerouge:["..........WW....",".....KKKKKWK....","....KRRRRRK.....","..KKRRRRRRRRKK..",".KRRRRRRRRRRRRK.","...KHHSSSSHHK...","...KHSESSESHK...","...KHSSSSSSHK...","....KSSSSSSK...."],
 };
 const BODIES = {
   armor:["....KAAAAAAK....","...KSAABBAASK...","...KSAABBAASK...","....KCCCCCCK....","....KAAAAAAK....","....KLLKKLLK....",".....KK..KK....."],
@@ -1105,6 +1106,7 @@ const WEAPONS = {
   magenoir:[...vl(13,6,15,'N'),[13,4,'Y'],[12,5,'Y'],[14,5,'Y'],[13,5,'R']],
   erudit:[...vl(0,10,12,'Q'),...vl(1,10,12,'Q'),...vl(2,10,12,'Q'),[1,11,'C']],
   samourai:[...vl(14,2,10,'G'),[13,11,'C'],[14,11,'C'],[15,11,'C'],...vl(14,12,13,'R')],
+  magerouge:[...vl(14,3,10,'G'),[13,11,'C'],[14,11,'C'],[15,11,'C'],[14,12,'N'],[1,9,'Y'],[2,10,'Y'],[1,10,'R']],
 };
 const JOB_PAL = {
   paladin:{A:'#3a5cc8',B:'#eef0f8',M:'#cdd5e6',R:'#e03a3a',L:'#2a2a40'},
@@ -1116,8 +1118,9 @@ const JOB_PAL = {
   magenoir:{P:'#c8a050',A:'#2a3aa8',B:'#6070d8',C:'#e8c547',D:'#100818',Y:'#ffe85a'},
   erudit:{A:'#1e2c52',P:'#18182a',B:'#c8b070',C:'#c8b070',H:'#e2d6bc'},
   samourai:{A:'#a82a2a',B:'#f2eadb',H:'#141014',W:'#ffffff',C:'#e8c547',L:'#2a1a1a'},
+  magerouge:{A:'#c0283a',B:'#f2eadb',C:'#e8c547',R:'#c0283a',H:'#e8c070',W:'#ffffff',G:'#dfe4ee',Y:'#ffe85a',N:'#5a3a1a'},
 };
-const JOB_BODY = { paladin:'armor', guerrier:'armor', moine:'armor', dragoon:'armor', barde:'armor', samourai:'armor', mageblanc:'robe', magenoir:'robe', erudit:'robe' };
+const JOB_BODY = { paladin:'armor', guerrier:'armor', moine:'armor', dragoon:'armor', barde:'armor', samourai:'armor', magerouge:'robe', mageblanc:'robe', magenoir:'robe', erudit:'robe' };
 
 const GRIDS = {
   bomb:[".......Y........","......YRY.......",".......Y........",".....KKKKKK.....","...KKOOOOOOKK...","..KOOOYOOOOOOK..",".KOOOYOOOOOOOOK.",".KOOWKOOOOWKOOK.",".KOOWKOOOOWKOOK.",".KOOOOOOOOOOOOK.",".KOOOKRRRRKOOOK.",".KOOOOKKKKOOOOK.","..KOOOOOOOOOOK..","...KKOOOOOOKK...",".....KKKKKK.....","................"],
@@ -1215,7 +1218,7 @@ const BG_CACHE = {};
 function medalSrc(name){ const L=(name||'?').replace(/^[^A-Za-zÀ-ÿ]+/,'')[0]||'?';
   return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><radialGradient id="g" cx="50%" cy="40%" r="55%"><stop offset="0" stop-color="#f6e3b0" stop-opacity=".95"/><stop offset=".55" stop-color="#b8904a" stop-opacity=".55"/><stop offset="1" stop-color="#3a2a10" stop-opacity="0"/></radialGradient></defs><linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3cf"/><stop offset=".6" stop-color="#e2bb68"/><stop offset="1" stop-color="#9a6e2a"/></linearGradient><text x="32" y="48" text-anchor="middle" font-family="Georgia,serif" font-size="46" fill="url(#t)" stroke="#2a1c08" stroke-width="1.2">${L}</text></svg>`); }
 const gi = (n, cls='') => `<img class="gi ${cls}" src="assets/ui/${n}.webp" alt="" decoding="async">`;
-const JOB_GLYPH = {paladin:'paladin',guerrier:'warrior',moine:'monk',barde:'bard',mageblanc:'whitemage',magenoir:'blackmage',erudit:'scholar',samourai:'samurai',dragoon:'dragoon'};
+const JOB_GLYPH = {paladin:'paladin',guerrier:'warrior',moine:'monk',barde:'bard',mageblanc:'whitemage',magenoir:'blackmage',erudit:'scholar',samourai:'samurai',dragoon:'dragoon',magerouge:'redmage'};
 const jgi = () => '';
 const PH = {"t0":"data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAwCdASoSABMAPtFiqU+oJaOiKAgBABoJaQAAPPSwt1H8Ge24AAD+8R7mOqZ1RsFZdtjYOKCsiX1oSyqTTuOWAAA=","t1":"data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAwCdASoSABMAPtFepU6oJSMiKAqpABoJZQC2FBEdF6ThMJixu8/oAP72iBM0NbccXIijtryGmx++Y27i/7fDtE7Zy7TrgCiZfOqUNKvvq+6yVysKM1IXfOvNTA96frwAAA==","t2":"data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADQBACdASoSABMAPtFcpU6oJSMiKAqpABoJZQDE2BEZD1srJJLhqMY+1p3EVZ7jFgD+9Fk08FkyrdFdqJMqH806kvwkaNW24yxdJtWiHkX8pDGsCHTLRcH//WB4Fy86dxIdw6AE+XfG6N7sKs3unQxAVAAAAA==","t3":"data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADQBACdASoSABMAPtFapU0oJSOiMBgIAQAaCUAWnQIiP2KGQwDW3tFHRhhZ5SPrAAD+9CXUPIKsAlW7FG+7UenootYQfvdRYj/YsGSJS9B66dePl52IERjtcyxfXDZQ9QrgHB2gSisXp4TwZIqdO4AZZ45fHr+CNtoipwAA","t4":"data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAwBQCdASoSABMAPtFcp04oJSOiKAqpABoJZQDKG1gAJ9+J04XOba2185gBZbzGotX8AAD+9FkIRaXavHWMF7Z/FsP8+aWzzEBLYWdTAuyvVIDEHq450bQPW6MAHeidW3Lt5IglbT+h44FxaYcdzIqMomdsZ3UMAAAAAA==","t5":"data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACwBACdASoSABMAPtFepE6oJSMiKAqpABoJYgDCgBInxvSKLNN28gSPgL5qhTLEAP7s3Z0UnJfNo0me6nufYxuf7IG7EyI3O2eMbCNTzvfHV0BUIQblFypArZQNeDPrsXdwXYpLvprAAk/ObHepaS3qpudsUYZhJpdWIwV/8vSLQkgJZfsyo+FNvl5rMSp5NQsmBgAA","art_yshtola":"data:image/webp;base64,UklGRnACAABXRUJQVlA4WAoAAAAQAAAACwAAJAAAQUxQSD0BAAABkHPbtrG9wte99/lsm90XW53tlLZtVq7S2a7T2bZt204e7CgiJgDAONyEDMw/2MrtS7AAhqVSv/9YainQOf415L+X1hADYNn8S7sKsYCj9VHpdhZgSDmpMND9EnAsli/5Goul4pMiKdBaYpksX/9s86j3VpEUftchxiuKJIU/9bHzd4X6/5crCvVfX4e2Bv8LtD/99j6FkkKtTKD9W0VSqLfD8OgsSb5uzoyFykCRvkQHWsRC7kf90pxd80mExGfSQ2afwkLOB6k7A+5goKX0KpteDwCaSFErxt7G4FgoPTXzzmBxtNMPjR30GHA0U6CDzT5nYyz5n/TzV/OzPXEYLvycq0+dMjA4Nqnosi41xOIxR2lLpZF4eCzSyJPahAWPZfqoLw2wGKoeaEqNCgwYjuphPtYCHuM0kFgLAABWUDggDAEAAFAFAJ0BKgwAJQA+wVCfS6ekoqG1SADwGAlkALD9/+LWRiMAE22UGj2NZ3ZikHOxF1ZR+AD+4ZC/eivCdofl2I2lyd+tg69T9pT0f8aGJG6AXV1iRi4WyMvAU3v6ZxnRVsFyK3DAbN7MawJpYP19pjlWcI+ypf1N84iPP01PQd9GKq1xOher84WjWo59aTMpVUDwP/erPD86SGPMrFbZyr7XZigeenpNgYquuI9d0640mA8gsF5n4MfpMf+nmxexw/bnsE1wvd75Bj7bGkEDJ3uI3i2zqHoI0+UrEh9eDRW98HpklXIz95ILTzgOOmYn2BR7VphW4yf/tVMJ0pWM7zTe5UuFuny+FGpoAAA=","art_yuna":"data:image/webp;base64,UklGRvABAABXRUJQVlA4WAoAAAAQAAAACwAAIAAAQUxQSAIBAAABkLpt2/m/0u+Pfv7NdlNTtl13LNqrtm17S0vrtm3bSsaLK7zvImIC2l81k5UqehJHZ2WRp/zjqNLIZwxblUXeOh60Vh5peobf/2aoCHQR65mgIpHWXMF5yzxlqT7iwVs25En2LcD/41CVNvsA/nGtvSZgAww3VfMVDvC8HKZ2Dh/pIY3GAI7HRaplEcN+5dr1n+nKdRAbWa1chyOWo0p1GQc4XpeqeBw4rg4vU52PeCyrGytRqx94DFNUJnXygGGRcmkILlgVjMUGm4OZWNxvDiiT1mPx/JqjVOr0Dq7s66NUkm7DUOWpJNV6BS/6lyls+BX/kzXKJCVjrzC3fkMlkgBWUDggyAAAABAFAJ0BKgwAIQA+wUyeS6ekIqG1SADwGAljAKwBi2jvInnqUaUporxefWKJO5KbfgAA/CGb/pxTfX9d9YxrH/iAl4L2nmHYqgU6aHWFgBukO154+ccrwHmEy2tt4VIiO89H7fZEDWffVez/yzGzmLYnAsgHv+HyLyqREmngwB5FL6KtXgvBf1TswyVzT49hXi0iOXyNACUJ3K1D1KjTWq44dc++n3ReQVRso5JIcyO7VtXodQsp8gk9v6L8ii9h8WzEE6Lm6gAA","art_cloud":"data:image/webp;base64,UklGRuYBAABXRUJQVlA4WAoAAAAQAAAACwAAGwAAQUxQSAABAAABkLpt2/m/0q8X7WdbM6NtRttbWtuxZnvNSFZasm0m2/Y+vKeImABm5GOssfw7YBg2u5j/moUlrA664IDir3O6S4exwPrDJ+JQa/Aw4tNdJYlmVGK4EwZpqlSf6mNX7931TGmiK4UYHFMUR1qCx3vrLinQPhzgGadIX5tiwdFTSaTZePBMVhRrJ/af9YoktQKDvalEsbaCpY2USgrb41ilSFKi/cA1hcE/Hw2lb/XhkZJIBzzTpMfP9WOvpsNJ6c473am63ZW6QNr8SmfpXmrYr2TUa13HGM8yPSq8GjbGGUdvTeXIIzA4er4r4La2NMN4xv7KYMCIC/OwnoFqieVfVlA4IMAAAACQBACdASoMABwAPtFUo0uoJKMhsAgBABoJYwCw7Yxs5uSiCYEyibDMBS2nILYA/tvWKTwp3IGTpWmMloZ3FDfj9PgRYX4WrBXiHp3XXGWFZeUZIJ1supVLlma1Uxeh9PvLFan03O8mjj3rTUvvWBeuing3g7geGQV2EV+WY0hKKv+vZn+YQzt4hO/lWQthFE/KrLq+oA+/djr2fuqUJY95c0jkVNn15JF70Aish1CxHPdgJQ5rEW+XkBKyG8mAAAA=","art_noctis":"data:image/webp;base64,UklGRgwCAABXRUJQVlA4WAoAAAAQAAAACwAAHQAAQUxQSBQBAAABkCvbtmlbfeHe+2zbts3cthUZmW1Etm2Htm2b2cU6azx9RERMAGDoPo5/jXF0VWyMA+OsvyOt+GdUcZK2SYP/aTq5Nv2lvnjgsB5/lX5tyIyZd/iDElJUY1z+S0pEJfQwE6bOPgUpQxPxmKwzFaK+FsRgOa2QoZ04oHyaYkLX+bfvwzRFhfJYWLJOQUHtcLQ6c1hBGVqOp+2+Awox6AqGJI4rxJhQb7xlu+KXjKiPBfAMl0aeUbw8A09vqcsAaV25Ip6OUpO8P7Uf56gl1WKy3uTBYJ+qNK2kylhKp4bSsFK9sTTUq8yGbtpFMuW1D0/O7y+8Y4QW4x2zVX7S9jSdwToaasiosxtHdMFYqmoO/3fU0zZWUDgg0gAAANAEAJ0BKgwAHgA+0VSjS6gkoyGwCAEAGgljALsFeAbHpFAFfCADwlEEwDnKj+4AAP7a014RjPxgHSedvK1xU3hkRJ7iZVblLSRMXAIpyx2i1LczfkzIk/iDTCdFZTvuWMcv7jEulYlQn1xUpeBAmxKzWDIFBJsB4oLZPkU8Q8a+n4U8zcElzPshZZ5/40jbmvv5C/pKlQjkfDQsPSjABgv83VALwcnQuMZflZEk+RvDUAb/0rpLqk8BD86wpY9KJGUaz/scf0Ql839tJsDtRaQAAA==","art_lightning":"data:image/webp;base64,UklGRhwCAABXRUJQVlA4WAoAAAAQAAAAEAAAFQAAQUxQSBABAAABkGvb1rE9+7dt2/8F2DZa26j+yrZtVn9nx6hs27aT99vR++UWImIC8LfrogL+U2VpRF86pZwTPwJlpJBLOi7ZeDMHKdUu/Dz3VvIyX03M4tXLeyRbIC4/RAl3pi5ZicHrM5mPzhop8n5SWFM3Wk0SKyK3K5ZV3E+miWSScYrnDpj4H/H7SzWyXGATPD7dDPQ5ZgJAxSaA/BqGLH4ZODApCwD5JK8YoIW8dM4LUEm+R3JTFbId5PcZYJLkD84CkOkhX9i3fePj7nThmRkAlV1y/MOPSmfI7mMKAKST7zbYCMD//RoAnS1SiHz/zgqKDQ+EMpOwQySHUcARIPYF+VJCPi2XBWa/hgMDFPhso8oZAFZQOCDmAAAAcAUAnQEqEQAWAD7taK9QqaWkIqgKqTAdiWIAyPyBzMlAA5UoyjtVpBKsP/U9ayM0t6IIAADh+C7TPF7zotT70T72ZvN1nZXkV+ajGqRXE25dlDlmZE1XMoEj6z8hUlYdqNBSo3TW003ehk0jDKbF6DOiznbHG9M4ag+wXm3Ca+48H//uS52CGAotpardU5jwJtP/0MeuHCyKXNum4llYgsALsBW9Ccdfsm2Vc9K8yLK1VP3loS+iMSTlIE7gp69g4wJSFw50b4Y6/ROhkla+3vY/VkFRS4Hu9yKqFiOoqfDVKDMCAAA=","bgb_yshtola":"data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADwBACdASoSABYAPuFeqU2opSQiMAwBEBwJYgCACJAAzqN43OlcclQEImyKbdwngAAA/vNwFlbOjiDDB1EbcMUwiOdLWDGTE3uaXDi/A6kvaXCj6/wgEtRpymumEmud6IT0aNuiWZ0CTilkJoE3PpLX9c1SheHJDXDojAAA","bgb_cloud":"data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAABQBQCdASoSABYAPu1qr1AppaSiqAqpMB2JZACdIUgJ/gG4rWZ2WtRARrOPCLb7KLISiKAA/vFPjYISOGZLaeQ4AkN4AnA2nxug6hwW1rGct1/Ub2EOUZSPPD6uc8ribOMxDRSFlzRCUJUanb5r4yRJiCDzsA4IvUBkhC+gCcqZ+P9nAficHXkZPbjp+THkvo9iApoVSHbWZuvjscZgIkPLq4cdaovFUS3eZxAXQAA=","bgb_yuna":"data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAAAQBQCdASoSABYAPu1sqlGppaOiqAqpMB2JYwDCoTTJjgIHuMyvwtN4PqV3cklLFGSAAP5UhMupH+tGfrGYwn3YW0+X6cN1aSIBdWhFU6P1jMWF8aPbxorMu5nTFCZs7RuaEY8XUByv5AQQChT2KYEKYpkpxJ9gcgyZ4Kv2vr9MnLioYb/MuSQm8iEzf1dT/c2nqBVkfQ/lX2fxA9Au3Zl2Zyol0I9P+DgAAA==","bgb_noctis":"data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAADwBACdASoSABYAPu1qq08ppiOiMBgIATAdiUAY/IIVTqyzsKyJHxZ8iu3d8z0lBqAA/vN1MMFhOqDuBSVAqHJ/43EJli+XkyZEzicNc4e1GIoA/Fya2wQgMYhORuc8FoLGiGcTSDfVzdE9Lw8ODTd4ap2TZqaxX3+avsblHxpKPbChmeDP4AirnvwSK3eUxhX4AA==","bgb_lightning":"data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBQCdASoSABYAPu1or1CppaQiqAqpMB2JZQC3yf/gHolrTZrJboYD7P5z85N/AE2AAP7hhpFS6H5VJuLsMBiwskBf6khcyM6zbb4l6loGhn+CH56vxo/31f/s5IRMtOshrS6jBxNOY8vhxbRQiuJIjRFpVYcBzq3mAQob8jjsOFKdLn0xyK/cChwpgVAAynkAAA=="};
 /* Préchargement des images pendant les temps morts : décodage avant affichage */
@@ -1250,7 +1253,7 @@ function floorBG(f){
   return 'assets/bg/t'+tier+'.webp';
 }
 /* Pixel art libre (voir CREDITS.md) : assets/ */
-const ASSET = {"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":50,"h":61,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"assets/chars/c_alphinaud.webp","w":48,"h":69,"ko":"assets/chars/c_alphinaud_ko.webp"},"c_alisaie":{"src":"assets/chars/c_alisaie.webp","w":48,"h":69,"ko":"assets/chars/c_alisaie_ko.webp"},"c_urianger":{"src":"assets/chars/c_urianger.webp","w":42,"h":72,"ko":"assets/chars/c_urianger_ko.webp"},"c_graha":{"src":"assets/chars/c_graha.webp","w":26,"h":70,"ko":"assets/chars/c_graha_ko.webp","smooth":1},"c_estinien":{"src":"assets/chars/c_estinien.webp","w":48,"h":72,"ko":"assets/chars/c_estinien_ko.webp"},"c_haurchefant":{"src":"assets/chars/c_haurchefant.webp","w":45,"h":72,"ko":"assets/chars/c_haurchefant_ko.webp"},"c_tataru":{"src":"assets/chars/c_tataru.webp","w":37,"h":54,"ko":"assets/chars/c_tataru_ko.webp","smooth":1},"c_lyse":{"src":"assets/chars/c_lyse.webp","w":45,"h":72,"ko":"assets/chars/c_lyse_ko.webp"},"c_krile":{"src":"assets/chars/c_krile.webp","w":34,"h":60,"ko":"assets/chars/c_krile_ko.webp","smooth":1},"c_cid":{"src":"assets/chars/c_cid.webp","w":45,"h":72,"ko":"assets/chars/c_cid_ko.webp"},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/ui/emotes.webp","w":64,"h":64,"glyph":1},"icon_combat":{"src":"assets/ui/stance.webp","w":64,"h":64,"glyph":1},"icon_elite":{"src":"assets/ui/pvp_profile.webp","w":64,"h":64,"glyph":1},"icon_coffre":{"src":"assets/ui/armoury_chest.webp","w":64,"h":64,"glyph":1},"icon_cristal":{"src":"assets/ui/aether_currents.webp","w":64,"h":64,"glyph":1},"icon_autel":{"src":"assets/ui/challenge_log.webp","w":64,"h":64,"glyph":1},"icon_marchand":{"src":"assets/ui/currency.webp","w":64,"h":64,"glyph":1},"icon_maudite":{"src":"assets/ui/blacklist.webp","w":64,"h":64,"glyph":1},"icon_piege":{"src":"assets/ui/waymarks.webp","w":64,"h":64,"glyph":1},"icon_pomandre":{"src":"assets/ui/key_items.webp","w":64,"h":64,"glyph":1},"icon_repos":{"src":"assets/ui/housing.webp","w":64,"h":64,"glyph":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
+const ASSET = {"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":47,"h":55,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"assets/chars/c_alphinaud.webp","w":48,"h":69,"ko":"assets/chars/c_alphinaud_ko.webp"},"c_alisaie":{"src":"assets/chars/c_alisaie.webp","w":48,"h":69,"ko":"assets/chars/c_alisaie_ko.webp"},"c_urianger":{"src":"assets/chars/c_urianger.webp","w":42,"h":72,"ko":"assets/chars/c_urianger_ko.webp"},"c_graha":{"src":"assets/chars/c_graha.webp","w":26,"h":70,"ko":"assets/chars/c_graha_ko.webp","smooth":1},"c_estinien":{"src":"assets/chars/c_estinien.webp","w":48,"h":72,"ko":"assets/chars/c_estinien_ko.webp"},"c_haurchefant":{"src":"assets/chars/c_haurchefant.webp","w":45,"h":72,"ko":"assets/chars/c_haurchefant_ko.webp"},"c_tataru":{"src":"assets/chars/c_tataru.webp","w":37,"h":54,"ko":"assets/chars/c_tataru_ko.webp","smooth":1},"c_lyse":{"src":"assets/chars/c_lyse.webp","w":45,"h":72,"ko":"assets/chars/c_lyse_ko.webp"},"c_krile":{"src":"assets/chars/c_krile.webp","w":34,"h":60,"ko":"assets/chars/c_krile_ko.webp","smooth":1},"c_cid":{"src":"assets/chars/c_cid.webp","w":45,"h":72,"ko":"assets/chars/c_cid_ko.webp"},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/ui/emotes.webp","w":64,"h":64,"glyph":1},"icon_combat":{"src":"assets/ui/stance.webp","w":64,"h":64,"glyph":1},"icon_elite":{"src":"assets/ui/pvp_profile.webp","w":64,"h":64,"glyph":1},"icon_coffre":{"src":"assets/ui/armoury_chest.webp","w":64,"h":64,"glyph":1},"icon_cristal":{"src":"assets/ui/aether_currents.webp","w":64,"h":64,"glyph":1},"icon_autel":{"src":"assets/ui/challenge_log.webp","w":64,"h":64,"glyph":1},"icon_marchand":{"src":"assets/ui/currency.webp","w":64,"h":64,"glyph":1},"icon_maudite":{"src":"assets/ui/blacklist.webp","w":64,"h":64,"glyph":1},"icon_piege":{"src":"assets/ui/waymarks.webp","w":64,"h":64,"glyph":1},"icon_pomandre":{"src":"assets/ui/key_items.webp","w":64,"h":64,"glyph":1},"icon_repos":{"src":"assets/ui/housing.webp","w":64,"h":64,"glyph":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
 /* Icônes pixel maison (SVG 8x8) — aucun emoji dans le jeu */
 const IC_PAL = { w:'#ffffff', k:'#101018', y:'#ffd84a', o:'#ff8a2a', r:'#ff4a4a', g:'#5aff6a', G:'#1f9a3a', b:'#6ab8ff', B:'#2a5adf', p:'#c070ff', s:'#c8d0e0', S:'#7a8298', n:'#a0662a', c:'#9ff0ff' };
 const IC_GRID = {
@@ -1424,8 +1427,19 @@ const JOBS = {
       {id:'gyoten', name:'Hissatsu : Gyoten', target:'enemy', power:0.7, stun:1, cd:4, fx:'slash', desc:'Étourdit 1 tour : interrompt.'},
       {id:'meditation', name:'Méditation', target:'self', cd:6, sen:2, self:{healPct:0.12}, fx:'heal', desc:'+2 Sen et soigne 12 %.'},
     ], def4:['midare','oeil','gyoten','higanbana']},
+  magerouge:{ name:'Mage rouge', cls:'', role:'caster', price:1200, hp:140, mp:90, atk:19, mag:20, def:0.12, crit:0.08, gauge:'Mana',
+    desc:'Escrimeur et mage. Alterne épée et magie noire et blanche, puis libère son mana.',
+    basic:{id:'riposte', name:'Riposte', target:'enemy', power:1.0, fx:'slash', sen:1, desc:'Coup de rapière. +1 Mana.'},
+    opts:[
+      {id:'verfoudre', name:'VerFoudre', target:'enemy', power:1.35, stat:'mag', mp:12, sen:1, fx:'thunder', desc:'Magie noire. +1 Mana.'},
+      {id:'vervent', name:'VerVent', target:'all', power:0.7, stat:'mag', mp:18, cd:2, sen:1, fx:'wind', desc:'Magie blanche sur tous les ennemis. +1 Mana.'},
+      {id:'verbrasier', name:'VerBrasier', target:'enemy', power:3.4, stat:'mag', req:3, self:{healPct:0.1}, fx:'fire', desc:'Coûte 3 Mana. Coup final : grosse explosion et soigne 10 %.'},
+      {id:'versoin', name:'VerSoin', target:'self', mp:20, cd:3, self:{heal:1.9}, fx:'heal', desc:'Petit soin (selon la Magie).'},
+      {id:'contresixte', name:'Contre de sixte', target:'enemy', power:0.6, stun:1, cd:4, fx:'slash', desc:'Étourdit 1 tour : interrompt.'},
+      {id:'manafication', name:'Manafication', target:'self', cd:7, sen:2, self:{buff:[0.2,2], mpGain:20}, fx:'shield', desc:'+2 Mana, +20 % de dégâts (2 tours) et rend 20 PM.'},
+    ], def4:['verfoudre','verbrasier','contresixte','versoin']},
 };
-const JOB_ORDER = ['paladin','moine','barde','mageblanc','guerrier','dragoon','magenoir','erudit','samourai'];
+const JOB_ORDER = ['paladin','moine','barde','mageblanc','guerrier','dragoon','magenoir','erudit','samourai','magerouge'];
 const allSkills = k => [JOBS[k].basic].concat(JOBS[k].opts);
 const JOB_PRICE = 1200, JOB_PROMO = 400;
 const promoOK = () => !S.promoUsed && (S.unlocked||[]).length<=1;
@@ -1735,6 +1749,7 @@ function confirmBox(text, yes, yesLabel='Oui'){
   document.getElementById('cYes').onclick = ()=>{ closeModal(); yes(); };
 }
 function toast(t){ const d=document.createElement('div'); d.className='toast'; d.textContent=t; document.body.appendChild(d); setTimeout(()=>d.remove(),1900); }
+const clsLine = j => j.cls ? `Classe d’origine : ${j.cls}` : 'Job sans classe d’origine';
 function roleTag(job){ const r=ROLES[JOBS[job].role]; return `<span class="tag ${r.c}">${r.n}</span>`; }
 function bar(cur,max,cls='',shield=0){ const p=clamp(cur/max*100,0,100); const sp=clamp(shield/max*100,0,100-p); return `<div class="bar ${cls}"><i style="width:${p}%"></i>${shield?`<span class="sh" style="left:${p}%;width:${sp}%"></span>`:''}</div>`; }
 function bind(root){ root.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>SCREENS[b.dataset.go]()); }
@@ -1751,7 +1766,7 @@ function skillTag(s){
   if (s.stun) t.push(chip('bolt',''));
   if (s.dot) t.push(chip('poison',''));
   if (s.mp) t.push(chip('drop', s.mp,'mp'));
-  if (s.req) t.push(`<span class="chip"><b>${s.req} Sen</b></span>`);
+  if (s.req) t.push(`<span class="chip"><b>${s.req} ${s.id==='verbrasier'?'Mana':'Sen'}</b></span>`);
   if (s.cd) t.push(chip('clock', s.cd,'cd'));
   return t.join('');
 }
@@ -1769,13 +1784,13 @@ function skillLite(k, s){
   else if (s.power) txt=(s.stat==='mag'||s.type==='mag')?'Frappe un ennemi par magie.':'Frappe un ennemi.';
   if (s.stun){ ico='bolt'; txt=s.power?'Frappe et étourdit l’ennemi.':'Étourdit l’ennemi.'; }
   if (s.dot){ ico='poison'; txt=s.power?'Frappe et empoisonne l’ennemi.':'Empoisonne l’ennemi.'; }
-  if (sf.healPct||sf.heal){ const h=sf.healPct?Math.round(sf.healPct*100)+' % PV':sf.heal+' PV'; if(!s.power){ num='Soin '+h; ico='heal'; txt='Te soigne.'; } else txt=txt.replace(/\.$/,'')+' et te soigne.'; }
+  if (sf.healPct||sf.heal){ const h=sf.healPct?Math.round(sf.healPct*100)+' % PV':Math.round(sf.heal*j.mag)+' PV'; if(!s.power){ num='Soin '+h; ico='heal'; txt='Te soigne.'; } else txt=txt.replace(/\.$/,'')+' et te soigne.'; }
   if (sf.regen && !s.power){ ico='heal'; num=num||'Régén.'; txt='Soigne un peu à chaque tour.'; }
   if (sf.mitig && !s.power){ ico='shield'; num='−'+Math.round(sf.mitig[0]*100)+' % dégâts'; txt='Réduit les dégâts reçus.'; }
   if (sf.invuln){ ico='shield'; num='Invulnérable'; txt='Aucun dégât pendant un tour.'; }
   if ((sf.shield||sf.holm) && !s.power){ ico='shield'; num=num||'Bouclier'; txt='Crée un bouclier protecteur.'; }
   if ((sf.buff||sf.nextCrit) && !s.power){ ico='up'; num=sf.buff?'+'+Math.round((Array.isArray(sf.buff)?sf.buff[0]:sf.buff)*100)+' % dégâts':'Critique'; txt=sf.nextCrit?'Ton prochain coup sera critique.':'Augmente tes dégâts un moment.'; }
-  if (sf.mpGain && !s.power){ ico='drop'; num='+PM'; txt='Rend des PM.'; }
+  if (sf.mpGain && !s.power && !sf.buff){ ico='drop'; num='+PM'; txt='Rend des PM.'; }
   if (sf.cleanse && !s.power && !txt){ ico='heal'; txt='Retire les effets négatifs.'; }
   if (!txt) txt=(s.desc||'').split(/[.:]/)[0].split(' ').slice(0,8).join(' ')+'.';
   return `<div class="sk-lite"><span class="sk-ic">${ic(ico)}</span><div class="sk-t"><b>${s.name}</b><span>${txt}</span></div>${num?`<em>${num}</em>`:''}</div>`;
@@ -1793,6 +1808,13 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.5c', date:'23/10/2026', img:'assets/band/r1.webp', title:'Nouveau job : Mage rouge', notes:[
+    'Nouveau job : le Mage rouge. Achète son cristal chez le Marchand pour 1200 G (400 G si c’est ton premier cristal).',
+    'Il manie la rapière et la magie : Riposte, VerFoudre et VerVent remplissent sa jauge de Mana.',
+    'Avec 3 Mana, lance VerBrasier, un coup final très puissant qui te soigne un peu.',
+    'Il a aussi un petit soin (VerSoin), un coup qui étourdit (Contre de sixte) et Manafication pour frapper plus fort.',
+    'Le Mage rouge marche en solo, en duo et en trio, et apparaît dans le classement.'
+  ]},
   {v:'v5.5b', date:'23/10/2026', img:'assets/band/r1.webp', title:'Effets sonores réparés', notes:[
     'Les effets sonores (coups, dégâts reçus, soins, magie, menus) se lancent dès ton premier toucher, aussi sur iPhone.',
     'Si le son du navigateur est bloqué, les effets passent par une autre voie et se font quand même entendre.',
@@ -2165,7 +2187,7 @@ SCREENS.jobs = function(){
 };
 function jobDetail(k){
   const j=JOBS[k], un=S.unlocked.includes(k);
-  showModal(`<div class="row">${spr(k,'idle','width:64px')}<div class="grow"><h2>${jgi(k,'big')} ${j.name}</h2><div class="muted">Classe d’origine : ${j.cls}</div>${roleTag(k)}</div></div>
+  showModal(`<div class="row">${spr(k,'idle','width:64px')}<div class="grow"><h2>${jgi(k,'big')} ${j.name}</h2><div class="muted">${clsLine(j)}</div>${roleTag(k)}</div></div>
    <p class="muted">${j.desc}</p>${skillLiteList(k)}
    <div class="row" style="margin-top:10px"><button class="btn small grow" id="mC">Fermer</button>
    ${un?`<button class="btn small goldb grow" data-k="pick" id="mP">Choisir</button>`:`<button class="btn small goldb grow" id="mS">Marchand</button>`}</div>`);
@@ -2173,7 +2195,7 @@ function jobDetail(k){
   const p=document.getElementById('mP'); if(p) p.onclick=()=>{ S.job=k; persist(); closeModal(); SCREENS.hub(); };
   const s=document.getElementById('mS'); if(s) s.onclick=()=>{ closeModal(); SCREENS.shop(); };
 }
-const SOUL_GLOW={paladin:'#bfeaf2',moine:'#e0b030',barde:'#b8d860',mageblanc:'#fff3d0',guerrier:'#e0303a',dragoon:'#5b8cff',magenoir:'#a070e0',erudit:'#7a74e0',samourai:'#f08a3a'};
+const SOUL_GLOW={paladin:'#bfeaf2',moine:'#e0b030',barde:'#b8d860',mageblanc:'#fff3d0',guerrier:'#e0303a',dragoon:'#5b8cff',magenoir:'#a070e0',erudit:'#7a74e0',samourai:'#f08a3a',magerouge:'#e03a5a'};
 SCREENS.shop = function(){
   const crystals = JOB_ORDER.filter(k=>!S.unlocked.includes(k)), price=jobPrice(), promo=promoOK();
   app.innerHTML = `
@@ -2182,7 +2204,7 @@ SCREENS.shop = function(){
     <section class="xsec">
       <h3 class="xh">Cristaux de job</h3>
       <p class="muted">Un cristal débloque un job pour toujours. Prix unique : ${JOB_PRICE} Gils.</p>
-      ${crystals.length? crystals.map(k=>`<div class="shrow"><img class="soul" src="assets/soul/${k}.webp" alt="Cristal de job ${JOBS[k].name}" style="--g:${SOUL_GLOW[k]}"><div class="grow"><b>${JOBS[k].name}</b><br>${roleTag(k)} <span class="muted">Classe d’origine : ${JOBS[k].cls}</span></div>
+      ${crystals.length? crystals.map(k=>`<div class="shrow"><img class="soul" src="assets/soul/${k}.webp" alt="Cristal de job ${JOBS[k].name}" style="--g:${SOUL_GLOW[k]}"><div class="grow"><b>${JOBS[k].name}</b><br>${roleTag(k)} <span class="muted">${clsLine(JOBS[k])}</span></div>
         <div class="pricebox">${promo?`<span class="ptag">Premier cristal</span><s>${JOB_PRICE} G</s>`:''}<button class="btn small ${S.gils>=price?'goldb':''}" data-k="buy-${k}" data-buyjob="${k}" ${S.gils>=price?'':'disabled'}>${price} G</button></div></div>`).join('') : '<p class="muted">Tous les jobs sont débloqués !</p>'}
     </section>
     <section class="xsec">
@@ -2385,6 +2407,7 @@ function playerPanelHTML(inCombat){
     if (st.weakT>0) sts.push(`<span style="color:#ff9a9a">Affaibli (${st.weakT})</span>`);
     if (st.pdotT>0) sts.push(`<span style="color:#c8ff7a">Poison ${st.pdot} (${st.pdotT})</span>`);
     if (R.job==='samourai') sts.push(`Sen ${'●'.repeat(st.sen)}${'○'.repeat(3-st.sen)}`);
+    if (R.job==='magerouge') sts.push(`<span style="color:#ff8aa0">Mana ${'◆'.repeat(st.sen)}${'◇'.repeat(3-st.sen)}</span>`);
     if (C.cp) sts.push(`<span style="color:#ffe27a">${COMPANIONS[R.comp.id].name} : ${C.cp.cd>0?'recharge '+C.cp.cd:'prêt'}</span>`);
   }
   return `<div class="win ppanel" id="pp">
@@ -2703,7 +2726,7 @@ function skillState(s){
   const cd=C.cds[s.id]||0;
   if (cd>0) return {ok:false, cd};
   if (s.mp && R.mp < mpCost(s)) return {ok:false, why:'PM'};
-  if (s.req && C.st.sen < s.req) return {ok:false, why:'Sen'};
+  if (s.req && C.st.sen < s.req) return {ok:false, why:(JOBS[R.job].gauge||'Sen')};
   return {ok:true};
 }
 function renderSkills(){
@@ -2822,7 +2845,7 @@ async function playerAction(id){
   const pel=plEl(); let s=null;
   if (id==='__potion'){ if(!R.potions) return; }
   else if (id==='__ether'){ if(!R.ethers) return; }
-  else { s=combatSkills().find(x=>x.id===id); if(!s) return; const ss=skillState(s); if(!ss.ok){ toast(ss.cd?`Recharge : encore ${ss.cd} tour(s)`:ss.why==='PM'?'Pas assez de PM':'Pas assez de Sen'); return; } }
+  else { s=combatSkills().find(x=>x.id===id); if(!s) return; const ss=skillState(s); if(!ss.ok){ toast(ss.cd?`Recharge : encore ${ss.cd} tour(s)`:ss.why==='PM'?'Pas assez de PM':'Pas assez de '+ss.why); return; } }
   C.busy=true; renderSkills();
   if (id==='__potion'){ R.potions--; const h=Math.round(R.maxhp*potionPct()); healR(h); C.msg='Potion !'; fxAt(pel,'heal'); floatAt(pel,'+'+h,'heal'); updateCombat(); await sleep(450); }
   else if (id==='__ether'){ R.ethers--; const m=Math.round(R.maxmp*0.5); R.mp=Math.min(R.maxmp,R.mp+m); C.msg='Éther !'; fxAt(pel,'shield'); floatAt(pel,'+'+m+' PM','mp'); updateCombat(); await sleep(450); }
@@ -3023,7 +3046,7 @@ function pickRewardsScreen(title, text, opts, icon){
 }
 /* --- Pièges : jet de risque selon le job --- */
 const JOB_TRAP = { paladin:{phys:0,mag:-0.05}, guerrier:{phys:-0.05,mag:-0.1}, moine:{phys:0.15,mag:-0.05}, dragoon:{phys:0.1,mag:-0.05},
-  barde:{phys:0.25,mag:0.05}, samourai:{phys:0.1,mag:0}, mageblanc:{phys:-0.1,mag:0.2}, magenoir:{phys:-0.1,mag:0.25}, erudit:{phys:0,mag:0.25} };
+  barde:{phys:0.25,mag:0.05}, samourai:{phys:0.1,mag:0}, mageblanc:{phys:-0.1,mag:0.2}, magenoir:{phys:-0.1,mag:0.25}, erudit:{phys:0,mag:0.25}, magerouge:{phys:0.05,mag:0.15} };
 const TRAPS = [
   {id:'pointes', name:'Dalles à pointes', type:'phys', text:'Des dalles branlantes cachent des pointes acérées.', fail:'Les pointes jaillissent !', hp:0.16},
   {id:'fosse', name:'Fosse dissimulée', type:'phys', text:'Le sol sonne creux sur plusieurs mètres.', fail:'Le sol cède sous tes pieds !', hp:0.2},

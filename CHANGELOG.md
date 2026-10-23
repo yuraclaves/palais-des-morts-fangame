@@ -1,5 +1,12 @@
 # Notes de patch : A Godless Realm
 
+## v5.5c : Nouveau job : Mage rouge (23/10/2026)
+- Nouveau job : le Mage rouge. Achète son cristal chez le Marchand pour 1200 G (400 G si c'est ton premier cristal).
+- Il manie la rapière et la magie : Riposte, VerFoudre et VerVent remplissent sa jauge de Mana.
+- Avec 3 Mana, lance VerBrasier, un coup final très puissant qui te soigne un peu.
+- Il a aussi un petit soin (VerSoin), un coup qui étourdit (Contre de sixte) et Manafication pour frapper plus fort.
+- Le Mage rouge marche en solo, en duo et en trio, et apparaît dans le classement.
+
 ## v5.5b : Effets sonores réparés (23/10/2026)
 - Les effets sonores (coups, dégâts reçus, soins, magie, menus) se lancent dès ton premier toucher, aussi sur iPhone.
 - Si le son du navigateur est bloqué, les effets passent par une autre voie et se font quand même entendre.
