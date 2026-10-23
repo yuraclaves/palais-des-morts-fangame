@@ -1,5 +1,17 @@
 # Notes de patch : A Godless Realm
 
+## v5.5d : Étages plus rapides et actions plus claires (23/10/2026)
+- Chaque étage, c'est maintenant un seul combat, puis 3 récompenses au choix. Plus de chemin à choisir.
+- Environ un étage sur quatre ou cinq, une des 3 récompenses est remplacée par une salle spéciale : Marchand, repos, trésor ou rencontre.
+- Monstres d'élite à partir de l'étage 4, environ un étage sur cinq. Gardiens tous les 5 étages, boss tous les 10, comme avant.
+- Pour compenser, tu gagnes un peu de force à chaque étage, tu récupères plus de PV et de PM après un combat, et tu gagnes plus de Gils.
+- Nouveaux boutons d'action en combat : icône officielle, nom, rôle (Dégâts, Soin, Bouclier, Buff, Contrôle), coût en PM et valeur réelle.
+- Une action en recharge est grisée avec le nombre de tours restants. Une action impossible indique pourquoi (PM insuffisants, Mana manquant).
+- Appui long sur une action : détail avec les vrais chiffres (dégâts, soin, durée, cible).
+- Les textes des actions des 10 jobs ont été réécrits, plus courts et plus clairs.
+- Tes effets actifs s'affichent sous ta barre de PV, avec les tours restants.
+- Relancer un même effet remet sa durée à neuf au lieu de s'additionner. Les bonus de dégâts et les réductions de dégâts ont maintenant un plafond.
+
 ## v5.5c : Nouveau job : Mage rouge (23/10/2026)
 - Nouveau job : le Mage rouge. Achète son cristal chez le Marchand pour 1200 G (400 G si c'est ton premier cristal).
 - Il manie la rapière et la magie : Riposte, VerFoudre et VerVent remplissent sa jauge de Mana.

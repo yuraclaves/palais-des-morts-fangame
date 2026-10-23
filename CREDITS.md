@@ -211,3 +211,78 @@ Captures d'écran officielles de FINAL FANTASY XIV (© SQUARE ENIX), publiées s
 ## Fond de l’écran titre (v5.4g)
 
 Amaurot, écran de chargement officiel de FINAL FANTASY XIV: Shadowbringers (© SQUARE ENIX), texture `ui/loadingimage/-nowloading_base17_hr1.tex` (3840x2160) obtenue via l’API publique documentée XIVAPI v2 (`/api/asset`), recadrée sans les bandes noires.
+
+## Icônes des actions en combat (v5.5d)
+
+Icônes officielles des actions de FINAL FANTASY XIV (© SQUARE ENIX), lues via l’API publique XIVAPI (https://v2.xivapi.com), réduites en 48x48. Une icône par action du jeu, choisie d’après l’action FFXIV du même nom ou la plus proche :
+
+- `assets/skills/barrage.webp` (barde) : Action 107, icône 000353
+- `assets/skills/morsure.webp` (barde) : Action 100, icône 000363
+- `assets/skills/pean.webp` (barde) : Action 3561, icône 002609
+- `assets/skills/salve.webp` (barde) : Action 106, icône 000360
+- `assets/skills/tetanie.webp` (barde) : Action 7551, icône 000848
+- `assets/skills/tir.webp` (barde) : Action 29391, icône 009625
+- `assets/skills/troubadour.webp` (barde) : Action 7405, icône 002612
+- `assets/skills/chaos.webp` (dragoon) : Action 88, icône 000308
+- `assets/skills/lance.webp` (dragoon) : Action 7863, icône 000824
+- `assets/skills/percee.webp` (dragoon) : Action 75, icône 000310
+- `assets/skills/plongeon.webp` (dragoon) : Action 96, icône 002578
+- `assets/skills/saut.webp` (dragoon) : Action 92, icône 002576
+- `assets/skills/second.webp` (dragoon) : Action 7541, icône 000821
+- `assets/skills/souffle.webp` (dragoon) : Action 83, icône 000304
+- `assets/skills/bacterie.webp` (erudit) : Action 17864, icône 000503
+- `assets/skills/drain.webp` (erudit) : Action 167, icône 000514
+- `assets/skills/eclat.webp` (erudit) : Action 16538, icône 002853
+- `assets/skills/murmure.webp` (erudit) : Action 16537, icône 002852
+- `assets/skills/reconfort.webp` (erudit) : Action 185, icône 002801
+- `assets/skills/ruine.webp` (erudit) : Action 163, icône 000501
+- `assets/skills/solsacre.webp` (erudit) : Action 188, icône 002804
+- `assets/skills/brutal.webp` (guerrier) : Action 31, icône 000260
+- `assets/skills/equilibre.webp` (guerrier) : Action 3552, icône 002560
+- `assets/skills/fendoir.webp` (guerrier) : Action 3549, icône 002557
+- `assets/skills/holmgang.webp` (guerrier) : Action 43, icône 000266
+- `assets/skills/soif.webp` (guerrier) : Action 25751, icône 002569
+- `assets/skills/tete.webp` (guerrier) : Action 7540, icône 000802
+- `assets/skills/tourbillon.webp` (guerrier) : Action 41, icône 000254
+- `assets/skills/bene.webp` (mageblanc) : Action 140, icône 002627
+- `assets/skills/divine.webp` (mageblanc) : Action 7432, icône 002638
+- `assets/skills/miracle.webp` (mageblanc) : Action 139, icône 002629
+- `assets/skills/pierre.webp` (mageblanc) : Action 119, icône 000403
+- `assets/skills/saintete.webp` (mageblanc) : Action 139, icône 002629
+- `assets/skills/soin.webp` (mageblanc) : Action 120, icône 000405
+- `assets/skills/vent.webp` (mageblanc) : Action 121, icône 000401
+- `assets/skills/barriere.webp` (magenoir) : Action 157, icône 000463
+- `assets/skills/brasier.webp` (magenoir) : Action 162, icône 002652
+- `assets/skills/entrave.webp` (magenoir) : Action 159, icône 002653
+- `assets/skills/feu.webp` (magenoir) : Action 141, icône 000451
+- `assets/skills/fontaine.webp` (magenoir) : Action 158, icône 002651
+- `assets/skills/foudre.webp` (magenoir) : Action 144, icône 000457
+- `assets/skills/glace.webp` (magenoir) : Action 142, icône 000454
+- `assets/skills/contresixte.webp` (magerouge) : Action 7519, icône 003217
+- `assets/skills/manafication.webp` (magerouge) : Action 7521, icône 003219
+- `assets/skills/riposte.webp` (magerouge) : Action 7504, icône 003201
+- `assets/skills/verbrasier.webp` (magerouge) : Action 7525, icône 003223
+- `assets/skills/verfoudre.webp` (magerouge) : Action 7505, icône 003203
+- `assets/skills/versoin.webp` (magerouge) : Action 7514, icône 003216
+- `assets/skills/vervent.webp` (magerouge) : Action 7507, icône 003205
+- `assets/skills/chakra.webp` (moine) : Action 3547, icône 002535
+- `assets/skills/demolition.webp` (moine) : Action 66, icône 000204
+- `assets/skills/enigme.webp` (moine) : Action 7394, icône 002537
+- `assets/skills/frappe.webp` (moine) : Action 74, icône 002528
+- `assets/skills/poingfeu.webp` (moine) : Action 7395, icône 002541
+- `assets/skills/rosace.webp` (moine) : Action 62, icône 000215
+- `assets/skills/uppercut.webp` (moine) : Action 7538, icône 000808
+- `assets/skills/bouclier.webp` (paladin) : Action 16, icône 000154
+- `assets/skills/cercle.webp` (paladin) : Action 23, icône 000161
+- `assets/skills/clemence.webp` (paladin) : Action 3541, icône 002509
+- `assets/skills/coup.webp` (paladin) : Action 9, icône 000158
+- `assets/skills/esprit.webp` (paladin) : Action 7384, icône 002514
+- `assets/skills/invincible.webp` (paladin) : Action 30, icône 002502
+- `assets/skills/rempart.webp` (paladin) : Action 7531, icône 000801
+- `assets/skills/guren.webp` (samourai) : Action 7496, icône 003177
+- `assets/skills/gyoten.webp` (samourai) : Action 7492, icône 003169
+- `assets/skills/hakaze.webp` (samourai) : Action 7477, icône 003151
+- `assets/skills/higanbana.webp` (samourai) : Action 7489, icône 003160
+- `assets/skills/meditation.webp` (samourai) : Action 7497, icône 003172
+- `assets/skills/midare.webp` (samourai) : Action 7487, icône 003162
+- `assets/skills/oeil.webp` (samourai) : Action 7498, icône 003153
