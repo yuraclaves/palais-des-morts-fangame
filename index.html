@@ -1257,6 +1257,29 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 .lbtn small{font-size:11.5px;color:#aeb5c8;font-weight:600}
 .lbtn:active{background:rgba(232,207,150,.18);transform:scale(.98)}
 .lbtn[disabled]{opacity:.45;cursor:default}
+/* v5.5h : éléments et intentions ennemies */
+.elic{width:15px;height:15px;border-radius:3px;vertical-align:middle;display:inline-block;object-fit:cover}
+.sk2 .skb .elic.skel{width:16px;height:16px;flex:0 0 16px;margin-right:2px;opacity:.95}
+.sk2 .skb .elic.skel.good{box-shadow:0 0 0 1.5px #7dff9a,0 0 6px rgba(125,255,154,.8)}
+.sk2 .skb .elic.skel.bad{filter:grayscale(.85) brightness(.75);opacity:.7}
+#field .en .elw{display:flex;align-items:center;justify-content:center;gap:2px;margin:1px 0 1px;height:14px}
+#field .en .elw .elic{width:13px;height:13px;border-radius:3px}
+#field .en .elw .elic.w{box-shadow:0 0 0 1px #7dff9a}
+#field .en .elw .elic.r{filter:grayscale(.8) brightness(.7);opacity:.75}
+#field .en .elw .elsep{width:1px;height:10px;background:rgba(255,255,255,.35);margin:0 2px}
+.intent{display:inline-flex!important;align-items:center;gap:3px;font-size:11.5px;padding:1px 6px 1px 4px;border-radius:999px;background:rgba(8,10,20,.78);border:1px solid rgba(255,255,255,.35);line-height:16px;margin-bottom:2px;max-width:150px}
+.intent span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:92px}
+.intent b{font-weight:800}
+.intent .elic{width:13px;height:13px}
+.intent svg,.intent .ic{width:13px;height:13px}
+.intent.big{background:rgba(150,20,20,.9);border-color:#ffb0a0}
+.intent.charge{background:rgba(110,70,0,.9);border-color:#ffd070}
+#field .en .stx .arch{font-size:9.5px;letter-spacing:.04em;color:#e8d8a8;background:rgba(0,0,0,.55);border-radius:4px;padding:0 4px}
+#field .en:not(.boss) .intent span{display:none}
+#field .en:not(.boss) .intent{padding:0 5px 0 3px;font-size:11px;line-height:15px}
+.float.weak{color:#7dff9a;font-size:15px;margin-top:-26px}
+.float.resist{color:#b8bfcc;font-size:14px;margin-top:-26px}
+.elgood{color:#7dff9a}.elbad{color:#b8bfcc}
 
 /* v5.5g2 : textes du marchand uniformes */
 .shop .sv{color:#f3d58d;font-weight:700}
@@ -1686,17 +1709,17 @@ const jobPrice = () => promoOK() ? JOB_PROMO : JOB_PRICE;
    cat = rubrique de la boutique ; per = gain par rang ; costs = prix de chaque rang (Gils). */
 const UP_CATS = [['force','Puissance'],['garde','Endurance'],['res','Ressources'],['grace','Bénédictions']];
 const UPGRADES = {
-  atk:{ cat:'force', name:'Force', icon:'atk', per:2, costs:[450,900,1500], st:'Attaque', fmt:v=>'+'+v+' %' },
-  mag:{ cat:'force', name:'Intelligence', icon:'mag', per:2, costs:[450,900,1500], st:'Magie', fmt:v=>'+'+v+' %' },
-  dmg:{ cat:'force', name:'Affûtage', icon:'dmg', per:3, costs:[500,900,1400], st:'Dégâts infligés', fmt:v=>'+'+v+' %' },
-  crit:{ cat:'force', name:'Précision', icon:'crit', per:2, costs:[500,1000,1600], st:'Coups critiques', fmt:v=>'+'+v+' %' },
-  hp:{ cat:'garde', name:'Vitalité', icon:'hp', per:4, costs:[400,800,1200,1800], st:'PV max', fmt:v=>'+'+v+' %' },
-  mp:{ cat:'garde', name:'Esprit', icon:'mp', per:8, costs:[300,600,1000], st:'PM max', fmt:v=>'+'+v+' %' },
-  def:{ cat:'garde', name:'Rempart', icon:'def', per:2, costs:[450,900,1400], st:'Dégâts subis', fmt:v=>'−'+v+' %' },
+  atk:{ cat:'force', name:'Force', icon:'atk', per:1, costs:[450,900,1500], st:'Attaque', fmt:v=>'+'+v+' %' },
+  mag:{ cat:'force', name:'Intelligence', icon:'mag', per:1, costs:[450,900,1500], st:'Magie', fmt:v=>'+'+v+' %' },
+  dmg:{ cat:'force', name:'Affûtage', icon:'dmg', per:2, costs:[500,900,1400], st:'Dégâts infligés', fmt:v=>'+'+v+' %' },
+  crit:{ cat:'force', name:'Précision', icon:'crit', per:1, costs:[500,1000,1600], st:'Coups critiques', fmt:v=>'+'+v+' %' },
+  hp:{ cat:'garde', name:'Vitalité', icon:'hp', per:2, costs:[400,800,1200,1800], st:'PV max', fmt:v=>'+'+v+' %' },
+  mp:{ cat:'garde', name:'Esprit', icon:'mp', per:6, costs:[300,600,1000], st:'PM max', fmt:v=>'+'+v+' %' },
+  def:{ cat:'garde', name:'Rempart', icon:'def', per:1, costs:[450,900,1400], st:'Dégâts subis', fmt:v=>'−'+v+' %' },
   shield:{ cat:'garde', name:'Voile', icon:'shield', per:2, costs:[400,800,1300], st:'Bouclier au départ', fmt:v=>'+'+v+' % des PV' },
-  heal:{ cat:'garde', name:'Récupération', icon:'heal', per:2, costs:[350,700,1100], st:'Soin après combat', fmt:v=>'+'+v+' %' },
-  potion:{ cat:'res', name:'Sacoche', icon:'potion', per:1, costs:[300,700], st:'Potions au départ', fmt:v=>'+'+v },
-  ether:{ cat:'res', name:'Fiole', icon:'ether', per:1, costs:[400,900], st:'Éthers au départ', fmt:v=>'+'+v },
+  heal:{ cat:'garde', name:'Récupération', icon:'heal', per:1, costs:[350,700,1100], st:'Soin après combat', fmt:v=>'+'+v+' %' },
+  potion:{ cat:'res', name:'Sacoche', icon:'potion', per:1, costs:[600], st:'Potions au départ', fmt:v=>'+'+v },
+  ether:{ cat:'res', name:'Fiole', icon:'ether', per:1, costs:[700], st:'Éthers au départ', fmt:v=>'+'+v },
   gil:{ cat:'res', name:'Bourse', icon:'gil', per:15, costs:[500,1000], st:'Gils gagnés', fmt:v=>'+'+v+' %' },
   reroll:{ cat:'res', name:'Dés', icon:'reroll', per:1, costs:[600,1200], st:'Relances gratuites', fmt:v=>'+'+v },
   hyd:{ cat:'grace', name:'Bénédiction', icon:'hyd', per:1, costs:[2000], st:'Survit une fois à un coup fatal', fmt:null },
@@ -1714,7 +1737,7 @@ function upBase(up, j){
     potions:2+(up.potion||0), ethers:(j.mp>=100?1:0)+(up.ether||0),
     perk: Object.assign({}, up.shield?{shieldStart:upV(up,'shield')/100}:{}, up.reroll?{freeRR:up.reroll}:{}, up.hyd?{hyd:1}:{}) };
 }
-const postHeal = () => BAL.heal + upV(R.up,'heal')/100;
+const postHeal = () => (BAL.heal + upV(R.up,'heal')/100) * (pk('glass')?0.5:1);
 
 
 /* ===================== DONNÉES : MONSTRES =====================
@@ -1782,11 +1805,11 @@ function floorPool(f){
 /* Courbe de difficulté : joueur ET monstres progressent avec l'étage (niveau d'aether = étage).
    h0/a0 = force relative des monstres à l'étage 1 (très faciles), atteint 1.0 à l'étage 10,
    puis +hL/+aL par étage au-delà. La difficulté vient surtout des mécaniques. */
-const BAL = { lv:0.08, h0:0.55, a0:0.42, ramp:7, hL:0.045, aL:0.08, elite:{hp:1.3, atk:1.1, enrage:9},
+const BAL = { lv:0.08, h0:0.55, a0:0.42, ramp:7, hL:0.045, aL:0.08, elite:{hp:1.3, atk:1.2, enrage:9},
   // v5.5 : combats plus courts mais plus percutants (PV ennemis réduits selon l'étage et le type, attaque relevée, plafond par coup)
   duoBossHp:0.6, kh:{ n0:0.9, nk:0.07, boss:0.85, big:0.95, fin:0.35, late:0.06 }, ka:1.85, ea0:1.15, cap:0.28, capB:0.4,
   // v5.5d : un seul combat par étage, donc moins de récompenses : le héros gagne un peu de force à chaque étage
-  pg:0.028, heal:0.25, mpw:0.4, gk:2.5, gf:6, dmgCap:2.2, perkCap:0.7, redCap:0.75 };
+  pg:0.028, heal:0.2, mpw:0.4, gk:2.5, gf:6, dmgCap:2.2, perkCap:0.7, redCap:0.75 };
 function khMul(f, d, kind){ const b=BAL.kh, base=b.n0/(1+b.nk*(f-1)); if (!d.boss) return base; return base*(1+b.late*Math.max(0,f-35))*(f>=MAX_FLOOR?b.big*b.fin:isBigBoss(f)?b.big:b.boss); }
 const Lf = lv => 1 + BAL.lv*(lv-1);
 function eMul(f){ const r=Math.min(1,(f-1)/BAL.ramp), late=Math.max(0,f-10); return { h:Lf(f)*(BAL.h0+(1-BAL.h0)*r+BAL.hL*late), a:Lf(f)*(BAL.a0+(1-BAL.a0)*r+BAL.aL*late) }; }
@@ -1910,10 +1933,65 @@ function bossTintSync(){
   if (!t){ t=document.createElement('div'); t.id='btint'; t.className='btint'; f.insertBefore(t, f.firstChild); }
   t.style.setProperty('--bt', BOSS_FX[b.key].tint); t.dataset.ph=b.ph||0; t.classList.toggle('gone', !!b.dead);
 }
+/* ===== v5.5h : éléments (Feu, Glace, Foudre, Terre, Vent, Eau, Lumière, Ténèbres, Physique) ===== */
+const ELEM = { phys:'Physique', feu:'Feu', glace:'Glace', foudre:'Foudre', terre:'Terre', vent:'Vent', eau:'Eau', lum:'Lumière', ten:'Ténèbres' };
+const ELEM_K = Object.keys(ELEM);
+const elIc = (k, cls='') => k ? `<img class="elic ${cls}" src="assets/el/${k}.webp" alt="${ELEM[k]}" title="${ELEM[k]}">` : '';
+const EL_WEAK = 1.5, EL_RES = 0.5;
+/* élément de chaque attaque des jobs (les actions sans dégâts n'en ont pas) */
+const SKILL_EL = {
+  coup:'phys', esprit:'lum', cercle:'lum', bouclier:'terre',
+  frappe:'phys', demolition:'phys', chakra:'feu', rosace:'terre', uppercut:'vent',
+  tir:'phys', morsure:'vent', salve:'phys', barrage:'phys', tetanie:'foudre',
+  pierre:'lum', vent:'vent', miracle:'lum', saintete:'lum',
+  brutal:'phys', fendoir:'feu', tourbillon:'vent', tete:'terre',
+  percee:'phys', chaos:'ten', saut:'vent', plongeon:'feu', lance:'phys',
+  glace:'glace', feu:'feu', foudre:'foudre', brasier:'feu', entrave:'glace',
+  ruine:'ten', bacterie:'terre', drain:'ten', eclat:'lum',
+  hakaze:'vent', higanbana:'feu', midare:'glace', guren:'feu', gyoten:'phys',
+  riposte:'phys', verfoudre:'foudre', vervent:'vent', verbrasier:'feu', contresixte:'phys',
+};
+Object.values(JOBS).forEach(j=>[j.basic,...j.opts].forEach(s=>{ if (s.power||s.dot) s.el = SKILL_EL[s.id]||'phys'; }));
+/* faiblesses (w) et résistances (r) de chaque ennemi */
+const EN_EL = {
+  flan:{w:['feu'],r:['eau']}, bombo:{w:['glace','eau'],r:['feu']}, diablotin:{w:['glace'],r:['foudre']}, squelette:{w:['lum','feu'],r:['ten']},
+  ahriman:{w:['vent'],r:['terre']}, mimique:{w:['foudre'],r:[]}, grenade:{w:['glace','eau'],r:['feu']}, gobelin:{w:['glace'],r:[]},
+  sylphe:{w:['feu'],r:['vent','terre']}, sentinelle:{w:['foudre'],r:['terre']}, spectre:{w:['lum'],r:['ten']}, flannoir:{w:['lum','feu'],r:['ten','glace']},
+  squelettemaudit:{w:['lum','feu'],r:['ten','glace']}, dragonnet:{w:['glace'],r:['feu']}, roiflan:{w:['feu'],r:['eau','glace']}, chevalier:{w:['lum'],r:['ten']},
+  grandahriman:{w:['vent'],r:['terre']}, reinebombo:{w:['glace','eau'],r:['feu']}, sentinelleprime:{w:['foudre'],r:['terre']}, golem:{w:['terre'],r:['lum']},
+  seigneur:{w:['lum','feu'],r:['ten','glace']}, wyverne:{w:['lum'],r:['ten','terre']}, behemoth:{w:['glace'],r:['foudre']}, neant:{w:['lum'],r:['ten']},
+  ifrit:{w:['glace','eau'],r:['feu']}, barbariccia:{w:['terre'],r:['vent']}, gilgamesh:{w:['foudre'],r:['glace']}, golbez:{w:['lum'],r:['ten']},
+  exdeath:{w:['feu'],r:['ten']}, armeultima:{w:['foudre'],r:['vent']}, sephiroth:{w:['lum'],r:['ten']}, kefka:{w:['ten'],r:['lum']},
+  zeromus:{w:['lum'],r:['ten']}, bahamut:{w:['glace'],r:['feu']}, enkidou:{w:['feu'],r:['glace']}, dragonombre:{w:['lum'],r:['ten']},
+};
+const elOf = k => EN_EL[k] || {w:[],r:[]};
+/* élément des attaques ennemies et des attaques de boss */
+const EN_ATK_EL = {
+  'Aile du chaos':'ten','Ailes noires':'ten','Aile noire':'ten','Atterrissage':'terre','Autodestruction':'feu','Big Bang':'ten','Choeur de l’enfer':'ten','Chœur du néant':'ten',
+  'Coup de chevelure':'vent','Coup gélatineux':'eau','Excalibur':'lum','Explosion':'feu','Faux spectrale':'ten','Fendoir des ombres':'ten','Fendoir funeste':'ten',
+  'Flamme infernale':'feu','Flamme noire':'ten','Flamme':'feu','Flammes de l’enfer':'feu','Foudre':'foudre','Giga-flare':'feu','Grande explosion':'feu','Gravité':'ten',
+  'Griffes de braise':'feu','Lame du néant':'ten','Lame maudite':'ten','Lame tournoyante':'vent','Lumière du Jugement':'lum','Malédiction':'ten','Méga-flamme':'feu',
+  'Méga-flare':'feu','Météore noir':'ten','Météores noirs':'ten','Météore':'feu','Néant absolu':'ten','Ombre dévorante':'ten','Onde noire':'ten','Ouragan de cheveux':'vent',
+  'Piqué':'vent','Poing de cristal':'terre','Rafale':'vent','Rayon de la Mort':'ten','Rayon flamboyant':'feu','Rayon oculaire':'lum','Rayon primordial':'lum','Rayon':'lum',
+  'Regard maudit':'ten','Sorcellerie':'ten','Souffle ardent':'feu','Souffle de feu':'feu','Souffle glacé':'glace','Souffle noir':'ten','Souffle sacré':'lum','Souffle':'feu',
+  'Supernova':'lum','Surcharge':'foudre','Séisme':'terre','Tornade':'vent','Toucher glacé':'glace','Ténèbres':'ten','Ultima naissante':'lum','Ultima':'lum',
+  'Vague de vide':'ten','Écho':'ten','Éclair noir':'ten','Éclat':'vent','Écrasement':'terre','Éruption':'feu','Trou noir':'ten','Grand-Croix':'lum',
+  'Drain des ténèbres':'ten','Drain d’âme':'ten','Lame vampirique':'ten','Absorption':'ten','Absorption royale':'eau',
+};
+const atkEl = x => x ? (x.el || EN_ATK_EL[x.name] || 'phys') : null;
+/* élément des attaques des compagnons */
+const COMP_EL = { yshtola:'glace', thancred:'phys', alphinaud:'vent', alisaie:'feu', urianger:'lum', graha:'feu', estinien:'ten', haurchefant:'phys', minfilia:'lum',
+  tataru:'phys', lyse:'phys', krile:'terre', cid:'foudre', cloud:'phys', tifa:'phys', aerith:'lum', squall:'phys', zidane:'phys', vivi:'feu', tidus:'eau', yuna:'lum',
+  auron:'phys', lightning:'foudre', terra:'lum', cecil:'lum', kain:'vent', bartz:'phys', noctis:'ten', rosa:'lum', locke:'phys' };
+/* multiplicateur élémentaire : ×1,5 sur une faiblesse, ×0,5 sur une résistance */
+function elemMul(e, el){ if (!e || !el || el==='phys') return 1; const t=elOf(e.key); return t.w.includes(el) ? EL_WEAK + ((R&&R.perk)?pk('elWeak'):0) : t.r.includes(el) ? EL_RES : 1; }
+function elemPop(e, m){ if (m>1) floatAt(enEl(e),'Faiblesse !','weak'); else if (m<1) floatAt(enEl(e),'Résiste','resist'); }
+function elemChips(e){ const t=elOf(e.key); if (!t.w.length && !t.r.length) return '';
+  return `<div class="elw">${t.w.map(k=>elIc(k,'w')).join('')}${t.r.length?`<span class="elsep"></span>${t.r.map(k=>elIc(k,'r')).join('')}`:''}</div>`; }
 const AI = {
   flan(e){ if (hpr(e)<0.5 && !e.healed){ e.healed=true; return {kind:'heal', name:'Absorption', pct:0.3}; } return A('Coup gélatineux',1); },
   bomb(e){ if (!e.used && (e.t>=2 || hpr(e)<0.5)){ e.used=true; return A('Explosion',4,{windup:1, selfDestruct:true, type:'mag'}); } return A('Charge',1); },
-  imp(e){ return e.t%2 ? A('Foudre',1.3,{type:'mag'}) : A('Griffe',0.9); },
+  imp(e){ return e.t%3===1 ? A('Foudre',2.4,{windup:1, type:'mag'}) : A('Griffe',0.9); }, // v5.5h : lanceur de sorts, à interrompre
   skeleton(e){ return e.t%3===2 ? A('Fendoir des ombres',3.2,{windup:1}) : A('Coup d’os',1); },
   ahriman(e){ return e.t%3===1 ? A('Regard maudit',0.6,{type:'mag', weaken:2}) : A('Morsure',1); },
   mimic(e){ return e.t%3===1 ? A('Dévorer',3.2,{windup:1}) : A('Morsure',1.15); },
@@ -2118,6 +2196,8 @@ function persist(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(S)); }cat
 function saveRun(){ if (R && !R.duo) S.run=R; persist(); }
 const clone = o => JSON.parse(JSON.stringify(o));
 S = loadSave();
+/* v5.5h : la Sacoche de potions et la Fiole d'éther n'ont plus qu'un rang : le 2e rang acheté est remboursé */
+[['potion',700],['ether',900]].forEach(([k,g])=>{ const u=S.upgrades; if ((+u[k]||0)>1){ S.gils=(S.gils||0)+g*((+u[k])-1); u[k]=1; persist(); } });
 if (S.run && S.run.duo) S.run=null; // ancienne version : une partie en ligne avait pu écraser la sauvegarde solo
 if (S.run && S.run.inC && S.run.fs){ S.run=S.run.fs; S.run.inC=0; } // fermé en plein combat : on reprend au début de l'étage
 let R = S.run; // exploration en cours
@@ -2169,6 +2249,9 @@ const REWARDS = [
   {id:'volonte', r:'r', name:'Volonté de fer', desc:'Immunité à Affaibli ↓.', max:1, v:3, apply:()=>addPk('noWeak',1)},
   {id:'antidote', r:'r', name:'Talisman anti-poison', desc:'Immunité aux poisons '+ic('poison')+' ennemis.', max:1, v:3, apply:()=>addPk('noDot',1)},
   {id:'opportun', r:'r', name:'Frappe opportuniste', desc:'+25 % de dégâts contre les ennemis étourdis '+ic('stun')+'.', max:2, v:4, apply:()=>addPk('stunned',0.25)},
+  {id:'resonance', r:'r', name:'Cristal de résonance', desc:'Frapper une faiblesse fait ×1,75 au lieu de ×1,5.', max:1, v:5, apply:()=>addPk('elWeak',0.25)},
+  {id:'prisme', r:'c', name:'Prisme d’éther', desc:'Frapper une faiblesse rend 3 PM.', max:2, v:3, apply:()=>addPk('elMp',3)},
+  {id:'verre', r:'e', name:'Serment de verre', desc:'+18 % de dégâts, mais les soins après combat sont réduits de moitié.', max:1, v:6, apply:()=>{ R.mods.dmg+=0.18; addPk('glass',1); }},
   {id:'epines', r:'r', name:'Armure d’épines', desc:'Renvoie 15 % des dégâts subis à l’attaquant.', max:1, v:4, apply:()=>addPk('thorns',0.15)},
   {id:'econome', r:'r', name:'Économie de mana', desc:'Les compétences coûtent 25 % de PM en moins.', max:1, v:4, req:()=>allSkills(R.job).some(s=>s.mp), apply:()=>addPk('mpSave',0.25)},
   {id:'superpotion', r:'r', name:'Lot de potions', desc:'+2 potions (max 5 en sac).', v:4, tag:'heal', req:()=>R.potions<4, apply:()=>{ R.potions=Math.min(5,R.potions+2); }},
@@ -2277,7 +2360,8 @@ function skillRole(s){
 /* Valeurs réelles (avec tes statistiques actuelles) */
 function skEst(s){
   const sf=s.self||{}, stat=(s.stat==='mag'?R.mag:R.atk), inC=!!(typeof C!=='undefined'&&C&&C.st);
-  const bon = inC ? dmgBonus() : Math.max(0.2, 1+softCap(R.mods.dmg,0.15));
+  const tg_ = inC && C.enemies ? curTarget() : null, em_ = (tg_ && s.target!=='all') ? elemMul(tg_, s.el) : 1;
+  const bon = (inC ? dmgBonus() : Math.max(0.2, 1+softCap(R.mods.dmg,0.15))) * em_;
   const o={};
   if (s.power){ o.hit=Math.max(1,Math.round(stat*s.power*bon)); o.hits=s.hits||1; }
   if (s.dot) o.dot=Math.max(1,Math.round(stat*s.dot[0]*bon*(1+pk('dotUp'))));
@@ -2305,6 +2389,7 @@ function skillDetail(s){
   const tgt = s.target==='all' ? 'Tous les ennemis' : s.target==='self' ? 'Toi' : 'Un ennemi';
   L.push(`<span class="dt">Cible</span> ${tgt}`);
   if (e.hit) L.push(`<span class="dt">Dégâts</span> environ <b>${e.hit}</b>${e.hits>1?` × ${e.hits} coups`:''}${s.target==='all'?' sur chaque ennemi':''} (${s.stat==='mag'?'magiques':'physiques'})`);
+  if (s.el){ const tg=C&&curTarget(), m=tg?elemMul(tg,s.el):1; L.push(`<span class="dt">Élément</span> ${elIc(s.el)} ${ELEM[s.el]}${m>1?` <b class="elgood">faiblesse de ${tg.name} : ×1,5</b>`:m<1?` <b class="elbad">${tg.name} résiste : ×0,5</b>`:''}`); }
   if (e.dot) L.push(`<span class="dt">Sur la durée</span> <b>${e.dot}</b> par tour pendant ${s.dot[1]} tours`);
   if (s.stun) L.push(`<span class="dt">Contrôle</span> étourdit ${s.stun} tour (sauf gardiens et boss, sauf sorts ${ic('bolt')})`);
   if (e.heal) L.push(`<span class="dt">Soin</span> <b>+${e.heal} PV</b>`);
@@ -2360,6 +2445,19 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.0a', date:'23/10/2026', img:'assets/el/feu.webp', title:'Les éléments et des combats plus malins', notes:[
+    'Chaque attaque a maintenant un élément : Feu, Glace, Foudre, Terre, Vent, Eau, Lumière, Ténèbres, ou Physique pour les coups d’arme.',
+    'Le petit cristal sur chaque action montre son élément. Il s’entoure de vert si l’ennemi visé y est faible.',
+    'Sous le nom de chaque ennemi, les cristaux verts sont ses faiblesses et les cristaux gris ses résistances. Une faiblesse fait une fois et demie plus de dégâts, une résistance moitié moins. Ifrit craint la Glace et l’Eau, Barbariccia craint la Terre.',
+    'Chaque job a au moins deux éléments dans ses actions : aucun boss ne te bloque complètement.',
+    'Les compagnons ont aussi leur élément.',
+    'Les intentions des ennemis sont de retour au dessus de leur tête : attaque, sort, soin, renfort ou bouclier, avec l’élément et les dégâts prévus.',
+    'Les ennemis ont un rôle affiché : Blindé (frappe-le avec la magie), Lanceur (interromps ses sorts), Soigneur et Soutien (à éliminer en premier), Explosif.',
+    'Une grosse attaque annoncée prise sans bouclier ni défense t’affaiblit pendant 2 tours. Protège-toi au bon moment !',
+    'Le jeu est un peu plus difficile : un peu moins de soin après chaque combat, élites un peu plus fortes. Les combats restent courts. Réglage en cours.',
+    'Les améliorations permanentes du marchand ont été rééquilibrées pour rester utiles sans rendre le jeu trop facile.',
+    'Trois nouvelles récompenses : Cristal de résonance, Prisme d’éther et Serment de verre (plus de dégâts mais moins de soin).'
+  ]},
   {v:'v5.5g2', date:'23/10/2026', img:'assets/up/gil.webp', title:'Marchand plus clair', notes:[
     'Les noms et les effets des améliorations sont plus courts et écrits de la même façon : la stat, puis la valeur.',
     'Le niveau suivant est affiché pareil partout, avec la valeur en doré.',
@@ -3143,7 +3241,7 @@ function fightRewards(kind, title, extra){
   showRewards();
 }
 /* v5.5 : icônes officielles (FFXIV Fan Kit, commandes principales) pour les récompenses de combat */
-const REW_IC = new Set(["force", "acier", "vitalite", "perspi", "potions", "ether", "bourse", "soin", "serenite", "fortune", "garde", "pickpocket", "ouverture", "alchimie", "brisebouclier", "rajeu", "vampi", "interruption", "parade", "fleau", "venin", "robe", "sablier", "grace", "onde", "cristalether", "ame", "initiative", "regen", "geants", "percearmure", "volonte", "antidote", "opportun", "epines", "econome", "superpotion", "lien", "celerite", "phenix", "egide", "abondance", "elan", "destin", "sang", "fragment", "benediction"]); // v5.5g : icônes d'objets FFXIV (XIVAPI)
+const REW_IC = new Set(["resonance", "prisme", "verre", "force", "acier", "vitalite", "perspi", "potions", "ether", "bourse", "soin", "serenite", "fortune", "garde", "pickpocket", "ouverture", "alchimie", "brisebouclier", "rajeu", "vampi", "interruption", "parade", "fleau", "venin", "robe", "sablier", "grace", "onde", "cristalether", "ame", "initiative", "regen", "geants", "percearmure", "volonte", "antidote", "opportun", "epines", "econome", "superpotion", "lien", "celerite", "phenix", "egide", "abondance", "elan", "destin", "sang", "fragment", "benediction"]); // v5.5g : icônes d'objets FFXIV (XIVAPI)
 function rewImg(x){
   if (REW_IC.has(x.id)) return 'assets/rew/'+x.id+'.webp';
   const d=(x.desc||'').toLowerCase(), id=x.id||'';
@@ -3406,7 +3504,10 @@ function helpModal(){
    ${ic('cross')} soigneur, ${ic('horn')} renforce ses alliés : à éliminer ou interrompre en priorité.<br>
    ${ic('shield')} bouclier : à briser (certaines attaques doublent si le bouclier tient).<br>
    ${ic('clock')} compte à rebours avant la rage (dégâts ×2,5).<br>
-   Résistances : « Phys− » = résiste aux coups physiques, « Mag+ » = faible à la magie (${ic('magic')}).</div></div>
+   Résistances : « Phys− » = résiste aux coups physiques, « Mag+ » = faible à la magie (${ic('magic')}).<br>
+   Éléments : sous le nom de l’ennemi, les cristaux entourés de vert sont ses faiblesses (×1,5), les cristaux gris ses résistances (×0,5). Le petit cristal sur chaque action montre son élément ; il s’allume en vert si la cible y est faible.<br>
+   Blindé = résiste aux coups, frappe-le avec la magie. Lanceur = interromps ses sorts. Soigneur et Soutien = à éliminer en premier.<br>
+   Une grosse attaque ${ic('warn')} prise sans bouclier ni défense t’affaiblit 2 tours.</div></div>
    <button class="btn small" style="width:100%;margin-top:8px" id="hC">Fermer</button>`);
   document.getElementById('hC').onclick=closeModal;
 }
@@ -3416,6 +3517,8 @@ const eAtk = e => e.atk*(1+(e.buffT>0?e.buff:0))*(1+0.15*e.rage)*(enraged(e)?2.5
 function intentPower(e, x){ let p=x.power||1; if (x.shieldAmp) p *= (e.shield>0?2:0.6); return p; }
 const intentEst = (e, it) => Math.max(1, Math.round(eAtk(e)*intentPower(e,it)*(1-effDef())));
 const canInterrupt = e => { const x=e.intent; if(!x) return false; const t = x.kind==='charge'?x.then:x; if(!(x.kind==='charge'||x.big)) return false; return !e.boss || !!t.interruptible; };
+const ARCH_AI = { fairy:'Soigneur', goblin:'Soutien', imp:'Lanceur', ghost:'Lanceur', ahriman:'Lanceur', bomb:'Explosif', grenade:'Explosif' };
+const archOf = e => ARCH_AI[ENEMIES[e.key]&&ENEMIES[e.key].ai] || ((e.res&&e.res.phys>=0.3) ? 'Blindé' : '');
 function resTags(e){ const t=[]; const r=e.res; if(r.phys>=0.3) t.push('Phys−'); else if(r.phys<0) t.push('Phys+'); if(r.mag>=0.25) t.push('Mag−'); else if(r.mag<0) t.push('Mag+'); return t; }
 function updateCombat(){
   if (!C) return;
@@ -3427,15 +3530,15 @@ function updateCombat(){
       const x=e.intent, icx=canInterrupt(e)?' '+ic('bolt')+'':'';
       if (x.kind==='stun') it=`<div class="intent stun">${ic('stun')} Étourdi</div>`;
       else if (x.kind==='interrupted') it=`<div class="intent stun">${ic('bolt')} Interrompu</div>`;
-      else if (x.kind==='charge') it=`<div class="intent charge ${icx?'int':''}">${ic('hour')} ${x.then.name}${icx}</div>`;
-      else if (x.kind==='atk') it=`<div class="intent ${x.big?'big':''} ${enraged(e)?'enr':''} ${icx?'int':''}">${x.big?''+ic('warn')+' '+x.name+' ':''+ic('sword')+' '}${intentEst(e,x)}${x.dot?' '+ic('poison')+'':''}${x.weaken?' ↓':''}${icx}</div>`;
+      else if (x.kind==='charge') it=`<div class="intent charge ${icx?'int':''}">${ic('hour')}${elIc(atkEl(x.then))}<span>${x.then.name}</span>${icx}</div>`;
+      else if (x.kind==='atk') it=`<div class="intent ${x.big?'big':''} ${enraged(e)?'enr':''} ${icx?'int':''}">${x.big?ic('warn'):x.type==='mag'?ic('magic'):ic('sword')}${elIc(atkEl(x))}${x.big?`<span>${x.name}</span>`:''}<b>${intentEst(e,x)}</b>${x.dot?ic('poison'):''}${x.weaken?' ↓':''}${icx}</div>`;
       else if (x.kind==='heal') it=`<div class="intent ${icx?'int':''}">${ic('cross')} ${x.name}${icx}</div>`;
       else if (x.kind==='buffAll') it=`<div class="intent big ${icx?'int':''}">${ic('horn')} ${x.name}${icx}</div>`;
       else if (x.kind==='shield') it=`<div class="intent">${ic('shield')} ${x.name}</div>`;
       else if (x.kind==='summon') it=`<div class="intent charge">${ic('skull')} ${x.name}</div>`;
       else if (x.kind==='fly') it=`<div class="intent charge">${ic('wing')} ${x.name}</div>`;
     }
-    it=''; const sx=[];
+    const sx=[]; const ar=!e.dead&&!e.boss&&archOf(e); if (ar) sx.push(`<span class="arch">${ar}</span>`);
     if (e.dots.length) sx.push(''+ic('poison')+''+e.dots.reduce((s,d)=>s+d.dmg,0));
     if (e.shield>0) sx.push(''+ic('shield')+''+Math.round(e.shield));
     if (e.buffT>0) sx.push(''+ic('rage')+'+'+Math.round(e.buff*100)+'%');
@@ -3444,7 +3547,7 @@ function updateCombat(){
     if (e.enrageAt){ const left=e.enrageAt-e.t; if (left<=0) sx.push('<b style="color:#ff80ff">ENRAGÉ</b>'); else if (left<=6) sx.push(''+ic('clock')+''+left); }
     const wind=!e.dead&&e.intent&&(e.intent.kind==='charge'||e.intent.big||e.intent.kind==='buffAll'||e.intent.kind==='summon');
     const sl=enSlot(i,C.enemies.length,C.enemies); return `<div style="--x:${sl[0]};--y:${sl[1]};--s:${sl[2]};z-index:${sl[3]}" class="en ${e.boss?'boss':''} ${e.boss&&isNamedBoss(e.key)?'named':''} ${e===tgt&&alive().length>1?'tgt':''} ${e.dead?'dead':''} ${wind?'winding':''} ${wind&&canInterrupt(e)?'cut':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
-      ${it}${bossCast(e)}<span class="esp">${spr(e.skin||e.key,'idle')}</span><div class="ename">${e.name}</div>${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
+      ${it}${bossCast(e)}<span class="esp">${spr(e.skin||e.key,'idle')}</span><div class="ename">${e.name}</div>${e.dead?'':elemChips(e)}${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
   }).join('');
   en.querySelectorAll('[data-ei]').forEach(el=>el.onclick=()=>{ const i=+el.dataset.ei; if(!C.enemies[i].dead){ C.target=i; updateCombat(); } });
   const al = alive();
@@ -3470,7 +3573,7 @@ function renderSkills(){
     const why = st.cd ? '' : st.why==='PM' ? 'PM insuffisants' : st.why ? `${g} ${C.st.sen}/${s.req}` : '';
     return `<button class="btn sk sk2 ${st.ok?'':'na'}${st.cd?' oncd':''}" data-k="skill-${s.id}" data-sk="${s.id}" data-tip="${skillDetail(s).replace(/"/g,'&quot;')}" ${C.busy?'disabled':''}>`
       + `<span class="skt"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'"><span class="skn${Math.max(...s.name.split(' ').map(w=>w.length))>=11?' skn-l':''}">${s.name}</span></span>`
-      + `<span class="skb"><span class="rtag ${ro[1]}">${ro[0]}</span><span class="skr">${cost}${s.cd?`<span class="skc c-cd">${ic('clock')}${Math.max(1,s.cd-(R.mods.cdr||0))}</span>`:''}</span></span><span class="skv">${why?`<span class="why">${why}</span>`:skMain(s)}</span>`
+      + `<span class="skb">${s.el?(()=>{ const tg=curTarget(), m=tg?elemMul(tg,s.el):1; return elIc(s.el,'skel'+(m>1?' good':m<1?' bad':'')); })():''}<span class="rtag ${ro[1]}">${ro[0]}</span><span class="skr">${cost}${s.cd?`<span class="skc c-cd">${ic('clock')}${Math.max(1,s.cd-(R.mods.cdr||0))}</span>`:''}</span></span><span class="skv">${why?`<span class="why">${why}</span>`:skMain(s)}</span>`
       + (st.cd?`<span class="cdv"><b>${ic('clock')}${st.cd}</b><small>tour${st.cd>1?'s':''}</small></span>`:'') + `</button>`; }).join('')
     + `<button class="btn sk sk2 skit" data-k="item" id="bItem" data-tip="&lt;b&gt;Objets&lt;/b&gt;&lt;br&gt;Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM." ${C.busy?'disabled':''}><span class="skt"><span class="ski icb">${ic('heal')}</span><span class="skn">Objets</span></span><span class="skb"><span class="rtag r-item">Sac</span></span><span class="skv"><span class="chips">${chip('heal',R.potions)}${chip('drop',R.ethers,'mp')}</span></span></button>`;
   el.querySelectorAll('[data-sk]').forEach(b=>b.onclick=()=>playerAction(b.dataset.sk));
@@ -3519,8 +3622,9 @@ function enemyMul(e, type){ let r=e.res[type]||0; if (r>0) r*=(1-pk('pierce')); 
 function playerHit(s, e){
   const stat = s.stat==='mag' ? R.mag : R.atk;
   const crit = C.st.nextCrit ? true : rand() < (R.crit + R.mods.crit);
-  const d = stat * s.power * dmgBonus() * perkMul(s, e) * rnd(0.92,1.08) * (crit?1.5+pk('critMul'):1) * enemyMul(e, skType(s));
-  return {d:Math.max(1,Math.round(d)), crit};
+  const em = elemMul(e, s.el);
+  const d = stat * s.power * dmgBonus() * perkMul(s, e) * rnd(0.92,1.08) * (crit?1.5+pk('critMul'):1) * enemyMul(e, skType(s)) * em;
+  return {d:Math.max(1,Math.round(d)), crit, em};
 }
 function perkMul(s, e){
   if (!R.perk) return 1;
@@ -3618,8 +3722,8 @@ async function useSkill(s){
       for (const e of targets){
         if (e.dead) continue;
         const r = playerHit(s, e);
-        fxAt(enEl(e), s.fx); damageEnemy(e, r.d, r.crit);
-        if (s.dot && !e.dead && h===0){ const stat=s.stat==='mag'?R.mag:R.atk; e.dots=e.dots.filter(d=>d.src!==s.id); e.dots.push({src:s.id, dmg:Math.max(1,Math.round(stat*s.dot[0]*dmgBonus()*(1+pk('dotUp'))*Math.max(0.5,1-(e.res[skType(s)]||0)*0.5))), t:s.dot[1]}); }
+        fxAt(enEl(e), s.fx); damageEnemy(e, r.d, r.crit); if (h===0){ elemPop(e, r.em); if (r.em>1 && pk('elMp') && R.maxmp) R.mp=Math.min(R.maxmp, R.mp+pk('elMp')); }
+        if (s.dot && !e.dead && h===0){ const stat=s.stat==='mag'?R.mag:R.atk; e.dots=e.dots.filter(d=>d.src!==s.id); e.dots.push({src:s.id, dmg:Math.max(1,Math.round(stat*s.dot[0]*dmgBonus()*(1+pk('dotUp'))*Math.max(0.5,1-(e.res[skType(s)]||0)*0.5)*elemMul(e, s.el))), t:s.dot[1]}); }
         if (s.stun && !e.dead && h===0) applyStun(e, s.stun);
       }
       if (hits>1){ updateCombat(); await sleep(200); }
@@ -3692,7 +3796,9 @@ async function enemyAct(e){
   C.msg = `${e.name} utilise <b>${x.name}</b> !`;
   anim(el, 'cast', 300); await sleep(160);
   fxAt(pel, 'enemy');
+  const unguarded = x.big && !x.meteor && C.st.mitigT<=0 && C.st.shield<=0 && C.st.invulnT<=0 && !(C.st.absorb>0); // v5.5h : grosse attaque prise sans défense
   const dealt = damagePlayer(eAtk(e) * intentPower(e,x) * rnd(0.9,1.1), x);
+  if (unguarded && dealt>0 && !pk('noWeak')){ C.st.weakT=Math.max(C.st.weakT||0, 3); floatAt(pel,'Sans défense : Affaibli','info'); C.msg += ' Pris sans défense : tes dégâts baissent 2 tours.'; }
   if (dealt>0 && pk('thorns') && !e.dead){ const t=Math.max(1,Math.round(dealt*pk('thorns'))); e.hp=Math.max(0,e.hp-t); floatAt(el,String(t),'dot'); if(e.hp<=0){ killEnemy(e); return; } }
   if (x.rage) e.rage++;
   if (x.land) e.flyT=0;
@@ -4020,8 +4126,10 @@ const compAtk = () => 10*Lf(R.level)*(1+0.04*(R.comp.rank-1));
 const bigIncoming = () => alive().some(e=>e.intent && e.intent.kind==='atk' && e.intent.big);
 function compHit(e, power, type, o={}){
   if (!e || e.dead) return;
+  const cel_ = R.comp ? (COMP_EL[R.comp.id]||'phys') : 'phys', em = o.pierceRes ? 1 : elemMul(e, cel_);
   let mul = o.pierceRes ? (e.flyT>0?0.5:1) : enemyMul(e, type||'phys');
-  let d = Math.max(1, Math.round(compAtk()*power*rnd(0.92,1.08)*mul));
+  let d = Math.max(1, Math.round(compAtk()*power*rnd(0.92,1.08)*mul*em));
+  if (power>=0.5) elemPop(e, em);
   const el=enEl(e);
   if (o.pierce && e.shield>0){ e.hp=Math.max(0,e.hp-d); floatAt(el,String(d),'crit'); if(e.hp<=0 && !e.dead) killEnemy(e); }
   else { const v=R.mods.vamp; R.mods.vamp=0; damageEnemy(e, d, false); R.mods.vamp=v; }

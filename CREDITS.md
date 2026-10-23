@@ -370,3 +370,20 @@ Récompenses de combat (`assets/rew/`) :
 - `assets/rew/sang.webp` : Item « Berserker Betta », icône 029238
 - `assets/rew/fragment.webp` : Item « Fire Crystal », icône 020007
 - `assets/rew/benediction.webp` : Item « Holy Water », icône 022653
+- `assets/rew/resonance.webp` : Item « Lightning Cluster », icône 020017
+- `assets/rew/prisme.webp` : Item « Glamour Prism », icône 026235
+- `assets/rew/verre.webp` : Item « Cracked Crystal », icône 020019
+
+## Icônes d'éléments (v5.5h)
+
+Icônes officielles d'objets de FINAL FANTASY XIV (cristaux), via l'API publique documentée XIVAPI v2, converties en WebP 48 px. © SQUARE ENIX CO., LTD.
+
+- `assets/el/feu.webp` : Item « Fire Crystal », icône 020007
+- `assets/el/glace.webp` : Item « Ice Crystal », icône 020009
+- `assets/el/vent.webp` : Item « Wind Crystal », icône 020010
+- `assets/el/terre.webp` : Item « Earth Crystal », icône 020012
+- `assets/el/foudre.webp` : Item « Lightning Crystal », icône 020011
+- `assets/el/eau.webp` : Item « Water Crystal », icône 020008
+- `assets/el/lum.webp` : Item « Crystal of Divine Light », icône 020048
+- `assets/el/ten.webp` : Item « Crystal of Eternal Darkness », icône 020046
+- `assets/el/phys.webp` : Item « Whetstone », icône 021470 (attaques physiques, sans élément)

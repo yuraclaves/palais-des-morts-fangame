@@ -1,5 +1,18 @@
 # Notes de patch : A Godless Realm
 
+## v6.0a : Les éléments et des combats plus malins (23/10/2026)
+- Chaque attaque a maintenant un élément : Feu, Glace, Foudre, Terre, Vent, Eau, Lumière, Ténèbres, ou Physique pour les coups d'arme.
+- Le petit cristal sur chaque action montre son élément. Il s'entoure de vert si l'ennemi visé y est faible.
+- Sous le nom de chaque ennemi, les cristaux verts sont ses faiblesses et les cristaux gris ses résistances. Une faiblesse fait une fois et demie plus de dégâts, une résistance moitié moins. Ifrit craint la Glace et l'Eau, Barbariccia craint la Terre.
+- Chaque job a au moins deux éléments dans ses actions : aucun boss ne te bloque complètement.
+- Les compagnons ont aussi leur élément.
+- Les intentions des ennemis sont de retour au dessus de leur tête : attaque, sort, soin, renfort ou bouclier, avec l'élément et les dégâts prévus.
+- Les ennemis ont un rôle affiché : Blindé (frappe-le avec la magie), Lanceur (interromps ses sorts), Soigneur et Soutien (à éliminer en premier), Explosif.
+- Une grosse attaque annoncée prise sans bouclier ni défense t'affaiblit pendant 2 tours. Protège-toi au bon moment !
+- Le jeu est un peu plus difficile : un peu moins de soin après chaque combat, élites un peu plus fortes. Les combats restent courts. Réglage en cours.
+- Les améliorations permanentes du marchand ont été rééquilibrées pour rester utiles sans rendre le jeu trop facile.
+- Trois nouvelles récompenses : Cristal de résonance, Prisme d'éther et Serment de verre (plus de dégâts mais moins de soin).
+
 ## v5.5g2 : Marchand plus clair (23/10/2026)
 - Les noms et les effets des améliorations sont plus courts et écrits de la même façon : la stat, puis la valeur.
 - Le niveau suivant est affiché pareil partout, avec la valeur en doré.
