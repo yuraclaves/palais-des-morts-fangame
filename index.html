@@ -1733,6 +1733,10 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.4i', date:'23/10/2026', img:'assets/band/v_rencontre.webp', title:'Correctif du jeu en groupe', notes:[
+    'En ligne, la partie ne reste plus bloquée quand les joueurs votent pour des chemins différents.',
+    'En cas d’égalité, tous les joueurs voient maintenant le même résultat du tirage.'
+  ]},
   {v:'v5.4h', date:'23/10/2026', img:'assets/band/v_rencontre.webp', title:'Jouer en groupe', notes:[
     'Le mode en ligne accepte maintenant 2 ou 3 joueurs dans le même salon.',
     'Pour les chemins et les événements, chacun vote : la majorité l’emporte, et en cas d’égalité le jeu tire au sort.',
@@ -4257,13 +4261,18 @@ document.addEventListener('click', e=>{
   const k=b.dataset.k; if (DUO_LOCAL.test(k)) return;
   if (!document.getElementById('app').contains(b) && !/^(potion|ether)$/.test(k)) return;
   e.stopPropagation(); e.preventDefault();
+  if (DUO.waiting && Online.roomInfo && !Online.roomInfo().waiting) DUO.waiting=false; // attente périmée
   if (DUO.waiting) return;
   if (C && C.busy) return;
   const tgt = C && C.enemies[C.target] ? C.enemies[C.target].uid : null;
   if (k==='potion'||k==='ether'){ try{ closeModal(); }catch(_){} }
+  const st0 = Online.roomInfo ? Online.roomInfo().step : -1;
+  DUO.waiting=true; // avant l'envoi : si ce clic complète l'étape, la résolution remet l'attente à zéro
   const ok = Online.submit({t:'k', k, tgt});
-  if (ok!==false && !/^skill-|^potion$|^ether$/.test(k) && Online.hint) try{ Online.hint({vote:k}); }catch(_){}
-  if (ok!==false){ DUO.waiting=true; b.classList.add('sel'); toast(NP()>2?'Choix envoyé, en attente des autres joueurs':'Choix envoyé, en attente du partenaire'); if (C) updateCombat(); }
+  const resolved = Online.roomInfo && Online.roomInfo().step !== st0;
+  if (ok===false || resolved) DUO.waiting=false;
+  if (ok!==false && !resolved && !/^skill-|^potion$|^ether$/.test(k) && Online.hint) try{ Online.hint({vote:k}); }catch(_){}
+  if (ok!==false && !resolved){ b.classList.add('sel'); toast(NP()>2?'Choix envoyé, en attente des autres joueurs':'Choix envoyé, en attente du partenaire'); if (C) updateCombat(); }
 }, true);
 function duoClick(k){
   const el=document.querySelector(`#app [data-k="${CSS.escape(k)}"]`) || document.querySelector(`[data-k="${CSS.escape(k)}"]`);
@@ -4277,7 +4286,9 @@ function duoVote(K){
   const n={}; K.forEach(k=>{ if (k) n[k]=(n[k]||0)+1; });
   const ks=Object.keys(n); if (!ks.length) return '';
   const mx=Math.max(...ks.map(k=>n[k])), top=ks.filter(k=>n[k]===mx).sort();
-  return top.length>1 ? top[Math.min(top.length-1, Math.floor(rand()*top.length))] : top[0];
+  if (top.length<2) return top[0];
+  const h=bandH(top.join('|')+'#'+R.floor+'#'+(R.kills||0)+'#'+(R.gilsEarned||0)+'#'+JSON.stringify(R.plan&&R.plan.i)); // tirage identique chez tous, sans toucher au générateur du jeu
+  return top[h % top.length];
 }
 /* effets partagés : ce que l'événement fait au héros 0 est reproduit sur les autres membres du groupe */
 const SHARE_N = ['potions','ethers','def','crit'];

@@ -1,5 +1,9 @@
 # Notes de patch : A Godless Realm
 
+## v5.4i : Correctif du jeu en groupe (23/10/2026)
+- En ligne, la partie ne reste plus bloquée quand les joueurs votent pour des chemins différents.
+- En cas d'égalité, tous les joueurs voient maintenant le même résultat du tirage.
+
 ## v5.4h : Jouer en groupe (23/10/2026)
 - Le mode en ligne accepte maintenant 2 ou 3 joueurs dans le même salon.
 - Pour les chemins et les événements, chacun vote : la majorité l'emporte, et en cas d'égalité le jeu tire au sort.
