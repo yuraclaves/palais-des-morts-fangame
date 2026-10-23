@@ -1,5 +1,11 @@
 # Notes de patch : A Godless Realm
 
+## v5.5b : Effets sonores réparés (23/10/2026)
+- Les effets sonores (coups, dégâts reçus, soins, magie, menus) se lancent dès ton premier toucher, aussi sur iPhone.
+- Si le son du navigateur est bloqué, les effets passent par une autre voie et se font quand même entendre.
+- Sur iPhone récent, le son du jeu se fait entendre même quand le bouton silencieux est activé. Utilise Couper le son dans Paramètres pour le couper.
+- Nouveau réglage Effets sonores dans Paramètres. Un petit son de test se joue quand tu changes un volume.
+
 ## v5.5a : Invocations animées et nouveaux décors (23/10/2026)
 - Nouvelle animation d'invocation : un cristal se charge de lumière, sa couleur annonce la rareté, puis le héros apparaît avec son nom.
 - Touche l'écran pour passer l'animation. Une invocation x10 montre les 10 héros d'un coup.

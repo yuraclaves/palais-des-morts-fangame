@@ -1793,6 +1793,12 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.5b', date:'23/10/2026', img:'assets/band/r1.webp', title:'Effets sonores réparés', notes:[
+    'Les effets sonores (coups, dégâts reçus, soins, magie, menus) se lancent dès ton premier toucher, aussi sur iPhone.',
+    'Si le son du navigateur est bloqué, les effets passent par une autre voie et se font quand même entendre.',
+    'Sur iPhone récent, le son du jeu se fait entendre même quand le bouton silencieux est activé. Utilise Couper le son dans Paramètres pour le couper.',
+    'Nouveau réglage Effets sonores dans Paramètres. Un petit son de test se joue quand tu changes un volume.'
+  ]},
   {v:'v5.5a', date:'23/10/2026', img:'assets/band/r2.webp', title:'Invocations animées et nouveaux décors', notes:[
     'Nouvelle animation d’invocation : un cristal se charge de lumière, sa couleur annonce la rareté, puis le héros apparaît avec son nom.',
     'Touche l’écran pour passer l’animation. Une invocation x10 montre les 10 héros d’un coup.',
@@ -2077,13 +2083,14 @@ SCREENS.ranking = function(){
 };
 /* Paramètres : son, notes de patch, crédits (menu plat) */
 SCREENS.settings = function(from){
-  const v=Math.round((+(localStorage.getItem('pdm_vol') ?? 0.6))*100), m=localStorage.getItem('pdm_mute')==='1';
+  const v=Math.round((+(localStorage.getItem('pdm_vol') ?? 0.6))*100), m=localStorage.getItem('pdm_mute')==='1', fx=Math.round((+(localStorage.getItem('pdm_sfx') ?? 0.9))*100);
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Paramètres</b></div>
   <div class="scroll">
     <section class="xsec">
       <h3 class="xh">Son</h3>
       <label class="setrow"><span>Volume</span><input type="range" id="stVol" min="0" max="100" step="5" value="${v}"></label>
+      <label class="setrow"><span>Effets sonores</span><input type="range" id="stSfx" min="0" max="100" step="5" value="${fx}"></label>
       <button class="btn small" id="stMute" data-k="mute">${m?'Activer le son':'Couper le son'}</button>
     </section>
     <section class="xsec">
@@ -2102,7 +2109,7 @@ SCREENS.settings = function(from){
       <p><b>Icônes, sons, jingles et décors :</b> FINAL FANTASY XIV, Fan Kit officiel et illustrations officielles.</p>
       <p><b>Illustrations des bannières :</b> rendus officiels FINAL FANTASY VII, X, XIII, XIV et XV.</p>
       <p><b>Fond de l’écran titre :</b> illustration officielle d’Amaurot (écran de chargement de FINAL FANTASY XIV: Shadowbringers, texture 4K du jeu via l’API publique XIVAPI).</p>
-      <p><b>Illustrations des bandes de choix</b> : décors officiels de FINAL FANTASY BRAVE EXVIUS (Square Enix, Alim), recadrés.</p>
+      <p><b>Illustrations des bandes de choix</b> : captures d’écran officielles de FINAL FANTASY XIV (pages Media des sites officiels), recadrées.</p>
       <p><b>Polices :</b> Cinzel (Natanael Gama) et Source Sans 3 (Adobe), licence SIL Open Font License.</p>
       <p><b>Sprites des compagnons de FINAL FANTASY XIV :</b> Alphinaud, Alisaie, Estinien, Haurchefant et Cid : FINAL FANTASY Record Keeper (Square Enix, DeNA). Urianger et Lyse : PICTLOGICA FINAL FANTASY (Square Enix). Tataru, Krile et G’raha Tia : rendus officiels de FINAL FANTASY XIV. Aucun sprite de fan utilisé.</p>
       <p><b>Décors de combat</b> : décors officiels de FINAL FANTASY BRAVE EXVIUS (Square Enix, Alim), trois par palier, un par palier pour les salles maudites et un par boss.</p>
@@ -2111,8 +2118,10 @@ SCREENS.settings = function(from){
     </section>
   </div>`;
   const r=document.getElementById('stVol');
-  r.oninput=()=>{ const sv=document.getElementById('sndVol'); if (sv){ sv.value=r.value; sv.dispatchEvent(new Event('input')); } else localStorage.setItem('pdm_vol', r.value/100); };
-  document.getElementById('stMute').onclick=()=>{ const sm=document.getElementById('sndMute'); if (sm) sm.click(); else localStorage.setItem('pdm_mute', localStorage.getItem('pdm_mute')==='1'?'0':'1'); setTimeout(()=>{ document.getElementById('stMute').textContent=localStorage.getItem('pdm_mute')==='1'?'Activer le son':'Couper le son'; },30); };
+  r.oninput=()=>{ SND.setVol(r.value/100); const sv=document.getElementById('sndVol'); if (sv) sv.value=r.value; document.getElementById('stMute').textContent=SND.muted?'Activer le son':'Couper le son'; };
+  r.onchange=SND.test;
+  const fxr=document.getElementById('stSfx'); fxr.oninput=()=>SND.setSfx(fxr.value/100); fxr.onchange=SND.test;
+  document.getElementById('stMute').onclick=()=>{ const mu=SND.toggleMute(); document.getElementById('stMute').textContent=mu?'Activer le son':'Couper le son'; if (!mu) SND.test(); };
   document.getElementById('stPN').onclick=patchNotes;
   document.getElementById('stReset').onclick=()=>confirmBox('Recommencer à zéro ? Toute ta progression sur cet appareil sera effacée (Gils, cristaux, jobs, compagnons, améliorations). C’est définitif.', ()=>confirmBox('Vraiment tout effacer ?', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Tout effacer'), 'Continuer');
   backIcon(from==='title'?'title':'hub');
@@ -4571,16 +4580,33 @@ const SND = (()=>{
   const pick = k => FALL(k).find(x=>HAVE.has(x)) || null;
   let vol = +(localStorage.getItem('pdm_vol') ?? 0.6); if (!(vol>=0&&vol<=1)) vol=0.6;
   let muted = localStorage.getItem('pdm_mute')==='1';
+  let sfxVol = +(localStorage.getItem('pdm_sfx') ?? 0.9); if (!(sfxVol>=0&&sfxVol<=1)) sfxVol=0.9;
   const gainVal = ()=> muted?0:vol;
-  function unlock(){
-    if (ctx) { if (ctx.state==='suspended') ctx.resume(); return; }
-    try {
+  // Effets sonores : préchargés au premier toucher, joués en WebAudio, ou en <audio> si WebAudio est bloqué (iOS)
+  const SFX_KEYS = ['hit','hurt','heal','cast','click','confirm','cancel','gacha','gacha5','levelup'];
+  const IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+  const useEl = IOS && !('audioSession' in navigator); // iOS < 17 : WebAudio se tait avec le bouton silencieux, <audio> non
+  const el = {}, st = { ctx:0, el:0, err:'' };
+  let primed = false;
+  function htmlEl(k){ if (!el[k]){ const a=new Audio('assets/snd/'+k+'.mp3'); a.preload='auto'; a.setAttribute('playsinline',''); el[k]=a; } return el[k]; }
+  function session(){ try{ if (navigator.audioSession) navigator.audioSession.type = (muted||!vol) ? 'ambient' : 'playback'; }catch(e){} }
+  function unlock(e){
+    session();
+    if (!ctx){ try {
       ctx = new (window.AudioContext||window.webkitAudioContext)();
       master=ctx.createGain(); master.gain.value=gainVal(); master.connect(ctx.destination);
       musG=ctx.createGain(); musG.gain.value=0.55; musG.connect(master);
-      sfxG=ctx.createGain(); sfxG.gain.value=0.8; sfxG.connect(master);
-      if (pending){ const p=pending; pending=null; music(p); }
-    } catch(e){ ctx=null; }
+      sfxG=ctx.createGain(); sfxG.gain.value=sfxVol; sfxG.connect(master);
+    } catch(e){ ctx=null; st.err='ctx '+e; } }
+    if (ctx && ctx.state!=='running'){ // 'suspended' ou 'interrupted' (iOS) : on relance dans le geste
+      try{ ctx.resume().catch(()=>{}); const b=ctx.createBuffer(1,1,22050), s=ctx.createBufferSource(); s.buffer=b; s.connect(ctx.destination); s.start(0); }catch(e){}
+    }
+    if (ctx && pending){ const p=pending; pending=null; music(p); }
+    if (!primed && (!e || /^(touchend|click|keydown)$/.test(e.type))){ primed=true; // iOS : seul un vrai geste (fin de toucher, clic) déverrouille <audio>
+      if (ctx) SFX_KEYS.forEach(k=>get(k));
+      SFX_KEYS.forEach(k=>{ const a=htmlEl(k); try{ a.muted=true; const p=a.play(); const done=()=>{ try{ a.pause(); a.currentTime=0; }catch(e){} a.muted=false; };
+        if (p && p.then) p.then(done, ()=>{ a.muted=false; }); else done(); }catch(e){ a.muted=false; } });
+    }
   }
   function get(k){
     if (buf[k]) return Promise.resolve(buf[k]);
@@ -4604,12 +4630,27 @@ const SND = (()=>{
       const me={s,g}; cur=me; s.onended=()=>{ if (cur===me){ cur=null; curKey=null; } };
     });
   }
-  function sfx(k){
-    if (!ctx || muted || !vol) return;
-    const now=performance.now(); if (last[k] && now-last[k]<90) return; last[k]=now;
-    get(k).then(b=>{ if(!b) return; const s=ctx.createBufferSource(); s.buffer=b; s.connect(sfxG); s.start(); });
+  function playEl(k){
+    try{ const a=htmlEl(k); a.muted=false; a.volume=Math.min(1, vol*sfxVol); try{ a.currentTime=0; }catch(e){}
+      const p=a.play(); st.el++; if (p && p.catch) p.catch(e=>{ st.err='el '+e; }); }catch(e){ st.err='el '+e; }
   }
-  function apply(){ if (master) master.gain.setTargetAtTime(gainVal(), ctx.currentTime, 0.05); localStorage.setItem('pdm_vol',vol); localStorage.setItem('pdm_mute',muted?'1':'0'); paint(); }
+  function playBuf(b){ try{ const s=ctx.createBufferSource(); s.buffer=b; s.connect(sfxG); s.start(); st.ctx++; }catch(e){ st.err='ctx '+e; } }
+  function sfx(k){
+    if (muted || !vol || !sfxVol) return;
+    const now=performance.now(); if (last[k] && now-last[k]<90) return; last[k]=now;
+    if (ctx && ctx.state!=='running') { try{ ctx.resume().catch(()=>{}); }catch(e){} }
+    if (!useEl && ctx && ctx.state==='running'){
+      if (buf[k]) return playBuf(buf[k]);
+      get(k).then(b=>{ if (b && ctx.state==='running') playBuf(b); else playEl(k); }); return;
+    }
+    playEl(k); // WebAudio indisponible ou bloqué : les effets passent quand même
+  }
+  function apply(){ if (master) master.gain.setTargetAtTime(gainVal(), ctx.currentTime, 0.05); if (sfxG) sfxG.gain.setTargetAtTime(sfxVol, ctx.currentTime, 0.05);
+    localStorage.setItem('pdm_vol',vol); localStorage.setItem('pdm_mute',muted?'1':'0'); localStorage.setItem('pdm_sfx',sfxVol); session(); paint(); }
+  let tT=0; const test = ()=>{ const n=performance.now(); if (n-tT>250){ tT=n; last.confirm=0; sfx('confirm'); } };
+  function setVol(v){ vol=Math.max(0,Math.min(1,v)); if (vol>0) muted=false; apply(); }
+  function setSfx(v){ sfxVol=Math.max(0,Math.min(1,v)); apply(); }
+  function toggleMute(){ muted=!muted; apply(); return muted; }
   const icon = ()=> `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/>${(muted||!vol)?'<path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>':'<path d="M16 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'+(vol>0.5?'<path d="M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>':'')}</svg>`;
   function paint(){ const b=document.getElementById('sndBtn'); if (b) b.innerHTML=icon(); const m=document.getElementById('sndMute'); if (m) m.textContent=muted?'Activer le son':'Couper le son'; }
   function ui(){
@@ -4621,6 +4662,7 @@ const SND = (()=>{
     r.value=Math.round(vol*100);
     w.querySelector('#sndBtn').onclick=e=>{ e.stopPropagation(); pop.hidden=!pop.hidden; };
     r.oninput=()=>{ vol=r.value/100; if (vol>0) muted=false; apply(); };
+    r.onchange=test;
     w.querySelector('#sndMute').onclick=e=>{ e.stopPropagation(); muted=!muted; apply(); };
     document.addEventListener('pointerdown', e=>{ if (!w.contains(e.target)) pop.hidden=true; }, true);
     paint();
@@ -4629,6 +4671,8 @@ const SND = (()=>{
   document.addEventListener('touchend', unlock, true); // iOS : déverrouillage au premier toucher
   document.addEventListener('visibilitychange', ()=>{ if (!ctx) return; if (document.hidden) ctx.suspend(); else ctx.resume(); });
   document.addEventListener('keydown', unlock, true);
+  document.addEventListener('click', unlock, true);
+  document.addEventListener('touchstart', unlock, {capture:true, passive:true});
   // clics de menu
   document.addEventListener('click', e=>{
     const b=e.target.closest && e.target.closest('button'); if (!b || b.closest('#sndBox') || b.disabled) return;
@@ -4639,7 +4683,8 @@ const SND = (()=>{
     else sfx('click');
   }, true);
   if (document.readyState!=='loading') ui(); else document.addEventListener('DOMContentLoaded', ui);
-  return { music, sfx, ui, unlock };
+  return { music, sfx, ui, unlock, setVol, setSfx, toggleMute, test, get vol(){return vol;}, get sfxVol(){return sfxVol;}, get muted(){return muted;},
+    dbg: ()=>({ state: ctx?ctx.state:'none', ctx: st.ctx, el: st.el, err: st.err, useEl, ios: IOS, vol, sfxVol, muted, loaded: Object.keys(buf) }) };
 })();
 // Branchements sur le moteur (enveloppes, aucun changement de logique)
 (function(){
