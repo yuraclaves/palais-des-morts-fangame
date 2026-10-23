@@ -986,6 +986,46 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 .rw-ov .band.rw-b b{display:flex;align-items:center;gap:8px}
 .rw-ic{width:30px;height:30px;flex:none;object-fit:contain;filter:drop-shadow(0 1px 2px #000)}
 .rw-ov .band.rw-b small{font-size:12.5px}
+
+/* v5.5a invocation */
+.sm-ov{position:absolute;inset:0;z-index:90;background:radial-gradient(ellipse at 50% 45%,#141a34 0%,#04050c 75%);overflow:hidden;display:flex;align-items:center;justify-content:center;animation:smIn .25s ease-out;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.sm-ov.sm-bye{animation:smOut .22s ease-in forwards}
+@keyframes smIn{from{opacity:0}to{opacity:1}} @keyframes smOut{to{opacity:0}}
+.sm-rays{position:absolute;left:50%;top:45%;width:190vmax;height:190vmax;margin:-95vmax 0 0 -95vmax;background:repeating-conic-gradient(from 0deg,transparent 0 8deg,color-mix(in srgb,var(--sc) 22%,transparent) 8deg 11deg);opacity:0;animation:smRays 1.6s ease-in forwards;will-change:transform,opacity;-webkit-mask:radial-gradient(circle,#000 0,transparent 55%);mask:radial-gradient(circle,#000 0,transparent 55%)}
+@keyframes smRays{0%{opacity:0;transform:rotate(0) scale(.6)}100%{opacity:1;transform:rotate(60deg) scale(1)}}
+.sm-parts{position:absolute;left:50%;top:45%;width:0;height:0}
+.sm-parts i{position:absolute;width:5px;height:5px;margin:-2px;border-radius:50%;background:#fff;box-shadow:0 0 8px 2px var(--sc);opacity:0;transform:rotate(var(--a)) translateY(-46vmin);animation:smPart .9s ease-in infinite;will-change:transform,opacity}
+@keyframes smPart{0%{opacity:0;transform:rotate(var(--a)) translateY(-46vmin)}30%{opacity:1}100%{opacity:0;transform:rotate(var(--a)) translateY(-4vmin)}}
+.sm-cry{position:absolute;left:50%;top:45%;width:64px;height:110px;margin:-55px 0 0 -32px;animation:smCry 1.7s ease-in forwards;will-change:transform}
+.sm-cry b{position:absolute;inset:0;clip-path:polygon(50% 0,100% 38%,50% 100%,0 38%);background:linear-gradient(160deg,#fff 0%,var(--sc) 35%,color-mix(in srgb,var(--sc) 50%,#102) 70%,#fff 100%);filter:drop-shadow(0 0 18px var(--sc));animation:smGlow .5s ease-in-out infinite alternate}
+@keyframes smCry{0%{transform:translateY(30px) scale(.4) rotateY(0)}60%{transform:translateY(0) scale(1) rotateY(360deg)}100%{transform:translateY(-6px) scale(1.25) rotateY(720deg)}}
+@keyframes smGlow{from{opacity:.8}to{opacity:1}}
+.sm-r5 .sm-cry b{animation-duration:.25s}
+.sm-flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#fff 0%,var(--sc) 40%,transparent 80%);opacity:0;pointer-events:none}
+.sm-boom .sm-flash{animation:smFlash .6s ease-out}
+@keyframes smFlash{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+.sm-boom .sm-cry,.sm-boom .sm-parts{display:none}
+.sm-boom .sm-rays{animation:smRays2 8s linear infinite;opacity:.55}
+@keyframes smRays2{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.sm-out{position:relative;z-index:2;width:100%;max-height:100%;display:flex;align-items:center;justify-content:center}
+.sm-one{position:relative;width:min(92vw,420px);height:min(70vh,560px);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;animation:smRev .7s ease-out both}
+@keyframes smRev{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:none}}
+.sm-art{position:absolute;inset:0 0 70px;background:center/contain no-repeat;filter:drop-shadow(0 0 24px var(--sc))}
+.sm-spr{position:absolute;inset:0 0 90px;display:flex;align-items:center;justify-content:center}
+.sm-spr .spr{transform:scale(3);filter:drop-shadow(0 0 6px var(--sc))}
+.sm-name{position:relative;text-align:center;background:linear-gradient(transparent,rgba(4,5,12,.85) 30%);padding:18px 14px 6px;width:100%;animation:smRev .5s .25s ease-out both}
+.sm-name small{display:block;color:#aab;font-size:12px;letter-spacing:.1em}
+.sm-name b{display:block;font-size:26px;color:#fff;text-shadow:0 0 12px var(--sc)}
+.sm-name .gt{display:block;color:var(--sc);font-weight:700;margin-top:2px}
+.sm-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;width:min(96vw,520px);padding:0 6px}
+.sm-card{position:relative;background:rgba(10,12,24,.92);border:1px solid var(--sc);border-radius:10px;padding:6px 2px 4px;text-align:center;box-shadow:0 0 10px color-mix(in srgb,var(--sc) 60%,transparent);animation:smCard .45s ease-out both}
+.sm-card .spr{display:block;margin:0 auto;max-width:100%}
+.sm-card .gn{font-size:11px;line-height:1.1;color:#fff;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sm-card .gt{font-size:10px;color:var(--sc)}
+.sm-card.s5{box-shadow:0 0 16px 2px var(--sc)}
+@keyframes smCard{0%{opacity:0;transform:translateY(14px) scale(.6)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:none}}
+.sm-tap{position:absolute;bottom:calc(14px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#ccd;font-size:13px;opacity:.75;z-index:3}
+.sm-copy{position:absolute;top:8px;right:10px;font-size:10px;color:#889;z-index:3}
 </style>
 </head>
 <body>
@@ -1753,6 +1793,12 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.5a', date:'23/10/2026', img:'assets/band/r2.webp', title:'Invocations animées et nouveaux décors', notes:[
+    'Nouvelle animation d’invocation : un cristal se charge de lumière, sa couleur annonce la rareté, puis le héros apparaît avec son nom.',
+    'Touche l’écran pour passer l’animation. Une invocation x10 montre les 10 héros d’un coup.',
+    'Les bandes de choix (chemins, récompenses, événements) affichent maintenant des paysages de FINAL FANTASY XIV.',
+    'Le jeu à trois ne se bloque plus au début d’un combat.'
+  ]},
   {v:'v5.5', date:'23/10/2026', img:'assets/band/v_rencontre.webp', title:'Combats plus rapides', notes:[
     'Les combats normaux durent 2 à 3 tours, les gardiens et les boss 7 à 10.',
     'Les monstres frappent plus fort, mais un seul coup ne peut plus te mettre K.O.',
@@ -2270,9 +2316,10 @@ function bandArt(type, key){
 }
 /* Évite deux fois la même illustration sur un même écran */
 function bandArts(list){ const used=new Set(); return list.map(a=>{ let k=a; if (used.has(k) && /^r\d/.test(k)){ let n=+k.slice(1); for (let j=0;j<BAND_RW&&used.has('r'+n);j++) n=(n+1)%BAND_RW; k='r'+n; } used.add(k); return k; }); }
-const bandsNear = f => { const t=bgTier(f), o=['t'+t+'b','t'+t+'c','e'+t].concat(BAND_EV.map(k=>'v_'+k)); for(let i=0;i<BAND_RW;i++) o.push('r'+i); if (f%10>=5||f%10===0) o.push('b'+Math.min(50,Math.ceil(f/10)*10)); return o.map(k=>'assets/band/'+k+'.webp'); };
+const bandsNear = f => { const t=bgTier(f), o=['t'+t+'b','t'+t+'c','e'+t].concat(BAND_EV.map(k=>'v_'+k)); for(let i=0;i<BAND_RW;i++) o.push('r'+i); if (f%10>=5||f%10===0) o.push('b'+Math.min(50,Math.ceil(f/10)*10)); return o.map(k=>'assets/band/'+k+'.webp'+BAND_Q); };
+var BAND_Q='?v=55a';
 function bandHTML({cls='',col='#8fa6d8',sym='rencontre',name='',sub='',attrs='',dis=false,tail='',d=0,art=''}){
-  return `<button class="band ${cls}${art?' has-art':''}" style="--bc:${col};--d:${d}ms" ${attrs} ${dis?'disabled':''}>${art?`<span class="b-art" aria-hidden="true" style="background-image:url(assets/band/${art}.webp)"></span>`:''}<span class="b-tx"><b>${name}</b>${sub?`<small>${sub}</small>`:''}</span><span class="vmks"></span>${tail}</button>`;
+  return `<button class="band ${cls}${art?' has-art':''}" style="--bc:${col};--d:${d}ms" ${attrs} ${dis?'disabled':''}>${art?`<span class="b-art" aria-hidden="true" style="background-image:url(assets/band/${art}.webp${BAND_Q})"></span>`:''}<span class="b-tx"><b>${name}</b>${sub?`<small>${sub}</small>`:''}</span><span class="vmks"></span>${tail}</button>`;
 }
 function pathHTML(t,i,n,bossKey){
   const boss=t==='boss', P=boss?[isBigBoss(R.floor)?'Boss':'Gardien', ENEMIES[bossKey].name+' t’attend.','#ff3b30']:PATH[t];
@@ -3305,6 +3352,37 @@ function gachaRules(){
    <button class="btn small" style="width:100%;margin-top:8px" id="grC">Fermer</button>`);
   document.getElementById('grC').onclick=closeModal;
 }
+
+// --- Animation d'invocation : cristal, lumière de rareté, éclair, puis révélation (CSS seulement) ---
+const HD_ART = new Set(['cloud','lightning','noctis','yshtola','yuna']);
+const SUM_COL = {3:'#7cc8ff', 4:'#d79cff', 5:'#ffd46a'};
+function summonAnim(res, done){
+  const top = Math.max(...res.map(o=>o.st)), col = SUM_COL[top]||SUM_COL[3];
+  const ov = document.createElement('div'); ov.className = 'sm-ov sm-r'+top; ov.style.setProperty('--sc', col);
+  const parts = Array.from({length:18},(_,i)=>{ const a=i*20, d=(i%3)*0.12; return `<i style="--a:${a}deg;animation-delay:${d}s"></i>`; }).join('');
+  ov.innerHTML = `<div class="sm-rays"></div><div class="sm-parts">${parts}</div><div class="sm-cry"><b></b></div><div class="sm-flash"></div><div class="sm-out"></div><div class="sm-tap">Touche pour passer</div><div class="sm-copy">© SQUARE ENIX</div>`;
+  app.appendChild(ov);
+  let phase = 0, t1 = null, t2 = null;
+  const card = (o,i) => `<div class="sm-card s${o.st}" style="--sc:${SUM_COL[o.st]};animation-delay:${(0.08*i).toFixed(2)}s">${spr('c_'+o.id,'idle')}<div class="gn">${COMPANIONS[o.id].name}</div>${stars(o.st)}<div class="gt">${o.res==='new'?'NOUVEAU !':o.res==='rank'?'Rang '+o.rank:'+2 '+ic('gem')}</div></div>`;
+  const reveal = () => {
+    if (phase >= 1) return; phase = 1; clearTimeout(t1);
+    ov.classList.add('sm-boom');
+    try{ SND.sfx(top>=5?'gacha5':'gacha'); }catch(e){}
+    const out = ov.querySelector('.sm-out');
+    if (res.length === 1){
+      const o = res[0], c = COMPANIONS[o.id];
+      out.innerHTML = `<div class="sm-one s${o.st}">${HD_ART.has(o.id)?`<div class="sm-art" style="background-image:url(assets/art/${o.id}.webp)"></div>`:`<div class="sm-spr">${spr('c_'+o.id,'idle')}</div>`}
+        <div class="sm-name"><small>${c.game||''}</small><b>${c.name}</b>${stars(o.st)}<span class="gt">${o.res==='new'?'NOUVEAU !':o.res==='rank'?'Rang '+o.rank:'+2 '+ic('gem')}</span></div></div>`;
+    } else {
+      out.innerHTML = `<div class="sm-grid">${res.map(card).join('')}</div>`;
+    }
+    ov.querySelector('.sm-tap').textContent = 'Touche pour continuer';
+    t2 = setTimeout(()=>{ phase = 2; }, 350);
+  };
+  const close = () => { if (phase === 3) return; phase = 3; clearTimeout(t1); clearTimeout(t2); ov.classList.add('sm-bye'); setTimeout(()=>{ ov.remove(); done && done(); }, 220); };
+  ov.addEventListener('click', ()=>{ if (phase === 0) reveal(); else if (phase === 2) close(); });
+  t1 = setTimeout(reveal, top>=5 ? 1700 : 1250);
+}
 SCREENS.gacha = function(results){
   const left = GACHA.pity-(S.pity||0), bi=Math.min(BANNERS.length-1, S.banner||0);
   app.innerHTML = `
@@ -3335,8 +3413,8 @@ SCREENS.gacha = function(results){
   car.addEventListener('touchend',e=>{ if(x0===null) return; const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
     if (Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)) go((S.banner||0)+(dx<0?1:-1)); },{passive:true});
   document.getElementById('bRules').onclick=gachaRules;
-  document.getElementById('bPull1').onclick=()=>{ const r=doPull(1); if(r) SCREENS.gacha(r); };
-  document.getElementById('bPull10').onclick=()=>{ const r=doPull(10); if(r) SCREENS.gacha(r); };
+  document.getElementById('bPull1').onclick=()=>{ const r=doPull(1); if(r) summonAnim(r,()=>SCREENS.gacha(r)); };
+  document.getElementById('bPull10').onclick=()=>{ const r=doPull(10); if(r) summonAnim(r,()=>SCREENS.gacha(r)); };
 };
 
 let compBack='hub';
@@ -3686,7 +3764,7 @@ const Online = (function(){
   function setReady(v){ room.ready = !!v; if (room.ch) room.ch.track(meInfo()); emitRoom(); }
   function refreshMe(){ if (room.ch && !room.started) room.ch.track(meInfo()); }
   function emitRoom(){ emit('room', roomInfo()); if (HAS_DOM && curScreen === 'room') renderRoom(); }
-  function roomInfo(){ return { active:room.active, code:room.code, host:room.host, slot:room.slot, started:room.started, step:room.step, players: room.started ? room.players : Object.values(room.peers), partner: partner(), partnerOnline: !room.partnerAway, bot: room.bot, waiting: !!room.mine[room.step], busy: !!room.busy, pend: Object.keys(room.pend).map(k=>k+":"+(room.pend[k]||[]).map(a=>a?1:0).join("")).join(" ") }; }
+  function roomInfo(){ return { active:room.active, code:room.code, host:room.host, slot:room.slot, started:room.started, step:room.step, players: room.started ? room.players : Object.values(room.peers), partner: partner(), partnerOnline: !room.partnerAway, bot: room.bot, waiting: !!room.mine[room.step], busy: !!room.busy, nsl: nSlots(), rx: JSON.stringify(room.rx||{}), pend: Object.keys(room.pend).map(k=>k+":"+(room.pend[k]||[]).map(a=>a?1:0).join("")).join(" ") }; }
 
   function onRoomPresence(){
     const ps = room.ch.presenceState(); const peers = {};
@@ -3744,6 +3822,7 @@ const Online = (function(){
 
   function send(ev, payload){ if (room.ch) room.ch.send({ type:'broadcast', event: ev, payload }); }
   function onRoomMsg(ev, m){
+    if (ev==='act'||ev==='hint'){ const k=ev+(m.slot!=null?m.slot:'?'); room.rx=room.rx||{}; room.rx[k]=(room.rx[k]||0)+1; } // compteurs de diagnostic
     if (m.v && m.v !== CFG.protocol) return;
     switch(ev){
       case 'start':
@@ -3787,7 +3866,10 @@ const Online = (function(){
   function hint(data){ if (room.started) send('hint', { slot: room.slot, s: room.step, d: data }); } // aperçu (vote en cours, cible survolée…)
   function onAct(m){
     if (typeof m.s !== 'number' || !(m.slot >= 0 && m.slot < nSlots())) return;
-    if (m.s < room.step){ if (m.slot !== room.slot && room.mine[m.s] !== undefined) send('act', { s:m.s, slot:room.slot, a: room.mine[m.s], v:CFG.protocol }); return; }
+    if (m.s < room.step){ // un joueur en retard renvoie son action : on lui renvoie la nôtre (une fois par seconde au plus, jamais en réponse à une réponse)
+      const rk = m.s+':'+m.slot, now = Date.now(); room.reT = room.reT || {};
+      if (!m.re && m.slot !== room.slot && room.mine[m.s] !== undefined && !(now - (room.reT[rk]||0) < 1000)){ room.reT[rk] = now; send('act', { s:m.s, slot:room.slot, a: room.mine[m.s], re:1, v:CFG.protocol }); }
+      return; }
     const p = room.pend[m.s] = room.pend[m.s] || [];
     if (m.slot === room.slot && !m.forced) return;
     if (p[m.slot] === undefined || m.forced){ p[m.slot] = m.a; if (m.forced && m.slot === room.slot) room.mine[m.s] = m.a; }
@@ -4568,7 +4650,6 @@ const SND = (()=>{
     const oUS=useSkill; useSkill=function(s){ SND.sfx(s&&(s.stat==='mag'||s.heal||s.target==='self')?'cast':'hit'); return oUS.apply(this,arguments); };
     const oDP=damagePlayer; damagePlayer=function(){ const h=R&&R.hp; const r=oDP.apply(this,arguments); if (R && R.hp<h) SND.sfx('hurt'); return r; };
     const oHR=healR; healR=function(n){ const h=R&&R.hp; const r=oHR.apply(this,arguments); if (C && R && R.hp>h) SND.sfx('heal'); return r; };
-    const oPull=doPull; doPull=function(){ const r=oPull.apply(this,arguments); if (r) SND.sfx(r.some(o=>o.st>=5)?'gacha5':'gacha'); return r; };
   } catch(e){ console.error('[snd]', e); }
 })();
 if ('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost')) window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));

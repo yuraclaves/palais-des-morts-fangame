@@ -1,5 +1,11 @@
 # Notes de patch : A Godless Realm
 
+## v5.5a : Invocations animées et nouveaux décors (23/10/2026)
+- Nouvelle animation d'invocation : un cristal se charge de lumière, sa couleur annonce la rareté, puis le héros apparaît avec son nom.
+- Touche l'écran pour passer l'animation. Une invocation x10 montre les 10 héros d'un coup.
+- Les bandes de choix (chemins, récompenses, événements) affichent maintenant des paysages de FINAL FANTASY XIV.
+- Le jeu à trois ne se bloque plus au début d'un combat.
+
 ## v5.5 : Combats plus rapides (23/10/2026)
 - Les combats normaux durent 2 à 3 tours, les gardiens et les boss 7 à 10.
 - Les monstres frappent plus fort, mais un seul coup ne peut plus te mettre K.O.

@@ -165,48 +165,48 @@ Décors de combat officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, Alim)
 - `b50` (boss) : FFBE Chamber of Arms BG
 
 
-## Illustrations des bandes de choix (v5.4g)
+## Illustrations des bandes de choix (v5.5a)
 
-Décors officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, développé par Alim), via le Final Fantasy Wiki (fandom), recadrés en bandeaux (`assets/band/`).
+Captures d'écran officielles de FINAL FANTASY XIV (© SQUARE ENIX), publiées sur les pages « Media » des sites officiels (na.finalfantasyxiv.com/stormblood/media/, /shadowbringers/media/, /endwalker/media/, /dawntrail/media/). Décors choisis sans personnage autant que possible, recadrés en bandeaux 720x186 WebP (`assets/band/`). Elles remplacent les décors FFBE utilisés depuis v5.4g.
 
-- `b10.webp` : Heavensplit Peaks
-- `b20.webp` : Inferno Hollow
-- `b30.webp` : Crystal Room
-- `b40.webp` : Electric Tower
-- `b50.webp` : Chamber of Arms
-- `e0.webp` : Gronoa Shrine Entrance
-- `e1.webp` : Crystallis Cave
-- `e2.webp` : Gagara Sand Cavern
-- `e3.webp` : Inner Chamber
-- `e4.webp` : Land of Darkness
-- `r0.webp` : Eternal Summit
-- `r1.webp` : Crystal Tower Entrance
-- `r2.webp` : Ghastly Valley
-- `r3.webp` : Forgotten Walls
-- `r4.webp` : Gagara Sand Cavern
-- `r5.webp` : Grave of the Warriors
-- `r6.webp` : Crystal Chamber Battle with Kain
-- `r7.webp` : Chamber of Arms
-- `r8.webp` : Heavensplit Peaks
-- `r9.webp` : Inner Chamber
-- `t0b.webp` : Ancient Ruins BG 1
-- `t0c.webp` : Ancient Ruins BG 2
-- `t1b.webp` : Dalnakya Cavern
-- `t1c.webp` : Gronoa Shrine Interior
-- `t2b.webp` : Earth Shrine
-- `t2c.webp` : Castle Hein
-- `t3b.webp` : Eroded Castle
-- `t3c.webp` : Alexandria Castle
-- `t4b.webp` : Gronoa Shrine Depths BG 1
-- `t4c.webp` : Gigantic Underground Ruins
-- `v_autel.webp` : Crystal Room
-- `v_coffre.webp` : Emperor's Hall
-- `v_marchand.webp` : Energy Extraction Station
-- `v_maudite.webp` : Fire Shrine
-- `v_piege.webp` : Crystallis Cave
-- `v_pomandre.webp` : Land of Fading Memories
-- `v_rencontre.webp` : Galebreak
-- `v_repos.webp` : Clouds of Lasting Light
+- `b10.webp` : https://lds-img.finalfantasyxiv.com/promo/h/n/Iq6jrL1jZ52gTTOiXNCyg-hWyg.jpg
+- `b20.webp` : https://lds-img.finalfantasyxiv.com/promo/h/X/PtGZme_A8fGQPZ7UZHCw1zS1eM.jpg
+- `b30.webp` : https://lds-img.finalfantasyxiv.com/promo/h/M/4BojifW3CbU8tcSC1J643UN4bc.jpg
+- `b40.webp` : https://lds-img.finalfantasyxiv.com/promo/h/-/T_Vz-6w9zHNKwZsSw9oLFyoBr4.jpg
+- `b50.webp` : https://lds-img.finalfantasyxiv.com/promo/h/I/LHoDCcZiUBu50B8UEg0_RVnn2o.jpg
+- `e0.webp` : https://lds-img.finalfantasyxiv.com/promo/h/E/RCv_Yc8_G6CmCGUd7gpwmvE9hA.jpg
+- `e1.webp` : https://lds-img.finalfantasyxiv.com/promo/h/f/FAnw2snHJFGkqCFQIBY7QUDcNQ.jpg
+- `e2.webp` : https://lds-img.finalfantasyxiv.com/promo/h/d/0_mKXDB20kZkmM9pKLa03PSAfA.jpg
+- `e3.webp` : https://lds-img.finalfantasyxiv.com/promo/h/X/DxdBn6kp7qoX_YoPdpVmvFmtz8.jpg
+- `e4.webp` : https://lds-img.finalfantasyxiv.com/promo/h/y/-oAdUppe2eUQ-5Rgjr7v7DZBMQ.jpg
+- `r0.webp` : https://lds-img.finalfantasyxiv.com/promo/h/9/XEEW_-m-hGuOe0IdH9HPdJXBi0.jpg
+- `r1.webp` : https://lds-img.finalfantasyxiv.com/promo/h/y/-bTEjy0cM7S2tM8hpzctT7DTAA.jpg
+- `r2.webp` : https://lds-img.finalfantasyxiv.com/promo/h/f/scCg_9dJvPwFHLqfB6KBgwhh9o.jpg
+- `r3.webp` : https://lds-img.finalfantasyxiv.com/promo/h/Y/RfRmgY9Ltzw6hLBLwGD5r20h4c.jpg
+- `r4.webp` : https://lds-img.finalfantasyxiv.com/promo/h/t/0SVTlbL1TR00KHwIOXnyK7jK7k.jpg
+- `r5.webp` : https://lds-img.finalfantasyxiv.com/promo/h/0/HqcaKPjXvdn0pXtKs32gSlrNEY.jpg
+- `r6.webp` : https://lds-img.finalfantasyxiv.com/promo/h/k/GAjGWboGUW4HbT7z6AbO3wjuwc.jpg
+- `r7.webp` : https://lds-img.finalfantasyxiv.com/promo/h/v/WEOmxeHNl9pnJizzpLE6cwKOBI.jpg
+- `r8.webp` : https://lds-img.finalfantasyxiv.com/promo/h/v/WXWaKaTLCo06FQNGNTP41TZ-Xg.jpg
+- `r9.webp` : https://lds-img.finalfantasyxiv.com/promo/h/y/fPoW7AFOqFtQCNWQA0GtbuxdzE.jpg
+- `t0b.webp` : https://lds-img.finalfantasyxiv.com/promo/h/3/NBf9orDrLCyPB-dm-TB8qPJ6Ak.jpg
+- `t0c.webp` : https://lds-img.finalfantasyxiv.com/promo/h/8/w_5mXjfkqz2AehSrP3Ouja0fkk.jpg
+- `t1b.webp` : https://lds-img.finalfantasyxiv.com/promo/h/V/VWueuDBxD-NuJSeGxk4N-i5TPI.jpg
+- `t1c.webp` : https://lds-img.finalfantasyxiv.com/promo/h/Z/bdhuoTpv4pqwAuMYnf6pMTcxSw.jpg
+- `t2b.webp` : https://lds-img.finalfantasyxiv.com/promo/h/u/hVt40Jmn7u4nurlTkZMmdtq6YU.jpg
+- `t2c.webp` : https://lds-img.finalfantasyxiv.com/promo/h/s/lUrCdhJ1JOJHAMs4I0Ct4QS8Nc.jpg
+- `t3b.webp` : https://lds-img.finalfantasyxiv.com/promo/h/R/gki7sA6sACxlNDSMmw6ySrCUH0.jpg
+- `t3c.webp` : https://lds-img.finalfantasyxiv.com/promo/h/N/1eIbl6d47VFtBl1fLCSsWSS-hs.jpg
+- `t4b.webp` : https://lds-img.finalfantasyxiv.com/promo/h/P/cTB_JuTOjIfpgmtVzvEcgsMZ7c.jpg
+- `t4c.webp` : https://lds-img.finalfantasyxiv.com/promo/h/d/94wsroKIsc6qd4QzIRCAA6PCoE.jpg
+- `v_autel.webp` : https://lds-img.finalfantasyxiv.com/promo/h/j/llzxCClg_NCRLMrtyP53zD-M6k.jpg
+- `v_coffre.webp` : https://lds-img.finalfantasyxiv.com/promo/h/v/tFt98CKiVvnLcf5tg9x-qZu1h8.jpg
+- `v_marchand.webp` : https://lds-img.finalfantasyxiv.com/promo/h/Z/Ci57JKVMQjMOQVQW7NtUQTb398.jpg
+- `v_maudite.webp` : https://lds-img.finalfantasyxiv.com/promo/h/s/2hg6fF2V32rRtZuImNSF7RTYlI.jpg
+- `v_piege.webp` : https://lds-img.finalfantasyxiv.com/promo/h/3/UvG-FwOROeiAeqVzniqUvpoI_k.jpg
+- `v_pomandre.webp` : https://lds-img.finalfantasyxiv.com/promo/h/I/rY_hcjJh9ZFe3z0IOd-IVnkEJA.jpg
+- `v_rencontre.webp` : https://lds-img.finalfantasyxiv.com/promo/h/-/-8D4yzEyDwgVN2pjis-juH_VL4.jpg
+- `v_repos.webp` : https://lds-img.finalfantasyxiv.com/promo/h/P/scpQkod9rLXC_Poz4nOdmw0YDQ.jpg
 
 ## Fond de l’écran titre (v5.4g)
 
