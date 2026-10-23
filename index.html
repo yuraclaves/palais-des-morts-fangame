@@ -1175,6 +1175,88 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 @keyframes bFin{0%{filter:none}25%{filter:brightness(2.2) drop-shadow(0 0 16px rgba(var(--c1),1))}100%{opacity:0;transform:scale(1.12) translateY(-14px);filter:brightness(6) blur(7px) drop-shadow(0 0 30px #fff)}}
 #field.slowmo .player,#field.slowmo .comp,#field.slowmo .enemies{filter:saturate(.35) brightness(.75);transition:filter .3s}
 @media (prefers-reduced-motion:reduce){.bi-parts,.bsfx i{display:none}}
+/* v5.5g : boutique (Marchand) */
+.topbar .sgil{display:flex;align-items:center;gap:5px;color:#f2dca0;font-weight:700;font-size:14px;white-space:nowrap}
+.topbar .sgil img{width:20px;height:20px}
+.shop .sintro{color:#aab3c4;font-size:13px;margin:-2px 0 8px}
+.shop .xh .scount{font-family:inherit;font-size:12px;color:#aab3c4;letter-spacing:0;margin-left:auto;font-weight:600}
+.shop .ssub{margin:14px 0 6px;font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#c9b27a;display:flex;align-items:center;gap:8px}
+.shop .ssub::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(230,204,143,.3),transparent)}
+.scard{display:flex;align-items:center;gap:10px;padding:9px 10px;margin:0 0 7px;border-radius:12px;position:relative;
+  background:linear-gradient(90deg,rgba(255,255,255,.075),rgba(255,255,255,.02) 70%,rgba(255,255,255,0));
+  box-shadow:inset 0 0 0 1px rgba(230,204,143,.14)}
+.scard.max{background:linear-gradient(90deg,rgba(230,204,143,.12),rgba(230,204,143,.02) 70%,transparent);box-shadow:inset 0 0 0 1px rgba(230,204,143,.3)}
+.scard .sico{width:40px;height:40px;flex:none;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.scard img.soul{width:44px;height:44px;margin:0}
+.scard .sbody{flex:1;min-width:0}
+.scard .stop{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.scard .stop b{font-size:14.5px;color:#f3eee2}
+.scard .snow{font-size:12.5px;color:#e6cc8f;margin-top:1px}
+.scard .snext{font-size:12px;color:#aab3c4;margin-top:1px;line-height:1.3}
+.scard .snow.none{color:#8d94a3}
+.scard .snext.max{color:#c9b27a}
+.pips{display:inline-flex;gap:3px}
+.pips i{width:9px;height:4px;border-radius:2px;background:rgba(255,255,255,.16)}
+.pips i.on{background:linear-gradient(90deg,#f2dca0,#c39a52);box-shadow:0 0 4px rgba(242,220,160,.6)}
+.sbuy{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:76px;min-height:44px;padding:4px 10px;border-radius:10px;border:0;cursor:pointer;
+  font:inherit;color:#2a1c06;background:linear-gradient(180deg,#f6e2a8,#c79d52);box-shadow:0 2px 0 #7d5e28,0 3px 8px rgba(0,0,0,.45)}
+.sbuy span{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.sbuy b{font-size:15px}
+.sbuy:active{transform:translateY(1px);box-shadow:0 1px 0 #7d5e28}
+.sbuy.off{background:rgba(255,255,255,.08);color:#8d94a3;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);cursor:default}
+.smax{flex:none;min-width:64px;text-align:center;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#e6cc8f}
+.spr-col{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.spr-col s{color:#8d94a3;font-size:11.5px}
+.scard.glow{animation:sglow 1.4s ease-out}
+@keyframes sglow{0%{box-shadow:inset 0 0 0 1px rgba(242,220,160,.9),0 0 22px rgba(242,220,160,.7);background:rgba(242,220,160,.22)}100%{}}
+.cfi{display:block;width:48px;height:48px;margin:0 auto 8px;border-radius:9px}
+.upown{display:flex;flex-direction:column;gap:6px}
+.upown .uo{display:flex;align-items:center;gap:9px}
+.upown .uo img{width:30px;height:30px;border-radius:6px;flex:none}
+.upown .uo span{flex:1;min-width:0;display:flex;flex-direction:column}
+.upown .uo b{font-size:13px}
+.upown .uo small{font-size:11.5px;color:#aab3c4}
+.upown .uo em{font-style:normal;font-weight:700;color:#e6cc8f;font-size:12.5px}
+/* v5.5g : écran Victoire + récompenses, sans fenêtre : contenu flottant sur un voile dégradé */
+.rw-ov{background:linear-gradient(180deg,rgba(6,8,16,.08) 0%,rgba(6,8,16,.6) 28%,rgba(6,8,16,.93) 55%,rgba(6,8,16,.97) 100%);backdrop-filter:blur(5px) saturate(.8);-webkit-backdrop-filter:blur(5px) saturate(.8)}
+.rw-box{background:none;border:0;box-shadow:none;border-radius:0;padding:0 2px 4px;gap:10px;overflow:visible}
+.rw-ov .vict{padding:2px 0 0;overflow:visible}
+.rw-ov .vict::before,.rw-ov .vict::after{display:none}
+.rw-ov .vict .vx-glow{inset:-30px -10px -10px;background:radial-gradient(ellipse 55% 60% at 50% 45%,rgba(255,214,140,.22),transparent 70%)}
+.rw-ov .vict .vx-motes{display:block;position:absolute;inset:-20px 0 0;pointer-events:none}
+.rw-ov .vict .vx-t svg{height:52px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.9)) drop-shadow(0 0 18px rgba(255,200,110,.45))}
+.vx-line{position:relative;display:flex;justify-content:center;align-items:center;gap:14px;margin-top:4px;font-size:14px;color:#d7dcea;animation:rewIn .5s .6s ease-out both}
+.vx-line>span{display:flex;align-items:center;gap:5px}
+.vx-line>span+span::before{content:"";width:1px;height:14px;background:rgba(232,207,150,.35);margin-right:9px}
+.vx-line .vl-g{color:#f3d58d;font-weight:700;font-size:16px}
+.vx-line .vl-g img{width:18px;height:18px}
+.vx-line .vl-f{color:#9fe3ff;font-weight:700}
+.vx-line .vl-t{color:#aeb5c8;font-weight:600}
+.rw-h{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#d8c08a;display:flex;align-items:center;gap:10px}
+.rw-h::before,.rw-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(232,207,150,.4))}
+.rw-h::after{background:linear-gradient(270deg,transparent,rgba(232,207,150,.4))}
+.rw-bands{gap:8px;margin:0 -12px}
+.rw-ov .band.rw-b{min-height:64px;padding:9px 18px 9px 16px;gap:10px;
+  background:linear-gradient(90deg,transparent 0%,color-mix(in srgb,var(--bc) 22%,rgba(8,10,20,.92)) 9%,color-mix(in srgb,var(--bc) 9%,rgba(8,10,20,.85)) 72%,transparent 100%)}
+.rw-ov .band.rw-b::after{left:6%;right:6%;top:auto;bottom:0;width:auto;height:1px;border:0;transform:none;opacity:.3;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--bc) 70%,#fff 10%),transparent)}
+.rw-ov .band.rw-b .b-tx{padding-right:0}
+.rw-ov .band.rw-b b{font-size:15px;gap:9px;flex-wrap:wrap}
+.rw-ov .band.rw-b .rw-n{flex:0 1 auto}
+.rw-ov .band.rw-b .rar{margin-left:auto;font-family:'Source Sans 3',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:color-mix(in srgb,var(--bc) 75%,#fff);font-weight:700}
+.rw-ov .band.rw-b small{font-size:12.5px;padding-left:41px;display:block}
+.rw-ov .band.rw-b small .pips{margin-left:6px;vertical-align:middle}
+.rw-ic{width:32px;height:32px;border-radius:7px;box-shadow:0 0 0 1px color-mix(in srgb,var(--bc) 45%,transparent),0 2px 6px rgba(0,0,0,.6);filter:none}
+.rw-ov .band.rw-b.r-e .rw-ic{box-shadow:0 0 0 1px color-mix(in srgb,var(--bc) 70%,transparent),0 0 12px color-mix(in srgb,var(--bc) 60%,transparent)}
+.pips.rwp i{width:10px;height:4px}
+.rw-act{display:flex;gap:8px;margin-top:2px}
+.lbtn{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:0 16px;border-radius:999px;cursor:pointer;
+  color:#f2e3bb;font-weight:700;font-size:14.5px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(232,207,150,.42);transition:background .15s}
+.lbtn.grow{flex:1}
+.lbtn b{color:#f3d58d}
+.lbtn small{font-size:11.5px;color:#aeb5c8;font-weight:600}
+.lbtn:active{background:rgba(232,207,150,.18);transform:scale(.98)}
+.lbtn[disabled]{opacity:.45;cursor:default}
 </style>
 </head>
 <body>
@@ -1593,12 +1675,38 @@ const allSkills = k => [JOBS[k].basic].concat(JOBS[k].opts);
 const JOB_PRICE = 1200, JOB_PROMO = 400;
 const promoOK = () => !S.promoUsed && (S.unlocked||[]).length<=1;
 const jobPrice = () => promoOK() ? JOB_PROMO : JOB_PRICE;
+/* v5.5g : améliorations permanentes (méta-progression). Gains modestes par rang, plafonnés par le nombre de rangs.
+   cat = rubrique de la boutique ; per = gain par rang ; costs = prix de chaque rang (Gils). */
+const UP_CATS = [['force','Puissance'],['garde','Endurance'],['res','Ressources'],['grace','Bénédictions']];
 const UPGRADES = {
-  hp:{ name:'Vitalité permanente', desc:'+5 % de PV max par rang.', costs:[400,800,1200], icon:'icon_cristal' },
-  dmg:{ name:'Armes affûtées', desc:'+4 % de dégâts par rang.', costs:[500,900,1400], icon:'icon_combat' },
-  potion:{ name:'Sacoche de potions', desc:'+1 potion au début de chaque exploration.', costs:[300,700], icon:'icon_coffre' },
-  gil:{ name:'Bourse du marchand', desc:'+15 % de Gils gagnés par rang.', costs:[500,1000], icon:'icon_autel' },
+  atk:{ cat:'force', name:'Force d’Halone', icon:'atk', per:2, costs:[450,900,1500], fx:v=>`+${v} % d’Attaque (dégâts physiques)` },
+  mag:{ cat:'force', name:'Savoir de Sharlayan', icon:'mag', per:2, costs:[450,900,1500], fx:v=>`+${v} % de Magie (dégâts des sorts)` },
+  dmg:{ cat:'force', name:'Armes affûtées', icon:'dmg', per:3, costs:[500,900,1400], fx:v=>`+${v} % de tous les dégâts infligés` },
+  crit:{ cat:'force', name:'Matéria de critique', icon:'crit', per:2, costs:[500,1000,1600], fx:v=>`+${v} % de chances de coup critique` },
+  hp:{ cat:'garde', name:'Vitalité de l’Étoile', icon:'hp', per:4, costs:[400,800,1200,1800], fx:v=>`+${v} % de PV max` },
+  mp:{ cat:'garde', name:'Puits d’éther', icon:'mp', per:8, costs:[300,600,1000], fx:v=>`+${v} % de PM max` },
+  def:{ cat:'garde', name:'Rempart d’Ishgard', icon:'def', per:2, costs:[450,900,1400], fx:v=>`−${v} % de dégâts subis` },
+  shield:{ cat:'garde', name:'Voile du cristal', icon:'shield', per:2, costs:[400,800,1300], fx:v=>`Chaque combat commence avec un bouclier de ${v} % des PV max` },
+  heal:{ cat:'garde', name:'Grâce de Menphina', icon:'heal', per:2, costs:[350,700,1100], fx:v=>`+${v} % de PV max rendus après chaque combat` },
+  potion:{ cat:'res', name:'Sacoche de potions', icon:'potion', per:1, costs:[300,700], fx:v=>`+${v} potion${v>1?'s':''} au départ de chaque exploration` },
+  ether:{ cat:'res', name:'Fiole d’éther', icon:'ether', per:1, costs:[400,900], fx:v=>`+${v} éther${v>1?'s':''} au départ de chaque exploration` },
+  gil:{ cat:'res', name:'Bourse de Nald’thal', icon:'gil', per:15, costs:[500,1000], fx:v=>`+${v} % de Gils gagnés en exploration` },
+  reroll:{ cat:'res', name:'Dés de Tataru', icon:'reroll', per:1, costs:[600,1200], fx:v=>`${v} relance${v>1?'s':''} de récompense gratuite${v>1?'s':''} par exploration` },
+  hyd:{ cat:'grace', name:'Bénédiction d’Hydaelyn', icon:'hyd', per:1, costs:[2000], fx:()=>`Une fois par exploration, un coup mortel te laisse à 1 PV` },
 };
+const UP_KEYS = Object.keys(UPGRADES);
+const upZero = () => Object.fromEntries(UP_KEYS.map(k=>[k,0]));
+/* nettoie un objet d'améliorations (sauvegarde ou joueur distant) : entiers bornés par le nombre de rangs */
+const cleanUp = u => Object.fromEntries(UP_KEYS.map(k=>[k, Math.max(0, Math.min(UPGRADES[k].costs.length, Math.floor(+((u||{})[k])||0)))]));
+const upV = (up,k) => ((up||{})[k]||0) * UPGRADES[k].per;
+/* valeurs de départ d'un héros selon ses améliorations (solo et en ligne) */
+function upBase(up, j){
+  return { mods:{dmg:upV(up,'dmg')/100, def:upV(up,'def')/100, crit:upV(up,'crit')/100, vamp:0, gil:upV(up,'gil')/100, cdr:0, hpMul:1, mpr:0},
+    potions:2+(up.potion||0), ethers:(j.mp>=100?1:0)+(up.ether||0),
+    perk: Object.assign({}, up.shield?{shieldStart:upV(up,'shield')/100}:{}, up.reroll?{freeRR:up.reroll}:{}, up.hyd?{hyd:1}:{}) };
+}
+const postHeal = () => BAL.heal + upV(R.up,'heal')/100;
+
 
 /* ===================== DONNÉES : MONSTRES =====================
    hp/atk = valeurs de base (multipliées selon l'étage). res = résistances (0.5 = −50 %, −0.3 = +30 %). */
@@ -1991,7 +2099,7 @@ function rollPoms(n, bonus){
 
 /* ===================== SAUVEGARDE (localStorage) ===================== */
 const SAVE_KEY = 'ffxiv_palais_des_morts_v1';
-function defaultSave(){ return { created:false, name:'Aventurier', gils:0, unlocked:[], job:'paladin', upgrades:{hp:0,dmg:0,potion:0,gil:0},
+function defaultSave(){ return { created:false, name:'Aventurier', gils:0, unlocked:[], job:'paladin', upgrades:upZero(),
   loadouts:{}, stats:{runs:0, best:0, kills:0, wins:0, totalGils:0, pulls:0, fragsTotal:0}, run:null,
   frag:10, comps:{}, pity:0, comp:null }; }
 let S;
@@ -2243,6 +2351,17 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.5g', date:'23/10/2026', img:'assets/up/hyd.webp', title:'Nouveau marchand et nouvel écran de victoire', notes:[
+    'Le marchand a été refait : d’abord les cristaux de job, puis les améliorations permanentes, rangées par catégorie et par prix.',
+    '14 améliorations permanentes à acheter avec tes Gils, avec plusieurs rangs chacune : Force d’Halone, Savoir de Sharlayan, Armes affûtées, Matéria de critique, Vitalité de l’Étoile, Puits d’éther, Rempart d’Ishgard, Voile du cristal, Grâce de Menphina, Sacoche de potions, Fiole d’éther, Bourse de Nald’thal, Dés de Tataru et Bénédiction d’Hydaelyn.',
+    'Chaque amélioration montre son icône, son effet actuel, le rang suivant et son prix. Le bouton est grisé si tu n’as pas assez de Gils ou si le rang maximum est atteint.',
+    'Tes anciennes améliorations sont gardées : rien n’est perdu.',
+    'Les améliorations s’appliquent au début de chaque exploration, en solo comme en ligne. En ligne, chaque joueur garde les siennes.',
+    'Tu retrouves tes améliorations dans le Registre de l’aventurier.',
+    'Nouvel écran de victoire : plus de fenêtre bleue, le texte flotte au dessus du combat flouté, avec les Gils gagnés sur une seule ligne.',
+    'Chaque récompense a sa propre icône d’objet de Final Fantasy XIV, sa couleur de rareté et des petits traits pour le nombre d’exemplaires déjà pris.',
+    'Les boutons Menu et Relancer sont plus simples et plus faciles à toucher.'
+  ]},
   {v:'v5.5f', date:'23/10/2026', img:'assets/bg/b40.webp', title:'Les grands méchants de Final Fantasy', notes:[
     'Les gardiens et les boss sont maintenant de vrais personnages de la série : Ifrit, Barbariccia, Gilgamesh, Golbez, Exdeath, l’Arme Ultima, Sephiroth, Kefka, Zeromus et Bahamut.',
     'Chaque boss a son entrée en scène : l’écran s’assombrit, le boss apparaît dans ses flammes, son vent ou sa lumière, avec son nom, son titre et quelques mots. Touche l’écran pour passer.',
@@ -2542,6 +2661,10 @@ SCREENS.hub = function(){
       <div class="stat"><span>Gils gagnés au total</span><b>${S.stats.totalGils}</b></div>
       <div class="stat"><span>Jobs débloqués</span><b>${S.unlocked.length} / ${JOB_ORDER.length}</b></div>
     </section>
+    ${UP_KEYS.some(k=>S.upgrades[k]) ? `<section class="xsec ledger">
+      <h3 class="xh">Améliorations permanentes</h3>
+      <div class="upown">${UP_KEYS.filter(k=>S.upgrades[k]).map(k=>{ const u=UPGRADES[k]; return `<div class="uo"><img src="assets/up/${u.icon}.webp" alt=""><span><b>${u.name}</b><small>${u.fx(upV(S.upgrades,k))}</small></span><em>${S.upgrades[k]}/${u.costs.length}</em></div>`; }).join('')}</div>
+    </section>` : ''}
   </div>`;
   bind(app);
   document.getElementById('bEnter').onclick = SCREENS.prep;
@@ -2670,28 +2793,43 @@ function jobDetail(k){
   const s=document.getElementById('mS'); if(s) s.onclick=()=>{ closeModal(); SCREENS.shop(); };
 }
 const SOUL_GLOW={paladin:'#bfeaf2',moine:'#e0b030',barde:'#b8d860',mageblanc:'#fff3d0',guerrier:'#e0303a',dragoon:'#5b8cff',magenoir:'#a070e0',erudit:'#7a74e0',samourai:'#f08a3a',magerouge:'#e03a5a'};
-SCREENS.shop = function(){
+SCREENS.shop = function(glow){
   const crystals = JOB_ORDER.filter(k=>!S.unlocked.includes(k)), price=jobPrice(), promo=promoOK();
+  const pips = (lv,max) => `<span class="pips" aria-label="Rang ${lv} sur ${max}">${Array.from({length:max},(_,i)=>`<i class="${i<lv?'on':''}"></i>`).join('')}</span>`;
+  const buyBtn = (attr, cost, ok, label) => `<button class="sbuy ${ok?'':'off'}" ${attr} ${ok?'':'disabled'}><span>${label||'Acheter'}</span><b>${cost} G</b></button>`;
+  const upCard = k => { const u=UPGRADES[k], max=u.costs.length, lv=Math.min(max,S.upgrades[k]||0), done=lv>=max, cost=u.costs[lv], ok=!done && S.gils>=cost;
+    return `<div class="scard${done?' max':''}${glow===k?' glow':''}" data-card="${k}">
+      <img class="sico" src="assets/up/${u.icon}.webp" alt="">
+      <div class="sbody"><div class="stop"><b>${u.name}</b>${pips(lv,max)}</div>
+        <div class="snow${lv?'':' none'}">${lv?u.fx(lv*u.per):'Pas encore acquise'}</div>
+        ${done?'<div class="snext max">Rang maximum atteint</div>':`<div class="snext">Rang ${lv+1} : ${u.fx((lv+1)*u.per)}</div>`}</div>
+      ${done?'<span class="smax">Max</span>':buyBtn(`data-k="up-${k}" data-up="${k}"`, cost, ok)}</div>`; };
+  const cats = UP_CATS.map(([c,t])=>{ const ks=UP_KEYS.filter(k=>UPGRADES[k].cat===c).sort((a,b)=>{ const ca=UPGRADES[a].costs[S.upgrades[a]]??1e9, cb=UPGRADES[b].costs[S.upgrades[b]]??1e9; return ca-cb; });
+    return `<h4 class="ssub">${t}</h4>${ks.map(upCard).join('')}`; }).join('');
+  const owned = UP_KEYS.reduce((n,k)=>n+(S.upgrades[k]||0),0), total = UP_KEYS.reduce((n,k)=>n+UPGRADES[k].costs.length,0);
   app.innerHTML = `
-  <div class="win topbar"><b class="grow">Marchand</b><span class="gold">${S.gils} Gils</span></div>
-  <div class="scroll">
+  <div class="win topbar"><b class="grow">Marchand</b><span class="sgil"><img src="assets/up/gil.webp" alt="">${S.gils.toLocaleString('fr-FR')} Gils</span></div>
+  <div class="scroll shop">
     <section class="xsec">
       <h3 class="xh">Cristaux de job</h3>
-      <p class="muted">Un cristal débloque un job pour toujours. Prix unique : ${JOB_PRICE} Gils.</p>
-      ${crystals.length? crystals.map(k=>`<div class="shrow"><img class="soul" src="assets/soul/${k}.webp" alt="Cristal de job ${JOBS[k].name}" style="--g:${SOUL_GLOW[k]}"><div class="grow"><b>${JOBS[k].name}</b><br>${roleTag(k)} <span class="muted">${clsLine(JOBS[k])}</span></div>
-        <div class="pricebox">${promo?`<span class="ptag">Premier cristal</span><s>${JOB_PRICE} G</s>`:''}<button class="btn small ${S.gils>=price?'goldb':''}" data-k="buy-${k}" data-buyjob="${k}" ${S.gils>=price?'':'disabled'}>${price} G</button></div></div>`).join('') : '<p class="muted">Tous les jobs sont débloqués !</p>'}
+      <p class="sintro">Un cristal débloque un job pour toujours.${promo?` Ton premier cristal ne coûte que ${JOB_PROMO} Gils.`:''}</p>
+      ${crystals.length? crystals.map(k=>`<div class="scard job${glow===k?' glow':''}"><img class="soul" src="assets/soul/${k}.webp" alt="Cristal de job ${JOBS[k].name}" style="--g:${SOUL_GLOW[k]}">
+        <div class="sbody"><div class="stop"><b>${JOBS[k].name}</b>${roleTag(k)}</div><div class="snext">${clsLine(JOBS[k])}</div></div>
+        <div class="spr-col">${promo?`<s>${JOB_PRICE} G</s>`:''}${buyBtn(`data-k="buy-${k}" data-buyjob="${k}"`, price, S.gils>=price)}</div></div>`).join('') : '<p class="sintro">Tous les jobs sont débloqués.</p>'}
     </section>
     <section class="xsec">
-      <h3 class="xh">Améliorations permanentes</h3>
-      ${Object.keys(UPGRADES).map(k=>{ const u=UPGRADES[k], lv=S.upgrades[k], max=lv>=u.costs.length, cost=u.costs[lv];
-        return `<div class="shrow">${''}<div class="grow"><b>${u.name}</b> <span class="gold">${'◆'.repeat(lv)}${'◇'.repeat(u.costs.length-lv)}</span><br><span class="muted">${u.desc}</span></div>
-        ${max?'<span class="gold">MAX</span>':`<button class="btn small ${S.gils>=cost?'goldb':''}" data-k="up-${k}" data-up="${k}" ${S.gils>=cost?'':'disabled'}>${cost} G</button>`}</div>`; }).join('')}
+      <h3 class="xh">Améliorations permanentes <small class="scount">${owned} / ${total}</small></h3>
+      <p class="sintro">Actives au début de chaque exploration, en solo comme en ligne.</p>
+      ${cats}
     </section>
   </div>
   <button class="btn" data-k="back" data-go="hub">Retour</button>`;
   bind(app);
-  app.querySelectorAll('[data-buyjob]').forEach(b=>b.onclick=()=>{ const k=b.dataset.buyjob, pr=jobPrice(); confirmBox(`Acheter le Cristal de job <b>${JOBS[k].name}</b> pour <span class="gold">${pr} Gils</span> ?`, ()=>{ if(S.gils<pr) return; S.gils-=pr; if (promoOK()) S.promoUsed=true; S.unlocked.push(k); S.job=k; persist(); toast(`${JOBS[k].name} débloqué !`); SCREENS.shop(); }, 'Acheter'); });
-  app.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{ const k=b.dataset.up, cost=UPGRADES[k].costs[S.upgrades[k]]; confirmBox(`Acheter <b>${UPGRADES[k].name}</b> pour <span class="gold">${cost} Gils</span> ?`, ()=>{ if(S.gils<cost) return; S.gils-=cost; S.upgrades[k]++; persist(); toast('Amélioration acquise !'); SCREENS.shop(); }, 'Acheter'); });
+  if (glow){ const g=app.querySelector('.scard.glow'); if (g) g.scrollIntoView({block:'center'}); }
+  const bought = (k,msg) => { persist(); try{ SND.sfx('levelup'); }catch(e){} toast(msg); SCREENS.shop(k); };
+  app.querySelectorAll('[data-buyjob]').forEach(b=>b.onclick=()=>{ const k=b.dataset.buyjob, pr=jobPrice(); confirmBox(`<img class="cfi" src="assets/soul/${k}.webp" alt="">Acheter le Cristal de job <b>${JOBS[k].name}</b> pour <span class="gold">${pr} Gils</span> ?`, ()=>{ if(S.gils<pr) return; S.gils-=pr; if (promoOK()) S.promoUsed=true; S.unlocked.push(k); S.job=k; bought(k, `${JOBS[k].name} débloqué !`); }, 'Acheter'); });
+  app.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{ const k=b.dataset.up, u=UPGRADES[k], lv=S.upgrades[k]||0, cost=u.costs[lv]; if (cost==null) return;
+    confirmBox(`<img class="cfi" src="assets/up/${u.icon}.webp" alt="">Acheter <b>${u.name}</b> rang ${lv+1} pour <span class="gold">${cost} Gils</span> ?<br><span class="muted">${u.fx((lv+1)*u.per)}</span>`, ()=>{ if(S.gils<cost || (S.upgrades[k]||0)!==lv) return; S.gils-=cost; S.upgrades[k]=lv+1; bought(k, `${u.name} : rang ${lv+1}`); }, 'Acheter'); });
 };
 
 function scoresModal(){
@@ -2710,16 +2848,16 @@ const isBossFloor = f => f%5===0;
 const isBigBoss = f => f%10===0;
 function recalcStats(){
   const j=JOBS[R.job], L=Lf(R.level)*(1+BAL.pg*Math.max(0,(R.level||1)-(R.lvB||0)-1)), old=R.maxhp||0;
-  R.maxhp=Math.round(j.hp*L*(1+0.05*R.up.hp)*R.mods.hpMul); R.atk=j.atk*L; R.mag=j.mag*L; R.maxmp=j.mp;
+  R.maxhp=Math.round(j.hp*L*(1+upV(R.up,'hp')/100)*R.mods.hpMul); R.atk=j.atk*L*(1+upV(R.up,'atk')/100); R.mag=j.mag*L*(1+upV(R.up,'mag')/100); R.maxmp=Math.round(j.mp*(1+upV(R.up,'mp')/100));
   if (old) R.hp=Math.min(R.maxhp, R.hp + Math.max(0,R.maxhp-old));
 }
 function startRun(){
-  const j=JOBS[S.job], up=Object.assign({},S.upgrades);
+  const j=JOBS[S.job], up=cleanUp(S.upgrades), ub=upBase(up,j);
   const seed=newSeed(); seedRNG(seed.slice());
   const cid = (S.comp && S.comps[S.comp]) ? S.comp : null;
   R = { v:3, seed, rs:RS, job:S.job, loadout:getLoadout(S.job), level:1, floor:1, up, def:j.def, crit:j.crit,
-    mods:{dmg:0.04*up.dmg, def:0, crit:0, vamp:0, gil:0.15*up.gil, cdr:0, hpMul:1, mpr:0}, potions:2+up.potion, ethers:(j.mp>=100?1:0),
-    gilsEarned:0, kills:0, bosses:0, revives:0, startedAt:Date.now(), uidn:0, taken:[], perk:{}, frags:0, curse:null, rew:null, plan:null,
+    mods:ub.mods, potions:ub.potions, ethers:ub.ethers,
+    gilsEarned:0, kills:0, bosses:0, revives:0, startedAt:Date.now(), uidn:0, taken:[], perk:ub.perk, frags:0, curse:null, rew:null, plan:null,
     comp: cid ? {id:cid, rank:S.comps[cid], revived:false} : null };
   recalcStats(); R.hp=R.maxhp; R.mp=R.maxmp;
   R.plan = planFloor(1);
@@ -2982,7 +3120,8 @@ function choiceScreen(title, icon, text, choices, more){
 /* --- Récompenses après chaque combat : 3 au choix + Relancer --- */
 const REW_COL = {c:'#c8d2e6', r:'#5b9bff', e:'#c46bff'};
 const rewIcon = x => x.id==='potions'||x.id==='superpotion'||x.id==='ether'?'icon_coffre': x.id==='fragment'?'icon_cristal' : x.r==='e'?'icon_pomandre':'icon_autel';
-const rerollCost = () => (pk('extraReward')>0 && !R.rew.rr) ? 0 : Math.round((10 + 2*R.floor) * (1 + R.rew.rr));
+const rrHorn = () => pk('extraReward')>0 && !R.rew.rr;
+const rerollCost = () => (rrHorn() || pk('freeRR')>0) ? 0 : Math.round((10 + 2*R.floor) * (1 + R.rew.rr));
 function fightRewards(kind, title, extra){
   const P=R.plan, sp=(P && P.one && P.sp && !P.spShown && kind!=='mimic') ? P.sp : null;
   if (sp) P.spShown=1;
@@ -2990,7 +3129,9 @@ function fightRewards(kind, title, extra){
   showRewards();
 }
 /* v5.5 : icônes officielles (FFXIV Fan Kit, commandes principales) pour les récompenses de combat */
+const REW_IC = new Set(["force", "acier", "vitalite", "perspi", "potions", "ether", "bourse", "soin", "serenite", "fortune", "garde", "pickpocket", "ouverture", "alchimie", "brisebouclier", "rajeu", "vampi", "interruption", "parade", "fleau", "venin", "robe", "sablier", "grace", "onde", "cristalether", "ame", "initiative", "regen", "geants", "percearmure", "volonte", "antidote", "opportun", "epines", "econome", "superpotion", "lien", "celerite", "phenix", "egide", "abondance", "elan", "destin", "sang", "fragment", "benediction"]); // v5.5g : icônes d'objets FFXIV (XIVAPI)
 function rewImg(x){
+  if (REW_IC.has(x.id)) return 'assets/rew/'+x.id+'.webp';
   const d=(x.desc||'').toLowerCase(), id=x.id||'';
   const k = /potion|ether|elixir/.test(id) ? 'key_items' : id==='fragment' ? 'aether_currents' : /gil/.test(d) ? 'currency'
     : /subis|bouclier|résist/.test(d) ? 'armoury_chest' : /critique/.test(d) ? 'actions_and_traits' : /pv|soign/.test(d) ? 'character'
@@ -3001,16 +3142,20 @@ function rewImg(x){
 function withSp(w, bands, cls){
   if (!w.sp || !PATH[w.sp]) return bands.join('');
   const P=PATH[w.sp], at=Math.min(bands.length, w.spAt||0);
-  const b=bandHTML({cls:'b-path b-sp t-'+w.sp+(cls?' '+cls:''), col:P[2], sym:w.sp, name:`${P[0]} <span class="rar">Salle spéciale</span>`, sub:P[1], art:bandArt('path',w.sp), attrs:`data-k="rew-sp" data-sp="${w.sp}"`, d:120+at*90, tail:`<span class="b-go">${rsym('up')}</span>`});
+  const b = cls==='rw-b'
+    ? bandHTML({cls:'b-rew rw-b b-sp t-'+w.sp, col:P[2], name:`<img class="rw-ic" src="assets/ui/${SP_IC[w.sp]||'map'}.webp" alt="" aria-hidden="true"><span class="rw-n">${P[0]}</span><span class="rar">Salle spéciale</span>`, sub:P[1], attrs:`data-k="rew-sp" data-sp="${w.sp}"`, d:120+at*90})
+    : bandHTML({cls:'b-path b-sp t-'+w.sp+(cls?' '+cls:''), col:P[2], sym:w.sp, name:`${P[0]} <span class="rar">Salle spéciale</span>`, sub:P[1], art:bandArt('path',w.sp), attrs:`data-k="rew-sp" data-sp="${w.sp}"`, d:120+at*90, tail:`<span class="b-go">${rsym('up')}</span>`});
   const o=bands.slice(); o.splice(at,0,b); return o.join('');
 }
+const rwPips = (n,m) => `<span class="pips rwp" aria-label="${n} sur ${m}">${Array.from({length:m},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join('')}</span>`;
+const SP_IC = {marchand:'currency', repos:'housing', coffre:'armoury_chest', rencontre:'emotes', autel:'challenge_log'};
 function showRewardsOverlay(w, opts, cost, can){
   let ov=app.querySelector('.rw-ov'); if (!ov){ ov=document.createElement('div'); ov.className='rw-ov'; app.appendChild(ov); app.classList.add('rw-on'); }
   ov.innerHTML = `<div class="rw-box">${w.extra||''}
     <div class="rw-h">Choisis une récompense</div>
-    <div class="bands rw-bands">${withSp(w, opts.slice(0,3).map((x,i)=>bandHTML({cls:'b-rew rw-b '+RARITY[x.r].cls, col:REW_COL[x.r]||'#c8d2e6', name:`<img class="rw-ic" src="${rewImg(x)}" alt="" aria-hidden="true">${x.name} <span class="rar">${RARITY[x.r].n}</span>`,
-      sub:`${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}`, d:120+i*90, attrs:`data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"`})), 'rw-b')}</div>
-    <div class="row" style="gap:6px"><button class="btn small" style="width:auto;padding:2px 12px" data-k="menu" id="bRwItems">Menu</button><button class="btn small grow" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost?cost+' Gils':'gratuit'}${w.rr?` (relance n°${w.rr+1})`:''}</button></div></div>`;
+    <div class="bands rw-bands">${withSp(w, opts.slice(0,3).map((x,i)=>bandHTML({cls:'b-rew rw-b '+RARITY[x.r].cls, col:REW_COL[x.r]||'#c8d2e6', name:`<img class="rw-ic" src="${rewImg(x)}" alt="" aria-hidden="true"><span class="rw-n">${x.name}</span><span class="rar">${RARITY[x.r].n}</span>`,
+      sub:`${x.desc}${x.max>1?` ${rwPips(rewCount(x.id),x.max)}`:''}`, d:120+i*90, attrs:`data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"`})), 'rw-b')}</div>
+    <div class="rw-act"><button class="lbtn" data-k="menu" id="bRwItems">Menu</button><button class="lbtn grow" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>Relancer <b>${cost?cost+' Gils':'gratuit'}</b>${w.rr?`<small>relance ${w.rr+1}</small>`:''}</button></div></div>`;
   ov.querySelector('#bRwItems').onclick=runMenu;
 }
 function showRewards(){
@@ -3029,6 +3174,7 @@ function showRewards(){
   const bSp=app.querySelector('[data-sp]'); if (bSp) bSp.onclick=()=>{ const t=w.sp; R.rew=null; if (R.plan) R.plan.spUsed=1; app.classList.remove('rw-on'); saveRun(); (EVENTS[t]||advanceNode)(); };
   const bRr=document.getElementById('bReroll'); if (bRr) bRr.onclick=()=>{
     if (!spendGils(cost)) return;
+    if (cost===0 && !rrHorn() && pk('freeRR')>0) R.perk.freeRR--;
     w.rr++; const n=w.sp?2:3;
     let nw=drawRewards(n, w.kind, w.opts); if (nw.length<n) nw=drawRewards(n, w.kind);
     w.opts=nw.map(x=>x.id); showRewards();
@@ -3118,7 +3264,7 @@ function startCombat(kind){
   }
   C = { kind, g0:R.gilsEarned||0, enemies:list.map(k=>makeEnemy(k,kind)), target:0, busy:false, cds:{}, turn:0,
         st:{mitig:0,mitigT:0,invulnT:0,holmT:0,shield:0,regen:0,regenT:0,buff:0,buffT:0,nextCrit:0,weakT:0,pdot:0,pdotT:0,sen:0,absorb:0}, msg:'' };
-  if (pk('shieldStart')>0) C.st.shield = Math.round(R.maxhp*pk('shieldStart'));
+  if (pk('shieldStart')>0) C.st.shield = Math.round(R.maxhp*Math.min(0.2,pk('shieldStart')));
   if (R.comp) C.cp = { cd: Math.ceil(compCd()/2), uses:0 };
   if (R.nextPoison){ C.st.pdot=Math.max(1,Math.round(R.maxhp*0.04)); C.st.pdotT=3; R.nextPoison=0; }
   if (R.nextWeak){ C.st.weakT=2; R.nextWeak=0; }
@@ -3579,6 +3725,7 @@ async function checkEnd(){
 }
 function tryRevive(){
   const pel=plEl();
+  if (pk('hyd')>0){ R.perk.hyd=0; R.hp=1; C.msg='La Bénédiction d’Hydaelyn te garde en vie à 1 PV !'; fxAt(pel,'holy'); floatAt(pel,'Hydaelyn','heal'); return true; }
   if (pk('phoenix')>0){ R.perk.phoenix--; R.revives=(R.revives||0)+1; R.hp=Math.round(R.maxhp*0.4); C.msg=''+ic('feather')+' La Queue de phénix te relève !'; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
   if (R.comp && COMPANIONS[R.comp.id].kind==='revive' && !R.comp.revived){ R.comp.revived=true; R.revives=(R.revives||0)+1; R.hp=Math.round(R.maxhp*0.25*compPot()); C.msg=`${ic('spark')} ${COMPANIONS[R.comp.id].name} te relève (Vercoeur) !`; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
   return false;
@@ -3599,14 +3746,14 @@ function victoryHTML(kind, gil, fr){
    <div class="vx-t"><svg viewBox="0 0 400 76" role="img" aria-label="Victoire"><defs><linearGradient id="vxG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf0"/><stop offset=".36" stop-color="#f2dc9e"/><stop offset=".48" stop-color="#fffdf4"/><stop offset=".55" stop-color="#b98a3e"/><stop offset=".76" stop-color="#e4c47a"/><stop offset="1" stop-color="#8a6326"/></linearGradient></defs>
     <text x="200" y="58" text-anchor="middle" font-family="Cinzel,Georgia,serif" font-weight="600" font-size="56" textLength="330" lengthAdjust="spacing" fill="url(#vxG)" stroke="#120c04" stroke-width="1.5" paint-order="stroke" stroke-linejoin="round">VICTOIRE</text></svg><i class="vx-flare" aria-hidden="true"></i></div>
    <div class="vx-emb" aria-hidden="true"><i></i><b></b><i></i></div>
-   <div class="vx-gains">${cell('Gils', '+'+Math.max(0,gil), 'gold')}${fr?cell('Fragments','+'+fr,'frag'):''}${cell('Total', R.gilsEarned)}</div>
+   <div class="vx-line"><span class="vl-g"><img src="assets/up/gil.webp" alt="">+${Math.max(0,gil)} Gils</span>${fr?`<span class="vl-f">+${fr} fragment${fr>1?'s':''}</span>`:''}<span class="vl-t">Total ${R.gilsEarned.toLocaleString('fr-FR')}</span></div>
   </div>`;
 }
 function winCombat(){
   const kind=C.kind, g0=C.g0; C=null; R.inC=0; R.fs=null;
   if (kind==='boss') R.bosses=(R.bosses||0)+1;
   if (!R.lvB){ R.lvB=1; partyLevel(); } // premier combat gagné : niveau +1 (progression rapide au début)
-  healR(R.maxhp*(R.curse&&R.curse.noHeal?0:BAL.heal)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*BAL.mpw));
+  healR(R.maxhp*(R.curse&&R.curse.noHeal?0:postHeal())); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*BAL.mpw));
   const fr=fragDrop(kind);
   if (kind==='boss' && R.floor===MAX_FLOOR) return endRun(true);
   const extra = victoryHTML(kind, R.gilsEarned-(g0==null?R.gilsEarned:g0), fr);
@@ -4329,7 +4476,7 @@ const Online = (function(){
   const newCode = () => Array.from({length:5}, () => CODE_CHARS[rnd32() % CODE_CHARS.length]).join('');
   const meInfo = () => {
     const g = (typeof S !== 'undefined' && S) ? S : {};
-    return { id: myId(), pseudo: myPseudo(), job: g.job || 'paladin', comp: g.comp || null, loadout: (typeof getLoadout==='function' && g.job) ? getLoadout(g.job) : null, ready: room.ready, host: room.host, v: CFG.protocol };
+    return { id: myId(), pseudo: myPseudo(), job: g.job || 'paladin', comp: g.comp || null, loadout: (typeof getLoadout==='function' && g.job) ? getLoadout(g.job) : null, up: (typeof cleanUp==='function' && g.upgrades) ? cleanUp(g.upgrades) : null, ready: room.ready, host: room.host, v: CFG.protocol };
   };
   const partner = () => room.players.find(p => p.id !== myId()) || Object.values(room.peers).find(p => p.id !== myId()) || null;
   const partnerSlot = () => room.slot === 0 ? 1 : 0;
@@ -4420,7 +4567,7 @@ const Online = (function(){
     if (ps.length < 2 || ps.length > 3) { note('Il faut deux ou trois joueurs.'); return false; }
     if (!engine){ note('Le mode duo n’est pas encore branché dans cette version.'); return false; }
     const me = ps.find(p => p.id === myId()), others = ps.filter(p => p.id !== myId()).sort((a,b) => String(a.id).localeCompare(String(b.id)));
-    const players = [me, ...others].map((p, i) => ({ slot:i, id:p.id, pseudo:p.pseudo, job:p.job, comp:p.comp, loadout:p.loadout }));
+    const players = [me, ...others].map((p, i) => ({ slot:i, id:p.id, pseudo:p.pseudo, job:p.job, comp:p.comp, loadout:p.loadout, up:p.up||null }));
     const seed = [rnd32(), rnd32(), rnd32(), rnd32()];
     const msg = { seed, players, hostId: myId(), startedAt: Date.now(), cfg:{ turnTimeoutMs: CFG.turnTimeoutMs } };
     room.startAck = false;
@@ -4895,17 +5042,17 @@ function withHero(i, fn){ if(!isDuo()) return fn(); const p=R.cur||0; heroIn(i);
 function makeHero(p, up){
   const j=JOBS[p.job]||JOBS.paladin, job=JOBS[p.job]?p.job:'paladin';
   const lo=(Array.isArray(p.loadout)&&p.loadout.length===4&&p.loadout.every(id=>j.opts.some(o=>o.id===id))) ? p.loadout.slice() : j.def4.slice();
+  up=cleanUp(up); const ub=upBase(up,j);
   return { pname:String(p.pseudo||'Joueur').slice(0,16), job, loadout:lo, up, def:j.def, crit:j.crit, level:1,
-    mods:{dmg:0.04*up.dmg, def:0, crit:0, vamp:0, gil:0.15*up.gil, cdr:0, hpMul:1, mpr:0}, potions:2+up.potion, ethers:(j.mp>=100?1:0),
-    perk:{}, taken:[], hp:0, maxhp:0, mp:0, maxmp:0, atk:0, mag:0, st:null, cds:{} };
+    mods:ub.mods, potions:ub.potions, ethers:ub.ethers,
+    perk:ub.perk, taken:[], hp:0, maxhp:0, mp:0, maxmp:0, atk:0, mag:0, st:null, cds:{} };
 }
 function startDuoRun({seed, players, mySlot, startedAt}){
-  const up={hp:0,dmg:0,potion:0,gil:0}; // duo : départ équitable, sans améliorations
   seedRNG(seed.slice()); DUO.on=true; DUO.my=mySlot||0;
   const N=Math.max(2,Math.min(3,players.length||2));
   const ps=Array.from({length:N},(_,i)=>players.find(p=>p.slot===i)||players[i]||{pseudo:'Joueur '+(i+1), job:'paladin'});
   R = { v:3, duo:true, seed:seed.slice(), rs:RS, floor:1, gilsEarned:0, kills:0, bosses:0, revives:0, startedAt:(+startedAt||Date.now()), uidn:0,
-    frags:0, curse:null, rew:null, plan:null, comp:null, party:ps.map(p=>makeHero(p,up)), cur:0 };
+    frags:0, curse:null, rew:null, plan:null, comp:null, party:ps.map(p=>makeHero(p,p.up)), cur:0 }; // v5.5g : chacun ses améliorations permanentes (transmises par l'hôte)
   for (const i of R.party.map((_,j)=>j).reverse()){ R.cur=i; heroIn(i); recalcStats(); R.hp=R.maxhp; R.mp=R.maxmp; heroOut(); }
   R.cur=0; heroIn(0);
   R.plan=planFloor(1); C=null;
@@ -4943,7 +5090,8 @@ startCombat = function(kind){
   heroIn(0); _startCombat(kind);
   if (kind==='boss'){ const k=1+BAL.duoBossHp*(NP()-1); C.enemies.forEach(e=>{ if (e.boss){ e.hp=e.maxhp=Math.round(e.maxhp*k); } }); updateCombat(); } // v5.5f : PV des boss selon le nombre de joueurs
   const tmpl=JSON.stringify(C.st);
-  R.party.forEach((h,i)=>{ h.st = i===0 ? C.st : JSON.parse(tmpl); h.cds = i===0 ? C.cds : {}; });
+  R.party.forEach((h,i)=>{ h.st = i===0 ? C.st : JSON.parse(tmpl); h.cds = i===0 ? C.cds : {};
+    const ss=(h.perk&&h.perk.shieldStart)||0; h.st.shield = ss>0 ? Math.round(h.maxhp*Math.min(0.2,ss)) : 0; }); // v5.5g : bouclier de départ propre à chaque héros
 };
 /* ennemis : chaque attaque vise un héros encore debout (tirage rand() commun) */
 const _enemyAct = enemyAct;
@@ -4956,7 +5104,7 @@ winCombat = function(){
   if (!isDuo()) return _winCombat();
   heroOut();
   const bk=C&&C.kind==='boss';
-  for (let i=1;i<NP();i++){ heroIn(i); if (R.hp<=0) R.hp=1; healR(R.maxhp*(R.curse&&R.curse.noHeal?0:BAL.heal)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*BAL.mpw));
+  for (let i=1;i<NP();i++){ heroIn(i); if (R.hp<=0) R.hp=1; healR(R.maxhp*(R.curse&&R.curse.noHeal?0:postHeal())); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*BAL.mpw));
     if (bk && R.floor!==MAX_FLOOR){ healR(R.maxhp*(isBigBoss(R.floor)?1:0.5)); R.mp=R.maxmp; } heroOut(); }
   heroIn(0); if (R.hp<=0) R.hp=1;
   return _winCombat();

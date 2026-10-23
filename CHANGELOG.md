@@ -1,5 +1,16 @@
 # Notes de patch : A Godless Realm
 
+## v5.5g : Nouveau marchand et nouvel écran de victoire (23/10/2026)
+- Le marchand a été refait : d'abord les cristaux de job, puis les améliorations permanentes, rangées par catégorie et par prix.
+- 14 améliorations permanentes à acheter avec tes Gils, avec plusieurs rangs chacune : Force d'Halone, Savoir de Sharlayan, Armes affûtées, Matéria de critique, Vitalité de l'Étoile, Puits d'éther, Rempart d'Ishgard, Voile du cristal, Grâce de Menphina, Sacoche de potions, Fiole d'éther, Bourse de Nald'thal, Dés de Tataru et Bénédiction d'Hydaelyn.
+- Chaque amélioration montre son icône, son effet actuel, le rang suivant et son prix. Le bouton est grisé si tu n'as pas assez de Gils ou si le rang maximum est atteint.
+- Tes anciennes améliorations sont gardées : rien n'est perdu.
+- Les améliorations s'appliquent au début de chaque exploration, en solo comme en ligne. En ligne, chaque joueur garde les siennes.
+- Tu retrouves tes améliorations dans le Registre de l'aventurier.
+- Nouvel écran de victoire : plus de fenêtre bleue, le texte flotte au dessus du combat flouté, avec les Gils gagnés sur une seule ligne.
+- Chaque récompense a sa propre icône d'objet de Final Fantasy XIV, sa couleur de rareté et des petits traits pour le nombre d'exemplaires déjà pris.
+- Les boutons Menu et Relancer sont plus simples et plus faciles à toucher.
+
 ## v5.5f : Les grands méchants de Final Fantasy (23/10/2026)
 - Les gardiens et les boss sont maintenant de vrais personnages de la série : Ifrit, Barbariccia, Gilgamesh, Golbez, Exdeath, l'Arme Ultima, Sephiroth, Kefka, Zeromus et Bahamut.
 - Chaque boss a son entrée en scène : l'écran s'assombrit, le boss apparaît dans ses flammes, son vent ou sa lumière, avec son nom, son titre et quelques mots. Touche l'écran pour passer.

@@ -301,3 +301,72 @@ Icônes officielles des actions de FINAL FANTASY XIV (© SQUARE ENIX), lues via 
 - `assets/skills/meditation.webp` (samourai) : Action 7497, icône 003172
 - `assets/skills/midare.webp` (samourai) : Action 7487, icône 003162
 - `assets/skills/oeil.webp` (samourai) : Action 7498, icône 003153
+
+## Icônes d'objets FFXIV (v5.5g)
+
+Icônes officielles de FINAL FANTASY XIV, récupérées via l'API publique documentée XIVAPI v2 (https://v2.xivapi.com), converties en WebP 64 px. © SQUARE ENIX CO., LTD.
+
+Améliorations permanentes du Marchand (`assets/up/`) :
+- `assets/up/hp.webp` : Item « Vitality Materia I », icône 020205
+- `assets/up/mp.webp` : Item « Piety Materia I », icône 020213
+- `assets/up/atk.webp` : Item « Tincture of Strength », icône 020710
+- `assets/up/mag.webp` : Item « Tincture of Intelligence », icône 020706
+- `assets/up/dmg.webp` : Item « Whetstone », icône 021470
+- `assets/up/def.webp` : Action « Rampart », icône 000801
+- `assets/up/crit.webp` : Item « Savage Aim Materia », icône 020221
+- `assets/up/heal.webp` : Item « Elixir », icône 020624
+- `assets/up/gil.webp` : Item « Gil », icône 065002
+- `assets/up/potion.webp` : Item « Hi-Potion », icône 020602
+- `assets/up/ether.webp` : Item « Hi-Ether », icône 020622
+- `assets/up/shield.webp` : Action « Divine Veil », icône 002508
+- `assets/up/reroll.webp` : Item « Goblin Dice », icône 026253
+- `assets/up/hyd.webp` : Item « Hydaelyn Card », icône 027666
+
+Récompenses de combat (`assets/rew/`) :
+- `assets/rew/force.webp` : Item « Tincture of Strength », icône 020710
+- `assets/rew/acier.webp` : Item « Steel Ingot », icône 020802
+- `assets/rew/vitalite.webp` : Item « Vitality Materia I », icône 020205
+- `assets/rew/perspi.webp` : Item « Savage Aim Materia I », icône 020221
+- `assets/rew/potions.webp` : Item « Hi-Potion », icône 020602
+- `assets/rew/ether.webp` : Item « Hi-Ether », icône 020622
+- `assets/rew/bourse.webp` : Item « Gil », icône 065002
+- `assets/rew/soin.webp` : Item « Elixir », icône 020624
+- `assets/rew/serenite.webp` : Item « Piety Materia I », icône 020213
+- `assets/rew/fortune.webp` : Item « Bozjan Gold Coin », icône 026325
+- `assets/rew/garde.webp` : Item « Ice Shard », icône 020003
+- `assets/rew/pickpocket.webp` : Item « Prism Pouch », icône 053261
+- `assets/rew/ouverture.webp` : Item « Weathered Shortsword », icône 030405
+- `assets/rew/alchimie.webp` : Item « Potion », icône 020601
+- `assets/rew/brisebouclier.webp` : Item « Bronze War Axe », icône 031401
+- `assets/rew/rajeu.webp` : Item « Hi-Elixir », icône 020625
+- `assets/rew/vampi.webp` : Item « Bat Fang », icône 022303
+- `assets/rew/interruption.webp` : Item « Fingerless Darkhempen Gloves of Healing », icône 044938
+- `assets/rew/parade.webp` : Item « Kite Shield », icône 030040
+- `assets/rew/fleau.webp` : Item « Ogre Horn », icône 022205
+- `assets/rew/venin.webp` : Item « Spine Drops », icône 020645
+- `assets/rew/robe.webp` : Item « Hempen Robe », icône 042044
+- `assets/rew/sablier.webp` : Item « Astrolabe », icône 033011
+- `assets/rew/grace.webp` : Item « Dated Bronze Gladius », icône 030409
+- `assets/rew/onde.webp` : Item « Earth Crystal », icône 020012
+- `assets/rew/cristalether.webp` : Item « Lightning Cluster », icône 020017
+- `assets/rew/ame.webp` : Item « Wildfowl Feather », icône 021904
+- `assets/rew/initiative.webp` : Item « Bronze Spear », icône 031806
+- `assets/rew/regen.webp` : Item « Lavender », icône 025002
+- `assets/rew/geants.webp` : Item « Dragon Fang », icône 022213
+- `assets/rew/percearmure.webp` : Item « Iron Lance », icône 031803
+- `assets/rew/volonte.webp` : Item « Darksteel Breastplate », icône 026108
+- `assets/rew/antidote.webp` : Item « Antidote », icône 020641
+- `assets/rew/opportun.webp` : Item « Bronze Knives », icône 033803
+- `assets/rew/epines.webp` : Item « Iron Thornytooth », icône 029261
+- `assets/rew/econome.webp` : Item « Ashy Aethersand », icône 021233
+- `assets/rew/superpotion.webp` : Item « Mega-Potion », icône 020603
+- `assets/rew/lien.webp` : Item « Chocobo Whistle », icône 026012
+- `assets/rew/celerite.webp` : Item « Tincture of Dexterity », icône 020709
+- `assets/rew/phenix.webp` : Item « Phoenix Down », icône 020650
+- `assets/rew/egide.webp` : Item « Ice Crystal », icône 020009
+- `assets/rew/abondance.webp` : Item « Bee Basket », icône 027002
+- `assets/rew/elan.webp` : Item « Laurel », icône 025009
+- `assets/rew/destin.webp` : Item « Heavens' Eye Materia I », icône 020221
+- `assets/rew/sang.webp` : Item « Berserker Betta », icône 029238
+- `assets/rew/fragment.webp` : Item « Fire Crystal », icône 020007
+- `assets/rew/benediction.webp` : Item « Holy Water », icône 022653
