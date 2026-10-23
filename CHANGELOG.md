@@ -1,5 +1,11 @@
 # Notes de patch : A Godless Realm
 
+## v5.4j : Musique plus douce (23/10/2026)
+- Les changements de musique se font en fondu, sans coupure brusque.
+- Si la même musique continue d'un écran à l'autre, elle ne recommence plus au début.
+- Le son se met en pause quand tu quittes l'application et reprend à ton retour.
+- Sur iPhone, le son s'active dès le premier toucher.
+
 ## v5.4i : Correctif du jeu en groupe (23/10/2026)
 - En ligne, la partie ne reste plus bloquée quand les joueurs votent pour des chemins différents.
 - En cas d'égalité, tous les joueurs voient maintenant le même résultat du tirage.

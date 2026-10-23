@@ -1733,6 +1733,12 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.4j', date:'23/10/2026', img:'assets/band/v_rencontre.webp', title:'Musique plus douce', notes:[
+    'Les changements de musique se font en fondu, sans coupure brusque.',
+    'Si la même musique continue d’un écran à l’autre, elle ne recommence plus au début.',
+    'Le son se met en pause quand tu quittes l’application et reprend à ton retour.',
+    'Sur iPhone, le son s’active dès le premier toucher.'
+  ]},
   {v:'v5.4i', date:'23/10/2026', img:'assets/band/v_rencontre.webp', title:'Correctif du jeu en groupe', notes:[
     'En ligne, la partie ne reste plus bloquée quand les joueurs votent pour des chemins différents.',
     'En cas d’égalité, tous les joueurs voient maintenant le même résultat du tirage.'
@@ -4411,7 +4417,7 @@ function logoSVG(v){
 }
 function scrEnter(k){
   const b=document.body; b.classList.toggle('modern', MODERN_SCR.test(k)); b.classList.toggle('home', k==='title'); b.dataset.scr=k;
-  if (k==='title'||k==='hub') SND.music('home');
+  if (k==='title'||k==='hub') SND.music(k);
   try{ if (k==='title'||k==='map') setTimeout(PRE.forRun, k==='title'?400:0); if (k==='hub'||k==='gacha') PRE.forHub(); }catch(e){}
   if (k!=='combat'){ app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter'); }
 }
@@ -4424,6 +4430,10 @@ const SND = (()=>{
   const MUS = new Set(['home','battle','boss','victory','bossvictory','runwin','fail','levelup']);
   let ctx=null, master=null, musG=null, sfxG=null, cur=null, curKey=null, pending=null;
   const buf={}, load={}, last={};
+  // Pistes présentes dans assets/snd/ ; une piste absente retombe sur la suivante de sa liste
+  const HAVE = new Set(['home','battle','boss','victory','bossvictory','runwin','fail','levelup','cancel','cast','click','confirm','gacha','gacha5','heal','hit','hurt']);
+  const FALL = k => k==='title'||k==='hub' ? [k,'home'] : /^battle_t/.test(k) ? [k,'battle'] : k==='elite' ? [k,'battle'] : /^boss_/.test(k) ? [k,'boss'] : [k];
+  const pick = k => FALL(k).find(x=>HAVE.has(x)) || null;
   let vol = +(localStorage.getItem('pdm_vol') ?? 0.6); if (!(vol>=0&&vol<=1)) vol=0.6;
   let muted = localStorage.getItem('pdm_mute')==='1';
   const gainVal = ()=> muted?0:vol;
@@ -4443,16 +4453,17 @@ const SND = (()=>{
       .then(a=>new Promise((ok,ko)=>ctx.decodeAudioData(a,ok,ko))).then(b=>(buf[k]=b)).catch(()=>{ delete load[k]; return null; });
     return load[k];
   }
-  function music(k, fade=0.6){
+  function music(k0, fade=1.2){
+    const k = k0 ? pick(k0) : null;
     if (!ctx){ pending=k; return; }
-    if (k===curKey && cur) return;
+    if (k===curKey && cur) return; // même piste : elle continue sans redémarrer
     curKey=k;
     const t=ctx.currentTime;
     if (cur){ const o=cur; try{ o.g.gain.cancelScheduledValues(t); o.g.gain.setValueAtTime(o.g.gain.value,t); o.g.gain.linearRampToValueAtTime(0,t+fade); o.s.stop(t+fade+0.05);}catch(e){} cur=null; }
     if (!k) return;
     get(k).then(b=>{
       if (!b || curKey!==k) return;
-      const s=ctx.createBufferSource(), g=ctx.createGain(); s.buffer=b;
+      const s=ctx.createBufferSource(), g=ctx.createGain(); s.buffer=b; if (b.duration>20) s.loop=true; // vraies musiques en boucle, jingles une fois
       const n=ctx.currentTime; g.gain.setValueAtTime(0,n); g.gain.linearRampToValueAtTime(1,n+fade);
       s.connect(g); g.connect(musG); s.start(n);
       const me={s,g}; cur=me; s.onended=()=>{ if (cur===me){ cur=null; curKey=null; } };
@@ -4480,6 +4491,8 @@ const SND = (()=>{
     paint();
   }
   document.addEventListener('pointerdown', unlock, true);
+  document.addEventListener('touchend', unlock, true); // iOS : déverrouillage au premier toucher
+  document.addEventListener('visibilitychange', ()=>{ if (!ctx) return; if (document.hidden) ctx.suspend(); else ctx.resume(); });
   document.addEventListener('keydown', unlock, true);
   // clics de menu
   document.addEventListener('click', e=>{
@@ -4496,7 +4509,7 @@ const SND = (()=>{
 // Branchements sur le moteur (enveloppes, aucun changement de logique)
 (function(){
   try {
-    const oSC=startCombat; startCombat=function(kind){ SND.music(kind==='boss'?'boss':'battle'); return oSC.apply(this,arguments); };
+    const oSC=startCombat; startCombat=function(kind){ SND.music(kind==='boss'?'boss_'+(GUARDIAN_OF[R.floor]||R.floor):kind==='elite'?'elite':'battle_t'+Math.min(5,Math.max(1,Math.ceil((R.floor||1)/10)))); return oSC.apply(this,arguments); };
     const oWC=winCombat; winCombat=function(){ const boss=C&&C.kind==='boss'; SND.music(boss?'bossvictory':'victory'); return oWC.apply(this,arguments); };
     const oER=endRun; endRun=function(victory){ SND.music(victory?'runwin':'fail'); return oER.apply(this,arguments); };
     const oUS=useSkill; useSkill=function(s){ SND.sfx(s&&(s.stat==='mag'||s.heal||s.target==='self')?'cast':'hit'); return oUS.apply(this,arguments); };
