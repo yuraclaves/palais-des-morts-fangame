@@ -1,83 +1,71 @@
 # Notes de patch : Le Palais des Morts
 
-## v5.3 (23/10/2026)
-- Nouvelle direction artistique inspirée de FINAL FANTASY XIV sur tous les écrans hors combat : panneaux sombres translucides, dégradés doux, fins accents dorés et plus aucun cadre.
-- Nouvelles polices libres hébergées avec le jeu : Cinzel pour les titres et Source Sans 3 pour les textes.
-- L'avant-poste devient une liste claire à un seul niveau, avec sprites et petits symboles dessinés ; le bouton Retour devient une simple flèche en haut à gauche.
-- Nouvel écran Paramètres : volume, notes de patch et crédits complets.
-- L'écran titre s'anime : illustration officielle en lent mouvement, poussières de lumière et lueur sur le menu principal (désactivé si le téléphone demande moins d'animations).
-- Invocation : bannières sur la moitié de l'écran, sans cadre ni flèches, avec décors officiels de FFXIV, mouvement lent, reflet lumineux et personnage qui respire ; on glisse pour changer de bannière.
-- La bannière de Lightning utilise un rendu officiel détouré, placé comme les autres.
-- Les illustrations de toutes les bannières passent en haute résolution, avec des bords nets et lisses, sans pixels ni halo.
-- Nouveaux rendus officiels plus grands pour Y'shtola, Cloud et Yuna.
-- Le bouton « Mes compagnons » quitte l'écran d'invocation : les compagnons restent accessibles depuis l'avant-poste.
-- Les compagnons sans sprite officiel affichent désormais un médaillon doré à leur initiale au lieu d'une icône de mascotte.
-- Prix unique de 1 200 Gils pour tous les cristaux de job, calé sur les gains moyens d'une exploration de débutant.
-- Premier cristal à 400 Gils au lieu de 1 200 (une seule fois, pour les sauvegardes avec un seul job).
-- Les améliorations permanentes ont été recalibrées sur ces gains (de 300 à 1 400 Gils).
-- Les fiches de job indiquent la « Classe d'origine » (par exemple Gladiateur pour Paladin).
-- Création du personnage et fiches de job : chaque sort tient en une ligne claire (symbole, nom, un chiffre clé et une courte phrase) ; le détail complet reste dans le combat.
-- Combat : les pastilles d'intention et les étiquettes de résistance disparaissent au-dessus des monstres.
-- Combat : le bandeau « X prépare… » disparaît ; un monstre qui prépare une grosse attaque brille et tremble, en doré quand on peut l'interrompre.
-- Les cartes de récompense ne sont plus encadrées : elles apparaissent une par une, teintées selon leur rareté.
-- Nouvelle fanfare de victoire : titre doré animé lettre par lettre et récompenses qui apparaissent une à une.
-- Nouvel écran de fin d'exploration : illustration officielle en fond, titre animé et bilan qui s'affiche ligne par ligne.
-- Bonus et objets renommés avec des noms clairs (Bénédiction de force, Porte-bonheur, Bouclier de cristal, Potions renforcées…).
-- « Choisis ton chemin » redessiné : escalier d'où tu viens, trois cercles colorés avec un symbole dessiné, escalier vers l'étage suivant.
-- Chaque type de salle a sa couleur et son symbole : rouge combat, or trésor, vert repos, bleu événement, violet élite.
-- Les écrans d'événement reprennent le symbole et la couleur de la salle, sur un fond dégradé lisible.
-- Préparation de l'exploration : le marqueur officiel de quête principale de FFXIV brille discrètement en fond.
+## v5.4 : Boutons plus clairs (23/10/2026)
+- Les boutons ont de nouveau un léger contour et un fond doux : on voit tout de suite ce qui se touche.
+- Les boutons qui ouvrent un autre écran ont une petite flèche à droite.
+- Le bouton principal de l'avant-poste est doré pour bien ressortir.
+- Les sorts choisis pour l'exploration sont cochés et entourés de doré.
+- Les jobs et compagnons pas encore obtenus sont grisés avec un contour en pointillés.
+- Les textes d'information sont posés sur des panneaux sombres et discrets, sans effet de bouton.
+- Les zones lumineuses qui ne servaient à rien ont été retirées.
+- Sur l'écran du chemin, chaque salle est une carte cliquable à la couleur de son type.
+- Le bouton « Taux et règles » tient sur une seule ligne, même sur les petits téléphones.
+- Les écrans En ligne, Classement et Amis prennent le même style, avec une flèche de retour.
+- Les notes de patch ont leur propre page et sont réécrites plus simplement.
+- Le montant de Gils n'est plus caché par le bouton du son.
 
-## v5.2 (23/10/2026)
-- Les illustrations, les décors et les sprites se chargent beaucoup plus vite : images recompressées en WebP, environ deux fois plus légères.
-- Les images du prochain écran (décor de l'étage, sprites de l'équipe et des monstres, illustrations des bannières) sont préchargées et décodées pendant les temps morts.
-- Les décors et les illustrations s'affichent d'abord en aperçu flou puis deviennent nets, au lieu d'apparaître d'un coup.
-- Après la première visite, les images et les sons restent en cache sur le téléphone : les écrans suivants s'ouvrent sans attendre le réseau.
-- Ajout du son : jingles officiels de FINAL FANTASY XIV à l'accueil, au début des combats, contre les gardiens, à la victoire et à la défaite, avec un fondu enchaîné entre eux.
-- Bruitages officiels de FINAL FANTASY XIV pour les menus (clic, validation, retour), les attaques, les sorts, les soins, les dégâts subis et les invocations.
-- Un petit bouton haut-parleur sur l'accueil et en combat permet de régler le volume ou de couper le son ; le réglage est mémorisé sur l'appareil.
+## v5.3 : Nouveau style (23/10/2026)
+- Tous les menus hors combat ont un nouveau style sombre et doré, sans cadres.
+- Nouvelles polices plus élégantes pour les titres et les textes.
+- L'avant-poste devient une liste simple, avec une flèche en haut à gauche pour revenir.
+- Nouvel écran Paramètres pour le son, les notes de patch et les crédits.
+- L'écran titre s'anime doucement.
+- Les bannières d'invocation prennent la moitié de l'écran et changent d'un simple glissement.
+- Les illustrations des bannières sont plus grandes et plus nettes, et Lightning n'a plus de fond blanc.
+- Les compagnons sans sprite officiel affichent l'initiale de leur nom en doré.
+- Tous les jobs coûtent 1 200 Gils, et le premier ne coûte que 400 Gils.
+- Les améliorations permanentes coûtent entre 300 et 1 400 Gils.
+- Chaque sort est décrit en une ligne : son nom, un chiffre et une courte phrase.
+- En combat, un monstre qui prépare une grosse attaque brille et tremble.
+- Les récompenses et la victoire s'affichent avec une petite animation.
+- Beaucoup d'objets et de bonus ont des noms plus clairs.
+- L'écran du chemin montre trois cercles de couleur entre deux escaliers.
+- Chaque type de salle a sa couleur et son symbole.
 
-## v5.1 (23/10/2026)
-- Les jobs et les compagnons utilisent désormais les sprites officiels de FINAL FANTASY BRAVE EXVIUS, en vue de côté et tournés vers la droite.
-- Les monstres et le Néant utilisent aussi des sprites officiels de Brave Exvius, placés à droite et tournés vers la gauche.
-- Les compagnons sans sprite Brave Exvius (Alphinaud, Alisaie, Urianger, G'raha Tia, Estinien, Haurchefant, Tataru, Lyse, Krile, Cid) et la Mimique s'affichent avec leur icône officielle de mascotte FFXIV.
-- Les bannières d'invocation et les résultats de tirage montrent les nouveaux sprites.
-- Les décors de combat sont remplacés par des décors officiels de Brave Exvius, un par tranche d'étages.
-- Les icônes de salles de la carte sont remplacées par des icônes officielles du kit de fans FFXIV.
-- Tous les sprites libres de droits et les dessins de remplacement ont été retirés du jeu.
-- Les bannières d'invocation sont désormais verticales, plus grandes, avec l'illustration officielle du personnage mis en avant derrière son sprite.
-- Nouvel écran d'accueil : menu en texte stylisé sur un décor officiel, avec un bouton principal bien visible.
-- Les menus hors combat adoptent un style moderne et les écrans s'enchaînent avec un léger fondu.
-- L'Atelier des sprites est supprimé, puisque tous les sprites sont maintenant officiels ; les anciens sprites personnalisés sont ignorés.
-- Correctif : un sprite introuvable ne peut plus bloquer l'affichage d'un écran.
+## v5.2 : Plus rapide et en musique (23/10/2026)
+- Le jeu se charge bien plus vite.
+- Musiques et bruitages officiels de FINAL FANTASY XIV.
+- Un bouton permet de régler ou couper le son.
 
-## v5 (23/10/2026)
-- Comptes en ligne : inscription avec un pseudo et un mot de passe, sans adresse e-mail.
-- Liste d'amis avec statut en ligne visible.
-- Classement des meilleures explorations.
-- Mode duo en temps réel : deux joueurs explorent le palais ensemble, tour par tour.
-- Ajout de ces notes de patch, accessibles depuis l'écran titre.
-- Nouvelles sources de Fragments de cristal : fin d'étage, pièges désamorcés, salles maudites et première victoire sur chaque gardien.
-- Les récompenses de combat sont plus modestes et leurs cumuls subissent des rendements décroissants : le palais est plus exigeant.
-- Invocation : plusieurs bannières à faire défiler, chacune avec un compagnon mis en avant, et un écran des taux et règles.
-- Combats en vue de côté : ton équipe à gauche, les monstres à droite.
-- Mention légale Square Enix affichée sur l'écran titre ; aucun achat en argent réel dans le jeu.
+## v5.1 : Sprites officiels (23/10/2026)
+- Les héros, les compagnons et les monstres utilisent les sprites officiels de FINAL FANTASY BRAVE EXVIUS.
+- Nouveaux décors de combat officiels, qui changent au fil des étages.
+- Les bannières d'invocation sont plus grandes, avec l'illustration du personnage.
+- Nouvel écran d'accueil.
+- L'Atelier des sprites est retiré.
 
-## v4a (23/10/2026)
+## v5 : Jouer en ligne (23/10/2026)
+- Tu peux créer un compte avec un pseudo et un mot de passe.
+- Ajoute des amis et vois qui est en ligne.
+- Un classement montre les meilleures explorations.
+- Joue à deux en même temps dans le même palais.
+- Les Fragments de cristal se gagnent à plus d'endroits.
+- Le palais est un peu plus difficile.
+- Plusieurs bannières d'invocation, avec leurs taux affichés.
+- Ton équipe est à gauche et les monstres à droite.
+
+## v4a : Nouveaux graphismes (23/10/2026)
 - Nouveaux graphismes pour les personnages, les monstres et les décors.
-- Le joueur est centré sur le champ de bataille.
-- Toutes les icônes sont désormais en pixel art, sans emoji.
-- Boutons de compétences plus compacts avec info-bulles détaillées.
+- Les boutons de sorts sont plus petits et expliquent ce qu'ils font.
 
-## v3 (23/10/2026)
-- Chaque étage propose une séquence de salles : événements, pièges, autels, marchand et repos.
-- Une récompense à choisir après chaque combat, avec la possibilité de Relancer.
-- Invocation de compagnons : 30 héros à collectionner, avec un 5 étoiles garanti.
+## v3 : Salles et compagnons (23/10/2026)
+- Chaque étage propose des salles variées : événements, pièges, marchand, repos.
+- Après chaque combat, tu choisis une récompense.
+- Tu peux invoquer 30 compagnons à collectionner.
 
-## v2 (23/10/2026)
-- Le palais compte désormais 50 étages, avec gardiens et boss.
-- Équilibrage complet des jobs et des monstres.
-- Ajout de l'Atelier des sprites.
+## v2 : Le grand palais (23/10/2026)
+- Le palais compte 50 étages, avec des gardiens et des boss.
+- Les jobs et les monstres sont mieux équilibrés.
 
-## v1 (23/10/2026)
-- Premier prototype jouable : exploration d'étages, combats au tour par tour et jobs de départ.
+## v1 : Premiers pas (23/10/2026)
+- Première version jouable : étages, combats au tour par tour et premiers jobs.

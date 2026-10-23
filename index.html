@@ -579,10 +579,117 @@ body.modern .gban .gside img.spr.glyph,body.modern .gside img.spr.glyph{width:mi
 body.modern .gart{inset:3% -4% 0 20%;background-position:right 0 bottom 0;image-rendering:auto;filter:drop-shadow(0 0 10px color-mix(in srgb,var(--gl) 55%,transparent));will-change:transform;backface-visibility:hidden}
 
 /* v5.3 frameless skill rows */
-body.modern .btn.skopt{background:transparent!important;box-shadow:none!important;border-radius:0;min-height:52px;position:relative}
-body.modern .btn.skopt:not(:last-child)::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(230,200,140,.18),transparent)}
-body.modern .btn.skopt.on{background:linear-gradient(90deg,rgba(242,210,140,.26),rgba(242,210,140,.06) 60%,transparent)!important}
+
+
 body.modern .btn.skopt.on .sk-n,body.modern .btn.skopt.on b{color:#f3d58a}
+
+/* ===== v5.4 : DA leftovers ===== */
+/* bare panels: no soft bands acting as boxes */
+
+body.modern #modal .win{background:linear-gradient(180deg,rgba(14,13,20,.97),rgba(8,8,12,.97))!important}
+body.modern .scroll,body.modern .win{text-shadow:0 1px 2px rgba(0,0,0,.85),0 0 10px rgba(0,0,0,.45)}
+/* gacha 'Taux et règles' never wraps */
+body.modern .gacha-info .btn,body.modern [data-k="rates"],body.modern #bRates{white-space:nowrap;flex:none;font-size:clamp(12px,3.4vw,14px);padding-left:12px;padding-right:12px}
+/* online screens */
+body.modern .ol-big{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0;min-height:60px;position:relative}
+body.modern .ol-big::after{content:"";position:absolute;left:8px;right:8px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(230,200,140,.22),transparent)}
+body.modern .ol-big.goldb{color:#f3d58a}
+body.modern .ol-big .ol-l b{font-family:'Cinzel',Georgia,serif;font-weight:600;letter-spacing:.05em;font-size:17px}
+body.modern .ol-big .ol-l small{color:#cfc6b0;font-weight:500}
+body.modern .rsym.ol-rs{width:30px;height:30px;color:#e9cf8e;flex:none}
+body.modern .ol-tabs{gap:0;justify-content:center}
+body.modern .ol-tabs .btn,body.modern .ol-tabs .btn.sel{background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;border-radius:0;color:#bdb6a6;font-family:'Cinzel',Georgia,serif;letter-spacing:.05em;position:relative}
+body.modern .ol-tabs .btn.sel{color:#f3d58a}
+body.modern .ol-tabs .btn.sel::after{content:"";position:absolute;left:22%;right:22%;bottom:4px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#e6c27a,transparent)}
+body.modern .ol-chip{background:transparent;border:0;box-shadow:none;color:#bdb6a6;border-radius:0;padding:4px 8px}
+body.modern .ol-chip.sel{background:transparent;box-shadow:none;color:#f3d58a;border-bottom:2px solid #e6c27a}
+body.modern .ol-run.me{background:linear-gradient(90deg,rgba(242,210,140,.16),transparent);border-radius:0}
+body.modern .ol-run{border-bottom:1px solid rgba(230,200,140,.12)}
+body.modern .ol-slot{background:transparent!important;border:0!important;box-shadow:none!important}
+body.modern .ol-me{color:#e9cf8e}
+/* patch notes page */
+.pn-page{padding-top:6px}
+body.modern .pn{animation:rewIn .5s ease-out both;animation-delay:var(--d,0ms);margin-bottom:18px}
+body.modern .pn-ban{box-shadow:none;border-radius:0;height:min(96px,22vw);-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent)}
+body.modern .pn-ban b{font-family:'Cinzel',Georgia,serif;font-weight:700;letter-spacing:.06em;color:#f3d58a;font-size:22px}
+body.modern .pn ul{padding-left:18px;margin:8px 0 0}
+body.modern .pn li{margin:4px 0;line-height:1.4;color:#e8e2d4}
+body.modern .pn li::marker{color:#c9a65a}
+/* room choice: rising light column per type */
+body[data-scr="map"] .path{background:radial-gradient(ellipse 70% 120% at 50% 26%,color-mix(in srgb,var(--pc) 40%,transparent),color-mix(in srgb,var(--pc) 12%,transparent) 50%,transparent 78%)}
+body[data-scr="map"] .path .orb{box-shadow:0 0 22px color-mix(in srgb,var(--pc) 70%,transparent),0 0 60px color-mix(in srgb,var(--pc) 30%,transparent)}
+body[data-scr="map"] .path-d,body[data-scr="map"] .path-n{text-shadow:0 1px 2px #000,0 0 12px rgba(0,0,0,.9)}
+body[data-scr="map"] .paths::before{content:"";position:absolute;left:-10%;right:-10%;top:-30px;bottom:-30px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,.55),transparent 70%)}
+body[data-scr="map"] .paths{position:relative}
+
+body.modern #bRules{white-space:nowrap;flex:none;background:transparent!important;border:0!important;box-shadow:none!important;color:#f3d58a!important;font-size:clamp(12px,3.4vw,14px);padding:2px 4px!important;text-decoration:underline;text-decoration-color:rgba(230,194,122,.5);text-underline-offset:4px}
+
+body.modern .pn-t{margin:8px 0 0;font-size:17px;color:#f3e6c4}
+body.modern .pn li{list-style:none;position:relative;padding-left:2px}
+body.modern .pn ul{padding-left:16px}
+body.modern .pn li::before{content:"-";position:absolute;left:-14px;color:#c9a65a}
+
+/* ===== v5.4a : cadres légers + lisibilité des éléments cliquables ===== */
+body.modern{--cb-bg:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.03));--cb-bd:rgba(230,204,143,.30);--cb-bd-h:rgba(240,214,150,.62);--cb-bg-a:linear-gradient(180deg,rgba(242,214,150,.22),rgba(242,214,150,.08));--pn-bg:rgba(10,12,22,.52);--pn-bd:rgba(255,255,255,.08)}
+/* panneaux d'information : discrets, non cliquables */
+body.modern .win:not(.topbar):not(.fanfare):not(.gban){background:var(--pn-bg)!important;border:1px solid var(--pn-bd)!important;border-radius:12px!important;box-shadow:none!important;backdrop-filter:blur(3px)}
+body.modern .win.ppanel{background:rgba(8,10,18,.6)!important}
+body[data-scr="map"] .win:not(.topbar):not(.ppanel){background:transparent!important;border:0!important}
+/* tout ce qui est cliquable : même carte-bouton */
+body.modern .xbtn,body.modern .btn.skopt,body.modern .btn.door,body.modern .btn.card,body.modern .jp,body.modern .ol-big,body.modern .btn.reward,body.modern [data-ch],body.modern .btn.small:not(.goldb):not(.redb),body.modern .btn:not(.goldb):not(.redb):not(.tb-back):not(.path):not(.snd-btn){background:var(--cb-bg)!important;border:1px solid var(--cb-bd)!important;outline:0!important;border-radius:10px!important;box-shadow:0 2px 8px rgba(0,0,0,.28)!important;color:#f1e9d6;transition:transform .08s,border-color .15s,background .15s}
+body.modern .xbtn{margin:0 0 8px;padding:8px 40px 8px 12px;min-height:58px}
+body.modern .xlist .xbtn:last-child{margin-bottom:0}
+body.modern .xbtn:active,body.modern .btn:not(.tb-back):active,body.modern .jp:active,body.modern .ol-big:active,body.modern .path:active,body.modern [data-ch]:active{transform:scale(.975);background:var(--cb-bg-a)!important;border-color:var(--cb-bd-h)!important}
+@media (hover:hover){body.modern .xbtn:hover,body.modern .btn:not(.tb-back):not(.goldb):not(.redb):hover,body.modern .jp:hover,body.modern .ol-big:hover,body.modern [data-ch]:hover{border-color:var(--cb-bd-h)!important}}
+/* sélection : bord doré net + coche */
+body.modern .btn.skopt.on,body.modern .btn.card.sel,body.modern .jp.on,body.modern .jp.sel{background:var(--cb-bg-a)!important;border-color:rgba(243,213,138,.9)!important;box-shadow:0 0 0 1px rgba(243,213,138,.35),0 2px 10px rgba(0,0,0,.3)!important}
+body.modern .btn.skopt{position:relative;padding-right:34px!important}
+body.modern .btn.skopt::after{content:"";position:absolute;right:12px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;border:1.5px solid rgba(230,204,143,.45);background:none}
+body.modern .btn.skopt.on::after{background:#e9c879 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23201a0c' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;border-color:#e9c879}
+/* verrouillé : clairement inactif */
+body.modern .btn.card.locked{opacity:.62;border-style:dashed!important;border-color:rgba(230,204,143,.22)!important;box-shadow:none!important}
+/* chevrons : ce bouton ouvre un autre écran */
+body.modern .xbtn::after,body.modern .ol-big::after,body.modern .btn.door::after{content:""!important;position:absolute;left:auto!important;bottom:auto!important;right:16px;top:50%;width:8px!important;height:8px!important;margin-top:-5px;border-right:2px solid rgba(233,207,142,.85);border-top:2px solid rgba(233,207,142,.85);transform:rotate(45deg);background:none!important;border-radius:0}
+body.modern .ol-big,body.modern .btn.door{position:relative;padding-right:40px!important}
+/* bouton principal : doré plein, sans halo flou */
+body.modern .xbtn.prime{background:linear-gradient(180deg,#f3d995,#c99a45 60%,#9a7128)!important;border:1px solid #ffe7a8!important;color:#241a08!important;animation:none!important;box-shadow:0 4px 14px rgba(0,0,0,.35)!important;margin:4px 0 14px}
+body.modern .xbtn.prime b{color:#241a08!important;text-shadow:none}
+body.modern .xbtn.prime small{color:#4a3814!important}
+body.modern .xbtn.prime .rsym{color:#3a2a0c!important}
+body.modern .xbtn.prime::after{border-color:#3a2a0c!important}
+body.modern .xbtn.prime:active{background:linear-gradient(180deg,#e7c97f,#b8893a)!important}
+/* zones décoratives ambiguës retirées */
+body.modern .hero .hero-sp::before{display:none}
+body.modern .tag{background:none!important;border:0!important;padding:0 0 0 4px!important;font-weight:700}
+body[data-scr="hub"] .topbar{padding-right:52px}
+/* petits boutons texte : forme de bouton claire */
+body.modern #bRules{background:var(--cb-bg)!important;border:1px solid var(--cb-bd)!important;border-radius:999px!important;text-decoration:none!important;padding:4px 12px!important;color:#f3d58a!important}
+/* onglets en ligne : boutons segmentés */
+body.modern .ol-tabs{gap:6px}
+body.modern .ol-tabs .btn,body.modern .ol-tabs .btn.sel{border-radius:999px!important}
+body.modern .ol-tabs .btn.sel{background:var(--cb-bg-a)!important;border-color:rgba(243,213,138,.9)!important;color:#f3d58a}
+body.modern .ol-tabs .btn.sel::after{display:none}
+body.modern .ol-chip{border:1px solid var(--cb-bd)!important;border-radius:999px;background:var(--cb-bg)}
+body.modern .ol-chip.sel{border-color:rgba(243,213,138,.9)!important;background:var(--cb-bg-a)}
+/* chemin : chaque salle est une carte cliquable teintée */
+body[data-scr="map"] .path{background:linear-gradient(180deg,color-mix(in srgb,var(--pc) 22%,rgba(10,12,22,.55)),rgba(10,12,22,.55))!important;border:1px solid color-mix(in srgb,var(--pc) 55%,transparent)!important;border-radius:14px!important;padding:12px 4px 12px!important;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+body[data-scr="map"] .path::after{display:none}
+body[data-scr="map"] .paths::before{display:none}
+body[data-scr="map"] .paths{gap:8px}
+/* récompenses : cartes cliquables à bord teinté */
+body.modern .btn.reward{border-radius:12px!important}
+
+body.modern .btn.reward.r-r{background:linear-gradient(180deg,rgba(74,138,255,.22),rgba(74,138,255,.06))!important;border-color:rgba(110,160,255,.65)!important}
+body.modern .btn.reward.r-e{background:linear-gradient(180deg,rgba(192,80,255,.26),rgba(192,80,255,.07))!important;border-color:rgba(205,120,255,.7)!important}
+body.modern .rar{background:none!important;border:0!important;padding:0 0 0 6px!important;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+body.modern .rar.r-c,body.modern .r-c .rar{color:#c8d0e0!important}
+body.modern .rar.r-r,body.modern .r-r .rar{color:#8fb6ff!important}
+body.modern .rar.r-e,body.modern .r-e .rar{color:#d79bff!important}
+
+body.modern .xbtn.prime{height:auto!important;min-height:64px;padding-top:10px!important;padding-bottom:10px!important}
+body.modern .xbtn.prime b{font-size:clamp(15px,4.6vw,19px)!important;line-height:1.15;white-space:nowrap}
+body.modern .topbar b.grow,body.modern .topbar>b{font-size:clamp(13px,4.1vw,17px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.modern .hero .muted,body.modern .hero small{white-space:normal}
 </style>
 </head>
 <body>
@@ -1334,98 +1441,86 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
-  {v:'v5.3', date:'23/10/2026', img:'assets/bgb/yshtola.webp', notes:[
-    'Nouvelle direction artistique inspirée de FINAL FANTASY XIV sur tous les écrans hors combat : panneaux sombres translucides, dégradés doux, fins accents dorés et plus aucun cadre.',
-    'Nouvelles polices libres hébergées avec le jeu : Cinzel pour les titres et Source Sans 3 pour les textes.',
-    'L’avant-poste devient une liste claire à un seul niveau, avec sprites et petits symboles dessinés ; le bouton Retour devient une simple flèche en haut à gauche.',
-    'Nouvel écran Paramètres : volume, notes de patch et crédits complets.',
-    'L’écran titre s’anime : illustration officielle en lent mouvement, poussières de lumière et lueur sur le menu principal (désactivé si le téléphone demande moins d’animations).',
-    'Invocation : bannières sur la moitié de l’écran, sans cadre ni flèches, avec décors officiels de FFXIV, mouvement lent, reflet lumineux et personnage qui respire ; on glisse pour changer de bannière.',
-    'La bannière de Lightning utilise un rendu officiel détouré, placé comme les autres.',
-'Les illustrations de toutes les bannières passent en haute résolution, avec des bords nets et lisses, sans pixels ni halo.',
-'Nouveaux rendus officiels plus grands pour Y\'shtola, Cloud et Yuna.',
-    'Le bouton « Mes compagnons » quitte l’écran d’invocation : les compagnons restent accessibles depuis l’avant-poste.',
-    'Les compagnons sans sprite officiel affichent désormais un médaillon doré à leur initiale au lieu d’une icône de mascotte.',
-    'Prix unique de 1 200 Gils pour tous les cristaux de job, calé sur les gains moyens d’une exploration de débutant.',
-    'Premier cristal à 400 Gils au lieu de 1 200 (une seule fois, pour les sauvegardes avec un seul job).',
-    'Les améliorations permanentes ont été recalibrées sur ces gains (de 300 à 1 400 Gils).',
-    'Les fiches de job indiquent la « Classe d’origine » (par exemple Gladiateur pour Paladin).',
-    'Création du personnage et fiches de job : chaque sort tient en une ligne claire (symbole, nom, un chiffre clé et une courte phrase) ; le détail complet reste dans le combat.',
-    'Combat : les pastilles d’intention et les étiquettes de résistance disparaissent au-dessus des monstres.',
-    'Combat : le bandeau « X prépare… » disparaît ; un monstre qui prépare une grosse attaque brille et tremble, en doré quand on peut l’interrompre.',
-    'Les cartes de récompense ne sont plus encadrées : elles apparaissent une par une, teintées selon leur rareté.',
-    'Nouvelle fanfare de victoire : titre doré animé lettre par lettre et récompenses qui apparaissent une à une.',
-    'Nouvel écran de fin d’exploration : illustration officielle en fond, titre animé et bilan qui s’affiche ligne par ligne.',
-    'Bonus et objets renommés avec des noms clairs (Bénédiction de force, Porte-bonheur, Bouclier de cristal, Potions renforcées…).',
-    '« Choisis ton chemin » redessiné : escalier d’où tu viens, trois cercles colorés avec un symbole dessiné, escalier vers l’étage suivant.',
-    'Chaque type de salle a sa couleur et son symbole : rouge combat, or trésor, vert repos, bleu événement, violet élite.',
-    'Les écrans d’événement reprennent le symbole et la couleur de la salle, sur un fond dégradé lisible.',
-    'Préparation de l’exploration : le marqueur officiel de quête principale de FFXIV brille discrètement en fond.',
+  {v:'v5.4', date:'23/10/2026', img:'assets/bgb/cloud.webp', title:'Boutons plus clairs', notes:[
+    'Les boutons ont de nouveau un léger contour et un fond doux : on voit tout de suite ce qui se touche.',
+    'Les boutons qui ouvrent un autre écran ont une petite flèche à droite.',
+    'Le bouton principal de l’avant-poste est doré pour bien ressortir.',
+    'Les sorts choisis pour l’exploration sont cochés et entourés de doré.',
+    'Les jobs et compagnons pas encore obtenus sont grisés avec un contour en pointillés.',
+    'Les textes d’information sont posés sur des panneaux sombres et discrets, sans effet de bouton.',
+    'Les zones lumineuses qui ne servaient à rien ont été retirées.',
+    'Sur l’écran du chemin, chaque salle est une carte cliquable à la couleur de son type.',
+    'Le bouton « Taux et règles » tient sur une seule ligne, même sur les petits téléphones.',
+    'Les écrans En ligne, Classement et Amis prennent le même style, avec une flèche de retour.',
+    'Les notes de patch ont leur propre page et sont réécrites plus simplement.',
+    'Le montant de Gils n’est plus caché par le bouton du son.'
   ]},
-  {v:'v5.2', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', notes:[
-    'Les illustrations, les décors et les sprites se chargent beaucoup plus vite : images recompressées en WebP, environ deux fois plus légères.',
-    'Les images du prochain écran (décor de l’étage, sprites de l’équipe et des monstres, illustrations des bannières) sont préchargées et décodées pendant les temps morts.',
-    'Les décors et les illustrations s’affichent d’abord en aperçu flou puis deviennent nets, au lieu d’apparaître d’un coup.',
-    'Après la première visite, les images et les sons restent en cache sur le téléphone : les écrans suivants s’ouvrent sans attendre le réseau.',
-    'Ajout du son : jingles officiels de FINAL FANTASY XIV à l’accueil, au début des combats, contre les gardiens, à la victoire et à la défaite, avec un fondu enchaîné entre eux.',
-    'Bruitages officiels de FINAL FANTASY XIV pour les menus (clic, validation, retour), les attaques, les sorts, les soins, les dégâts subis et les invocations.',
-    'Un petit bouton haut-parleur sur l’accueil et en combat permet de régler le volume ou de couper le son ; le réglage est mémorisé sur l’appareil.',
+  {v:'v5.3', date:'23/10/2026', img:'assets/bgb/yshtola.webp', title:'Nouveau style', notes:[
+    'Tous les menus hors combat ont un nouveau style sombre et doré, sans cadres.',
+    'Nouvelles polices plus élégantes pour les titres et les textes.',
+    'L’avant-poste devient une liste simple, avec une flèche en haut à gauche pour revenir.',
+    'Nouvel écran Paramètres pour le son, les notes de patch et les crédits.',
+    'L’écran titre s’anime doucement.',
+    'Les bannières d’invocation prennent la moitié de l’écran et changent d’un simple glissement.',
+    'Les illustrations des bannières sont plus grandes et plus nettes, et Lightning n’a plus de fond blanc.',
+    'Les compagnons sans sprite officiel affichent l’initiale de leur nom en doré.',
+    'Tous les jobs coûtent 1 200 Gils, et le premier ne coûte que 400 Gils.',
+    'Les améliorations permanentes coûtent entre 300 et 1 400 Gils.',
+    'Chaque sort est décrit en une ligne : son nom, un chiffre et une courte phrase.',
+    'En combat, un monstre qui prépare une grosse attaque brille et tremble.',
+    'Les récompenses et la victoire s’affichent avec une petite animation.',
+    'Beaucoup d’objets et de bonus ont des noms plus clairs.',
+    'L’écran du chemin montre trois cercles de couleur entre deux escaliers.',
+    'Chaque type de salle a sa couleur et son symbole.'
   ]},
-  {v:'v5.1', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', notes:[
-    'Les jobs et les compagnons utilisent désormais les sprites officiels de FINAL FANTASY BRAVE EXVIUS, en vue de côté et tournés vers la droite.',
-    'Les monstres et le Néant utilisent aussi des sprites officiels de Brave Exvius, placés à droite et tournés vers la gauche.',
-    'Les compagnons sans sprite Brave Exvius (Alphinaud, Alisaie, Urianger, G’raha Tia, Estinien, Haurchefant, Tataru, Lyse, Krile, Cid) et la Mimique s’affichent avec leur icône officielle de mascotte FFXIV.',
-    'Les bannières d’invocation et les résultats de tirage montrent les nouveaux sprites.',
-    'Les décors de combat sont remplacés par des décors officiels de Brave Exvius, un par tranche d’étages.',
-    'Les icônes de salles de la carte sont remplacées par des icônes officielles du kit de fans FFXIV.',
-    'Tous les sprites libres de droits et les dessins de remplacement ont été retirés du jeu.',
-    'Les bannières d’invocation sont désormais verticales, plus grandes, avec l’illustration officielle du personnage mis en avant derrière son sprite.',
-    'Nouvel écran d’accueil : menu en texte stylisé sur un décor officiel, avec un bouton principal bien visible.',
-    'Les menus hors combat adoptent un style moderne et les écrans s’enchaînent avec un léger fondu.',
-    'L’Atelier des sprites est supprimé, puisque tous les sprites sont maintenant officiels ; les anciens sprites personnalisés sont ignorés.',
-    'Correctif : un sprite introuvable ne peut plus bloquer l’affichage d’un écran.',
+  {v:'v5.2', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', title:'Plus rapide et en musique', notes:[
+    'Le jeu se charge bien plus vite.',
+    'Musiques et bruitages officiels de FINAL FANTASY XIV.',
+    'Un bouton permet de régler ou couper le son.'
   ]},
-  {v:'v5', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', notes:[
-    'Comptes en ligne : inscription avec un pseudo et un mot de passe, sans adresse e-mail.',
-    'Liste d’amis avec statut en ligne visible.',
-    'Classement des meilleures explorations.',
-    'Mode duo en temps réel : deux joueurs explorent le palais ensemble, tour par tour.',
-    'Ajout de ces notes de patch, accessibles depuis l’écran titre.',
-    'Nouvelles sources de Fragments de cristal : fin d’étage, pièges désamorcés, salles maudites et première victoire sur chaque gardien.',
-    'Les récompenses de combat sont plus modestes et leurs cumuls subissent des rendements décroissants : le palais est plus exigeant.',
-    'Invocation : plusieurs bannières à faire défiler, chacune avec un compagnon mis en avant, et un écran des taux et règles.',
-    'Combats en vue de côté : ton équipe à gauche, les monstres à droite.',
-    'Mention légale Square Enix affichée sur l’écran titre ; aucun achat en argent réel dans le jeu.'
+  {v:'v5.1', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', title:'Sprites officiels', notes:[
+    'Les héros, les compagnons et les monstres utilisent les sprites officiels de FINAL FANTASY BRAVE EXVIUS.',
+    'Nouveaux décors de combat officiels, qui changent au fil des étages.',
+    'Les bannières d’invocation sont plus grandes, avec l’illustration du personnage.',
+    'Nouvel écran d’accueil.',
+    'L’Atelier des sprites est retiré.'
   ]},
-  {v:'v4a', date:'23/10/2026', img:'assets/patchnotes/v4a.jpg', notes:[
+  {v:'v5', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', title:'Jouer en ligne', notes:[
+    'Tu peux créer un compte avec un pseudo et un mot de passe.',
+    'Ajoute des amis et vois qui est en ligne.',
+    'Un classement montre les meilleures explorations.',
+    'Joue à deux en même temps dans le même palais.',
+    'Les Fragments de cristal se gagnent à plus d’endroits.',
+    'Le palais est un peu plus difficile.',
+    'Plusieurs bannières d’invocation, avec leurs taux affichés.',
+    'Ton équipe est à gauche et les monstres à droite.'
+  ]},
+  {v:'v4a', date:'23/10/2026', img:'assets/patchnotes/v4a.jpg', title:'Nouveaux graphismes', notes:[
     'Nouveaux graphismes pour les personnages, les monstres et les décors.',
-    'Le joueur est centré sur le champ de bataille.',
-    'Toutes les icônes sont désormais en pixel art, sans emoji.',
-    'Boutons de compétences plus compacts avec info-bulles détaillées.'
+    'Les boutons de sorts sont plus petits et expliquent ce qu’ils font.'
   ]},
-  {v:'v3', date:'23/10/2026', img:'assets/patchnotes/v3.jpg', notes:[
-    'Chaque étage propose une séquence de salles : événements, pièges, autels, marchand et repos.',
-    'Une récompense à choisir après chaque combat, avec la possibilité de Relancer.',
-    'Invocation de compagnons : 30 héros à collectionner, avec un 5 étoiles garanti.'
+  {v:'v3', date:'23/10/2026', img:'assets/patchnotes/v3.jpg', title:'Salles et compagnons', notes:[
+    'Chaque étage propose des salles variées : événements, pièges, marchand, repos.',
+    'Après chaque combat, tu choisis une récompense.',
+    'Tu peux invoquer 30 compagnons à collectionner.'
   ]},
-  {v:'v2', date:'23/10/2026', img:'assets/patchnotes/v2.jpg', notes:[
-    'Le palais compte désormais 50 étages, avec gardiens et boss.',
-    'Équilibrage complet des jobs et des monstres.',
-    'Ajout de l’Atelier des sprites.'
+  {v:'v2', date:'23/10/2026', img:'assets/patchnotes/v2.jpg', title:'Le grand palais', notes:[
+    'Le palais compte 50 étages, avec des gardiens et des boss.',
+    'Les jobs et les monstres sont mieux équilibrés.'
   ]},
-  {v:'v1', date:'23/10/2026', img:'assets/patchnotes/v1.jpg', notes:[
-    'Premier prototype jouable : exploration d’étages, combats au tour par tour et jobs de départ.'
+  {v:'v1', date:'23/10/2026', img:'assets/patchnotes/v1.jpg', title:'Premiers pas', notes:[
+    'Première version jouable : étages, combats au tour par tour et premiers jobs.'
   ]},
 ];
 const LEGAL_TXT = '© SQUARE ENIX CO., LTD. All Rights Reserved. FINAL FANTASY BRAVE EXVIUS © 2015-2023 SQUARE ENIX CO., LTD. Developed by Alim Co., Ltd. FINAL FANTASY XIV © 2010-2026 SQUARE ENIX CO., LTD. Fan game non officiel, non commercial.';
-function patchNotes(){
-  showModal(`<h2>Notes de patch</h2><div class="pn-scroll">${CHANGELOG.map(c=>`<section class="pn">
-    <div class="pn-ban" style="background-image:url(${c.img})"><b>${c.v}</b><span>${c.date}</span></div>
+function patchNotes(){ const from=document.body.dataset.scr; SCREENS.notes(/^(title|hub|settings)$/.test(from)?from:'title'); }
+SCREENS.notes = function(back){
+  app.innerHTML=`<div class="win topbar"><b class="grow">Notes de patch</b></div><div class="scroll pn-page">${CHANGELOG.map((c,i)=>`<section class="pn" style="--d:${Math.min(i,4)*90}ms">
+    <div class="pn-ban" style="background-image:url(${c.img})"><b>${c.v}</b><span>${c.date}</span></div><h3 class="pn-t">${c.title||''}</h3>
     <ul>${c.notes.map(n=>`<li>${n}</li>`).join('')}</ul></section>`).join('')}
-    <p class="legal">Bannières réalisées avec les icônes officielles du FINAL FANTASY XIV Fan Kit. ${LEGAL_TXT}</p></div>
-    <button class="btn small" style="width:100%;margin-top:8px" id="pnC">Fermer</button>`);
-  document.getElementById('pnC').onclick=closeModal;
-}
+    <p class="legal">Bannières réalisées avec les icônes officielles du FINAL FANTASY XIV Fan Kit. ${LEGAL_TXT}</p></div>`;
+  backIcon(back||'title');
+};
 SCREENS.title = function(){
   C=null;
   document.body.classList.add('home');
@@ -3253,7 +3348,7 @@ const Online = (function(){
   let curScreen = null;
   function goto(name){ const f = SCR[name]; if (f) f(); }
   function goBack(){ curScreen = null; const b = st.back; if (typeof SCREENS !== 'undefined' && SCREENS[b]) SCREENS[b](); }
-  function topbar(title){ return `<div class="win topbar ol-top"><button class="btn small ol-back" id="olBack" aria-label="Retour">Retour</button><b class="grow">${title}</b>${st.profile?`<span class="ol-me">${icon('user',14)} ${E(st.profile.pseudo)}</span>`:''}</div>`; }
+  function topbar(title){ return `<div class="win topbar ol-top"><button class="tb-back" id="olBack" aria-label="Retour"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><b class="grow">${title}</b>${st.profile?`<span class="ol-me">${icon('user',14)} ${E(st.profile.pseudo)}</span>`:''}</div>`; }
   function mount(name, html, after){
     const a = appEl(); if (!a) return; curScreen = name;
     if (typeof C !== 'undefined') { try{ C = null; }catch(e){} }
@@ -3272,15 +3367,15 @@ const Online = (function(){
     mount('menu', `${topbar('En ligne')}
     <div class="scroll">
       <div class="win ol-card">
-        ${s.loggedIn && s.profile ? `<div class="row">${icon('user',28)}<div class="grow"><h3>${E(s.profile.pseudo)}</h3><div class="muted">Connecté</div></div><button class="btn small" id="olOut">Déconnexion</button></div>`
-        : s.needPseudo ? `<div class="row">${icon('user',28)}<div class="grow"><h3>Choisis ton pseudo</h3><div class="muted">Dernière étape pour jouer en ligne.</div></div><button class="btn small goldb" data-ol="account">Choisir</button></div>`
-        : `<div class="row">${icon('user',28)}<div class="grow"><h3>Invité</h3><div class="muted">Crée un compte pour publier tes scores et ajouter des amis.</div></div><button class="btn small goldb" data-ol="account">Connexion</button></div>`}
+        ${s.loggedIn && s.profile ? `<div class="row"><div class="grow"><h3>${E(s.profile.pseudo)}</h3><div class="muted">Connecté</div></div><button class="btn small" id="olOut">Déconnexion</button></div>`
+        : s.needPseudo ? `<div class="row"><div class="grow"><h3>Choisis ton pseudo</h3><div class="muted">Dernière étape pour jouer en ligne.</div></div><button class="btn small goldb" data-ol="account">Choisir</button></div>`
+        : `<div class="row"><div class="grow"><h3>Invité</h3><div class="muted">Crée un compte pour publier tes scores et ajouter des amis.</div></div><button class="btn small goldb" data-ol="account">Connexion</button></div>`}
         ${pendingRuns() && !s.profile ? `<div class="tip">${pendingRuns()} exploration(s) en attente : elles seront publiées dès ta connexion.</div>` : ''}
       </div>
-      <button class="btn ol-big" data-ol="leaderboard">${icon('trophy',26)}<span class="grow ol-l"><b>Classement</b><small>Les meilleures explorations</small></span></button>
-      <button class="btn ol-big" data-ol="coop">${icon('swords',26)}<span class="grow ol-l"><b>Jouer à deux</b><small>Salon avec code ou invitation d’un ami</small></span></button>
-      <button class="btn ol-big" data-ol="friends" ${s.profile?'':'disabled'}>${icon('people',26)}<span class="grow ol-l"><b>Amis</b><small>${s.profile ? `${st.friends.filter(f=>f.status==='accepted'&&f.online).length} en ligne · ${st.friends.filter(f=>f.status==='pending'&&f.incoming).length} demande(s)` : 'Compte requis'}</small></span></button>
-      ${resumableRoom() && !room.started ? `<button class="btn goldb" id="olResume">${icon('link')} Reprendre la partie à deux (${E(resumableRoom().code)})</button>` : ''}
+      <button class="btn ol-big" data-ol="leaderboard">${rsym('scores','ol-rs')}<span class="grow ol-l"><b>Classement</b><small>Les meilleures explorations</small></span></button>
+      <button class="btn ol-big" data-ol="coop">${rsym('combat','ol-rs')}<span class="grow ol-l"><b>Jouer à deux</b><small>Salon avec code ou invitation d’un ami</small></span></button>
+      <button class="btn ol-big" data-ol="friends" ${s.profile?'':'disabled'}>${rsym('online','ol-rs')}<span class="grow ol-l"><b>Amis</b><small>${s.profile ? `${st.friends.filter(f=>f.status==='accepted'&&f.online).length} en ligne · ${st.friends.filter(f=>f.status==='pending'&&f.incoming).length} demande(s)` : 'Compte requis'}</small></span></button>
+      ${resumableRoom() && !room.started ? `<button class="btn goldb" id="olResume">Reprendre la partie à deux (${E(resumableRoom().code)})</button>` : ''}
     </div>`, a => {
       const o = a.querySelector('#olOut'); if (o) o.onclick = () => busyBtn(o, async () => { await signOut(); SCR.menu(); });
       const r = a.querySelector('#olResume'); if (r) r.onclick = () => busyBtn(r, async () => { await resumeRoom(); SCR.room(); });
@@ -3417,7 +3512,7 @@ const Online = (function(){
     <div class="scroll">
       <div class="win col"><h3>Comment ça marche</h3>
         <p class="muted">Vous explorez le même palais, avec la même graine : mêmes étages, mêmes événements. Chaque tour se joue quand vous avez <b>tous les deux</b> choisi votre action. Pour les choix communs, on vote : en cas de désaccord, l’hôte tranche.</p></div>
-      <button class="btn goldb ol-big" id="olCreate">${icon('door',26)}<span class="grow ol-l"><b>Créer un salon</b><small>Tu seras l’hôte</small></span></button>
+      <button class="btn goldb ol-big" id="olCreate">${rsym('door','ol-rs')}<span class="grow ol-l"><b>Créer un salon</b><small>Tu seras l’hôte</small></span></button>
       <div class="win col"><h3>Rejoindre avec un code</h3>
         <div class="row"><input class="name ol-code grow" id="olCode" maxlength="5" placeholder="CODE" autocapitalize="characters" autocomplete="off" spellcheck="false"><button class="btn small goldb" id="olJoin">Rejoindre</button></div></div>
       ${st.profile ? `<div class="win col"><h3>Amis en ligne</h3><div id="olCoopFr"></div></div>` : `<div class="win muted">Connecte-toi pour inviter tes amis directement.</div>`}
@@ -3728,7 +3823,7 @@ if (typeof Online!=='undefined' && Online && Online.attachEngine){
 document.addEventListener('gesturestart', e=>e.preventDefault());
 let lastTouch=0; document.addEventListener('touchend', e=>{ const n=Date.now(); if(n-lastTouch<300 && !(e.target.closest&&e.target.closest('canvas'))) e.preventDefault(); lastTouch=n; }, {passive:false});
 /* v5.1 : navigation — fondu/glissement entre écrans, thème moderne hors expédition */
-const MODERN_SCR = /^(title|create|hub|prep|jobs|shop|gacha|comps|online|leaderboard|settings|map|rewards|event)$/;
+const MODERN_SCR = /^(title|create|hub|prep|jobs|shop|gacha|comps|online|leaderboard|settings|notes|map|rewards|event)$/;
 function backIcon(to){
   const tb=app.querySelector('.topbar'); if (!tb || tb.querySelector('.tb-back')) return;
   let b=app.querySelector(':scope > [data-k="back"], :scope > .row > [data-k="back"]');
