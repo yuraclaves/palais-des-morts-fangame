@@ -84,6 +84,21 @@ Sprites de combat officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, déve
   - Icônes de salles de la carte (`assets/icons/`) : icônes de commandes principales du kit (auto-attack, hunting_log, inventory, teleport, materia_assimilating, currency, blacklist, disengage, aether_currents, housing, target_forward) et la mascotte wind-up_moogle pour les rencontres.
   - Bannières des notes de patch (`assets/patchnotes/`) composées à partir des icônes de jobs officielles.
 
+## Boss de légende (v5.5f, `assets/monsters/`)
+Sprites d'ennemis officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, développé par Alim), tels qu'ils sont publiés sur le Final Fantasy Wiki (finalfantasy.fandom.com, pages « File: … from FFBE enemy sprite »), récupérés via l'API MediaWiki documentée. Seule modification : recadrage et retournement horizontal pour regarder vers la gauche.
+- `ifrit` : Ifrit from FFBE enemy sprite
+- `barbariccia` / `barbariccia2` : Barbariccia FFIV from FFBE enemy sprite 1 / 2 (forme tornade)
+- `gilgamesh` : Gilgamesh FFV from FFBE enemy sprite ; `enkidou` : Enkidu FFV from FFBE enemy sprite
+- `golbez` : Golbez FFIV from FFBE enemy sprite ; `dragonombre` : Shadow Dragon FFIV from FFBE enemy sprite 1
+- `exdeath` : Exdeath FFV from FFBE enemy sprite 2
+- `armeultima` : Ultima Weapon FFVI from FFBE enemy sprite
+- `sephiroth` / `sephiroth2` : Sephiroth CCFFVII from FFBE enemy sprite / Safer-Sephiroth FFVII from FFBE enemy sprite
+- `kefka` / `kefka2` : Kefka FFVI from FFBE enemy sprite 1 / 2 (forme divine)
+- `zeromus` : Zeromus FFIV from FFBE enemy sprite
+- `bahamut` : Bahamut from FFBE enemy sprite 2
+Noms des boss et des attaques : noms officiels de la série FINAL FANTASY (© SQUARE ENIX). Les répliques des boss sont écrites pour ce fan game (une seule est une très courte citation de Sephiroth). Les effets visuels (particules, cartes de nom) sont faits en CSS, sans image générée.
+Musique : chaque boss a son emplacement (`boss_ifrit`, `boss_barbariccia`, `boss_gilgamesh`, `boss_golbez`, `boss_exdeath`, `boss_armeultima`, `boss_sephiroth`, `boss_kefka`, `boss_zeromus`, `boss_bahamut`) ; tant qu'aucun fichier officiel n'y est placé, le jingle `boss` (FFXIV_FATE02_Start) est joué.
+
 ## Sons (`assets/snd/`)
 Uniquement des sons officiels de FINAL FANTASY XIV, tirés des sonneries officielles du **FINAL FANTASY XIV Fan Kit** (Smartphone Ringtones, archive Android .mp3), https://na.finalfantasyxiv.com/lodestone/special/fankit/smartphone_ringtone/ . Ré-encodés en mono 56 kb/s pour alléger le jeu, sans autre modification. © SQUARE ENIX CO., LTD. All Rights Reserved.
 - `home` : FFXIV_Start_Game ; `battle` : FFXIV_FATE01_Start ; `boss` : FFXIV_FATE02_Start

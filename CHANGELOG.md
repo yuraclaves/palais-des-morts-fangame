@@ -1,5 +1,16 @@
 # Notes de patch : A Godless Realm
 
+## v5.5f : Les grands méchants de Final Fantasy (23/10/2026)
+- Les gardiens et les boss sont maintenant de vrais personnages de la série : Ifrit, Barbariccia, Gilgamesh, Golbez, Exdeath, l'Arme Ultima, Sephiroth, Kefka, Zeromus et Bahamut.
+- Chaque boss a son entrée en scène : l'écran s'assombrit, le boss apparaît dans ses flammes, son vent ou sa lumière, avec son nom, son titre et quelques mots. Touche l'écran pour passer.
+- Chaque boss a ses propres attaques : Flammes de l'enfer, Tornade, Excalibur, Météores noirs, Grand-Croix, Rayon de la Mort, Octaslash, Choeur de l'enfer, Big Bang, Méga-flare et bien d'autres.
+- Les combats se jouent en 2 à 4 phases. Sous certains seuils de PV, le boss parle, change de tactique et parfois de forme : Barbariccia devient une tornade, Sephiroth et Kefka révèlent leur forme divine.
+- Selon la phase : renforts (Enkidou, dragon des ombres, dragonnets), bouclier à briser, rage, ou grosse attaque.
+- Les grosses attaques sont toujours annoncées un tour à l'avance par une barre d'incantation au-dessus du boss. Prépare ta défense !
+- Le décor prend la couleur du boss, ses attaques spéciales remplissent l'écran, et le coup final le fait disparaître dans la lumière.
+- En ligne, les PV des gardiens et des boss augmentent selon le nombre de joueurs.
+- Le boss final de l'étage 50 est désormais Bahamut, le Roi des dragons.
+
 ## v5.5e : Changement d’étage animé et partie suspendue (23/10/2026)
 - Plus d'écran à valider entre deux étages : une courte animation affiche le numéro de l'étage, puis le combat commence tout de suite.
 - Touche l'écran pour passer l'animation. Les étages de gardien et de boss ont leur propre version, rouge et or, un peu plus longue.

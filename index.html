@@ -1097,6 +1097,84 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 .field.fin{animation:fieldIn .9s .3s ease-out both}
 @keyframes fieldIn{from{opacity:0;filter:brightness(.3)}to{opacity:1;filter:none}}
 @media (prefers-reduced-motion:reduce){.ftr-motes,.ftr-sweep{display:none}.ftr-c{animation:none}}
+/* v5.5f : boss de légende — taille, barre d'incantation, teinte, intro, phases, attaques signature, coup de grâce */
+#field .enemies .en.boss.named img.spr.art{width:auto;height:min(calc(var(--h) * .9px),33vh);max-width:60vw;max-height:none;object-fit:contain;image-rendering:auto;filter:drop-shadow(0 4px 0 rgba(0,0,0,.45)) drop-shadow(0 0 10px rgba(0,0,0,.35))}
+#field .enemies[data-b="1"]:not([data-n="1"]) .en.boss.named img.spr.art{height:min(calc(var(--h) * .75px),27vh);max-width:46vw}
+#field .enemies .en.named img.spr.art{image-rendering:auto}
+.en.boss.named.winding img.spr{filter:drop-shadow(0 0 8px rgba(255,120,60,.95)) drop-shadow(0 0 18px rgba(255,80,40,.55))}
+.bcast{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);width:150px;margin-bottom:2px;z-index:5;pointer-events:none;text-align:center}
+.bcast span{display:block;font:600 11px/1.2 Cinzel,Georgia,serif;color:#ffd9a0;text-shadow:0 0 4px #000,1px 1px 0 #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bcast i{display:block;height:5px;margin-top:2px;border:1px solid #000;border-radius:3px;background:linear-gradient(90deg,#ff6a2a,#ffb347 70%,#fff3c0);box-shadow:0 0 6px rgba(255,140,60,.8);animation:bcastF 1.1s ease-out both}
+@keyframes bcastF{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.btint{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 66% 38%,var(--bt) 0%,transparent 70%),linear-gradient(180deg,var(--bt),transparent 80%);transition:opacity 1.2s}
+.btint[data-ph="2"],.btint[data-ph="3"]{animation:btP 2.4s ease-in-out infinite}
+.btint.gone{opacity:0}
+@keyframes btP{50%{opacity:.55}}
+/* intro cinématique */
+.bint{position:fixed;inset:0;z-index:950;overflow:hidden;pointer-events:auto;color:#fff;font-family:Cinzel,Georgia,serif;animation:biIn .35s ease-out both;transition:opacity .5s}
+.bint.out{opacity:0}
+@keyframes biIn{from{opacity:0}}
+.bi-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(var(--c1),.38) 0%,rgba(var(--c1),.10) 32%,rgba(0,0,0,.94) 66%),#000;animation:biBg 3.9s ease-in-out both}
+@keyframes biBg{0%{opacity:.6}30%{opacity:1}100%{opacity:1}}
+.bi-spr{position:absolute;left:50%;top:35%;transform:translate(-50%,-50%);width:94vw;height:46vh;display:flex;align-items:center;justify-content:center}
+.bi-spr img{width:auto;max-width:92vw;max-height:100%;object-fit:contain;animation:biEm 1.5s cubic-bezier(.2,.7,.2,1) .25s both,biFl 3s ease-in-out 1.8s infinite;filter:drop-shadow(0 0 14px rgba(var(--c1),.75))}
+@keyframes biEm{0%{opacity:0;transform:scale(.55) translateY(30px);filter:brightness(5) blur(8px) drop-shadow(0 0 30px rgba(var(--c1),1))}55%{opacity:1;filter:brightness(1.8) blur(1px) drop-shadow(0 0 24px rgba(var(--c1),1))}100%{opacity:1;transform:none;filter:drop-shadow(0 0 14px rgba(var(--c1),.75))}}
+@keyframes biFl{50%{transform:translateY(-6px)}}
+.bi-aura{position:absolute;width:70%;height:70%;border-radius:50%;background:radial-gradient(circle,rgba(var(--c2),.55),rgba(var(--c1),.25) 45%,transparent 70%);animation:biAu 2.2s ease-in-out .3s infinite both}
+@keyframes biAu{0%,100%{transform:scale(.85);opacity:.6}50%{transform:scale(1.1);opacity:1}}
+.bi-card{position:absolute;left:0;right:0;bottom:12%;text-align:center;padding:0 18px}
+.bi-tag{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:rgba(var(--c2),.95);text-shadow:0 0 8px rgba(var(--c1),.9);animation:biUp .6s ease-out .8s both}
+.bi-ln{height:1px;margin:7px auto;width:78%;background:linear-gradient(90deg,transparent,rgba(var(--c2),.95),transparent);animation:biLn .8s ease-out .9s both}
+@keyframes biLn{from{transform:scaleX(0)}}
+.bi-title{font-size:15px;letter-spacing:.12em;color:#f2e4c0;text-shadow:0 0 6px #000;animation:biUp .6s ease-out 1s both}
+.bi-name{font-size:clamp(30px,10vw,46px);font-weight:700;letter-spacing:.06em;line-height:1.05;color:#fffaf0;text-shadow:0 0 12px rgba(var(--c1),1),0 0 26px rgba(var(--c1),.7),2px 2px 0 #000;animation:biNm .8s cubic-bezier(.2,.8,.2,1) 1.05s both}
+@keyframes biNm{from{opacity:0;letter-spacing:.5em;filter:blur(4px)}}
+@keyframes biUp{from{opacity:0;transform:translateY(8px)}}
+.bi-q{font:italic 14px/1.35 Georgia,serif;color:#e8e6f4;text-shadow:0 0 6px #000;margin-top:4px;animation:biUp .6s ease-out both}
+.bi-skip{position:absolute;bottom:calc(14px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;font:11px sans-serif;letter-spacing:.1em;color:rgba(255,255,255,.55)}
+.bint.big .bi-name{color:#ffe08a}
+/* particules (intro + attaques) */
+.bi-parts,.bsfx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bi-parts i,.bsfx i{position:absolute;left:var(--x);top:var(--y);width:6px;height:6px;border-radius:50%;opacity:0;background:rgb(var(--c1));box-shadow:0 0 8px rgba(var(--c1),.95);animation:pRise var(--t) linear var(--d) infinite;will-change:transform,opacity}
+.bsfx i{animation-iteration-count:1;animation-delay:calc(var(--d) * .2);animation-duration:calc(var(--t) * .55)}
+.p-fire i{top:auto;bottom:-8px;background:rgb(var(--c2));box-shadow:0 0 10px rgba(var(--c1),1),0 0 3px #fff;transform:scale(var(--s))}
+@keyframes pRise{0%{opacity:0;transform:translate(0,0) scale(var(--s))}15%{opacity:1}100%{opacity:0;transform:translate(14px,-75vh) scale(.2)}}
+.p-wind i{width:70px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(var(--c2),.95),transparent);box-shadow:none;left:-80px;animation-name:pWind}
+@keyframes pWind{0%{opacity:0;transform:translate(0,0) rotate(-8deg)}20%{opacity:1}100%{opacity:0;transform:translate(115vw,-6vh) rotate(6deg)}}
+.p-meteor i,.p-void i{width:5px;height:46px;border-radius:3px;top:-60px;background:linear-gradient(0deg,rgb(var(--c2)) 0%,rgba(var(--c1),1) 18%,transparent);box-shadow:0 0 10px rgba(var(--c1),.9);animation-name:pMet}
+@keyframes pMet{0%{opacity:0;transform:rotate(30deg) translate(0,0)}10%{opacity:1}100%{opacity:0;transform:rotate(30deg) translate(0,95vh)}}
+.p-void i{width:12px;height:12px;top:var(--y);border-radius:50%;background:radial-gradient(circle,#000 30%,rgba(var(--c1),.9) 70%);animation-name:pVoid}
+@keyframes pVoid{0%{opacity:0;transform:scale(.2)}40%{opacity:1;transform:scale(calc(var(--s)*2.2))}100%{opacity:0;transform:scale(0) translate(20px,-20px)}}
+.p-light i{width:3px;height:70vh;top:-5vh;border-radius:2px;background:linear-gradient(180deg,transparent,rgba(var(--c1),.9),transparent);box-shadow:0 0 12px rgba(var(--c2),.9);animation-name:pRay}
+@keyframes pRay{0%{opacity:0;transform:scaleX(.3)}30%{opacity:.9;transform:scaleX(calc(var(--s)*3))}100%{opacity:0;transform:scaleX(.2)}}
+.p-feather i{width:5px;height:16px;border-radius:50% 50% 50% 50%/80% 80% 20% 20%;top:-20px;background:#111426;box-shadow:0 0 4px rgba(var(--c1),.8);animation-name:pFea}
+@keyframes pFea{0%{opacity:0;transform:translate(0,0) rotate(var(--r))}12%{opacity:1}100%{opacity:0;transform:translate(-30px,90vh) rotate(calc(var(--r) + 540deg))}}
+.p-chaos i{left:50%;top:40%;width:7px;height:7px;border-radius:1px;background:rgb(var(--c2));box-shadow:0 0 10px rgba(var(--c1),1);animation-name:pCha}
+@keyframes pCha{0%{opacity:0;transform:rotate(var(--r)) translateX(0) scale(.5)}20%{opacity:1}100%{opacity:0;transform:rotate(calc(var(--r) + 120deg)) translateX(55vw) scale(var(--s))}}
+.p-cosmic i{width:4px;height:4px;background:#fff;box-shadow:0 0 6px rgba(var(--c1),1),0 0 14px rgba(var(--c2),.7);animation-name:pStar}
+@keyframes pStar{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(calc(var(--s)*1.8))}}
+.p-flare i{left:50%;top:40%;width:40px;height:40px;margin:-20px 0 0 -20px;background:transparent;border:2px solid rgba(var(--c2),.95);box-shadow:0 0 14px rgba(var(--c1),1),inset 0 0 10px rgba(var(--c1),.8);animation-name:pRing}
+@keyframes pRing{0%{opacity:0;transform:scale(.1)}20%{opacity:1}100%{opacity:0;transform:scale(calc(var(--s)*14))}}
+.p-blade i{left:-10%;width:120%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(var(--c2),1),#fff,rgba(var(--c2),1),transparent);box-shadow:0 0 8px rgba(var(--c1),.9);animation-name:pSl}
+@keyframes pSl{0%{opacity:0;transform:rotate(var(--r)) scaleX(0)}25%{opacity:1;transform:rotate(var(--r)) scaleX(1)}100%{opacity:0;transform:rotate(var(--r)) scaleX(1.1) translateY(6px)}}
+/* effets dans le champ de bataille */
+.bsfx{z-index:60}
+.bsfx.big::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,rgba(var(--c1),.45),transparent 70%);animation:bWash 1.4s ease-out both}
+@keyframes bWash{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+.bsname{position:absolute;left:0;right:0;top:34%;text-align:center;font:700 clamp(20px,6.5vw,30px)/1 Cinzel,Georgia,serif;color:#fff;letter-spacing:.06em;text-shadow:0 0 10px rgba(var(--c1),1),0 0 22px rgba(var(--c1),.8),2px 2px 0 #000;animation:bsN 1.4s ease-out both}
+@keyframes bsN{0%{opacity:0;transform:scale(1.4);filter:blur(3px)}18%{opacity:1;transform:scale(1);filter:none}80%{opacity:1}100%{opacity:0;transform:scale(.96)}}
+.bflash{position:absolute;inset:0;z-index:70;pointer-events:none;background:radial-gradient(circle at 62% 38%,#fff,rgba(var(--bc1,255,255,255),.6) 40%,transparent 80%);animation:bFl .9s ease-out both}
+.bflash.fin{background:radial-gradient(circle at 62% 38%,#fff 0%,rgba(255,255,255,.85) 35%,rgba(255,255,255,.2) 80%);animation:bFl 1.6s ease-out .35s both}
+@keyframes bFl{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+#field.bphase{animation:bPh .9s ease-out}
+@keyframes bPh{10%{transform:translate(-7px,2px)}20%{transform:translate(7px,-2px)}30%{transform:translate(-5px,1px)}40%{transform:translate(5px,0)}55%{transform:translate(-2px,0)}70%{transform:none}}
+.bsay{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:86%;z-index:80;pointer-events:none;padding:7px 10px;border-radius:6px;background:rgba(6,6,18,.82);border:1px solid rgba(var(--bc1),.9);box-shadow:0 0 14px rgba(var(--bc1),.55);font:italic 13px/1.35 Georgia,serif;color:#f3f0ff;text-align:center;animation:bSay 3.2s ease-out both}
+.bsay b{display:block;font:600 11px Cinzel,Georgia,serif;font-style:normal;letter-spacing:.14em;color:rgb(var(--bc1));text-transform:uppercase;margin-bottom:2px}
+@keyframes bSay{0%{opacity:0;transform:translate(-50%,-8px)}10%{opacity:1;transform:translate(-50%,0)}85%{opacity:1}100%{opacity:0}}
+.bfin-spr{position:absolute;z-index:65;pointer-events:none;object-fit:contain;image-rendering:auto;animation:bFin 1.9s ease-in both}
+@keyframes bFin{0%{filter:none}25%{filter:brightness(2.2) drop-shadow(0 0 16px rgba(var(--c1),1))}100%{opacity:0;transform:scale(1.12) translateY(-14px);filter:brightness(6) blur(7px) drop-shadow(0 0 30px #fff)}}
+#field.slowmo .player,#field.slowmo .comp,#field.slowmo .enemies{filter:saturate(.35) brightness(.75);transition:filter .3s}
+@media (prefers-reduced-motion:reduce){.bi-parts,.bsfx i{display:none}}
 </style>
 </head>
 <body>
@@ -1324,7 +1402,7 @@ function floorBG(f){
   return 'assets/bg/t'+tier+'.webp';
 }
 /* Pixel art libre (voir CREDITS.md) : assets/ */
-const ASSET = {"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":47,"h":55,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"assets/chars/c_alphinaud.webp","w":48,"h":69,"ko":"assets/chars/c_alphinaud_ko.webp"},"c_alisaie":{"src":"assets/chars/c_alisaie.webp","w":48,"h":69,"ko":"assets/chars/c_alisaie_ko.webp"},"c_urianger":{"src":"assets/chars/c_urianger.webp","w":42,"h":72,"ko":"assets/chars/c_urianger_ko.webp"},"c_graha":{"src":"assets/chars/c_graha.webp","w":26,"h":70,"ko":"assets/chars/c_graha_ko.webp","smooth":1},"c_estinien":{"src":"assets/chars/c_estinien.webp","w":48,"h":72,"ko":"assets/chars/c_estinien_ko.webp"},"c_haurchefant":{"src":"assets/chars/c_haurchefant.webp","w":45,"h":72,"ko":"assets/chars/c_haurchefant_ko.webp"},"c_tataru":{"src":"assets/chars/c_tataru.webp","w":37,"h":54,"ko":"assets/chars/c_tataru_ko.webp","smooth":1},"c_lyse":{"src":"assets/chars/c_lyse.webp","w":45,"h":72,"ko":"assets/chars/c_lyse_ko.webp"},"c_krile":{"src":"assets/chars/c_krile.webp","w":34,"h":60,"ko":"assets/chars/c_krile_ko.webp","smooth":1},"c_cid":{"src":"assets/chars/c_cid.webp","w":45,"h":72,"ko":"assets/chars/c_cid_ko.webp"},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/ui/emotes.webp","w":64,"h":64,"glyph":1},"icon_combat":{"src":"assets/ui/stance.webp","w":64,"h":64,"glyph":1},"icon_elite":{"src":"assets/ui/pvp_profile.webp","w":64,"h":64,"glyph":1},"icon_coffre":{"src":"assets/ui/armoury_chest.webp","w":64,"h":64,"glyph":1},"icon_cristal":{"src":"assets/ui/aether_currents.webp","w":64,"h":64,"glyph":1},"icon_autel":{"src":"assets/ui/challenge_log.webp","w":64,"h":64,"glyph":1},"icon_marchand":{"src":"assets/ui/currency.webp","w":64,"h":64,"glyph":1},"icon_maudite":{"src":"assets/ui/blacklist.webp","w":64,"h":64,"glyph":1},"icon_piege":{"src":"assets/ui/waymarks.webp","w":64,"h":64,"glyph":1},"icon_pomandre":{"src":"assets/ui/key_items.webp","w":64,"h":64,"glyph":1},"icon_repos":{"src":"assets/ui/housing.webp","w":64,"h":64,"glyph":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
+const ASSET = {"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":47,"h":55,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"ifrit":{"src":"assets/monsters/ifrit.webp","w":193,"h":156,"smooth":1,"named":1},"barbariccia":{"src":"assets/monsters/barbariccia.webp","w":123,"h":152,"smooth":1,"named":1},"barbariccia2":{"src":"assets/monsters/barbariccia2.webp","w":127,"h":193,"smooth":1,"named":1},"gilgamesh":{"src":"assets/monsters/gilgamesh.webp","w":117,"h":154,"smooth":1,"named":1},"enkidou":{"src":"assets/monsters/enkidou.webp","w":129,"h":226,"smooth":1,"named":1},"golbez":{"src":"assets/monsters/golbez.webp","w":140,"h":206,"smooth":1,"named":1},"dragonombre":{"src":"assets/monsters/dragonombre.webp","w":96,"h":209,"smooth":1,"named":1},"exdeath":{"src":"assets/monsters/exdeath.webp","w":157,"h":227,"smooth":1,"named":1},"armeultima":{"src":"assets/monsters/armeultima.webp","w":234,"h":243,"smooth":1,"named":1},"sephiroth":{"src":"assets/monsters/sephiroth.webp","w":191,"h":199,"smooth":1,"named":1},"sephiroth2":{"src":"assets/monsters/sephiroth2.webp","w":242,"h":327,"smooth":1,"named":1},"kefka":{"src":"assets/monsters/kefka.webp","w":118,"h":141,"smooth":1,"named":1},"kefka2":{"src":"assets/monsters/kefka2.webp","w":228,"h":234,"smooth":1,"named":1},"zeromus":{"src":"assets/monsters/zeromus.webp","w":305,"h":253,"smooth":1,"named":1},"bahamut":{"src":"assets/monsters/bahamut.webp","w":404,"h":355,"smooth":1,"named":1},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"assets/chars/c_alphinaud.webp","w":48,"h":69,"ko":"assets/chars/c_alphinaud_ko.webp"},"c_alisaie":{"src":"assets/chars/c_alisaie.webp","w":48,"h":69,"ko":"assets/chars/c_alisaie_ko.webp"},"c_urianger":{"src":"assets/chars/c_urianger.webp","w":42,"h":72,"ko":"assets/chars/c_urianger_ko.webp"},"c_graha":{"src":"assets/chars/c_graha.webp","w":26,"h":70,"ko":"assets/chars/c_graha_ko.webp","smooth":1},"c_estinien":{"src":"assets/chars/c_estinien.webp","w":48,"h":72,"ko":"assets/chars/c_estinien_ko.webp"},"c_haurchefant":{"src":"assets/chars/c_haurchefant.webp","w":45,"h":72,"ko":"assets/chars/c_haurchefant_ko.webp"},"c_tataru":{"src":"assets/chars/c_tataru.webp","w":37,"h":54,"ko":"assets/chars/c_tataru_ko.webp","smooth":1},"c_lyse":{"src":"assets/chars/c_lyse.webp","w":45,"h":72,"ko":"assets/chars/c_lyse_ko.webp"},"c_krile":{"src":"assets/chars/c_krile.webp","w":34,"h":60,"ko":"assets/chars/c_krile_ko.webp","smooth":1},"c_cid":{"src":"assets/chars/c_cid.webp","w":45,"h":72,"ko":"assets/chars/c_cid_ko.webp"},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/ui/emotes.webp","w":64,"h":64,"glyph":1},"icon_combat":{"src":"assets/ui/stance.webp","w":64,"h":64,"glyph":1},"icon_elite":{"src":"assets/ui/pvp_profile.webp","w":64,"h":64,"glyph":1},"icon_coffre":{"src":"assets/ui/armoury_chest.webp","w":64,"h":64,"glyph":1},"icon_cristal":{"src":"assets/ui/aether_currents.webp","w":64,"h":64,"glyph":1},"icon_autel":{"src":"assets/ui/challenge_log.webp","w":64,"h":64,"glyph":1},"icon_marchand":{"src":"assets/ui/currency.webp","w":64,"h":64,"glyph":1},"icon_maudite":{"src":"assets/ui/blacklist.webp","w":64,"h":64,"glyph":1},"icon_piege":{"src":"assets/ui/waymarks.webp","w":64,"h":64,"glyph":1},"icon_pomandre":{"src":"assets/ui/key_items.webp","w":64,"h":64,"glyph":1},"icon_repos":{"src":"assets/ui/housing.webp","w":64,"h":64,"glyph":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
 /* Icônes pixel maison (SVG 8x8) — aucun emoji dans le jeu */
 const IC_PAL = { w:'#ffffff', k:'#101018', y:'#ffd84a', o:'#ff8a2a', r:'#ff4a4a', g:'#5aff6a', G:'#1f9a3a', b:'#6ab8ff', B:'#2a5adf', p:'#c070ff', s:'#c8d0e0', S:'#7a8298', n:'#a0662a', c:'#9ff0ff' };
 const IC_GRID = {
@@ -1551,8 +1629,31 @@ const ENEMIES = {
   wyverne:{ name:'Wyverne d’ébène', hp:600, atk:14, ai:'wyvern', boss:true },
   behemoth:{ name:'Béhémoth ancien', hp:660, atk:15, ai:'behemoth', res:{phys:0.1, mag:0.1}, boss:true },
   neant:{ name:'Souverain du Néant', hp:820, atk:15, ai:'void', res:{phys:0.1, mag:0.1}, boss:true },
+  // v5.5f : les grands méchants de FINAL FANTASY (sprites officiels Brave Exvius). Gardiens = étages impairs ×5, boss = ×10.
+  ifrit:{ hpK:1.2, atkK:1, name:'Ifrit', title:'Seigneur des flammes', hp:240, atk:10, ai:'ifrit', res:{phys:0.15}, boss:true, guardian:true,
+    phases:[{at:0.5, line:'Mes flammes vont vous réduire en cendres !'}] },
+  barbariccia:{ hpK:0.9, name:'Barbariccia', title:'Impératrice des vents', hp:460, atk:12, ai:'barbariccia', res:{phys:0.1}, boss:true, fem:true,
+    phases:[{at:0.6, skin:'barbariccia2', line:'Admirez ma vraie forme ! Que le vent vous emporte !'},{at:0.25, line:'Ma tempête ne vous laissera aucun répit !'}] },
+  gilgamesh:{ hpK:1.7, atkK:0.9, name:'Gilgamesh', title:'Le Bretteur errant', hp:270, atk:12, ai:'gilgamesh', res:{phys:0.2}, boss:true, guardian:true,
+    phases:[{at:0.5, line:'Assez joué ! Enkidou, à moi !'}] },
+  golbez:{ name:'Golbez', title:'Le Sorcier en armure noire', hp:540, atk:13, ai:'golbez', res:{mag:0.1}, boss:true,
+    phases:[{at:0.7, line:'Tremblez devant le dragon des ombres.'},{at:0.4, line:'Vous ne verrez jamais la lumière de la Lune.'}] },
+  exdeath:{ hpK:2.2, atkK:0.85, name:'Exdeath', title:'Le Sorcier de l’arbre', hp:270, atk:12, ai:'exdeath', boss:true, guardian:true,
+    phases:[{at:0.6, line:'Le néant engloutira toute chose !'},{at:0.3, line:'Disparaissez dans le néant !'}] },
+  armeultima:{ hpK:1.1, atkK:1, name:'Arme Ultima', title:'Le Fléau des anciens', hp:600, atk:14, ai:'ultimaweapon', boss:true,
+    phases:[{at:0.65, line:'L’Arme Ultima dresse une barrière de mana.'},{at:0.3, line:'Une lumière aveuglante se concentre… ULTIMA.'}] },
+  sephiroth:{ hpK:2.3, atkK:0.85, name:'Sephiroth', title:'L’Ange à une aile', hp:290, atk:12, ai:'sephiroth', res:{mag:0.2}, boss:true, guardian:true,
+    phases:[{at:0.6, line:'Je ne serai jamais un simple souvenir.'},{at:0.25, skin:'sephiroth2', line:'À genoux. Contemplez ma forme divine.'}] },
+  kefka:{ name:'Kefka Palazzo', title:'Dieu de la Magie', hp:660, atk:15, ai:'kefka', res:{phys:0.1, mag:0.1}, boss:true,
+    phases:[{at:0.7, line:'Hi hi hi ! Tout ce qui est créé finit détruit !'},{at:0.4, skin:'kefka2', line:'Je suis le Dieu de la Magie ! Prosternez-vous !'}] },
+  zeromus:{ hpK:2.4, atkK:0.85, name:'Zeromus', title:'Incarnation de la haine', hp:290, atk:13, ai:'zeromus', res:{phys:0.2}, boss:true, guardian:true,
+    phases:[{at:0.5, line:'Je suis la haine même. Tout retournera au néant !'}] },
+  bahamut:{ hpK:2.4, atkK:0.8, name:'Bahamut', title:'Roi des dragons', hp:820, atk:15, ai:'bahamut', res:{phys:0.1, mag:0.1}, boss:true,
+    phases:[{at:0.75, line:'Prouvez votre valeur, mortels.'},{at:0.45, line:'Mes enfants, venez à moi !'},{at:0.2, line:'Que tout soit réduit en cendres !'}] },
+  enkidou:{ name:'Enkidou', hp:85, atk:10, ai:'enkidu', res:{mag:0.2} },
+  dragonombre:{ name:'Dragon des ombres', hp:90, atk:12, ai:'shadowdragon', res:{mag:0.25} },
 };
-const GUARDIAN_OF = {5:'roiflan',15:'chevalier',25:'grandahriman',35:'reinebombo',45:'sentinelleprime',10:'golem',20:'seigneur',30:'wyverne',40:'behemoth',50:'neant'};
+const GUARDIAN_OF = {5:'ifrit',10:'barbariccia',15:'gilgamesh',20:'golbez',25:'exdeath',30:'armeultima',35:'sephiroth',40:'kefka',45:'zeromus',50:'bahamut'};
 function floorPool(f){
   if (f<=3) return ['flan','bombo','diablotin'];
   if (f<=9) return ['flan','bombo','diablotin','squelette','ahriman'].concat(f>=7?['grenade']:[]);
@@ -1566,7 +1667,7 @@ function floorPool(f){
    puis +hL/+aL par étage au-delà. La difficulté vient surtout des mécaniques. */
 const BAL = { lv:0.08, h0:0.55, a0:0.42, ramp:7, hL:0.045, aL:0.08, elite:{hp:1.3, atk:1.1, enrage:9},
   // v5.5 : combats plus courts mais plus percutants (PV ennemis réduits selon l'étage et le type, attaque relevée, plafond par coup)
-  kh:{ n0:0.9, nk:0.07, boss:0.85, big:0.95, fin:0.35, late:0.06 }, ka:1.85, ea0:1.15, cap:0.28, capB:0.4,
+  duoBossHp:0.6, kh:{ n0:0.9, nk:0.07, boss:0.85, big:0.95, fin:0.35, late:0.06 }, ka:1.85, ea0:1.15, cap:0.28, capB:0.4,
   // v5.5d : un seul combat par étage, donc moins de récompenses : le héros gagne un peu de force à chaque étage
   pg:0.028, heal:0.25, mpw:0.4, gk:2.5, gf:6, dmgCap:2.2, perkCap:0.7, redCap:0.75 };
 function khMul(f, d, kind){ const b=BAL.kh, base=b.n0/(1+b.nk*(f-1)); if (!d.boss) return base; return base*(1+b.late*Math.max(0,f-35))*(f>=MAX_FLOOR?b.big*b.fin:isBigBoss(f)?b.big:b.boss); }
@@ -1596,6 +1697,102 @@ const FLOOR_TIPS = {
 const A = (name, power, o={}) => Object.assign({kind:'atk', name, power, type:'phys'}, o);
 const alive = () => C ? C.enemies.filter(e=>!e.dead) : [];
 const hpr = e => e.hp/e.maxhp;
+/* v5.5f : phases des boss selon les PV (déterministe : même calcul chez tous les joueurs) */
+function bossPhase(e){
+  const ph=(ENEMIES[e.key]||{}).phases||[], r=hpr(e);
+  if (e.ph==null){ e.ph=0; e.pt=0; }
+  let p=0; ph.forEach((x,i)=>{ if (r<x.at) p=i+1; });
+  if (p>e.ph){ e.ph=p; e.pt=e.t; const x=ph[p-1]; if (x.skin) e.skin=x.skin; C.msg=`<i>${e.name} : « ${x.line} »</i>`; bossPhaseFx(e,x); }
+  return e.ph;
+}
+const op = e => { if (e.opened===e.ph) return false; e.opened=e.ph; return true; };
+/* ===================== v5.5f : MISE EN SCÈNE DES BOSS (purement visuelle, ne touche jamais l'état partagé) ===================== */
+const BOSS_FX = {
+  ifrit:{ p:'fire', c1:'255,120,40', c2:'255,220,120', tint:'rgba(255,90,20,.20)', lines:['Qui ose fouler mon domaine ?','Brûlez !'] },
+  barbariccia:{ p:'wind', c1:'140,255,190', c2:'230,255,240', tint:'rgba(90,220,160,.16)', lines:['Je suis Barbariccia, Impératrice des vents.','Vous ne toucherez jamais mon corps parfait !'] },
+  gilgamesh:{ p:'blade', c1:'255,90,70', c2:'255,230,160', tint:'rgba(220,60,50,.14)', lines:['Ha ! Enfin des adversaires dignes de ce nom !','Montrez-moi ce que vous valez !'] },
+  golbez:{ p:'meteor', c1:'150,70,255', c2:'40,10,80', tint:'rgba(70,20,140,.24)', lines:['Ainsi, vous êtes venus jusqu’ici.','Les ténèbres vont vous engloutir.'] },
+  exdeath:{ p:'void', c1:'110,200,160', c2:'20,40,40', tint:'rgba(20,90,70,.22)', lines:['Je suis Exdeath !','Tout sera englouti par le néant !'] },
+  armeultima:{ p:'light', c1:'255,255,255', c2:'200,230,255', tint:'rgba(220,235,255,.14)', lines:['Une arme ancienne s’éveille.','Son cœur de mana pulse d’une lumière aveuglante.'] },
+  sephiroth:{ p:'feather', c1:'200,215,255', c2:'40,50,90', tint:'rgba(40,60,130,.22)', lines:['Tu ne fais que suivre ton destin.','Je vais te montrer le désespoir.'] },
+  kefka:{ p:'chaos', c1:'220,90,255', c2:'255,120,200', tint:'rgba(170,40,200,.22)', lines:['Hi hi hi ! Des insectes viennent me divertir !','Je vais tout détruire !'] },
+  zeromus:{ p:'cosmic', c1:'120,140,255', c2:'255,90,140', tint:'rgba(30,20,90,.30)', lines:['Zeromus…','La haine de tout un peuple a pris forme.'] },
+  bahamut:{ p:'flare', c1:'140,200,255', c2:'255,255,255', tint:'rgba(90,150,255,.20)', lines:['Mortels, vous voici devant le Roi des dragons.','Méga-flare va tout purifier.'] },
+};
+const isNamedBoss = k => !!BOSS_FX[k];
+function bfxParts(type, n, seed){
+  return Array.from({length:n},(_,i)=>{ const h=bandH(seed+'#'+i);
+    return `<i style="--x:${h%100}%;--y:${(h>>>7)%100}%;--d:${(h>>>3)%1400}ms;--t:${1300+(h>>>5)%1500}ms;--s:${(0.5+((h>>>11)%10)/10).toFixed(2)};--r:${(h>>>9)%360}deg"></i>`; }).join('');
+}
+/* Introduction cinématique : assombrissement, le boss émerge, carte de nom façon FFXIV, réplique. Touche pour passer. */
+function bossIntro(f, key){
+  if (FAST) return;
+  const fx=BOSS_FX[key], d0=ENEMIES[key]; if (!fx||!d0) return;
+  ['ftr','bint'].forEach(id=>{ const o=document.getElementById(id); if (o) o.remove(); });
+  const big=isBigBoss(f), hold=3900;
+  const d=document.createElement('div'); d.id='bint'; d.className='bint p-'+fx.p+(big?' big':'');
+  d.style.cssText=`--c1:${fx.c1};--c2:${fx.c2};--hold:${hold}ms`;
+  const src=(ASSET[key]||{}).src||'';
+  d.innerHTML=`<div class="bi-bg"></div><div class="bi-parts">${bfxParts(fx.p,24,'bi'+key)}</div>
+   <div class="bi-spr"><div class="bi-aura"></div><img src="${src}" alt="" style="height:min(40vh,${Math.round(((ASSET[key]||{}).h||150)*1.7)}px)"></div>
+   <div class="bi-card"><div class="bi-tag">Étage ${f} · ${big?'Boss':'Gardien'}</div><div class="bi-ln"></div>
+    <div class="bi-title">${esc(d0.title||'')}</div><div class="bi-name">${esc(d0.name)}</div><div class="bi-ln"></div>
+    ${fx.lines.map((l,i)=>`<div class="bi-q" style="animation-delay:${1700+i*750}ms">« ${esc(l)} »</div>`).join('')}</div>
+   <div class="bi-skip">Touche pour passer</div>`;
+  document.body.appendChild(d);
+  const field=document.getElementById('field'); if (field) field.classList.add('fin');
+  let done=false; const t0=performance.now();
+  const end=()=>{ if (done) return; done=true; d.classList.add('out'); setTimeout(()=>d.remove(), 520); };
+  d.addEventListener('pointerdown', e=>{ e.preventDefault(); e.stopPropagation(); if (performance.now()-t0>200) end(); });
+  setTimeout(end, hold);
+}
+function fieldFx(cls, ms, html){
+  if (FAST) return null;
+  const f=document.getElementById('field'); if (!f) return null;
+  const d=document.createElement('div'); d.className=cls; if (html) d.innerHTML=html; f.appendChild(d); setTimeout(()=>d.remove(), ms); return d;
+}
+/* Changement de phase : flash, secousse, réplique en bulle */
+function bossPhaseFx(e, x){
+  try{
+    if (FAST) return; const fx=BOSS_FX[e.key]; if (!fx) return;
+    const f=document.getElementById('field'); if (f){ f.style.setProperty('--bc1', fx.c1); anim(f,'bphase',900); }
+    fieldFx('bflash', 900); fieldFx('bsfx p-'+fx.p, 1600, bfxParts(fx.p,16,'ph'+e.key+e.ph));
+    const s=fieldFx('bsay', 3200, `<b>${esc(e.name)}</b>${esc(x.line)}`); if (s) s.style.setProperty('--bc1', fx.c1);
+    if (typeof SND!=='undefined' && SND.sfx) SND.sfx('cast');
+  }catch(err){}
+}
+/* Attaque signature : particules plein écran + nom de l'attaque */
+function sigFx(e, x){
+  try{
+    if (FAST || !x.fx) return; const fx=BOSS_FX[e.key]; const c1=fx?fx.c1:'255,255,255', c2=fx?fx.c2:'255,255,255';
+    const big = x.power>=2.5 || x.kind==='summon' || x.kind==='buffAll' || x.kind==='shield';
+    const d=fieldFx('bsfx p-'+x.fx+(big?' big':''), big?1500:1000, `${bfxParts(x.fx, big?18:10, 'sx'+x.name+e.t)}${big?`<div class="bsname">${esc(x.name)}</div>`:''}`);
+    if (d) d.style.cssText=`--c1:${c1};--c2:${c2}`;
+  }catch(err){}
+}
+/* Coup de grâce : ralenti, flash blanc, le boss se dissout dans la lumière */
+function bossFinisher(e){
+  try{
+    if (FAST) return; const fx=BOSS_FX[e.key]; if (!fx) return;
+    const f=document.getElementById('field'), el=enEl(e); if (!f||!el) return;
+    const img=el.querySelector('img.spr'); if (!img) return;
+    const b=f.getBoundingClientRect(), r=img.getBoundingClientRect();
+    const c=img.cloneNode(); c.className='bfin-spr'; c.removeAttribute('onerror');
+    c.style.cssText=`left:${r.left-b.left}px;top:${r.top-b.top}px;width:${r.width}px;height:${r.height}px;--c1:${fx.c1}`;
+    f.appendChild(c); setTimeout(()=>c.remove(), 2000);
+    f.classList.add('slowmo'); setTimeout(()=>f.classList.remove('slowmo'), 1500);
+    fieldFx('bflash fin', 1600);
+    const m=fieldFx('bsfx p-light big fin', 1900, bfxParts('light',22,'fin'+e.key)); if (m) m.style.cssText=`--c1:${fx.c1};--c2:255,255,255`;
+  }catch(err){}
+}
+function bossTintSync(){
+  const f=document.getElementById('field'); if (!f||!C) return;
+  const b=C.enemies.find(z=>z.boss && isNamedBoss(z.key));
+  let t=document.getElementById('btint');
+  if (!b){ if (t) t.remove(); return; }
+  if (!t){ t=document.createElement('div'); t.id='btint'; t.className='btint'; f.insertBefore(t, f.firstChild); }
+  t.style.setProperty('--bt', BOSS_FX[b.key].tint); t.dataset.ph=b.ph||0; t.classList.toggle('gone', !!b.dead);
+}
 const AI = {
   flan(e){ if (hpr(e)<0.5 && !e.healed){ e.healed=true; return {kind:'heal', name:'Absorption', pct:0.3}; } return A('Coup gélatineux',1); },
   bomb(e){ if (!e.used && (e.t>=2 || hpr(e)<0.5)){ e.used=true; return A('Explosion',4,{windup:1, selfDestruct:true, type:'mag'}); } return A('Charge',1); },
@@ -1683,8 +1880,85 @@ const AI = {
       return A('Lame du néant',1.1); }
     return e.t%2===0 ? A('Néant absolu',3.8,{windup:1, type:'mag'}) : A('Lame du néant',1.2,{weaken:2});
   },
+  // --- v5.5f : boss de légende (phases selon les PV, gros coups toujours annoncés un tour à l'avance) ---
+  ifrit(e){ const p=bossPhase(e), c=(e.t-e.pt)%3;
+    if (p===1 && op(e)) return {kind:'buffAll', name:'Rage infernale', pct:0.3, turns:3, windup:1, interruptible:true, fx:'fire'};
+    if (c===2) return A('Flammes de l’enfer', p?3.4:3.2, {windup:1, type:'mag', fx:'fire'});
+    if (c===1) return p ? A('Éruption',1.2,{type:'mag', dot:[0.35,3], fx:'fire'}) : A('Griffes de braise',0.8,{dot:[0.3,3]});
+    return A('Griffes',1); },
+  barbariccia(e){ const p=bossPhase(e);
+    if (p===0) return e.t%3===2 ? A('Tornade',3.2,{windup:1, type:'mag', fx:'wind'}) : A('Coup de chevelure',1);
+    if (p===1){ const c=(e.t-e.pt)%5;
+      if (c===0) return {kind:'shield', name:'Mur de vent', pct:0.22, fx:'wind'};
+      if (c===2) return A('Ouragan de cheveux',2.6,{windup:1, type:'mag', shieldAmp:true, fx:'wind'});
+      if (c===4) return A('Tornade',3.4,{windup:1, type:'mag', fx:'wind'});
+      return A('Rafale',1); }
+    return (e.t-e.pt)%3===0 ? A('Ouragan de cheveux',3.6,{windup:1, type:'mag', fx:'wind'}) : A('Rafale',1.1); },
+  gilgamesh(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return {kind:'summon', name:'Appel d’Enkidou', key:'enkidou', n:1};
+    if (p===0){ const c=e.t%5;
+      if (c===1) return {kind:'buffAll', name:'Changement d’arme', pct:0.5, turns:3, windup:1, interruptible:true, fx:'blade'};
+      if (c===3) return A('Excalibur',3.4,{windup:1, fx:'blade'});
+      return A('Taille',1.1); }
+    const c=(e.t-e.pt)%4;
+    if (c===1 && !e.poor){ e.poor=1; return A('Excalipoor',0.1,{fx:'blade'}); }
+    if (c===2) return A('Excalibur',3.4,{windup:1, fx:'blade'});
+    if (c===3) return A('Lame tournoyante',1.3);
+    return A('Taille',1.1); },
+  enkidu(e){ return e.t%2 ? A('Souffle glacé',0.9,{type:'mag'}) : A('Morsure',1); },
+  golbez(e){ const p=bossPhase(e);
+    if (p>0 && op(e)) return {kind:'summon', name:'Dragon des ombres', key:'dragonombre', n:1};
+    if (e.t%6===3) return {kind:'atk', name:'Drain des ténèbres', power:1.8, type:'mag', drain:0.15, windup:1, interruptible:true, fx:'meteor'};
+    if (e.t%5===1) return A('Météores noirs',3.2,{windup:1, type:'mag', fx:'meteor'});
+    return e.t%3===0 ? A('Gravité',0.7,{type:'mag', weaken:2, fx:'meteor'}) : A('Éclair noir',1,{type:'mag'}); },
+  shadowdragon(e){ return e.t%3===2 ? A('Souffle noir',2.6,{windup:1, type:'mag'}) : A('Morsure',1); },
+  exdeath(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return {kind:'summon', name:'Appel du néant', key:'spectre', n:2};
+    const c=e.t%4;
+    if (c===1) return A('Vague de vide',0.8,{type:'mag', weaken:3, fx:'void'});
+    if (c===3) return A(p===2?'Trou noir':'Grand-Croix',3.4,{windup:1, type:'mag', fx:'void'});
+    return A('Lame ancestrale',1); },
+  ultimaweapon(e){ const p=bossPhase(e);
+    if (p===0) return e.t%3===2 ? A('Rayon de la Mort',3.4,{windup:1, type:'mag', fx:'light'}) : (e.t%2 ? A('Coup de queue',1.2,{dot:[0.3,3]}) : A('Griffes',1));
+    if (p===1){ const c=(e.t-e.pt)%4;
+      if (c===0) return {kind:'shield', name:'Barrière de mana', pct:0.2, fx:'light'};
+      if (c===2) return A('Rayon de la Mort',2.6,{windup:1, type:'mag', shieldAmp:true, fx:'light'});
+      return A('Griffes',1.1); }
+    return (e.t-e.pt)%3===0 ? A('Ultima',4.2,{windup:1, type:'mag', fx:'light'}) : A('Griffes',1.1); },
+  sephiroth(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return {kind:'buffAll', name:'Aile noire', pct:0.4, turns:3, windup:1, interruptible:true, fx:'blade'};
+    if (p===2 && op(e)) return A('Supernova',4.8,{windup:1, type:'mag', interruptible:true, fx:'cosmic'});
+    const c=(e.t-e.pt)%4;
+    if (p===2) return c===2 ? A('Octaslash',3.4,{windup:1, fx:'blade'}) : c===1 ? A('Ailes noires',1.3,{type:'mag', weaken:2}) : A('Masamune',1.2);
+    if (c===2) return A('Octaslash',p?3.4:3.2,{windup:1, fx:'blade'});
+    if (c===0 && e.t>0) return A('Flamme noire',1.2,{type:'mag', dot:[0.35,3]});
+    return A('Masamune',1); },
+  kefka(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return {kind:'shield', name:'Barrière divine', pct:0.18, fx:'chaos'};
+    if (p===2 && (e.t-(e.lastJ??-99))>=7){ e.lastJ=e.t; return A('Lumière du Jugement',5,{windup:1, type:'mag', meteor:true, fx:'chaos'}); }
+    const c=e.t%5;
+    if (c===1 && p<2) return {kind:'buffAll', name:'Rire dément', pct:0.5, turns:3, windup:1, interruptible:true, fx:'chaos'};
+    if (c===3) return A('Choeur de l’enfer',3.4,{windup:1, type:'mag', fx:'chaos'});
+    return e.t%2 ? A('Aile du chaos',1.2,{type:'mag'}) : A('Sorcellerie',1,{type:'mag'}); },
+  zeromus(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return A('Big Bang',4,{windup:1, type:'mag', fx:'cosmic'});
+    const c=(e.t-e.pt)%4;
+    if (c===0) return {kind:'shield', name:'Voile cosmique', pct:p?0.15:0.2, fx:'cosmic'};
+    if (c===2) return A('Big Bang',p?2.8:2.6,{windup:1, type:'mag', shieldAmp:true, fx:'cosmic'});
+    if (c===3 && p) return A('Météore noir',1.4,{type:'mag', dot:[0.35,3]});
+    return A('Onde noire',1.1,{type:'mag'}); },
+  bahamut(e){ const p=bossPhase(e);
+    if ((p===1||p===2) && op(e)) return {kind:'summon', name:'Appel des dragons', key:'dragonnet', n:p===1?2:1};
+    if (p===3 && op(e)) return A('Giga-flare',4.6,{windup:1, type:'mag', fx:'flare'});
+    if (p===0){ const c=e.t%4; return c===3 ? A('Méga-flare',3.6,{windup:1, type:'mag', fx:'flare'}) : c===1 ? A('Souffle sacré',0.8,{type:'mag', dot:[0.4,3]}) : A('Griffes',1.1); }
+    if (p<3){ const c=(e.t-e.pt)%5;
+      if (c===0) return {kind:'shield', name:'Écailles divines', pct:0.18, fx:'flare'};
+      if (c===2) return A('Rayon flamboyant',2.8,{windup:1, type:'mag', shieldAmp:true, interruptible:true, fx:'flare'});
+      if (c===4) return A('Méga-flare',3.6,{windup:1, type:'mag', fx:'flare'});
+      return A('Griffes',1.1); }
+    const c=(e.t-e.pt)%3; return c===2 ? A('Méga-flare',3.8,{windup:1, type:'mag', fx:'flare'}) : c===1 ? A('Souffle sacré',0.9,{type:'mag', dot:[0.4,3]}) : A('Griffes',1.2,{weaken:2}); },
 };
-const ENRAGE_AT = { roiflan:28, chevalier:30, grandahriman:30, reinebombo:32, sentinelleprime:32, golem:32, seigneur:34, wyverne:40, behemoth:42, neant:46 };
+const ENRAGE_AT = { ifrit:28, gilgamesh:30, exdeath:30, sephiroth:32, zeromus:32, barbariccia:32, golbez:34, armeultima:40, kefka:42, bahamut:46, roiflan:28, chevalier:30, grandahriman:30, reinebombo:32, sentinelleprime:32, golem:32, seigneur:34, wyverne:40, behemoth:42, neant:46 };
 
 /* ===================== POMANDRES / RÉCOMPENSES ===================== */
 const POMS = [
@@ -1969,6 +2243,17 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.5f', date:'23/10/2026', img:'assets/bg/b40.webp', title:'Les grands méchants de Final Fantasy', notes:[
+    'Les gardiens et les boss sont maintenant de vrais personnages de la série : Ifrit, Barbariccia, Gilgamesh, Golbez, Exdeath, l’Arme Ultima, Sephiroth, Kefka, Zeromus et Bahamut.',
+    'Chaque boss a son entrée en scène : l’écran s’assombrit, le boss apparaît dans ses flammes, son vent ou sa lumière, avec son nom, son titre et quelques mots. Touche l’écran pour passer.',
+    'Chaque boss a ses propres attaques : Flammes de l’enfer, Tornade, Excalibur, Météores noirs, Grand-Croix, Rayon de la Mort, Octaslash, Choeur de l’enfer, Big Bang, Méga-flare et bien d’autres.',
+    'Les combats se jouent en 2 à 4 phases. Sous certains seuils de PV, le boss parle, change de tactique et parfois de forme : Barbariccia devient une tornade, Sephiroth et Kefka révèlent leur forme divine.',
+    'Selon la phase : renforts (Enkidou, dragon des ombres, dragonnets), bouclier à briser, rage, ou grosse attaque.',
+    'Les grosses attaques sont toujours annoncées un tour à l’avance par une barre d’incantation au-dessus du boss. Prépare ta défense !',
+    'Le décor prend la couleur du boss, ses attaques spéciales remplissent l’écran, et le coup final le fait disparaître dans la lumière.',
+    'En ligne, les PV des gardiens et des boss augmentent selon le nombre de joueurs.',
+    'Le boss final de l’étage 50 est désormais Bahamut, le Roi des dragons.'
+  ]},
   {v:'v5.5e', date:'23/10/2026', img:'assets/bg/b10.webp', title:'Changement d’étage animé et partie suspendue', notes:[
     'Plus d’écran à valider entre deux étages : une courte animation affiche le numéro de l’étage, puis le combat commence tout de suite.',
     'Touche l’écran pour passer l’animation. Les étages de gardien et de boss ont leur propre version, rouge et or, un peu plus longue.',
@@ -2788,7 +3073,7 @@ function endRun(victory, abandoned){
     ${victory?`<div class="end-sp">${spr(runRef.job,'idle')}</div>`:''}
     <div class="ff-title">${[...(victory?'Victoire':abandoned?'Retraite':'K.O.')].map((c,i)=>`<i style="animation-delay:${i*50}ms">${c}</i>`).join('')}</div><div class="ff-line"></div>
     ${victory?'':spr(job,'','width:80px;filter:grayscale(1) brightness(.6);transform:rotate(90deg);margin:10px')}
-    <p>${victory?'Le Souverain du Néant est tombé. Le Palais des Morts est purifié !':abandoned?'Tu quittes le palais par un passage secret.':'Ton aventurier a succombé dans les profondeurs…'}</p>
+    <p>${victory?'Bahamut, Roi des dragons, s’incline. Le Palais des Morts est purifié !':abandoned?'Tu quittes le palais par un passage secret.':'Ton aventurier a succombé dans les profondeurs…'}</p>
     <div class="col stagger" style="width:100%;gap:2px;margin-top:6px">
       <div class="stat"><span>Score</span><b class="gold" style="font-size:20px">${SC.score.toLocaleString('fr-FR')}</b></div>
       <div class="stat"><span>Meilleur score</span><b>${bestScore.toLocaleString('fr-FR')}</b></div>
@@ -2812,9 +3097,9 @@ function endRun(victory, abandoned){
 /* ===================== COMBAT (tour par tour) ===================== */
 function makeEnemy(key, kind){
   const d=ENEMIES[key], f=R.floor, el=kind==='elite', m=eMul(f);
-  const hp=Math.max(1,Math.round(d.hp*m.h*(el?BAL.elite.hp:1)*khMul(f,d,kind)));
+  const hp=Math.max(1,Math.round(d.hp*(d.hpK||1)*m.h*(el?BAL.elite.hp:1)*khMul(f,d,kind)));
   const gils = d.boss ? (d.guardian? 20+2*f : 60+4*f) : Math.round(BAL.gk*(2+0.5*f)*(el?2:1)*(d.gilMul||1)*(f<=5?2:f<=10?1.5:1));
-  return { key, name:d.name+(el?' +':''), hp, maxhp:hp, atk:d.atk*m.a*(el?BAL.elite.atk:1)*BAL.ka*(1+(BAL.ea0-BAL.a0)*Math.max(0,1-(f-1)/BAL.ramp)/Math.max(0.1,(BAL.a0+(1-BAL.a0)*Math.min(1,(f-1)/BAL.ramp)))), res:Object.assign({phys:0,mag:0},d.res||{}),
+  return { key, name:d.name+(el?' +':''), hp, maxhp:hp, atk:d.atk*(d.atkK||1)*m.a*(el?BAL.elite.atk:1)*BAL.ka*(1+(BAL.ea0-BAL.a0)*Math.max(0,1-(f-1)/BAL.ramp)/Math.max(0.1,(BAL.a0+(1-BAL.a0)*Math.min(1,(f-1)/BAL.ramp)))), res:Object.assign({phys:0,mag:0},d.res||{}),
     gils, ai:d.ai, boss:!!d.boss, support:!!d.support, t:0, dots:[], stunT:0, shield:0, buff:0, buffT:0, rage:0, flyT:0,
     enrageAt: (d.boss ? ENRAGE_AT[key] : (el ? BAL.elite.enrage : 0)) ? (d.boss ? ENRAGE_AT[key] : BAL.elite.enrage) + pk('enrageDelay') : 0, pending:null, intent:null, dead:false,
     uid:'e'+(++R.uidn||(R.uidn=1)) };
@@ -2936,6 +3221,7 @@ function floorTransition(f, kind){
   if (FAST) return;
   const old=document.getElementById('ftr'); if (old) old.remove();
   const boss = kind==='boss', big = boss && isBigBoss(f), g=GUARDIAN_OF[f];
+  if (boss && g && isNamedBoss(g)) return bossIntro(f, g);
   const hold = boss ? 2100 : 1500;
   const d=document.createElement('div'); d.id='ftr'; d.className='ftr'+(boss?' boss':'')+(big?' big':'')+(kind==='elite'?' elite':'');
   d.style.setProperty('--hold', hold+'ms');
@@ -2997,8 +3283,8 @@ function updateCombat(){
     if (e.flyT>0) sx.push(''+ic('wing')+'En vol');
     if (e.enrageAt){ const left=e.enrageAt-e.t; if (left<=0) sx.push('<b style="color:#ff80ff">ENRAGÉ</b>'); else if (left<=6) sx.push(''+ic('clock')+''+left); }
     const wind=!e.dead&&e.intent&&(e.intent.kind==='charge'||e.intent.big||e.intent.kind==='buffAll'||e.intent.kind==='summon');
-    const sl=enSlot(i,C.enemies.length,C.enemies); return `<div style="--x:${sl[0]};--y:${sl[1]};--s:${sl[2]};z-index:${sl[3]}" class="en ${e.boss?'boss':''} ${e===tgt&&alive().length>1?'tgt':''} ${e.dead?'dead':''} ${wind?'winding':''} ${wind&&canInterrupt(e)?'cut':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
-      ${it}<span class="esp">${spr(e.key,'idle')}</span><div class="ename">${e.name}</div>${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
+    const sl=enSlot(i,C.enemies.length,C.enemies); return `<div style="--x:${sl[0]};--y:${sl[1]};--s:${sl[2]};z-index:${sl[3]}" class="en ${e.boss?'boss':''} ${e.boss&&isNamedBoss(e.key)?'named':''} ${e===tgt&&alive().length>1?'tgt':''} ${e.dead?'dead':''} ${wind?'winding':''} ${wind&&canInterrupt(e)?'cut':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
+      ${it}${bossCast(e)}<span class="esp">${spr(e.skin||e.key,'idle')}</span><div class="ename">${e.name}</div>${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
   }).join('');
   en.querySelectorAll('[data-ei]').forEach(el=>el.onclick=()=>{ const i=+el.dataset.ei; if(!C.enemies[i].dead){ C.target=i; updateCombat(); } });
   const al = alive();
@@ -3007,7 +3293,7 @@ function updateCombat(){
   document.getElementById('banner').innerHTML = (false && big) ? `<div class="banner">${big.intent.kind==='charge' ? `${ic('hour')} ${big.name} prépare « ${big.intent.then.name} »${canInterrupt(big)?' — interromps-le '+ic('bolt')+'':''} !` : big.intent.meteor ? `${ic('meteor')} « ${big.intent.name} » ! Protège-toi ou c’est la fin !` : `${ic('warn')} « ${big.intent.name} » imminent ! Défends-toi !`}</div>` : '';
   document.getElementById('log').innerHTML = C.msg || '&nbsp;';
   document.getElementById('ppw').innerHTML = playerPanelHTML(true);
-  renderSkills(); idleDesync();
+  renderSkills(); idleDesync(); bossTintSync();
 }
 function combatSkills(){ const j=JOBS[R.job]; return [j.basic].concat(R.loadout.map(id=>j.opts.find(o=>o.id===id))); }
 function skillState(s){
@@ -3091,7 +3377,13 @@ function damageEnemy(e, d, crit){
   if (R.mods.vamp>0) healR((d+absorbed)*R.mods.vamp);
   if (e.hp<=0 && !e.dead) killEnemy(e);
 }
+function bossCast(e){ // barre d'incantation façon FFXIV au-dessus des boss
+  if (e.dead || !e.boss || !e.intent || e.intent.kind!=='charge') return '';
+  return `<div class="bcast"><span>${esc(e.intent.then.name)}</span><i></i></div>`; }
+const bossDownMsg = () => { const b=C&&C.enemies.find(z=>z.boss&&isNamedBoss(z.key)); return b ? `<b>${b.name}</b> est ${ENEMIES[b.key].fem?'vaincue':'vaincu'} !` : 'Victoire !'; };
+const bossDownMs = () => (!FAST && C && C.enemies.some(z=>z.boss&&isNamedBoss(z.key))) ? 1700 : 600;
 function killEnemy(e){
+  if (e.boss && isNamedBoss(e.key)) bossFinisher(e);
   e.dead=true; R.kills++;
   const g=gainGils(e.gils);
   const el=enEl(e); if(el){ floatAt(el, `+${g} G`, 'info'); el.classList.add('dead'); }
@@ -3223,6 +3515,7 @@ async function enemyAct(e){
   e.t++;
   if (e.flyT>0) e.flyT--;
   if (x.kind==='charge'){ e.pending = Object.assign({}, x.then, {big:true}); C.msg=`${e.name} prépare <b>${x.then.name}</b>…`; anim(el,'cast',400); fxAt(el,'enemy'); return; }
+  if (e.boss && x.fx) sigFx(e, x);
   if (x.kind==='heal'){
     const tg = (x.target && C.enemies.find(z=>z.uid===x.target && !z.dead)) || e;
     const h=Math.round(tg.maxhp*x.pct); tg.hp=Math.min(tg.maxhp,tg.hp+h); C.msg=`${e.name} utilise ${x.name}${tg!==e?' sur '+tg.name:''}.`; fxAt(enEl(tg),'heal'); floatAt(enEl(tg),'+'+h,'heal'); return; }
@@ -3279,8 +3572,8 @@ async function checkEnd(){
     await sleep(1100); endRun(false); return true;
   }
   if (alive().length===0){
-    C.ending=true; C.busy=true; C.msg='Victoire !'; updateCombat();
-    await sleep(600); winCombat(); return true;
+    C.ending=true; C.busy=true; C.msg=bossDownMsg(); updateCombat();
+    await sleep(bossDownMs()); winCombat(); return true;
   }
   return false;
 }
@@ -4648,6 +4941,7 @@ const _startCombat = startCombat;
 startCombat = function(kind){
   if (!isDuo()) return _startCombat(kind);
   heroIn(0); _startCombat(kind);
+  if (kind==='boss'){ const k=1+BAL.duoBossHp*(NP()-1); C.enemies.forEach(e=>{ if (e.boss){ e.hp=e.maxhp=Math.round(e.maxhp*k); } }); updateCombat(); } // v5.5f : PV des boss selon le nombre de joueurs
   const tmpl=JSON.stringify(C.st);
   R.party.forEach((h,i)=>{ h.st = i===0 ? C.st : JSON.parse(tmpl); h.cds = i===0 ? C.cds : {}; });
 };
@@ -4681,7 +4975,7 @@ async function duoCheckEnd(){
   for (let i=0;i<NP();i++) if (R.party[i].hp<=0){ heroIn(i); if (R.hp<=0 && tryRevive()) heroOut(); }
   heroIn(0);
   if (R.party.every(h=>h.hp<=0)){ C.ending=true; C.busy=true; C.msg=NP()>2?'Les trois aventuriers s’effondrent…':'Les deux aventuriers s’effondrent…'; updateCombat(); await sleep(1100); endRun(false); return true; }
-  if (alive().length===0){ C.ending=true; C.busy=true; C.msg='Victoire !'; updateCombat(); await sleep(600); winCombat(); return true; }
+  if (alive().length===0){ C.ending=true; C.busy=true; C.msg=bossDownMsg(); updateCombat(); await sleep(bossDownMs()); winCombat(); return true; }
   return false;
 }
 async function duoCombatTurn(acts){
