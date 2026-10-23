@@ -213,6 +213,124 @@ input.name.search{font-size:16px;padding:8px}
 .tipbox .tchips{display:flex;gap:6px;margin:2px 0 3px;flex-wrap:wrap}
 .cursor{left:50%;top:auto;bottom:-6px;transform:translateX(-50%) rotate(-90deg);width:22px;animation:bobv .4s steps(2) infinite alternate}
 @keyframes bobv{to{bottom:-2px}}
+/* ===== EN LIGNE (online.js) — même DA fenêtres bleues FF ===== */
+.ol-ico{display:inline-block;vertical-align:middle;flex:none;image-rendering:pixelated;filter:drop-shadow(1px 1px 0 #000)}
+.ol-top .ol-back{min-height:36px;font-size:13px;padding:2px 10px}
+.ol-me{font-size:12px;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40%}
+.ol-card .row{gap:12px}
+.ol-big{justify-content:flex-start;text-align:left;min-height:66px;gap:12px}
+.ol-l{display:flex;flex-direction:column;line-height:1.15}.ol-l b{font-size:17px}.ol-l small{font-size:12px;color:#d6e2ff;font-weight:600}
+.btn[disabled]{opacity:.45;filter:grayscale(.6);pointer-events:none}
+.btn.ol-busy{opacity:.7;pointer-events:none}
+.btn.ol-busy::after{content:"";width:14px;height:14px;border:2px solid #fff;border-right-color:transparent;border-radius:50%;animation:olspin .7s linear infinite}
+.ol-spin{display:inline-block;width:14px;height:14px;border:2px solid #fff;border-right-color:transparent;border-radius:50%;animation:olspin .7s linear infinite;vertical-align:middle}
+@keyframes olspin{to{transform:rotate(360deg)}}
+.ol-empty{padding:18px 10px;text-align:center}
+.ol-ok{color:#8fff8f;font-size:13px}.ol-ko{color:#ff9c96;font-size:13px}
+.ol-lab{display:flex;flex-direction:column;gap:4px;font-size:13px;color:#d6e2ff;font-weight:700}
+.ol-lab input.name{font-size:16px;font-weight:600}
+.ol-tabs{display:flex;gap:6px;padding:0 2px;flex-wrap:wrap}
+.ol-tabs .btn{flex:1;min-height:40px;font-size:14px}
+.ol-chips{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex:none}
+.ol-chips::-webkit-scrollbar{display:none}
+.ol-chip{flex:none;display:flex;align-items:center;gap:4px;font:inherit;font-size:12px;font-weight:700;color:#fff;background:#0a1248;border:2px solid #8890b0;border-radius:14px;padding:2px 10px 2px 4px;min-height:32px;text-shadow:1px 1px 0 #000}
+.ol-chip:first-child{padding-left:10px}
+.ol-chip.sel{border-color:var(--gold);background:#2a3a8a;box-shadow:0 0 6px #ffb00088}
+.ol-chip img.spr{width:22px}
+.ol-lb{padding:4px 6px}
+.ol-run{display:flex;align-items:center;gap:8px;padding:6px 2px;border-bottom:1px solid #ffffff22}
+.ol-run:last-child{border-bottom:0}
+.ol-run.me{background:linear-gradient(90deg,#ffe27a22,transparent);border-radius:6px}
+.ol-rk{width:26px;text-align:center;font-weight:800;font-size:16px;color:#c8d2ff;text-shadow:1px 1px 0 #000;flex:none}
+.ol-run.top1 .ol-rk{color:var(--gold);font-size:20px}.ol-run.top2 .ol-rk{color:#e8ecff;font-size:18px}.ol-run.top3 .ol-rk{color:#e0a060;font-size:18px}
+.ol-sp{position:relative;width:40px;flex:none;display:flex;justify-content:center}
+.ol-sp img.spr{width:34px}
+.ol-sp2{position:absolute;right:-6px;bottom:-4px}.ol-sp2 img.spr{width:24px}
+.ol-who{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.ol-who b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ol-who small{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ol-duo{color:#9fe0ff;font-weight:700}
+.ol-sc{text-align:right;display:flex;flex-direction:column;flex:none}
+.ol-sc b{font-size:16px;color:var(--gold);text-shadow:1px 1px 0 #000}.ol-sc small{font-size:11px;color:#c8d2ff}
+.ol-search{flex:none;gap:6px}
+.ol-fr{display:flex;align-items:center;gap:8px;min-height:44px;padding:2px 0;border-bottom:1px solid #ffffff1a}
+.ol-fr:last-child{border-bottom:0}
+.ol-fr .grow{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.ol-fr .btn.small{min-height:38px;font-size:13px;padding:3px 10px}
+.ol-fr .btn.ol-x{padding:3px 8px;background:linear-gradient(180deg,#4a4a6a,#24243a)}
+.ol-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#5a6080;border:2px solid #000;flex:none}
+.ol-dot.on{background:#5fd36b;box-shadow:0 0 6px #5fd36b}
+.ol-code{font-size:22px!important;letter-spacing:6px;text-align:center;text-transform:uppercase}
+.ol-bigcode{font-size:40px;font-weight:900;letter-spacing:8px;color:var(--gold);text-shadow:3px 3px 0 #000;font-family:ui-monospace,Menlo,Consolas,monospace}
+.ol-slots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ol-slot{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px 8px;min-height:150px;justify-content:center;
+  background:linear-gradient(180deg,var(--w1),var(--w2) 42%,var(--w3));border:2px solid #f0f2ff;border-radius:7px;box-shadow:0 0 0 2px #000;text-align:center}
+.ol-slot.ready{box-shadow:0 0 0 2px #000,0 0 0 4px #5fd36b}
+.ol-slot.empty{opacity:.7;border-style:dashed}
+.ol-slot img.spr{width:64px}
+.ol-slot b{font-size:15px}.ol-slot small{font-size:11px;color:#d6e2ff}
+.ol-tag{position:absolute;top:4px;left:4px;font-size:10px;font-weight:800;background:#000a;border:1px solid var(--gold);color:var(--gold);border-radius:4px;padding:0 4px}
+.ol-rdy{font-size:12px;font-weight:700;color:#c8d2ff;display:flex;align-items:center;gap:3px}
+.ol-slot.ready .ol-rdy{color:#8fff8f}
+#ol-net{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 4px);transform:translateX(-50%);z-index:90;display:flex;align-items:center;gap:8px;
+  max-width:min(440px,94vw);width:max-content;padding:4px 10px;font-size:12px;font-weight:700;border:2px solid #f0f2ff;border-radius:14px;box-shadow:0 0 0 2px #000;
+  background:linear-gradient(180deg,var(--w1),var(--w3));text-shadow:1px 1px 0 #000;pointer-events:none}
+#ol-net.wait{border-color:var(--gold)}
+#ol-net.go{border-color:#5fd36b}
+#ol-net.warn{border-color:#ff6a62;background:linear-gradient(180deg,#8a2a2a,#3a0a0a)}
+#ol-net .ol-code-s{font-family:ui-monospace,Menlo,monospace;color:#c8d2ff;font-size:11px}
+/* ===== Vue de côté : alliés à gauche (regardent à droite), ennemis à droite (regardent à gauche) ===== */
+#field .player,#field .comp{transform:none}
+#field .player{left:22%;bottom:14%;z-index:4}
+#field.solo .player{left:12%;bottom:22%}
+#field .comp{left:3%;bottom:38%;z-index:3}
+#field.duo .comp:not(.partner){left:24%;bottom:60%;z-index:2}
+#field .enemies{left:auto;right:1%;top:24%;bottom:10%;width:58%;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;align-items:flex-end;gap:4px 2px}
+#field .en{min-width:64px}
+#field .en:nth-child(even){margin-top:34px}
+#field .en img.spr.art{width:min(calc(var(--w) * 1.7px),25vw);max-height:min(130px,20vh)}
+#field .en.boss img.spr.art{width:min(calc(var(--w) * 2px),52vw);max-height:min(220px,32vh)}
+#field .player img.spr.art{width:min(calc(var(--w) * 1.8px),24vw)}
+#field .comp img.spr.art{width:min(calc(var(--w) * 1.5px),20vw)}
+#field .aoe{left:3%;right:auto;transform:none;width:46%;bottom:6%}
+img.spr.flip{transform:scaleX(-1)}
+#field .player.lunge,#field .comp.lunge{animation:lungeR .32s}
+@keyframes lungeR{50%{transform:translateX(26px) scale(1.06)}}
+#field .en.lunge{animation:lungeL .32s}
+@keyframes lungeL{50%{transform:translateX(-26px)}}
+#field .player.cast,#field .comp.cast{animation:castS .4s}
+@keyframes castS{50%{transform:translateY(-8px);filter:brightness(1.6) drop-shadow(0 0 8px #fff)}}
+#field .player.shake,#field .comp.shake{animation:shakeS .3s}
+@keyframes shakeS{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}}
+@media (max-width:360px){#field .enemies{width:62%}#field .en{min-width:56px}}
+.pnlink{position:absolute;top:6px;right:8px;font-size:12px;color:#c8d0ff;background:none;border:0;text-decoration:underline;padding:6px;cursor:pointer;z-index:5}
+.pn-scroll{max-height:62vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-right:4px;margin-top:6px}
+.pn{margin-bottom:12px}
+.pn-ban{height:min(80px,16vw);border-radius:6px;background-size:cover;background-position:left center;display:flex;align-items:flex-end;gap:8px;padding:4px 8px;box-shadow:0 0 0 2px #000,0 0 0 3px #f0f2ff}
+.pn-ban b{font-size:20px;text-shadow:2px 2px 0 #000}.pn-ban span{font-size:12px;text-shadow:1px 1px 0 #000;margin-bottom:3px}
+.pn ul{margin:6px 0 0 18px;padding:0;font-size:13px;line-height:1.35}.pn li{margin:2px 0}
+.legal{font-size:9.5px;line-height:1.3;color:#aab0d0;text-align:center;margin:6px 4px 0}
+.gcar{position:relative;overflow:hidden;border-radius:8px;box-shadow:0 0 0 2px #000,0 0 0 3px #f0f2ff;touch-action:pan-y}
+.gtrack{display:flex;transition:transform .35s ease}
+.gban{flex:0 0 100%;position:relative;height:min(230px,52vw);background:radial-gradient(ellipse at 30% 60%,var(--gl) -40%,var(--c1) 30%,var(--c2) 85%);overflow:hidden}
+.gban::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 40%,rgba(0,0,0,.55));pointer-events:none}
+.gfeat{position:absolute;left:6%;bottom:6%;z-index:2;filter:drop-shadow(0 0 10px var(--gl)) drop-shadow(0 0 2px #fff)}
+.gfeat img.spr{width:min(130px,30vw);height:auto;image-rendering:pixelated}
+.gside{position:absolute;left:38%;bottom:6%;display:flex;gap:2px;z-index:1;opacity:.92}
+.gside img.spr{width:min(62px,14vw);height:auto;image-rendering:pixelated;filter:drop-shadow(0 0 5px var(--gl))}
+.ginfo{position:absolute;right:8px;top:8px;width:46%;text-align:right;z-index:3;display:flex;flex-direction:column;gap:2px;text-shadow:1px 1px 0 #000,0 0 6px #000}
+.ginfo small{font-size:10px;letter-spacing:1px;color:#e8ecff}.ginfo>b{font-size:17px;color:#fff3c0;line-height:1.1}.ginfo span{font-size:11px;line-height:1.3}
+.gcopy{position:absolute;right:6px;bottom:4px;font-size:9px;color:#fffc;z-index:3;text-shadow:1px 1px 0 #000}
+.gpart i{position:absolute;bottom:-6px;width:4px;height:4px;border-radius:50%;background:var(--gl);box-shadow:0 0 6px var(--gl);animation:gup 3s linear infinite;opacity:0}
+@keyframes gup{0%{transform:translateY(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-240px);opacity:0}}
+.garr{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:34px;height:44px;border:2px solid #f0f2ff;border-radius:6px;background:#0008;color:#fff;font-size:24px;line-height:1;padding:0}
+.garr.l{left:4px}.garr.r{right:4px}
+.gdots{display:flex;justify-content:center;gap:7px;margin:6px 0}
+.gdots span{width:9px;height:9px;border-radius:50%;background:#556;border:1px solid #000;cursor:pointer}.gdots span.on{background:#ffe27a}
+.gcard.up{box-shadow:0 0 0 2px #ffe27a,0 0 10px #ffe27a}
+.rt{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}.rt th,.rt td{border-bottom:1px solid #fff2;padding:3px 4px;text-align:left}.rt td:last-child,.rt th:last-child{text-align:right}
+.rt tr.up td{color:#ffe27a}
+.rules p{font-size:13px;line-height:1.35;margin:4px 0}.rules h3{margin:8px 0 2px;font-size:15px}
 </style>
 </head>
 <body>
@@ -639,7 +757,7 @@ function floorPool(f){
 /* Courbe de difficulté : joueur ET monstres progressent avec l'étage (niveau d'aether = étage).
    h0/a0 = force relative des monstres à l'étage 1 (très faciles), atteint 1.0 à l'étage 10,
    puis +hL/+aL par étage au-delà. La difficulté vient surtout des mécaniques. */
-const BAL = { lv:0.08, h0:0.55, a0:0.42, ramp:9, hL:0.03, aL:0.035, elite:{hp:1.4, atk:1.1, enrage:9} };
+const BAL = { lv:0.08, h0:0.55, a0:0.42, ramp:7, hL:0.045, aL:0.05, elite:{hp:1.4, atk:1.1, enrage:9} };
 const Lf = lv => 1 + BAL.lv*(lv-1);
 function eMul(f){ const r=Math.min(1,(f-1)/BAL.ramp), late=Math.max(0,f-10); return { h:Lf(f)*(BAL.h0+(1-BAL.h0)*r+BAL.hL*late), a:Lf(f)*(BAL.a0+(1-BAL.a0)*r+BAL.aL*late) }; }
 const FLOOR_TIPS = {
@@ -808,55 +926,55 @@ const addPk = (k, v) => { R.perk[k] = (R.perk[k]||0) + v; };
 const hasMP = () => JOBS[R.job].mp >= 80;
 const REWARDS = [
   // --- Communs ---
-  {id:'force', r:'c', name:'Pomandre de force', desc:'+5 % de dégâts.', max:4, v:6, apply:()=>{ R.mods.dmg+=0.05; }},
-  {id:'acier', r:'c', name:'Pomandre d’acier', desc:'−3 % de dégâts subis.', max:4, v:5, apply:()=>{ R.mods.def+=0.03; }},
-  {id:'vitalite', r:'c', name:'Pomandre de vitalité', desc:'+6 % de PV max et soigne 15 %.', max:4, v:6, tag:'heal', apply:()=>{ R.mods.hpMul+=0.06; recalcStats(); healR(R.maxhp*0.15); }},
-  {id:'perspi', r:'c', name:'Pomandre de perspicacité', desc:'+4 % de chances de critique.', max:4, v:4, apply:()=>{ R.mods.crit+=0.04; }},
+  {id:'force', r:'c', name:'Pomandre de force', desc:'+3 % de dégâts.', max:4, v:6, apply:()=>{ R.mods.dmg+=0.03; }},
+  {id:'acier', r:'c', name:'Pomandre d’acier', desc:'−2 % de dégâts subis.', max:4, v:5, apply:()=>{ R.mods.def+=0.02; }},
+  {id:'vitalite', r:'c', name:'Pomandre de vitalité', desc:'+4 % de PV max et soigne 20 %.', max:4, v:6, tag:'heal', apply:()=>{ R.mods.hpMul+=0.04; recalcStats(); healR(R.maxhp*0.2); }},
+  {id:'perspi', r:'c', name:'Pomandre de perspicacité', desc:'+3 % de chances de critique.', max:3, v:4, apply:()=>{ R.mods.crit+=0.03; }},
   {id:'potions', r:'c', name:'Potion', desc:'+1 potion (max 5 en sac).', v:4, tag:'heal', req:()=>R.potions<5, apply:()=>{ R.potions=Math.min(5,R.potions+1); }},
   {id:'ether', r:'c', name:'Éther', desc:'+1 éther (max 3 en sac).', v:3, req:()=>R.ethers<3 && hasMP(), apply:()=>{ R.ethers=Math.min(3,R.ethers+1); }},
   {id:'bourse', r:'c', name:'Bourse oubliée', desc:'Des Gils (selon l’étage).', v:2, apply:()=>{ gainGils(8+R.floor); }},
   {id:'soin', r:'c', name:'Eau bénite', desc:'Soigne 35 % des PV.', v:2, tag:'heal', apply:()=>{ healR(R.maxhp*0.35); }},
   {id:'serenite', r:'c', name:'Pomandre de sérénité', desc:'+50 % de régénération de PM.', max:2, v:3, req:hasMP, apply:()=>{ R.mods.mpr+=0.5; }},
   {id:'fortune', r:'c', name:'Pomandre de fortune', desc:'+20 % de Gils gagnés.', max:2, v:2, apply:()=>{ R.mods.gil+=0.2; }},
-  {id:'garde', r:'c', name:'Pierre de garde', desc:'Commence chaque combat avec un bouclier de 5 % des PV.', max:2, v:4, apply:()=>addPk('shieldStart',0.05)},
+  {id:'garde', r:'c', name:'Pierre de garde', desc:'Commence chaque combat avec un bouclier de 4 % des PV.', max:2, v:4, apply:()=>addPk('shieldStart',0.04)},
   {id:'pickpocket', r:'c', name:'Doigts agiles', desc:'+3 Gils par ennemi vaincu.', max:3, v:2, apply:()=>addPk('gilKill',3)},
-  {id:'ouverture', r:'c', name:'Lame d’ouverture', desc:'+20 % de dégâts contre les ennemis à plus de 80 % de PV.', max:2, v:3, apply:()=>addPk('opener',0.2)},
+  {id:'ouverture', r:'c', name:'Lame d’ouverture', desc:'+15 % de dégâts contre les ennemis à plus de 80 % de PV.', max:2, v:3, apply:()=>addPk('opener',0.15)},
   {id:'alchimie', r:'c', name:'Mortier d’alchimiste', desc:'Les potions soignent 10 % de plus.', max:2, v:3, tag:'heal', apply:()=>addPk('potion',0.1)},
   {id:'brisebouclier', r:'c', name:'Marteau brise-garde', desc:'+30 % de dégâts contre les boucliers '+ic('shield')+'.', max:2, v:3, apply:()=>addPk('vsShield',0.3)},
   {id:'rajeu', r:'c', name:'Pomandre de rajeunissement', desc:'Restaure 60 % des PV et tous les PM.', v:3, tag:'heal', apply:()=>{ healR(R.maxhp*0.6); R.mp=R.maxmp; }},
   // --- Rares ---
-  {id:'vampi', r:'r', name:'Pomandre de vampirisme', desc:'Récupère 3 % des dégâts infligés en PV.', max:2, v:6, apply:()=>{ R.mods.vamp+=0.03; }},
+  {id:'vampi', r:'r', name:'Pomandre de vampirisme', desc:'Récupère 2 % des dégâts infligés en PV.', max:2, v:6, apply:()=>{ R.mods.vamp+=0.02; }},
   {id:'interruption', r:'r', name:'Gantelet d’interruption', desc:'Interrompre une action '+ic('bolt')+' te soigne 8 % et inflige des dégâts.', max:2, v:6, apply:()=>addPk('onInterrupt',1)},
-  {id:'parade', r:'r', name:'Parade réflexe', desc:'−15 % de dégâts des attaques '+ic('warn')+' télégraphiées.', max:2, v:7, apply:()=>addPk('bigRed',0.15)},
-  {id:'fleau', r:'r', name:'Fléau des soigneurs', desc:'+40 % de dégâts contre les soutiens '+ic('cross')+' '+ic('horn')+'.', max:1, v:4, apply:()=>addPk('vsSupport',0.4)},
+  {id:'parade', r:'r', name:'Parade réflexe', desc:'−12 % de dégâts des attaques '+ic('warn')+' télégraphiées.', max:2, v:7, apply:()=>addPk('bigRed',0.12)},
+  {id:'fleau', r:'r', name:'Fléau des soigneurs', desc:'+30 % de dégâts contre les soutiens '+ic('cross')+' '+ic('horn')+'.', max:1, v:4, apply:()=>addPk('vsSupport',0.3)},
   {id:'venin', r:'r', name:'Venin concentré', desc:'Tes dégâts sur la durée '+ic('poison')+' sont augmentés de 40 %.', max:2, v:4, req:()=>allSkills(R.job).some(s=>s.dot), apply:()=>addPk('dotUp',0.4)},
-  {id:'robe', r:'r', name:'Étole runique', desc:'−15 % de dégâts magiques subis.', max:2, v:5, apply:()=>addPk('magRed',0.15)},
+  {id:'robe', r:'r', name:'Étole runique', desc:'−10 % de dégâts magiques subis.', max:2, v:5, apply:()=>addPk('magRed',0.1)},
   {id:'sablier', r:'r', name:'Sablier figé', desc:'La rage des ennemis arrive 3 tours plus tard.', max:1, v:6, apply:()=>addPk('enrageDelay',3)},
-  {id:'grace', r:'r', name:'Coup de grâce', desc:'+30 % de dégâts contre les ennemis sous 30 % de PV.', max:1, v:4, apply:()=>addPk('execute',0.3)},
-  {id:'onde', r:'r', name:'Onde de choc', desc:'+20 % de dégâts pour les attaques de zone.', max:2, v:3, req:()=>allSkills(R.job).some(s=>s.target==='all'), apply:()=>addPk('aoe',0.2)},
+  {id:'grace', r:'r', name:'Coup de grâce', desc:'+20 % de dégâts contre les ennemis sous 30 % de PV.', max:1, v:4, apply:()=>addPk('execute',0.2)},
+  {id:'onde', r:'r', name:'Onde de choc', desc:'+15 % de dégâts pour les attaques de zone.', max:2, v:3, req:()=>allSkills(R.job).some(s=>s.target==='all'), apply:()=>addPk('aoe',0.15)},
   {id:'cristalether', r:'r', name:'Cristal d’éther', desc:'+8 PM à chaque ennemi vaincu.', max:2, v:4, req:hasMP, apply:()=>addPk('mpKill',8)},
-  {id:'ame', r:'r', name:'Récolte d’âmes', desc:'+4 % de PV à chaque ennemi vaincu.', max:1, v:5, tag:'heal', apply:()=>addPk('hpKill',0.04)},
-  {id:'initiative', r:'r', name:'Initiative', desc:'+50 % de dégâts au premier tour de chaque combat.', max:1, v:3, apply:()=>addPk('firstTurn',0.5)},
-  {id:'regen', r:'r', name:'Aura de régénération', desc:'Soigne 2 % des PV à chaque tour de combat.', max:1, v:6, tag:'heal', apply:()=>addPk('regen',0.02)},
-  {id:'geants', r:'r', name:'Tueur de géants', desc:'+12 % de dégâts contre les gardiens et les boss.', max:1, v:5, apply:()=>addPk('boss',0.12)},
-  {id:'percearmure', r:'r', name:'Perce-armure', desc:'Ignore 50 % des résistances ennemies.', max:1, v:4, apply:()=>addPk('pierce',0.5)},
+  {id:'ame', r:'r', name:'Récolte d’âmes', desc:'+3 % de PV à chaque ennemi vaincu.', max:1, v:5, tag:'heal', apply:()=>addPk('hpKill',0.03)},
+  {id:'initiative', r:'r', name:'Initiative', desc:'+35 % de dégâts au premier tour de chaque combat.', max:1, v:3, apply:()=>addPk('firstTurn',0.35)},
+  {id:'regen', r:'r', name:'Aura de régénération', desc:'Soigne 1,5 % des PV à chaque tour de combat.', max:1, v:6, tag:'heal', apply:()=>addPk('regen',0.015)},
+  {id:'geants', r:'r', name:'Tueur de géants', desc:'+8 % de dégâts contre les gardiens et les boss.', max:1, v:5, apply:()=>addPk('boss',0.08)},
+  {id:'percearmure', r:'r', name:'Perce-armure', desc:'Ignore 35 % des résistances ennemies.', max:1, v:4, apply:()=>addPk('pierce',0.35)},
   {id:'volonte', r:'r', name:'Volonté de fer', desc:'Immunité à Affaibli ↓.', max:1, v:3, apply:()=>addPk('noWeak',1)},
   {id:'antidote', r:'r', name:'Talisman antidote', desc:'Immunité aux poisons '+ic('poison')+' ennemis.', max:1, v:3, apply:()=>addPk('noDot',1)},
-  {id:'opportun', r:'r', name:'Frappe opportuniste', desc:'+35 % de dégâts contre les ennemis étourdis '+ic('stun')+'.', max:2, v:4, apply:()=>addPk('stunned',0.35)},
-  {id:'epines', r:'r', name:'Armure d’épines', desc:'Renvoie 20 % des dégâts subis à l’attaquant.', max:1, v:4, apply:()=>addPk('thorns',0.2)},
+  {id:'opportun', r:'r', name:'Frappe opportuniste', desc:'+25 % de dégâts contre les ennemis étourdis '+ic('stun')+'.', max:2, v:4, apply:()=>addPk('stunned',0.25)},
+  {id:'epines', r:'r', name:'Armure d’épines', desc:'Renvoie 15 % des dégâts subis à l’attaquant.', max:1, v:4, apply:()=>addPk('thorns',0.15)},
   {id:'econome', r:'r', name:'Sceau d’économie', desc:'Les compétences coûtent 25 % de PM en moins.', max:1, v:4, req:()=>allSkills(R.job).some(s=>s.mp), apply:()=>addPk('mpSave',0.25)},
   {id:'superpotion', r:'r', name:'Super-potions', desc:'+2 potions (max 5 en sac).', v:4, tag:'heal', req:()=>R.potions<4, apply:()=>{ R.potions=Math.min(5,R.potions+2); }},
   {id:'lien', r:'r', name:'Lien d’amitié', desc:'La compétence de ton compagnon recharge 1 tour plus vite.', max:1, v:4, req:()=>!!R.comp, apply:()=>addPk('compCd',1)},
   // --- Épiques ---
   {id:'celerite', r:'e', name:'Pomandre de célérité', desc:'Temps de recharge réduits d’1 tour.', max:1, v:8, apply:()=>{ R.mods.cdr=1; }},
   {id:'phenix', r:'e', name:'Queue de phénix', desc:'Une fois : te relève à 40 % des PV au lieu de mourir.', max:1, v:9, apply:()=>addPk('phoenix',1)},
-  {id:'egide', r:'e', name:'Égide d’Halone', desc:'Commence chaque combat avec un bouclier de 12 % des PV.', max:1, v:7, apply:()=>addPk('shieldStart',0.12)},
+  {id:'egide', r:'e', name:'Égide d’Halone', desc:'Commence chaque combat avec un bouclier de 9 % des PV.', max:1, v:7, apply:()=>addPk('shieldStart',0.09)},
   {id:'abondance', r:'e', name:'Corne d’abondance', desc:'Les écrans de récompense proposent 4 choix.', max:1, v:5, apply:()=>addPk('extraReward',1)},
   {id:'elan', r:'e', name:'Élan du chasseur', desc:'Vaincre un ennemi réduit tes recharges d’1 tour.', max:1, v:7, apply:()=>addPk('cdrKill',1)},
-  {id:'destin', r:'e', name:'Lame du destin', desc:'Tes critiques infligent ×2 au lieu de ×1,5.', max:1, v:6, apply:()=>addPk('critMul',0.5)},
-  {id:'sang', r:'e', name:'Sang bouillant', desc:'+20 % de dégâts, mais −10 % de PV max.', max:1, v:6, apply:()=>{ R.mods.dmg+=0.2; R.mods.hpMul-=0.1; recalcStats(); R.hp=Math.min(R.hp,R.maxhp); }},
+  {id:'destin', r:'e', name:'Lame du destin', desc:'Tes critiques infligent ×1,8 au lieu de ×1,5.', max:1, v:6, apply:()=>addPk('critMul',0.3)},
+  {id:'sang', r:'e', name:'Sang bouillant', desc:'+12 % de dégâts, mais −8 % de PV max.', max:1, v:6, apply:()=>{ R.mods.dmg+=0.12; R.mods.hpMul-=0.08; recalcStats(); R.hp=Math.min(R.hp,R.maxhp); }},
   {id:'fragment', r:'e', name:'Fragment de cristal', desc:'+1 Fragment de cristal (invocation de compagnons).', max:2, v:2, apply:()=>{ R.frags=(R.frags||0)+1; }},
-  {id:'benediction', r:'e', name:'Bénédiction de Nald’thal', desc:'+10 % de dégâts et −5 % de dégâts subis.', max:1, v:8, apply:()=>{ R.mods.dmg+=0.1; R.mods.def+=0.05; }},
+  {id:'benediction', r:'e', name:'Bénédiction de Nald’thal', desc:'+6 % de dégâts et −3 % de dégâts subis.', max:1, v:8, apply:()=>{ R.mods.dmg+=0.06; R.mods.def+=0.03; }},
 ];
 const REW = Object.fromEntries(REWARDS.map(x=>[x.id,x]));
 const rewCount = id => R.taken.filter(x=>x===id).length;
@@ -864,8 +982,8 @@ const rewOK = x => !(x.max && rewCount(x.id)>=x.max) && !(x.req && !x.req());
 /* Tirage : n récompenses distinctes, rareté selon la profondeur et le type de combat */
 function rollRarity(kind){
   const f=R.floor, b = kind==='boss'?0.2 : (kind==='elite'||kind==='mimic')?0.1 : 0;
-  const ep = Math.min(0.3, 0.02 + 0.004*f + b*0.6 + (R.curse&&R.curse.loot?0.08:0));
-  const ra = Math.min(0.5, 0.18 + 0.007*f + b);
+  const ep = Math.min(0.2, 0.02 + 0.0025*f + b*0.5 + (R.curse&&R.curse.loot?0.08:0));
+  const ra = Math.min(0.4, 0.18 + 0.004*f + b*0.8);
   if (kind==='shrine') return rand()<0.3+0.004*f ? 'e' : 'r';
   if (kind==='shrineE') return 'e';
   const x=rand(); return x<ep ? 'e' : x<ep+ra ? 'r' : 'c';
@@ -927,9 +1045,53 @@ function jobStatsHTML(k){
 
 /* ===================== ÉCRANS : TITRE / CRÉATION / AVANT-POSTE ===================== */
 const SCREENS = {};
+/* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
+const CHANGELOG = [
+  {v:'v5', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', notes:[
+    'Comptes en ligne : inscription avec un pseudo et un mot de passe, sans adresse e-mail.',
+    'Liste d’amis avec statut en ligne visible.',
+    'Classement des meilleures explorations.',
+    'Mode duo en temps réel : deux joueurs explorent le palais ensemble, tour par tour.',
+    'Ajout de ces notes de patch, accessibles depuis l’écran titre.',
+    'Nouvelles sources de Fragments de cristal : fin d’étage, pièges désamorcés, salles maudites et première victoire sur chaque gardien.',
+    'Les récompenses de combat sont plus modestes et leurs cumuls subissent des rendements décroissants : le palais est plus exigeant.',
+    'Invocation : plusieurs bannières à faire défiler, chacune avec un compagnon mis en avant, et un écran des taux et règles.',
+    'Combats en vue de côté : ton équipe à gauche, les monstres à droite.',
+    'Mention légale Square Enix affichée sur l’écran titre ; aucun achat en argent réel dans le jeu.'
+  ]},
+  {v:'v4a', date:'23/10/2026', img:'assets/patchnotes/v4a.jpg', notes:[
+    'Nouveaux graphismes pour les personnages, les monstres et les décors.',
+    'Le joueur est centré sur le champ de bataille.',
+    'Toutes les icônes sont désormais en pixel art, sans emoji.',
+    'Boutons de compétences plus compacts avec info-bulles détaillées.'
+  ]},
+  {v:'v3', date:'23/10/2026', img:'assets/patchnotes/v3.jpg', notes:[
+    'Chaque étage propose une séquence de salles : événements, pièges, autels, marchand et repos.',
+    'Une récompense à choisir après chaque combat, avec la possibilité de Relancer.',
+    'Invocation de compagnons : 30 héros à collectionner, avec un 5 étoiles garanti.'
+  ]},
+  {v:'v2', date:'23/10/2026', img:'assets/patchnotes/v2.jpg', notes:[
+    'Le palais compte désormais 50 étages, avec gardiens et boss.',
+    'Équilibrage complet des jobs et des monstres.',
+    'Ajout de l’Atelier des sprites.'
+  ]},
+  {v:'v1', date:'23/10/2026', img:'assets/patchnotes/v1.jpg', notes:[
+    'Premier prototype jouable : exploration d’étages, combats au tour par tour et jobs de départ.'
+  ]},
+];
+const LEGAL_TXT = '© SQUARE ENIX CO., LTD. All Rights Reserved. FINAL FANTASY BRAVE EXVIUS © 2015-2023 SQUARE ENIX CO., LTD. Developed by Alim Co., Ltd. FINAL FANTASY XIV © 2010-2026 SQUARE ENIX CO., LTD. Fan game non officiel, non commercial.';
+function patchNotes(){
+  showModal(`<h2>Notes de patch</h2><div class="pn-scroll">${CHANGELOG.map(c=>`<section class="pn">
+    <div class="pn-ban" style="background-image:url(${c.img})"><b>${c.v}</b><span>${c.date}</span></div>
+    <ul>${c.notes.map(n=>`<li>${n}</li>`).join('')}</ul></section>`).join('')}
+    <p class="legal">Bannières réalisées avec les icônes officielles du FINAL FANTASY XIV Fan Kit. ${LEGAL_TXT}</p></div>
+    <button class="btn small" style="width:100%;margin-top:8px" id="pnC">Fermer</button>`);
+  document.getElementById('pnC').onclick=closeModal;
+}
 SCREENS.title = function(){
   C=null;
   app.innerHTML = `
+  <button class="pnlink" data-k="patchnotes" id="bPN">Notes de patch</button>
   <div class="title-logo">
     ${spr('icon_cristal','crystal')}
     <h1>LE PALAIS<br>DES MORTS</h1>
@@ -939,11 +1101,14 @@ SCREENS.title = function(){
   <div style="flex:1"></div>
   <div class="col" style="padding:0 6px">
     ${S.created ? `<button class="btn goldb" data-k="continue" id="bCont">${R?'Reprendre l’exploration':'Continuer'}</button>` : `<button class="btn goldb" data-k="new" data-go="create">Nouvelle aventure</button>`}
+    <button class="btn" data-k="online" id="bOnlineT" onclick="Online.open('title')">${ic('lb')} En ligne</button>
     <button class="btn" data-k="atelier" id="bAtelier">${spr('icon_autel','','width:26px')} Atelier des sprites</button>
     ${S.created ? `<button class="btn small" style="width:100%" data-k="reset" id="bReset">Recommencer à zéro</button>`:''}
   </div>
-  <p class="muted center" style="margin-top:6px">Sauvegarde automatique sur cet appareil</p>`;
+  <p class="muted center" style="margin-top:6px">Sauvegarde automatique sur cet appareil</p>
+  <p class="legal">${LEGAL_TXT}</p>`;
   bind(app);
+  document.getElementById('bPN').onclick=patchNotes;
   const bc=document.getElementById('bCont'); if(bc) bc.onclick=()=> R ? SCREENS.map() : SCREENS.hub();
   document.getElementById('bAtelier').onclick=()=>{ AT.back='title'; SCREENS.atelier(); };
   const br=document.getElementById('bReset'); if(br) br.onclick=()=>confirmBox('Effacer toute la sauvegarde (Gils, cristaux, améliorations) ? Les sprites de l’Atelier sont conservés.', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Effacer');
@@ -997,6 +1162,8 @@ SCREENS.hub = function(){
       <button class="btn" data-k="jobs" data-go="jobs">${spr('icon_cristal','','width:26px')} Jobs</button>
       <button class="btn" data-k="shop" data-go="shop">${spr('icon_coffre','','width:26px')} Marchand</button>
       <button class="btn" data-k="gacha" data-go="gacha">${spr('icon_cristal','','width:26px')} Invocation <span class="frag" style="font-size:13px">${ic('gem')}${S.frag||0}</span></button>
+      <button class="btn" data-k="online" id="bOnlineH" onclick="Online.open('hub')">${ic('lb')} En ligne</button>
+      <button class="btn" data-k="scores" id="bScores" onclick="scoresModal()">${ic('star')} Scores</button>
       <button class="btn" data-k="comps" id="bHubComps">${S.comp?spr('c_'+S.comp,'','width:26px'):spr('icon_rencontre','','width:26px')} Compagnons</button>
     </div>
     <button class="btn" data-k="atelier" id="bAtelier">${spr('icon_autel','','width:26px')} Atelier des sprites</button>
@@ -1084,8 +1251,18 @@ SCREENS.shop = function(){
   app.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{ const k=b.dataset.up, cost=UPGRADES[k].costs[S.upgrades[k]]; confirmBox(`Acheter <b>${UPGRADES[k].name}</b> pour <span class="gold">${cost} Gils</span> ?`, ()=>{ if(S.gils<cost) return; S.gils-=cost; S.upgrades[k]++; persist(); toast('Amélioration acquise !'); SCREENS.shop(); }, 'Acheter'); });
 };
 
+function scoresModal(){
+  const L=S.scores||[];
+  showModal(`<h2>Meilleurs scores (local)</h2><div class="col" style="gap:2px;margin-top:6px">${L.length?L.map((x,i)=>`<div class="stat"><span>${i+1}. ${JOBS[x.job]?JOBS[x.job].name:x.job} · étage ${x.floor}${x.victory?' · victoire':''}</span><b class="gold">${x.score.toLocaleString('fr-FR')}</b></div>`).join(''):'<p class="muted">Aucune exploration terminée.</p>'}</div>
+   <button class="btn small" style="width:100%;margin-top:8px" id="scC">Fermer</button>`);
+  document.getElementById('scC').onclick=closeModal;
+}
+
 /* ===================== EXPLORATION (RUN) ===================== */
 const MAX_FLOOR = 50;
+/* Bus d'événements pour modules externes (en ligne, classement…) : HOOKS.on('runStart'|'runEnd'|'score', fn) */
+const HOOKS = { l:{}, on(n,f){ (this.l[n]=this.l[n]||[]).push(f); }, emit(n,d){ (this.l[n]||[]).forEach(f=>{ try{ f(d); }catch(e){ console.error(e); } }); } };
+let UIDN = 0;
 const isBossFloor = f => f%5===0;
 const isBigBoss = f => f%10===0;
 function recalcStats(){
@@ -1099,11 +1276,12 @@ function startRun(){
   const cid = (S.comp && S.comps[S.comp]) ? S.comp : null;
   R = { v:3, seed, rs:RS, job:S.job, loadout:getLoadout(S.job), level:1, floor:1, up, def:j.def, crit:j.crit,
     mods:{dmg:0.04*up.dmg, def:0, crit:0, vamp:0, gil:0.15*up.gil, cdr:0, hpMul:1, mpr:0}, potions:2+up.potion, ethers:(j.mp>=100?1:0),
-    gilsEarned:0, kills:0, taken:[], perk:{}, frags:0, curse:null, rew:null, plan:null,
+    gilsEarned:0, kills:0, bosses:0, revives:0, startedAt:Date.now(), uidn:0, taken:[], perk:{}, frags:0, curse:null, rew:null, plan:null,
     comp: cid ? {id:cid, rank:S.comps[cid], revived:false} : null };
   recalcStats(); R.hp=R.maxhp; R.mp=R.maxmp;
   R.plan = planFloor(1);
   S.stats.runs++; S.run=R; persist();
+  HOOKS.emit('runStart',{seed:R.seed.slice(), job:R.job});
   floorIntro();
 }
 function healR(n){ R.hp = Math.min(R.maxhp, Math.round(R.hp + n)); }
@@ -1215,13 +1393,14 @@ function playerPanelHTML(inCombat){
     if (C.cp) sts.push(`<span style="color:#ffe27a">${COMPANIONS[R.comp.id].name} : ${C.cp.cd>0?'recharge '+C.cp.cd:'prêt'}</span>`);
   }
   return `<div class="win ppanel" id="pp">
-    <div class="row"><span class="nm grow">${esc(S.name)} <span class="muted">${j.name} · Niv. ${R.level}</span></span>${inCombat?'':`<span class="muted">Pot. ${R.potions} · Éth. ${R.ethers}</span>`}</div>
+    <div class="row"><span class="nm grow">${esc(R.pname||S.name)} <span class="muted">${j.name} · Niv. ${R.level}</span></span>${inCombat?'':`<span class="muted">Pot. ${R.potions} · Éth. ${R.ethers}</span>`}</div>
     <div class="row" style="gap:6px;margin-top:3px"><span style="width:24px;font-size:12px">PV</span><div class="grow">${bar(R.hp,R.maxhp,'',st?st.shield:0)}</div><span style="font-size:12px;width:74px;text-align:right">${Math.ceil(R.hp)}/${R.maxhp}</span></div>
     <div class="row" style="gap:6px;margin-top:3px"><span style="width:24px;font-size:12px">PM</span><div class="grow">${bar(R.mp,R.maxmp,'mp')}</div><span style="font-size:12px;width:74px;text-align:right">${Math.floor(R.mp)}/${R.maxmp}</span></div>
     ${inCombat?`<div class="status" style="margin-top:4px">${sts.map(s=>`<span>${s}</span>`).join('')}</div>`:''}
   </div>`;
 }
 function nextFloor(){
+  if (R.floor>=3 && rand()<0.1){ R.frags=(R.frags||0)+1; }
   R.floor++;
   if (R.floor>MAX_FLOOR) return endRun(true);
   R.level=R.floor; recalcStats();
@@ -1285,14 +1464,37 @@ function showRewards(){
     w.opts=nw.map(x=>x.id); showRewards();
   };
 }
+/* Score de fin d'exploration (borné par le serveur : 5 000 + 40 000 × étage) */
+function runScore(r, victory){
+  const fl=Math.min(r.floor,MAX_FLOOR), dur=Math.max(1,Math.round((Date.now()-(r.startedAt||Date.now()))/1000));
+  const parts = { etages:fl*1000, monstres:(r.kills||0)*20, boss:(r.bosses||0)*1500, victoire:victory?25000:0,
+    sansKO:(r.revives||0)===0 ? fl*150 : 0, temps:victory?Math.max(0,10000-dur*3):0,
+    malediction:(r.curseTaken||0)*400, gils:Math.floor((r.gilsEarned||0)/10) };
+  let tot=Object.values(parts).reduce((a,b)=>a+b,0);
+  tot=Math.min(tot, 5000+40000*fl-1, 2000000);
+  return { score:Math.round(tot), parts, dur, floor:fl };
+}
 function endRun(victory, abandoned){
+  const SC = runScore(R, victory), runRef = R;
   const earned = R.gilsEarned + (victory?500:0);
-  const frags = (R.frags||0) + (victory?5:0);
+  S.firstClear=S.firstClear||{}; let fcB=0; (R.bossFloors||[]).forEach(f=>{ if(!S.firstClear[f]){ S.firstClear[f]=1; fcB+=1; } });
+  const frags = (R.frags||0) + (victory?5:0) + fcB;
   S.gils += earned; S.stats.totalGils += earned; S.stats.kills += R.kills;
   S.frag = (S.frag||0) + frags; S.stats.fragsTotal = (S.stats.fragsTotal||0) + frags;
   if (victory) S.stats.wins++;
   const fl = Math.min(R.floor,MAX_FLOOR), job=R.job, kills=R.kills;
   S.stats.best=Math.max(S.stats.best,fl);
+  S.scores = (S.scores||[]).concat([{score:SC.score, floor:fl, job, victory:!!victory, date:Date.now()}]).sort((a,b)=>b.score-a.score).slice(0,10);
+  const bestScore = S.scores[0].score;
+  HOOKS.emit('runEnd', {victory:!!victory, floor:fl, score:SC.score, parts:SC.parts, job, seed:runRef.seed});
+  let olP = null;
+  if (typeof Online!=='undefined' && Online && Online.submitRun && !abandoned){
+    try{ const duo=Online.isDuo, other=duo?Online.players[1-Online.mySlot]:null;
+      olP = Online.submitRun({ job, companion: runRef.comp ? runRef.comp.id : null, floor:fl, score:SC.score, duration_s:SC.dur, victory:!!victory, seed:runRef.seed,
+        mode: duo?'duo':'solo', partner_pseudo: other?other.pseudo:null, partner_job: other?other.job:null });
+      if (duo && Online.endDuo) Online.endDuo();
+    }catch(e){ console.warn(e); }
+  }
   R=null; S.run=null; C=null; persist();
   app.innerHTML = `<div style="flex:1"></div>
    <div class="win col center" style="align-items:center;padding:22px 12px">
@@ -1300,16 +1502,23 @@ function endRun(victory, abandoned){
     ${victory?spr('icon_cristal','crystal'):spr(job,'','width:80px;filter:grayscale(1) brightness(.6);transform:rotate(90deg);margin:10px')}
     <p>${victory?'Le Souverain du Néant est tombé. Le Palais des Morts est purifié !':abandoned?'Tu quittes le palais par un passage secret.':'Ton aventurier a succombé dans les profondeurs…'}</p>
     <div class="col" style="width:100%;gap:2px;margin-top:6px">
+      <div class="stat"><span>Score</span><b class="gold" style="font-size:20px">${SC.score.toLocaleString('fr-FR')}</b></div>
+      <div class="stat"><span>Meilleur score</span><b>${bestScore.toLocaleString('fr-FR')}</b></div>
+      <div class="stat" id="olRank" style="display:none"></div>
       <div class="stat"><span>Étage atteint</span><b>${fl} / ${MAX_FLOOR}</b></div>
       <div class="stat"><span>Record</span><b>${S.stats.best}</b></div>
       <div class="stat"><span>Monstres vaincus</span><b>${kills}</b></div>
       ${victory?'<div class="stat"><span>Bonus de victoire</span><b class="gold">500</b></div>':''}
       <div class="stat"><span>Gils conservés</span><b class="gold">+${earned}</b></div>
       <div class="stat"><span>Fragments de cristal</span><b class="frag">+${frags} ${ic('gem')}</b></div>
+      ${fcB?`<div class="stat"><span>dont premières victoires sur un gardien</span><b class="frag">+${fcB}</b></div>`:''}
     </div>
    </div><div style="flex:1"></div>
    <button class="btn goldb" data-k="camp" id="bCamp">Retour à l’avant-poste</button>`;
   document.getElementById('bCamp').onclick=SCREENS.hub;
+  if (olP && olP.then) olP.then(r=>{ const el=document.getElementById('olRank'); if(!el||!r) return;
+    if (r.ok && r.rank){ el.style.display=''; el.innerHTML=`<span>Classement en ligne</span><b class="gold">${r.rank}e</b>`; }
+    else if (r.queued){ el.style.display=''; el.innerHTML=`<span>Classement</span><b>Connecte-toi pour publier</b>`; } }).catch(()=>{});
 }
 
 /* ===================== COMBAT (tour par tour) ===================== */
@@ -1320,7 +1529,7 @@ function makeEnemy(key, kind){
   return { key, name:d.name+(el?' +':''), hp, maxhp:hp, atk:d.atk*m.a*(el?BAL.elite.atk:1), res:Object.assign({phys:0,mag:0},d.res||{}),
     gils, ai:d.ai, boss:!!d.boss, support:!!d.support, t:0, dots:[], stunT:0, shield:0, buff:0, buffT:0, rage:0, flyT:0,
     enrageAt: (d.boss ? ENRAGE_AT[key] : (el ? BAL.elite.enrage : 0)) ? (d.boss ? ENRAGE_AT[key] : BAL.elite.enrage) + pk('enrageDelay') : 0, pending:null, intent:null, dead:false,
-    uid:Math.random().toString(36).slice(2,9) };
+    uid:'e'+(++R.uidn||(R.uidn=1)) };
 }
 function startCombat(kind){
   const f=R.floor; let list=[];
@@ -1375,7 +1584,7 @@ function helpModal(){
    <button class="btn small" style="width:100%;margin-top:8px" id="hC">Fermer</button>`);
   document.getElementById('hC').onclick=closeModal;
 }
-const effDef = () => clamp(R.def + R.mods.def, 0, 0.6);
+const effDef = () => clamp(softCap(R.def + R.mods.def, 0.25), 0, 0.5);
 const enraged = e => e.enrageAt && e.t>=e.enrageAt;
 const eAtk = e => e.atk*(1+(e.buffT>0?e.buff:0))*(1+0.15*e.rage)*(enraged(e)?2.5:1)*(R.curse&&R.curse.atk?1+R.curse.atk:1)*(e.weakT>0?0.7:1);
 function intentPower(e, x){ let p=x.power||1; if (x.shieldAmp) p *= (e.shield>0?2:0.6); return p; }
@@ -1469,10 +1678,11 @@ function fxAt(el, kind){
 }
 function anim(el, cls, ms=350){ if(FAST||!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); setTimeout(()=>el.classList.remove(cls),ms); }
 const enEl = e => document.getElementById('en-'+e.uid);
-const plEl = () => document.getElementById('player');
+let plEl = () => document.getElementById('player');
 /* --- calculs --- */
 const mpCost = s => Math.round((s.mp||0)*(1-pk('mpSave')));
-const dmgBonus = () => Math.max(0.2, 1 + R.mods.dmg + (C.st.buffT>0?C.st.buff:0) - (C.st.weakT>0?0.25:0));
+const softCap = (x, k, m=0.5) => x<=k ? x : k + (x-k)*m; /* rendements décroissants */
+const dmgBonus = () => Math.max(0.2, 1 + softCap(R.mods.dmg, 0.15) + (C.st.buffT>0?C.st.buff:0) - (C.st.weakT>0?0.25:0));
 const skType = s => s.type || (s.stat==='mag'?'mag':'phys');
 function enemyMul(e, type){ let r=e.res[type]||0; if (r>0) r*=(1-pk('pierce')); if (e.resDown) r-=e.resDown; return Math.max(0.1, (1 - r) * (e.flyT>0?0.5:1)); }
 function playerHit(s, e){
@@ -1559,7 +1769,7 @@ async function useSkill(s){
   if (s.mp) R.mp-=mpCost(s);
   if (s.cd) C.cds[s.id] = Math.max(1, s.cd - R.mods.cdr);
   if (s.req) st.sen -= s.req;
-  C.msg = `${esc(S.name)} utilise <b>${s.name}</b> !`;
+  C.msg = `${esc(R.pname||S.name)} utilise <b>${s.name}</b> !`;
   updateCombat();
   anim(plEl(), (s.target==='self' || s.stat==='mag') ? 'cast' : 'lunge', 400);
   await sleep(220);
@@ -1689,17 +1899,19 @@ async function checkEnd(){
 }
 function tryRevive(){
   const pel=plEl();
-  if (pk('phoenix')>0){ R.perk.phoenix--; R.hp=Math.round(R.maxhp*0.4); C.msg=''+ic('feather')+' La Queue de phénix te relève !'; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
-  if (R.comp && COMPANIONS[R.comp.id].kind==='revive' && !R.comp.revived){ R.comp.revived=true; R.hp=Math.round(R.maxhp*0.25*compPot()); C.msg=`${ic('spark')} ${COMPANIONS[R.comp.id].name} te relève (Vercoeur) !`; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
+  if (pk('phoenix')>0){ R.perk.phoenix--; R.revives=(R.revives||0)+1; R.hp=Math.round(R.maxhp*0.4); C.msg=''+ic('feather')+' La Queue de phénix te relève !'; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
+  if (R.comp && COMPANIONS[R.comp.id].kind==='revive' && !R.comp.revived){ R.comp.revived=true; R.revives=(R.revives||0)+1; R.hp=Math.round(R.maxhp*0.25*compPot()); C.msg=`${ic('spark')} ${COMPANIONS[R.comp.id].name} te relève (Vercoeur) !`; fxAt(pel,'holy'); floatAt(pel,'Relevé !','heal'); return true; }
   return false;
 }
 function fragDrop(kind){
-  let n = kind==='boss' ? (R.floor===MAX_FLOOR?5:isBigBoss(R.floor)?3:2) : kind==='elite' ? (rand()<0.3?1:0) : kind==='mimic' ? (rand()<0.35?1:0) : (rand()<0.05?1:0);
+  let n = kind==='boss' ? (R.floor===MAX_FLOOR?5:isBigBoss(R.floor)?3:2) : kind==='elite' ? (rand()<0.4?1:0) : kind==='mimic' ? (rand()<0.4?1:0) : (rand()<0.06?1:0);
+  if (kind==='boss') (R.bossFloors=R.bossFloors||[]).push(R.floor);
   if (R.comp && R.comp.id==='zidane' && rand()<0.06*compPot()) n++;
   R.frags=(R.frags||0)+n; return n;
 }
 function winCombat(){
   const kind=C.kind; C=null;
+  if (kind==='boss') R.bosses=(R.bosses||0)+1;
   healR(R.maxhp*(R.curse&&R.curse.noHeal?0:0.12)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*0.3));
   const fr=fragDrop(kind);
   if (kind==='boss' && R.floor===MAX_FLOOR) return endRun(true);
@@ -1737,6 +1949,7 @@ function trapChance(t){
 }
 function trapLoot(){
   const r=rand();
+  if (r<0.12){ R.frags=(R.frags||0)+1; return `Dans le mécanisme brille un <b>Fragment de cristal</b> ${ic('gem')}.`; }
   if (r<0.45){ const g=gainGils(10+2*R.floor); return `Tu récupères <span class="gold">${g} Gils</span> cachés dans le mécanisme.`; }
   if (r<0.7 && R.potions<5){ R.potions++; return 'Tu récupères une <b>Potion</b> laissée par un aventurier malchanceux.'; }
   const x=drawRewards(1,'normal')[0]; if(!x) return 'Rien à récupérer.'; takeReward(x); return `Tu trouves : <b>${x.name}</b><br><span class="muted">${x.desc}</span>`;
@@ -2424,54 +2637,110 @@ async function compAct(){
   updateCombat();
   await sleep(380);
 }
-/* --- Invocation --- */
-const GACHA = { x1:5, x10:45, pity:40, p5:0.03, p4:0.22 };
+/* --- Invocation : bannières avec héros mis en avant --- */
+const GACHA = { x1:5, x10:45, pity:40, p5:0.03, p4:0.22, up5:0.5, up4:0.5 };
+const BANNERS = [
+  {id:'etoile', name:'Lames de l’Étoile', game:'FINAL FANTASY XIV', f5:'yshtola', f4:['thancred','alphinaud'], c1:'#3a4aa8', c2:'#0c1238', glow:'#8fd0ff'},
+  {id:'midgar', name:'Ombres de Midgar', game:'FINAL FANTASY VII', f5:'cloud', f4:['tifa','vivi'], c1:'#2a6a4a', c2:'#08201a', glow:'#9dffb8'},
+  {id:'spira', name:'Pèlerinage de Spira', game:'FINAL FANTASY X', f5:'yuna', f4:['tidus','auron'], c1:'#2a6aa8', c2:'#0a1a38', glow:'#a8f0ff'},
+  {id:'lucis', name:'Héritier de Lucis', game:'FINAL FANTASY XV', f5:'noctis', f4:['squall','zidane'], c1:'#5a3a8a', c2:'#140a28', glow:'#d8b0ff'},
+  {id:'cocoon', name:'Foudre de Cocoon', game:'FINAL FANTASY XIII', f5:'lightning', f4:['cecil','urianger'], c1:'#8a3a4a', c2:'#280a14', glow:'#ffb0c0'},
+];
 const crand = () => { const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]/4294967296; };
-function pullOne(guar4){
+const curBanner = () => BANNERS[Math.min(BANNERS.length-1, Math.max(0, S.banner||0))];
+function pullOne(guar4, bn){
+  bn = bn || curBanner(); S.guar5 = S.guar5 || {};
   S.pity=(S.pity||0)+1;
   const r=crand(); let st = (S.pity>=GACHA.pity || r<GACHA.p5) ? 5 : (r<GACHA.p5+GACHA.p4 || guar4) ? 4 : 3;
-  if (st===5) S.pity=0;
-  const pool=Object.keys(COMPANIONS).filter(k=>COMPANIONS[k].star===st), id=pool[Math.floor(crand()*pool.length)];
+  let id;
+  if (st===5){ S.pity=0;
+    if (S.guar5[bn.id] || crand()<GACHA.up5){ id=bn.f5; S.guar5[bn.id]=0; }
+    else { const pool=Object.keys(COMPANIONS).filter(k=>COMPANIONS[k].star===5 && k!==bn.f5); id=pool[Math.floor(crand()*pool.length)]; S.guar5[bn.id]=1; }
+  } else if (st===4 && crand()<GACHA.up4){ id=bn.f4[Math.floor(crand()*bn.f4.length)]; }
+  else { const pool=Object.keys(COMPANIONS).filter(k=>COMPANIONS[k].star===st && !(st===4 && bn.f4.includes(k))); id=pool[Math.floor(crand()*pool.length)]; }
   const had=S.comps[id]||0; let res;
   if (!had){ S.comps[id]=1; res='new'; } else if (had<5){ S.comps[id]=had+1; res='rank'; } else { S.frag+=2; res='refund'; }
   S.stats.pulls=(S.stats.pulls||0)+1;
-  return {id, st, res, rank:S.comps[id]};
+  return {id, st, res, rank:S.comps[id], up: id===bn.f5 || (st===4 && bn.f4.includes(id))};
 }
 function doPull(n){
   const cost = n===10 ? GACHA.x10 : GACHA.x1;
   if ((S.frag||0)<cost){ toast('Pas assez de fragments'); return null; }
-  S.frag-=cost; const out=[];
-  for (let i=0;i<n;i++) out.push(pullOne(n===10 && i===9 && !out.some(o=>o.st>=4)));
+  S.frag-=cost; const out=[], bn=curBanner();
+  for (let i=0;i<n;i++) out.push(pullOne(n===10 && i===9 && !out.some(o=>o.st>=4), bn));
   if (!S.comp) S.comp = out[0].id;
   persist(); return out;
 }
 const stars = n => `<span class="stars s${n}">${starsIc(n)}</span>`;
+function bannerHTML(b){
+  const parts = Array.from({length:14},(_,i)=>`<i style="left:${(i*37)%100}%;animation-delay:${(i*0.37)%3}s;animation-duration:${2.6+(i%4)*0.6}s"></i>`).join('');
+  return `<div class="gban" style="--c1:${b.c1};--c2:${b.c2};--gl:${b.glow}">
+    <div class="gpart">${parts}</div>
+    <div class="gfeat">${spr('c_'+b.f5,'idle')}</div>
+    <div class="gside">${b.f4.map(k=>spr('c_'+k,'idle')).join('')}</div>
+    <div class="ginfo"><small>${b.game}</small><b>${b.name}</b><span>Taux augmenté : <b>${COMPANIONS[b.f5].name}</b> 5${ic('star')}<br>${b.f4.map(k=>COMPANIONS[k].name).join(', ')} 4${ic('star')}</span></div>
+    <div class="gcopy">© SQUARE ENIX</div></div>`;
+}
+function gachaRules(){
+  const bn=curBanner(), list=st=>Object.keys(COMPANIONS).filter(k=>COMPANIONS[k].star===st);
+  const p5=GACHA.p5, p4=GACHA.p4, p3=1-p5-p4, o5=list(5).filter(k=>k!==bn.f5), o4=list(4).filter(k=>!bn.f4.includes(k)), l3=list(3);
+  const pc=x=>(x*100).toFixed(2).replace('.',',')+' %';
+  const row=(n,p,up)=>`<tr${up?' class="up"':''}><td>${COMPANIONS[n].name}${up?' <b class="gold">(mis en avant)</b>':''}</td><td>${pc(p)}</td></tr>`;
+  const left=GACHA.pity-(S.pity||0);
+  showModal(`<h2>Taux et règles</h2><div class="pn-scroll rules">
+   <p><b>${bn.name}</b> · ${bn.game}</p>
+   <table class="rt"><tr><th>Rareté</th><th>Taux</th></tr><tr><td>5${ic('star')}</td><td>${pc(p5)}</td></tr><tr><td>4${ic('star')}</td><td>${pc(p4)}</td></tr><tr><td>3${ic('star')}</td><td>${pc(p3)}</td></tr></table>
+   <h3>Taux augmenté</h3><p>Quand tu obtiens un 5${ic('star')}, il y a ${Math.round(GACHA.up5*100)} % de chances que ce soit <b>${COMPANIONS[bn.f5].name}</b>. Si ce n’est pas le cas, le prochain 5${ic('star')} sur cette bannière sera forcément ${COMPANIONS[bn.f5].name}${(S.guar5||{})[bn.id]?' <b class="gold">(garantie active)</b>':''}.<br>Quand tu obtiens un 4${ic('star')}, il y a ${Math.round(GACHA.up4*100)} % de chances que ce soit l’un des 4${ic('star')} mis en avant.</p>
+   <h3>Garanties</h3><p>Compteur de garantie : <b class="gold">${S.pity||0} / ${GACHA.pity}</b>. Un 5${ic('star')} est garanti au plus tard à la ${GACHA.pity}e invocation (encore ${left}). Le compteur est commun à toutes les bannières et repart à zéro à chaque 5${ic('star')}.<br>Une invocation ×10 contient au moins un 4${ic('star')}.</p>
+   <h3>Doublons</h3><p>Un doublon augmente le rang du compagnon (max 5). Au-delà, il rend 2 ${ic('gem')}.</p>
+   <h3>Détail par compagnon</h3>
+   <table class="rt"><tr><th>5${ic('star')}</th><th>Taux</th></tr>${row(bn.f5,p5*GACHA.up5,1)}${o5.map(k=>row(k,p5*(1-GACHA.up5)/o5.length)).join('')}</table>
+   <table class="rt"><tr><th>4${ic('star')}</th><th>Taux</th></tr>${bn.f4.map(k=>row(k,p4*GACHA.up4/bn.f4.length,1)).join('')}${o4.map(k=>row(k,p4*(1-GACHA.up4)/o4.length)).join('')}</table>
+   <table class="rt"><tr><th>3${ic('star')}</th><th>Taux</th></tr>${l3.map(k=>row(k,p3/l3.length)).join('')}</table>
+   <p class="muted">Les Fragments de cristal ${ic('gem')} se gagnent uniquement en jouant. Aucun achat en argent réel n’existe dans ce jeu.</p>
+   <p class="legal">${LEGAL_TXT}</p></div>
+   <button class="btn small" style="width:100%;margin-top:8px" id="grC">Fermer</button>`);
+  document.getElementById('grC').onclick=closeModal;
+}
 SCREENS.gacha = function(results){
-  const left = GACHA.pity-(S.pity||0);
+  const left = GACHA.pity-(S.pity||0), bi=Math.min(BANNERS.length-1, S.banner||0);
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Invocation de héros</b><span class="frag">${ic('gem')} ${S.frag||0}</span></div>
   <div class="scroll">
-    <div class="win col center gbanner" style="align-items:center">
-      <div class="row" style="justify-content:center;gap:4px">${['c_cloud','c_yshtola','c_noctis','c_yuna','c_estinien'].map(k=>spr(k,'idle','width:52px')).join('')}</div>
-      <h2>Cristal des héros</h2>
-      <p class="muted">Des héros de tout Final Fantasy répondent à l’appel du cristal. Ils t’accompagnent dans le Palais.</p>
-      <div class="muted" style="font-size:13px">5${ic('star')} ${Math.round(GACHA.p5*100)} % · 4${ic('star')} ${Math.round(GACHA.p4*100)} % · 3${ic('star')} ${100-Math.round((GACHA.p5+GACHA.p4)*100)} % · ×10 : au moins un 4${ic('star')}<br>
-      <b class="gold">5${ic('star')} garanti dans ${left} invocation${left>1?'s':''}</b> · Doublon = rang +1 (max 5), puis 2 ${ic('gem')} rendus.</div>
+    <div class="gcar" id="gcar">
+      <div class="gtrack" id="gtrack" style="transform:translateX(${-bi*100}%)">${BANNERS.map(bannerHTML).join('')}</div>
+      <button class="garr l" id="gPrev" data-k="bprev" aria-label="Bannière précédente">‹</button><button class="garr r" id="gNext" data-k="bnext" aria-label="Bannière suivante">›</button>
     </div>
-    ${results?`<div class="win col"><h3>Résultat</h3><div class="grid5">${results.map(o=>`<div class="gcard s${o.st}">${spr('c_'+o.id,'idle')}<div class="gn">${COMPANIONS[o.id].name}</div>${stars(o.st)}<div class="gt">${o.res==='new'?'NOUVEAU !':o.res==='rank'?'Rang '+o.rank:'+2 '+ic('gem')+''}</div></div>`).join('')}</div></div>`:''}
+    <div class="gdots">${BANNERS.map((b,i)=>`<span class="${i===bi?'on':''}" data-dot="${i}"></span>`).join('')}</div>
+    <div class="row" style="justify-content:space-between;align-items:center;margin:2px 4px">
+      <span class="muted" style="font-size:13px"><b class="gold">5${ic('star')} garanti dans ${left}</b> · ×10 : au moins un 4${ic('star')}</span>
+      <button class="btn small" style="width:auto;min-height:34px;padding:2px 10px" data-k="rules" id="bRules">Taux et règles</button></div>
+    ${results?`<div class="win col"><h3>Résultat</h3><div class="grid5">${results.map(o=>`<div class="gcard s${o.st}${o.up?' up':''}">${spr('c_'+o.id,'idle')}<div class="gn">${COMPANIONS[o.id].name}</div>${stars(o.st)}<div class="gt">${o.res==='new'?'NOUVEAU !':o.res==='rank'?'Rang '+o.rank:'+2 '+ic('gem')+''}</div></div>`).join('')}</div></div>`:''}
     <div class="grid2">
       <button class="btn goldb" data-k="pull1" id="bPull1" ${S.frag>=GACHA.x1?'':'disabled'}>Invoquer ×1<small style="display:block;font-size:12px">${GACHA.x1} ${ic('gem')}</small></button>
       <button class="btn goldb" data-k="pull10" id="bPull10" ${S.frag>=GACHA.x10?'':'disabled'}>Invoquer ×10<small style="display:block;font-size:12px">${GACHA.x10} ${ic('gem')}</small></button>
     </div>
-    <p class="muted center" style="font-size:13px">Les fragments ${ic('gem')} tombent rarement des monstres, plus souvent des élites, Mimiques, gardiens et boss. Ils sont conservés entre les explorations.</p>
+    <p class="muted center" style="font-size:13px">Les fragments ${ic('gem')} se gagnent en jouant : monstres, élites, Mimiques, pièges, fins d’étage, gardiens et boss. Aucun achat en argent réel.</p>
     <button class="btn" data-k="comps" id="bComps">Mes compagnons (${Object.keys(S.comps).length}/${COMP_ORDER.length})</button>
   </div>
   <button class="btn" data-k="back" data-go="hub">Retour</button>`;
   bind(app);
+  const go=i=>{ S.banner=(i+BANNERS.length)%BANNERS.length; persist();
+    document.getElementById('gtrack').style.transform=`translateX(${-S.banner*100}%)`;
+    document.querySelectorAll('.gdots span').forEach((d,k)=>d.classList.toggle('on',k===S.banner)); };
+  document.getElementById('gPrev').onclick=()=>go((S.banner||0)-1);
+  document.getElementById('gNext').onclick=()=>go((S.banner||0)+1);
+  document.querySelectorAll('[data-dot]').forEach(d=>d.onclick=()=>go(+d.dataset.dot));
+  const car=document.getElementById('gcar'); let x0=null, y0=0;
+  car.addEventListener('touchstart',e=>{ x0=e.touches[0].clientX; y0=e.touches[0].clientY; },{passive:true});
+  car.addEventListener('touchend',e=>{ if(x0===null) return; const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if (Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)) go((S.banner||0)+(dx<0?1:-1)); },{passive:true});
+  document.getElementById('bRules').onclick=gachaRules;
   document.getElementById('bPull1').onclick=()=>{ const r=doPull(1); if(r) SCREENS.gacha(r); };
   document.getElementById('bPull10').onclick=()=>{ const r=doPull(10); if(r) SCREENS.gacha(r); };
   document.getElementById('bComps').onclick=()=>SCREENS.comps('gacha');
 };
+
 let compBack='hub';
 SCREENS.comps = function(back){
   if (back) compBack=back;
@@ -2496,6 +2765,994 @@ function compDetail(k){
     <div class="row" style="margin-top:10px"><button class="btn small grow" id="cdC">Fermer</button>${rk?`<button class="btn small goldb grow" data-k="pickcomp" id="cdP">Choisir</button>`:''}</div>`);
   document.getElementById('cdC').onclick=closeModal;
   const p=document.getElementById('cdP'); if(p) p.onclick=()=>{ S.comp=k; persist(); closeModal(); SCREENS.comps(); };
+}
+/* =====================================================================
+   EN LIGNE — comptes, classement des explorations, amis, duo temps réel
+   Backend : Supabase (projet ruuorgyqgtdgfpthanuq). Objets côté base : pdm_*.
+   La clé ci-dessous est la clé PUBLIQUE (publishable) : prévue pour le client.
+   Le jeu reste 100 % jouable hors ligne : rien ici n'est requis pour jouer seul.
+   Voir ONLINE_INTEGRATION.md pour les points d'accroche du moteur.
+   ===================================================================== */
+const Online = (function(){
+  'use strict';
+  const CFG = {
+    url: 'https://ruuorgyqgtdgfpthanuq.supabase.co',
+    key: 'sb_publishable_gS5NYQ6xyp-QsK5a1M3mZw_phtomiT0',
+    sdk: 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.109.0/dist/umd/supabase.min.js',
+    site: (typeof location!=='undefined' && /^https?:/.test(location.protocol)) ? location.origin+location.pathname : 'https://palais-des-morts.onrender.com/',
+    signupFn: 'pdm-signup',
+    emailDomain: 'joueurs.palaisdesmorts.app', // e-mail interne dérivé du pseudo (aucun e-mail réel)
+    authKey: 'pdm-auth',            // clé de session dédiée (n'écrase pas celle d'un autre jeu sur le même domaine)
+    lobby: 'pdm-lobby', roomPrefix: 'pdm-room-',
+    turnTimeoutMs: 45000,           // délai avant action automatique du partenaire (hôte uniquement)
+    graceMs: 90000,                 // délai de reconnexion avant de continuer sans le partenaire
+    resendMs: 2500, protocol: 1,
+  };
+  const HAS_DOM = typeof document !== 'undefined';
+  const LS = (typeof localStorage !== 'undefined') ? localStorage : { getItem(){return null;}, setItem(){}, removeItem(){} };
+  const SS = (typeof sessionStorage !== 'undefined') ? sessionStorage : LS;
+
+  /* ---------- petits outils ---------- */
+  const listeners = {};
+  function on(ev, fn){ (listeners[ev] = listeners[ev] || []).push(fn); return () => off(ev, fn); }
+  function off(ev, fn){ listeners[ev] = (listeners[ev]||[]).filter(f => f !== fn); }
+  function emit(ev, data){ (listeners[ev]||[]).slice().forEach(f => { try{ f(data); }catch(e){ console.error('[online]', ev, e); } }); }
+  const E = s => (typeof esc === 'function') ? esc(s) : String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  function rnd32(){ const a = new Uint32Array(1); (globalThis.crypto||require('crypto').webcrypto).getRandomValues(a); return a[0]; }
+  let _gid = null;
+  function guestId(){ if (_gid) return _gid; let g = LS.getItem('pdm_guest_id'); if (!g){ g = 'g-' + rnd32().toString(36) + rnd32().toString(36); LS.setItem('pdm_guest_id', g); } return (_gid = g); }
+  /* JSON stable (clés triées) + FNV-1a 32 bits -> empreinte d'état pour détecter les désynchronisations */
+  function stable(v){
+    if (v === null || typeof v !== 'object') return typeof v === 'number' ? (Number.isFinite(v) ? String(Math.round(v*1e6)/1e6) : 'null') : JSON.stringify(v === undefined ? null : v);
+    if (Array.isArray(v)) return '[' + v.map(stable).join(',') + ']';
+    return '{' + Object.keys(v).filter(k => v[k] !== undefined && typeof v[k] !== 'function' && k[0] !== '_').sort().map(k => JSON.stringify(k) + ':' + stable(v[k])).join(',') + '}';
+  }
+  function hash(v){ const s = typeof v === 'string' ? v : stable(v); let h = 0x811c9dc5; for (let i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return (h>>>0).toString(16).padStart(8,'0'); }
+
+  const ERR = {
+    'Invalid login credentials': 'Pseudo ou mot de passe incorrect.',
+    'Email not confirmed': 'Compte non activé. Contacte l’administrateur du jeu.',
+    'User already registered': 'Ce pseudo est déjà pris.',
+    'Signups not allowed': 'Les inscriptions sont fermées pour le moment.',
+    'email rate limit exceeded': 'Trop d’essais. Réessaie dans quelques minutes.',
+    'over_email_send_rate_limit': 'Trop d’essais. Réessaie dans quelques minutes.',
+    'Password should be at least 6 characters': 'Le mot de passe doit faire au moins 6 caractères.',
+    'Unable to validate email address: invalid format': 'Pseudo invalide.',
+    'Password should be': 'Mot de passe trop court (6 caractères minimum).',
+    pseudo_invalid: 'Pseudo invalide : 3 à 16 caractères (lettres, chiffres, _ et -).',
+    pseudo_taken: 'Ce pseudo est déjà pris.', password_short: 'Mot de passe trop court (6 caractères minimum).',
+    password_long: 'Mot de passe trop long (72 caractères maximum).', password_weak: 'Mot de passe refusé : choisis-en un autre.',
+    origin_not_allowed: 'Inscription impossible depuis ce site.', server_error: 'Erreur du serveur, réessaie.', bad_request: 'Requête invalide.', not_authenticated: 'Connecte-toi d’abord.',
+    no_profile: 'Choisis d’abord un pseudo.', rate_limited: 'Doucement ! Attends quelques secondes.',
+    unknown_pseudo: 'Aucun joueur avec ce pseudo.', self: 'C’est toi !', not_found: 'Demande introuvable.',
+    invalid_score: 'Score refusé par le serveur.', invalid_duration: 'Durée refusée par le serveur.', invalid_victory: 'Victoire invalide.',
+    'Failed to fetch': 'Pas de connexion au serveur.', offline: 'Pas de connexion au serveur.',
+  };
+  function errMsg(e){
+    const m = (e && (e.message || e.error_description || e.msg)) || String(e||'Erreur');
+    for (const k in ERR) if (m.indexOf(k) >= 0) return ERR[k];
+    if (/rate limit/i.test(m)) return ERR['email rate limit exceeded'];
+    if (/network|fetch|Load failed/i.test(m)) return ERR.offline;
+    return m;
+  }
+  const PSEUDO_RE = /^[A-Za-z0-9_-]{3,16}$/;
+  const pseudoEmail = p => String(p).trim().toLowerCase() + '@' + CFG.emailDomain;
+  const loginEmail = id => { id = String(id||'').trim(); return id.indexOf('@') >= 0 ? id : pseudoEmail(id); };
+
+  /* ---------- état ---------- */
+  const st = { sb:null, initP:null, user:null, profile:null, lobbyCh:null, onlineIds:{}, friends:[], back:'hub', lbFilter:{mode:'all', job:'all', mine:false} };
+  let engine = null;   // moteur du jeu (voir attachEngine)
+
+  /* ---------- initialisation / chargement du SDK ---------- */
+  function loadSdk(){
+    if (globalThis.supabase && globalThis.supabase.createClient) return Promise.resolve(globalThis.supabase.createClient);
+    if (!HAS_DOM) return Promise.reject(new Error('offline'));
+    return new Promise((res, rej) => {
+      const s = document.createElement('script'); s.src = CFG.sdk; s.async = true;
+      s.onload = () => globalThis.supabase ? res(globalThis.supabase.createClient) : rej(new Error('offline'));
+      s.onerror = () => rej(new Error('offline'));
+      document.head.appendChild(s);
+    });
+  }
+  function init(opts){
+    opts = opts || {};
+    if (st.initP) return st.initP;
+    st.initP = (async () => {
+      const createClient = opts.createClient || await loadSdk();
+      st.sb = createClient(CFG.url, CFG.key, Object.assign({ auth:{ storageKey:CFG.authKey, persistSession:!!HAS_DOM, autoRefreshToken:true, detectSessionInUrl:!!HAS_DOM } }, opts.clientOptions||{}));
+      st.sb.auth.onAuthStateChange((ev, session) => { setTimeout(() => onSession(session, ev), 0); });
+      const { data } = await st.sb.auth.getSession();
+      await onSession(data && data.session, 'INITIAL');
+      return true;
+    })().catch(e => { st.initP = null; throw e; });
+    return st.initP;
+  }
+  async function onSession(session, ev){
+    const u = session ? session.user : null;
+    const changed = (u && u.id) !== (st.user && st.user.id);
+    st.user = u;
+    if (!u){ st.profile = null; leaveLobby(); if (changed || ev==='INITIAL') emit('auth', state()); return; }
+    if (changed || !st.profile){ await loadProfile(); }
+    if (ev === 'SIGNED_IN' && HAS_DOM && /type=signup|access_token/.test(location.hash||'')) { try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){} }
+    emit('auth', state());
+  }
+  async function loadProfile(){
+    if (!st.user) return null;
+    const { data } = await st.sb.from('pdm_profiles').select('id,pseudo,created_at').eq('id', st.user.id).maybeSingle();
+    st.profile = data || null;
+    // Profil créé à la première connexion dans CE jeu (les comptes Auth sont partagés avec d'autres apps)
+    if (!st.profile){ const md = st.user.user_metadata || {}; const want = md.game === 'pdm' ? (md.pseudo || md.pdm_pseudo) : md.pdm_pseudo; if (want){ try{ await setPseudo(want); }catch(e){} } }
+    if (st.profile){ joinLobby(); flushPendingRuns(); }
+    return st.profile;
+  }
+  function state(){ return { ready:!!st.sb, loggedIn:!!st.user, user: st.user, profile: st.profile, needPseudo: !!st.user && !st.profile }; }
+  const myId = () => st.user ? st.user.id : guestId();
+  const myPseudo = () => st.profile ? st.profile.pseudo : ((typeof S!=='undefined' && S && S.name) ? String(S.name).slice(0,16) : 'Invité');
+
+  /* ---------- comptes ---------- */
+  async function pseudoAvailable(p){ if (!PSEUDO_RE.test(p||'')) return false; await init(); const { data, error } = await st.sb.rpc('pdm_pseudo_available', { p }); if (error) throw new Error(errMsg(error)); return !!data; }
+  /* Inscription : pseudo + mot de passe uniquement. L'Edge Function pdm-signup crée le compte
+     (e-mail interne dérivé du pseudo, déjà confirmé) et le profil ; on se connecte aussitôt. */
+  async function signUp(pseudo, password){
+    await init();
+    pseudo = String(pseudo||'').trim();
+    if (!PSEUDO_RE.test(pseudo)) throw new Error(ERR.pseudo_invalid);
+    if (String(password||'').length < 6) throw new Error(ERR.password_short);
+    if (!(await pseudoAvailable(pseudo))) throw new Error(ERR.pseudo_taken);
+    let res, body = {};
+    try {
+      res = await fetch(CFG.url + '/functions/v1/' + CFG.signupFn, { method:'POST', headers:{ 'Content-Type':'application/json', apikey: CFG.key, Authorization: 'Bearer ' + CFG.key }, body: JSON.stringify({ pseudo, password }) });
+      body = await res.json().catch(() => ({}));
+    } catch(e){ throw new Error(ERR.offline); }
+    if (!res.ok || !body.ok) throw new Error(ERR[body.error] || errMsg(body.error || ('HTTP ' + res.status)));
+    await signIn(pseudo, password);
+    return { ok:true };
+  }
+  /* Connexion : pseudo (ou e-mail pour un compte existant d'une autre app) + mot de passe */
+  async function signIn(id, password){
+    await init();
+    const { data, error } = await st.sb.auth.signInWithPassword({ email: loginEmail(id), password });
+    if (error) throw new Error(errMsg(error));
+    st.user = (data && (data.user || (data.session && data.session.user))) || st.user;
+    await loadProfile(); emit('auth', state()); return state();
+  }
+  async function signOut(){ await init(); leaveRoom(); await st.sb.auth.signOut(); st.user=null; st.profile=null; emit('auth', state()); }
+  async function setPseudo(p){
+    await init();
+    const { data, error } = await st.sb.rpc('pdm_set_pseudo', { p });
+    if (error) throw new Error(errMsg(error));
+    st.profile = data; joinLobby(); flushPendingRuns(); emit('auth', state()); return data;
+  }
+
+  /* ---------- classement des explorations ---------- */
+  async function fetchLeaderboard(f){
+    await init(); f = f || {};
+    let q = st.sb.from('pdm_runs').select('id,user_id,pseudo,job,companion,floor,score,duration_s,victory,mode,partner_pseudo,partner_job,created_at').order('score', { ascending:false }).order('created_at', { ascending:true }).limit(f.limit || 50);
+    if (f.mode && f.mode !== 'all') q = q.eq('mode', f.mode);
+    if (f.job && f.job !== 'all') q = q.eq('job', f.job);
+    if (f.mine && st.user) q = q.eq('user_id', st.user.id);
+    const { data, error } = await q;
+    if (error) throw new Error(errMsg(error));
+    return data || [];
+  }
+  /* run = { job, companion, floor, score, duration_s, victory, mode:'solo'|'duo', partner_pseudo, partner_job, seed } */
+  function cleanRun(r){
+    return { p_job:String(r.job||'').toLowerCase(), p_companion: r.companion ? String(r.companion).toLowerCase() : null,
+      p_floor: Math.max(1, Math.min(50, Math.round(r.floor||1))), p_score: Math.max(0, Math.round(r.score||0)),
+      p_duration_s: Math.max(5, Math.min(86400, Math.round(r.duration_s||0))), p_victory: !!r.victory,
+      p_mode: r.mode === 'duo' ? 'duo' : 'solo', p_partner_pseudo: r.mode==='duo' ? (r.partner_pseudo||null) : null,
+      p_partner_job: r.mode==='duo' && r.partner_job ? String(r.partner_job).toLowerCase() : null,
+      p_seed: r.seed == null ? null : (Array.isArray(r.seed) ? r.seed.join('-') : String(r.seed)).slice(0,80) };
+  }
+  async function submitRun(r){
+    if (r && r.mode === 'duo' && room.active && !room.host) return { ok:false, skipped:'guest' }; // en duo, seul l'hôte publie
+    const args = cleanRun(r);
+    try { await init(); } catch(e){ queueRun(args); return { ok:false, queued:true, reason:errMsg(e) }; }
+    if (!st.user || !st.profile){ queueRun(args); return { ok:false, queued:true, reason:'login' }; }
+    const { data, error } = await st.sb.rpc('pdm_submit_run', args);
+    if (error){ if (/fetch|network/i.test(error.message||'')) queueRun(args); return { ok:false, reason:errMsg(error) }; }
+    const { count } = await st.sb.from('pdm_runs').select('id', { count:'exact', head:true }).gt('score', args.p_score);
+    emit('runSubmitted', { id:data, rank:(count||0)+1 });
+    return { ok:true, id:data, rank:(count||0)+1 };
+  }
+  function queueRun(args){ try{ const q = JSON.parse(LS.getItem('pdm_pending_runs')||'[]'); q.push(args); LS.setItem('pdm_pending_runs', JSON.stringify(q.slice(-5))); }catch(e){} }
+  let flushing = false;
+  async function flushPendingRuns(){
+    if (flushing || !st.profile) return; flushing = true;
+    try{
+      let q = JSON.parse(LS.getItem('pdm_pending_runs')||'[]');
+      while (q.length){ const a = q[0]; const { error } = await st.sb.rpc('pdm_submit_run', a); if (error && /fetch|network/i.test(error.message||'')) break; if (error && /rate_limited/.test(error.message||'')){ await wait(16000); continue; } q.shift(); LS.setItem('pdm_pending_runs', JSON.stringify(q)); }
+    }catch(e){} flushing = false;
+  }
+  const pendingRuns = () => { try{ return JSON.parse(LS.getItem('pdm_pending_runs')||'[]').length; }catch(e){ return 0; } };
+
+  /* ---------- amis + présence ---------- */
+  async function searchPlayers(q){
+    await init(); q = String(q||'').trim(); if (q.length < 2) return [];
+    const { data, error } = await st.sb.from('pdm_profiles').select('id,pseudo').ilike('pseudo', q.replace(/[%_\\]/g, m => '\\'+m) + '%').order('pseudo').limit(10);
+    if (error) throw new Error(errMsg(error));
+    return (data||[]).filter(p => !st.user || p.id !== st.user.id).map(p => Object.assign(p, { online: !!st.onlineIds[p.id] }));
+  }
+  async function fetchFriends(){
+    await init(); if (!st.user) return [];
+    const { data, error } = await st.sb.rpc('pdm_my_friends');
+    if (error) throw new Error(errMsg(error));
+    st.friends = (data||[]).map(f => Object.assign(f, { online: !!st.onlineIds[f.user_id], where: st.onlineIds[f.user_id] && st.onlineIds[f.user_id].where }));
+    emit('friends', st.friends); return st.friends;
+  }
+  async function rpcFriend(fn, args){ await init(); const { data, error } = await st.sb.rpc(fn, args); if (error) throw new Error(errMsg(error)); fetchFriends().catch(()=>{}); return data; }
+  const requestFriend = pseudo => rpcFriend('pdm_friend_request', { p_pseudo: pseudo });
+  const respondFriend = (id, accept) => rpcFriend('pdm_friend_respond', { p_id: id, p_accept: !!accept });
+  const removeFriend = uid => rpcFriend('pdm_friend_remove', { p_other: uid });
+
+  function joinLobby(){
+    if (!st.sb || !st.profile || st.lobbyCh) return;
+    const ch = st.sb.channel(CFG.lobby, { config:{ presence:{ key: st.user.id }, broadcast:{ self:false } } });
+    ch.on('presence', { event:'sync' }, () => {
+      const ps = ch.presenceState(); const ids = {};
+      Object.keys(ps).forEach(k => { const m = ps[k][0] || {}; ids[k] = { pseudo:m.pseudo, where:m.where }; });
+      st.onlineIds = ids; st.friends.forEach(f => { f.online = !!ids[f.user_id]; f.where = ids[f.user_id] && ids[f.user_id].where; });
+      emit('presence', ids); emit('friends', st.friends);
+    });
+    ch.on('broadcast', { event:'invite' }, ({ payload }) => { if (payload && payload.to === st.user.id) { emit('invite', payload); showInvite(payload); } });
+    ch.on('broadcast', { event:'invite-reply' }, ({ payload }) => { if (payload && payload.to === st.user.id){ emit('inviteReply', payload); if (!payload.accept) note(`${payload.fromPseudo} a décliné l’invitation.`); } });
+    ch.on('broadcast', { event:'friend-ping' }, ({ payload }) => { if (payload && payload.to === st.user.id) fetchFriends().catch(()=>{}); });
+    ch.subscribe(s => { if (s === 'SUBSCRIBED') ch.track({ pseudo: st.profile.pseudo, where: room.active ? 'duo' : 'hub', at: Date.now() }); });
+    st.lobbyCh = ch;
+    fetchFriends().catch(()=>{});
+  }
+  function leaveLobby(){ if (st.lobbyCh){ try{ st.sb.removeChannel(st.lobbyCh); }catch(e){} st.lobbyCh = null; st.onlineIds = {}; } }
+  function setWhere(where){ if (st.lobbyCh && st.profile) st.lobbyCh.track({ pseudo: st.profile.pseudo, where, at: Date.now() }); }
+  function lobbySend(event, payload){ if (st.lobbyCh) st.lobbyCh.send({ type:'broadcast', event, payload }); }
+  const pingFriend = uid => lobbySend('friend-ping', { to: uid });
+  async function inviteFriend(uid){
+    if (!st.profile) throw new Error(ERR.not_authenticated);
+    if (!st.onlineIds[uid]) throw new Error('Ce joueur n’est pas en ligne.');
+    if (!room.code) await createRoom();
+    lobbySend('invite', { to: uid, from: st.user.id, fromPseudo: st.profile.pseudo, code: room.code, at: Date.now() });
+    return room.code;
+  }
+  function replyInvite(inv, accept){ lobbySend('invite-reply', { to: inv.from, from: st.user && st.user.id, fromPseudo: myPseudo(), accept: !!accept, code: inv.code }); }
+
+  /* =====================================================================
+     DUO TEMPS RÉEL — salon + lockstep
+     - salon = canal Realtime "pdm-room-CODE" (présence + broadcast)
+     - les deux joueurs envoient leur action pour l'étape N ; quand les deux
+       sont connues, chaque client appelle engine.applyActions(actions) (déterministe)
+     - après chaque étape : empreinte d'état ; l'hôte compare et renvoie l'état complet si désync
+     ===================================================================== */
+  const room = { active:false, code:null, ch:null, host:false, slot:0, players:[], peers:{}, started:false, step:0, pend:{}, mine:{}, busy:false,
+    hashes:{}, guestHashes:{}, resendT:null, waitT:null, waitSince:0, graceT:null, partnerAway:0, bot:false, startAck:false, startT:null, awaitResume:false, ready:false, seed:null, startedAt:0 };
+  const CODE_CHARS = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  const newCode = () => Array.from({length:5}, () => CODE_CHARS[rnd32() % CODE_CHARS.length]).join('');
+  const meInfo = () => {
+    const g = (typeof S !== 'undefined' && S) ? S : {};
+    return { id: myId(), pseudo: myPseudo(), job: g.job || 'paladin', comp: g.comp || null, loadout: (typeof getLoadout==='function' && g.job) ? getLoadout(g.job) : null, ready: room.ready, host: room.host, v: CFG.protocol };
+  };
+  const partner = () => room.players.find(p => p.id !== myId()) || Object.values(room.peers).find(p => p.id !== myId()) || null;
+  const partnerSlot = () => room.slot === 0 ? 1 : 0;
+
+  function saveRoomSession(){ if (room.started) SS.setItem('pdm_room', JSON.stringify({ code:room.code, host:room.host, slot:room.slot, players:room.players, at:Date.now() })); }
+  function clearRoomSession(){ SS.removeItem('pdm_room'); }
+  function resumableRoom(){ try{ const r = JSON.parse(SS.getItem('pdm_room')||'null'); return r && Date.now() - r.at < 15*60000 ? r : null; }catch(e){ return null; } }
+
+  async function openRoomChannel(code, asHost){
+    await init();
+    if (room.ch) leaveRoom(true);
+    Object.assign(room, { active:true, code, host:asHost, slot: asHost?0:1, players:[], peers:{}, started:false, step:0, pend:{}, mine:{}, busy:false, hashes:{}, guestHashes:{}, bot:false, partnerAway:0, ready:false, startAck:false, awaitResume:false });
+    const ch = st.sb.channel(CFG.roomPrefix + code, { config:{ presence:{ key: myId() }, broadcast:{ self:false, ack:false } } });
+    ch.on('presence', { event:'sync' }, onRoomPresence);
+    ['start','started','act','hash','sync','hello','bye','hint','kick','config'].forEach(ev => ch.on('broadcast', { event: ev }, ({ payload }) => onRoomMsg(ev, payload||{})));
+    room.ch = ch;
+    await new Promise((res, rej) => {
+      const t = setTimeout(() => rej(new Error('Connexion au salon impossible.')), 12000);
+      ch.subscribe(s => { if (s === 'SUBSCRIBED'){ clearTimeout(t); res(); } else if (s === 'CHANNEL_ERROR' || s === 'TIMED_OUT'){ clearTimeout(t); rej(new Error('Connexion au salon impossible.')); } });
+    });
+    await ch.track(meInfo());
+    setWhere('duo');
+    return code;
+  }
+  async function createRoom(){ const code = newCode(); await openRoomChannel(code, true); emitRoom(); return code; }
+  async function joinRoom(code, opt){
+    code = String(code||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+    if (code.length !== 5) throw new Error('Code de salon invalide (5 caractères).');
+    await openRoomChannel(code, false);
+    if (opt && opt.resume){ room.awaitResume = true; room.slot = opt.slot; room.host = false; room.players = opt.players||[]; }
+    // vérifie qu'un hôte est là
+    for (let i=0;i<16;i++){ if (Object.values(room.peers).some(p => p.id !== myId())) break; await wait(250); }
+    const others = Object.values(room.peers).filter(p => p.id !== myId());
+    if (!others.length){ leaveRoom(); throw new Error('Salon introuvable ou vide.'); }
+    if (!room.awaitResume && Object.keys(room.peers).length > 2){ leaveRoom(); throw new Error('Ce salon est déjà complet.'); }
+    room.ch.send({ type:'broadcast', event:'hello', payload:{ id: myId(), resume: !!room.awaitResume } });
+    emitRoom(); return code;
+  }
+  async function resumeRoom(){ const r = resumableRoom(); if (!r) return false; await joinRoom(r.code, { resume:true, slot:r.slot, players:r.players }); return true; }
+  function leaveRoom(silent){
+    if (room.ch){ try{ room.ch.send({ type:'broadcast', event:'bye', payload:{ id: myId() } }); }catch(e){} try{ st.sb.removeChannel(room.ch); }catch(e){} }
+    [room.resendT, room.waitT, room.graceT, room.startT].forEach(t => t && clearInterval(t));
+    Object.assign(room, { active:false, ch:null, code:null, started:false, players:[], peers:{}, resendT:null, waitT:null, graceT:null, startT:null });
+    clearRoomSession(); setWhere('hub'); hideNetBar();
+    if (!silent) emitRoom();
+  }
+  function setReady(v){ room.ready = !!v; if (room.ch) room.ch.track(meInfo()); emitRoom(); }
+  function refreshMe(){ if (room.ch && !room.started) room.ch.track(meInfo()); }
+  function emitRoom(){ emit('room', roomInfo()); if (HAS_DOM && curScreen === 'room') renderRoom(); }
+  function roomInfo(){ return { active:room.active, code:room.code, host:room.host, slot:room.slot, started:room.started, step:room.step, players: room.started ? room.players : Object.values(room.peers), partner: partner(), partnerOnline: !room.partnerAway, bot: room.bot, waiting: !!room.mine[room.step] }; }
+
+  function onRoomPresence(){
+    const ps = room.ch.presenceState(); const peers = {};
+    Object.keys(ps).forEach(k => { const m = ps[k][ps[k].length-1]; if (m) peers[k] = m; });
+    room.peers = peers;
+    const p = partner();
+    if (room.started && p){
+      const here = !!peers[p.id];
+      if (!here && !room.partnerAway){ room.partnerAway = Date.now(); startGrace(); emit('partner', { online:false, pseudo:p.pseudo }); }
+      else if (here && room.partnerAway){ room.partnerAway = 0; clearInterval(room.graceT); room.graceT = null; room.bot = false; emit('partner', { online:true, pseudo:p.pseudo }); if (room.host) setTimeout(sendSync, 700); }
+    }
+    if (!room.started && !room.host && !Object.values(peers).some(x => x.host) && Object.keys(peers).length){ /* l'hôte est parti avant le lancement */ }
+    emitRoom(); updateNetBar();
+  }
+  function startGrace(){
+    clearInterval(room.graceT);
+    room.graceT = setInterval(() => {
+      updateNetBar();
+      if (!room.partnerAway || Date.now() - room.partnerAway < CFG.graceMs) return;
+      clearInterval(room.graceT); room.graceT = null;
+      // l'autre ne revient pas : on continue seul (ses actions deviennent automatiques)
+      if (!room.host){ room.host = true; note('L’hôte ne revient pas : tu reprends la main.'); }
+      room.bot = true; emit('partner', { online:false, bot:true }); autoFillPartner();
+    }, 1000);
+  }
+
+  /* lancement (hôte) */
+  function canStart(){ const ps = Object.values(room.peers); return room.host && ps.length === 2 && ps.every(p => p.ready) && !!engine; }
+  function startDuo(){
+    if (!room.host) return false;
+    const ps = Object.values(room.peers);
+    if (ps.length !== 2) { note('Il faut deux joueurs.'); return false; }
+    if (!engine){ note('Le mode duo n’est pas encore branché dans cette version.'); return false; }
+    const me = ps.find(p => p.id === myId()), other = ps.find(p => p.id !== myId());
+    const players = [me, other].map((p, i) => ({ slot:i, id:p.id, pseudo:p.pseudo, job:p.job, comp:p.comp, loadout:p.loadout }));
+    const seed = [rnd32(), rnd32(), rnd32(), rnd32()];
+    const msg = { seed, players, hostId: myId(), startedAt: Date.now(), cfg:{ turnTimeoutMs: CFG.turnTimeoutMs } };
+    room.startAck = false;
+    const send = () => room.ch && room.ch.send({ type:'broadcast', event:'start', payload: msg });
+    send(); room.startT = setInterval(() => { if (room.startAck) { clearInterval(room.startT); room.startT = null; } else send(); }, 1500);
+    beginRun(msg);
+    return true;
+  }
+  function beginRun(msg){
+    Object.assign(room, { started:true, players: msg.players, seed: msg.seed, step:0, pend:{}, mine:{}, hashes:{}, guestHashes:{}, startedAt: msg.startedAt, partnerAway:0, bot:false });
+    room.slot = msg.players.findIndex(p => p.id === myId());
+    saveRoomSession(); emitRoom(); showNetBar();
+    try { engine && engine.startDuoRun({ seed: msg.seed.slice(), players: msg.players, mySlot: room.slot, isHost: room.host }); }
+    catch(e){ console.error('[online] startDuoRun', e); }
+    clearInterval(room.resendT); room.resendT = setInterval(resendTick, CFG.resendMs);
+  }
+
+  function send(ev, payload){ if (room.ch) room.ch.send({ type:'broadcast', event: ev, payload }); }
+  function onRoomMsg(ev, m){
+    if (m.v && m.v !== CFG.protocol) return;
+    switch(ev){
+      case 'start':
+        if (room.host) return;
+        send('started', { id: myId() });
+        if (!room.started) beginRun(m);
+        return;
+      case 'started': room.startAck = true; return;
+      case 'hello':
+        if (m.resume && room.started){ setTimeout(sendSync, 300); }
+        return;
+      case 'act': return onAct(m);
+      case 'hash':
+        if (!room.host) return;
+        if (room.hashes[m.s] !== undefined){ if (room.hashes[m.s] !== m.h) desync(m.s); }
+        else room.guestHashes[m.s] = m.h;
+        return;
+      case 'sync': return onSync(m);
+      case 'hint': emit('hint', m); return;
+      case 'bye': if (room.started && partner() && m.id === partner().id){ emit('partner', { online:false, left:true, pseudo: partner().pseudo }); } else if (!room.started){ emitRoom(); } return;
+      case 'kick': if (m.id === myId()){ leaveRoom(); note('Le salon a été fermé.'); goto('coop'); } return;
+      case 'config': emit('config', m); return;
+    }
+  }
+
+  /* lockstep */
+  function submit(action){
+    if (!room.started) return false;
+    const s = room.step;
+    if (room.mine[s] !== undefined) return false;
+    room.mine[s] = action;
+    (room.pend[s] = room.pend[s] || [])[room.slot] = action;
+    send('act', { s, slot: room.slot, a: action, v: CFG.protocol });
+    room.waitSince = Date.now();
+    if (room.host) armTimeout(s);
+    if (room.bot) autoFillPartner();
+    updateNetBar(); emitRoom();
+    tryResolve();
+    return true;
+  }
+  function hint(data){ if (room.started) send('hint', { slot: room.slot, s: room.step, d: data }); } // aperçu (vote en cours, cible survolée…)
+  function onAct(m){
+    if (typeof m.s !== 'number' || (m.slot !== 0 && m.slot !== 1)) return;
+    if (m.s < room.step){ if (m.slot !== room.slot && room.mine[m.s] !== undefined) send('act', { s:m.s, slot:room.slot, a: room.mine[m.s], v:CFG.protocol }); return; }
+    const p = room.pend[m.s] = room.pend[m.s] || [];
+    if (m.slot === room.slot && !m.forced) return;
+    if (p[m.slot] === undefined || m.forced){ p[m.slot] = m.a; if (m.forced && m.slot === room.slot) room.mine[m.s] = m.a; }
+    if (m.slot !== room.slot && m.s === room.step) emit('partnerSubmitted', { step:m.s, slot:m.slot, action:m.a, forced:!!m.forced });
+    updateNetBar(); tryResolve();
+  }
+  function armTimeout(s){
+    clearTimeout(room.waitT);
+    room.waitT = setTimeout(() => {
+      if (room.step !== s || !room.started) return;
+      const p = room.pend[s] || [];
+      if (p[partnerSlot()] === undefined) forcePartner(s);
+    }, CFG.turnTimeoutMs);
+  }
+  function defaultActionFor(slot, s){ try{ return (engine && engine.defaultAction) ? engine.defaultAction(slot, s) : { type:'auto' }; }catch(e){ return { type:'auto' }; } }
+  function forcePartner(s){
+    const ps = partnerSlot(), a = defaultActionFor(ps, s);
+    (room.pend[s] = room.pend[s] || [])[ps] = a;
+    send('act', { s, slot: ps, a, forced:true, v:CFG.protocol });
+    emit('partnerTimeout', { step:s, slot:ps });
+    tryResolve();
+  }
+  function autoFillPartner(){ const s = room.step; if (room.host && room.bot && room.mine[s] !== undefined && (room.pend[s]||[])[partnerSlot()] === undefined) forcePartner(s); }
+  async function tryResolve(){
+    while (room.started && !room.busy){
+      const s = room.step, p = room.pend[s];
+      if (!p || p[0] === undefined || p[1] === undefined) break;
+      room.busy = true; clearTimeout(room.waitT);
+      const actions = [p[0], p[1]];
+      try { if (engine) await engine.applyActions(actions, { step:s, mySlot:room.slot, isHost:room.host }); }
+      catch(e){ console.error('[online] applyActions', e); }
+      delete room.pend[s];
+      room.step = s + 1; room.busy = false;
+      Object.keys(room.mine).forEach(k => { if (+k < s - 20) delete room.mine[k]; });
+      const h = stateHash();
+      if (room.host){ room.hashes[s] = h; if (room.guestHashes[s] !== undefined && room.guestHashes[s] !== h) desync(s); delete room.guestHashes[s]; Object.keys(room.hashes).forEach(k => { if (+k < s-30) delete room.hashes[k]; }); }
+      else send('hash', { s, h, v:CFG.protocol });
+      saveRoomSession(); updateNetBar(); emit('step', { step: room.step }); emitRoom();
+      if (room.pendingSync){ const ps = room.pendingSync; room.pendingSync = null; onSync(ps); }
+      if (room.bot) autoFillPartner();
+    }
+  }
+  function stateHash(){ try{ return engine && engine.getState ? hash(engine.getState()) : '0'; }catch(e){ return 'err'; } }
+  function desync(s){ console.warn('[online] désynchronisation à l’étape', s); emit('desync', { step:s }); sendSync(); }
+  function sendSync(){
+    if (!room.started || !engine) return;
+    if (room.busy){ setTimeout(sendSync, 300); return; }
+    send('sync', { step: room.step, state: engine.getState(), players: room.players, hostId: room.host ? myId() : (partner()||{}).id, seed: room.seed, startedAt: room.startedAt, mine: room.mine[room.step], mySlot: room.slot, v:CFG.protocol });
+  }
+  function onSync(m){
+    if (room.busy){ room.pendingSync = m; return; }
+    const resuming = room.awaitResume || !room.started;
+    room.host = (m.hostId === myId());
+    if (resuming){
+      room.awaitResume = false;
+      Object.assign(room, { started:true, players:m.players, seed:m.seed, startedAt:m.startedAt, pend:{}, mine:{} });
+      room.slot = m.players.findIndex(p => p.id === myId());
+      if (room.slot < 0){ leaveRoom(); note('Une partie est déjà en cours dans ce salon.'); return; }
+      clearInterval(room.resendT); room.resendT = setInterval(resendTick, CFG.resendMs);
+      showNetBar();
+      try { engine && (engine.resumeDuoRun ? engine.resumeDuoRun({ state:m.state, players:m.players, mySlot:room.slot, isHost:room.host, seed:m.seed }) : engine.setState(m.state)); } catch(e){ console.error('[online] resume', e); }
+    } else {
+      try { engine && engine.setState(m.state); } catch(e){ console.error('[online] setState', e); }
+      emit('resynced', { step:m.step });
+    }
+    Object.keys(room.pend).forEach(k => { if (+k < m.step) delete room.pend[k]; });
+    room.step = m.step;
+    if (m.mine !== undefined && m.mySlot !== room.slot) (room.pend[m.step] = room.pend[m.step] || [])[m.mySlot] = m.mine;
+    if (room.mine[m.step] !== undefined) send('act', { s:m.step, slot:room.slot, a:room.mine[m.step], v:CFG.protocol });
+    saveRoomSession(); updateNetBar(); emitRoom(); tryResolve();
+  }
+  function resendTick(){
+    if (!room.started) return;
+    const s = room.step;
+    if (room.mine[s] !== undefined && (room.pend[s]||[])[partnerSlot()] === undefined) send('act', { s, slot:room.slot, a:room.mine[s], v:CFG.protocol });
+    updateNetBar();
+  }
+  function endDuo(){ clearRoomSession(); room.started = false; [room.resendT, room.waitT, room.graceT].forEach(t => t && clearInterval(t)); hideNetBar(); emitRoom(); }
+
+  /* =====================================================================
+     INTERFACE (écrans dans le style des fenêtres FF)
+     ===================================================================== */
+  const ICO = {
+    trophy:'<path d="M4 2h8v1h2v3h-1v1h-1v1h-1v1h-1v2h1v1h1v2H5v-2h1v-1h1V9H6V8H5V7H4V6H3V3h1V2zm0 2v1h1V4H4zm7 0v1h1V4h-1z" fill="#ffe27a"/><path d="M6 3h1v4H6z" fill="#fff6c8"/>',
+    people:'<path d="M3 3h3v1h1v3H6v1H3V7H2V4h1V3zm7 0h3v1h1v3h-1v1h-3V7H9V4h1V3zM2 9h5v1h1v4H1v-4h1V9zm7 0h5v1h1v4H8v-4h1V9z" fill="#c8d8ff"/>',
+    swords:'<path d="M2 2h2v1h1v1h1v1h1v1h1v1h1v1H8v1H7V8H6V7H5V6H4V5H3V4H2V2zm10 0h2v2h-1v1h-1v1h-1v1h-1V6h1V5h1V4h1V3zM4 11h1v-1h1v1h1v1H6v1H5v1H3v-1H2v-2h2zm7-1h1v1h2v2h-1v1h-2v-1h-1v-1H9v-1h1v-1h1z" fill="#e8ecff"/>',
+    user:'<path d="M6 2h4v1h1v4h-1v1H6V7H5V3h1V2zM4 9h8v1h1v4H3v-4h1V9z" fill="#ffe27a"/>',
+    door:'<path d="M3 2h8v12H3V2zm2 2v8h4V4H5zm4 3h1v1H9z" fill="#c8d8ff"/><path d="M12 7h2v2h-2z" fill="#ffe27a"/>',
+    plus:'<path d="M7 3h2v4h4v2H9v4H7V9H3V7h4V3z" fill="#5fd36b"/>',
+    check:'<path d="M12 4h2v2h-1v1h-1v1h-1v1h-1v1H9v1H8v1H6v-1H5V9H4V8H3V6h2v1h1v1h2V7h1V6h1V5h1V4h1z" fill="#5fd36b"/>',
+    cross:'<path d="M3 3h2v1h1v1h1v1h2V5h1V4h1V3h2v2h-1v1h-1v1H9v2h1v1h1v1h1v2h-2v-1H9v-1H8V9H7v2H6v1H5v1H3v-2h1v-1h1V9h1V7H5V6H4V5H3V3z" fill="#ff6a62"/>',
+    link:'<path d="M3 6h5v1h1v2H8V8H4v2h3v1H3v-1H2V7h1V6zm6 0h4v1h1v3h-1v1H8v-1H7V8h1v1h4V7H9V6z" fill="#9fe0ff"/>',
+    mail:'<path d="M2 4h12v8H2V4zm1 1v1h1v1h1v1h1v1h4V8h1V7h1V6h1V5H3z" fill="#ffe27a"/>',
+  };
+  const icon = (k, sz) => `<svg class="ol-ico" viewBox="0 0 16 16" width="${sz||18}" height="${sz||18}" shape-rendering="crispEdges" aria-hidden="true">${ICO[k]||''}</svg>`;
+  const dot = on => `<i class="ol-dot ${on?'on':''}"></i>`;
+  const jobName = k => (typeof JOBS!=='undefined' && JOBS[k]) ? JOBS[k].name : k;
+  const compName = k => (typeof COMPANIONS!=='undefined' && COMPANIONS[k]) ? COMPANIONS[k].name : (k||'');
+  const sprite = (k, w) => (typeof spr==='function') ? spr(k, '', `width:${w||32}px`) : '';
+  const fmtDur = s => { s = Math.round(s||0); const m = Math.floor(s/60); return m >= 60 ? `${Math.floor(m/60)} h ${String(m%60).padStart(2,'0')}` : `${m} min ${String(s%60).padStart(2,'0')}`; };
+  const fmtDate = d => { try{ return new Date(d).toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit' }); }catch(e){ return ''; } };
+  const fmtNum = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u202f');
+  function note(t){ if (typeof toast === 'function') toast(t); else console.log('[online]', t); }
+  const appEl = () => HAS_DOM ? (typeof app !== 'undefined' ? app : document.getElementById('app')) : null;
+  let curScreen = null;
+  function goto(name){ const f = SCR[name]; if (f) f(); }
+  function goBack(){ curScreen = null; const b = st.back; if (typeof SCREENS !== 'undefined' && SCREENS[b]) SCREENS[b](); }
+  function topbar(title){ return `<div class="win topbar ol-top"><button class="btn small ol-back" id="olBack" aria-label="Retour">Retour</button><b class="grow">${title}</b>${st.profile?`<span class="ol-me">${icon('user',14)} ${E(st.profile.pseudo)}</span>`:''}</div>`; }
+  function mount(name, html, after){
+    const a = appEl(); if (!a) return; curScreen = name;
+    if (typeof C !== 'undefined') { try{ C = null; }catch(e){} }
+    a.innerHTML = html;
+    const b = document.getElementById('olBack'); if (b) b.onclick = () => name === 'menu' ? goBack() : (name === 'room' ? confirmLeaveRoom() : SCR.menu());
+    a.querySelectorAll('[data-ol]').forEach(el => el.onclick = () => goto(el.dataset.ol));
+    if (after) after(a);
+  }
+  const busyBtn = async (btn, fn) => { if (btn.disabled) return; const t = btn.innerHTML; btn.disabled = true; btn.classList.add('ol-busy'); try { await fn(); } catch(e){ note(e.message || errMsg(e)); } finally { if (btn.isConnected){ btn.disabled = false; btn.classList.remove('ol-busy'); btn.innerHTML = t; } } };
+  function loadingInto(el, txt){ if (el) el.innerHTML = `<div class="ol-empty"><span class="ol-spin"></span> ${txt||'Chargement…'}</div>`; }
+  function offlineBox(e){ return `<div class="win ol-empty">${E(errMsg(e))}<br><span class="muted">Le jeu solo reste disponible hors ligne.</span></div>`; }
+
+  const SCR = {};
+  SCR.menu = function(){
+    const s = state();
+    mount('menu', `${topbar('En ligne')}
+    <div class="scroll">
+      <div class="win ol-card">
+        ${s.loggedIn && s.profile ? `<div class="row">${icon('user',28)}<div class="grow"><h3>${E(s.profile.pseudo)}</h3><div class="muted">Connecté</div></div><button class="btn small" id="olOut">Déconnexion</button></div>`
+        : s.needPseudo ? `<div class="row">${icon('user',28)}<div class="grow"><h3>Choisis ton pseudo</h3><div class="muted">Dernière étape pour jouer en ligne.</div></div><button class="btn small goldb" data-ol="account">Choisir</button></div>`
+        : `<div class="row">${icon('user',28)}<div class="grow"><h3>Invité</h3><div class="muted">Crée un compte pour publier tes scores et ajouter des amis.</div></div><button class="btn small goldb" data-ol="account">Connexion</button></div>`}
+        ${pendingRuns() && !s.profile ? `<div class="tip">${pendingRuns()} exploration(s) en attente : elles seront publiées dès ta connexion.</div>` : ''}
+      </div>
+      <button class="btn ol-big" data-ol="leaderboard">${icon('trophy',26)}<span class="grow ol-l"><b>Classement</b><small>Les meilleures explorations</small></span></button>
+      <button class="btn ol-big" data-ol="coop">${icon('swords',26)}<span class="grow ol-l"><b>Jouer à deux</b><small>Salon avec code ou invitation d’un ami</small></span></button>
+      <button class="btn ol-big" data-ol="friends" ${s.profile?'':'disabled'}>${icon('people',26)}<span class="grow ol-l"><b>Amis</b><small>${s.profile ? `${st.friends.filter(f=>f.status==='accepted'&&f.online).length} en ligne · ${st.friends.filter(f=>f.status==='pending'&&f.incoming).length} demande(s)` : 'Compte requis'}</small></span></button>
+      ${resumableRoom() && !room.started ? `<button class="btn goldb" id="olResume">${icon('link')} Reprendre la partie à deux (${E(resumableRoom().code)})</button>` : ''}
+    </div>`, a => {
+      const o = a.querySelector('#olOut'); if (o) o.onclick = () => busyBtn(o, async () => { await signOut(); SCR.menu(); });
+      const r = a.querySelector('#olResume'); if (r) r.onclick = () => busyBtn(r, async () => { await resumeRoom(); SCR.room(); });
+    });
+  };
+
+  let accTab = 'login';
+  SCR.account = function(){
+    const s = state();
+    if (s.needPseudo) return mount('account', `${topbar('Ton pseudo')}
+      <div class="scroll"><div class="win col">
+        <p>Ce compte n’a pas encore de pseudo pour <b>Le Palais des Morts</b>. Il sera affiché dans le classement et pour tes amis.</p>
+        <input class="name" id="olPs" maxlength="16" placeholder="Pseudo (3 à 16)" autocomplete="nickname" value="${E((s.user.user_metadata||{}).pdm_pseudo || (typeof S!=='undefined'&&S?S.name:'') || '')}">
+        <div class="muted" id="olPsInfo">Lettres, chiffres, _ et -</div>
+        <button class="btn goldb" id="olPsOk">Valider</button>
+      </div></div>`, a => {
+        const inp = a.querySelector('#olPs'), info = a.querySelector('#olPsInfo'); pseudoChecker(inp, info);
+        const b = a.querySelector('#olPsOk'); b.onclick = () => busyBtn(b, async () => { await setPseudo(inp.value.trim()); note('Pseudo enregistré.'); SCR.menu(); });
+      });
+    if (s.profile) return SCR.menu();
+    mount('account', `${topbar('Compte')}
+    <div class="scroll">
+      <div class="ol-tabs"><button class="btn small ${accTab==='login'?'sel':''}" data-t="login">Connexion</button><button class="btn small ${accTab==='signup'?'sel':''}" data-t="signup">Créer un compte</button></div>
+      <form class="win col" id="olForm" autocomplete="on" onsubmit="return false">
+        <label class="ol-lab">Pseudo<input class="name" id="olPs" maxlength="${accTab==='signup'?16:80}" placeholder="3 à 16 caractères" autocomplete="username" autocapitalize="off" spellcheck="false" value="${E(accTab==='signup' && typeof S!=='undefined'&&S&&S.created&&PSEUDO_RE.test(S.name||'')?S.name:'')}"></label>
+        ${accTab==='signup' ? `<div class="muted" id="olPsInfo">Lettres, chiffres, _ et -. C’est ton identifiant et ton nom au classement.</div>` : ''}
+        <label class="ol-lab">Mot de passe<input class="name" id="olPw" type="password" autocomplete="${accTab==='signup'?'new-password':'current-password'}" placeholder="6 caractères minimum"></label>
+        ${accTab==='signup' ? `<label class="ol-lab">Confirmer le mot de passe<input class="name" id="olPw2" type="password" autocomplete="new-password"></label>` : ''}
+        <button class="btn goldb" id="olGo" type="submit">${accTab==='signup'?'Créer mon compte':'Se connecter'}</button>
+        ${accTab==='signup' ? `<p class="muted">Aucun e-mail demandé. Retiens bien ton mot de passe : il ne peut pas être récupéré.</p>` : ''}
+        <div class="ol-ko" id="olErr"></div>
+      </form>
+      <p class="muted center">Sans compte, tu peux toujours jouer en solo et en duo par code.</p>
+    </div>`, a => {
+      a.querySelectorAll('[data-t]').forEach(b => b.onclick = () => { accTab = b.dataset.t; SCR.account(); });
+      const ps = a.querySelector('#olPs'), pw = a.querySelector('#olPw'), pw2 = a.querySelector('#olPw2'), errBox = a.querySelector('#olErr');
+      if (accTab === 'signup') pseudoChecker(ps, a.querySelector('#olPsInfo'));
+      const go = a.querySelector('#olGo');
+      go.onclick = () => busyBtn(go, async () => {
+        errBox.textContent = '';
+        try {
+          const id = ps.value.trim(), pass = pw.value;
+          if (!id) throw new Error('Entre ton pseudo.');
+          if (pass.length < 6) throw new Error(ERR.password_short);
+          if (accTab === 'signup'){
+            if (!PSEUDO_RE.test(id)) throw new Error(ERR.pseudo_invalid);
+            if (pw2 && pw2.value !== pass) throw new Error('Les deux mots de passe ne sont pas identiques.');
+            const r = await signUp(id, pass);
+                        note('Compte créé, bienvenue !'); SCR.menu();
+          } else { await signIn(id, pass); note('Connecté.'); state().needPseudo ? SCR.account() : SCR.menu(); }
+        } catch(e){ errBox.textContent = e.message || errMsg(e); throw e; }
+      });
+    });
+  };
+  function pseudoChecker(inp, info){
+    let t = 0;
+    inp.oninput = () => { clearTimeout(t); const v = inp.value.trim();
+      if (!PSEUDO_RE.test(v)){ info.textContent = '3 à 16 caractères : lettres, chiffres, _ . -'; info.className = 'muted'; return; }
+      t = setTimeout(async () => { try{ const ok = await pseudoAvailable(v); if (inp.value.trim() === v){ info.textContent = ok ? 'Pseudo disponible.' : 'Pseudo déjà pris.'; info.className = ok ? 'ol-ok' : 'ol-ko'; } }catch(e){} }, 350); };
+  }
+  SCR.leaderboard = function(){
+    const f = st.lbFilter;
+    const jobs = (typeof JOB_ORDER !== 'undefined') ? JOB_ORDER : [];
+    mount('leaderboard', `${topbar('Classement')}
+      <div class="ol-tabs">${[['all','Tous'],['solo','Solo'],['duo','Duo']].map(([k,n]) => `<button class="btn small ${f.mode===k?'sel':''}" data-m="${k}">${n}</button>`).join('')}${st.profile?`<button class="btn small ${f.mine?'sel':''}" id="olMine">Mes runs</button>`:''}</div>
+      <div class="ol-chips">${['all'].concat(jobs).map(k => `<button class="ol-chip ${f.job===k?'sel':''}" data-j="${k}">${k==='all'?'Tous les jobs':sprite(k,22)+'<span>'+E(jobName(k))+'</span>'}</button>`).join('')}</div>
+      <div class="scroll" id="olLb"></div>`, async a => {
+      a.querySelectorAll('[data-m]').forEach(b => b.onclick = () => { f.mode = b.dataset.m; SCR.leaderboard(); });
+      a.querySelectorAll('[data-j]').forEach(b => b.onclick = () => { f.job = b.dataset.j; SCR.leaderboard(); });
+      const mi = a.querySelector('#olMine'); if (mi) mi.onclick = () => { f.mine = !f.mine; SCR.leaderboard(); };
+      const box = a.querySelector('#olLb'); loadingInto(box);
+      try{
+        const rows = await fetchLeaderboard(f);
+        if (curScreen !== 'leaderboard') return;
+        if (!rows.length){ box.innerHTML = `<div class="win ol-empty">Aucune exploration enregistrée pour l’instant.<br><span class="muted">Termine un run connecté pour ouvrir le bal.</span></div>`; return; }
+        const me = st.user && st.user.id;
+        box.innerHTML = `<div class="win ol-lb">${rows.map((r, i) => `
+          <div class="ol-run ${r.user_id===me?'me':''} ${i<3?'top'+(i+1):''}">
+            <div class="ol-rk">${i+1}</div>
+            <div class="ol-sp">${sprite(r.job,34)}${r.mode==='duo'&&r.partner_job?`<span class="ol-sp2">${sprite(r.partner_job,26)}</span>`:''}</div>
+            <div class="grow ol-who"><b>${E(r.pseudo)}${r.mode==='duo'?` <span class="muted">&amp;</span> ${E(r.partner_pseudo||'?')}`:''}</b>
+              <small>${E(jobName(r.job))}${r.companion?' · '+E(compName(r.companion)):''} · ${r.victory?'<span class="gold">Victoire</span>':'Étage '+r.floor}${r.mode==='duo'?' · <span class="ol-duo">Duo</span>':''}</small>
+              <small class="muted">${fmtDur(r.duration_s)} · ${fmtDate(r.created_at)}</small></div>
+            <div class="ol-sc"><b>${fmtNum(r.score)}</b><small>Ét. ${r.floor}</small></div>
+          </div>`).join('')}</div>`;
+      }catch(e){ if (curScreen === 'leaderboard') box.innerHTML = offlineBox(e); }
+    });
+  };
+
+  SCR.friends = function(){
+    if (!st.profile) return SCR.account();
+    mount('friends', `${topbar('Amis')}
+      <div class="win col ol-search"><div class="row"><input class="name search grow" id="olQ" placeholder="Chercher un pseudo" autocomplete="off" maxlength="16"></div><div id="olRes"></div></div>
+      <div class="scroll" id="olFr"></div>`, a => {
+      const q = a.querySelector('#olQ'), res = a.querySelector('#olRes'); let t = 0;
+      q.oninput = () => { clearTimeout(t); const v = q.value.trim(); if (v.length < 2){ res.innerHTML=''; return; }
+        t = setTimeout(async () => { try{ const list = await searchPlayers(v); if (q.value.trim() !== v) return;
+          const known = new Set(st.friends.map(f => f.user_id));
+          res.innerHTML = list.length ? list.map(p => `<div class="ol-fr">${dot(p.online)}<b class="grow">${E(p.pseudo)}</b>${known.has(p.id)?'<span class="muted">Déjà ajouté</span>':`<button class="btn small" data-add="${E(p.pseudo)}">${icon('plus')} Ajouter</button>`}</div>`).join('') : '<div class="muted">Aucun joueur trouvé.</div>';
+          res.querySelectorAll('[data-add]').forEach(b => b.onclick = () => busyBtn(b, async () => { const r = await requestFriend(b.dataset.add); const id = (list.find(p => p.pseudo === b.dataset.add)||{}).id; if (id) pingFriend(id); note(r==='accepted'?'Vous êtes maintenant amis.':r==='sent'?'Demande envoyée.':r==='already_friends'?'Déjà amis.':'Demande déjà envoyée.'); q.value=''; res.innerHTML=''; }));
+        }catch(e){ res.innerHTML = `<div class="ol-ko">${E(errMsg(e))}</div>`; } }, 300); };
+      renderFriendList();
+      fetchFriends().then(renderFriendList).catch(e => { const b = document.getElementById('olFr'); if (b) b.innerHTML = offlineBox(e); });
+    });
+  };
+  function renderFriendList(){
+    const box = HAS_DOM && document.getElementById('olFr'); if (!box || curScreen !== 'friends') return;
+    const inc = st.friends.filter(f => f.status==='pending' && f.incoming), out = st.friends.filter(f => f.status==='pending' && !f.incoming);
+    const acc = st.friends.filter(f => f.status==='accepted').sort((a,b) => (b.online-a.online) || a.pseudo.localeCompare(b.pseudo));
+    box.innerHTML = `
+      ${inc.length ? `<div class="win col"><h3>Demandes reçues</h3>${inc.map(f => `<div class="ol-fr"><b class="grow">${E(f.pseudo)}</b><button class="btn small" data-acc="${f.friendship_id}" aria-label="Accepter">${icon('check')}</button><button class="btn small" data-dec="${f.friendship_id}" aria-label="Refuser">${icon('cross')}</button></div>`).join('')}</div>` : ''}
+      <div class="win col"><h3>Mes amis (${acc.length})</h3>
+        ${acc.length ? acc.map(f => `<div class="ol-fr">${dot(f.online)}<div class="grow"><b>${E(f.pseudo)}</b><small class="muted">${f.online ? (f.where==='duo'?'En partie à deux':'En ligne') : 'Hors ligne'}</small></div>
+          ${f.online ? `<button class="btn small goldb" data-inv="${f.user_id}">${icon('swords',16)} Inviter</button>` : ''}
+          <button class="btn small ol-x" data-rm="${f.user_id}" data-n="${E(f.pseudo)}" aria-label="Retirer">${icon('cross',14)}</button></div>`).join('')
+          : '<div class="muted">Cherche le pseudo d’un ami au-dessus pour l’ajouter.</div>'}
+      </div>
+      ${out.length ? `<div class="win col"><h3>Demandes envoyées</h3>${out.map(f => `<div class="ol-fr"><b class="grow">${E(f.pseudo)}</b><span class="muted">En attente</span><button class="btn small ol-x" data-rm="${f.user_id}" data-n="${E(f.pseudo)}" aria-label="Annuler">${icon('cross',14)}</button></div>`).join('')}</div>` : ''}`;
+    box.querySelectorAll('[data-acc]').forEach(b => b.onclick = () => busyBtn(b, async () => { await respondFriend(+b.dataset.acc, true); note('Ami ajouté.'); }));
+    box.querySelectorAll('[data-dec]').forEach(b => b.onclick = () => busyBtn(b, async () => { await respondFriend(+b.dataset.dec, false); }));
+    box.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => askConfirm(`Retirer ${b.dataset.n} de tes amis ?`, () => removeFriend(b.dataset.rm).catch(e => note(errMsg(e))), 'Retirer'));
+    box.querySelectorAll('[data-inv]').forEach(b => b.onclick = () => busyBtn(b, async () => { await inviteFriend(b.dataset.inv); note('Invitation envoyée.'); SCR.room(); }));
+  }
+  on('friends', () => renderFriendList());
+  on('presence', () => { if (curScreen === 'coop') renderCoopFriends(); });
+  function askConfirm(text, yes, label){
+    if (typeof confirmBox === 'function') return confirmBox(text, yes, label);
+    if (HAS_DOM && window.confirm(text)) yes();
+  }
+
+  SCR.coop = function(){
+    if (room.active && !room.started) return SCR.room();
+    mount('coop', `${topbar('Jouer à deux')}
+    <div class="scroll">
+      <div class="win col"><h3>Comment ça marche</h3>
+        <p class="muted">Vous explorez le même palais, avec la même graine : mêmes étages, mêmes événements. Chaque tour se joue quand vous avez <b>tous les deux</b> choisi votre action. Pour les choix communs, on vote : en cas de désaccord, l’hôte tranche.</p></div>
+      <button class="btn goldb ol-big" id="olCreate">${icon('door',26)}<span class="grow ol-l"><b>Créer un salon</b><small>Tu seras l’hôte</small></span></button>
+      <div class="win col"><h3>Rejoindre avec un code</h3>
+        <div class="row"><input class="name ol-code grow" id="olCode" maxlength="5" placeholder="CODE" autocapitalize="characters" autocomplete="off" spellcheck="false"><button class="btn small goldb" id="olJoin">Rejoindre</button></div></div>
+      ${st.profile ? `<div class="win col"><h3>Amis en ligne</h3><div id="olCoopFr"></div></div>` : `<div class="win muted">Connecte-toi pour inviter tes amis directement.</div>`}
+    </div>`, a => {
+      const c = a.querySelector('#olCreate'); c.onclick = () => busyBtn(c, async () => { await createRoom(); SCR.room(); });
+      const code = a.querySelector('#olCode'); code.oninput = () => { code.value = code.value.toUpperCase().replace(/[^A-Z0-9]/g,''); };
+      const j = a.querySelector('#olJoin'); j.onclick = () => busyBtn(j, async () => { await joinRoom(code.value); SCR.room(); });
+      renderCoopFriends();
+    });
+  };
+  function renderCoopFriends(){
+    const box = HAS_DOM && document.getElementById('olCoopFr'); if (!box) return;
+    const fr = st.friends.filter(f => f.status==='accepted' && f.online);
+    box.innerHTML = fr.length ? fr.map(f => `<div class="ol-fr">${dot(true)}<b class="grow">${E(f.pseudo)}</b><button class="btn small goldb" data-inv="${f.user_id}">${icon('swords',16)} Inviter</button></div>`).join('') : '<div class="muted">Aucun ami en ligne pour le moment.</div>';
+    box.querySelectorAll('[data-inv]').forEach(b => b.onclick = () => busyBtn(b, async () => { await inviteFriend(b.dataset.inv); note('Invitation envoyée.'); SCR.room(); }));
+  }
+
+  SCR.room = function(){ if (!room.active) return SCR.coop(); renderRoom(); };
+  function renderRoom(){
+    if (!room.active){ return; }
+    if (room.started && curScreen === 'room'){ curScreen = null; return; }
+    const ps = Object.values(room.peers).sort((a,b) => (b.host?1:0)-(a.host?1:0));
+    const me = room.peers[myId()] || meInfo();
+    const slotHTML = p => p ? `<div class="ol-slot ${p.ready?'ready':''}">${sprite(p.job,64)}<b>${E(p.pseudo)}</b><small>${E(jobName(p.job))}${p.comp?' · '+E(compName(p.comp)):''}</small><span class="ol-tag">${p.host?'Hôte':'Invité'}</span><span class="ol-rdy">${p.ready?icon('check',14)+' Prêt':'Pas prêt'}</span></div>`
+      : `<div class="ol-slot empty"><span class="ol-spin"></span><small>En attente d’un joueur…</small></div>`;
+    const url = CFG.site + '?salon=' + room.code;
+    mount('room', `${topbar('Salon')}
+    <div class="scroll">
+      <div class="win col center" style="align-items:center"><div class="muted">Code du salon</div><div class="ol-bigcode">${E(room.code)}</div>
+        <div class="row"><button class="btn small" id="olShare">${icon('link')} Partager le lien</button><button class="btn small" id="olCopy">Copier le code</button></div></div>
+      <div class="ol-slots">${slotHTML(ps[0])}${slotHTML(ps[1])}</div>
+      <div class="win col"><div class="muted">Ton job et ton compagnon sont ceux choisis à l’avant-poste.</div>
+        <button class="btn ${room.ready?'':'goldb'}" id="olReady">${room.ready?'Je ne suis plus prêt':'Je suis prêt'}</button>
+        ${room.host ? `<button class="btn goldb" id="olStart" ${canStart()?'':'disabled'}>Lancer l’exploration à deux</button>${!engine?'<div class="ol-ko">Le moteur duo n’est pas encore branché dans cette version du jeu.</div>':''}` : `<div class="muted center">L’hôte lance la partie quand vous êtes prêts.</div>`}
+      </div>
+      ${st.profile ? `<div class="win col"><h3>Inviter un ami</h3><div id="olCoopFr"></div></div>` : ''}
+      <button class="btn small redb" id="olLeave">Quitter le salon</button>
+    </div>`, a => {
+      a.querySelector('#olShare').onclick = () => { if (navigator.share) navigator.share({ title:'Le Palais des Morts', text:`Rejoins-moi dans le Palais des Morts ! Code : ${room.code}`, url }).catch(()=>{}); else copy(url); };
+      a.querySelector('#olCopy').onclick = () => copy(room.code);
+      a.querySelector('#olReady').onclick = () => setReady(!room.ready);
+      const s = a.querySelector('#olStart'); if (s) s.onclick = () => startDuo();
+      a.querySelector('#olLeave').onclick = () => { leaveRoom(); SCR.coop(); };
+      renderCoopFriends();
+    });
+    void me;
+  }
+  function confirmLeaveRoom(){ askConfirm('Quitter le salon ?', () => { leaveRoom(); SCR.menu(); }, 'Quitter'); }
+  function copy(t){ try{ navigator.clipboard.writeText(t).then(() => note('Copié.'), () => note(t)); }catch(e){ note(t); } }
+
+  /* invitation reçue */
+  function showInvite(inv){
+    if (!HAS_DOM) return;
+    if (room.started){ replyInvite(inv, false); return; }
+    const html = `<h3>${icon('swords',20)} Invitation</h3><p><b>${E(inv.fromPseudo)}</b> t’invite à explorer le Palais à deux.</p>
+      <div class="grid2"><button class="btn small" id="olInvNo">Refuser</button><button class="btn small goldb" id="olInvYes">Rejoindre</button></div>`;
+    if (typeof showModal === 'function'){
+      showModal(html);
+      document.getElementById('olInvNo').onclick = () => { closeModal(); replyInvite(inv, false); };
+      const y = document.getElementById('olInvYes');
+      y.onclick = () => busyBtn(y, async () => { closeModal(); replyInvite(inv, true); await joinRoom(inv.code); SCR.room(); });
+    }
+  }
+
+  /* bandeau réseau pendant une partie à deux */
+  let netBar = null;
+  function showNetBar(){ if (!HAS_DOM) return; if (!netBar){ netBar = document.createElement('div'); netBar.id = 'ol-net'; document.body.appendChild(netBar); } updateNetBar(); }
+  function hideNetBar(){ if (netBar){ netBar.remove(); netBar = null; } }
+  function updateNetBar(){
+    if (!netBar || !room.started) return;
+    const p = partner() || {}; const s = room.step, pend = room.pend[s] || [];
+    const iDid = room.mine[s] !== undefined, heDid = pend[partnerSlot()] !== undefined;
+    let txt, cls = '';
+    if (room.partnerAway){ const left = Math.max(0, Math.ceil((CFG.graceMs - (Date.now()-room.partnerAway))/1000)); txt = room.bot ? `${E(p.pseudo||'Partenaire')} est absent : actions automatiques` : `${E(p.pseudo||'Partenaire')} s’est déconnecté… ${left} s`; cls = 'warn'; }
+    else if (iDid && !heDid){ const left = room.host ? Math.max(0, Math.ceil((CFG.turnTimeoutMs - (Date.now()-room.waitSince))/1000)) : null; txt = `En attente de ${E(p.pseudo||'ton partenaire')}…${left!=null?` ${left} s`:''}`; cls = 'wait'; }
+    else if (heDid && !iDid){ txt = `${E(p.pseudo||'Partenaire')} a choisi. À toi !`; cls = 'go'; }
+    else txt = `Duo avec ${E(p.pseudo||'?')}`;
+    netBar.className = cls;
+    netBar.innerHTML = `${dot(!room.partnerAway)}<span class="grow">${txt}</span><span class="ol-code-s">${E(room.code||'')}</span>`;
+  }
+  const tick = setInterval(() => { if (room.started && (room.partnerAway || room.mine[room.step] !== undefined)) updateNetBar(); }, 1000); if (tick && tick.unref) tick.unref();
+
+  /* ---------- API publique ---------- */
+  function open(back){ st.back = back || 'hub'; SCR.menu(); init().then(() => { if (curScreen === 'menu') SCR.menu(); }).catch(e => { if (curScreen === 'menu'){ const b = document.querySelector('.scroll'); if (b) b.insertAdjacentHTML('afterbegin', offlineBox(e)); } }); }
+  function attachEngine(e){ engine = e; emitRoom(); }
+  function boot(){
+    if (!HAS_DOM) return;
+    // lien d'invitation ?salon=CODE
+    const m = /[?&]salon=([A-Za-z0-9]{5})/.exec(location.search || '');
+    const authInUrl = false;
+    if (m || authInUrl || LS.getItem('pdm-auth')) init().then(() => {
+      if (m){ try{ history.replaceState(null, '', location.pathname); }catch(e){} st.back = 'title'; joinRoom(m[1]).then(() => SCR.room()).catch(e => { note(e.message); }); }
+      else if (authInUrl && state().loggedIn){ note('Compte confirmé, bienvenue !'); }
+    }).catch(() => {});
+  }
+
+  const api = {
+    CFG, init, open, boot, on, off, state, attachEngine, hash, stable,
+    // comptes
+    signUp, signIn, signOut, setPseudo, pseudoAvailable, pseudoEmail,
+    // classement
+    submitRun, fetchLeaderboard, flushPendingRuns,
+    // amis
+    searchPlayers, fetchFriends, requestFriend, respondFriend, removeFriend, inviteFriend, get friends(){ return st.friends; }, get onlineIds(){ return st.onlineIds; },
+    // duo
+    createRoom, joinRoom, resumeRoom, leaveRoom, setReady, refreshMe, startDuo, submit, hint, endDuo, roomInfo,
+    get isDuo(){ return room.started; }, get isHost(){ return room.host; }, get mySlot(){ return room.slot; }, get players(){ return room.players; }, get step(){ return room.step; },
+    screens: SCR, _room: room,
+  };
+  if (typeof SCREENS !== 'undefined'){ SCREENS.online = () => api.open('hub'); SCREENS.leaderboard = () => { init().catch(()=>{}); st.back = 'hub'; SCR.leaderboard(); }; }
+  if (typeof window !== 'undefined'){ window.Online = api; if (HAS_DOM) setTimeout(boot, 0); }
+  return api;
+})();
+if (typeof module !== 'undefined' && module.exports) module.exports = Online;
+/* ===================== DUO (moteur déterministe pour online.js) =====================
+   Deux héros dans R.party ; le héros « actif » est recopié dans R (heroIn/heroOut) pour réutiliser
+   tout le moteur solo. Chaque point de décision passe par Online.submit ; applyActions exécute
+   l'étape à l'identique chez les deux joueurs (ordre : joueur 0 puis joueur 1). */
+const DUO = { on:false, my:0, applying:false };
+const HERO_F = ['pname','job','loadout','up','def','crit','mods','potions','ethers','hp','maxhp','mp','maxmp','atk','mag','perk','taken','level'];
+const isDuo = () => !!(DUO.on && R && R.party);
+function heroOut(){ if(!R||!R.party) return; const h=R.party[R.cur||0]; HERO_F.forEach(k=>h[k]=R[k]); if(C){ h.st=C.st; h.cds=C.cds; } }
+function heroIn(i){ if(!R||!R.party) return; if((R.cur||0)!==i) heroOut(); const h=R.party[i]; HERO_F.forEach(k=>R[k]=h[k]); if(C && h.st){ C.st=h.st; C.cds=h.cds; } R.cur=i; }
+function withHero(i, fn){ if(!isDuo()) return fn(); const p=R.cur||0; heroIn(i); try{ return fn(); } finally { heroIn(p); } }
+function makeHero(p, up){
+  const j=JOBS[p.job]||JOBS.paladin, job=JOBS[p.job]?p.job:'paladin';
+  const lo=(Array.isArray(p.loadout)&&p.loadout.length===4&&p.loadout.every(id=>j.opts.some(o=>o.id===id))) ? p.loadout.slice() : j.def4.slice();
+  return { pname:String(p.pseudo||'Joueur').slice(0,16), job, loadout:lo, up, def:j.def, crit:j.crit, level:1,
+    mods:{dmg:0.04*up.dmg, def:0, crit:0, vamp:0, gil:0.15*up.gil, cdr:0, hpMul:1, mpr:0}, potions:2+up.potion, ethers:(j.mp>=100?1:0),
+    perk:{}, taken:[], hp:0, maxhp:0, mp:0, maxmp:0, atk:0, mag:0, st:null, cds:{} };
+}
+function startDuoRun({seed, players, mySlot}){
+  const up={hp:0,dmg:0,potion:0,gil:0}; // duo : départ équitable, sans améliorations
+  seedRNG(seed.slice()); DUO.on=true; DUO.my=mySlot||0;
+  const ps=[0,1].map(i=>players.find(p=>p.slot===i)||players[i]||{pseudo:'Joueur '+(i+1), job:'paladin'});
+  R = { v:3, duo:true, seed:seed.slice(), rs:RS, floor:1, gilsEarned:0, kills:0, bosses:0, revives:0, startedAt:Date.now(), uidn:0,
+    frags:0, curse:null, rew:null, plan:null, comp:null, party:ps.map(p=>makeHero(p,up)), cur:0 };
+  for (const i of [1,0]){ R.cur=i; heroIn(i); recalcStats(); R.hp=R.maxhp; R.mp=R.maxmp; heroOut(); }
+  R.cur=0; heroIn(0);
+  R.plan=planFloor(1); C=null;
+  HOOKS.emit('runStart',{seed:R.seed.slice(), duo:true});
+  floorIntro();
+}
+/* ---- affichage : chaque joueur voit SON héros au centre, le partenaire à côté ---- */
+const _renderCombat = renderCombat, _updateCombat = updateCombat;
+renderCombat = function(){
+  if (!isDuo()) return _renderCombat();
+  const p=R.cur||0; heroIn(DUO.my); _renderCombat(); heroIn(p);
+  const f=document.getElementById('field'); if(!f) return;
+  f.classList.remove('solo'); f.classList.add('withc','duo');
+  const o=R.party[1-DUO.my];
+  const d=document.createElement('div'); d.className='comp partner'; d.id='partner';
+  d.innerHTML=`<div class="cbub" id="pbub"></div>${spr(o.job,'idle')}<div class="cname">${esc(o.pname)}</div><div class="bar php"><i style="width:0"></i></div>`;
+  f.appendChild(d);
+};
+updateCombat = function(){
+  if (!isDuo()) return _updateCombat();
+  const p=R.cur||0; heroOut(); heroIn(DUO.my); _updateCombat(); heroIn(p);
+  const o=R.party[1-DUO.my], pe=document.getElementById('partner');
+  if (pe){ const b=pe.querySelector('.php i'); if(b) b.style.width=Math.max(0,Math.round(100*o.hp/Math.max(1,o.maxhp)))+'%'; pe.classList.toggle('ko', o.hp<=0); }
+  const me=document.getElementById('player'); if (me) me.classList.toggle('ko', R.party[DUO.my].hp<=0);
+  if (DUO.waiting){ const sk=document.getElementById('skills'); if(sk) sk.querySelectorAll('button').forEach(b=>b.disabled=true); }
+};
+const _plEl = plEl;
+plEl = () => (isDuo() && (R.cur||0)!==DUO.my) ? (document.getElementById('partner')||_plEl()) : _plEl();
+const _playerPanelHTML = playerPanelHTML;
+playerPanelHTML = function(inC){ if(!isDuo()) return _playerPanelHTML(inC); const p=R.cur||0; heroOut(); heroIn(DUO.my); const h=_playerPanelHTML(inC); heroIn(p); return h; };
+const _startCombat = startCombat;
+startCombat = function(kind){
+  if (!isDuo()) return _startCombat(kind);
+  heroIn(0); _startCombat(kind);
+  const tmpl=JSON.stringify(C.st);
+  R.party.forEach((h,i)=>{ h.st = i===0 ? C.st : JSON.parse(tmpl); h.cds = i===0 ? C.cds : {}; });
+};
+/* ennemis : chaque attaque vise un héros encore debout (tirage rand() commun) */
+const _enemyAct = enemyAct;
+enemyAct = async function(e){
+  if (isDuo()){ heroOut(); const al=[0,1].filter(i=>R.party[i].hp>0); const t = al.length>1 ? (rand()<0.5?0:1) : (al[0]||0); heroIn(t); }
+  return _enemyAct(e);
+};
+const _winCombat = winCombat;
+winCombat = function(){
+  if (!isDuo()) return _winCombat();
+  heroOut();
+  heroIn(1); if (R.hp<=0) R.hp=1; healR(R.maxhp*(R.curse&&R.curse.noHeal?0:0.12)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*0.3)); heroOut();
+  heroIn(0); if (R.hp<=0) R.hp=1;
+  return _winCombat();
+};
+function duoTick(i){ // début de tour pour le héros i (copie de startPlayerTurn, partie individuelle)
+  heroIn(i); const st=C.st; if (R.hp<=0) return;
+  Object.keys(C.cds).forEach(k=>{ if(C.cds[k]>0) C.cds[k]--; });
+  R.mp = Math.min(R.maxmp, R.mp + Math.round((2 + R.maxmp*0.04)*(1+R.mods.mpr)));
+  if (st.regenT>0){ healR(Math.round(R.maxhp*st.regen)); st.regenT--; }
+  if (pk('regen')>0) healR(R.maxhp*pk('regen'));
+  if (st.pdotT>0){ R.hp-=st.pdot; st.pdotT--; if(R.hp<1 && st.holmT>0) R.hp=1; if (R.hp<0) R.hp=0; }
+}
+async function duoCheckEnd(){
+  if (!C || C.ending) return true;
+  heroOut();
+  for (const i of [0,1]) if (R.party[i].hp<=0){ heroIn(i); if (R.hp<=0 && tryRevive()) heroOut(); }
+  heroIn(0);
+  if (R.party.every(h=>h.hp<=0)){ C.ending=true; C.busy=true; C.msg='Les deux aventuriers s’effondrent…'; updateCombat(); await sleep(1100); endRun(false); return true; }
+  if (alive().length===0){ C.ending=true; C.busy=true; C.msg='Victoire !'; updateCombat(); await sleep(600); winCombat(); return true; }
+  return false;
+}
+async function duoCombatTurn(acts){
+  C.busy=true;
+  for (const i of [0,1]){
+    heroOut(); if (R.party[i].hp<=0) continue;
+    heroIn(i);
+    const a=acts[i]||{};
+    if (a.tgt){ const ix=C.enemies.findIndex(e=>e.uid===a.tgt && !e.dead); if (ix>=0) C.target=ix; }
+    const k=String(a.k||'');
+    if (k==='potion' && R.potions>0){ R.potions--; healR(Math.round(R.maxhp*potionPct())); C.msg=`${esc(R.pname)} : Potion !`; }
+    else if (k==='ether' && R.ethers>0){ R.ethers--; R.mp=Math.min(R.maxmp,R.mp+Math.round(R.maxmp*0.5)); C.msg=`${esc(R.pname)} : Éther !`; }
+    else {
+      let s=combatSkills().find(x=>'skill-'+x.id===k);
+      if (!s || !skillState(s).ok) s=JOBS[R.job].basic;
+      await useSkill(s);
+    }
+    heroOut();
+    if (alive().length===0) break;
+  }
+  heroIn(0);
+  if (await duoCheckEnd()) return;
+  const before=R.party.map(h=>h.st);
+  await enemyPhase();
+  heroOut();
+  const cur=R.cur||0; // enemyPhase ne décompte les statuts que du héros actif : faire l'autre
+  R.party.forEach((h,i)=>{ if(i!==cur && h.st) ['mitigT','invulnT','holmT','buffT','weakT'].forEach(k=>{ if(h.st[k]>0) h.st[k]--; }); });
+  heroIn(0);
+  if (await duoCheckEnd()) return;
+  C.turn++;
+  duoTick(1); heroOut(); duoTick(0); heroOut(); heroIn(0);
+  planIntents();
+  C.busy=false; DUO.waiting=false;
+  updateCombat();
+  await duoCheckEnd();
+}
+/* ---- interception des choix : en duo, un clic = une proposition envoyée au partenaire ---- */
+const DUO_LOCAL = /^(help|item|items|enemy-|online|scores|atelier)/;
+function duoKeyOf(el){ const b=el && el.closest && el.closest('[data-k]'); return b ? b : null; }
+document.addEventListener('click', e=>{
+  if (!isDuo() || DUO.applying || typeof Online==='undefined' || !Online.isDuo) return;
+  const b=duoKeyOf(e.target); if (!b || b.disabled) return;
+  const k=b.dataset.k; if (DUO_LOCAL.test(k)) return;
+  if (!document.getElementById('app').contains(b) && !/^(potion|ether)$/.test(k)) return;
+  e.stopPropagation(); e.preventDefault();
+  if (DUO.waiting) return;
+  if (C && C.busy) return;
+  const tgt = C && C.enemies[C.target] ? C.enemies[C.target].uid : null;
+  if (k==='potion'||k==='ether'){ try{ closeModal(); }catch(_){} }
+  const ok = Online.submit({t:'k', k, tgt});
+  if (ok!==false){ DUO.waiting=true; b.classList.add('sel'); toast('Choix envoyé — en attente du partenaire'); if (C) updateCombat(); }
+}, true);
+function duoClick(k){
+  const el=document.querySelector(`#app [data-k="${CSS.escape(k)}"]`) || document.querySelector(`[data-k="${CSS.escape(k)}"]`);
+  if (el && !el.disabled){ el.click(); return true; }
+  return false;
+}
+async function duoApply(actions){
+  DUO.applying=true;
+  try{
+    const a0=actions[0]||{}, a1=actions[1]||{}, k0=String(a0.k||''), k1=String(a1.k||'');
+    const isCb = k => /^skill-/.test(k) || k==='potion' || k==='ether';
+    if (C && !C.ending && (isCb(k0) || isCb(k1))){ await duoCombatTurn([isCb(k0)?a0:{k:''}, isCb(k1)?a1:{k:''}]); }
+    else if (/^rew-/.test(k0) && R && R.rew){
+      // récompense individuelle : le joueur 1 reçoit la sienne, puis le choix du joueur 0 fait avancer
+      const w=R.rew, i1=/^rew-\d+$/.test(k1)? +k1.slice(4) : 0, x1=REW[w.opts[i1]];
+      if (x1 && R.party[1]){ heroIn(1); takeReward(x1); recalcStats(); heroOut(); heroIn(0); }
+      duoClick(k0);
+    }
+    else { // choix commun : l'hôte tranche en cas de désaccord
+      const k = k0 || k1; if (k) duoClick(k);
+    }
+  } finally { if (R && R.party){ heroOut(); heroIn(0); } DUO.applying=false; DUO.waiting=false; if (C) updateCombat(); }
+}
+function duoDefault(slot){
+  if (C && !C.ending) { const h=R&&R.party&&R.party[slot]; return {t:'k', k:'skill-'+(h?JOBS[h.job].basic.id:'coup'), tgt:(C.enemies.find(e=>!e.dead)||{}).uid||null}; }
+  const el=document.querySelector('#app [data-k^="room-"], #app [data-k^="rew-"], #app [data-k^="ch-"], #app [data-k="next"], #app [data-k="ok"], #app [data-k="go"]');
+  return {t:'k', k: el ? el.dataset.k : 'next'};
+}
+function duoGetState(){
+  if (!R) return { none:true };
+  const p=R.cur||0; heroOut();
+  const snap = JSON.parse(JSON.stringify({ R, C, RS, screen: C ? 'combat' : (R.rew ? 'rewards' : 'map') }));
+  heroIn(p);
+  return snap;
+}
+function duoSetState(s){
+  if (!s || s.none) return;
+  R=s.R; C=s.C; RS.splice(0,4,...s.RS); R.rs=RS; DUO.on=true; DUO.waiting=false;
+  if (R.party){ R.cur=R.cur||0; const h=R.party[R.cur]; if (C && h.st){ C.st=h.st; C.cds=h.cds; } }
+  if (C){ C.busy=false; renderCombat(); updateCombat(); } else if (R.rew) showRewards(); else SCREENS.map();
+}
+if (typeof Online!=='undefined' && Online && Online.attachEngine){
+  Online.attachEngine({
+    startDuoRun: (o)=>{ DUO.my=o.mySlot||0; startDuoRun(o); },
+    applyActions: (acts)=>duoApply(acts),
+    getState: duoGetState,
+    setState: duoSetState,
+    resumeDuoRun: (o)=>{ DUO.my=o.mySlot||0; duoSetState(o.state); },
+    defaultAction: (slot)=>duoDefault(slot),
+  });
 }
 
 /* ===================== DÉMARRAGE ===================== */

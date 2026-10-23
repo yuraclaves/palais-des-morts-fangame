@@ -1,6 +1,23 @@
-# Crédits — art libre utilisé dans « Palais des Morts » (fan-game non commercial)
+# Crédits — « Le Palais des Morts » (fan game non officiel, non commercial)
 
-Aucun asset Square Enix / Final Fantasy n'est inclus. Tout l'art de `assets/` provient de ressources publiées sous licences libres (CC0, CC-BY, OGA-BY, CC-BY-SA, GPL), listées ci-dessous avec auteurs et liens. Certains sprites ont été recadrés, recolorés ou agrandis (modifications indiquées).
+## Mention légale Square Enix
+
+© SQUARE ENIX CO., LTD. All Rights Reserved.
+FINAL FANTASY BRAVE EXVIUS © 2015-2023 SQUARE ENIX CO., LTD. Developed by Alim Co., Ltd.
+FINAL FANTASY XIV © 2010-2026 SQUARE ENIX CO., LTD.
+Fan game non officiel, non commercial. Aucun achat en argent réel : les Fragments de cristal se gagnent uniquement en jouant.
+Cette mention est affichée sur l'écran titre, dans les notes de patch et dans l'écran des taux d'invocation.
+
+FINAL FANTASY, les noms des personnages, jobs et monstres appartiennent à SQUARE ENIX CO., LTD.
+
+## Matériel officiel FINAL FANTASY XIV
+
+- **FINAL FANTASY XIV Fan Kit** (icônes officielles), https://na.finalfantasyxiv.com/lodestone/special/fankit/icon/
+  Utilisé pour : bannières des notes de patch (`assets/patchnotes/v1.jpg` à `v5.jpg`), composées à partir des icônes de jobs officielles (Paladin, Guerrier, Moine, Chevalier dragon, Barde, Mage blanc, Mage noir, Érudit, Samouraï, Mage rouge) sur un dégradé.
+
+## Art libre encore présent (sera remplacé par des sprites officiels dans la prochaine mise à jour)
+
+Tout l'art de `assets/` provient de ressources publiées sous licences libres (CC0, CC-BY, OGA-BY, CC-BY-SA, GPL), listées ci-dessous avec auteurs et liens. Certains sprites ont été recadrés, recolorés ou agrandis (modifications indiquées).
 
 Les icônes (SVG pixel 8×8), les fenêtres bleues et l'interface sont dessinées en code, originales au projet.
 
