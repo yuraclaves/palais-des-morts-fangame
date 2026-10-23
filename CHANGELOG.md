@@ -10,6 +10,7 @@
 - Appui long sur une action : détail avec les vrais chiffres (dégâts, soin, durée, cible).
 - Les textes des actions des 10 jobs ont été réécrits, plus courts et plus clairs.
 - Tes effets actifs s'affichent sous ta barre de PV, avec les tours restants.
+- Les noms longs des actions et les petits badges tiennent mieux sur les petits écrans.
 - Relancer un même effet remet sa durée à neuf au lieu de s'additionner. Les bonus de dégâts et les réductions de dégâts ont maintenant un plafond.
 
 ## v5.5c : Nouveau job : Mage rouge (23/10/2026)

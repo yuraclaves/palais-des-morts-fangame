@@ -1033,7 +1033,7 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 .sk2 .skt{display:flex;align-items:center;gap:5px;min-width:0}
 .sk2 .ski{width:26px;height:26px;flex:none;border-radius:5px;box-shadow:0 0 0 1px #000,0 0 0 2px rgba(255,255,255,.35);pointer-events:none}
 .sk2 .ski.icb{display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35)}.sk2 .ski.icb .ic{width:18px;height:18px}
-.sk2 .skn{font-size:12.5px;line-height:1.08;text-align:left;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+.sk2 .skn{font-size:12.5px;line-height:1.08;text-align:left;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:normal;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
 .sk2 .skb{display:flex;align-items:center;justify-content:space-between;gap:3px;margin-top:1px}
 .rtag{font-size:9.5px;font-weight:700;line-height:1;padding:2px 4px 2px;border-radius:3px;letter-spacing:.2px;text-shadow:none;color:#10131f;white-space:nowrap}
 .r-dmg{background:#ff9f7a}.r-heal{background:#8fe39a}.r-def{background:#8cc8ff}.r-buff{background:#ffd76a}.r-ctl{background:#d0a8ff}.r-item{background:#d9dce8}
@@ -1060,6 +1060,8 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 .status .bf i{font-style:normal;font-size:10px;background:#fff;color:#111;border-radius:6px;padding:0 3px;margin-left:2px;line-height:12px;text-shadow:none}
 .status .b-def{border-color:#8cc8ff;color:#cfe6ff}.status .b-shd{border-color:#9fe0ff;color:#d7f4ff}.status .b-heal{border-color:#8fe39a;color:#d2ffd8}
 .status .b-buff{border-color:#ffd76a;color:#fff0b8}.status .b-bad{border-color:#ff8a8a;color:#ffc4c4}
+.sk2 .skb{gap:2px;min-width:0}.sk2 .skb .skr{gap:2px;flex-shrink:1;min-width:0}.sk2 .skc{padding:2px 3px;letter-spacing:-.2px}.sk2 .rtag{padding:2px 3px;letter-spacing:0}
+.sk2 .skn.skn-l{font-size:11px;letter-spacing:-.2px}
 </style>
 </head>
 <body>
@@ -1937,6 +1939,7 @@ const CHANGELOG = [
     'Appui long sur une action : détail avec les vrais chiffres (dégâts, soin, durée, cible).',
     'Les textes des actions des 10 jobs ont été réécrits, plus courts et plus clairs.',
     'Tes effets actifs s’affichent sous ta barre de PV, avec les tours restants.',
+    'Les noms longs des actions et les petits badges tiennent mieux sur les petits écrans.',
     'Relancer un même effet remet sa durée à neuf au lieu de s’additionner. Les bonus de dégâts et les réductions de dégâts ont maintenant un plafond.'
   ]},
   {v:'v5.5c', date:'23/10/2026', img:'assets/band/r1.webp', title:'Nouveau job : Mage rouge', notes:[
@@ -2895,7 +2898,7 @@ function renderSkills(){
     const ro=skillRole(s), g=JOBS[R.job].gauge||'Sen', cost = s.mp ? `<span class="skc c-mp${R.mp<mpCost(s)?' low':''}">${mpCost(s)} PM</span>` : s.req ? `<span class="skc c-g${C.st.sen<s.req?' low':''}">${s.req} ${g}</span>` : '';
     const why = st.cd ? '' : st.why==='PM' ? 'PM insuffisants' : st.why ? `${g} ${C.st.sen}/${s.req}` : '';
     return `<button class="btn sk sk2 ${st.ok?'':'na'}${st.cd?' oncd':''}" data-k="skill-${s.id}" data-sk="${s.id}" data-tip="${skillDetail(s).replace(/"/g,'&quot;')}" ${C.busy?'disabled':''}>`
-      + `<span class="skt"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'"><span class="skn">${s.name}</span></span>`
+      + `<span class="skt"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'"><span class="skn${Math.max(...s.name.split(' ').map(w=>w.length))>=11?' skn-l':''}">${s.name}</span></span>`
       + `<span class="skb"><span class="rtag ${ro[1]}">${ro[0]}</span><span class="skr">${cost}${s.cd?`<span class="skc c-cd">${ic('clock')}${Math.max(1,s.cd-(R.mods.cdr||0))}</span>`:''}</span></span><span class="skv">${why?`<span class="why">${why}</span>`:skMain(s)}</span>`
       + (st.cd?`<span class="cdv"><b>${ic('clock')}${st.cd}</b><small>tour${st.cd>1?'s':''}</small></span>`:'') + `</button>`; }).join('')
     + `<button class="btn sk sk2 skit" data-k="item" id="bItem" data-tip="&lt;b&gt;Objets&lt;/b&gt;&lt;br&gt;Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM." ${C.busy?'disabled':''}><span class="skt"><span class="ski icb">${ic('heal')}</span><span class="skn">Objets</span></span><span class="skb"><span class="rtag r-item">Sac</span></span><span class="skv"><span class="chips">${chip('heal',R.potions)}${chip('drop',R.ethers,'mp')}</span></span></button>`;
