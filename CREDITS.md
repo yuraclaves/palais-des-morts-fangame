@@ -133,3 +133,7 @@ Tous officiels, via le FINAL FANTASY Wiki (finalfantasy.fandom.com, API MediaWik
 - G'raha Tia : rendu officiel de FINAL FANTASY XIV patch 5.3 (« G'raha Tia 5.3 render from Final Fantasy XIV.png »).
 - Les images KO d'Urianger, Lyse, Tataru, Krile et G'raha Tia sont la même image couchée et assombrie.
 © SQUARE ENIX CO., LTD.
+
+## Cristaux de job de la boutique (v5.4e)
+
+Icônes officielles des objets « Soul of the Paladin, Monk, Bard, White Mage, Warrior, Dragoon, Black Mage, Scholar, Samurai » de FINAL FANTASY XIV (© SQUARE ENIX), obtenues via l'API publique documentée XIVAPI (v2.xivapi.com, ui/icon/026000). Seul le fond gris d'icône a été retiré.

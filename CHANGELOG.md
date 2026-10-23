@@ -1,5 +1,13 @@
 # Notes de patch : A Godless Realm
 
+## v5.4e : Menus illustrés et cristaux de job (23/10/2026)
+- L'Avant-poste n'est plus une liste : de grandes tuiles illustrées mènent aux Jobs, au Marchand, à l'Invocation et aux Compagnons.
+- Les raccourcis En ligne, Classement, Paramètres et Écran titre tiennent sur une seule ligne.
+- Seul le bloc de ton aventurier garde un cadre.
+- Le Marchand montre le vrai cristal de chaque job à acheter.
+- Les jobs sont présentés sans cadres, sur un halo à leur couleur, avec leur cristal s'ils sont verrouillés.
+- Les bannières d'invocation se fondent sur tous les bords et ont des titres dorés animés.
+
 ## v5.4d : A Godless Realm et nouveaux choix (23/10/2026)
 - Le jeu s'appelle désormais A Godless Realm, avec un nouveau logo argenté. Le donjon reste le Palais des Morts.
 - Les choix (chemins, récompenses, événements) sont de grandes bandes horizontales, faciles à toucher.

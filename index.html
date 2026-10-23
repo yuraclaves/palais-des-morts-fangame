@@ -825,6 +825,68 @@ body[data-scr="map"] .paths::before{display:none}
 .tlogo .tl-rule{width:min(80vw,330px);margin:10px 0 0}
 .tlogo .tl-rule i{background:linear-gradient(90deg,transparent,rgba(215,226,245,.8))}
 .tlogo .tl-rule b{background:linear-gradient(135deg,#ffffff,#9fb3d6);box-shadow:0 0 10px rgba(190,215,255,.9)}
+.shrow img.soul{width:46px;height:46px;object-fit:contain;flex:none;margin:0 4px;filter:drop-shadow(0 0 7px color-mix(in srgb,var(--g) 55%,transparent)) drop-shadow(0 2px 3px rgba(0,0,0,.6))}
+
+/* Hub v5.4e : tuiles illustrées, cadre seulement sur le bloc Aventurier */
+.hero.hframe{border:1px solid rgba(230,204,143,.22);border-radius:14px;background:linear-gradient(180deg,rgba(14,18,38,.62),rgba(8,10,24,.42));padding:12px 12px 10px;margin:4px 0 12px}
+.htile{all:unset;box-sizing:border-box;position:relative;display:flex;align-items:flex-end;overflow:hidden;cursor:pointer;border-radius:14px;min-height:132px;padding:10px 12px;
+ background:linear-gradient(180deg,rgba(6,8,20,0) 35%,rgba(6,8,20,.88) 100%),var(--img) center/cover no-repeat;
+ -webkit-mask-image:radial-gradient(ellipse 120% 120% at 50% 45%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 120% 120% at 50% 45%,#000 62%,transparent 100%);
+ transition:transform .12s,filter .12s;-webkit-tap-highlight-color:transparent}
+.htile:active{transform:scale(.97);filter:brightness(1.18)}
+.htile.wide{width:100%;min-height:116px;margin:0 0 10px;align-items:center;background:linear-gradient(90deg,rgba(6,8,20,.86) 0%,rgba(6,8,20,.35) 60%,rgba(6,8,20,.1)),var(--img) center/cover no-repeat}
+.htile.wide b{font-size:21px;color:#ffe7a8}
+.htile .ht-tx{position:relative;z-index:2;display:flex;flex-direction:column;gap:2px;text-shadow:0 1px 3px #000,0 0 10px #000}
+.htile .ht-tx b{font-family:'Cinzel',Georgia,serif;font-size:17px;color:#f6ecd2;letter-spacing:.02em}
+.htile .ht-tx small{font-size:12.5px;color:#d6dbe8}
+.htile .ht-go{margin-left:auto;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,rgba(255,220,140,.35),transparent 70%);color:#ffe7a8;font-size:22px}
+.htiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.htile .ht-fig{position:absolute;right:8px;top:8px;z-index:1;display:flex;filter:drop-shadow(0 3px 6px rgba(0,0,0,.7))}
+.htile .ht-fig img.spr{width:52px}
+.ht-souls{display:flex;gap:2px}.ht-souls img{width:32px;height:32px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,255,255,.35))}
+.hminis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 14px}
+.hmini{all:unset;display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 2px;border-radius:12px;cursor:pointer;color:#e6cc8f;font-size:12px;text-align:center;
+ background:radial-gradient(ellipse at 50% 30%,rgba(230,204,143,.13),transparent 70%);transition:transform .12s,background .12s}
+.hmini span{color:#dfe3ee}
+.hmini .rsym,.hmini svg{width:26px;height:26px;font-size:24px}
+.hmini:active{transform:scale(.94);background:radial-gradient(ellipse at 50% 30%,rgba(230,204,143,.3),transparent 75%)}
+
+/* Jobs v5.4e : personnages sur un halo de couleur, sans cadres */
+.jstage{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 6px;margin:6px 0 12px}
+.jfig{all:unset;position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px 10px;cursor:pointer;text-align:center;border-radius:16px;transition:transform .12s,filter .12s;-webkit-tap-highlight-color:transparent}
+.jfig .jf-sp{position:relative;display:flex;align-items:flex-end;justify-content:center;height:86px;width:100%}
+.jfig .jf-sp::before{content:"";position:absolute;left:12%;right:12%;bottom:-4px;height:26px;border-radius:50%;background:radial-gradient(ellipse,color-mix(in srgb,var(--g) 55%,transparent),transparent 70%)}
+.jfig img.spr{position:relative;width:64px}
+.jfig .jn{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:14px;color:#f3ead4;margin-top:6px}
+.jfig small,.jfig .lock{font-size:11.5px}
+.jfig.locked img.spr{filter:grayscale(1) brightness(.45);opacity:.75}
+.jfig.locked .jn{color:#a9adbb}
+.jfig .jf-soul{position:absolute;right:16%;bottom:2px;width:28px;height:28px;object-fit:contain;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--g) 70%,transparent))}
+.jfig.sel{background:none}.jfig .lock{color:#cdb98a}
+.jfig.sel .jn{color:#ffe7a8}
+.jfig.sel .jf-sp::before{background:radial-gradient(ellipse,rgba(255,225,150,.75),transparent 70%)}
+.jfig:active{transform:scale(.95);filter:brightness(1.15)}
+
+/* Bannières v5.4e : fondu sur tous les bords, titres façon FFXIV, plus d'animation */
+body.modern .gcar .gban{-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(180deg,transparent,#000 6%,#000 80%,transparent);-webkit-mask-composite:source-in;
+ mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(180deg,transparent,#000 6%,#000 80%,transparent);mask-composite:intersect;background:transparent}
+body.modern .gcar{background:transparent;border:0;box-shadow:none}
+body.modern .gart{inset:8% 5% 2% 22%!important;background-position:right bottom}
+body.modern .gbg{animation:gbgDrift 22s ease-in-out infinite alternate!important;transform-origin:60% 40%}
+@keyframes gbgDrift{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.12) translate(-2.5%,1.5%)}}
+body.modern .gban .ginfo{top:7%;left:7%}
+body.modern .gban .ginfo small{display:block;font-family:'Cinzel',Georgia,serif;font-size:10.5px;letter-spacing:.32em;color:#d9e2f2;opacity:.85;text-shadow:0 1px 3px #000}
+body.modern .gban .ginfo .gtt{position:relative;display:inline-block;font-family:'Cinzel',Georgia,serif;font-weight:700;font-variant:small-caps;font-size:22px;letter-spacing:.06em;line-height:1.15;margin:2px 0 0;
+ background:linear-gradient(100deg,#e2bd6e 0%,#fff0c4 30%,#ffffff 40%,#f0cf86 52%,#fff3d2 70%,#d4a551 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gttShine 6s ease-in-out infinite}
+body.modern .gban .ginfo .gtt::before{content:attr(data-t);position:absolute;inset:0;z-index:-1;color:#120c04;text-shadow:0 1px 0 #3a2a10,0 2px 4px #000,0 0 16px color-mix(in srgb,var(--gl) 70%,transparent),0 0 2px rgba(255,240,200,.5)}
+@keyframes gttShine{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+body.modern .gban .ginfo .gfl{display:block;width:min(64vw,250px);height:7px;margin:4px 0 6px;background:
+ radial-gradient(circle,#fff2c8 0 1.6px,transparent 2.4px) 0 50%/7px 7px no-repeat,
+ linear-gradient(90deg,rgba(255,226,160,.95),rgba(255,226,160,.35) 55%,transparent) 9px 50%/100% 1px no-repeat;filter:drop-shadow(0 0 4px var(--gl))}
+body.modern .gban .gpart i{box-shadow:0 0 6px 1px var(--gl)}
+body.modern .gban .gsweep{animation-duration:5.5s!important;opacity:.7}
+body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
+@media (prefers-reduced-motion:reduce){body.modern .gbg,body.modern .gban .ginfo .gtt,body.modern .gside{animation:none!important}}
 </style>
 </head>
 <body>
@@ -1576,6 +1638,14 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.4e', date:'23/10/2026', img:'assets/hub/prep.webp', title:'Menus illustrés et cristaux de job', notes:[
+    'L’Avant-poste n’est plus une liste : de grandes tuiles illustrées mènent aux Jobs, au Marchand, à l’Invocation et aux Compagnons.',
+    'Les raccourcis En ligne, Classement, Paramètres et Écran titre tiennent sur une seule ligne.',
+    'Seul le bloc de ton aventurier garde un cadre.',
+    'Le Marchand montre le vrai cristal de chaque job à acheter.',
+    'Les jobs sont présentés sans cadres, sur un halo à leur couleur, avec leur cristal s’ils sont verrouillés.',
+    'Les bannières d’invocation se fondent sur tous les bords et ont des titres dorés animés.'
+  ]},
   {v:'v5.4d', date:'23/10/2026', img:'assets/bg/title_amaurot.webp', title:'A Godless Realm et nouveaux choix', notes:[
     'Le jeu s’appelle désormais A Godless Realm, avec un nouveau logo argenté. Le donjon reste le Palais des Morts.',
     'Les choix (chemins, récompenses, événements) sont de grandes bandes horizontales, faciles à toucher.',
@@ -1735,25 +1805,29 @@ SCREENS.hub = function(){
   const j=JOBS[S.job];
   const vis={ jobs:spr(S.job,''), shop:rsym('marchand','hg'), gacha:spr('c_'+curBanner().f5,''), comps:S.comp?spr('c_'+S.comp,''):rsym('online','hg'),
     online:rsym('online','hg'), ranking:rsym('scores','hg'), settings:rsym('settings','hg'), title:rsym('door','hg') };
+  const tile=(k,t,sub,fig,extra='')=>`<button class="htile" data-k="${k}" ${extra} style="--img:url(assets/hub/${k}.webp)"><span class="ht-fig">${fig}</span><span class="ht-tx"><b>${t}</b><small>${sub}</small></span></button>`;
+  const mini=(k,sym,t,extra='')=>`<button class="hmini" data-k="${k}" ${extra}>${rsym(sym)}<span>${t}</span></button>`;
   const item=(k,icon,t,sub,extra='')=>`<button class="xbtn" data-k="${k}" ${extra}><span class="xv">${vis[k]||''}</span><span><b>${t}</b><small>${sub}</small></span></button>`;
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Avant-poste du Palais</b><span class="gold">${S.gils} Gils</span></div>
   <div class="scroll">
-    <div class="hero">
+    <div class="hero hframe">
       <div class="hero-sp">${spr(S.job,'idle')}</div>
       <div class="hero-t"><h2>${esc(S.name)}</h2><div class="hero-j">${jgi(S.job)} ${j.name} ${roleTag(S.job)}</div>
       <div class="muted">Record : étage ${S.stats.best||'—'} / 50 · Victoires : ${S.stats.wins}</div></div>
     </div>
-    <button class="xbtn prime" data-k="enter" id="bEnter"><span class="xv">${rsym('up','hg')}</span><span><b>Préparer l’exploration</b><small>Entrer dans le Palais des Morts</small></span></button>
-    <div class="xlist">
-      ${item('jobs','actions_and_traits','Jobs',`${S.unlocked.length} / ${JOB_ORDER.length} débloqués`,'data-go="jobs"')}
-      ${item('shop','currency','Marchand','Cristaux de job et améliorations','data-go="shop"')}
-      ${item('gacha','gold_saucer','Invocation',`${S.frag||0} fragments de cristal`,'data-go="gacha"')}
-      ${item('comps','companions','Compagnons',S.comp?COMPANIONS[S.comp].name:'Aucun compagnon','id="bHubComps"')}
-      ${item('online','party_finder','En ligne','Amis, groupe et classement','id="bOnlineH" onclick="Online.open(\'hub\')"')}
-      ${item('ranking','achievements','Classement','Les meilleurs aventuriers','data-go="ranking"')}
-      ${item('settings','system_configuration','Paramètres','Son, notes de patch, crédits','data-go="settings"')}
-      ${item('title','log_out','Écran titre','Retour au menu principal','data-go="title"')}
+    <button class="htile wide" data-k="enter" id="bEnter" style="--img:url(assets/hub/prep.webp)"><span class="ht-tx"><b>Préparer l’exploration</b><small>Entrer dans le Palais des Morts</small></span><span class="ht-go">${rsym('up')}</span></button>
+    <div class="htiles">
+      ${tile('jobs','Jobs',`${S.unlocked.length} / ${JOB_ORDER.length} débloqués`,spr(S.job,'idle'),'data-go="jobs"')}
+      ${tile('shop','Marchand','Cristaux et améliorations',`<span class="ht-souls">${JOB_ORDER.filter(k=>!S.unlocked.includes(k)).slice(0,3).map(k=>`<img src="assets/soul/${k}.webp" alt="">`).join('')}</span>`,'data-go="shop"')}
+      ${tile('gacha','Invocation',`${S.frag||0} fragments de cristal`,spr('c_'+curBanner().f5,'idle'),'data-go="gacha"')}
+      ${tile('comps','Compagnons',S.comp?COMPANIONS[S.comp].name:'Aucun compagnon',S.comp?spr('c_'+S.comp,'idle'):'','id="bHubComps"')}
+    </div>
+    <div class="hminis">
+      ${mini('online','online','En ligne','id="bOnlineH" onclick="Online.open(\'hub\')"')}
+      ${mini('ranking','scores','Classement','data-go="ranking"')}
+      ${mini('settings','settings','Paramètres','data-go="settings"')}
+      ${mini('title','door','Écran titre','data-go="title"')}
     </div>
     <section class="xsec ledger">
       <h3 class="xh">Registre de l’aventurier</h3>
@@ -1767,6 +1841,7 @@ SCREENS.hub = function(){
   document.getElementById('bEnter').onclick = SCREENS.prep;
   document.getElementById('bHubComps').onclick = ()=>SCREENS.comps('hub');
 };
+['prep','jobs','shop','gacha','comps'].forEach(k=>{ const i=new Image(); i.src='assets/hub/'+k+'.webp'; });
 /* Classement public : les 3 meilleures explorations de chaque joueur */
 SCREENS.ranking = function(){
   C=null;
@@ -1821,6 +1896,7 @@ SCREENS.settings = function(){
       <p><b>Fond de l’écran titre :</b> illustration officielle d’Amaurot (écran de chargement de FINAL FANTASY XIV: Shadowbringers).</p>
       <p><b>Polices :</b> Cinzel (Natanael Gama) et Source Sans 3 (Adobe), licence SIL Open Font License.</p>
       <p><b>Sprites des compagnons de FINAL FANTASY XIV :</b> Alphinaud, Alisaie, Estinien, Haurchefant et Cid : FINAL FANTASY Record Keeper (Square Enix, DeNA). Urianger et Lyse : PICTLOGICA FINAL FANTASY (Square Enix). Tataru, Krile et G’raha Tia : rendus officiels de FINAL FANTASY XIV. Aucun sprite de fan utilisé.</p>
+      <p><b>Cristaux de job (Marchand)</b> : icônes officielles des objets « Soul of the … » de FINAL FANTASY XIV, via l’API publique XIVAPI.</p>
       <p class="legal">${LEGAL_TXT}</p>
     </section>
   </div>`;
@@ -1859,8 +1935,8 @@ SCREENS.jobs = function(){
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Changer de job</b><span class="gold">${S.gils} Gils</span></div>
   <div class="scroll">
-    <div class="grid3">
-      ${JOB_ORDER.map(k=>{ const un=S.unlocked.includes(k); return `<button class="btn card ${un?'':'locked'} ${k===S.job?'sel':''}" data-k="job-${k}" data-job="${k}">${spr(k,un&&k===S.job?'idle':'')}<span class="jn">${jgi(k)}${JOBS[k].name}</span>${un?roleTag(k):`<span class="lock">Cristal de job</span>`}</button>`; }).join('')}
+    <div class="jstage">
+      ${JOB_ORDER.map(k=>{ const un=S.unlocked.includes(k); return `<button class="jfig ${un?'':'locked'} ${k===S.job?'sel':''}" data-k="job-${k}" data-job="${k}" style="--g:${SOUL_GLOW[k]}"><span class="jf-sp">${spr(k,un?'idle':'')}${un?'':`<img class="jf-soul" src="assets/soul/${k}.webp" alt="">`}</span><span class="jn">${JOBS[k].name}</span>${un?roleTag(k):`<span class="lock">Cristal de job</span>`}</button>`; }).join('')}
     </div>
     <p class="muted center">9 jobs. Les jobs verrouillés s’obtiennent avec un Cristal de job chez le marchand. Chaque job joue différemment : aucun n’est simplement « meilleur ».</p>
   </div>
@@ -1878,6 +1954,7 @@ function jobDetail(k){
   const p=document.getElementById('mP'); if(p) p.onclick=()=>{ S.job=k; persist(); closeModal(); SCREENS.hub(); };
   const s=document.getElementById('mS'); if(s) s.onclick=()=>{ closeModal(); SCREENS.shop(); };
 }
+const SOUL_GLOW={paladin:'#bfeaf2',moine:'#e0b030',barde:'#b8d860',mageblanc:'#fff3d0',guerrier:'#e0303a',dragoon:'#5b8cff',magenoir:'#a070e0',erudit:'#7a74e0',samourai:'#f08a3a'};
 SCREENS.shop = function(){
   const crystals = JOB_ORDER.filter(k=>!S.unlocked.includes(k)), price=jobPrice(), promo=promoOK();
   app.innerHTML = `
@@ -1886,7 +1963,7 @@ SCREENS.shop = function(){
     <section class="xsec">
       <h3 class="xh">Cristaux de job</h3>
       <p class="muted">Un cristal débloque un job pour toujours. Prix unique : ${JOB_PRICE} Gils.</p>
-      ${crystals.length? crystals.map(k=>`<div class="shrow">${spr(k,'')}<div class="grow"><b>${jgi(k)} ${JOBS[k].name}</b><br>${roleTag(k)} <span class="muted">Classe d’origine : ${JOBS[k].cls}</span></div>
+      ${crystals.length? crystals.map(k=>`<div class="shrow"><img class="soul" src="assets/soul/${k}.webp" alt="Cristal de job ${JOBS[k].name}" style="--g:${SOUL_GLOW[k]}"><div class="grow"><b>${JOBS[k].name}</b><br>${roleTag(k)} <span class="muted">Classe d’origine : ${JOBS[k].cls}</span></div>
         <div class="pricebox">${promo?`<span class="ptag">Premier cristal</span><s>${JOB_PRICE} G</s>`:''}<button class="btn small ${S.gils>=price?'goldb':''}" data-k="buy-${k}" data-buyjob="${k}" ${S.gils>=price?'':'disabled'}>${price} G</button></div></div>`).join('') : '<p class="muted">Tous les jobs sont débloqués !</p>'}
     </section>
     <section class="xsec">
@@ -2963,7 +3040,7 @@ function bannerHTML(b){
     <div class="gpart">${parts}</div>
     <div class="gfeat">${spr('c_'+b.f5,'idle')}</div>
     <div class="gside">${b.f4.map(k=>spr('c_'+k,'idle')).join('')}</div>
-    <div class="ginfo"><small>${b.game}</small><b>${b.name}</b><span>Taux augmenté : <b>${COMPANIONS[b.f5].name}</b> 5${ic('star')}<br>${b.f4.map(k=>COMPANIONS[k].name).join(', ')} 4${ic('star')}</span></div>
+    <div class="ginfo"><small>${b.game}</small><b class="gtt" data-t="${b.name}">${b.name}</b><i class="gfl" aria-hidden="true"></i><span>Taux augmenté : <b>${COMPANIONS[b.f5].name}</b> 5${ic('star')}<br>${b.f4.map(k=>COMPANIONS[k].name).join(', ')} 4${ic('star')}</span></div>
     <div class="gcopy">© SQUARE ENIX</div></div>`;
 }
 function gachaRules(){
