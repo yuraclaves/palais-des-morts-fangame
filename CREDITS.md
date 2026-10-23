@@ -132,6 +132,7 @@ Tous officiels, via le FINAL FANTASY Wiki (finalfantasy.fandom.com, API MediaWik
 - Krile : rendu officiel de FINAL FANTASY XIV (« FFXIV Krile.png »).
 - G'raha Tia : rendu officiel de FINAL FANTASY XIV patch 5.3 (« G'raha Tia 5.3 render from Final Fantasy XIV.png »).
 - Les images KO d'Urianger, Lyse, Tataru, Krile et G'raha Tia sont la même image couchée et assombrie.
+- v5.4g : Urianger, Lyse, Tataru et G'raha Tia (images normales et KO) ont été retournés horizontalement pour regarder vers la droite, comme les autres alliés. Krile est de face et reste inchangée.
 © SQUARE ENIX CO., LTD.
 
 ## Cristaux de job de la boutique (v5.4e)
@@ -162,3 +163,51 @@ Décors de combat officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, Alim)
 - `b30` (boss) : FFBE Crystal Room BG
 - `b40` (boss) : FFBE Electric Tower BG
 - `b50` (boss) : FFBE Chamber of Arms BG
+
+
+## Illustrations des bandes de choix (v5.4g)
+
+Décors officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, développé par Alim), via le Final Fantasy Wiki (fandom), recadrés en bandeaux (`assets/band/`).
+
+- `b10.webp` : Heavensplit Peaks
+- `b20.webp` : Inferno Hollow
+- `b30.webp` : Crystal Room
+- `b40.webp` : Electric Tower
+- `b50.webp` : Chamber of Arms
+- `e0.webp` : Gronoa Shrine Entrance
+- `e1.webp` : Crystallis Cave
+- `e2.webp` : Gagara Sand Cavern
+- `e3.webp` : Inner Chamber
+- `e4.webp` : Land of Darkness
+- `r0.webp` : Eternal Summit
+- `r1.webp` : Crystal Tower Entrance
+- `r2.webp` : Ghastly Valley
+- `r3.webp` : Forgotten Walls
+- `r4.webp` : Gagara Sand Cavern
+- `r5.webp` : Grave of the Warriors
+- `r6.webp` : Crystal Chamber Battle with Kain
+- `r7.webp` : Chamber of Arms
+- `r8.webp` : Heavensplit Peaks
+- `r9.webp` : Inner Chamber
+- `t0b.webp` : Ancient Ruins BG 1
+- `t0c.webp` : Ancient Ruins BG 2
+- `t1b.webp` : Dalnakya Cavern
+- `t1c.webp` : Gronoa Shrine Interior
+- `t2b.webp` : Earth Shrine
+- `t2c.webp` : Castle Hein
+- `t3b.webp` : Eroded Castle
+- `t3c.webp` : Alexandria Castle
+- `t4b.webp` : Gronoa Shrine Depths BG 1
+- `t4c.webp` : Gigantic Underground Ruins
+- `v_autel.webp` : Crystal Room
+- `v_coffre.webp` : Emperor's Hall
+- `v_marchand.webp` : Energy Extraction Station
+- `v_maudite.webp` : Fire Shrine
+- `v_piege.webp` : Crystallis Cave
+- `v_pomandre.webp` : Land of Fading Memories
+- `v_rencontre.webp` : Galebreak
+- `v_repos.webp` : Clouds of Lasting Light
+
+## Fond de l’écran titre (v5.4g)
+
+Amaurot, écran de chargement officiel de FINAL FANTASY XIV: Shadowbringers (© SQUARE ENIX), texture `ui/loadingimage/-nowloading_base17_hr1.tex` (3840x2160) obtenue via l’API publique documentée XIVAPI v2 (`/api/asset`), recadrée sans les bandes noires.

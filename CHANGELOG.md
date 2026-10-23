@@ -1,5 +1,16 @@
 # Notes de patch : A Godless Realm
 
+## v5.4g : Victoire, combats et choix illustrés (23/10/2026)
+- Le titre A Godless Realm a été redessiné : grandes lettres argentées, plus fines et mieux équilibrées.
+- L'écran titre a un bouton Paramètres et une image d'Amaurot bien plus nette.
+- Le choix entre 3 récompenses n'arrive plus qu'après un combat. Les événements donnent directement leur récompense.
+- Chaque étape d'un étage propose toujours au moins un combat.
+- Toutes les bandes de choix (chemins, récompenses, événements) ont maintenant une illustration.
+- L'écran de victoire est plus beau et plus clair : un grand titre doré, puis les Gils et fragments gagnés.
+- La scène de combat prend toute la largeur de l'écran : alliés en colonne à gauche, ennemis en colonne à droite.
+- Lyse, Urianger, Tataru et G'raha regardent maintenant vers la droite, comme les autres alliés.
+- Le classement enregistre aussi les explorations perdues ou abandonnées, avec l'étage atteint (toujours 3 meilleures par joueur).
+
 ## v5.4f : Des décors de combat variés (23/10/2026)
 - Chaque palier de 10 étages a maintenant 3 décors de combat, tirés selon la salle.
 - Les salles maudites ont leur propre décor, différent à chaque palier.

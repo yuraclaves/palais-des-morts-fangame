@@ -887,6 +887,68 @@ body.modern .gban .gpart i{box-shadow:0 0 6px 1px var(--gl)}
 body.modern .gban .gsweep{animation-duration:5.5s!important;opacity:.7}
 body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 @media (prefers-reduced-motion:reduce){body.modern .gbg,body.modern .gban .ginfo .gtt,body.modern .gside{animation:none!important}}
+.tlogo.lg{margin:7vh auto 0;width:min(92vw,420px);display:block}
+.tlogo.lg .lgsvg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 2px 2px rgba(0,0,0,.9)) drop-shadow(0 0 14px rgba(0,0,0,.75)) drop-shadow(0 0 26px rgba(160,200,255,.22))}
+.band.has-art{background:linear-gradient(90deg,transparent 0%,rgba(6,8,16,.7) 10%,rgba(6,8,16,.55) 90%,transparent 100%)}
+.band .b-art{position:absolute;inset:0;z-index:0;background:center 50%/cover no-repeat;pointer-events:none;
+ -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+.band .b-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,6,12,.93) 0%,rgba(4,6,12,.84) 34%,rgba(4,6,12,.5) 68%,rgba(4,6,12,.28) 100%),linear-gradient(180deg,rgba(4,6,12,.25),transparent 30%,transparent 70%,rgba(4,6,12,.35));
+ box-shadow:inset 0 0 0 999px color-mix(in srgb,var(--bc) 8%,transparent)}
+.band .b-ic,.band .b-tx,.band .b-go{position:relative;z-index:1}
+.band .vmks,.band::before,.band::after{z-index:2}
+.band.has-art .b-tx small{color:#e3e8f6}
+.vict{position:relative;text-align:center;padding:14px 8px 12px;margin:2px 0 6px;overflow:hidden}
+.vict::before,.vict::after{content:"";position:absolute;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(232,200,130,.75),transparent);animation:ffLine .8s .25s ease-out both}
+.vict::before{top:0}.vict::after{bottom:0;opacity:.55}
+.vx-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 42%,rgba(255,214,140,.20),transparent 70%),linear-gradient(180deg,rgba(6,6,10,.55),rgba(6,6,10,.35));pointer-events:none}
+.vx-sub{position:relative;font-family:'Cinzel',Georgia,serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#e9d39c;opacity:.9;margin-bottom:2px;animation:rewIn .5s .1s ease-out both}
+.vx-t{position:relative;width:min(84vw,340px);margin:0 auto;animation:vxIn .75s cubic-bezier(.2,.8,.2,1) both}
+.vx-t svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 2px 2px rgba(0,0,0,.9)) drop-shadow(0 0 16px rgba(255,200,110,.35))}
+@keyframes vxIn{from{clip-path:inset(0 100% 0 0);transform:translateX(-14px);opacity:.2}to{clip-path:inset(0 0 0 0);transform:none;opacity:1}}
+.vx-flare{position:absolute;top:-10%;bottom:-10%;left:0;width:26%;pointer-events:none;mix-blend-mode:screen;
+ background:linear-gradient(100deg,transparent 20%,rgba(255,250,230,.0) 30%,rgba(255,248,220,.75) 50%,rgba(255,250,230,0) 70%,transparent 80%);filter:blur(2px);opacity:0;animation:vxFl 1s .55s ease-out both}
+@keyframes vxFl{0%{opacity:0;transform:translateX(-30%)}20%{opacity:1}100%{opacity:0;transform:translateX(360%)}}
+.vx-emb{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;margin:4px auto 10px;animation:rewIn .5s .6s ease-out both}
+.vx-emb i{height:1px;width:70px;background:linear-gradient(90deg,transparent,#e8cf96)}.vx-emb i:last-child{transform:scaleX(-1)}
+.vx-emb b{width:8px;height:8px;transform:rotate(45deg);border:1px solid #f0dcaa;box-shadow:0 0 8px rgba(255,214,140,.6)}
+.vx-gains{position:relative;display:flex;justify-content:center;gap:0;animation:rewIn .5s .8s ease-out both}
+.vg{flex:1;max-width:120px;padding:0 10px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.vg+.vg{border-left:1px solid rgba(232,207,150,.25)}
+.vg small{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#aeb5c8;font-weight:600}
+.vg b{font-family:'Cinzel',Georgia,serif;font-size:21px;font-weight:600;color:#eef1f8;text-shadow:0 1px 3px #000}
+.vg.gold b{color:#f3d58d}.vg.frag b{color:#9fe3ff}
+.vx-motes i{position:absolute;bottom:8%;width:3px;height:3px;border-radius:50%;background:#ffe6a8;box-shadow:0 0 6px #ffd27a;opacity:0;animation-name:vxMote;animation-timing-function:ease-out;animation-iteration-count:2;animation-fill-mode:both}
+@keyframes vxMote{0%{opacity:0;transform:translateY(0)}25%{opacity:.85}100%{opacity:0;transform:translateY(-70px)}}
+.vict.boss .vx-t svg{filter:drop-shadow(0 2px 2px rgba(0,0,0,.9)) drop-shadow(0 0 22px rgba(255,190,90,.5))}
+@media (prefers-reduced-motion:reduce){.vict *,.vict::before,.vict::after{animation-duration:.01s!important;animation-delay:0s!important}.vx-motes,.vx-flare{display:none}}
+/* v5.4g : scène de combat pleine largeur, colonnes verticales (alliés à gauche, ennemis à droite) */
+#field.field{margin:0 calc(-1 * (env(safe-area-inset-right) + 8px)) 0 calc(-1 * (env(safe-area-inset-left) + 8px));min-height:300px;background-position:center 62%;
+ -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 95%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 95%,transparent 100%);-webkit-mask-composite:source-over;mask-composite:add}
+#field .enemies{left:50%;right:3%;bottom:6%;height:82%;top:auto}
+#field .en img.spr.art{width:min(calc(var(--w) * 1.5px),34vw);max-height:min(118px,16vh)}
+#field .enemies[data-n="3"] img.spr.art{max-height:min(110px,13.5vh)}
+#field .enemies[data-n="4"] img.spr.art,#field .enemies[data-n="5"] img.spr.art{width:min(calc(var(--w) * 1.5px),22vw);max-height:min(100px,12.5vh)}
+#field .enemies[data-n="4"] .bar,#field .enemies[data-n="5"] .bar{width:44px}
+#field .enemies[data-n="4"] .ename,#field .enemies[data-n="5"] .ename{font-size:9.5px;max-width:80px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#field .en .ename{white-space:nowrap}
+#field .enemies[data-b="1"][data-n="5"] .en.boss img.spr.art{width:min(calc(var(--w) * 1.3px),24vw);max-height:min(130px,18vh)}
+#field .en.boss img.spr.art{width:min(calc(var(--w) * 1.9px),46vw);max-height:min(230px,31vh)}
+#field .enemies[data-b="1"]:not([data-n="1"]) .en.boss img.spr.art{width:min(calc(var(--w) * 1.6px),33vw);max-height:min(170px,24vh)}
+#field .enemies[data-b="1"]:not([data-n="1"]) .en:not(.boss) img.spr.art{max-height:min(84px,11vh);width:min(calc(var(--w) * 1.4px),19vw)}
+#field .enemies[data-b="1"] .en:not(.boss) .bar{width:44px}
+#field .enemies[data-b="1"] .en:not(.boss) .ename{font-size:9.5px}
+/* alliés : une colonne verticale à gauche ; les compagnons, petits, derrière (plus à gauche) */
+#field .player,#field .comp{translate:-50% 0;transform-origin:50% 100%}
+#field .player,#field.solo .player{left:29%;bottom:20%;z-index:6}
+#field .comp:not(.partner){left:10%;bottom:34%;scale:.62;z-index:3}
+#field.duo .player{left:29%;bottom:5%}
+#field.duo .comp.partner{left:29%;bottom:47%;scale:.9;z-index:5}
+#field.duo .comp:not(.partner){left:10%;bottom:26%;scale:.56;z-index:3}
+#field.trio .player{bottom:2%}
+#field.trio .comp.partner{bottom:35%;scale:.88}
+#field.trio .comp.partner.p3{left:29%;bottom:64%;scale:.78;z-index:4;filter:brightness(.94)}
+#field.trio .comp:not(.partner){left:9%;bottom:18%;scale:.52}
+#field .comp.partner img.spr.art{width:min(calc(var(--w) * 1.7px),23vw)}
 </style>
 </head>
 <body>
@@ -1088,7 +1150,7 @@ const PRE = (()=>{ const seen=new Map(), q=[]; let busy=0;
   function sprites(keys){ return keys.map(k=>ASSET[k]&&ASSET[k].src).filter(Boolean); }
   function forRun(){ const f=(typeof R!=='undefined'&&R)?R.floor:1; const job=(typeof R!=='undefined'&&R&&R.job)||S.job;
     const comps=Object.keys(S.comps||{}).map(k=>'c_'+k);
-    add(bgsNear(f).concat(bgsNear(Math.min(50,f+10))).concat(sprites([job].concat(comps))), true);
+    add(bgsNear(f).concat(bandsNear(f)).concat(bgsNear(Math.min(50,f+10))).concat(sprites([job].concat(comps))), true);
     add(sprites(Object.keys(ASSET).filter(k=>/monsters\//.test(ASSET[k].src)))); }
   function forHub(){ add((typeof BANNERS!=='undefined'?BANNERS:[]).map(b=>'assets/art/'+b.f5+'.webp'), true); add(sprites(Object.keys(ASSET))); }
   return { add, forRun, forHub };
@@ -1651,6 +1713,17 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.4g', date:'23/10/2026', img:'assets/band/v_autel.webp', title:'Victoire, combats et choix illustrés', notes:[
+    'Le titre A Godless Realm a été redessiné : grandes lettres argentées, plus fines et mieux équilibrées.',
+    'L’écran titre a un bouton Paramètres et une image d’Amaurot bien plus nette.',
+    'Le choix entre 3 récompenses n’arrive plus qu’après un combat. Les événements donnent directement leur récompense.',
+    'Chaque étape d’un étage propose toujours au moins un combat.',
+    'Toutes les bandes de choix (chemins, récompenses, événements) ont maintenant une illustration.',
+    'L’écran de victoire est plus beau et plus clair : un grand titre doré, puis les Gils et fragments gagnés.',
+    'La scène de combat prend toute la largeur de l’écran : alliés en colonne à gauche, ennemis en colonne à droite.',
+    'Lyse, Urianger, Tataru et G’raha regardent maintenant vers la droite, comme les autres alliés.',
+    'Le classement enregistre aussi les explorations perdues ou abandonnées, avec l’étage atteint (toujours 3 meilleures par joueur).'
+  ]},
   {v:'v5.4f', date:'23/10/2026', img:'assets/bg/b20.webp', title:'Des décors de combat variés', notes:[
     'Chaque palier de 10 étages a maintenant 3 décors de combat, tirés selon la salle.',
     'Les salles maudites ont leur propre décor, différent à chaque palier.',
@@ -1777,16 +1850,18 @@ SCREENS.title = function(){
   document.body.classList.add('home');
   app.innerHTML = `
   <div class="home-bg" aria-hidden="true"></div><div class="motes" aria-hidden="true">${Array.from({length:18},(_,i)=>`<i style="left:${(i*53)%100}%;animation-delay:${(i*0.7)%9}s;animation-duration:${9+(i%5)*2}s"></i>`).join('')}</div>
-  <h1 class="tlogo" aria-label="A Godless Realm"><span class="tl-a"><i></i><span>A</span><i></i></span><span class="tl-b" data-t="GODLESS REALM">GODLESS REALM</span><span class="tl-rule" aria-hidden="true"><i></i><b></b><i></i></span></h1>
+  <h1 class="tlogo lg" aria-label="A Godless Realm">${logoSVG(S.logoV)}</h1>
   <div style="flex:1"></div>
   <nav class="tmenu">
     ${S.created ? `<button class="tm main" data-k="continue" id="bCont">${R?'Reprendre l’exploration':'Continuer'}</button>` : `<button class="tm main" data-k="new" data-go="create">Nouvelle aventure</button>`}
     <button class="tm" data-k="online" id="bOnlineT" onclick="Online.open('title')">Jouer en ligne</button>
     <button class="tm" data-k="patchnotes" id="bPN2">Notes de patch</button>
+    <button class="tm" data-k="settings" id="bSetT">Paramètres</button>
   </nav>
   <p class="legal">${LEGAL_TXT}</p>`;
   bind(app);
   document.getElementById('bPN2').onclick=patchNotes;
+  document.getElementById('bSetT').onclick=()=>SCREENS.settings('title');
   const bc=document.getElementById('bCont'); if(bc) bc.onclick=()=> R ? SCREENS.map() : SCREENS.hub();
 };
 let createSel = 'paladin';
@@ -1887,7 +1962,7 @@ SCREENS.ranking = function(){
   }).catch(()=>{ if (document.body.contains(box)) box.innerHTML='<p class="muted center">Classement indisponible pour le moment. Vérifie ta connexion.</p>'; });
 };
 /* Paramètres : son, notes de patch, crédits (menu plat) */
-SCREENS.settings = function(){
+SCREENS.settings = function(from){
   const v=Math.round((+(localStorage.getItem('pdm_vol') ?? 0.6))*100), m=localStorage.getItem('pdm_mute')==='1';
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Paramètres</b></div>
@@ -1912,7 +1987,8 @@ SCREENS.settings = function(){
       <p><b>Sprites des personnages et monstres :</b> FINAL FANTASY BRAVE EXVIUS (Square Enix, Alim).</p>
       <p><b>Icônes, sons, jingles et décors :</b> FINAL FANTASY XIV, Fan Kit officiel et illustrations officielles.</p>
       <p><b>Illustrations des bannières :</b> rendus officiels FINAL FANTASY VII, X, XIII, XIV et XV.</p>
-      <p><b>Fond de l’écran titre :</b> illustration officielle d’Amaurot (écran de chargement de FINAL FANTASY XIV: Shadowbringers).</p>
+      <p><b>Fond de l’écran titre :</b> illustration officielle d’Amaurot (écran de chargement de FINAL FANTASY XIV: Shadowbringers, texture 4K du jeu via l’API publique XIVAPI).</p>
+      <p><b>Illustrations des bandes de choix</b> : décors officiels de FINAL FANTASY BRAVE EXVIUS (Square Enix, Alim), recadrés.</p>
       <p><b>Polices :</b> Cinzel (Natanael Gama) et Source Sans 3 (Adobe), licence SIL Open Font License.</p>
       <p><b>Sprites des compagnons de FINAL FANTASY XIV :</b> Alphinaud, Alisaie, Estinien, Haurchefant et Cid : FINAL FANTASY Record Keeper (Square Enix, DeNA). Urianger et Lyse : PICTLOGICA FINAL FANTASY (Square Enix). Tataru, Krile et G’raha Tia : rendus officiels de FINAL FANTASY XIV. Aucun sprite de fan utilisé.</p>
       <p><b>Décors de combat</b> : décors officiels de FINAL FANTASY BRAVE EXVIUS (Square Enix, Alim), trois par palier, un par palier pour les salles maudites et un par boss.</p>
@@ -1925,7 +2001,7 @@ SCREENS.settings = function(){
   document.getElementById('stMute').onclick=()=>{ const sm=document.getElementById('sndMute'); if (sm) sm.click(); else localStorage.setItem('pdm_mute', localStorage.getItem('pdm_mute')==='1'?'0':'1'); setTimeout(()=>{ document.getElementById('stMute').textContent=localStorage.getItem('pdm_mute')==='1'?'Activer le son':'Couper le son'; },30); };
   document.getElementById('stPN').onclick=patchNotes;
   document.getElementById('stReset').onclick=()=>confirmBox('Recommencer à zéro ? Toute ta progression sur cet appareil sera effacée (Gils, cristaux, jobs, compagnons, améliorations). C’est définitif.', ()=>confirmBox('Vraiment tout effacer ?', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Tout effacer'), 'Continuer');
-  backIcon('hub');
+  backIcon(from==='title'?'title':'hub');
 };
 /* Préparation : choix de 4 compétences parmi 6 */
 let prepSel = null;
@@ -2069,8 +2145,9 @@ function planFloor(f){
     const w=EV_W(f); if(i===0) w.repos=0; if(boss && i===nReg-1) w.repos*=3;
     ['repos','marchand','maudite'].forEach(k=>{ if(used[k]) w[k]=0; });
     const av=x=>Object.keys(w).some(k=>w[k]>0&&!x.includes(k)), pk3=(cur)=>wpick(w, av(prev.concat(cur))?prev.concat(cur):cur);
-    const a=pk3([]), b=pk3([a]), c=pk3([a,b]);
-    const o=[a,b,c]; o.forEach(t=>used[t]=1); steps.push(o); prev=o;
+    /* Un combat est toujours proposé (v5.4g) : 'combat' + 2 événements distincts. */
+    const b=pk3(['combat']), c=pk3(['combat',b]);
+    const o=['combat',b,c]; [b,c].forEach(t=>used[t]=1); steps.push(o); prev=[b,c];
   }
   if (boss) steps.push(['boss']);
   return {steps, i:0};
@@ -2114,12 +2191,24 @@ const PATH = { combat:['Combat','Un combat, 3 récompenses au choix.','#e0524a']
   marchand:['Marchand','Dépense tes Gils.','#e0a84a'], rencontre:['Événement','Quelqu’un t’attend…','#5f9cff'],
   pomandre:['Bonus','Un bonus offert.','#4fd2c2'], maudite:['Malédiction','Grand pouvoir, lourd prix.','#e050a8'] };
 /* v5.4d : bandes de choix horizontales (toujours 3), séparées par des dégradés, sans bordure */
-function bandHTML({cls='',col='#8fa6d8',sym='rencontre',name='',sub='',attrs='',dis=false,tail='',d=0}){
-  return `<button class="band ${cls}" style="--bc:${col};--d:${d}ms" ${attrs} ${dis?'disabled':''}><span class="b-ic">${rsym(sym)}</span><span class="b-tx"><b>${name}</b>${sub?`<small>${sub}</small>`:''}</span><span class="vmks"></span>${tail}</button>`;
+/* Illustrations des bandeaux (décors officiels FFBE, recadrés) */
+const BAND_EV=['coffre','autel','repos','piege','marchand','rencontre','pomandre','maudite'], BAND_RW=10;
+const bandH = str => { let h=2166136261; for (const c of String(str)) h=Math.imul(h^c.charCodeAt(0),16777619)>>>0; return h; };
+function bandArt(type, key){
+  const t=bgTier((R&&R.floor)||1), f=(R&&R.floor)||1;
+  if (type==='path'){ if (key==='combat') return 't'+t+(bandH((R.seed||[]).join()+f)%2?'b':'c'); if (key==='elite') return 'e'+t; if (key==='boss') return isBigBoss(f)?'b'+Math.min(50,Math.ceil(f/10)*10):'e'+t; return BAND_EV.includes(key)?'v_'+key:'v_rencontre'; }
+  if (type==='rew') return key==='fragment' ? 'r1' : 'r'+(bandH(key)%BAND_RW);
+  return 'r'+(bandH(key)%BAND_RW);
+}
+/* Évite deux fois la même illustration sur un même écran */
+function bandArts(list){ const used=new Set(); return list.map(a=>{ let k=a; if (used.has(k) && /^r\d/.test(k)){ let n=+k.slice(1); for (let j=0;j<BAND_RW&&used.has('r'+n);j++) n=(n+1)%BAND_RW; k='r'+n; } used.add(k); return k; }); }
+const bandsNear = f => { const t=bgTier(f), o=['t'+t+'b','t'+t+'c','e'+t].concat(BAND_EV.map(k=>'v_'+k)); for(let i=0;i<BAND_RW;i++) o.push('r'+i); if (f%10>=5||f%10===0) o.push('b'+Math.min(50,Math.ceil(f/10)*10)); return o.map(k=>'assets/band/'+k+'.webp'); };
+function bandHTML({cls='',col='#8fa6d8',sym='rencontre',name='',sub='',attrs='',dis=false,tail='',d=0,art=''}){
+  return `<button class="band ${cls}${art?' has-art':''}" style="--bc:${col};--d:${d}ms" ${attrs} ${dis?'disabled':''}>${art?`<span class="b-art" aria-hidden="true" style="background-image:url(assets/band/${art}.webp)"></span>`:''}<span class="b-ic">${rsym(sym)}</span><span class="b-tx"><b>${name}</b>${sub?`<small>${sub}</small>`:''}</span><span class="vmks"></span>${tail}</button>`;
 }
 function pathHTML(t,i,n,bossKey){
   const boss=t==='boss', P=boss?[isBigBoss(R.floor)?'Boss':'Gardien', ENEMIES[bossKey].name+' t’attend.','#ff3b30']:PATH[t];
-  return bandHTML({cls:'b-path '+(boss?'boss':'t-'+t), col:P[2], sym:boss?'boss':t, name:P[0], sub:P[1], attrs:`data-k="room-${t}" data-room="${i}"`, d:120+i*110, tail:`<span class="b-go">${rsym('up')}</span>`});
+  return bandHTML({cls:'b-path '+(boss?'boss':'t-'+t), col:P[2], sym:boss?'boss':t, name:P[0], sub:P[1], art:bandArt('path',boss?'boss':t), attrs:`data-k="room-${t}" data-room="${i}"`, d:120+i*110, tail:`<span class="b-go">${rsym('up')}</span>`});
 }
 SCREENS.map = function(){
   C=null;
@@ -2229,8 +2318,8 @@ function choiceScreen(title, icon, text, choices, more){
   const evt=EV_SYM[icon]||'rencontre', col=(PATH[evt]||PATH.rencontre)[2];
   app.innerHTML = `${topbarRun('Étage '+R.floor)}
    <div class="scroll"><div class="win col center" style="align-items:center;padding:14px 10px"><h2>${title}</h2>${spr(icon,'idle','width:84px;margin:6px')}<p style="font-size:15px">${text}</p></div>
-   <div class="bands">${choices.slice(0,3).map((c,i)=>bandHTML({cls:'b-ch '+(c.fn===advanceNode?'leave':c.filler?'filler':'t-'+evt), col:c.fn===advanceNode?'#8a93ad':c.filler?'#b9a77a':col, sym:c.fn===advanceNode?'door':c.filler?'pomandre':evt,
-      name:c.label, sub:c.sub||'', dis:c.dis, d:200+i*110, attrs:`data-k="ch-${i}" data-ch="${i}" data-ai="${c.dis?-99:(c.ai||0)}"`})).join('')}</div>
+   <div class="bands">${(()=>{ const arts=bandArts(choices.slice(0,3).map((c,i)=>c.fn===advanceNode?'t'+bgTier(R.floor)+'b':i===0&&!c.filler?'v_'+(BAND_EV.includes(evt)?evt:'rencontre'):bandArt('ch',evt+'|'+c.label))); return choices.slice(0,3).map((c,i)=>bandHTML({art:arts[i], cls:'b-ch '+(c.fn===advanceNode?'leave':c.filler?'filler':'t-'+evt), col:c.fn===advanceNode?'#8a93ad':c.filler?'#b9a77a':col, sym:c.fn===advanceNode?'door':c.filler?'pomandre':evt,
+      name:c.label, sub:c.sub||'', dis:c.dis, d:200+i*110, attrs:`data-k="ch-${i}" data-ch="${i}" data-ai="${c.dis?-99:(c.ai||0)}"`})).join(''); })()}</div>
    ${more?`<button class="btn small b-more" data-k="ch-more" id="bMore">${more.label}</button>`:''}
    </div>${playerPanelHTML()}`;
   const bm=document.getElementById('bMore'); if (bm) bm.onclick=more.fn;
@@ -2250,8 +2339,8 @@ function showRewards(){
   app.innerHTML = `${topbarRun(w.title)}
    <div class="scroll">${w.extra||''}
     <div class="center"><h3>Choisis une récompense</h3></div>
-    <div class="bands">${opts.slice(0,3).map((x,i)=>bandHTML({cls:'b-rew '+RARITY[x.r].cls, col:REW_COL[x.r]||'#c8d2e6', sym:EV_SYM[rewIcon(x)]||'autel', name:`${x.name} <span class="rar">${RARITY[x.r].n}</span>`,
-      sub:`${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}`, d:300+i*140, attrs:`data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"`})).join('')}</div>
+    <div class="bands">${(()=>{ const arts=bandArts(opts.slice(0,3).map(x=>bandArt('rew',x.id))); return opts.slice(0,3).map((x,i)=>bandHTML({art:arts[i], cls:'b-rew '+RARITY[x.r].cls, col:REW_COL[x.r]||'#c8d2e6', sym:EV_SYM[rewIcon(x)]||'autel', name:`${x.name} <span class="rar">${RARITY[x.r].n}</span>`,
+      sub:`${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}`, d:300+i*140, attrs:`data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"`})).join(''); })()}</div>
     ${w.fixed?'':`<button class="btn small" style="width:100%" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost?cost+' Gils':'gratuit'}${w.rr?` (relance n°${w.rr+1})`:''}</button>`}
    </div>${playerPanelHTML()}`;
   app.querySelectorAll('[data-rew]').forEach(b=>b.onclick=()=>{ const x=opts[+b.dataset.rew]; R.rew=null; takeReward(x); advanceNode(); });
@@ -2273,6 +2362,7 @@ function runScore(r, victory){
   return { score:Math.round(tot), parts, dur, floor:fl };
 }
 function endRun(victory, abandoned){
+  if (!R) return; // une seule fin (et un seul envoi au classement) par exploration
   const SC = runScore(R, victory), runRef = R;
   const earned = R.gilsEarned + (victory?500:0);
   S.firstClear=S.firstClear||{}; let fcB=0; (R.bossFloors||[]).forEach(f=>{ if(!S.firstClear[f]){ S.firstClear[f]=1; fcB+=1; } });
@@ -2286,7 +2376,7 @@ function endRun(victory, abandoned){
   const bestScore = S.scores[0].score;
   HOOKS.emit('runEnd', {victory:!!victory, floor:fl, score:SC.score, parts:SC.parts, job, seed:runRef.seed});
   let olP = null;
-  if (typeof Online!=='undefined' && Online && Online.submitRun && !abandoned){
+  if (typeof Online!=='undefined' && Online && Online.submitRun){ // victoire, K.O. ou abandon : tout compte, avec l’étage atteint
     try{ const duo=Online.isDuo, other=duo?Online.players[1-Online.mySlot]:null;
       olP = Online.submitRun({ job, companion: runRef.comp ? runRef.comp.id : null, floor:fl, score:SC.score, duration_s:SC.dur, victory:!!victory, seed:runRef.seed,
         mode: duo?'duo':'solo', partner_pseudo: other?other.pseudo:null, partner_job: other?other.job:null });
@@ -2343,7 +2433,7 @@ function startCombat(kind){
     while (list.length<n){ const k=pick(pool); if (ENEMIES[k].support){ if(sup>=1) continue; sup++; } list.push(k); }
     if (list.every(k=>ENEMIES[k].support)) list[0]='squelette';
   }
-  C = { kind, enemies:list.map(k=>makeEnemy(k,kind)), target:0, busy:false, cds:{}, turn:0,
+  C = { kind, g0:R.gilsEarned||0, enemies:list.map(k=>makeEnemy(k,kind)), target:0, busy:false, cds:{}, turn:0,
         st:{mitig:0,mitigT:0,invulnT:0,holmT:0,shield:0,regen:0,regenT:0,buff:0,buffT:0,nextCrit:0,weakT:0,pdot:0,pdotT:0,sen:0,absorb:0}, msg:'' };
   if (pk('shieldStart')>0) C.st.shield = Math.round(R.maxhp*pk('shieldStart'));
   if (R.comp) C.cp = { cd: Math.ceil(compCd()/2), uses:0 };
@@ -2359,10 +2449,30 @@ function curTarget(){ let e=C.enemies[C.target]; if(!e||e.dead){ e=alive()[0]; C
 const EN_SLOTS={1:[[46,16,1]],2:[[30,8,1],[70,34,.9]],3:[[24,4,1],[56,28,.92],[78,54,.84]],
   4:[[22,0,1],[66,10,.96],[34,40,.9],[76,52,.86]],5:[[20,0,1],[64,6,.97],[30,36,.9],[76,44,.88],[50,70,.8]]};
 const EN_ADDS=[[16,0,.9],[20,52,.82],[6,26,.86],[40,66,.78]];
-function enSlot(i,n,list){ const b=list.findIndex(z=>z.boss);
-  let p; if (b>=0){ if(i===b) p=[60,10,1]; else { const j=list.slice(0,i).filter(z=>!z.boss).length; p=EN_ADDS[j%EN_ADDS.length]; } }
-  else p=(EN_SLOTS[Math.min(5,n)]||EN_SLOTS[5])[i%5];
-  return [p[0],p[1],p[2],100-Math.round(p[1])]; }
+/* Placement en colonnes (v5.4g) : ennemis en colonne verticale à droite (2 colonnes serrées à partir de 4),
+   perspective uniquement par la taille : rangée du fond (haut) plus petite, rangée de devant (bas) plus grande et au premier plan.
+   Retour : [x %, bas %, échelle, z-index] dans la zone ennemie. */
+const COL_ROWS = k => k<=1 ? [26] : k===2 ? [4,50] : [0,33,64];
+const rowScale = (j,k) => k<=1 ? 1 : [1,0.9,0.8][j]||0.8;
+function colPlace(k, x){ const ys=COL_ROWS(k); return ys.map((y,j)=>[x, y, rowScale(j,k), 50-j*10]); }
+function enSlot(i,n,list){
+  const b=list.findIndex(z=>z.boss);
+  if (b>=0){
+    if (n===1) return [52,8,1,40];
+    if (i===b) return [n>=5?77:64,10,1,20];
+    const adds=list.filter(z=>!z.boss).length, j=list.slice(0,i).filter(z=>!z.boss).length;
+    if (adds<=3){ const p=colPlace(adds, 13)[j]; return [p[0],p[1],p[2]*0.85,p[3]+20]; }
+    const fr=Math.ceil(adds/2), p = j<fr ? colPlace(fr,9)[j] : colPlace(adds-fr,37)[j-fr];
+    return [p[0], (j>=fr && adds-fr<fr) ? [16,48][j-fr] : p[1], p[2]*0.75, p[3]+(j<fr?25:20)];
+  }
+  let p;
+  if (n<=3) p=colPlace(n,52)[i];
+  else { const front=Math.ceil(n/2), back=n-front;
+    p = i<front ? colPlace(front,28)[i] : colPlace(back,76)[i-front];
+    if (i>=front && back<front){ p=p.slice(); p[1]=[16,48][i-front]; }
+    if (i>=front){ p=p.slice(); p[2]*=0.94; p[3]-=5; } }
+  return p;
+}
 /* Respiration désynchronisée : chaque sprite a sa propre durée et sa phase, continue entre deux rendus */
 function idleDesync(root){ (root||document).querySelectorAll('#field img.idle').forEach(im=>{
   const host=im.closest('[id]'); const id=(host&&host.id)||'x'; let h=0; for(const c of id) h=(h*31+c.charCodeAt(0))>>>0;
@@ -2407,7 +2517,7 @@ function resTags(e){ const t=[]; const r=e.res; if(r.phys>=0.3) t.push('Phys−'
 function updateCombat(){
   if (!C) return;
   const tgt = curTarget();
-  const en = document.getElementById('enemies'); if(!en) return; en.dataset.n=C.enemies.length;
+  const en = document.getElementById('enemies'); if(!en) return; en.dataset.n=C.enemies.length; en.dataset.b=C.enemies.some(e=>e.boss)?1:0;
   en.innerHTML = C.enemies.map((e,i)=>{
     let it='';
     if (!e.dead && e.intent){
@@ -2722,13 +2832,26 @@ function fragDrop(kind){
   if (R.comp && R.comp.id==='zidane' && rand()<0.06*compPot()) n++;
   R.frags=(R.frags||0)+n; return n;
 }
+/* Écran de victoire façon FFXIV : titre métal doré (même système que le logo), balayage + reflet, gains sobres */
+function victoryHTML(kind, gil, fr){
+  const big=kind==='boss', sub=big?(isBigBoss(R.floor)?'Boss vaincu':'Gardien vaincu'):kind==='elite'?'Élite vaincue':'';
+  const cell=(l,v,c)=>`<div class="vg ${c||''}"><small>${l}</small><b>${v}</b></div>`;
+  return `<div class="vict${big?' boss':''}" aria-label="Victoire">
+   <div class="vx-glow" aria-hidden="true"></div><div class="vx-motes" aria-hidden="true">${Array.from({length:12},(_,i)=>`<i style="left:${8+(i*37)%84}%;animation-delay:${(0.5+i*0.23).toFixed(2)}s;animation-duration:${(2.2+(i%4)*0.5).toFixed(1)}s"></i>`).join('')}</div>
+   ${sub?`<div class="vx-sub">${sub}</div>`:''}
+   <div class="vx-t"><svg viewBox="0 0 400 76" role="img" aria-label="Victoire"><defs><linearGradient id="vxG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf0"/><stop offset=".36" stop-color="#f2dc9e"/><stop offset=".48" stop-color="#fffdf4"/><stop offset=".55" stop-color="#b98a3e"/><stop offset=".76" stop-color="#e4c47a"/><stop offset="1" stop-color="#8a6326"/></linearGradient></defs>
+    <text x="200" y="58" text-anchor="middle" font-family="Cinzel,Georgia,serif" font-weight="600" font-size="56" textLength="330" lengthAdjust="spacing" fill="url(#vxG)" stroke="#120c04" stroke-width="1.5" paint-order="stroke" stroke-linejoin="round">VICTOIRE</text></svg><i class="vx-flare" aria-hidden="true"></i></div>
+   <div class="vx-emb" aria-hidden="true"><i></i><b></b><i></i></div>
+   <div class="vx-gains">${cell('Gils', '+'+Math.max(0,gil), 'gold')}${fr?cell('Fragments','+'+fr,'frag'):''}${cell('Total', R.gilsEarned)}</div>
+  </div>`;
+}
 function winCombat(){
-  const kind=C.kind; C=null;
+  const kind=C.kind, g0=C.g0; C=null;
   if (kind==='boss') R.bosses=(R.bosses||0)+1;
   healR(R.maxhp*(R.curse&&R.curse.noHeal?0:0.12)); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*0.3));
   const fr=fragDrop(kind);
   if (kind==='boss' && R.floor===MAX_FLOOR) return endRun(true);
-  const extra = `<div class="win center fanfare${kind==='boss'?' boss':''}"><div class="ff-title">${[...'Victoire'].map((c,i)=>`<i style="animation-delay:${i*45}ms">${c}</i>`).join('')}</div><div class="ff-line"></div><p class="ff-sub">Gils de l’exploration : <span class="gold">${R.gilsEarned}</span>${fr?`<br><span class="frag">${ic('gem')} +${fr} Fragment${fr>1?'s':''} de cristal !</span>`:''}</p></div>`;
+  const extra = victoryHTML(kind, R.gilsEarned-(g0==null?R.gilsEarned:g0), fr);
   if (kind==='boss'){ healR(R.maxhp*(isBigBoss(R.floor)?1:0.5)); R.mp=R.maxmp; return fightRewards('boss', isBigBoss(R.floor)?'Boss vaincu !':'Gardien vaincu !', extra); }
   fightRewards(kind, 'Combat terminé', extra);
 }
@@ -2738,6 +2861,12 @@ const hpPct = () => R.hp/R.maxhp;
 const fmtPct = x => Math.round(x*100)+' %';
 const isMagJob = () => JOBS[R.job].mag > JOBS[R.job].atk;
 const isTank = () => JOBS[R.job].role==='tank';
+/* Hors combat : une seule récompense dédiée, pas de choix parmi 3 (le choix parmi 3 est réservé aux fins de combat) */
+function giveOneScreen(title, text, kind, icon){
+  const x=drawRewards(1,kind)[0]; if(!x){ const g=gainGils(10+2*R.floor); return eventScreen(title, icon, `${text}<br>Tu gagnes <span class="gold">${g} Gils</span>.`); }
+  takeReward(x); const rr={c:'Commune',r:'Rare',e:'Épique'}[x.r]||'';
+  eventScreen(title, icon, `${text}<br>Tu obtiens : <b>${x.name}</b>${rr?` <span class="rar r-${x.r}">${rr}</span>`:''}<br><span class="muted">${x.desc}</span>`);
+}
 function pickRewardsScreen(title, text, opts, icon){
   // Choix fixe (sans relance) : autels, pomandres, entraînement
   if (!opts.length){ return eventScreen(title, icon||'icon_autel', text+'<br><span class="muted">…mais il n’y a plus rien à gagner ici.</span>'); }
@@ -2809,8 +2938,8 @@ EVENTS.coffre = function(){
 /* --- Autels : paris et échanges --- */
 const SHRINES = [
   ()=>({ name:'Autel d’Azeyma', text:'« Offre ta vitalité, reçois la lumière. »', ch:[
-    {label:'Offrir 20 % de tes PV', sub:'Choisis une récompense rare ou épique.', ai: hpPct()>0.6?6:-3, dis:hpPct()<=0.25,
-      fn:()=>{ R.hp=Math.max(1,R.hp-Math.round(R.maxhp*0.2)); pickRewardsScreen('Autel d’Azeyma','La lumière d’Azeyma t’entoure.', drawRewards(3,'shrine')); }},
+    {label:'Offrir 20 % de tes PV', sub:'Gagne une récompense rare ou épique.', ai: hpPct()>0.6?6:-3, dis:hpPct()<=0.25,
+      fn:()=>{ R.hp=Math.max(1,R.hp-Math.round(R.maxhp*0.2)); giveOneScreen('Autel d’Azeyma','La lumière d’Azeyma t’entoure.','shrine','icon_autel'); }},
     {label:'Refuser', ai:0, fn:advanceNode}]}),
   ()=>{ const bet=Math.min(R.gilsEarned, 20+3*R.floor); return { name:'Autel de Nald’thal', text:`« Les Gils vont et viennent. » Miser ${bet} Gils : 55 % de chances de doubler.`, ch:[
     {label:`Miser ${bet} Gils`, sub:'55 % : gain doublé. 45 % : mise perdue.', ai:0.5, dis:bet<5,
@@ -2822,8 +2951,8 @@ const SHRINES = [
         R.mods.hpMul-=0.08; recalcStats(); R.hp=Math.min(R.hp,R.maxhp); eventScreen('Face…', 'icon_autel', 'Un fardeau pèse sur toi : <b style="color:#ff8080">−8 % de PV max</b>.'); }},
     {label:'Ne pas jouer', ai:0, fn:advanceNode}]}),
   ()=>({ name:'Autel de Thaliak', text:'« Le savoir a un prix. »', ch:[
-    {label:'Offrir une potion', sub:'Choisis une récompense rare ou épique parmi 3.', ai:R.potions>=2?5:1, dis:!R.potions,
-      fn:()=>{ R.potions--; pickRewardsScreen('Autel de Thaliak','Le savoir de Thaliak t’éclaire.', drawRewards(3,'shrine')); }},
+    {label:'Offrir une potion', sub:'Gagne une récompense rare ou épique.', ai:R.potions>=2?5:1, dis:!R.potions,
+      fn:()=>{ R.potions--; giveOneScreen('Autel de Thaliak','Le savoir de Thaliak t’éclaire.','shrine','icon_autel'); }},
     {label:'Refuser', ai:0, fn:advanceNode}]}),
   ()=>({ name:'Autel de Menphina', text:'« La lune soigne, mais attise les ténèbres. »', ch:[
     {label:'Accepter la bénédiction', sub:'PV et PM restaurés, mais ennemis +15 % de dégâts jusqu’à la fin de l’étage suivant.', ai: hpPct()<0.5?5:-1,
@@ -2848,7 +2977,7 @@ EVENTS.marchand = function(){
 /* --- Rencontres (saveur FFXIV) --- */
 const ENCOUNTERS = [
   ()=>({ t:'Un mog égaré', icon:'icon_rencontre', text:'« Kupo ! Je me suis perdu en livrant le courrier, kupo… »', ch:[
-    {label:'Le raccompagner', sub:'Chemin dangereux : −10 % PV. Il te récompensera.', ai:hpPct()>0.5?4:-2, fn:()=>{ R.hp=Math.max(1,R.hp-Math.round(R.maxhp*0.1)); pickRewardsScreen('Merci, kupo !','Le mog fouille dans son sac…', drawRewards(3,'normal'), 'icon_rencontre'); }},
+    {label:'Le raccompagner', sub:'Chemin dangereux : −10 % PV. Il te récompensera.', ai:hpPct()>0.5?4:-2, fn:()=>{ R.hp=Math.max(1,R.hp-Math.round(R.maxhp*0.1)); giveOneScreen('Merci, kupo !','Le mog fouille dans son sac…','normal','icon_rencontre'); }},
     {label:'Lui donner une potion', sub:'Les mogs savent se montrer généreux.', dis:!R.potions, ai:1.5, fn:()=>{ R.potions--; if (rand()<0.35){ R.frags=(R.frags||0)+1; eventScreen('Kupopo !','icon_rencontre','Le mog t’offre un <span class="frag">'+ic('gem')+' Fragment de cristal</span> !'); } else { const g=gainGils(25+3*R.floor); eventScreen('Kupo !','icon_rencontre',`Le mog te donne <span class="gold">${g} Gils</span>.`); } }},
     {label:'Passer ton chemin', ai:0, fn:advanceNode}]}),
   ()=>({ t:'Éthérite endommagée', icon:'icon_cristal', text:'Un éclat d’éthérite grésille, son aether s’échappe.', ch:[
@@ -2888,10 +3017,10 @@ const ENCOUNTERS = [
 function canSkip(){ const P=R.plan; const nx=P.steps[P.i+1]; return !!nx && nx[0]!=='boss'; }
 EVENTS.rencontre = function(){ const e=pick(ENCOUNTERS)(); choiceScreen(e.t, e.icon, e.text, e.ch); };
 /* --- Pomandre au sol, repos, salle maudite --- */
-EVENTS.pomandre = function(){ pickRewardsScreen('Pomandre abandonnée', 'Trois pomandres brillent au sol. Tu ne peux en prendre qu’une.', drawRewards(3,'normal')); };
+EVENTS.pomandre = function(){ giveOneScreen('Pomandre abandonnée','Une pomandre brille au sol. Tu la ramasses.','normal','icon_pomandre'); };
 EVENTS.repos = function(){
   const ch=[{label:'Se reposer', sub:'PV +45 %, PM au maximum.', ai:(1-hpPct())*10, fn:()=>{ healR(R.maxhp*0.45); R.mp=R.maxmp; eventScreen('Source d’aether', 'icon_repos', 'L’aether pur te revigore. PV +45 %, PM restaurés.'); }},
-    {label:'S’entraîner', sub:'Choisis 1 récompense parmi 3.', ai:hpPct()>0.75?5:0, fn:()=>pickRewardsScreen('Entraînement','Tu t’entraînes près de la source.', drawRewards(3,'normal'), 'icon_repos')}];
+    {label:'S’entraîner', sub:'Gagne une récompense au hasard.', ai:hpPct()>0.75?5:0, fn:()=>giveOneScreen('Entraînement','Tu t’entraînes près de la source.','normal','icon_repos')}];
   if (R.curse) ch.push({label:'Purifier la malédiction', sub:'Lève la malédiction, PV +15 %.', ai:6, fn:()=>{ R.curse=null; healR(R.maxhp*0.15); eventScreen('Purification','icon_repos','La malédiction se dissipe dans l’aether.'); }});
   choiceScreen('Source d’aether', 'icon_repos', 'Une source d’aether pur. Un moment de calme.', ch);
 };
@@ -2904,7 +3033,7 @@ EVENTS.maudite = function(){
   const c=pick(CURSES)();
   choiceScreen('Salle maudite', 'icon_maudite', `Un sceau maudit pulse au centre de la salle.<br><b style="color:#ff9aff">${c.name}</b><br><span class="muted">Jusqu’à la fin de l’étage ${c.until}.</span>`, [
     {label:'Briser le sceau', sub:'Subis la malédiction, mais choisis une récompense rare ou épique (meilleur butin tant qu’elle dure).', ai:hpPct()>0.7?4:-3,
-      fn:()=>{ R.curse=c; pickRewardsScreen('Pouvoir maudit','Le sceau se brise et libère sa puissance.', drawRewards(3,'shrine'), 'icon_maudite'); }},
+      fn:()=>{ R.curse=c; giveOneScreen('Pouvoir maudit','Le sceau se brise et libère sa puissance.','shrine','icon_maudite'); }},
     {label:'Quitter la salle', ai:0, fn:advanceNode}]);
 };
 
@@ -3333,7 +3462,7 @@ const Online = (function(){
     try { await init(); } catch(e){ queueRun(args); return { ok:false, queued:true, reason:errMsg(e) }; }
     if (!st.user || !st.profile){ queueRun(args); return { ok:false, queued:true, reason:'login' }; }
     const { data, error } = await st.sb.rpc('pdm_submit_run', args);
-    if (error){ if (/fetch|network/i.test(error.message||'')) queueRun(args); return { ok:false, reason:errMsg(error) }; }
+    if (error){ if (/fetch|network|rate_limited/i.test(error.message||'')) queueRun(args); if (/rate_limited/.test(error.message||'')) setTimeout(()=>flushPendingRuns(), 17000); return { ok:false, reason:errMsg(error) }; }
     const { count } = await st.sb.from('pdm_runs').select('id', { count:'exact', head:true }).gt('score', args.p_score);
     emit('runSubmitted', { id:data, rank:(count||0)+1 });
     return { ok:true, id:data, rank:(count||0)+1 };
@@ -4150,6 +4279,21 @@ function backIcon(to){
   const row=b.parentElement; b.className='tb-back'; b.setAttribute('aria-label','Retour'); b.innerHTML='<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   b.style.width=''; tb.insertBefore(b, tb.firstChild);
   if (row && row!==app && row.classList.contains('row') && !row.children.length) row.remove();
+}
+/* Logo A Godless Realm : typographie SVG (Cinzel), remplissage métal, contour fin, emblème */
+function logoSVG(v){
+  v=v||'b';
+  const defs=`<defs><linearGradient id="lgM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".34" stop-color="#e4e9f2"/><stop offset=".47" stop-color="#ffffff"/><stop offset=".53" stop-color="#9aa5b8"/><stop offset=".74" stop-color="#c6cedb"/><stop offset="1" stop-color="#66718a"/></linearGradient>
+   <linearGradient id="lgL" x1="0" x2="1"><stop offset="0" stop-color="#cfd8ea" stop-opacity="0"/><stop offset=".5" stop-color="#eef3fb"/><stop offset="1" stop-color="#cfd8ea" stop-opacity="0"/></linearGradient></defs>`;
+  const T=(x,y,size,len,txt,w)=>`<text x="${x}" y="${y}" text-anchor="middle" font-family="Cinzel,Georgia,serif" font-weight="${w||600}" font-size="${size}" textLength="${len}" lengthAdjust="spacing" fill="url(#lgM)" stroke="#0b0e18" stroke-width="${(size/34).toFixed(2)}" paint-order="stroke" stroke-linejoin="round">${txt}</text>`;
+  const emb=(y,wd)=>`<g transform="translate(200 ${y})"><path d="M${-wd} 0H-16M16 0H${wd}" stroke="url(#lgL)" stroke-width="1.2" fill="none"/><path d="M-30 0H-16M16 0H30" stroke="#eef3fb" stroke-width="1.4"/>
+   <rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" fill="none" stroke="#e8eef8" stroke-width="1.2"/><rect x="-3" y="-3" width="6" height="6" transform="rotate(45)" fill="#ffffff"/>
+   <circle cx="-38" cy="0" r="1.6" fill="#eef3fb"/><circle cx="38" cy="0" r="1.6" fill="#eef3fb"/></g>`;
+  let body, h;
+  if (v==='a'){ h=96; body=T(200,52,40,380,'A GODLESS REALM')+emb(80,150); }
+  else if (v==='c'){ h=100; body=`<text x="200" y="58" text-anchor="middle" font-family="Cinzel,Georgia,serif" font-weight="600" letter-spacing="1.5" fill="url(#lgM)" stroke="#0b0e18" stroke-width="1.2" paint-order="stroke"><tspan font-size="50">A</tspan><tspan font-size="36" dx="10"> </tspan><tspan font-size="50">G</tspan><tspan font-size="36">ODLESS</tspan><tspan font-size="36" dx="10"> </tspan><tspan font-size="50">R</tspan><tspan font-size="36">EALM</tspan></text>`+emb(84,150); }
+  else { h=150; body=T(200,58,46,330,'A GODLESS')+T(200,112,54,250,'REALM')+emb(136,140); }
+  return `<svg class="lgsvg lg-${v}" viewBox="0 0 400 ${h}" role="img" aria-label="A Godless Realm">${defs}${body}</svg>`;
 }
 function scrEnter(k){
   const b=document.body; b.classList.toggle('modern', MODERN_SCR.test(k)); b.classList.toggle('home', k==='title'); b.dataset.scr=k;
