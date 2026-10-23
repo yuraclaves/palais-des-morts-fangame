@@ -331,6 +331,54 @@ img.spr.flip{transform:scaleX(-1)}
 .rt{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}.rt th,.rt td{border-bottom:1px solid #fff2;padding:3px 4px;text-align:left}.rt td:last-child,.rt th:last-child{text-align:right}
 .rt tr.up td{color:#ffe27a}
 .rules p{font-size:13px;line-height:1.35;margin:4px 0}.rules h3{margin:8px 0 2px;font-size:15px}
+/* v5.1 : sprites officiels Brave Exvius (vue de côté) et tuiles FFXIV */
+img.spr.art{image-rendering:pixelated}
+img.spr.tile{image-rendering:auto;border-radius:9px;box-shadow:0 0 0 2px #000a}
+#field .comp img.spr.tile,#field .player img.spr.tile{width:min(60px,16vw)}
+#field .en img.spr.tile{width:min(64px,17vw)}
+.gfeat img.spr.tile{width:min(96px,24vw)}.gside img.spr.tile{width:min(48px,12vw)}
+#field .player img.spr.art:not(.tile){width:min(calc(var(--w) * 2px),26vw)}
+#field .comp img.spr.art:not(.tile){width:min(calc(var(--w) * 1.8px),23vw)}
+.gfeat img.spr.art:not(.tile){width:auto;height:min(128px,32vw);max-width:46vw;object-fit:contain}
+.gside img.spr.art:not(.tile){width:auto;height:min(64px,16vw);max-width:20vw;object-fit:contain}
+/* v5.1 : bannières verticales avec illustration officielle */
+.gban{height:min(52vh,560px);min-height:340px}
+.gban::after{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,transparent 26%,transparent 62%,rgba(0,0,0,.7) 100%)}
+.gart{position:absolute;inset:0 -8% 0 18%;background-size:contain;background-repeat:no-repeat;background-position:right bottom;opacity:.92;filter:drop-shadow(0 0 22px var(--gl));animation:gartIn .7s ease-out both}
+.gshade{position:absolute;inset:0;background:radial-gradient(ellipse at 22% 85%,var(--gl) -30%,transparent 55%),linear-gradient(90deg,var(--c2) 0%,transparent 55%);opacity:.75;pointer-events:none}
+@keyframes gartIn{from{opacity:0;transform:translateX(18px) scale(1.03)}to{opacity:.92;transform:none}}
+.gban .ginfo{top:12px;bottom:auto;z-index:4}
+.gfeat{left:4%;bottom:5%;z-index:3}
+.gfeat img.spr.art:not(.tile){height:min(170px,22vh);max-width:52vw}
+.gside{left:4%;bottom:auto;top:auto;bottom:calc(5% + min(176px,23vh));z-index:3;gap:6px}
+.gban .gcopy{z-index:4}
+.gpart{z-index:2}
+/* v5.1 : navigation fluide et thème hors combat */
+#app.enter{animation:scrIn .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes scrIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+button.tap{animation:tapK .22s ease-out}
+@keyframes tapK{0%{transform:scale(.96)}100%{transform:scale(1)}}
+body.modern{background:#070a1c}
+body.modern::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(6,8,24,.55),rgba(6,8,24,.92) 70%),url(assets/bg/t5.jpg) center 30%/cover no-repeat;filter:saturate(1.1)}
+body.modern::after{content:"";position:fixed;inset:-50%;z-index:-1;pointer-events:none;background-image:radial-gradient(2px 2px at 20% 30%,#cfe3ff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 70% 60%,#ffe9b0 50%,transparent 51%),radial-gradient(1.5px 1.5px at 40% 80%,#b8d0ff 50%,transparent 51%),radial-gradient(2px 2px at 85% 20%,#fff 50%,transparent 51%);background-size:220px 260px;opacity:.55;animation:drift 38s linear infinite}
+@keyframes drift{to{transform:translateY(-260px)}}
+body.modern .topbar{background:linear-gradient(90deg,rgba(20,30,80,.0),rgba(30,48,120,.55),rgba(20,30,80,0));border:0;border-bottom:1px solid rgba(190,210,255,.35);box-shadow:none;font-family:Georgia,'Times New Roman',serif;letter-spacing:.06em}
+body.modern .win:not(.topbar){background:linear-gradient(160deg,rgba(28,40,110,.62),rgba(10,14,40,.72));border:1px solid rgba(180,200,255,.28);border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.35);backdrop-filter:blur(3px)}
+body.modern .btn{border-radius:12px;transition:transform .12s,filter .12s}
+body.modern .btn:active{transform:scale(.97);filter:brightness(1.15)}
+body.home .title-logo h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:38px;letter-spacing:.14em;line-height:1.1;text-shadow:0 0 24px #7fb0ff,0 2px 0 #000;background:linear-gradient(180deg,#fff,#cfe0ff 60%,#9fbfff);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.home .title-logo .sub{font-family:Georgia,serif;font-style:italic;letter-spacing:.04em}
+.tmenu{display:flex;flex-direction:column;align-items:center;gap:4px;margin:0 0 6px}
+.tm{background:none;border:0;color:#e8eeff;font-family:Georgia,'Times New Roman',serif;font-size:21px;letter-spacing:.08em;padding:11px 28px;position:relative;cursor:pointer;text-shadow:0 0 10px rgba(120,170,255,.6),0 2px 0 #000;transition:color .2s,letter-spacing .25s}
+.tm::before,.tm::after{content:"";position:absolute;top:50%;width:0;height:1px;background:linear-gradient(90deg,transparent,#ffe7a8);transition:width .25s}
+.tm::before{right:100%}.tm::after{left:100%;transform:scaleX(-1)}
+.tm:hover,.tm:active{color:#ffe7a8;letter-spacing:.12em}.tm:hover::before,.tm:hover::after,.tm:active::before,.tm:active::after{width:34px}
+.tm.main{font-size:28px;color:#ffe7a8;text-shadow:0 0 16px rgba(255,210,120,.8),0 2px 0 #000;animation:tmGlow 2.6s ease-in-out infinite}
+.tm.minor{font-size:14px;color:#9fb0dc;padding:8px}
+@keyframes tmGlow{50%{text-shadow:0 0 26px rgba(255,220,140,1),0 2px 0 #000}}
+.gban .ginfo{left:12px;right:auto;text-align:left;width:72%}
+body.modern::before,body.modern::after{z-index:0}body.modern #app{z-index:1;background:transparent}
+body.home .pnlink{display:none}
 </style>
 </head>
 <body>
@@ -340,16 +388,8 @@ img.spr.flip{transform:scaleX(-1)}
 "use strict";
 'use strict';
 /* =====================================================================
-   LE PALAIS DES MORTS — fan game FFXIV non officiel, non commercial.
-   Tout le pixel art est dessiné en code (aucun asset Square Enix inclus).
-
-   ===== SPRITES REMPLAÇABLES =====
-   Méthode 1 (téléphone, recommandée) : « Atelier des sprites » dans le jeu.
-     Importe une image de ta galerie, découpe, fond transparent, enregistre.
-     Ces sprites sont stockés dans le navigateur (IndexedDB) et ont la priorité.
-   Méthode 2 (fichiers) : mets un PNG dans sprites/ et indique son chemin
-     dans "src" (ex : src: "sprites/paladin.png"). Laisse null sinon.
-   Si un PNG est introuvable, le jeu revient automatiquement au pixel art.
+   LE PALAIS DES MORTS — fan game FINAL FANTASY non officiel, non commercial.
+   Sprites : uniquement des sprites officiels (Brave Exvius, kit de fans FFXIV), voir ASSET et CREDITS.md.
    ===================================================================== */
 const SPRITES = {
   // --- Jobs ---
@@ -483,7 +523,6 @@ Object.assign(GRIDS, {
 Object.assign(BUILTIN, { icon_piege:{g:'trap'}, icon_marchand:{g:'bag'}, icon_rencontre:{g:'moogle',pal:{P:'#8a5ad8'}},
   icon_maudite:{g:'skull',pal:{B:'#c8a0e8',R:'#ff40ff',D:'#3a1a5a'}}, icon_pomandre:{g:'orb',pal:{C:'#ffd060',D:'#c88a20'}} });
 const SPR_CACHE = {};
-const CUSTOM = {}; // sprites de l'Atelier (IndexedDB) — priorité maximale
 function gridToURL(rows, pal){
   const h = rows.length, w = Math.max(...rows.map(r=>r.length));
   const c = document.createElement('canvas'); c.width = w; c.height = h;
@@ -503,7 +542,6 @@ function builtinURL(key){
   return gridToURL(GRIDS[b.g], Object.assign({}, BASE_PAL, b.pal||{}));
 }
 function spriteURL(key){
-  if (CUSTOM[key]) return CUSTOM[key];
   const cfg = SPRITES[key];
   if (cfg && cfg._ok) return cfg.src;
   if (typeof ASSET!=='undefined' && ASSET[key] && !ASSET_FAIL[key]) return ASSET[key].src;
@@ -511,10 +549,10 @@ function spriteURL(key){
 }
 function refreshSprite(k){ document.querySelectorAll(`img[data-spr="${k}"]`).forEach(el=>el.src=spriteURL(k)); }
 const ASSET_FAIL = {};
-function sprFail(img){ const k=img.dataset.spr; if(!k||ASSET_FAIL[k]) return; ASSET_FAIL[k]=1; img.classList.remove('art'); img.src=spriteURL(k); }
+function sprFail(img){ const k=img.dataset.spr; if(!k||ASSET_FAIL[k]) return; ASSET_FAIL[k]=1; img.style.visibility='hidden'; } /* pas de dessin de remplacement : uniquement des sprites officiels */
 function spr(key, cls='', style=''){
   const u=spriteURL(key), a=(typeof ASSET!=='undefined')&&ASSET[key]&&u===ASSET[key].src;
-  return `<img class="spr ${cls} ${a?'art':''}" data-spr="${key}" src="${u}" style="${a?`--w:${ASSET[key].w};--h:${ASSET[key].h};`:''}${style}" onerror="sprFail(this)" alt="">`;
+  return `<img class="spr ${cls} ${a?'art':''} ${a&&ASSET[key].tile?'tile':''}" data-spr="${key}" src="${u}" style="${a?`--w:${ASSET[key].w};--h:${ASSET[key].h};`:''}${style}" onerror="sprFail(this)" alt="">`;
 }
 function loadCustomSprites(){
   Object.keys(SPRITES).forEach(k=>{
@@ -528,10 +566,10 @@ function loadCustomSprites(){
 const BG_CACHE = {};
 function floorBG(f){
   const tier = f>=50 ? 5 : Math.min(4, Math.floor((f-1)/10));
-  return 'assets/bg/t'+tier+'.png';
+  return 'assets/bg/t'+tier+'.jpg';
 }
 /* Pixel art libre (voir CREDITS.md) : assets/ */
-const ASSET = {"barde":{"src":"assets/chars/barde_front.png","w":54,"h":58,"ko":"assets/chars/barde_ko.png"},"c_aerith":{"src":"assets/chars/c_aerith_front.png","w":54,"h":58,"ko":"assets/chars/c_aerith_ko.png"},"c_alisaie":{"src":"assets/chars/c_alisaie_front.png","w":54,"h":58,"ko":"assets/chars/c_alisaie_ko.png"},"c_alphinaud":{"src":"assets/chars/c_alphinaud_front.png","w":54,"h":58,"ko":"assets/chars/c_alphinaud_ko.png"},"c_auron":{"src":"assets/chars/c_auron_front.png","w":54,"h":58,"ko":"assets/chars/c_auron_ko.png"},"c_bartz":{"src":"assets/chars/c_bartz_front.png","w":54,"h":58,"ko":"assets/chars/c_bartz_ko.png"},"c_cecil":{"src":"assets/chars/c_cecil_front.png","w":54,"h":58,"ko":"assets/chars/c_cecil_ko.png"},"c_cid":{"src":"assets/chars/c_cid_front.png","w":54,"h":58,"ko":"assets/chars/c_cid_ko.png"},"c_cloud":{"src":"assets/chars/c_cloud_front.png","w":54,"h":58,"ko":"assets/chars/c_cloud_ko.png"},"c_estinien":{"src":"assets/chars/c_estinien_front.png","w":54,"h":58,"ko":"assets/chars/c_estinien_ko.png"},"c_graha":{"src":"assets/chars/c_graha_front.png","w":54,"h":58,"ko":"assets/chars/c_graha_ko.png"},"c_haurchefant":{"src":"assets/chars/c_haurchefant_front.png","w":54,"h":58,"ko":"assets/chars/c_haurchefant_ko.png"},"c_kain":{"src":"assets/chars/c_kain_front.png","w":54,"h":58,"ko":"assets/chars/c_kain_ko.png"},"c_krile":{"src":"assets/chars/c_krile_front.png","w":54,"h":58,"ko":"assets/chars/c_krile_ko.png"},"c_lightning":{"src":"assets/chars/c_lightning_front.png","w":54,"h":58,"ko":"assets/chars/c_lightning_ko.png"},"c_locke":{"src":"assets/chars/c_locke_front.png","w":54,"h":58,"ko":"assets/chars/c_locke_ko.png"},"c_lyse":{"src":"assets/chars/c_lyse_front.png","w":54,"h":58,"ko":"assets/chars/c_lyse_ko.png"},"c_minfilia":{"src":"assets/chars/c_minfilia_front.png","w":54,"h":58,"ko":"assets/chars/c_minfilia_ko.png"},"c_noctis":{"src":"assets/chars/c_noctis_front.png","w":54,"h":58,"ko":"assets/chars/c_noctis_ko.png"},"c_rosa":{"src":"assets/chars/c_rosa_front.png","w":54,"h":58,"ko":"assets/chars/c_rosa_ko.png"},"c_squall":{"src":"assets/chars/c_squall_front.png","w":54,"h":58,"ko":"assets/chars/c_squall_ko.png"},"c_tataru":{"src":"assets/chars/c_tataru_front.png","w":54,"h":58,"ko":"assets/chars/c_tataru_ko.png"},"c_terra":{"src":"assets/chars/c_terra_front.png","w":54,"h":58,"ko":"assets/chars/c_terra_ko.png"},"c_thancred":{"src":"assets/chars/c_thancred_front.png","w":54,"h":58,"ko":"assets/chars/c_thancred_ko.png"},"c_tidus":{"src":"assets/chars/c_tidus_front.png","w":54,"h":58,"ko":"assets/chars/c_tidus_ko.png"},"c_tifa":{"src":"assets/chars/c_tifa_front.png","w":54,"h":58,"ko":"assets/chars/c_tifa_ko.png"},"c_urianger":{"src":"assets/chars/c_urianger_front.png","w":54,"h":58,"ko":"assets/chars/c_urianger_ko.png"},"c_vivi":{"src":"assets/chars/c_vivi_front.png","w":54,"h":58,"ko":"assets/chars/c_vivi_ko.png"},"c_yshtola":{"src":"assets/chars/c_yshtola_front.png","w":54,"h":58,"ko":"assets/chars/c_yshtola_ko.png"},"c_yuna":{"src":"assets/chars/c_yuna_front.png","w":54,"h":58,"ko":"assets/chars/c_yuna_ko.png"},"c_zidane":{"src":"assets/chars/c_zidane_front.png","w":54,"h":58,"ko":"assets/chars/c_zidane_ko.png"},"dragoon":{"src":"assets/chars/dragoon_front.png","w":54,"h":58,"ko":"assets/chars/dragoon_ko.png"},"erudit":{"src":"assets/chars/erudit_front.png","w":54,"h":58,"ko":"assets/chars/erudit_ko.png"},"guerrier":{"src":"assets/chars/guerrier_front.png","w":54,"h":58,"ko":"assets/chars/guerrier_ko.png"},"mageblanc":{"src":"assets/chars/mageblanc_front.png","w":54,"h":58,"ko":"assets/chars/mageblanc_ko.png"},"magenoir":{"src":"assets/chars/magenoir_front.png","w":54,"h":58,"ko":"assets/chars/magenoir_ko.png"},"magerouge":{"src":"assets/chars/magerouge_front.png","w":54,"h":58,"ko":"assets/chars/magerouge_ko.png"},"moine":{"src":"assets/chars/moine_front.png","w":54,"h":58,"ko":"assets/chars/moine_ko.png"},"paladin":{"src":"assets/chars/paladin_front.png","w":54,"h":58,"ko":"assets/chars/paladin_ko.png"},"samourai":{"src":"assets/chars/samourai_front.png","w":54,"h":58,"ko":"assets/chars/samourai_ko.png"},"ahriman":{"src":"assets/monsters/ahriman.png","w":23,"h":31},"behemoth":{"src":"assets/monsters/behemoth.png","w":177,"h":107},"bombo":{"src":"assets/monsters/bombo.png","w":29,"h":29},"chevalier":{"src":"assets/monsters/chevalier.png","w":78,"h":110},"diablotin":{"src":"assets/monsters/diablotin.png","w":58,"h":60},"dragonnet":{"src":"assets/monsters/dragonnet.png","w":63,"h":51},"flan":{"src":"assets/monsters/flan.png","w":28,"h":23},"flannoir":{"src":"assets/monsters/flannoir.png","w":28,"h":23},"gobelin":{"src":"assets/monsters/gobelin.png","w":37,"h":36},"golem":{"src":"assets/monsters/golem.png","w":86,"h":84},"grandahriman":{"src":"assets/monsters/grandahriman.png","w":78,"h":80},"grenade":{"src":"assets/monsters/grenade.png","w":52,"h":67},"neant":{"src":"assets/monsters/neant.png","w":123,"h":154},"reinebombo":{"src":"assets/monsters/reinebombo.png","w":78,"h":102},"roiflan":{"src":"assets/monsters/roiflan.png","w":56,"h":46},"seigneur":{"src":"assets/monsters/seigneur.png","w":126,"h":105},"sentinelle":{"src":"assets/monsters/sentinelle.png","w":45,"h":65},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.png","w":68,"h":144},"spectre":{"src":"assets/monsters/spectre.png","w":50,"h":57},"squelette":{"src":"assets/monsters/squelette.png","w":33,"h":39},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.png","w":89,"h":58},"sylphe":{"src":"assets/monsters/sylphe.png","w":47,"h":64},"wyverne":{"src":"assets/monsters/wyverne.png","w":134,"h":112}};
+const ASSET = {"paladin":{"src":"assets/chars/paladin.png","w":51,"h":60,"ko":"assets/chars/paladin_ko.png"},"guerrier":{"src":"assets/chars/guerrier.png","w":70,"h":66,"ko":"assets/chars/guerrier_ko.png"},"moine":{"src":"assets/chars/moine.png","w":57,"h":62,"ko":"assets/chars/moine_ko.png"},"dragoon":{"src":"assets/chars/dragoon.png","w":98,"h":79,"ko":"assets/chars/dragoon_ko.png"},"barde":{"src":"assets/chars/barde.png","w":38,"h":68,"ko":"assets/chars/barde_ko.png"},"mageblanc":{"src":"assets/chars/mageblanc.png","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.png"},"magenoir":{"src":"assets/chars/magenoir.png","w":46,"h":43,"ko":"assets/chars/magenoir_ko.png"},"erudit":{"src":"assets/chars/erudit.png","w":50,"h":53,"ko":"assets/chars/erudit_ko.png"},"samourai":{"src":"assets/chars/samourai.png","w":50,"h":60,"ko":"assets/chars/samourai_ko.png"},"magerouge":{"src":"assets/chars/magerouge.png","w":50,"h":61,"ko":"assets/chars/magerouge_ko.png"},"c_yshtola":{"src":"assets/chars/c_yshtola.png","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.png"},"c_thancred":{"src":"assets/chars/c_thancred.png","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.png"},"c_minfilia":{"src":"assets/chars/c_minfilia.png","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.png"},"c_cloud":{"src":"assets/chars/c_cloud.png","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.png"},"c_tifa":{"src":"assets/chars/c_tifa.png","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.png"},"c_aerith":{"src":"assets/chars/c_aerith.png","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.png"},"c_squall":{"src":"assets/chars/c_squall.png","w":50,"h":67,"ko":"assets/chars/c_squall_ko.png"},"c_zidane":{"src":"assets/chars/c_zidane.png","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.png"},"c_vivi":{"src":"assets/chars/c_vivi.png","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.png"},"c_tidus":{"src":"assets/chars/c_tidus.png","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.png"},"c_yuna":{"src":"assets/chars/c_yuna.png","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.png"},"c_auron":{"src":"assets/chars/c_auron.png","w":60,"h":65,"ko":"assets/chars/c_auron_ko.png"},"c_lightning":{"src":"assets/chars/c_lightning.png","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.png"},"c_terra":{"src":"assets/chars/c_terra.png","w":40,"h":59,"ko":"assets/chars/c_terra_ko.png"},"c_cecil":{"src":"assets/chars/c_cecil.png","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.png"},"c_kain":{"src":"assets/chars/c_kain.png","w":96,"h":91,"ko":"assets/chars/c_kain_ko.png"},"c_bartz":{"src":"assets/chars/c_bartz.png","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.png"},"c_noctis":{"src":"assets/chars/c_noctis.png","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.png"},"c_rosa":{"src":"assets/chars/c_rosa.png","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.png"},"c_locke":{"src":"assets/chars/c_locke.png","w":52,"h":54,"ko":"assets/chars/c_locke_ko.png"},"neant":{"src":"assets/monsters/neant.png","w":62,"h":93},"flan":{"src":"assets/monsters/flan.png","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.png","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.png","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.png","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.png","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.png","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.png","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.png","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.png","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.png","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.png","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.png","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.png","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.png","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.png","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.png","w":87,"h":92},"golem":{"src":"assets/monsters/golem.png","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.png","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.png","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.png","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.png","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.png","w":187,"h":160},"c_alphinaud":{"src":"assets/chars/c_alphinaud.png","w":38,"h":38,"tile":1},"c_alisaie":{"src":"assets/chars/c_alisaie.png","w":38,"h":38,"tile":1},"c_urianger":{"src":"assets/chars/c_urianger.png","w":38,"h":38,"tile":1},"c_graha":{"src":"assets/chars/c_graha.png","w":38,"h":38,"tile":1},"c_estinien":{"src":"assets/chars/c_estinien.png","w":38,"h":38,"tile":1},"c_haurchefant":{"src":"assets/chars/c_haurchefant.png","w":38,"h":38,"tile":1},"c_tataru":{"src":"assets/chars/c_tataru.png","w":38,"h":38,"tile":1},"c_lyse":{"src":"assets/chars/c_lyse.png","w":38,"h":38,"tile":1},"c_krile":{"src":"assets/chars/c_krile.png","w":38,"h":38,"tile":1},"c_cid":{"src":"assets/chars/c_cid.png","w":38,"h":38,"tile":1},"mimique":{"src":"assets/monsters/mimique.png","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/icons/icon_rencontre.png","w":32,"h":32,"tile":1},"icon_combat":{"src":"assets/icons/icon_combat.png","w":32,"h":32,"tile":1,"icon":1},"icon_elite":{"src":"assets/icons/icon_elite.png","w":32,"h":32,"tile":1,"icon":1},"icon_coffre":{"src":"assets/icons/icon_coffre.png","w":32,"h":32,"tile":1,"icon":1},"icon_cristal":{"src":"assets/icons/icon_cristal.png","w":32,"h":32,"tile":1,"icon":1},"icon_autel":{"src":"assets/icons/icon_autel.png","w":32,"h":32,"tile":1,"icon":1},"icon_marchand":{"src":"assets/icons/icon_marchand.png","w":32,"h":32,"tile":1,"icon":1},"icon_maudite":{"src":"assets/icons/icon_maudite.png","w":32,"h":32,"tile":1,"icon":1},"icon_piege":{"src":"assets/icons/icon_piege.png","w":32,"h":32,"tile":1,"icon":1},"icon_pomandre":{"src":"assets/icons/icon_pomandre.png","w":32,"h":32,"tile":1,"icon":1},"icon_repos":{"src":"assets/icons/icon_repos.png","w":32,"h":32,"tile":1,"icon":1},"icon_curseur":{"src":"assets/icons/icon_curseur.png","w":32,"h":32,"tile":1,"icon":1}};
 /* Icônes pixel maison (SVG 8x8) — aucun emoji dans le jeu */
 const IC_PAL = { w:'#ffffff', k:'#101018', y:'#ffd84a', o:'#ff8a2a', r:'#ff4a4a', g:'#5aff6a', G:'#1f9a3a', b:'#6ab8ff', B:'#2a5adf', p:'#c070ff', s:'#c8d0e0', S:'#7a8298', n:'#a0662a', c:'#9ff0ff' };
 const IC_GRID = {
@@ -1047,6 +1085,19 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v5.1', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', notes:[
+    'Les jobs et les compagnons utilisent désormais les sprites officiels de FINAL FANTASY BRAVE EXVIUS, en vue de côté et tournés vers la droite.',
+    'Les monstres et le Néant utilisent aussi des sprites officiels de Brave Exvius, placés à droite et tournés vers la gauche.',
+    'Les compagnons sans sprite Brave Exvius (Alphinaud, Alisaie, Urianger, G’raha Tia, Estinien, Haurchefant, Tataru, Lyse, Krile, Cid) et la Mimique s’affichent avec leur icône officielle de mascotte FFXIV.',
+    'Les bannières d’invocation et les résultats de tirage montrent les nouveaux sprites.',
+    'Les décors de combat sont remplacés par des décors officiels de Brave Exvius, un par tranche d’étages.',
+    'Les icônes de salles de la carte sont remplacées par des icônes officielles du kit de fans FFXIV.',
+    'Tous les sprites libres de droits et les dessins de remplacement ont été retirés du jeu.',
+    'Les bannières d’invocation sont désormais verticales, plus grandes, avec l’illustration officielle du personnage mis en avant derrière son sprite.',
+    'Nouvel écran d’accueil : menu en texte stylisé sur un décor officiel, avec un bouton principal bien visible.',
+    'Les menus hors combat adoptent un style moderne et les écrans s’enchaînent avec un léger fondu.',
+    'L’Atelier des sprites est supprimé, puisque tous les sprites sont maintenant officiels ; les anciens sprites personnalisés sont ignorés.',
+  ]},
   {v:'v5', date:'23/10/2026', img:'assets/patchnotes/v5.jpg', notes:[
     'Comptes en ligne : inscription avec un pseudo et un mot de passe, sans adresse e-mail.',
     'Liste d’amis avec statut en ligne visible.',
@@ -1090,6 +1141,7 @@ function patchNotes(){
 }
 SCREENS.title = function(){
   C=null;
+  document.body.classList.add('home');
   app.innerHTML = `
   <button class="pnlink" data-k="patchnotes" id="bPN">Notes de patch</button>
   <div class="title-logo">
@@ -1099,19 +1151,19 @@ SCREENS.title = function(){
     <div class="sub">50 étages · 9 jobs · 30 compagnons</div>
   </div>
   <div style="flex:1"></div>
-  <div class="col" style="padding:0 6px">
-    ${S.created ? `<button class="btn goldb" data-k="continue" id="bCont">${R?'Reprendre l’exploration':'Continuer'}</button>` : `<button class="btn goldb" data-k="new" data-go="create">Nouvelle aventure</button>`}
-    <button class="btn" data-k="online" id="bOnlineT" onclick="Online.open('title')">${ic('lb')} En ligne</button>
-    <button class="btn" data-k="atelier" id="bAtelier">${spr('icon_autel','','width:26px')} Atelier des sprites</button>
-    ${S.created ? `<button class="btn small" style="width:100%" data-k="reset" id="bReset">Recommencer à zéro</button>`:''}
-  </div>
+  <nav class="tmenu">
+    ${S.created ? `<button class="tm main" data-k="continue" id="bCont">${R?'Reprendre l’exploration':'Continuer'}</button>` : `<button class="tm main" data-k="new" data-go="create">Nouvelle aventure</button>`}
+    <button class="tm" data-k="online" id="bOnlineT" onclick="Online.open('title')">${(typeof Online!=='undefined'&&Online.state&&Online.state().user)?'Jouer en ligne':'Se connecter / Créer un compte'}</button>
+    <button class="tm" data-k="patchnotes" id="bPN2">Notes de patch</button>
+    ${S.created ? `<button class="tm minor" data-k="reset" id="bReset">Recommencer à zéro</button>`:''}
+  </nav>
   <p class="muted center" style="margin-top:6px">Sauvegarde automatique sur cet appareil</p>
   <p class="legal">${LEGAL_TXT}</p>`;
   bind(app);
   document.getElementById('bPN').onclick=patchNotes;
+  document.getElementById('bPN2').onclick=patchNotes;
   const bc=document.getElementById('bCont'); if(bc) bc.onclick=()=> R ? SCREENS.map() : SCREENS.hub();
-  document.getElementById('bAtelier').onclick=()=>{ AT.back='title'; SCREENS.atelier(); };
-  const br=document.getElementById('bReset'); if(br) br.onclick=()=>confirmBox('Effacer toute la sauvegarde (Gils, cristaux, améliorations) ? Les sprites de l’Atelier sont conservés.', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Effacer');
+  const br=document.getElementById('bReset'); if(br) br.onclick=()=>confirmBox('Effacer toute la sauvegarde (Gils, cristaux, améliorations) ?', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Effacer');
 };
 let createSel = 'paladin';
 SCREENS.create = function(){
@@ -1166,7 +1218,6 @@ SCREENS.hub = function(){
       <button class="btn" data-k="scores" id="bScores" onclick="scoresModal()">${ic('star')} Scores</button>
       <button class="btn" data-k="comps" id="bHubComps">${S.comp?spr('c_'+S.comp,'','width:26px'):spr('icon_rencontre','','width:26px')} Compagnons</button>
     </div>
-    <button class="btn" data-k="atelier" id="bAtelier">${spr('icon_autel','','width:26px')} Atelier des sprites</button>
     <div class="win col" style="gap:4px">
       <h3>Registre de l’aventurier</h3>
       <div class="stat"><span>Explorations</span><b>${S.stats.runs}</b></div>
@@ -1179,7 +1230,6 @@ SCREENS.hub = function(){
   bind(app);
   document.getElementById('bEnter').onclick = SCREENS.prep;
   document.getElementById('bHubComps').onclick = ()=>SCREENS.comps('hub');
-  document.getElementById('bAtelier').onclick = ()=>{ AT.back='hub'; SCREENS.atelier(); };
 };
 /* Préparation : choix de 4 compétences parmi 6 */
 let prepSel = null;
@@ -2096,438 +2146,6 @@ EVENTS.maudite = function(){
     {label:'Quitter la salle', ai:0, fn:advanceNode}]);
 };
 
-/* ===================== ATELIER DES SPRITES =====================
-   Flux rapide : « Trouver » (ouvre The Spriters Resource) → enregistrer l'image →
-   « Importer » : le fond est détecté et rendu transparent, chaque sprite est isolé
-   (composantes connexes + fusion des petits écarts), le meilleur sprite « debout »
-   est attribué automatiquement. La grille de vignettes sert seulement à changer.
-   Stockage : IndexedDB (sprites en PNG data-URL + planches importées). */
-const IDB = {
-  db:null,
-  open(){ return new Promise(res=>{ try{ if(!window.indexedDB) return res(null); const r=indexedDB.open('palais_des_morts_sprites',1);
-    r.onupgradeneeded=()=>{ const d=r.result; if(!d.objectStoreNames.contains('sprites')) d.createObjectStore('sprites'); if(!d.objectStoreNames.contains('misc')) d.createObjectStore('misc'); };
-    r.onsuccess=()=>{ IDB.db=r.result; res(r.result); }; r.onerror=()=>res(null); r.onblocked=()=>res(null); }catch(e){ res(null); } }); },
-  req(store, mode, fn){ return new Promise(res=>{ try{ if(!IDB.db) return res(undefined); const t=IDB.db.transaction(store,mode); const q=fn(t.objectStore(store)); t.oncomplete=()=>res(q?q.result:undefined); t.onerror=()=>res(undefined); t.onabort=()=>res(undefined); }catch(e){ res(undefined); } }); },
-  get(s,k){ return IDB.req(s,'readonly',o=>o.get(k)); },
-  put(s,k,v){ return IDB.req(s,'readwrite',o=>o.put(v,k)); },
-  del(s,k){ return IDB.req(s,'readwrite',o=>o.delete(k)); },
-  all(s){ return new Promise(res=>{ const out={}; try{ if(!IDB.db) return res(out); const t=IDB.db.transaction(s,'readonly'); const c=t.objectStore(s).openCursor();
-    c.onsuccess=e=>{ const cur=e.target.result; if(cur){ out[cur.key]=cur.value; cur.continue(); } else res(out); }; c.onerror=()=>res(out); }catch(e){ res(out); } }); },
-};
-const AT = { sheets:[], back:'hub', flip: localStorage.getItem('atelier_flip')!=='0', gap:2, q:'', loadedStored:false };
-const SEARCH_EN = { paladin:'Paladin', moine:'Monk', barde:'Bard', mageblanc:'White Mage', guerrier:'Warrior', dragoon:'Dragoon', magenoir:'Black Mage', erudit:'Scholar', samourai:'Samurai',
-  flan:'Flan', bombo:'Bomb', diablotin:'Imp', squelette:'Skeleton', ahriman:'Ahriman', mimique:'Mimic', grenade:'Grenade', gobelin:'Goblin', sylphe:'Sylph', sentinelle:'Sentinel',
-  spectre:'Ghost', flannoir:'Black Flan', squelettemaudit:'Skeleton', dragonnet:'Dragon', roiflan:'King Flan', chevalier:'Death Knight', grandahriman:'Ahriman', reinebombo:'Mom Bomb',
-  sentinelleprime:'Iron Giant', golem:'Golem', seigneur:'Lich', wyverne:'Wyvern', behemoth:'Behemoth', neant:'Exdeath',
-  icon_combat:'Sword', icon_elite:'Skull', icon_coffre:'Treasure Chest', icon_autel:'Orb', icon_repos:'Campfire', icon_cristal:'Crystal', icon_curseur:'Cursor', icon_piege:'Trap', icon_marchand:'Merchant', icon_rencontre:'Moogle', icon_maudite:'Skull', icon_pomandre:'Orb' };
-const KEYWORDS = { paladin:['paladin','cecil'], moine:['monk','moine','yang','sabin'], barde:['bard','barde','edward'], mageblanc:['white','blanc','whm','rosa'], guerrier:['warrior','guerrier'],
-  dragoon:['dragoon','kain','freya'], magenoir:['black mage','blackmage','mage noir','vivi','blm'], erudit:['scholar','erudit','érudit'], samourai:['samurai','samourai','cyan'],
-  flan:['flan','pudding'], bombo:['bomb','bombo'], diablotin:['imp','diablotin'], squelette:['skeleton','squelette'], ahriman:['ahriman','float'], mimique:['mimic','mimique'], grenade:['grenade'],
-  gobelin:['goblin','gobelin'], sylphe:['sylph','pixie','fairy','sylphe'], sentinelle:['sentinel','sentinelle'], spectre:['ghost','spectre','specter'], dragonnet:['drake','dragon'],
-  golem:['golem'], seigneur:['lich','seigneur'], wyverne:['wyvern','wyverne'], behemoth:['behemoth'], neant:['exdeath','void','neant'] };
-const ICON_NAMES = { icon_combat:'Icône : combat', icon_elite:'Icône : salle maudite', icon_coffre:'Icône : coffre', icon_autel:'Icône : autel', icon_repos:'Icône : repos', icon_cristal:'Icône : cristal', icon_curseur:'Curseur de cible', icon_piege:'Icône : piège', icon_marchand:'Icône : marchand', icon_rencontre:'Icône : rencontre (mog)', icon_maudite:'Icône : salle maudite', icon_pomandre:'Icône : pomandre épique' };
-const spriteKeys = () => Object.keys(SPRITES);
-function spriteLabel(k){ return k.startsWith('c_')&&COMPANIONS[k.slice(2)] ? COMPANIONS[k.slice(2)].name+' ('+COMPANIONS[k.slice(2)].game+')' : JOBS[k] ? JOBS[k].name : ENEMIES[k] ? ENEMIES[k].name : (ICON_NAMES[k]||k); }
-function spriteGroup(k){ if (k.startsWith('c_')) return 'Compagnons'; if (JOBS[k]) return 'Jobs'; if (ENEMIES[k]) return ENEMIES[k].guardian ? 'Gardiens' : ENEMIES[k].boss ? 'Boss' : 'Monstres'; return 'Icônes'; }
-const GROUPS = ['Jobs','Compagnons','Monstres','Gardiens','Boss','Icônes'];
-const srURL = k => 'https://www.spriters-resource.com/search/?q='+encodeURIComponent(SEARCH_EN[k]||spriteLabel(k));
-const ggURL = k => 'https://www.google.com/search?q='+encodeURIComponent('site:spriters-resource.com "Final Fantasy Record Keeper" '+(SEARCH_EN[k]||spriteLabel(k)));
-function openExt(url){ const a=document.createElement('a'); a.href=url; a.target='_blank'; a.rel='noopener noreferrer'; document.body.appendChild(a); a.click(); a.remove(); }
-
-/* --- Détection automatique des sprites dans une planche --- */
-function imageToCanvas(img){ const c=document.createElement('canvas'); c.width=img.naturalWidth||img.width; c.height=img.naturalHeight||img.height; c.getContext('2d').drawImage(img,0,0); return c; }
-function detectSprites(src, gap){
-  const W=src.width, H=src.height, N=W*H;
-  const data=src.getContext('2d',{willReadFrequently:true}).getImageData(0,0,W,H).data;
-  // 1) Couleur(s) de fond : couleurs les plus fréquentes sur la bordure (ou transparence)
-  const qk=(i)=>((data[i]>>3)<<10)|((data[i+1]>>3)<<5)|(data[i+2]>>3);
-  const bc=new Map(); let bt=0, btr=0;
-  const addB=(x,y)=>{ const i=(y*W+x)*4; bt++; if(data[i+3]<40){ btr++; return; } const k=qk(i); const o=bc.get(k); if(o) o.n++; else bc.set(k,{n:1,r:data[i],g:data[i+1],b:data[i+2]}); };
-  for(let x=0;x<W;x++){ addB(x,0); addB(x,H-1); } for(let y=1;y<H-1;y++){ addB(0,y); addB(W-1,y); }
-  const bgs=[...bc.values()].filter(c=>c.n>=0.12*bt).sort((a,b)=>b.n-a.n).slice(0,3);
-  // couleur dominante de l'image entière (panneaux de fond internes)
-  const gc=new Map(); let gt=0; const step=Math.max(1,Math.floor(N/200000));
-  for(let p=0;p<N;p+=step){ const i=p*4; if(data[i+3]<40) continue; gt++; const k=qk(i); const o=gc.get(k); if(o) o.n++; else gc.set(k,{n:1,r:data[i],g:data[i+1],b:data[i+2]}); }
-  [...gc.values()].filter(c=>c.n>=0.3*gt).forEach(c=>{ if(!bgs.some(b=>Math.abs(b.r-c.r)+Math.abs(b.g-c.g)+Math.abs(b.b-c.b)<30)) bgs.push(c); });
-  const transparentBg = btr>=0.3*bt;
-  const fg=new Uint8Array(N);
-  for(let p=0;p<N;p++){ const i=p*4; if(data[i+3]<40) continue; let bg=false;
-    for(const c of bgs){ if(Math.abs(data[i]-c.r)+Math.abs(data[i+1]-c.g)+Math.abs(data[i+2]-c.b)<=30){ bg=true; break; } }
-    if(!bg) fg[p]=1; }
-  // 2) Dilatation (fusion des petits écarts : arme détachée, effet…)
-  let dm=fg;
-  if (gap>0){
-    const tmp=new Uint8Array(N); dm=new Uint8Array(N);
-    for(let y=0;y<H;y++){ let run=0; const o=y*W; // horizontal : distance au dernier pixel
-      let last=-1e9; for(let x=0;x<W;x++){ if(fg[o+x]) last=x; if(x-last<=gap) tmp[o+x]=1; }
-      last=1e9; for(let x=W-1;x>=0;x--){ if(fg[o+x]) last=x; if(last-x<=gap) tmp[o+x]=1; } }
-    for(let x=0;x<W;x++){ let last=-1e9; for(let y=0;y<H;y++){ if(tmp[y*W+x]) last=y; if(y-last<=gap) dm[y*W+x]=1; }
-      last=1e9; for(let y=H-1;y>=0;y--){ if(tmp[y*W+x]) last=y; if(last-y<=gap) dm[y*W+x]=1; } }
-  }
-  // 3) Composantes connexes (8-voisins)
-  const lab=new Int32Array(N); const comps=[]; const stack=new Int32Array(N); let nl=0;
-  for(let p=0;p<N;p++){
-    if(!dm[p]||lab[p]) continue;
-    nl++; let sp=0; stack[sp++]=p; lab[p]=nl;
-    const c={id:nl,x0:W,y0:H,x1:-1,y1:-1,n:0,cols:new Set()};
-    while(sp){ const q=stack[--sp]; const x=q%W, y=(q-x)/W;
-      if(fg[q]){ c.n++; if(x<c.x0)c.x0=x; if(x>c.x1)c.x1=x; if(y<c.y0)c.y0=y; if(y>c.y1)c.y1=y; if(c.cols.size<6) c.cols.add(qk(q*4)); }
-      for(let dy=-1;dy<=1;dy++){ const yy=y+dy; if(yy<0||yy>=H) continue; for(let dx=-1;dx<=1;dx++){ const xx=x+dx; if(xx<0||xx>=W) continue; const r=yy*W+xx; if(dm[r]&&!lab[r]){ lab[r]=nl; stack[sp++]=r; } } } }
-    if(c.n) comps.push(c);
-  }
-  // 4) Filtrage : bruit, textes/étiquettes, cadres
-  const minPix=Math.max(14, Math.round(N*0.00002));
-  const keep=comps.filter(c=>{
-    const w=c.x1-c.x0+1, h=c.y1-c.y0+1, dens=c.n/(w*h);
-    if (c.n<minPix || w<5 || h<5) return false;               // bruit, traits fins
-    if (h<=14 && w/h>=2.5) return false;                       // ligne de texte
-    if (c.cols.size<=2 && (h<=18 || w/h>=2.2 || dens<0.35)) return false; // étiquettes / bordures unies
-    if (dens<0.12 && (w>W*0.45 || h>H*0.45)) return false;     // cadres
-    if (w*h>0.6*N && N>4096) return false;                      // panneau géant
-    return true;
-  });
-  // 5) Ordre de lecture (lignes puis colonnes)
-  keep.sort((a,b)=>a.y0-b.y0);
-  const rows=[]; keep.forEach(c=>{ const cy=(c.y0+c.y1)/2; const r=rows.find(r=>Math.abs(r.cy-cy)<=Math.max(8,r.h*0.5)); if(r) r.items.push(c); else rows.push({cy,h:c.y1-c.y0+1,items:[c]}); });
-  const ordered=[]; rows.sort((a,b)=>a.cy-b.cy).forEach(r=>r.items.sort((a,b)=>a.x0-b.x0).forEach(c=>ordered.push(c)));
-  // 6) Découpe avec fond transparent
-  const sprites=ordered.slice(0,400).map(c=>{
-    const w=c.x1-c.x0+1, h=c.y1-c.y0+1; const cv=document.createElement('canvas'); cv.width=w; cv.height=h;
-    const cx=cv.getContext('2d'); const id=cx.createImageData(w,h), o=id.data;
-    for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const p=(c.y0+y)*W+(c.x0+x); if(fg[p] && lab[p]===c.id){ const i=p*4, j=(y*w+x)*4; o[j]=data[i]; o[j+1]=data[i+1]; o[j+2]=data[i+2]; o[j+3]=data[i+3]; } }
-    cx.putImageData(id,0,0);
-    return {x:c.x0,y:c.y0,w,h,canvas:cv,url:cv.toDataURL(),assigned:null};
-  });
-  return { sprites, bg: transparentBg ? 'transparent' : (bgs[0]?`rgb(${bgs[0].r},${bgs[0].g},${bgs[0].b})`:'?'), bgRGB: bgs[0]?[bgs[0].r,bgs[0].g,bgs[0].b]:null };
-}
-function bestFrame(sprites){
-  if (!sprites.length) return -1;
-  const areas=sprites.map(s=>s.w*s.h).sort((a,b)=>a-b), med=areas[areas.length>>1], big=areas[areas.length-1];
-  const ref = sprites.length>=3 ? med : big;
-  let i=sprites.findIndex(s=>{ const a=s.w*s.h; return a>=ref*0.6 && a<=ref*3 && s.h>=s.w*0.8; });
-  if (i<0) i=sprites.findIndex(s=>s.w*s.h>=ref*0.6);
-  return i<0?0:i;
-}
-function finalizeSprite(cv, flip){
-  const M=256, sc=Math.min(1, M/Math.max(cv.width,cv.height));
-  const o=document.createElement('canvas'); o.width=Math.max(1,Math.round(cv.width*sc)); o.height=Math.max(1,Math.round(cv.height*sc));
-  const x=o.getContext('2d'); x.imageSmoothingEnabled=false;
-  if (flip){ x.translate(o.width,0); x.scale(-1,1); }
-  x.drawImage(cv,0,0,o.width,o.height);
-  return o.toDataURL('image/png');
-}
-async function saveCustom(key, url){ CUSTOM[key]=url; await IDB.put('sprites',key,url); refreshSprite(key); }
-async function resetCustom(key){ delete CUSTOM[key]; await IDB.del('sprites',key); refreshSprite(key); }
-async function assignSprite(key, sheet, idx){
-  const sp=sheet.sprites[idx]; if(!sp) return;
-  sheet.sprites.forEach(s=>{ if(s.assigned===key) s.assigned=null; });
-  sp.assigned=key; sheet.lastKey=key; sheet.lastIdx=idx;
-  await saveCustom(key, finalizeSprite(sp.canvas, AT.flip));
-}
-function loadImageFile(file){ return new Promise((res,rej)=>{ const url=URL.createObjectURL(file); const img=new Image(); img.onload=()=>{ URL.revokeObjectURL(url); res(img); }; img.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error('image')); }; img.src=url; }); }
-async function addSheetFromFile(file, persistIt=true){
-  const img=await loadImageFile(file);
-  const cv=imageToCanvas(img);
-  const det=detectSprites(cv, AT.gap);
-  const sheet={ name:(file.name||'image').replace(/\.[a-z0-9]+$/i,''), canvas:cv, w:cv.width, h:cv.height, ...det, file };
-  AT.sheets.unshift(sheet); if (AT.sheets.length>8) AT.sheets.length=8;
-  if (persistIt) await IDB.put('misc','sheets', AT.sheets.map(s=>({name:s.name, blob:s.file})));
-  return sheet;
-}
-async function loadStoredSheets(){
-  if (AT.loadedStored) return; AT.loadedStored=true;
-  const st=await IDB.get('misc','sheets'); if(!Array.isArray(st)) return;
-  for (const s of st.slice().reverse()){ try{ if(s.blob){ const sh=await addSheetFromFile(s.blob,false); sh.name=s.name; } }catch(e){} }
-}
-function guessTargets(name){
-  const n=(name||'').toLowerCase(); const out=[];
-  Object.keys(KEYWORDS).forEach(k=>{ if (KEYWORDS[k].some(w=>n.includes(w))) out.push(k); });
-  return out;
-}
-function pickFiles(multiple, accept){ return new Promise(res=>{ const i=document.createElement('input'); i.type='file'; if(accept) i.accept=accept; i.multiple=!!multiple; i.style.display='none';
-  i.onchange=()=>{ const f=[...(i.files||[])]; i.remove(); res(f); }; document.body.appendChild(i); AT.lastInput=i; i.click(); }); }
-
-/* --- Écran principal : liste des cibles --- */
-SCREENS.atelier = function(){
-  loadStoredSheets().then(()=>{ const b=document.getElementById('atSheets'); if(b){ b.disabled=!AT.sheets.length; b.textContent=`Planches chargées (${AT.sheets.length})`; } });
-  const n=Object.keys(CUSTOM).length;
-  app.innerHTML = `
-  <div class="win topbar"><b class="grow">Atelier des sprites</b><span class="gold">${n} perso.</span></div>
-  <div class="scroll" id="atScroll">
-    <div class="win col" style="gap:6px">
-      <div class="tip">1. Touche <b>${ic('search')} Trouver</b> : la recherche s’ouvre. Enregistre l’image (appui long → Enregistrer).<br>2. Reviens ici, touche <b>${ic('import')} Importer</b> et choisis l’image : le sprite est découpé et attribué tout seul.</div>
-      <div class="row"><button class="btn small grow ${AT.flip?'sel':''}" data-k="atflip" id="atFlip">Miroir ↔ : ${AT.flip?'oui':'non'}</button><button class="btn small grow" data-k="atsheets" id="atSheets" ${AT.sheets.length?'':'disabled'}>Planches chargées (${AT.sheets.length})</button></div>
-      <div class="row"><button class="btn small grow" data-k="atbatch" id="atBatch">Importer des planches</button><button class="btn small grow" data-k="atpackin" id="atPackIn">Importer un pack</button></div>
-      <button class="btn small" style="width:100%" data-k="atpackout" id="atPackOut" ${n?'':'disabled'}>Exporter / partager mon pack</button>
-    </div>
-    <input class="name search" id="atQ" placeholder="Rechercher (paladin, flan, boss…)" value="${esc(AT.q)}" autocomplete="off">
-    <div id="atList" class="col" style="gap:8px"></div>
-  </div>
-  <button class="btn" data-k="back" id="atBack">Retour</button>`;
-  atRenderList();
-  document.getElementById('atQ').oninput=e=>{ AT.q=e.target.value; atRenderList(); };
-  document.getElementById('atBack').onclick=()=>SCREENS[AT.back==='title'?'title':'hub']();
-  document.getElementById('atFlip').onclick=()=>{ AT.flip=!AT.flip; localStorage.setItem('atelier_flip',AT.flip?'1':'0'); SCREENS.atelier(); };
-  document.getElementById('atSheets').onclick=()=>SCREENS.atSheet(0,null);
-  document.getElementById('atBatch').onclick=async()=>{ const files=await pickFiles(true,'image/*'); await atImportSheets(files, null); };
-  document.getElementById('atPackIn').onclick=importPack;
-  document.getElementById('atPackOut').onclick=exportPack;
-};
-function atRenderList(){
-  const el=document.getElementById('atList'); if(!el) return;
-  const q=AT.q.trim().toLowerCase();
-  const keys=spriteKeys().filter(k=>!q || spriteLabel(k).toLowerCase().includes(q) || k.includes(q) || (SEARCH_EN[k]||'').toLowerCase().includes(q) || spriteGroup(k).toLowerCase().includes(q));
-  let html='';
-  GROUPS.forEach(g=>{
-    const ks=keys.filter(k=>spriteGroup(k)===g);
-    if (!ks.length) return;
-    html+=`<div class="grp">${g}</div>`+ks.map(k=>`<div class="win row" style="padding:6px 8px;gap:8px">
-      <button class="btn small" style="width:58px;min-height:58px;padding:2px" data-k="atinfo-${k}" data-info="${k}">${spr(k,'','width:48px')}</button>
-      <div class="grow" style="min-width:0"><b style="font-size:14px">${spriteLabel(k)}</b>${CUSTOM[k]?'<div class="badge">'+ic('star')+' Personnalisé</div>':''}</div>
-      <a class="btn small" style="padding:4px 8px;font-size:13px;text-decoration:none" data-k="atfind-${k}" href="${srURL(k)}" target="_blank" rel="noopener noreferrer">${ic('search')} Trouver</a>
-      <button class="btn small goldb" style="padding:4px 8px;font-size:13px" data-k="atimp-${k}" data-imp="${k}">${ic('import')} Importer</button></div>`).join('');
-  });
-  el.innerHTML = html || '<p class="muted center">Aucun résultat.</p>';
-  el.querySelectorAll('[data-imp]').forEach(b=>b.onclick=async()=>{ const k=b.dataset.imp; const files=await pickFiles(false,'image/*'); await atImportSheets(files, k); });
-  el.querySelectorAll('[data-info]').forEach(b=>b.onclick=()=>atTargetModal(b.dataset.info));
-}
-async function atImportSheets(files, target){
-  if (!files || !files.length) return;
-  showModal(`<h2>Analyse…</h2><p class="muted">Détection du fond et des sprites (${files.length} image${files.length>1?'s':''}).</p>`);
-  await new Promise(r=>setTimeout(r,30));
-  const added=[];
-  for (const f of files){ try{ added.push(await addSheetFromFile(f)); }catch(e){ toast('Image illisible : '+(f.name||'')); } }
-  closeModal();
-  if (!added.length) return;
-  const sh=added[0];
-  if (target){
-    const i=bestFrame(sh.sprites);
-    if (i<0){ toast('Aucun sprite détecté : utilise « Ajuster »'); return SCREENS.atSheet(0,target); }
-    await assignSprite(target, sh, i);
-    toast(`${spriteLabel(target)} : sprite attribué !`);
-  } else toast(`${added.length} planche(s) analysée(s)`);
-  SCREENS.atSheet(0, target);
-}
-function atTargetModal(k){
-  showModal(`<div class="row">${spr(k,'idle','width:72px')}<div class="grow"><h2>${spriteLabel(k)}</h2><div class="muted">${spriteGroup(k)}${CUSTOM[k]?' · <span class="gold">Personnalisé</span>':''}</div></div></div>
-   <div class="col" style="margin-top:10px">
-    <a class="btn" style="text-decoration:none" id="tmSR" href="${srURL(k)}" target="_blank" rel="noopener noreferrer">${ic('search')} Trouver sur The Spriters Resource</a>
-    <a class="btn small" style="width:100%;text-decoration:none" id="tmGG" href="${ggURL(k)}" target="_blank" rel="noopener noreferrer">Recherche Google (Record Keeper)</a>
-    <button class="btn goldb" id="tmImp">${ic('import')} Importer une image</button>
-    ${AT.sheets.length?`<button class="btn" id="tmPick">Choisir dans les planches chargées</button>`:''}
-    ${CUSTOM[k]?`<button class="btn small" style="width:100%" id="tmFlip">Retourner (miroir) le sprite actuel</button><button class="btn small redb" style="width:100%" id="tmReset">Réinitialiser (pixel art d’origine)</button>`:''}
-    <button class="btn small" style="width:100%" id="tmC">Fermer</button></div>`);
-  document.getElementById('tmImp').onclick=async()=>{ closeModal(); const f=await pickFiles(false,'image/*'); await atImportSheets(f,k); };
-  const p=document.getElementById('tmPick'); if(p) p.onclick=()=>{ closeModal(); SCREENS.atSheet(0,k); };
-  const fl=document.getElementById('tmFlip'); if(fl) fl.onclick=async()=>{ const img=new Image(); img.onload=async()=>{ await saveCustom(k, finalizeSprite(imageToCanvas(img), true)); closeModal(); toast('Sprite retourné'); atRenderList(); }; img.src=CUSTOM[k]; };
-  const rs=document.getElementById('tmReset'); if(rs) rs.onclick=async()=>{ await resetCustom(k); closeModal(); toast('Sprite réinitialisé'); SCREENS.atelier(); };
-  document.getElementById('tmC').onclick=closeModal;
-}
-
-/* --- Écran planche : grille de vignettes détectées --- */
-function mockSceneHTML(k){
-  const isEnemy=!!ENEMIES[k], boss=isEnemy&&ENEMIES[k].boss, isJob=!!JOBS[k];
-  const isComp=k.startsWith('c_');
-  return `<div class="enemies">${isEnemy?`<div class="en ${boss?'boss':''}">${spr(k,'idle')}</div>`:`<div class="en">${spr('flan','idle')}</div><div class="en">${spr('bombo','idle')}</div>`}</div>
-    <div class="player">${spr(isJob?k:S.job,'idle')}</div>${isComp?`<div class="comp">${spr(k,'idle')}</div>`:''}`;
-}
-SCREENS.atSheet = function(si, target){
-  const sh=AT.sheets[si];
-  if (!sh){ SCREENS.atelier(); return; }
-  AT.cur={si,target};
-  app.innerHTML = `
-  <div class="win topbar"><b class="grow" style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${target?'Sprite de '+esc(spriteLabel(target)):'Planche : '+esc(sh.name)}</b><span class="muted">${sh.sprites.length} sprites</span></div>
-  ${target?`<div class="row" style="gap:8px"><div class="field atprev grow" style="background-image:url(${floorBG(ENEMIES[target]&&ENEMIES[target].boss?30:1)})">${mockSceneHTML(target)}</div>
-    <div class="atout">${spr(target,'')}<small>${CUSTOM[target]?'Attribué '+ic('check')+'':'Original'}</small></div></div>`:''}
-  ${AT.sheets.length>1?`<div class="row" style="gap:6px;overflow-x:auto;flex:none">${AT.sheets.map((s,i)=>`<button class="btn small ${i===si?'sel':''}" style="flex:none;font-size:12px;min-height:38px" data-k="sheet-${i}" data-sheet="${i}">${esc(s.name.slice(0,14))}</button>`).join('')}</div>`:''}
-  <div class="muted center" style="font-size:12px">${target?'Pas le bon ? Touche une autre vignette.':'Touche une vignette puis choisis à qui l’attribuer.'} Fond détecté : ${sh.bg}</div>
-  <div class="scroll"><div class="grid4" id="thumbs">
-    ${sh.sprites.map((s,i)=>`<button class="btn" style="min-height:76px;padding:3px;flex-direction:column;gap:1px;${s.assigned?'outline:3px solid var(--gold);outline-offset:1px':''}" data-k="thumb-${i}" data-th="${i}">
-      <img class="spr" src="${s.url}" style="width:56px;${AT.flip?'transform:scaleX(-1)':''}"><small style="font-size:10px;line-height:1.1">${s.assigned?esc(spriteLabel(s.assigned)):s.w+'×'+s.h}</small></button>`).join('')}
-  </div>${sh.sprites.length?'':'<p class="center">Aucun sprite détecté. Essaie « Ajuster » pour découper à la main.</p>'}</div>
-  <div class="row" style="gap:6px">
-    <button class="btn small" style="flex:1" data-k="flip" id="shFlip">↔ ${AT.flip?'oui':'non'}</button>
-    <button class="btn small" style="flex:1" data-k="gap" id="shGap">Fusion ${AT.gap}</button>
-    <button class="btn small" style="flex:1.3" data-k="adjust" id="shAdj">Ajuster</button>
-    <button class="btn small goldb" style="flex:1.5" data-k="done" id="shDone">Terminé</button>
-  </div>`;
-  app.querySelectorAll('[data-sheet]').forEach(b=>b.onclick=()=>SCREENS.atSheet(+b.dataset.sheet, target));
-  app.querySelectorAll('[data-th]').forEach(b=>b.onclick=async()=>{
-    const i=+b.dataset.th;
-    if (target){ await assignSprite(target, sh, i); toast(`${spriteLabel(target)} : sprite changé`); SCREENS.atSheet(si,target); }
-    else assignPicker(sh, i, si);
-  });
-  document.getElementById('shFlip').onclick=async()=>{ AT.flip=!AT.flip; localStorage.setItem('atelier_flip',AT.flip?'1':'0'); if(target && sh.lastKey===target) await assignSprite(target, sh, sh.lastIdx); SCREENS.atSheet(si,target); };
-  document.getElementById('shGap').onclick=()=>{ AT.gap = AT.gap>=6?0:AT.gap+2; const d=detectSprites(sh.canvas, AT.gap); Object.assign(sh,d); toast(`Fusion des écarts : ${AT.gap}px → ${sh.sprites.length} sprites`); SCREENS.atSheet(si,target); };
-  document.getElementById('shAdj').onclick=()=>{ const i = target && sh.lastKey===target ? sh.lastIdx : Math.max(0,bestFrame(sh.sprites)); SCREENS.atAdjust(si, i, target); };
-  document.getElementById('shDone').onclick=()=>SCREENS.atelier();
-};
-function assignPicker(sh, idx, si){
-  const sug = guessTargets(sh.name).concat(spriteKeys().filter(k=>!CUSTOM[k] && JOBS[k])).filter((k,i,a)=>a.indexOf(k)===i).slice(0,6);
-  const draw = q => { const qq=q.trim().toLowerCase(); const ks=spriteKeys().filter(k=>!qq||spriteLabel(k).toLowerCase().includes(qq)||(SEARCH_EN[k]||'').toLowerCase().includes(qq));
-    document.getElementById('apL').innerHTML = ks.map(k=>`<button class="btn small" style="min-height:64px;flex-direction:column;gap:0;padding:3px;font-size:11px" data-k="ap-${k}" data-ap="${k}">${spr(k,'','width:34px')}${esc(spriteLabel(k))}</button>`).join('');
-    document.querySelectorAll('#apL [data-ap]').forEach(b=>b.onclick=go); };
-  const go = async ev => { const k=ev.currentTarget.dataset.ap; closeModal(); await assignSprite(k, sh, idx); toast(`${spriteLabel(k)} : sprite attribué !`); SCREENS.atSheet(si,null); };
-  showModal(`<div class="row"><img class="spr" src="${sh.sprites[idx].url}" style="width:56px;${AT.flip?'transform:scaleX(-1)':''}"><h2 class="grow">Attribuer à…</h2></div>
-    ${sug.length?`<div class="muted" style="margin-top:6px">Suggestions</div><div class="grid3" style="margin:4px 0 8px">${sug.map(k=>`<button class="btn small goldb" style="min-height:64px;flex-direction:column;gap:0;padding:3px;font-size:11px" data-k="ap-${k}" data-ap="${k}">${spr(k,'','width:34px')}${esc(spriteLabel(k))}</button>`).join('')}</div>`:''}
-    <input class="name search" id="apQ" placeholder="Rechercher…" autocomplete="off">
-    <div class="grid3" id="apL" style="margin-top:8px;max-height:38vh;overflow-y:auto"></div>
-    <button class="btn small" style="width:100%;margin-top:8px" id="apC">Annuler</button>`);
-  draw(''); document.querySelectorAll('#modal [data-ap]').forEach(b=>b.onclick=go);
-  document.getElementById('apQ').oninput=e=>draw(e.target.value);
-  document.getElementById('apC').onclick=closeModal;
-}
-
-/* --- « Ajuster » : découpe manuelle (secours) --- */
-const ADJ = {};
-SCREENS.atAdjust = function(si, idx, target){
-  const sh=AT.sheets[si]; if(!sh) return SCREENS.atelier();
-  const sp=sh.sprites[idx];
-  Object.assign(ADJ, { sh, si, target, ptrs:new Map(), drag:null, grid:0, tol:30, trim:true, pick:false,
-    key: sh.bgRGB, rect: sp ? {x:Math.max(0,sp.x-2), y:Math.max(0,sp.y-2), w:Math.min(sh.w-Math.max(0,sp.x-2), sp.w+4), h:Math.min(sh.h-Math.max(0,sp.y-2), sp.h+4)} : {x:0,y:0,w:Math.min(32,sh.w),h:Math.min(32,sh.h)} });
-  app.innerHTML = `
-  <div class="win topbar"><b class="grow">Ajuster ${target?'— '+esc(spriteLabel(target)):''}</b></div>
-  <div class="atwrap"><canvas id="adCv"></canvas><div class="atinfo" id="adInfo"></div></div>
-  <div class="attools">
-    <button class="btn small" id="adZo">−</button><button class="btn small" id="adZi">+</button><button class="btn small" id="adFit">Tout</button><button class="btn small" id="adGrid">Grille</button>
-    <button class="btn small" id="adPick">Pipette</button><button class="btn small sel" id="adTrim">Rognage</button><button class="btn small ${AT.flip?'sel':''}" id="adFlip">Miroir</button><button class="btn small" id="adFocus">Cadre</button>
-  </div>
-  <div class="row atrow"><span>Tolérance</span><input type="range" id="adTol" min="0" max="160" value="30" class="grow"><span class="swatch" id="adSw"></span></div>
-  <div class="row" style="gap:8px"><div class="field atprev grow" id="adPrev" style="background-image:url(${floorBG(1)})"></div><div class="atout"><img class="spr" id="adOut"><small>Résultat</small></div></div>
-  <div class="row" style="gap:6px"><button class="btn small" style="flex:1" id="adBack">Retour</button><button class="btn small goldb" style="flex:2" id="adSave">${target?'Enregistrer':'Enregistrer pour…'}</button></div>`;
-  const cv=document.getElementById('adCv'); ADJ.cv=cv;
-  const rs=()=>{ const r=cv.getBoundingClientRect(), d=window.devicePixelRatio||1; cv.width=Math.max(1,Math.round(r.width*d)); cv.height=Math.max(1,Math.round(r.height*d)); ADJ.cw=r.width; ADJ.ch=r.height; ADJ.dpr=d; };
-  rs(); adFocus(); adDraw(); adOut();
-  cv.addEventListener('pointerdown',adDown); cv.addEventListener('pointermove',adMove); cv.addEventListener('pointerup',adUp); cv.addEventListener('pointercancel',adUp);
-  cv.addEventListener('wheel',e=>{ e.preventDefault(); adZoomAt(e.offsetX,e.offsetY,e.deltaY<0?1.25:0.8); },{passive:false});
-  const tg=(id,fn)=>document.getElementById(id).onclick=fn;
-  tg('adZo',()=>adZoomAt(ADJ.cw/2,ADJ.ch/2,0.75)); tg('adZi',()=>adZoomAt(ADJ.cw/2,ADJ.ch/2,1.33));
-  tg('adFit',()=>{ const s=Math.min(ADJ.cw/sh.w, ADJ.ch/sh.h)*0.95; ADJ.view={s,x:(ADJ.cw-sh.w*s)/2,y:(ADJ.ch-sh.h*s)/2}; adDraw(); });
-  tg('adFocus',()=>{ adFocus(); adDraw(); });
-  tg('adGrid',e=>{ ADJ.grid = ADJ.grid===0?8:ADJ.grid===8?16:ADJ.grid===16?32:0; e.currentTarget.textContent = ADJ.grid?'Grille '+ADJ.grid:'Grille'; e.currentTarget.classList.toggle('sel',!!ADJ.grid); ADJ.rect=adNorm(ADJ.rect); adDraw(); adOut(); });
-  tg('adPick',e=>{ ADJ.pick=!ADJ.pick; e.currentTarget.classList.toggle('sel',ADJ.pick); adDraw(); });
-  tg('adTrim',e=>{ ADJ.trim=!ADJ.trim; e.currentTarget.classList.toggle('sel',ADJ.trim); adOut(); });
-  tg('adFlip',e=>{ AT.flip=!AT.flip; localStorage.setItem('atelier_flip',AT.flip?'1':'0'); e.currentTarget.classList.toggle('sel',AT.flip); adOut(); });
-  document.getElementById('adTol').oninput=e=>{ ADJ.tol=+e.target.value; adOut(); };
-  tg('adBack',()=>SCREENS.atSheet(si,target));
-  tg('adSave',async()=>{ const o=adBuild(); if(!o){ toast('Zone vide'); return; }
-    if (target){ await saveCustom(target, o.toDataURL('image/png')); toast('Sprite enregistré !'); SCREENS.atSheet(si,target); }
-    else { const tmp={name:sh.name, sprites:[{canvas:o, url:o.toDataURL(), w:o.width, h:o.height}]}; const fake=Object.assign({},tmp); const was=AT.flip; AT.flip=false;
-      sh.sprites.push({x:ADJ.rect.x,y:ADJ.rect.y,w:o.width,h:o.height,canvas:o,url:o.toDataURL(),assigned:null}); AT.flip=was; assignPicker(sh, sh.sprites.length-1, si); } });
-};
-function adFocus(){ const r=ADJ.rect; const s=Math.max(0.05, Math.min(ADJ.cw/r.w, ADJ.ch/r.h)*0.6); ADJ.view={s, x:ADJ.cw/2-(r.x+r.w/2)*s, y:ADJ.ch/2-(r.y+r.h/2)*s}; }
-function adZoomAt(px,py,f){ const v=ADJ.view; const ns=clamp(v.s*f,0.05,64); const ix=(px-v.x)/v.s, iy=(py-v.y)/v.s; ADJ.view={s:ns, x:px-ix*ns, y:py-iy*ns}; adDraw(); }
-const adScr=(ix,iy)=>({x:ix*ADJ.view.s+ADJ.view.x, y:iy*ADJ.view.s+ADJ.view.y});
-function adNorm(r, keepSize){
-  const g=ADJ.grid||1, sh=ADJ.sh, sn=v=>Math.round(v/g)*g;
-  let x1=sn(r.x), y1=sn(r.y), x2=keepSize? x1+r.w : sn(r.x+r.w), y2=keepSize? y1+r.h : sn(r.y+r.h);
-  if (x2-x1<g) x2=x1+g; if (y2-y1<g) y2=y1+g;
-  const w=Math.min(x2-x1, sh.w), h=Math.min(y2-y1, sh.h);
-  x1=clamp(x1,0,sh.w-w); y1=clamp(y1,0,sh.h-h);
-  return {x:x1,y:y1,w,h};
-}
-function adDraw(){
-  const cv=ADJ.cv; if(!cv||!cv.isConnected) return; const x=cv.getContext('2d'), v=ADJ.view, r=ADJ.rect, sh=ADJ.sh;
-  x.setTransform(ADJ.dpr,0,0,ADJ.dpr,0,0); x.imageSmoothingEnabled=false;
-  x.fillStyle='#24243a'; x.fillRect(0,0,ADJ.cw,ADJ.ch);
-  x.drawImage(sh.canvas, v.x, v.y, sh.w*v.s, sh.h*v.s);
-  if (ADJ.grid && ADJ.grid*v.s>=5){ x.strokeStyle='rgba(255,255,255,.2)'; x.lineWidth=1; x.beginPath();
-    for(let gx=0;gx<=sh.w;gx+=ADJ.grid){ const p=Math.round(v.x+gx*v.s)+.5; if(p<0||p>ADJ.cw) continue; x.moveTo(p,Math.max(0,v.y)); x.lineTo(p,Math.min(ADJ.ch,v.y+sh.h*v.s)); }
-    for(let gy=0;gy<=sh.h;gy+=ADJ.grid){ const p=Math.round(v.y+gy*v.s)+.5; if(p<0||p>ADJ.ch) continue; x.moveTo(Math.max(0,v.x),p); x.lineTo(Math.min(ADJ.cw,v.x+sh.w*v.s),p); } x.stroke(); }
-  const a=adScr(r.x,r.y), b=adScr(r.x+r.w,r.y+r.h);
-  x.fillStyle='rgba(0,0,0,.55)'; x.fillRect(0,0,ADJ.cw,a.y); x.fillRect(0,b.y,ADJ.cw,ADJ.ch-b.y); x.fillRect(0,a.y,a.x,b.y-a.y); x.fillRect(b.x,a.y,ADJ.cw-b.x,b.y-a.y);
-  x.strokeStyle='#ffe27a'; x.lineWidth=2; x.strokeRect(a.x,a.y,b.x-a.x,b.y-a.y);
-  const H=16; x.fillStyle='#ffe27a'; x.strokeStyle='#000'; x.lineWidth=1.5;
-  [[a.x,a.y],[b.x,a.y],[a.x,b.y],[b.x,b.y]].forEach(([hx,hy])=>{ x.fillRect(hx-H/2,hy-H/2,H,H); x.strokeRect(hx-H/2,hy-H/2,H,H); });
-  const inf=document.getElementById('adInfo'); if(inf) inf.textContent = ADJ.pick ? 'Touche la couleur du fond' : `${r.x},${r.y} · ${r.w}×${r.h} px · ×${v.s.toFixed(1)}`;
-  const sw=document.getElementById('adSw'); if(sw) sw.style.background = ADJ.key ? `rgb(${ADJ.key.join(',')})` : '';
-}
-const adPt = e => { const b=ADJ.cv.getBoundingClientRect(); return {x:e.clientX-b.left, y:e.clientY-b.top}; };
-function adDown(e){
-  e.preventDefault(); try{ ADJ.cv.setPointerCapture(e.pointerId); }catch(_){}
-  const p=adPt(e); ADJ.ptrs.set(e.pointerId,p);
-  if (ADJ.ptrs.size===2){ const [p1,p2]=[...ADJ.ptrs.values()]; ADJ.drag={mode:'pinch', d0:Math.hypot(p1.x-p2.x,p1.y-p2.y)||1, m0:{x:(p1.x+p2.x)/2,y:(p1.y+p2.y)/2}, v0:{...ADJ.view}}; return; }
-  if (ADJ.ptrs.size>2) return;
-  if (ADJ.pick){ const ix=Math.floor((p.x-ADJ.view.x)/ADJ.view.s), iy=Math.floor((p.y-ADJ.view.y)/ADJ.view.s);
-    if (ix>=0&&iy>=0&&ix<ADJ.sh.w&&iy<ADJ.sh.h){ const d=ADJ.sh.canvas.getContext('2d',{willReadFrequently:true}).getImageData(ix,iy,1,1).data; ADJ.key=[d[0],d[1],d[2]]; }
-    ADJ.pick=false; document.getElementById('adPick').classList.remove('sel'); adDraw(); adOut(); ADJ.drag=null; return; }
-  const r=ADJ.rect, a=adScr(r.x,r.y), b=adScr(r.x+r.w,r.y+r.h), T=24;
-  const corners={tl:[a.x,a.y],tr:[b.x,a.y],bl:[a.x,b.y],br:[b.x,b.y]};
-  let mode='pan', corner=null;
-  for (const c in corners){ if (Math.abs(p.x-corners[c][0])<T && Math.abs(p.y-corners[c][1])<T){ mode='resize'; corner=c; break; } }
-  if (mode==='pan' && p.x>a.x && p.x<b.x && p.y>a.y && p.y<b.y) mode='move';
-  ADJ.drag={mode, corner, p0:p, r0:{...r}, v0:{...ADJ.view}};
-}
-function adMove(e){
-  if (!ADJ.ptrs.has(e.pointerId) || !ADJ.drag) return; e.preventDefault();
-  const p=adPt(e); ADJ.ptrs.set(e.pointerId,p); const D=ADJ.drag;
-  if (D.mode==='pinch'){ if(ADJ.ptrs.size<2) return; const [p1,p2]=[...ADJ.ptrs.values()]; const d=Math.hypot(p1.x-p2.x,p1.y-p2.y), m={x:(p1.x+p2.x)/2,y:(p1.y+p2.y)/2};
-    const ns=clamp(D.v0.s*d/D.d0,0.05,64), ix=(D.m0.x-D.v0.x)/D.v0.s, iy=(D.m0.y-D.v0.y)/D.v0.s; ADJ.view={s:ns, x:m.x-ix*ns, y:m.y-iy*ns}; adDraw(); return; }
-  const dx=p.x-D.p0.x, dy=p.y-D.p0.y;
-  if (D.mode==='pan'){ ADJ.view={s:D.v0.s, x:D.v0.x+dx, y:D.v0.y+dy}; adDraw(); return; }
-  const ix=dx/ADJ.view.s, iy=dy/ADJ.view.s, r0=D.r0; const r={...r0};
-  if (D.mode==='move'){ r.x=r0.x+ix; r.y=r0.y+iy; ADJ.rect=adNorm(r,true); }
-  else { const c=D.corner;
-    if (c[1]==='l'){ r.x=Math.min(r0.x+ix, r0.x+r0.w-1); r.w=r0.x+r0.w-r.x; } else r.w=Math.max(1,r0.w+ix);
-    if (c[0]==='t'){ r.y=Math.min(r0.y+iy, r0.y+r0.h-1); r.h=r0.y+r0.h-r.y; } else r.h=Math.max(1,r0.h+iy);
-    ADJ.rect=adNorm(r,false); }
-  adDraw(); adOutQ();
-}
-function adUp(e){ ADJ.ptrs.delete(e.pointerId); if (ADJ.ptrs.size===0 || (ADJ.drag&&ADJ.drag.mode==='pinch')) ADJ.drag=null; adOut(); }
-let adQ=0; function adOutQ(){ if(adQ) return; adQ=requestAnimationFrame(()=>{ adQ=0; adOut(); }); }
-function adBuild(){
-  const r=ADJ.rect, sh=ADJ.sh; if (r.w<1||r.h<1) return null;
-  const c=document.createElement('canvas'); c.width=r.w; c.height=r.h; const x=c.getContext('2d',{willReadFrequently:true});
-  x.drawImage(sh.canvas,r.x,r.y,r.w,r.h,0,0,r.w,r.h);
-  const id=x.getImageData(0,0,r.w,r.h), d=id.data;
-  if (ADJ.key){ const [kr,kg,kb]=ADJ.key, t2=ADJ.tol*ADJ.tol; for(let i=0;i<d.length;i+=4){ const a=d[i]-kr,b=d[i+1]-kg,cc=d[i+2]-kb; if(a*a+b*b+cc*cc<=t2) d[i+3]=0; } x.putImageData(id,0,0); }
-  let x0=0,y0=0,x1=r.w-1,y1=r.h-1;
-  if (ADJ.trim){ x0=r.w;y0=r.h;x1=-1;y1=-1; for(let yy=0;yy<r.h;yy++) for(let xx=0;xx<r.w;xx++){ if(d[(yy*r.w+xx)*4+3]>8){ if(xx<x0)x0=xx; if(xx>x1)x1=xx; if(yy<y0)y0=yy; if(yy>y1)y1=yy; } } if (x1<0) return null; }
-  const w=x1-x0+1, h=y1-y0+1, t=document.createElement('canvas'); t.width=w; t.height=h; t.getContext('2d').drawImage(c,x0,y0,w,h,0,0,w,h);
-  const o=document.createElement('canvas'); const sc=Math.min(1,256/Math.max(w,h)); o.width=Math.max(1,Math.round(w*sc)); o.height=Math.max(1,Math.round(h*sc));
-  const ox=o.getContext('2d'); ox.imageSmoothingEnabled=false; if (AT.flip){ ox.translate(o.width,0); ox.scale(-1,1); } ox.drawImage(t,0,0,o.width,o.height);
-  return o;
-}
-function adOut(){
-  const o=adBuild(); const url=o?o.toDataURL():'';
-  const im=document.getElementById('adOut'); if(im) im.src=url;
-  const pv=document.getElementById('adPrev'); if(!pv) return;
-  const k=ADJ.target, isEnemy=k&&ENEMIES[k], boss=isEnemy&&ENEMIES[k].boss;
-  pv.innerHTML = `<div class="enemies"><div class="en ${boss?'boss':''}">${isEnemy?`<img class="spr idle" src="${url}">`:spr('flan','idle')}</div></div><div class="player">${isEnemy?spr(S.job,'idle'):`<img class="spr idle" src="${url}">`}</div>`;
-}
-
-/* --- Packs : export / import (fichier .json à partager) --- */
-function exportPack(){
-  const n=Object.keys(CUSTOM).length; if(!n){ toast('Aucun sprite personnalisé'); return; }
-  const json=JSON.stringify({format:'palais-des-morts-sprites', version:1, date:new Date().toISOString(), sprites:CUSTOM});
-  const name='pack-sprites-palais.json';
-  const blob=new Blob([json],{type:'application/json'});
-  let file=null; try{ file=new File([blob],name,{type:'application/json'}); }catch(e){}
-  const canShare = file && navigator.canShare && navigator.canShare({files:[file]});
-  showModal(`<h2>Exporter mon pack</h2><p class="muted">${n} sprite(s) dans un seul fichier (${Math.round(json.length/1024)} Ko). Envoie-le à tes amis par messagerie ; ils touchent « Importer un pack » dans leur Atelier.</p>
-    <div class="col" style="margin-top:8px">${canShare?'<button class="btn goldb" id="pxS">Partager…</button>':''}<button class="btn ${canShare?'':'goldb'}" id="pxD">Télécharger le fichier</button><button class="btn small" style="width:100%" id="pxC">Fermer</button></div>`);
-  const s=document.getElementById('pxS'); if(s) s.onclick=async()=>{ try{ await navigator.share({files:[file], title:'Pack de sprites — Palais des Morts'}); }catch(e){} };
-  document.getElementById('pxD').onclick=()=>{ const u=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),4000); };
-  document.getElementById('pxC').onclick=closeModal;
-}
-async function importPackText(txt){
-  let o; try{ o=JSON.parse(txt); }catch(e){ return -1; }
-  if (!o || o.format!=='palais-des-morts-sprites' || typeof o.sprites!=='object') return -1;
-  let n=0;
-  for (const k of Object.keys(o.sprites)){ const v=o.sprites[k]; if (SPRITES[k] && typeof v==='string' && /^data:image\/(png|webp|gif|jpeg);base64,/.test(v) && v.length<3e6){ await saveCustom(k,v); n++; } }
-  return n;
-}
-async function importPack(){
-  const files=await pickFiles(false,null); if(!files.length) return;
-  const n=await importPackText(await files[0].text());
-  if (n<0) toast('Fichier de pack invalide'); else toast(`${n} sprite(s) importé(s) !`);
-  SCREENS.atelier();
-}
-async function initCustomSprites(){
-  await IDB.open();
-  const all=await IDB.all('sprites');
-  Object.keys(all).forEach(k=>{ if(SPRITES[k] && typeof all[k]==='string'){ CUSTOM[k]=all[k]; refreshSprite(k); } });
-}
 
 /* ===================== COMPAGNONS & INVOCATION (GACHA) =====================
    Les compagnons se battent à tes côtés et agissent seuls. Ce sont des alternatives (soutien, contrôle, sauvetage…),
@@ -2576,7 +2194,7 @@ const COMPANIONS = {
   locke:C_('Locke','FFVI',3,'loot','Chasseur de trésors : vole des Gils, repère les pièges et les Mimiques.','Locke Cole',{h:'short',body:'armor',w:'moine',pal:{H:'#5a3a20',A:'#3a5ac8',B:'#e8e0c8',L:'#3a3a5a'}}),
 };
 const COMP_ORDER = Object.keys(COMPANIONS).sort((a,b)=>COMPANIONS[b].star-COMPANIONS[a].star);
-Object.keys(COMPANIONS).forEach(k=>{ SPRITES['c_'+k]={src:null}; SEARCH_EN['c_'+k]=COMPANIONS[k].en; KEYWORDS['c_'+k]=[COMPANIONS[k].en.toLowerCase(), COMPANIONS[k].name.toLowerCase(), k]; });
+Object.keys(COMPANIONS).forEach(k=>{ SPRITES['c_'+k]={src:null}; });
 function compURL(k){
   const a=COMPANIONS[k].art;
   let head = (a.head ? HEADS[a.head] : COMP_HEADS[a.h]).map(r=>r.padEnd(16,'.').split(''));
@@ -2675,6 +2293,7 @@ const stars = n => `<span class="stars s${n}">${starsIc(n)}</span>`;
 function bannerHTML(b){
   const parts = Array.from({length:14},(_,i)=>`<i style="left:${(i*37)%100}%;animation-delay:${(i*0.37)%3}s;animation-duration:${2.6+(i%4)*0.6}s"></i>`).join('');
   return `<div class="gban" style="--c1:${b.c1};--c2:${b.c2};--gl:${b.glow}">
+    <div class="gart" style="background-image:url(assets/art/${b.f5}.webp)"></div><div class="gshade"></div>
     <div class="gpart">${parts}</div>
     <div class="gfeat">${spr('c_'+b.f5,'idle')}</div>
     <div class="gside">${b.f4.map(k=>spr('c_'+k,'idle')).join('')}</div>
@@ -3758,13 +3377,21 @@ if (typeof Online!=='undefined' && Online && Online.attachEngine){
 /* ===================== DÉMARRAGE ===================== */
 document.addEventListener('gesturestart', e=>e.preventDefault());
 let lastTouch=0; document.addEventListener('touchend', e=>{ const n=Date.now(); if(n-lastTouch<300 && !(e.target.closest&&e.target.closest('canvas'))) e.preventDefault(); lastTouch=n; }, {passive:false});
+/* v5.1 : navigation — fondu/glissement entre écrans, thème moderne hors expédition */
+const MODERN_SCR = /^(title|create|hub|prep|jobs|shop|gacha|comps|online|leaderboard)$/;
+function scrEnter(k){
+  const b=document.body; b.classList.toggle('modern', MODERN_SCR.test(k)); b.classList.toggle('home', k==='title'); b.dataset.scr=k;
+  if (k!=='combat'){ app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter'); }
+}
+Object.keys(SCREENS).forEach(k=>{ const f=SCREENS[k]; if (typeof f!=='function') return; SCREENS[k]=function(...a){ scrEnter(k); return f.apply(this,a); }; });
+{ const _rc=renderCombat; renderCombat=function(...a){ scrEnter('combat'); return _rc.apply(this,a); }; }
+document.addEventListener('pointerdown', e=>{ const b=e.target.closest&&e.target.closest('button'); if(b&&!b.disabled){ b.classList.remove('tap'); void b.offsetWidth; b.classList.add('tap'); } }, {passive:true});
 window.addEventListener('error', e=>{ window.__errors=(window.__errors||[]); window.__errors.push(String(e.message)); });
 function setFast(v){ FAST=!!v; }
-window.GAME = { get S(){return S;}, get R(){return R;}, get C(){return C;}, SCREENS, JOBS, ENEMIES, BAL, POMS, AT, playerAction, startRun, setFast, alive, skillState, getLoadout,
-  combatSkills, canInterrupt, intentEst, detectSprites, bestFrame, importPackText, addSheetFromFile, assignSprite, CUSTOM, eMul, Lf, enterRoom, advanceNode, endRun, REWARDS, REW, COMPANIONS, EVENTS, doPull, planFloor, drawRewards, get RS(){return RS;}, rand, showRewards };
+window.GAME = { get S(){return S;}, get R(){return R;}, get C(){return C;}, SCREENS, JOBS, ENEMIES, BAL, POMS, playerAction, startRun, setFast, alive, skillState, getLoadout,
+  combatSkills, canInterrupt, intentEst, eMul, Lf, enterRoom, advanceNode, endRun, REWARDS, REW, COMPANIONS, EVENTS, doPull, planFloor, drawRewards, get RS(){return RS;}, rand, showRewards };
 loadCustomSprites();
 SCREENS.title();
-initCustomSprites();
 
 </script>
 </body>

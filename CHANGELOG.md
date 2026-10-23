@@ -1,5 +1,18 @@
 # Notes de patch : Le Palais des Morts
 
+## v5.1 (23/10/2026)
+- Les jobs et les compagnons utilisent désormais les sprites officiels de FINAL FANTASY BRAVE EXVIUS, en vue de côté et tournés vers la droite.
+- Les monstres et le Néant utilisent aussi des sprites officiels de Brave Exvius, placés à droite et tournés vers la gauche.
+- Les compagnons sans sprite Brave Exvius (Alphinaud, Alisaie, Urianger, G'raha Tia, Estinien, Haurchefant, Tataru, Lyse, Krile, Cid) et la Mimique s'affichent avec leur icône officielle de mascotte FFXIV.
+- Les bannières d'invocation et les résultats de tirage montrent les nouveaux sprites.
+- Les décors de combat sont remplacés par des décors officiels de Brave Exvius, un par tranche d'étages.
+- Les icônes de salles de la carte sont remplacées par des icônes officielles du kit de fans FFXIV.
+- Tous les sprites libres de droits et les dessins de remplacement ont été retirés du jeu.
+- Les bannières d'invocation sont désormais verticales, plus grandes, avec l'illustration officielle du personnage mis en avant derrière son sprite.
+- Nouvel écran d'accueil : menu en texte stylisé sur un décor officiel, avec un bouton principal bien visible.
+- Les menus hors combat adoptent un style moderne et les écrans s'enchaînent avec un léger fondu.
+- L'Atelier des sprites est supprimé, puisque tous les sprites sont maintenant officiels ; les anciens sprites personnalisés sont ignorés.
+
 ## v5 (23/10/2026)
 - Comptes en ligne : inscription avec un pseudo et un mot de passe, sans adresse e-mail.
 - Liste d'amis avec statut en ligne visible.
