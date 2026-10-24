@@ -1,3 +1,20 @@
+# Rapport : quatre habillages pour l'interface de combat v6.2 (next)
+
+Salim aime la disposition, les jauges, les plaques ennemies et les cartes, mais trouve l'or, la lueur et le verre trop "IA". Même structure, quatre peaux au choix, sans lueur dorée, sans néon, sans flou, sans dégradé arc-en-ciel.
+
+Choix : ajoute `?skin=a`, `b`, `c` ou `d` à l'adresse (retenu ensuite sur l'appareil), ou Paramètres > Style du combat (test). `?skin=0` remet l'or v6.2 d'origine, `?cui=0` l'ancienne interface.
+
+| Peau | Adresse | En une ligne |
+|---|---|---|
+| A FFXIV sobre | https://a-godless-realm-next.onrender.com/?skin=a | panneaux charbon, filets 1px gris bleuté, barre de raccourcis plate, jauges aux couleurs des jobs |
+| B Épuré plat | https://a-godless-realm-next.onrender.com/?skin=b | aplats sombres arrondis, aucune bordure, typo grasse, une seule couleur vermillon |
+| C Parchemin | https://a-godless-realm-next.onrender.com/?skin=c | papier et cuir, double filet gravé, serif, encre verte, bleue et rouge sang |
+| D Cristal | https://a-godless-realm-next.onrender.com/?skin=d | monochrome, filets blancs fins, angles vifs, capitales espacées, beaucoup d'air |
+
+Captures (iPhone 12, dans /workspace/ffxiv-roguelite/screens/) : v62_skin_[a-d]_combat.png, _sorts.png, _boss.png, _jauges.png ; planche comparative v62_skins_comparatif.png ; jauges des 4 peaux v62_skins_jauges.png ; réglage v62_skins_parametres.png.
+
+---
+
 # Rapport : bascule v6.1d en principal, v6.1e (textes des sorts), proposition v6.2 (next)
 
 ## Résumé pour Salim (24/10)
