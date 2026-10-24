@@ -1348,6 +1348,53 @@ body.home .hero.hframe,.hero.hframe{margin:2px 0 8px;padding:8px 12px 6px}
 .ol-link{background:none;border:0;color:#9fc4ff;text-decoration:underline;font-size:13px;align-self:center;padding:6px;cursor:pointer}
 .ol-how summary{cursor:pointer;color:#e6d3a6;font-weight:600;list-style:none}.ol-how summary::-webkit-details-marker{display:none}.ol-how summary::after{content:" +";color:#e6c27a}.ol-how[open] summary::after{content:" -"}.ol-how p{margin:8px 0 0}
 .ol-tabs .btn.sel{color:#f3d58a!important;border-color:rgba(230,194,122,.75)!important;background:rgba(230,194,122,.13)!important}
+/* v6.1c : menu principal */
+.hub-bg{position:fixed;inset:-3%;z-index:-1;pointer-events:none;background:url(assets/bg/title_amaurot.webp) 64% 30%/cover no-repeat;animation:kenburns 40s ease-in-out infinite alternate}
+.hub-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,9,22,.35) 0%,rgba(6,9,22,.05) 22%,rgba(6,9,22,.25) 40%,rgba(6,9,22,.86) 58%,rgba(5,7,16,.97) 100%),radial-gradient(ellipse at 50% 30%,transparent 40%,rgba(4,6,14,.55) 100%)}
+body[data-scr="hub"]::before{opacity:0}
+.hub-top{background:linear-gradient(180deg,rgba(6,9,22,.7),rgba(6,9,22,0))!important;border:0!important;box-shadow:none!important}
+.hub-gil{display:inline-flex;align-items:baseline;gap:4px;padding:4px 12px;border-radius:999px;background:rgba(8,10,22,.6);border:1px solid rgba(230,200,140,.35);color:#f3d58a;font-weight:800;font-size:15px}
+.hub-gil small{font-weight:600;color:#cdb98a;font-size:12px}
+.hub-scroll{gap:10px;padding-top:0}
+.hub-stage{position:relative;flex:none;height:250px;margin:0 -3px;display:flex;align-items:flex-end}
+.hub-halo{position:absolute;left:50%;bottom:58px;width:260px;height:200px;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 60%,rgba(140,200,255,.30),rgba(230,200,140,.10) 45%,transparent 70%);pointer-events:none}
+.hub-hero{position:absolute;left:50%;bottom:62px;transform:translateX(-50%);filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+.hub-hero img.spr{width:150px;height:auto;image-rendering:pixelated}
+.hub-hero::after{content:"";position:absolute;left:50%;bottom:-6px;width:120px;height:18px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.6),transparent 70%);z-index:-1}
+.hub-comp{position:absolute;left:calc(50% - 150px);bottom:78px;opacity:.92;filter:drop-shadow(0 4px 8px rgba(0,0,0,.6)) brightness(.9)}
+.hub-comp img.spr{width:84px;height:auto;image-rendering:pixelated}
+.hub-plate{position:relative;width:100%;text-align:center;padding:0 10px 2px}
+.hub-plate h2{margin:0;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:26px;letter-spacing:.06em;color:#f8eed4;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+.hub-job{display:flex;justify-content:center;align-items:center;gap:6px;color:#e9e1cb;font-weight:600;font-size:15px;margin-top:2px}
+.hub-job .jgi{width:20px;height:20px}
+.hub-rec{display:flex;justify-content:center;gap:14px;margin-top:6px;font-size:12.5px;color:#b9b2a0}
+.hub-rec b{color:#f0dca6;font-weight:700}
+.hub-menu{display:flex;flex-direction:column;gap:7px}
+.hm-it{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;min-height:58px;padding:7px 12px 7px 8px;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  background:linear-gradient(90deg,rgba(16,22,42,.86),rgba(12,16,32,.62));border:1px solid rgba(230,204,143,.16);box-shadow:0 2px 10px rgba(0,0,0,.28);transition:transform .12s,border-color .12s,background .12s}
+.hm-it:active{transform:scale(.98);border-color:rgba(230,204,143,.55);background:linear-gradient(90deg,rgba(40,44,70,.9),rgba(20,24,44,.7))}
+@media (hover:hover){.hm-it:hover{border-color:rgba(230,204,143,.45)}}
+.hm-th{flex:none;width:44px;height:44px;border-radius:10px;background:center/cover no-repeat;border:1px solid rgba(230,204,143,.35);box-shadow:inset 0 0 0 1px rgba(0,0,0,.4)}
+.hm-ic{display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,rgba(230,194,122,.18),rgba(10,12,26,.6))}
+.hm-ic .rsym{width:24px;height:24px;fill:none;stroke:#e6cc8f;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.hm-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.hm-tx b{font-family:'Cinzel',Georgia,serif;font-weight:600;letter-spacing:.04em;font-size:16.5px;color:#f1e6c8}
+.hm-tx small{font-size:12.5px;color:#aaa392;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hm-chev{flex:none;width:18px;height:18px;fill:none;stroke:#cdb27a;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+.hm-it.prime{min-height:66px;background:linear-gradient(90deg,rgba(120,88,34,.92),rgba(64,46,20,.78));border-color:rgba(243,213,138,.7);box-shadow:0 0 0 1px rgba(0,0,0,.4),0 4px 18px rgba(230,180,90,.25)}
+.hm-it.prime .hm-tx b{color:#fff3d0;font-size:18px}
+.hm-it.prime .hm-tx small{color:#f1dcae}
+.hm-it.prime .hm-chev{stroke:#fff0c8;opacity:1}
+.hm-it.prime .hm-th{width:50px;height:50px;border-color:rgba(255,236,190,.7)}
+.hub-exit{all:unset;align-self:center;display:flex;align-items:center;gap:6px;padding:8px 14px;color:#9f9886;font-size:13px;cursor:pointer;border-radius:8px}
+.hub-exit .rsym{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7}
+.hub-exit:active{color:#e6cc8f}
+@media (max-height:700px){.hub-stage{height:200px}.hub-hero img.spr{width:118px}.hub-hero{bottom:58px}.hub-comp{bottom:70px}.hub-comp img.spr{width:66px}.hm-it{min-height:52px}.hm-th{width:38px;height:38px}}
+.hub-stage{height:226px}.hub-hero{bottom:60px}.hub-hero img.spr{width:140px}
+.hub-comp{left:calc(50% - 138px);bottom:70px}.hub-comp img.spr{width:92px}
+.hub-menu{gap:6px}.hm-it{min-height:51px;padding:5px 12px 5px 7px}.hm-th{width:40px;height:40px}
+.hm-it.prime{min-height:62px}.hm-it.prime .hm-th{width:48px;height:48px}
+.hub-scroll{gap:8px}
 </style>
 </head>
 <body>
@@ -2683,6 +2730,11 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.1c', date:'24/10/2026', img:'assets/bg/title_amaurot.webp', title:'Nouveau menu principal', notes:[
+    'L\'avant-poste devient un vrai menu principal : grand décor de FINAL FANTASY XIV en plein écran.',
+    'Ton personnage et ton compagnon sont mis en avant au centre, avec ton record et tes victoires.',
+    'Une liste verticale claire : Explorer le Palais, Jobs, Marchand, Invocation, Compagnons, En ligne et Paramètres.'
+  ]},
   {v:'v6.1b', date:'24/10/2026', img:'assets/hub/comps.webp', title:'En ligne simplifié et sauvegarde du compte', notes:[
     'L\'écran En ligne tient sur un seul écran avec quatre onglets en bas : Jouer, Classement, Amis et Compte.',
     'Jouer à plusieurs : créer un salon ou entrer un code, tout est visible tout de suite.',
@@ -3044,27 +3096,37 @@ SCREENS.hub = function(){
   const tile=(k,t,sub,fig,extra='')=>`<button class="htile" data-k="${k}" ${extra} style="--img:url(assets/hub/${k}.webp)"><span class="ht-fig">${fig}</span><span class="ht-tx"><b>${t}</b><small>${sub}</small></span></button>`;
   const mini=(k,sym,t,extra='')=>`<button class="hmini" data-k="${k}" ${extra}>${rsym(sym)}<span>${t}</span></button>`;
   const item=(k,icon,t,sub,extra='')=>`<button class="xbtn" data-k="${k}" ${extra}><span class="xv">${vis[k]||''}</span><span><b>${t}</b><small>${sub}</small></span></button>`;
+  /* v6.1c : menu principal façon JRPG : grand fond FFXIV, vitrine du personnage, liste verticale */
+  const thumb=k=>`<span class="hm-th" style="background-image:url(assets/hub/${k}.webp)"></span>`;
+  const ico=k=>`<span class="hm-th hm-ic">${rsym(k)}</span>`;
+  const row=(k,th,t,sub,extra='',cls='')=>`<button class="hm-it ${cls}" data-k="${k}" ${extra}>${th}<span class="hm-tx"><b>${t}</b><small>${sub}</small></span><svg class="hm-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>`;
+  const olSub=(typeof Online!=='undefined'&&Online.state&&Online.state().profile)?esc(Online.state().profile.pseudo)+' · Jouer à plusieurs, classement':'Jouer à plusieurs, classement, compte';
+  const best=S.stats.best||0;
   app.innerHTML = `
-  <div class="win topbar"><b class="grow">Avant-poste du Palais</b><span class="gold">${S.gils} Gils</span></div>
-  <div class="scroll">
-    <div class="hero hframe">
-      <div class="hero-sp">${spr(S.job,'idle')}</div>
-      <div class="hero-t"><h2>${esc(S.name)}</h2><div class="hero-j">${jgi(S.job)} ${j.name} ${roleTag(S.job)}</div>
-      <div class="muted">Record : étage ${S.stats.best||'—'} / ${(S.stats.best||0)>50?100:50} · Victoires : ${S.stats.wins}</div></div>
+  <div class="hub-bg" aria-hidden="true"></div>
+  <div class="win topbar hub-top"><b class="grow">Avant-poste du Palais</b><span class="hub-gil">${S.gils} <small>Gils</small></span></div>
+  <div class="scroll hub-scroll">
+    <div class="hub-stage">
+      <div class="hub-halo"></div>
+      ${S.comp?`<div class="hub-comp">${spr('c_'+S.comp,'idle')}</div>`:''}
+      <div class="hub-hero">${spr(S.job,'idle')}</div>
+      <div class="hub-plate">
+        <h2>${esc(S.name)}</h2>
+        <div class="hub-job">${jgi(S.job)}<span>${j.name}</span>${roleTag(S.job)}</div>
+        <div class="hub-rec"><span>Record <b>${best?('étage '+best):'aucun'}</b></span><span>Victoires <b>${S.stats.wins}</b></span>${S.comp?`<span>Compagnon <b>${COMPANIONS[S.comp].name}</b></span>`:''}</div>
+      </div>
     </div>
-    ${S.run && !S.run.duo ? `<button class="btn goldb" data-k="resume" id="bResume" style="width:100%;margin:6px 0">Reprendre la partie (${runLabel(S.run)})</button>` : ''}
-    <button class="htile wide" data-k="enter" id="bEnter" style="--img:url(assets/hub/prep.webp)"><span class="ht-tx"><b>Préparer l’exploration</b><small>Entrer dans le Palais des Morts</small></span><span class="ht-go">${rsym('up')}</span></button>
-    <div class="htiles">
-      ${tile('jobs','Jobs',`${S.unlocked.length} / ${JOB_ORDER.length} débloqués`,spr(S.job,'idle'),'data-go="jobs"')}
-      ${tile('shop','Marchand','Cristaux et améliorations',`<span class="ht-souls">${JOB_ORDER.filter(k=>!S.unlocked.includes(k)).slice(0,3).map(k=>`<img src="assets/soul/${k}.webp" alt="">`).join('')}</span>`,'data-go="shop"')}
-      ${tile('gacha','Invocation',`${S.frag||0} fragments de cristal`,spr('c_'+curBanner().f5,'idle'),'data-go="gacha"')}
-      ${tile('comps','Compagnons',S.comp?COMPANIONS[S.comp].name:'Aucun compagnon',S.comp?spr('c_'+S.comp,'idle'):'','id="bHubComps"')}
-    </div>
-    <div class="hminis">
-      ${mini('online','online','En ligne','id="bOnlineH" onclick="Online.open(\'hub\')"')}
-      ${mini('settings','settings','Paramètres','data-go="settings"')}
-      ${mini('title','door','Écran titre','data-go="title"')}
-    </div>
+    <nav class="hub-menu">
+      ${S.run && !S.run.duo ? row('resume',ico('up'),'Reprendre la partie',runLabel(S.run),'id="bResume"','prime') : ''}
+      ${row('enter',thumb('prep'),'Explorer le Palais','Préparer l’exploration','id="bEnter"', S.run && !S.run.duo ? '' : 'prime')}
+      ${row('jobs',thumb('jobs'),'Jobs',`${S.unlocked.length} / ${JOB_ORDER.length} débloqués`,'data-go="jobs"')}
+      ${row('shop',thumb('shop'),'Marchand','Cristaux de job et améliorations','data-go="shop"')}
+      ${row('gacha',thumb('gacha'),'Invocation',`${S.frag||0} fragment${(S.frag||0)>1?'s':''} de cristal`,'data-go="gacha"')}
+      ${row('comps',thumb('comps'),'Compagnons',S.comp?COMPANIONS[S.comp].name:'Aucun compagnon','id="bHubComps"')}
+      ${row('online',ico('online'),'En ligne',olSub,'id="bOnlineH" onclick="Online.open(\'hub\')"')}
+      ${row('settings',ico('settings'),'Paramètres','Son, sauvegarde, crédits','data-go="settings"')}
+    </nav>
+    <button class="hub-exit" data-k="title" data-go="title">${rsym('door')}<span>Écran titre</span></button>
     <section class="xsec ledger">
       <h3 class="xh">Registre de l’aventurier</h3>
       <div class="stat"><span>Explorations</span><b>${S.stats.runs}</b></div>

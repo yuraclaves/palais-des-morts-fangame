@@ -1,5 +1,10 @@
 # Notes de patch : A Godless Realm
 
+## v6.1c : Nouveau menu principal (24/10/2026)
+- L'avant-poste devient un vrai menu principal : grand décor de FINAL FANTASY XIV en plein écran.
+- Ton personnage et ton compagnon sont mis en avant au centre, avec ton record et tes victoires.
+- Une liste verticale claire : Explorer le Palais, Jobs, Marchand, Invocation, Compagnons, En ligne et Paramètres.
+
 ## v6.1b : En ligne simplifié et sauvegarde du compte (24/10/2026)
 - L'écran En ligne tient sur un seul écran avec quatre onglets en bas : Jouer, Classement, Amis et Compte.
 - Jouer à plusieurs : créer un salon ou entrer un code, tout est visible tout de suite.
