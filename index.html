@@ -1327,6 +1327,27 @@ body.home .hero.hframe,.hero.hframe{margin:2px 0 8px;padding:8px 12px 6px}
 #modal .win>.btn:last-child,#modal .win>.row:last-child{position:sticky;bottom:-10px;z-index:3;box-shadow:0 -8px 16px 4px rgba(0,0,20,.55)}
 #modal .win>.btn:last-child{min-height:44px}
 #modal .win>.row:last-child{background:inherit;padding-bottom:10px;margin-bottom:-10px}
+/* v6.1b : En ligne a onglets */
+.ol-nav{display:flex;flex:0 0 auto;margin:0 -2px calc(-2px - env(safe-area-inset-bottom,0px));padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,rgba(14,18,32,.92),rgba(8,10,20,.98));border-top:1px solid rgba(230,200,140,.28);border-radius:14px 14px 0 0;box-shadow:0 -6px 18px rgba(0,0,0,.45)}
+.ol-navb{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;color:#a9a294;font:600 12px 'Source Sans 3',system-ui,sans-serif;letter-spacing:.03em;padding:6px 2px;min-height:54px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ol-navb .ol-nri{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ol-navb.sel{color:#f3d58a;background:radial-gradient(ellipse at 50% 0%,rgba(230,194,122,.22),transparent 70%)}
+.ol-navb.sel::before{content:"";position:absolute;top:-6px;left:28%;right:28%;height:2px;border-radius:2px;background:#e6c27a;box-shadow:0 0 8px #e6c27a}
+.ol-navb:active{transform:scale(.95)}
+.ol-badge{position:absolute;top:3px;right:calc(50% - 20px);min-width:16px;height:16px;border-radius:8px;background:#d9534f;color:#fff;font:700 11px/16px system-ui;font-style:normal;padding:0 4px}
+.ol-badge.dot{min-width:9px;width:9px;height:9px;padding:0;top:6px;right:calc(50% - 16px);background:#e6c27a}
+.ol-play h3,.ol-save h3{margin:0}
+.ol-cta{min-height:64px;justify-content:flex-start;text-align:left;gap:12px}
+.ol-cta .ol-l{display:flex;flex-direction:column}.ol-cta .ol-l b{font-size:17px}.ol-cta .ol-l small{font-weight:500;opacity:.85}
+.ol-or{display:flex;align-items:center;gap:10px;color:#9a937f;font-size:13px}.ol-or::before,.ol-or::after{content:"";flex:1;height:1px;background:rgba(230,200,140,.22)}
+.ol-join{display:flex;gap:8px;align-items:stretch}.ol-join .ol-code{flex:1 1 auto!important;width:auto!important;min-width:0;display:block!important;text-align:center;letter-spacing:6px;font-size:20px;font-weight:800;margin:0}.ol-join .btn{flex:0 0 132px;width:132px!important;min-height:52px}
+.ol-intro{display:flex;flex-direction:column;gap:8px}.ol-intro .btn{align-self:flex-start}
+.ol-prof{display:flex;align-items:center;gap:12px}.ol-prof h3{margin:0 0 2px}.ol-av{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,rgba(230,194,122,.25),rgba(0,0,0,.2));border:1px solid rgba(230,200,140,.4);overflow:hidden}
+.ol-savebtn{min-height:56px;font-size:18px}
+.ol-savest{text-align:center;color:#bfb7a3;font-size:13px}
+.ol-link{background:none;border:0;color:#9fc4ff;text-decoration:underline;font-size:13px;align-self:center;padding:6px;cursor:pointer}
+.ol-how summary{cursor:pointer;color:#e6d3a6;font-weight:600;list-style:none}.ol-how summary::-webkit-details-marker{display:none}.ol-how summary::after{content:" +";color:#e6c27a}.ol-how[open] summary::after{content:" -"}.ol-how p{margin:8px 0 0}
+.ol-tabs .btn.sel{color:#f3d58a!important;border-color:rgba(230,194,122,.75)!important;background:rgba(230,194,122,.13)!important}
 </style>
 </head>
 <body>
@@ -2380,7 +2401,35 @@ function defaultSave(){ return { created:false, name:'Aventurier', gils:0, unloc
   frag:10, comps:{}, pity:0, comp:null }; }
 let S;
 function loadSave(){ try{ const s=JSON.parse(localStorage.getItem(SAVE_KEY)); if(s && typeof s==='object'){ const d=defaultSave(); const o=Object.assign(d,s,{upgrades:Object.assign(d.upgrades,s.upgrades||{}),stats:Object.assign(d.stats,s.stats||{}),loadouts:s.loadouts||{}, comps:s.comps||{}}); if(typeof o.frag!=='number') o.frag=10; if(o.run && o.run.v!==3) o.run=null; return o; } }catch(e){} return defaultSave(); }
-function persist(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(S)); }catch(e){} }
+function persist(){ try{ if (S) S.savedAt=Date.now(); localStorage.setItem(SAVE_KEY, JSON.stringify(S)); }catch(e){} try{ cloudSoon(); }catch(e){} }
+/* v6.1b : sauvegarde en ligne liée au compte. Envoi automatique (au plus toutes les 30 s) quand on est connecté, chargement à la connexion. */
+const CLOUD = { t:null, busy:false, last:0, uid:null, synced:false, err:'' };
+function cloudOn(){ return typeof Online!=='undefined' && Online && Online.myUserId && CLOUD.synced; }
+function cloudSoon(){ if (!cloudOn() || CLOUD.t) return; CLOUD.t=setTimeout(()=>{ CLOUD.t=null; cloudPush(false); }, 30000); }
+async function cloudPush(manual){
+  if (typeof Online==='undefined' || !Online || !Online.myUserId){ if (manual) toast('Connecte-toi d’abord'); return false; }
+  if (CLOUD.busy) return false; CLOUD.busy=true;
+  try{ const d=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}'); await Online.cloudSave(d, d.savedAt||Date.now()); CLOUD.last=Date.now(); CLOUD.err=''; if (manual) toast('Progression sauvegardée'); cloudPaint(); return true; }
+  catch(e){ CLOUD.err='Échec de la sauvegarde'; if (manual) toast('Échec de la sauvegarde, réessaie'); cloudPaint(); return false; }
+  finally{ CLOUD.busy=false; cloudPaint(); } }
+function cloudApply(d){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(d)); }catch(e){} S=loadSave(); R=null; C=null; CLOUD.last=Date.now(); toast('Progression du compte chargée'); }
+function cloudWhen(ms){ try{ const d=new Date(+ms); return d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit'})+' à '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}); }catch(e){ return ''; } }
+async function cloudSync(){
+  const uid=Online.myUserId; if (!uid || CLOUD.uid===uid) return; CLOUD.uid=uid; CLOUD.synced=false;
+  let c=null; try{ c=await Online.cloudLoad(); }catch(e){ CLOUD.uid=null; return; }
+  const inFight = !!(C || (R && R.duo));
+  if (!c || !c.data || typeof c.data!=='object'){ CLOUD.synced=true; if (S && S.created) cloudPush(false); cloudPaint(); return; }
+  const loc=(S && S.savedAt)||0, cl=+c.saved_at||0;
+  if (!S || !S.created){ if (!inFight){ cloudApply(c.data); CLOUD.synced=true; refreshAfterCloud(); return; } }
+  if (cl > loc + 2000 && !inFight){
+    const g=Math.round(+c.data.gils||0), nj=(c.data.unlocked||[]).length;
+    confirmBox(`Une sauvegarde plus récente existe sur ton compte (${cloudWhen(cl)}, ${g} Gils, ${nj} jobs). La charger sur cet appareil ?`, ()=>{ cloudApply(c.data); CLOUD.synced=true; refreshAfterCloud(); }, 'Charger');
+    // Si le joueur refuse, la sauvegarde de cet appareil reste et sera envoyée au prochain « Sauvegarder ».
+    CLOUD.synced=true; cloudPaint(); return; }
+  CLOUD.synced=true; if (cl < loc - 2000) cloudPush(false); else CLOUD.last=Date.now(); cloudPaint(); }
+function refreshAfterCloud(){ try{ if (Online.screen) Online.refresh(); else if (S.created) SCREENS.hub(); else SCREENS.title(); }catch(e){} cloudPaint(); }
+function cloudPaint(){ const el=document.getElementById('cloudSt'); if (!el) return; el.textContent=cloudLabel(); }
+function cloudLabel(){ if (!(typeof Online!=='undefined' && Online && Online.myUserId)) return 'Non connecté'; if (CLOUD.busy) return 'Sauvegarde en cours…'; if (CLOUD.err) return CLOUD.err; return CLOUD.last ? 'Dernière synchro : '+cloudWhen(CLOUD.last) : 'Synchro automatique activée'; }
 /* v5.5e : seule une exploration SOLO est enregistrée dans S.run ; une partie en ligne ne l'écrase jamais */
 function saveRun(){ if (R && !R.duo) S.run=R; persist(); }
 const clone = o => JSON.parse(JSON.stringify(o));
@@ -2634,6 +2683,12 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.1b', date:'24/10/2026', img:'assets/hub/comps.webp', title:'En ligne simplifié et sauvegarde du compte', notes:[
+    'L\'écran En ligne tient sur un seul écran avec quatre onglets en bas : Jouer, Classement, Amis et Compte.',
+    'Jouer à plusieurs : créer un salon ou entrer un code, tout est visible tout de suite.',
+    'Sauvegarde du compte : un seul bouton Sauvegarder, plus aucun code à copier.',
+    'Quand tu es connecté, ta progression est envoyée automatiquement et récupérée sur un autre appareil à la connexion.'
+  ]},
   {v:'v6.1a', date:'24/10/2026', img:'assets/monsters/chaos.webp', title:'Classement jusqu’à l’étage 100', notes:[
     'Le classement en ligne accepte maintenant les étages 51 à 100 : l’étage affiché est l’étage réel.',
     'Une victoire contre Chaos s’affiche Victoire 100. Une chute dans le Néant s’affiche Néant et l’étage.',
@@ -3071,8 +3126,9 @@ SCREENS.settings = function(from){
     </section>
     <section class="xsec">
       <h3 class="xh">Sauvegarde</h3>
-      <p class="muted">Ta progression est enregistrée automatiquement sur cet appareil. Pour la copier vers un autre site ou appareil, utilise le code de sauvegarde.</p>
-      <div class="row"><button class="btn small grow" id="stExp" data-k="sexp">Copier mon code</button><button class="btn small grow" id="stImp" data-k="simp">Coller un code</button></div>
+      <p class="muted">Ta progression est enregistrée sur cet appareil et, si tu es connecté, sur ton compte.</p>
+      <div class="ol-savest" id="cloudSt">${cloudLabel()}</div>
+      <button class="btn small goldb" id="stCloud" data-k="sexp">${(typeof Online!=='undefined'&&Online.myUserId)?'Sauvegarder':'Se connecter pour sauvegarder'}</button>
       <button class="btn small danger" id="stReset" data-k="reset">Recommencer à zéro</button>
     </section>
     <section class="xsec credits">
@@ -3097,16 +3153,7 @@ SCREENS.settings = function(from){
   const fxr=document.getElementById('stSfx'); fxr.oninput=()=>SND.setSfx(fxr.value/100); fxr.onchange=SND.test;
   document.getElementById('stMute').onclick=()=>{ const mu=SND.toggleMute(); document.getElementById('stMute').textContent=mu?'Activer le son':'Couper le son'; if (!mu) SND.test(); };
   document.getElementById('stPN').onclick=patchNotes;
-  document.getElementById('stExp').onclick=()=>{ const c=saveCode();
-    showModal(`<p style="margin-bottom:8px">Ton code de sauvegarde. Copie-le, puis colle-le dans Paramètres sur l’autre site.</p><textarea id="svCode" class="svcode" readonly>${c}</textarea><div class="row"><button class="btn small grow" data-k="no" id="svX">Fermer</button><button class="btn small goldb grow" data-k="yes" id="svC">Copier</button></div>`);
-    const ta=document.getElementById('svCode'); ta.onclick=()=>ta.select();
-    document.getElementById('svX').onclick=closeModal;
-    document.getElementById('svC').onclick=()=>{ ta.select(); const ok=()=>{ toast('Code copié'); closeModal(); }; if (navigator.clipboard) navigator.clipboard.writeText(c).then(ok,()=>{ document.execCommand('copy'); ok(); }); else { document.execCommand('copy'); ok(); } }; };
-  document.getElementById('stImp').onclick=()=>{
-    showModal(`<p style="margin-bottom:8px">Colle ici un code de sauvegarde. Il remplacera la progression de cet appareil.</p><textarea id="svIn" class="svcode" placeholder="PDM1..."></textarea><div class="row"><button class="btn small grow" data-k="no" id="svX">Annuler</button><button class="btn small goldb grow" data-k="yes" id="svOk">Charger</button></div>`);
-    document.getElementById('svX').onclick=closeModal;
-    document.getElementById('svOk').onclick=()=>{ const o=readCode(document.getElementById('svIn').value); if(!o){ toast('Code invalide'); return; }
-      closeModal(); confirmBox(`Remplacer ta progression par celle du code (${Math.round(+o.gils||0)} Gils, ${(o.unlocked||[]).length} jobs) ?`, ()=>{ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(o)); }catch(e){} S=loadSave(); R=null; C=null; toast('Sauvegarde chargée'); SCREENS.title(); }, 'Remplacer'); }; };
+  document.getElementById('stCloud').onclick=()=>{ if (typeof Online!=='undefined' && Online.myUserId) cloudPush(true); else Online.open(from==='title'?'title':'hub','account'); };
   document.getElementById('stReset').onclick=()=>confirmBox('Recommencer à zéro ? Toute ta progression sur cet appareil sera effacée (Gils, cristaux, jobs, compagnons, améliorations). C’est définitif.', ()=>confirmBox('Vraiment tout effacer ?', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Tout effacer'), 'Continuer');
   backIcon(from==='title'?'title':'hub');
 };
@@ -3334,6 +3381,7 @@ const RSYM = {
   maudite:'<path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M12 9v6"/>',
   boss:'<path d="M4 18L3 7l5 4 4-6 4 6 5-4-1 11z"/><path d="M4 21h16"/>',
   online:'<circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 19c0-3 2.5-5 5-5s5 2 5 5M11 19c0-3 2.5-5 5-5s5 2 5 5"/>',
+  compte:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.6-7 8-7s8 2.5 8 7"/>',
   scores:'<path d="M8 4h8v4a4 4 0 0 1-8 0zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 12v4M8 20h8M9.5 16h5v4h-5z"/>',
   settings:'<path d="M4 7h10M18 7h2M4 12h3M11 12h9M4 17h12M20 17h0"/><circle cx="16" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="18" cy="17" r="2"/>',
   door:'<path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16M3 21h18"/><circle cx="14.5" cy="12" r=".8"/>',
@@ -4741,6 +4789,13 @@ const Online = (function(){
     if (st.profile){ joinLobby(); flushPendingRuns(); }
     return st.profile;
   }
+  /* v6.1b : sauvegarde du compte (table pdm_cloud_saves, RLS : chaque joueur ne voit que sa ligne) */
+  async function cloudSave(data, savedAt){ await init(); if (!st.user) throw new Error('login');
+    const { error } = await st.sb.from('pdm_cloud_saves').upsert({ user_id: st.user.id, data, saved_at: Math.round(+savedAt||Date.now()), updated_at: new Date().toISOString() });
+    if (error) throw new Error(error.message||'save'); return true; }
+  async function cloudLoad(){ await init(); if (!st.user) return null;
+    const { data, error } = await st.sb.from('pdm_cloud_saves').select('data,saved_at,updated_at').eq('user_id', st.user.id).maybeSingle();
+    if (error) throw new Error(error.message||'load'); return data || null; }
   function state(){ return { ready:!!st.sb, loggedIn:!!st.user, user: st.user, profile: st.profile, needPseudo: !!st.user && !st.profile }; }
   const myId = () => st.user ? st.user.id : guestId();
   const myPseudo = () => st.profile ? st.profile.pseudo : ((typeof S!=='undefined' && S && S.name) ? String(S.name).slice(0,16) : 'Invité');
@@ -5163,7 +5218,8 @@ const Online = (function(){
     const a = appEl(); if (!a) return; curScreen = name;
     if (typeof C !== 'undefined') { try{ C = null; }catch(e){} }
     a.innerHTML = html;
-    const b = document.getElementById('olBack'); if (b) b.onclick = () => name === 'menu' ? goBack() : (name === 'room' ? confirmLeaveRoom() : SCR.menu());
+    const b = document.getElementById('olBack'); if (b) b.onclick = () => name === 'room' ? confirmLeaveRoom() : (TABS.some(t => t[0] === name) ? goBack() : SCR.coop());
+    a.querySelectorAll('[data-tab]').forEach(el => el.onclick = () => { if (el.dataset.tab !== name) goto(el.dataset.tab); });
     a.querySelectorAll('[data-ol]').forEach(el => el.onclick = () => goto(el.dataset.ol));
     if (after) after(a);
   }
@@ -5171,8 +5227,13 @@ const Online = (function(){
   function loadingInto(el, txt){ if (el) el.innerHTML = `<div class="ol-empty"><span class="ol-spin"></span> ${txt||'Chargement…'}</div>`; }
   function offlineBox(e){ return `<div class="win ol-empty">${E(errMsg(e))}<br><span class="muted">Le jeu solo reste disponible hors ligne.</span></div>`; }
 
+  /* v6.1b : En ligne en un seul écran à onglets (barre en bas), plus de sous-menus */
+  const TABS = [['coop','Jouer','combat'],['leaderboard','Classement','scores'],['friends','Amis','online'],['account','Compte','compte']];
+  function navbar(cur){ const s = state(); const inc = st.friends.filter(f => f.status==='pending' && f.incoming).length;
+    return `<nav class="ol-nav" role="tablist">${TABS.map(([k,n,ic]) => `<button class="ol-navb ${k===cur?'sel':''}" data-tab="${k}" role="tab" aria-selected="${k===cur}">${rsym(ic,'ol-nri')}<span>${n}</span>${k==='friends'&&inc?`<i class="ol-badge">${inc}</i>`:''}${k==='account'&&!s.profile?'<i class="ol-badge dot"></i>':''}</button>`).join('')}</nav>`; }
   const SCR = {};
-  SCR.menu = function(){
+  SCR.menu = function(){ return SCR.coop(); };
+  SCR.oldmenu = function(){
     const s = state();
     mount('menu', `${topbar('En ligne')}
     <div class="scroll">
@@ -5203,11 +5264,12 @@ const Online = (function(){
         <button class="btn goldb" id="olPsOk">Valider</button>
       </div></div>`, a => {
         const inp = a.querySelector('#olPs'), info = a.querySelector('#olPsInfo'); pseudoChecker(inp, info);
-        const b = a.querySelector('#olPsOk'); b.onclick = () => busyBtn(b, async () => { await setPseudo(inp.value.trim()); note('Pseudo enregistré.'); SCR.menu(); });
+        const b = a.querySelector('#olPsOk'); b.onclick = () => busyBtn(b, async () => { await setPseudo(inp.value.trim()); note('Pseudo enregistré.'); SCR.account(); });
       });
-    if (s.profile) return SCR.menu();
+    if (s.profile) return accountProfile();
     mount('account', `${topbar('Compte')}
     <div class="scroll">
+      <div class="win ol-card ol-intro"><b>Un compte, c’est gratuit et sans e-mail.</b><span class="muted">Il garde ta progression en ligne, publie tes scores et te permet d’ajouter des amis.</span></div>
       <div class="ol-tabs"><button class="btn small ${accTab==='login'?'sel':''}" data-t="login">Connexion</button><button class="btn small ${accTab==='signup'?'sel':''}" data-t="signup">Créer un compte</button></div>
       <form class="win col" id="olForm" autocomplete="on" onsubmit="return false">
         <label class="ol-lab">Pseudo<input class="name" id="olPs" maxlength="${accTab==='signup'?16:80}" placeholder="3 à 16 caractères" autocomplete="username" autocapitalize="off" spellcheck="false" value="${E(accTab==='signup' && typeof S!=='undefined'&&S&&S.created&&PSEUDO_RE.test(S.name||'')?S.name:'')}"></label>
@@ -5218,8 +5280,8 @@ const Online = (function(){
         ${accTab==='signup' ? `<p class="muted">Aucun e-mail demandé. Retiens bien ton mot de passe : il ne peut pas être récupéré.</p>` : ''}
         <div class="ol-ko" id="olErr"></div>
       </form>
-      <p class="muted center">Sans compte, tu peux toujours jouer en solo et en duo par code.</p>
-    </div>`, a => {
+      <p class="muted center">Sans compte, tu peux toujours jouer en solo et à plusieurs par code.</p>
+    </div>${navbar('account')}`, a => {
       a.querySelectorAll('[data-t]').forEach(b => b.onclick = () => { accTab = b.dataset.t; SCR.account(); });
       const ps = a.querySelector('#olPs'), pw = a.querySelector('#olPw'), pw2 = a.querySelector('#olPw2'), errBox = a.querySelector('#olErr');
       if (accTab === 'signup') pseudoChecker(ps, a.querySelector('#olPsInfo'));
@@ -5234,12 +5296,32 @@ const Online = (function(){
             if (!PSEUDO_RE.test(id)) throw new Error(ERR.pseudo_invalid);
             if (pw2 && pw2.value !== pass) throw new Error('Les deux mots de passe ne sont pas identiques.');
             const r = await signUp(id, pass);
-                        note('Compte créé, bienvenue !'); SCR.menu();
-          } else { await signIn(id, pass); note('Connecté.'); state().needPseudo ? SCR.account() : SCR.menu(); }
+                        note('Compte créé, bienvenue !'); SCR.account();
+          } else { await signIn(id, pass); note('Connecté.'); SCR.account(); }
         } catch(e){ errBox.textContent = e.message || errMsg(e); throw e; }
       });
     });
   };
+  function accountProfile(){
+    const s = state(), hasCloud = typeof cloudPush === 'function';
+    const nf = st.friends.filter(f => f.status==='accepted').length;
+    mount('account', `${topbar('Compte')}
+    <div class="scroll">
+      <div class="win ol-card ol-prof"><div class="ol-av">${sprite((typeof S!=='undefined'&&S&&S.job)||'paladin',48)}</div><div class="grow"><h3>${E(s.profile.pseudo)}</h3><div class="muted">${dot(true)} Connecté · ${nf} ami${nf>1?'s':''}</div></div></div>
+      ${pendingRuns() ? `<div class="tip">${pendingRuns()} exploration(s) en attente de publication.</div>` : ''}
+      ${hasCloud ? `<div class="win col ol-save"><h3>Sauvegarde du compte</h3>
+        <p class="muted">Ta progression est envoyée automatiquement sur ton compte. Connecte-toi sur un autre appareil pour la retrouver.</p>
+        <button class="btn goldb ol-savebtn" id="olSave">Sauvegarder</button>
+        <div class="ol-savest" id="cloudSt">${E(cloudLabel())}</div>
+        <button class="ol-link" id="olLoad">Récupérer la sauvegarde du compte</button></div>` : ''}
+      <button class="btn small" id="olOut">Se déconnecter</button>
+    </div>${navbar('account')}`, a => {
+      const o = a.querySelector('#olOut'); o.onclick = () => askConfirm('Se déconnecter ? Ta progression reste sur cet appareil.', () => signOut().then(() => SCR.account()).catch(e => note(errMsg(e))), 'Se déconnecter');
+      const sv = a.querySelector('#olSave'); if (sv) sv.onclick = () => busyBtn(sv, async () => { await cloudPush(true); });
+      const ld = a.querySelector('#olLoad'); if (ld) ld.onclick = () => busyBtn(ld, async () => { const c = await cloudLoad(); if (!c || !c.data){ note('Aucune sauvegarde sur ce compte pour l’instant.'); return; }
+        askConfirm(`Remplacer la progression de cet appareil par celle du compte (${cloudWhen(c.saved_at)}, ${Math.round(+c.data.gils||0)} Gils, ${(c.data.unlocked||[]).length} jobs) ?`, () => { cloudApply(c.data); SCR.account(); }, 'Récupérer'); });
+    });
+  }
   function pseudoChecker(inp, info){
     let t = 0;
     inp.oninput = () => { clearTimeout(t); const v = inp.value.trim();
@@ -5252,7 +5334,7 @@ const Online = (function(){
     mount('leaderboard', `${topbar('Classement')}
       <div class="ol-tabs">${[['all','Tous'],['solo','Solo'],['duo','Groupe']].map(([k,n]) => `<button class="btn small ${f.mode===k?'sel':''}" data-m="${k}">${n}</button>`).join('')}${st.profile?`<button class="btn small ${f.mine?'sel':''}" id="olMine">Mes runs</button>`:''}</div>
       <div class="ol-chips">${['all'].concat(jobs).map(k => `<button class="ol-chip ${f.job===k?'sel':''}" data-j="${k}">${k==='all'?'Tous les jobs':sprite(k,22)+'<span>'+E(jobName(k))+'</span>'}</button>`).join('')}</div>
-      <div class="scroll" id="olLb"></div>`, async a => {
+      <div class="scroll" id="olLb"></div>${navbar('leaderboard')}`, async a => {
       a.querySelectorAll('[data-m]').forEach(b => b.onclick = () => { f.mode = b.dataset.m; SCR.leaderboard(); });
       a.querySelectorAll('[data-j]').forEach(b => b.onclick = () => { f.job = b.dataset.j; SCR.leaderboard(); });
       const mi = a.querySelector('#olMine'); if (mi) mi.onclick = () => { f.mine = !f.mine; SCR.leaderboard(); };
@@ -5276,10 +5358,10 @@ const Online = (function(){
   };
 
   SCR.friends = function(){
-    if (!st.profile) return SCR.account();
+    if (!st.profile) return mount('friends', `${topbar('Amis')}<div class="scroll"><div class="win ol-card ol-intro"><b>Ajoute tes amis</b><span class="muted">Connecte-toi pour chercher un pseudo, voir qui est en ligne et inviter en un geste.</span><button class="btn goldb" data-tab="account">Se connecter</button></div></div>${navbar('friends')}`);
     mount('friends', `${topbar('Amis')}
       <div class="win col ol-search"><div class="row"><input class="name search grow" id="olQ" placeholder="Chercher un pseudo" autocomplete="off" maxlength="16"></div><div id="olRes"></div></div>
-      <div class="scroll" id="olFr"></div>`, a => {
+      <div class="scroll" id="olFr"></div>${navbar('friends')}`, a => {
       const q = a.querySelector('#olQ'), res = a.querySelector('#olRes'); let t = 0;
       q.oninput = () => { clearTimeout(t); const v = q.value.trim(); if (v.length < 2){ res.innerHTML=''; return; }
         t = setTimeout(async () => { try{ const list = await searchPlayers(v); if (q.value.trim() !== v) return;
@@ -5318,18 +5400,24 @@ const Online = (function(){
 
   SCR.coop = function(){
     if (room.active && !room.started) return SCR.room();
-    mount('coop', `${topbar('Jouer à deux')}
+    const s = state(), rr = resumableRoom() && !room.started ? resumableRoom() : null;
+    mount('coop', `${topbar('En ligne')}
     <div class="scroll">
-      <div class="win col"><h3>Comment ça marche</h3>
-        <p class="muted">Vous explorez le même palais, avec la même graine : mêmes étages, mêmes événements. Chaque tour se joue quand vous avez <b>tous les deux</b> choisi votre action. Pour les choix communs, on vote : en cas de désaccord, l’hôte tranche.</p></div>
-      <button class="btn goldb ol-big" id="olCreate">${rsym('door','ol-rs')}<span class="grow ol-l"><b>Créer un salon</b><small>Tu seras l’hôte</small></span></button>
-      <div class="win col"><h3>Rejoindre avec un code</h3>
-        <div class="row"><input class="name ol-code grow" id="olCode" maxlength="5" placeholder="CODE" autocapitalize="characters" autocomplete="off" spellcheck="false"><button class="btn small goldb" id="olJoin">Rejoindre</button></div></div>
-      ${st.profile ? `<div class="win col"><h3>Amis en ligne</h3><div id="olCoopFr"></div></div>` : `<div class="win muted">Connecte-toi pour inviter tes amis directement.</div>`}
-    </div>`, a => {
+      ${rr ? `<button class="btn goldb ol-big" id="olResume">${rsym('up','ol-rs')}<span class="grow ol-l"><b>Reprendre la partie</b><small>Salon ${E(rr.code)}</small></span></button>` : ''}
+      <div class="win col ol-play"><h3>Jouer à plusieurs</h3>
+        <p class="muted">De 2 à 3 joueurs, même palais, tours simultanés.</p>
+        <button class="btn goldb ol-cta" id="olCreate">${rsym('door','ol-rs')}<span class="grow ol-l"><b>Créer un salon</b><small>Tu reçois un code à partager</small></span></button>
+        <div class="ol-or"><span>ou</span></div>
+        <div class="ol-join"><input class="name ol-code" id="olCode" maxlength="5" placeholder="CODE" autocapitalize="characters" autocomplete="off" spellcheck="false" aria-label="Code du salon"><button class="btn goldb" id="olJoin">Rejoindre</button></div>
+      </div>
+      ${s.profile ? `<div class="win col"><h3>Amis en ligne</h3><div id="olCoopFr"></div></div>`
+        : `<div class="win ol-card ol-intro"><span class="muted">Connecte-toi pour inviter tes amis, publier tes scores et sauvegarder ta progression.</span><button class="btn small" data-tab="account">Compte</button></div>`}
+      <details class="win ol-how"><summary>Comment ça marche ?</summary><p class="muted">Vous explorez le même palais avec la même graine : mêmes étages, mêmes événements. Chaque tour se joue quand tout le monde a choisi son action. Pour les choix communs, on vote ; en cas de désaccord, l’hôte tranche. Ton job et ton compagnon sont ceux choisis à l’avant-poste.</p></details>
+    </div>${navbar('coop')}`, a => {
       const c = a.querySelector('#olCreate'); c.onclick = () => busyBtn(c, async () => { await createRoom(); SCR.room(); });
       const code = a.querySelector('#olCode'); code.oninput = () => { code.value = code.value.toUpperCase().replace(/[^A-Z0-9]/g,''); };
       const j = a.querySelector('#olJoin'); j.onclick = () => busyBtn(j, async () => { await joinRoom(code.value); SCR.room(); });
+      const r = a.querySelector('#olResume'); if (r) r.onclick = () => busyBtn(r, async () => { await resumeRoom(); SCR.room(); });
       renderCoopFriends();
     });
   };
@@ -5370,7 +5458,7 @@ const Online = (function(){
     });
     void me;
   }
-  function confirmLeaveRoom(){ askConfirm('Quitter le salon ?', () => { leaveRoom(); SCR.menu(); }, 'Quitter'); }
+  function confirmLeaveRoom(){ askConfirm('Quitter le salon ?', () => { leaveRoom(); SCR.coop(); }, 'Quitter'); }
   function copy(t){ try{ navigator.clipboard.writeText(t).then(() => note('Copié.'), () => note(t)); }catch(e){ note(t); } }
 
   /* invitation reçue */
@@ -5408,7 +5496,7 @@ const Online = (function(){
   const tick = setInterval(() => { if (room.started && (room.partnerAway || room.mine[room.step] !== undefined)) updateNetBar(); }, 1000); if (tick && tick.unref) tick.unref();
 
   /* ---------- API publique ---------- */
-  function open(back){ st.back = back || 'hub'; SCR.menu(); init().then(() => { if (curScreen === 'menu') SCR.menu(); }).catch(e => { if (curScreen === 'menu'){ const b = document.querySelector('.scroll'); if (b) b.insertAdjacentHTML('afterbegin', offlineBox(e)); } }); }
+  function open(back, tab){ st.back = back || 'hub'; const T = (tab && SCR[tab]) ? tab : 'coop'; SCR[T](); init().then(() => { if (curScreen === T) SCR[T](); }).catch(e => { if (curScreen === T){ const b = document.querySelector('.scroll'); if (b) b.insertAdjacentHTML('afterbegin', offlineBox(e)); } }); }
   function attachEngine(e){ engine = e; emitRoom(); }
   function boot(){
     if (!HAS_DOM) return;
@@ -5423,9 +5511,11 @@ const Online = (function(){
 
   const api = {
     CFG, init, open, boot, on, off, state, attachEngine, hash, stable,
+    get screen(){ return curScreen; }, refresh(){ if (curScreen && curScreen !== 'room') goto(curScreen); },
     // comptes
     signUp, signIn, signOut, setPseudo, pseudoAvailable, pseudoEmail,
     // classement
+    cloudSave, cloudLoad,
     submitRun, fetchLeaderboard, fetchTop3, flushPendingRuns, get myUserId(){ return st.user ? st.user.id : null; },
     // amis
     searchPlayers, fetchFriends, requestFriend, respondFriend, removeFriend, inviteFriend, get friends(){ return st.friends; }, get onlineIds(){ return st.onlineIds; },
@@ -5653,6 +5743,7 @@ function duoMark(slot, k){
   const m=document.createElement('span'); m.className='vmark'; m.dataset.s=slot; m.textContent=h.pname||('Joueur '+(slot+1));
   (el.querySelector('.vmks')||el).appendChild(m);
 }
+if (typeof Online!=='undefined' && Online && Online.on) Online.on('auth', s=>{ if (s && s.loggedIn && s.user) cloudSync(); else { CLOUD.uid=null; CLOUD.synced=false; } });
 if (typeof Online!=='undefined' && Online && Online.on) Online.on('hint', m=>{ try{ if (m && m.d && m.d.vote) duoMark(m.slot, m.d.vote); }catch(e){} });
 async function duoApply(actions){
   DUO.applying=true;

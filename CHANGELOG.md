@@ -1,5 +1,11 @@
 # Notes de patch : A Godless Realm
 
+## v6.1b : En ligne simplifié et sauvegarde du compte (24/10/2026)
+- L'écran En ligne tient sur un seul écran avec quatre onglets en bas : Jouer, Classement, Amis et Compte.
+- Jouer à plusieurs : créer un salon ou entrer un code, tout est visible tout de suite.
+- Sauvegarde du compte : un seul bouton Sauvegarder, plus aucun code à copier.
+- Quand tu es connecté, ta progression est envoyée automatiquement et récupérée sur un autre appareil à la connexion.
+
 ## v6.1a : Classement jusqu’à l’étage 100 (24/10/2026)
 - Le classement en ligne accepte maintenant les étages 51 à 100 : l'étage affiché est l'étage réel.
 - Une victoire contre Chaos s'affiche Victoire 100. Une chute dans le Néant s'affiche Néant et l'étage.
