@@ -1,3 +1,16 @@
+# Rapport v6.2c (next)
+
+## v6.2c (24/10/2026, branche next) : retour au look v6.2 + 12 couleurs
+
+- Habillages A à D retirés ; le look v6.2 proposé avant est de nouveau celui par défaut (Or).
+- Paramètres > Couleur du combat : 12 thèmes (Or, Cramoisi, Orange, Ambre, Citron vert, Émeraude, Sarcelle, Cyan, Azur, Indigo, Violet, Rose), ni noir ni blanc. Recolore bordures, reflets, surbrillances des cartes ; PV/PM et pastilles de faiblesse gardent leurs couleurs. Sauvegardé dans S.cuiTheme (appareil + sauvegarde en ligne).
+- Scène de combat : dégradé sur les 4 bords ; la phrase « Des monstres surgissent » est supprimée ; le journal devient un bandeau fondu en haut de la scène, la scène gagne la place.
+- Intentions au-dessus des monstres normaux supprimées. Restent : lueur orange (grosse attaque au prochain tour), lueur jaune pâle (interruptible), flash de zone. Les boss annoncent leurs gros sorts dans un bandeau en haut de la scène (nom + barre d'incantation + « interruptible »). Aide mise à jour.
+- Pastilles : police unique (Source Sans 3), nowrap, hauteurs fixes, plus de double bordure ; noms d'ennemis et de sorts réduits automatiquement s'ils dépassent ; règles petit écran (< 390 px). Audit automatique : 0 problème sur iPhone 12, iPhone SE, Galaxy S8 (10 jobs, 3/4 monstres, boss 10 à 50).
+- Captures : screens/v62c_*.png
+
+---
+
 # Rapport : quatre habillages pour l'interface de combat v6.2 (next)
 
 Salim aime la disposition, les jauges, les plaques ennemies et les cartes, mais trouve l'or, la lueur et le verre trop "IA". Même structure, quatre peaux au choix, sans lueur dorée, sans néon, sans flou, sans dégradé arc-en-ciel.

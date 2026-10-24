@@ -1460,43 +1460,51 @@ body[data-scr="hub"]::before{opacity:0}
 #field .en .ename{white-space:nowrap;text-shadow:0 1px 2px #000,0 0 3px #000;position:relative;z-index:3}
 #field .en .elw2,#field .en .bar{position:relative;z-index:3}
 /* v6.2 (proposition, branche next) : interface de combat épurée, dans l'esprit du menu principal */
+:root{--ac:230,204,143;--acl:255,231,168;--act:243,230,196;--acm:201,184,143;--acd:60,44,12;--acb:54,48,44}
 body.cui{font-family:'Source Sans 3',system-ui,sans-serif;font-weight:500;background:#07080f}
-body.cui #app{background:radial-gradient(120% 60% at 50% 100%,rgba(40,32,22,.55),transparent 60%),linear-gradient(180deg,#0b0c14,#07080f)}
+body.cui #app{background:radial-gradient(120% 60% at 50% 100%,rgba(var(--acd),.55),transparent 60%),linear-gradient(180deg,#0b0c14,#07080f)}
 body.cui .win{text-shadow:none}
 /* barre du haut */
 body.cui .win.topbar{background:linear-gradient(180deg,rgba(6,6,10,.92),rgba(6,6,10,.25));border:0;border-radius:0;box-shadow:none;padding:6px 10px 8px;position:relative;z-index:5}
-body.cui .win.topbar::after{content:"";position:absolute;left:6%;right:6%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(230,204,143,.7),transparent)}
-body.cui .topbar b.grow{font-family:'Cinzel',Georgia,serif;font-weight:600;letter-spacing:.08em;color:#f3e6c4;font-size:16px;text-shadow:0 1px 8px rgba(0,0,0,.8)}
-body.cui .topbar .btn.small{min-height:32px!important;padding:0 14px!important;font-size:13px!important;border:1px solid rgba(230,204,143,.45);border-radius:999px;background:linear-gradient(180deg,rgba(70,64,56,.55),rgba(20,18,18,.8));box-shadow:inset 0 1px 0 rgba(255,240,200,.18),0 3px 10px rgba(0,0,0,.45);text-shadow:none;color:#f1ead8;font-family:'Source Sans 3',system-ui,sans-serif;font-weight:700;letter-spacing:.02em}
-body.cui .snd-btn{border:1px solid rgba(230,204,143,.35)!important;background:rgba(10,10,14,.55)!important;box-shadow:none!important}
+body.cui .win.topbar::after{content:"";position:absolute;left:6%;right:6%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--ac),.7),transparent)}
+body.cui .topbar b.grow{font-family:'Cinzel',Georgia,serif;font-weight:600;letter-spacing:.08em;color:rgb(var(--act));font-size:16px;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+body.cui .topbar .btn.small{min-height:32px!important;padding:0 14px!important;font-size:13px!important;border:1px solid rgba(var(--ac),.45);border-radius:999px;background:linear-gradient(180deg,rgba(var(--acb),.55),rgba(20,18,18,.8));box-shadow:inset 0 1px 0 rgba(var(--acl),.18),0 3px 10px rgba(0,0,0,.45);text-shadow:none;color:#f1ead8;font-family:'Source Sans 3',system-ui,sans-serif;font-weight:700;letter-spacing:.02em}
+body.cui .snd-btn{border:1px solid rgba(var(--ac),.35)!important;background:rgba(10,10,14,.55)!important;box-shadow:none!important}
 /* champ */
-body.cui #field::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(180deg,transparent,rgba(7,8,15,.55));pointer-events:none;z-index:1}
+/* v6.2c : scène fondue sur ses 4 bords (seul le décor est fondu, pas les personnages) */
+body.cui #field.field{-webkit-mask-image:none;mask-image:none}
+body.cui #field::before{display:none}
+body.cui #field::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:
+ linear-gradient(180deg,#0a0b13 0,rgba(10,11,19,.7) 6%,rgba(10,11,19,0) 18%),
+ linear-gradient(0deg,#090a12 0,rgba(9,10,18,.75) 7%,rgba(9,10,18,0) 22%),
+ linear-gradient(90deg,#0a0b13 0,rgba(10,11,19,.75) 4%,rgba(10,11,19,0) 14%),
+ linear-gradient(270deg,#0a0b13 0,rgba(10,11,19,.75) 4%,rgba(10,11,19,0) 14%)}
 body.cui .log{font-style:italic;color:#d8d2c2;font-size:12.5px;text-shadow:0 1px 3px #000;letter-spacing:.01em}
 /* plaques ennemies */
 body.cui #field .en .ename{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:10.5px;letter-spacing:.04em;color:#f1ead8;background:linear-gradient(90deg,transparent,rgba(6,6,10,.72) 18%,rgba(6,6,10,.72) 82%,transparent);padding:1px 12px;text-shadow:0 1px 2px #000}
-body.cui #field .en.tgt .ename{color:#ffe7a8;background:linear-gradient(90deg,transparent,rgba(60,44,12,.85) 18%,rgba(60,44,12,.85) 82%,transparent)}
+body.cui #field .en.tgt .ename{color:rgb(var(--acl));background:linear-gradient(90deg,transparent,rgba(var(--acd),.85) 18%,rgba(var(--acd),.85) 82%,transparent)}
 body.cui #field .en.tgt .ename::before,body.cui #field .en.tgt .ename::after{content:"";display:inline-block;width:0;height:0;border:3.5px solid transparent;vertical-align:1px}
-body.cui #field .en.tgt .ename::before{border-left-color:#e6cc8f;margin-right:4px}
-body.cui #field .en.tgt .ename::after{border-right-color:#e6cc8f;margin-left:4px}
+body.cui #field .en.tgt .ename::before{border-left-color:rgb(var(--ac));margin-right:4px}
+body.cui #field .en.tgt .ename::after{border-right-color:rgb(var(--ac));margin-left:4px}
 body.cui #field .en .bar{height:4px;border:0;border-radius:2px;background:rgba(0,0,0,.7);box-shadow:0 0 0 1px rgba(255,255,255,.14);margin:2px auto 0}
 body.cui #field .en .bar.ehp>i{background:linear-gradient(90deg,#c8302a,#ff7a5a);border-radius:2px}
-body.cui #field .en.boss .bar{width:150px;height:6px;box-shadow:0 0 0 1px rgba(230,204,143,.45)}
-body.cui #field .en.boss .ename{font-size:13.5px;letter-spacing:.1em;color:#f3e6c4;padding:1px 20px}
+body.cui #field .en.boss .bar{width:150px;height:6px;box-shadow:0 0 0 1px rgba(var(--ac),.45)}
+body.cui #field .en.boss .ename{font-size:13.5px;letter-spacing:.1em;color:rgb(var(--act));padding:1px 20px}
 body.cui #field .en .stx{color:#b9b3a4;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase}
 body.cui #field .en .stx .arch{background:none;border:0;padding:0;color:#b9b3a4}
 body.cui .elw2{gap:3px}
 body.cui .elw2 .elt{background:rgba(6,6,10,.7);border-radius:999px;padding:1px 3px;box-shadow:none;border:1px solid rgba(255,255,255,.18)}
 body.cui .elw2 .elt.w{border-color:rgba(125,255,154,.75);box-shadow:0 0 6px rgba(125,255,154,.35)}
 body.cui .elw2 .elt.r{opacity:.8}
-body.cui .intent{background:rgba(8,8,12,.78)!important;border:1px solid rgba(230,204,143,.4)!important;border-radius:999px;color:#f1ead8;font-family:'Source Sans 3',system-ui,sans-serif;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+body.cui .intent{background:rgba(8,8,12,.78)!important;border:1px solid rgba(var(--ac),.4)!important;border-radius:999px;color:#f1ead8;font-family:'Source Sans 3',system-ui,sans-serif;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.5)}
 body.cui .intent.big{border-color:#ff7a6a!important;background:linear-gradient(180deg,rgba(120,16,16,.92),rgba(60,6,6,.92))!important}
 body.cui .intent.charge{border-color:#ffc860!important;background:linear-gradient(180deg,rgba(90,60,10,.92),rgba(40,26,4,.92))!important}
 body.cui .intent.int{border-color:#8fff8f!important}
 /* panneau du héros */
-body.cui #ppw .win.ppanel{background:linear-gradient(180deg,rgba(22,20,28,.86),rgba(10,10,16,.92));border:0;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5),inset 0 1px 0 rgba(230,204,143,.35),inset 0 0 0 1px rgba(230,204,143,.12);padding:8px 12px 9px}
-body.cui .ppanel .nm{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:15px;color:#f3e6c4;letter-spacing:.04em}
+body.cui #ppw .win.ppanel{background:linear-gradient(180deg,rgba(22,20,28,.86),rgba(10,10,16,.92));border:0;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5),inset 0 1px 0 rgba(var(--ac),.35),inset 0 0 0 1px rgba(var(--ac),.12);padding:8px 12px 9px}
+body.cui .ppanel .nm{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:15px;color:rgb(var(--act));letter-spacing:.04em}
 body.cui .ppanel .nm .muted{font-family:'Source Sans 3',system-ui,sans-serif;font-weight:600;font-size:12px;color:#aab3c4;letter-spacing:0}
-body.cui .ppanel .row>span[style*="width:24px"]{font-size:10.5px!important;font-weight:800;letter-spacing:.08em;color:#c9b88f}
+body.cui .ppanel .row>span[style*="width:24px"]{font-size:10.5px!important;font-weight:800;letter-spacing:.08em;color:rgb(var(--acm))}
 body.cui .ppanel .row>span[style*="width:74px"]{font-variant-numeric:tabular-nums;font-weight:700;color:#e8e4d8}
 body.cui .ppanel .bar{height:7px;border:0;border-radius:4px;background:rgba(0,0,0,.6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
 body.cui .ppanel .bar>i{background:linear-gradient(90deg,#3fa86a,#9af0a8);border-radius:4px;box-shadow:0 0 8px rgba(130,240,160,.35);transition:width .35s ease}
@@ -1504,23 +1512,23 @@ body.cui .ppanel .bar.mp>i{background:linear-gradient(90deg,#2a6ad8,#9fd4ff);box
 body.cui .ppanel .status .bf{border-radius:999px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.18)}
 /* sorts */
 body.cui .skills{gap:7px}
-body.cui #app .btn.sk.sk3{border:0;border-radius:12px;background:linear-gradient(180deg,rgba(54,48,44,.9),rgba(20,18,22,.94));box-shadow:inset 0 1px 0 rgba(255,236,190,.22),inset 0 0 0 1px rgba(230,204,143,.22),0 4px 0 rgba(0,0,0,.45),0 6px 14px rgba(0,0,0,.35);text-shadow:none;color:#f1ead8;transition:transform .1s,box-shadow .1s,filter .1s}
-body.cui #app .btn.sk.sk3:active{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(255,236,190,.15),inset 0 0 0 1px rgba(230,204,143,.4),0 1px 0 rgba(0,0,0,.45);filter:brightness(1.15)}
-body.cui #app .btn.sk.sk3::after{content:"";position:absolute;right:7px;top:7px;width:5px;height:5px;border-top:1.5px solid rgba(230,204,143,.6);border-right:1.5px solid rgba(230,204,143,.6);transform:rotate(45deg);opacity:.8}
+body.cui #app .btn.sk.sk3{border:0;border-radius:12px;background:linear-gradient(180deg,rgba(var(--acb),.9),rgba(20,18,22,.94));box-shadow:inset 0 1px 0 rgba(var(--acl),.22),inset 0 0 0 1px rgba(var(--ac),.22),0 4px 0 rgba(0,0,0,.45),0 6px 14px rgba(0,0,0,.35);text-shadow:none;color:#f1ead8;transition:transform .1s,box-shadow .1s,filter .1s}
+body.cui #app .btn.sk.sk3:active{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(var(--acl),.15),inset 0 0 0 1px rgba(var(--ac),.4),0 1px 0 rgba(0,0,0,.45);filter:brightness(1.15)}
+body.cui #app .btn.sk.sk3::after{content:"";position:absolute;right:7px;top:7px;width:5px;height:5px;border-top:1.5px solid rgba(var(--ac),.6);border-right:1.5px solid rgba(var(--ac),.6);transform:rotate(45deg);opacity:.8}
 body.cui #app .btn.sk.sk3.na:not(:disabled){filter:none;opacity:1;background:linear-gradient(180deg,rgba(30,28,32,.85),rgba(14,13,16,.9));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
 body.cui #app .btn.sk.sk3.na:not(:disabled)::after{display:none}
 body.cui #app .btn.sk.sk3.na .ski{filter:grayscale(.8) brightness(.55)}
 body.cui #app .btn.sk.sk3.na .skn{color:#8c8878}
 body.cui #app .btn.sk.sk3[disabled]{filter:saturate(.6) brightness(.8);opacity:1}
 body.cui .sk3 .sk3i,body.cui .sk3 .sk3i .ski{border-radius:10px}
-body.cui .sk3 .sk3i{box-shadow:0 0 0 1px rgba(230,204,143,.55),0 2px 6px rgba(0,0,0,.6)}
+body.cui .sk3 .sk3i{box-shadow:0 0 0 1px rgba(var(--ac),.55),0 2px 6px rgba(0,0,0,.6)}
 body.cui .sk3.weakon .sk3i{box-shadow:0 0 0 2px #7dff9a,0 0 10px rgba(125,255,154,.55)}
 body.cui .sk3 .skn{font-family:'Source Sans 3',system-ui,sans-serif;font-weight:700;font-size:14px;letter-spacing:.01em;color:#f6efdc}
 body.cui .sk3 .sk3v{font-size:12px;color:#c9c2b0;font-weight:600}
 body.cui .sk3 .skc.c-mp{background:rgba(60,120,230,.18);color:#b8d4ff;border:1px solid rgba(140,185,255,.55)}
 body.cui .sk3.skit .sk3i{background:radial-gradient(circle,rgba(80,200,120,.25),transparent 70%)}
-body.cui .tipbox{background:linear-gradient(180deg,rgba(26,24,32,.97),rgba(10,10,16,.98));border:0;border-radius:12px;box-shadow:inset 0 1px 0 rgba(230,204,143,.4),inset 0 0 0 1px rgba(230,204,143,.18),0 10px 30px rgba(0,0,0,.6);text-shadow:none;font-family:'Source Sans 3',system-ui,sans-serif}
-body.cui .tipbox .dt{color:#e6cc8f}
+body.cui .tipbox{background:linear-gradient(180deg,rgba(26,24,32,.97),rgba(10,10,16,.98));border:0;border-radius:12px;box-shadow:inset 0 1px 0 rgba(var(--ac),.4),inset 0 0 0 1px rgba(var(--ac),.18),0 10px 30px rgba(0,0,0,.6);text-shadow:none;font-family:'Source Sans 3',system-ui,sans-serif}
+body.cui .tipbox .dt{color:rgb(var(--acl))}
 /* jauges de job */
 .jg{display:flex;align-items:center;gap:8px;margin-top:6px;padding:3px 10px;height:40px;border-radius:9px;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,.2));box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);position:relative;overflow:hidden}
 .jg::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 60% 50%,var(--gc),transparent 70%);opacity:.08;transition:opacity .4s}
@@ -1598,190 +1606,64 @@ body.cui .tipbox .dt{color:#e6cc8f}
 .jg-erudit .flow{fill:none;stroke:rgba(196,154,255,.35);stroke-width:1.2;stroke-dasharray:4 4;animation:jgFlow 2.4s linear infinite}
 .jg-erudit .p{fill:rgba(255,255,255,.05)}.jg-erudit .p .gem-h{fill:rgba(255,255,255,.06);stroke:none}
 .jg-erudit .p.on{fill:#8a5ad8;stroke:#e8d8ff}.jg-erudit .p.on .gem-h{fill:rgba(255,255,255,.45)}
-/* v6.2b (next) : quatre habillages de l'interface de combat, même structure. body.cui.skn.sk-a|b|c|d */
-body.cui.skn #app{background:var(--k-bg)}
-body.cui.skn .win.topbar{background:var(--k-tb-bg);border:0;border-bottom:var(--k-tb-line);border-radius:0;box-shadow:none}
-body.cui.skn .win.topbar::after{display:none}
-body.cui.skn .topbar b.grow{font-family:var(--k-tf);color:var(--k-tc);font-size:var(--k-tsz,16px);font-weight:var(--k-tw,600);letter-spacing:var(--k-tls,.04em);text-transform:var(--k-ttt,none);font-variant:var(--k-tfv,normal);text-shadow:none}
-body.cui.skn .topbar .btn.small{background:var(--k-btn-bg);border:var(--k-btn-bd);border-radius:var(--k-btn-rad);color:var(--k-btn-c);box-shadow:none;font-family:var(--k-bf);text-transform:var(--k-btt,none);letter-spacing:var(--k-bls,.02em);font-size:var(--k-bsz,13px)!important}
-body.cui.skn .snd-btn{background:var(--k-btn-bg)!important;border:var(--k-btn-bd)!important;color:var(--k-btn-c)!important;border-radius:var(--k-snd-rad,50%)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-body.cui.skn #field::after{background:var(--k-fld-fade)}
-body.cui.skn .log{color:var(--k-log-c);font-family:var(--k-log-f);font-style:var(--k-log-st,italic);text-transform:var(--k-log-tt,none);letter-spacing:var(--k-log-ls,0);font-size:var(--k-log-sz,12.5px)}
-body.cui.skn #field .en .ename{font-family:var(--k-ef);color:var(--k-ec);background:var(--k-eb);border:var(--k-ebd,0);border-radius:var(--k-erad,0);text-transform:var(--k-ett,none);letter-spacing:var(--k-els,.04em);font-variant:var(--k-efv,normal);font-weight:var(--k-ew,700);padding:var(--k-epad,1px 6px);text-shadow:var(--k-ets,0 1px 2px #000)}
-body.cui.skn #field .en.tgt .ename{color:var(--k-tgc);background:var(--k-tgb);border:var(--k-tgbd,var(--k-ebd,0))}
-body.cui.skn #field .en.tgt .ename::before,body.cui.skn #field .en.tgt .ename::after{border-left-color:transparent;border-right-color:transparent}
-body.cui.skn #field .en.tgt .ename::before{border-left-color:var(--k-tga)}
-body.cui.skn #field .en.tgt .ename::after{border-right-color:var(--k-tga)}
-body.cui.skn #field .en.tgt img.spr{filter:var(--k-tgf,brightness(1.08))}
-body.cui.skn #field .en.tgt .esp::after{background:var(--k-tgsh)}
-body.cui.skn #field .en .bar{background:var(--k-etrk);box-shadow:var(--k-ebar-bd,none);height:var(--k-ebh,4px);border-radius:var(--k-brad,2px)}
-body.cui.skn #field .en .bar.ehp>i{background:var(--k-ehp);border-radius:var(--k-brad,2px)}
-body.cui.skn #field .en.boss .bar{box-shadow:var(--k-ebar-bd,none);height:calc(var(--k-ebh,4px) + 2px)}
-body.cui.skn #field .en .stx,body.cui.skn #field .en .stx .arch{color:var(--k-stx);font-family:var(--k-sf)}
-body.cui.skn #field .en .elt{border-radius:var(--k-prad);box-shadow:none}
-body.cui.skn #field .en .elt.w{background:var(--k-wb);border:var(--k-wbd)}
-body.cui.skn #field .en .elt.r{background:var(--k-rb);border:var(--k-rbd);opacity:1}
-body.cui.skn #field .en.boss .elt.w::before{color:var(--k-wt)}body.cui.skn #field .en.boss .elt.r::before{color:var(--k-rt)}
-body.cui.skn .intent{background:var(--k-ib)!important;border:var(--k-ibd)!important;color:var(--k-ic);border-radius:var(--k-prad);box-shadow:none;font-family:var(--k-sf)}
-body.cui.skn .intent.big{background:var(--k-ibb)!important;border:var(--k-ibbd)!important;color:var(--k-ibc);animation:none}
-body.cui.skn .intent.charge{background:var(--k-icb)!important;border:var(--k-icbd)!important;color:var(--k-icc)}
-body.cui.skn .intent.int{border:var(--k-iibd)!important}
-body.cui.skn .intent .ic{filter:var(--k-iicf,none)}
-body.cui.skn #ppw .win.ppanel{background:var(--k-pb);box-shadow:var(--k-pbd);border:0;border-radius:var(--k-rad);color:var(--k-tx);padding:var(--k-ppad,8px 12px 9px)}
-body.cui.skn .ppanel .nm{font-family:var(--k-tf);color:var(--k-tc2,var(--k-tx));text-transform:var(--k-ttt,none);letter-spacing:var(--k-tls,.04em);font-variant:var(--k-tfv,normal);font-weight:var(--k-tw,700);font-size:var(--k-nsz,15px)}
-body.cui.skn .ppanel .nm .muted{font-family:var(--k-sf);color:var(--k-mut);text-transform:none;letter-spacing:0;font-variant:normal}
-body.cui.skn .ppanel .row>span[style*="width:24px"]{color:var(--k-lab);font-family:var(--k-sf)}
-body.cui.skn .ppanel .row>span[style*="width:74px"]{color:var(--k-tx);font-family:var(--k-sf)}
-body.cui.skn .ppanel .bar{background:var(--k-trk);box-shadow:var(--k-trk-bd,none);height:var(--k-bh,7px);border-radius:var(--k-brad,4px)}
-body.cui.skn .ppanel .bar>i{background:var(--k-hp);box-shadow:none;border-radius:var(--k-brad,4px)}
-body.cui.skn .ppanel .bar.mp>i{background:var(--k-mp)}
-body.cui.skn .ppanel .status .bf{border-radius:var(--k-prad);background:var(--k-pill-bg);border:var(--k-pill-bd);color:var(--k-tx)}
-body.cui.skn .skills{gap:var(--k-gap,7px)}
-body.cui.skn #app .btn.sk.sk3{background:var(--k-cb);box-shadow:var(--k-cbd);border:0;border-radius:var(--k-crad);color:var(--k-tx2,var(--k-tx))}
-body.cui.skn #app .btn.sk.sk3:active{background:var(--k-cbp,var(--k-cb));box-shadow:var(--k-cbdp,var(--k-cbd));transform:var(--k-cpress,translateY(2px));filter:none}
-body.cui.skn #app .btn.sk.sk3::after{border-color:var(--k-chev);border-top-color:var(--k-chev);border-right-color:var(--k-chev)}
-body.cui.skn #app .btn.sk.sk3.na:not(:disabled){background:var(--k-cnb);box-shadow:var(--k-cnbd)}
-body.cui.skn #app .btn.sk.sk3.na .skn{color:var(--k-cnt)}
-body.cui.skn #app .btn.sk.sk3[disabled]{filter:none;opacity:.7}
-body.cui.skn .sk3 .sk3i{box-shadow:var(--k-icbd);border-radius:var(--k-irad)}
-body.cui.skn .sk3 .sk3i .ski{border-radius:var(--k-irad)}
-body.cui.skn .sk3.weakon .sk3i{box-shadow:var(--k-icw)}
-body.cui.skn .sk3 .skn{font-family:var(--k-nf);color:var(--k-nc);font-weight:var(--k-nw,700);text-transform:var(--k-ntt,none);letter-spacing:var(--k-nls,.01em);font-size:var(--k-nfs,14px)}
-body.cui.skn .sk3 .sk3v{color:var(--k-vc);font-family:var(--k-sf)}
-body.cui.skn .sk3 .skc{box-shadow:none;border-radius:var(--k-prad);background:var(--k-pill-bg);border:var(--k-pill-bd);color:var(--k-pill-c)}
-body.cui.skn .sk3 .skc.c-mp{background:var(--k-mpb);border:var(--k-mpbd);color:var(--k-mpc)}
-body.cui.skn .sk3 .skc.c-g{background:var(--k-pill-bg);border:1px solid var(--k-gpc,var(--gc));color:var(--k-gpc,var(--gc))}
-body.cui.skn .sk3 .skc.c-gain{background:transparent;border:1px dashed var(--k-gpc,var(--gc));color:var(--k-gpc,var(--gc))}
-body.cui.skn .sk3 .skc.c-free{color:var(--k-mut)}
-body.cui.skn #app .sk3 .sk3x{border-radius:var(--k-prad);box-shadow:none}
-body.cui.skn #app .sk3 .sk3x.good{background:var(--k-xb);color:var(--k-xc)}
-body.cui.skn .sk3.skit .sk3i{background:var(--k-itb,transparent)}
-body.cui.skn .tipbox{background:var(--k-tipb);box-shadow:var(--k-tipbd);border:0;border-radius:var(--k-rad);color:var(--k-tipc);font-family:var(--k-sf)}
-body.cui.skn .tipbox .dt{color:var(--k-tipdt)}
-body.cui.skn .tipbox .tdesc{color:var(--k-tipc)}
-/* jauges */
-body.cui.skn .jg{background:var(--k-jb);box-shadow:var(--k-jbd);border-radius:var(--k-jrad,var(--k-rad))}
-body.cui.skn .jg::before{display:none}
-body.cui.skn .jg-l{font-family:var(--k-tf);color:var(--k-jl,var(--gc));text-shadow:none;text-transform:var(--k-ttt,none);font-variant:var(--k-tfv,normal);letter-spacing:var(--k-jls,.05em);font-weight:var(--k-jlw,700)}
-body.cui.skn .jg-v{color:var(--k-mut);font-family:var(--k-sf)}
-body.cui.skn .jg.full .jg-v{color:var(--jOn)}
-body.cui.skn .jgs .p{fill:var(--jOff);stroke:var(--jLine);filter:none}
-body.cui.skn .jgs .p.on{fill:var(--jOn);stroke:var(--jOnLine);filter:none}
-body.cui.skn .jgs .p.nw{animation:jgPopK .45s cubic-bezier(.3,1.4,.5,1)}
-body.cui.skn .jgs .p.sp{animation:jgSpendK .5s ease-out}
-@keyframes jgPopK{0%{transform:scale(.35);opacity:0}100%{transform:scale(1);opacity:1}}
-@keyframes jgSpendK{0%{opacity:.2;transform:scale(1.2)}100%{opacity:1;transform:scale(1)}}
-body.cui.skn .jgs .jg-line,body.cui.skn .jg-barde .staff{stroke:var(--jLine);opacity:.6}
-body.cui.skn .jg-moine .p.on,body.cui.skn .jg-mageblanc .p.on,body.cui.skn .jg-erudit .p.on{fill:var(--jOn)}
-body.cui.skn .jg-mageblanc .lys-c{fill:var(--jLine)}
-body.cui.skn .jg-samourai g.p,body.cui.skn .jg-dragoon g.p{fill:none;stroke:none}
-body.cui.skn .jg-samourai .p circle{fill:var(--jOff);stroke:var(--jLine)}
-body.cui.skn .jg-samourai .p.on circle,body.cui.skn .jg-samourai .p.on.setsu circle,body.cui.skn .jg-samourai .p.on.getsu circle,body.cui.skn .jg-samourai .p.on.ka circle{fill:var(--jSen,var(--jOn));stroke:var(--jOnLine);filter:none}
-body.cui.skn .jg-samourai .p text{fill:var(--jLine)}
-body.cui.skn .jg-samourai .p.on text{fill:var(--jOnTxt)}
-body.cui.skn .jg-dragoon .eye-w{fill:var(--jOff);stroke:var(--jLine);filter:none}
-body.cui.skn .jg-dragoon .on .eye-w{stroke:var(--jOnLine);filter:none}
-body.cui.skn .jg-dragoon .eye-i circle{fill:var(--jOn)}
-body.cui.skn .jg-dragoon .eye-p{fill:var(--jPupil)}
-body.cui.skn .jg-magenoir .orb{fill:var(--jOff);stroke:var(--jLine)}
-body.cui.skn .jg-magenoir.fire .orb{fill:var(--jFire)}body.cui.skn .jg-magenoir.ice .orb{fill:var(--jIce)}
-body.cui.skn .jg-magenoir .orb-halo{stroke:var(--jLine);filter:none;animation:none;opacity:.5}
-body.cui.skn .jg-magenoir .orb-ring{stroke:var(--jLine)}
-body.cui.skn .jg-magenoir .p.fire.on{fill:var(--jFire)}body.cui.skn .jg-magenoir .p.ice.on{fill:var(--jIce)}
-body.cui.skn .jg-magenoir.fire .jg-l{color:var(--jFireT,var(--jFire))}body.cui.skn .jg-magenoir.ice .jg-l{color:var(--jIceT,var(--jIce))}body.cui.skn .jg-magenoir.neu .jg-l{color:var(--k-mut)}
-body.cui.skn .jg-magerouge .cry{fill:var(--jOff);stroke:var(--jLine);filter:none}
-body.cui.skn .jg-magerouge .cry-f.wh,body.cui.skn .jg-magerouge .p.on.wht{fill:var(--jW)}
-body.cui.skn .jg-magerouge .cry-f.bk,body.cui.skn .jg-magerouge .p.on.blk{fill:var(--jB)}
-body.cui.skn .jg-paladin .sh-b{fill:var(--jOff)}body.cui.skn .jg-paladin .sh-o{stroke:var(--jOnLine);filter:none}body.cui.skn .jg-paladin .sh-x{stroke:var(--jLine)}
-body.cui.skn .jg-paladin rect.p{fill:transparent;stroke:none}body.cui.skn .jg-paladin rect.p.on{fill:var(--jOn)}
-body.cui.skn .jg-guerrier .rg-t{fill:var(--jOff)}body.cui.skn .jg-guerrier .rg-o{stroke:var(--jLine)}
-body.cui.skn .jg-guerrier .p{stroke:none}body.cui.skn .jg-guerrier .p.on{fill:var(--jOn);filter:none}
-body.cui.skn .jg-guerrier.full .p.on{animation:none}
-body.cui.skn .jg-barde .p ellipse{fill:var(--jOff)}body.cui.skn .jg-barde .p{stroke:var(--jLine)}
-body.cui.skn .jg-barde .p.on{stroke:var(--jOn)}body.cui.skn .jg-barde .p.on ellipse{fill:var(--jOn)}
-body.cui.skn .jg-erudit .flow{stroke:var(--jLine)}body.cui.skn .jg-erudit .p .gem-h{fill:transparent}body.cui.skn .jg-erudit .p.on .gem-h{fill:var(--jHi,rgba(255,255,255,.25))}
-
-/* A : FFXIV, HUD sobre, charbon, filets argent bleuté */
-body.sk-a{--k-bg:#0d0e11;--k-tb-bg:#14161a;--k-tb-line:1px solid #3f4754;--k-tf:'Source Sans 3',system-ui,sans-serif;--k-sf:'Source Sans 3',system-ui,sans-serif;--k-tc:#e4e7ec;--k-tsz:17px;--k-tw:700;--k-tls:.02em;
- --k-btn-bg:#22262d;--k-btn-bd:1px solid #56606e;--k-btn-rad:3px;--k-btn-c:#dfe3ea;--k-bf:var(--k-sf);--k-snd-rad:3px;--k-fld-fade:linear-gradient(180deg,transparent,rgba(13,14,17,.6));
- --k-log-c:#c3c8d0;--k-log-f:var(--k-sf);--k-log-st:normal;
- --k-ef:var(--k-sf);--k-ec:#f2f4f7;--k-eb:transparent;--k-ets:0 0 2px #000,0 1px 2px #000,0 0 1px #000;--k-epad:0 2px;--k-tgc:#f2dc8a;--k-tgb:transparent;--k-tga:#f2dc8a;--k-tgsh:radial-gradient(closest-side,rgba(242,220,138,.35),transparent);--k-tgf:brightness(1.1);
- --k-etrk:#1a1c20;--k-ebar-bd:0 0 0 1px #4a525e;--k-ehp:#d4553c;--k-brad:1px;--k-stx:#9aa3b0;
- --k-prad:3px;--k-wb:#1f3a2a;--k-wbd:1px solid #5fae7a;--k-rb:#22252b;--k-rbd:1px solid #555d69;--k-wt:#bfe8cc;--k-rt:#b7bdc7;
- --k-ib:#16181c;--k-ibd:1px solid #56606e;--k-ic:#e4e7ec;--k-ibb:#3a1512;--k-ibbd:1px solid #c0473a;--k-ibc:#ffd8d0;--k-icb:#2c2210;--k-icbd:1px solid #b08a3e;--k-icc:#f3e2b8;--k-iibd:1px solid #6fbf7a;
- --k-pb:rgba(20,22,26,.94);--k-pbd:inset 0 0 0 1px #4a525f;--k-rad:4px;--k-tx:#e4e7ec;--k-mut:#9aa3b0;--k-lab:#8fa0b8;--k-trk:#0b0c0e;--k-trk-bd:0 0 0 1px #3d444f;--k-bh:6px;--k-hp:#78c34a;--k-mp:#d778b4;
- --k-cb:#1c1f24;--k-cbd:inset 0 0 0 1px #4a5361,0 2px 0 #060708;--k-cbp:#262a31;--k-cbdp:inset 0 0 0 1px #7f8a99;--k-cpress:translateY(1px);--k-crad:4px;--k-chev:#7f8a99;--k-cnb:#15171a;--k-cnbd:inset 0 0 0 1px #2c3139;--k-cnt:#737b87;
- --k-icbd:0 0 0 1px #8d96a3;--k-irad:5px;--k-icw:0 0 0 2px #5fae7a;--k-nf:var(--k-sf);--k-nc:#eef0f3;--k-vc:#aeb5c0;
- --k-pill-bg:#121417;--k-pill-bd:1px solid #4a525e;--k-pill-c:#c9ced6;--k-mpb:#2a1724;--k-mpbd:1px solid #8e4f78;--k-mpc:#f0a6d2;--k-xb:#5fae7a;--k-xc:#08140c;
- --k-tipb:#16181c;--k-tipbd:inset 0 0 0 1px #56606e,0 6px 20px rgba(0,0,0,.6);--k-tipc:#e4e7ec;--k-tipdt:#9fc0e6;
- --k-jb:#101215;--k-jbd:inset 0 0 0 1px #343a44;--k-jrad:3px}
-body.sk-a .jg{--jOn:var(--gc);--jOff:#1c1f24;--jLine:#5b6472;--jOnLine:#e4e7ec;--jOnTxt:#fff;--jPupil:#120606;--jFire:#e0743c;--jIce:#5aa8e0;--jW:#e6eaf0;--jB:#b8344c}
-body.sk-a .jg-samourai .p.on.setsu{--jSen:#4f93c9}body.sk-a .jg-samourai .p.on.getsu{--jSen:#6d63c4}body.sk-a .jg-samourai .p.on.ka{--jSen:#c4505a}
-body.sk-a .jg-dragoon{--jOn:#d4553c}
-
-/* B : épuré plat, aplats sombres, sans bordure, une seule couleur d'accent */
-body.sk-b{--acc:#ff5a36;--k-bg:#101012;--k-tb-bg:#101012;--k-tb-line:0;--k-tf:'Source Sans 3',system-ui,sans-serif;--k-sf:'Source Sans 3',system-ui,sans-serif;--k-tc:#fff;--k-tsz:19px;--k-tw:800;--k-tls:-.01em;
- --k-btn-bg:#232326;--k-btn-bd:0;--k-btn-rad:10px;--k-btn-c:#fff;--k-bf:var(--k-sf);--k-snd-rad:10px;--k-fld-fade:linear-gradient(180deg,transparent,#101012);
- --k-log-c:#a5a5ad;--k-log-f:var(--k-sf);--k-log-st:normal;--k-log-sz:13px;
- --k-ef:var(--k-sf);--k-ec:#fff;--k-eb:#18181b;--k-erad:6px;--k-ets:none;--k-ew:800;--k-els:0;--k-epad:1px 7px;--k-tgc:#fff;--k-tgb:var(--acc);--k-tga:transparent;--k-tgsh:radial-gradient(closest-side,rgba(255,90,54,.4),transparent);
- --k-etrk:#2a2a2e;--k-ehp:var(--acc);--k-brad:3px;--k-ebh:5px;--k-stx:#8b8b93;
- --k-prad:6px;--k-wb:#2a2a2e;--k-wbd:2px solid #39c46a;--k-rb:#2a2a2e;--k-rbd:0;--k-wt:#fff;--k-rt:#a5a5ad;
- --k-ib:#26262a;--k-ibd:0;--k-ic:#fff;--k-ibb:var(--acc);--k-ibbd:0;--k-ibc:#fff;--k-icb:#3a3a40;--k-icbd:0;--k-icc:#fff;--k-iibd:2px solid #39c46a;
- --k-pb:#18181b;--k-pbd:none;--k-rad:14px;--k-tx:#fff;--k-mut:#8b8b93;--k-lab:#8b8b93;--k-trk:#2a2a2e;--k-bh:8px;--k-hp:var(--acc);--k-mp:#c8c8d0;--k-nsz:17px;
- --k-cb:#232326;--k-cbd:none;--k-cbp:#2e2e33;--k-cpress:scale(.97);--k-crad:14px;--k-chev:transparent;--k-cnb:#18181b;--k-cnbd:none;--k-cnt:#5d5d65;
- --k-icbd:none;--k-irad:10px;--k-icw:0 0 0 3px #39c46a;--k-nf:var(--k-sf);--k-nc:#fff;--k-nw:800;--k-vc:#a5a5ad;
- --k-pill-bg:#2f2f34;--k-pill-bd:0;--k-pill-c:#fff;--k-mpb:#2f2f34;--k-mpbd:0;--k-mpc:#fff;--k-gpc:var(--acc);--k-xb:#39c46a;--k-xc:#06150b;
- --k-tipb:#232326;--k-tipbd:0 10px 30px rgba(0,0,0,.6);--k-tipc:#fff;--k-tipdt:var(--acc);
- --k-jb:#232326;--k-jbd:none;--k-jrad:10px;--k-jl:#fff;--k-jls:0;--k-jlw:800}
-body.sk-b .jg{--jOn:var(--acc);--jOff:#34343a;--jLine:transparent;--jOnLine:transparent;--jOnTxt:#fff;--jPupil:#101012;--jFire:var(--acc);--jIce:#c8c8d0;--jW:#f2f2f2;--jB:var(--acc)}
-body.sk-b .jg-samourai .p text,body.sk-b .jg-barde .p,body.sk-b .jg-magerouge .cry,body.sk-b .jg-dragoon .eye-w{--jLine:#55555d}
-body.sk-b .jg-l{font-family:'Source Sans 3',system-ui,sans-serif}
-body.cui.sk-b #app .btn.sk.sk3:not(.na){border-left:3px solid var(--acc)!important;padding-left:5px}
-body.sk-b #app .btn.sk.sk3.na .ski{filter:grayscale(1) brightness(.5)}
-
-/* C : parchemin et encre (FF Tactics / FFXII), papier, cuir, filets gravés, serif */
-body.sk-c{--ink:#2a1e12;--k-bg:#1d150e;--k-tb-bg:#2b1f15;--k-tb-line:1px solid #8a6a43;--k-tf:'Cinzel',Georgia,'Times New Roman',serif;--k-sf:Georgia,'Times New Roman',serif;--k-tc:#ead9b4;--k-tc2:var(--ink);--k-tsz:17px;--k-tw:700;--k-tls:.06em;
- --k-btn-bg:#e6d6b4;--k-btn-bd:1px solid #6b4f2e;--k-btn-rad:2px;--k-btn-c:var(--ink);--k-bf:var(--k-sf);--k-snd-rad:2px;--k-fld-fade:linear-gradient(180deg,transparent,rgba(29,21,14,.7));
- --k-log-c:#e6d6b4;--k-log-f:var(--k-sf);
- --k-ef:var(--k-tf);--k-ec:var(--ink);--k-eb:#e9dcbc;--k-ebd:1px solid #6b4f2e;--k-erad:2px;--k-ets:none;--k-epad:0 6px;--k-tgc:#f5e9d0;--k-tgb:#7a2a1c;--k-tgbd:1px solid #3a120a;--k-tga:#e9dcbc;--k-tgsh:radial-gradient(closest-side,rgba(233,220,188,.35),transparent);
- --k-etrk:#2b1f15;--k-ebar-bd:0 0 0 1px #6b4f2e;--k-ehp:#9a3220;--k-brad:1px;--k-stx:#e6d6b4;
- --k-prad:2px;--k-wb:#e9dcbc;--k-wbd:1px solid #2f6a3a;--k-rb:#cdbb94;--k-rbd:1px solid #6b4f2e;--k-wt:#2f6a3a;--k-rt:#5a4630;
- --k-ib:#e9dcbc;--k-ibd:1px solid #6b4f2e;--k-ic:var(--ink);--k-ibb:#7a2a1c;--k-ibbd:1px solid #3a120a;--k-ibc:#f5e9d0;--k-icb:#c99a45;--k-icbd:1px solid #6b4f2e;--k-icc:var(--ink);--k-iibd:1px solid #2f6a3a;--k-iicf:brightness(.3) sepia(1);
- --k-pb:linear-gradient(180deg,#efe3c8,#e3d2ae);--k-pbd:inset 0 0 0 1px #8a6a43,inset 0 0 0 3px #efe3c8,inset 0 0 0 4px #a8895c,0 6px 18px rgba(0,0,0,.5);--k-rad:2px;--k-tx:var(--ink);--k-mut:#6b5434;--k-lab:#7a2a1c;--k-trk:#cdbb94;--k-trk-bd:0 0 0 1px #8a6a43;--k-bh:7px;--k-hp:#4f7a3a;--k-mp:#36568c;--k-ppad:10px 14px 11px;
- --k-cb:linear-gradient(180deg,#ecdfc2,#dfcca6);--k-cbd:inset 0 0 0 1px #7a5c38,inset 0 0 0 3px #ecdfc2,inset 0 0 0 4px rgba(122,92,56,.45),0 2px 0 #3a2a1c;--k-cbp:#d6c299;--k-cpress:translateY(2px);--k-crad:2px;--k-chev:#7a5c38;--k-cnb:#cbb994;--k-cnbd:inset 0 0 0 1px #8a7656;--k-cnt:#7a6a50;
- --k-icbd:0 0 0 1px #4a3420;--k-irad:2px;--k-icw:0 0 0 2px #2f6a3a;--k-nf:var(--k-sf);--k-nc:var(--ink);--k-vc:#5a4630;
- --k-pill-bg:transparent;--k-pill-bd:1px solid #7a5c38;--k-pill-c:var(--ink);--k-mpb:transparent;--k-mpbd:1px solid #36568c;--k-mpc:#2a4a80;--k-gpc:#7a2a1c;--k-xb:#2f6a3a;--k-xc:#f5e9d0;
- --k-tipb:linear-gradient(180deg,#efe3c8,#e3d2ae);--k-tipbd:inset 0 0 0 1px #8a6a43,inset 0 0 0 3px #efe3c8,inset 0 0 0 4px #a8895c,0 8px 24px rgba(0,0,0,.6);--k-tipc:var(--ink);--k-tipdt:#7a2a1c;
- --k-jb:rgba(122,92,56,.10);--k-jbd:inset 0 0 0 1px #a8895c;--k-jrad:2px;--k-jl:#7a2a1c}
-body.sk-c .jg{--jOn:#7a2a1c;--jOff:#e9dcbc;--jLine:#8a6a43;--jOnLine:#3a120a;--jOnTxt:#f5e9d0;--jPupil:#1d150e;--jFire:#a8401f;--jIce:#2f5585;--jW:#f8f0dc;--jB:#2a1e12;--jHi:rgba(245,233,208,.45)}
-body.sk-c .jg-samourai .p.on.setsu{--jSen:#2f5585}body.sk-c .jg-samourai .p.on.getsu{--jSen:#4a3a6a}body.sk-c .jg-samourai .p.on.ka{--jSen:#7a2a1c}
-body.sk-c .ppanel .nm .muted{font-style:italic}
-body.sk-c #app .btn.sk.sk3.na .ski{filter:sepia(.8) grayscale(.4) brightness(.7)}
-body.sk-c .tipbox .elgood{color:#2f6a3a}body.sk-c .tipbox .elbad{color:#7a2a1c}
-
-/* D : cristal moderne (FFXVI), monochrome, filets blancs fins, angles vifs, beaucoup d'air */
-body.sk-d{--k-bg:#0a0b0d;--k-tb-bg:transparent;--k-tb-line:1px solid rgba(255,255,255,.5);--k-tf:'Source Sans 3',system-ui,sans-serif;--k-sf:'Source Sans 3',system-ui,sans-serif;--k-tc:#fff;--k-tsz:14px;--k-tw:600;--k-tls:.28em;--k-ttt:uppercase;
- --k-btn-bg:transparent;--k-btn-bd:1px solid rgba(255,255,255,.6);--k-btn-rad:0;--k-btn-c:#fff;--k-bf:var(--k-sf);--k-btt:uppercase;--k-bls:.18em;--k-bsz:11px;--k-snd-rad:0;--k-fld-fade:linear-gradient(180deg,transparent,rgba(10,11,13,.75));
- --k-log-c:rgba(255,255,255,.7);--k-log-f:var(--k-sf);--k-log-st:normal;--k-log-tt:uppercase;--k-log-ls:.14em;--k-log-sz:10.5px;
- --k-ef:var(--k-sf);--k-ec:#fff;--k-eb:transparent;--k-ett:uppercase;--k-els:.2em;--k-ew:600;--k-ets:0 1px 3px #000;--k-epad:0 2px 1px;--k-tgc:#fff;--k-tgb:transparent;--k-tgbd:0;--k-tga:#fff;--k-tgsh:radial-gradient(closest-side,rgba(255,255,255,.3),transparent);
- --k-etrk:rgba(255,255,255,.16);--k-ehp:#fff;--k-brad:0;--k-ebh:2px;--k-stx:rgba(255,255,255,.55);
- --k-prad:0;--k-wb:transparent;--k-wbd:1px solid #fff;--k-rb:transparent;--k-rbd:1px solid rgba(255,255,255,.25);--k-wt:#fff;--k-rt:rgba(255,255,255,.55);
- --k-ib:rgba(0,0,0,.6);--k-ibd:1px solid rgba(255,255,255,.4);--k-ic:#fff;--k-ibb:#fff;--k-ibbd:1px solid #fff;--k-ibc:#000;--k-icb:rgba(0,0,0,.6);--k-icbd:1px dashed #fff;--k-icc:#fff;--k-iibd:1px solid #fff;
- --k-pb:rgba(10,11,13,.88);--k-pbd:inset 0 0 0 1px rgba(255,255,255,.28);--k-rad:0;--k-tx:#fff;--k-mut:rgba(255,255,255,.55);--k-lab:rgba(255,255,255,.55);--k-trk:rgba(255,255,255,.12);--k-bh:3px;--k-hp:#fff;--k-mp:#8fa0b2;--k-brad:0;--k-nsz:13px;--k-ppad:12px 16px 13px;
- --k-cb:rgba(255,255,255,.035);--k-cbd:inset 0 0 0 1px rgba(255,255,255,.3);--k-cbp:rgba(255,255,255,.14);--k-cbdp:inset 0 0 0 1px #fff;--k-cpress:none;--k-crad:0;--k-chev:#fff;--k-cnb:transparent;--k-cnbd:inset 0 0 0 1px rgba(255,255,255,.09);--k-cnt:rgba(255,255,255,.35);--k-gap:9px;
- --k-icbd:0 0 0 1px rgba(255,255,255,.45);--k-irad:0;--k-icw:0 0 0 1px #fff,0 0 0 3px #0a0b0d,0 0 0 4px #fff;--k-nf:var(--k-sf);--k-nc:#fff;--k-nw:600;--k-ntt:uppercase;--k-nls:.08em;--k-nfs:12.5px;--k-vc:rgba(255,255,255,.62);
- --k-pill-bg:transparent;--k-pill-bd:1px solid rgba(255,255,255,.4);--k-pill-c:#fff;--k-mpb:transparent;--k-mpbd:1px solid rgba(255,255,255,.4);--k-mpc:#fff;--k-gpc:#fff;--k-xb:#fff;--k-xc:#000;
- --k-tipb:rgba(10,11,13,.97);--k-tipbd:inset 0 0 0 1px rgba(255,255,255,.5);--k-tipc:#fff;--k-tipdt:rgba(255,255,255,.6);
- --k-jb:transparent;--k-jbd:inset 0 1px 0 rgba(255,255,255,.18);--k-jrad:0;--k-jl:#fff;--k-jls:.2em;--k-jlw:600}
-body.sk-d .jg{--jOn:#fff;--jOff:transparent;--jLine:rgba(255,255,255,.4);--jOnLine:#fff;--jOnTxt:#000;--jPupil:#0a0b0d;--jFire:#fff;--jIce:#9fb2c6;--jIceT:#c8d6e4;--jW:#fff;--jB:#6a7480}
-body.sk-d .jg-l{font-size:10px}
-body.sk-d #app .btn.sk.sk3::after{transform:none;top:0;right:0;width:7px;height:7px;border-top:1px solid #fff;border-right:1px solid #fff;opacity:.9}
-body.sk-d #app .btn.sk.sk3{padding:7px 8px 7px 9px}
-body.sk-d .sk3 .skc{font-weight:600;letter-spacing:.04em}
-body.sk-d #app .btn.sk.sk3.na .ski{filter:grayscale(1) brightness(.5)}
-body.sk-d .tipbox .elgood{color:#fff;text-decoration:underline}body.sk-d .tipbox .elbad{color:rgba(255,255,255,.55)}
-body.sk-d .ppanel .row{margin-top:5px!important}
-.xsec [data-skin].sel{color:#ffe7a8!important;box-shadow:inset 0 0 0 2px #e9d6a0!important;text-decoration:underline;text-underline-offset:3px}
+/* v6.2c : journal de combat posé sur la scène (plus de ligne dédiée), il s'efface tout seul */
+body.cui #field .log{position:absolute;left:8%;right:8%;top:4px;z-index:7;min-height:0;margin:0;pointer-events:none;text-align:center;font-size:12px;line-height:1.3;opacity:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 0 3px #000,0 1px 2px #000,0 0 8px rgba(0,0,0,.9)}
+body.cui #field .log.on{animation:logFade 3.2s ease forwards}
+@keyframes logFade{0%{opacity:0;transform:translateY(-3px)}8%{opacity:1;transform:none}75%{opacity:1}100%{opacity:0}}
+body.cui #field .en .stx .stn{color:#ffe28a;font-weight:800}
+/* v6.2c : choix de la couleur du combat */
+.thgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}
+.thb{display:flex;align-items:center;gap:7px;min-height:40px;padding:0 9px;border-radius:10px;border:1px solid rgba(var(--tc),.45);background:linear-gradient(180deg,rgba(var(--tc),.16),rgba(10,10,16,.85));color:#f1ead8;font:700 13px 'Source Sans 3',system-ui,sans-serif;white-space:nowrap;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.thb i{flex:none;width:16px;height:16px;border-radius:50%;background:rgb(var(--tc));box-shadow:0 0 0 2px rgba(0,0,0,.5)}
+.thb span{overflow:hidden;text-overflow:ellipsis}
+.thb.sel{border:2px solid rgb(var(--tc));background:linear-gradient(180deg,rgba(var(--tc),.34),rgba(10,10,16,.85))}
+.thb.sel i{box-shadow:0 0 0 2px #fff}
+/* v6.2c : pastilles robustes. Police embarquée (même rendu sur iPhone et ailleurs), une seule ligne, centrage vertical par flex, aucune coupe */
+body.cui .skc,body.cui .sk3x,body.cui .elt,body.cui .status .bf,body.cui .intent,body.cui #field .en .stx>span,body.cui .bcast span{font-family:'Source Sans 3',system-ui,sans-serif!important;white-space:nowrap!important;font-variant-numeric:tabular-nums;box-sizing:border-box;flex-shrink:0;-webkit-font-smoothing:antialiased}
+body.cui .sk3 .skc{display:inline-flex!important;align-items:center;justify-content:center;gap:2px;height:18px;line-height:1!important;padding:0 6px!important;font-size:11px!important;font-weight:700!important;letter-spacing:0!important;box-shadow:none!important;margin-left:auto;max-width:none;overflow:visible}
+body.cui .sk3 .skc .ic{width:10px;height:10px;flex:none}
+body.cui #app .sk3 .sk3x{display:inline-flex!important;align-items:center;justify-content:center;height:15px;min-width:27px;padding:0 4px!important;font:800 10px/1 'Source Sans 3',system-ui,sans-serif!important;letter-spacing:0!important;left:-6px;top:-7px;border-radius:6px}
+body.cui .sk3 .sk3l{gap:6px;align-items:center}
+body.cui .sk3 .sk3v{line-height:18px}
+body.cui #field .en .elt{display:inline-flex;align-items:center;justify-content:center;gap:2px;height:18px;line-height:1;padding:0 4px}
+body.cui #field .en.boss .elt.w::before,body.cui #field .en.boss .elt.r::before{font:800 10px/1 'Source Sans 3',system-ui,sans-serif;letter-spacing:.02em;margin-right:3px;white-space:nowrap}
+body.cui #field .en .elw2{height:18px;flex-wrap:nowrap;white-space:nowrap}
+body.cui .ppanel .status .bf{display:inline-flex;align-items:center;height:18px;line-height:1;padding:0 5px 0 3px;font-size:11px}
+body.cui .ppanel .status .bf i{line-height:12px;font-size:10px}
+body.cui .intent{display:inline-flex!important;align-items:center;height:20px;line-height:1!important;padding:0 8px 0 6px!important;font-size:11.5px!important}
+body.cui #field .en.boss .intent{width:max-content;margin-left:auto;margin-right:auto;max-width:min(210px,52vw);height:auto!important;min-height:20px;padding:2px 8px 2px 6px!important}
+body.cui #field .en.boss .intent span{max-width:none;white-space:normal!important;line-height:1.1;text-align:center;overflow:visible}
+body.cui .bcast{width:min(180px,44vw)}
+body.cui #field .en .stx{white-space:normal;line-height:12px;max-width:118px;margin:0 auto;text-align:center}
+body.cui .sk3 .sk3v.sk3v-l{font-size:11px;letter-spacing:-.01em}
+/* noms des monstres à 3 ou 4 : plus de points de suspension */
+body.cui #field .enemies[data-n="4"] .ename,body.cui #field .enemies[data-n="5"] .ename{max-width:none;overflow:visible;font-size:9.5px;letter-spacing:.01em;padding:1px 8px}
+body.cui #field.crowd .en .ename{white-space:nowrap}
+@media (max-width:389px){
+ body.cui #app .btn.sk.sk3{gap:6px;padding:6px 5px 6px 6px}
+ body.cui .sk3 .sk3i{flex:0 0 34px;width:34px;height:34px}body.cui .sk3 .sk3i .ski{width:34px;height:34px}
+ body.cui .sk3 .skn{font-size:13px}
+ body.cui #app .sk3 .skn.skn-l{font-size:11.5px;letter-spacing:-.015em}
+ body.cui .sk3 .sk3v{font-size:11px}
+ body.cui .sk3 .sk3v.sk3v-l{font-size:10px}
+ body.cui .sk3 .sk3l{gap:4px}
+ body.cui .sk3 .skc{padding:0 4px!important;font-size:10.5px!important;height:17px}
+}
+/* v6.2c : annonce des sorts de boss en haut de la scène */
+body.cui #field .bann{position:absolute;top:6px;left:50%;transform:translateX(-50%);z-index:8;pointer-events:none;width:max-content;max-width:88%;text-align:center;padding:5px 14px 6px;border-radius:10px;background:linear-gradient(180deg,rgba(70,10,10,.92),rgba(30,6,6,.92));box-shadow:inset 0 0 0 1px rgba(255,140,120,.7),0 4px 14px rgba(0,0,0,.6);font-family:'Source Sans 3',system-ui,sans-serif;animation:bannIn .35s ease-out}
+body.cui #field .bann.charge{background:linear-gradient(180deg,rgba(64,42,8,.94),rgba(28,18,4,.94));box-shadow:inset 0 0 0 1px rgba(255,200,110,.75),0 4px 14px rgba(0,0,0,.6)}
+body.cui #field .bann.cut{box-shadow:inset 0 0 0 1px rgba(255,240,170,.9),0 4px 14px rgba(0,0,0,.6)}
+body.cui #field .bann-t{display:flex;align-items:center;justify-content:center;gap:5px;font:700 14px/1.15 'Cinzel',Georgia,serif;letter-spacing:.04em;color:#fff1d6;white-space:nowrap}
+body.cui #field .bann-t span{white-space:nowrap}
+body.cui #field .bann-t .ic,body.cui #field .bann-t svg{width:14px;height:14px;flex:none}
+body.cui #field .bann-t .elic{width:15px;height:15px;flex:none}
+body.cui #field .bann-s{font:700 10px/1.2 'Source Sans 3',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,230,200,.75);margin-top:2px;white-space:nowrap}
+body.cui #field .bann i{display:block;height:4px;margin-top:4px;border-radius:2px;background:linear-gradient(90deg,#ff6a2a,#ffb347 70%,#fff3c0);transform-origin:left;animation:bannBar 1.4s ease-in-out infinite alternate}
+body.cui #field .bann.now{animation:bannIn .35s ease-out,bannPulse 1s ease-in-out .35s infinite alternate}
+@keyframes bannIn{0%{opacity:0;transform:translate(-50%,-6px)}100%{opacity:1;transform:translate(-50%,0)}}
+@keyframes bannBar{0%{transform:scaleX(.35)}100%{transform:scaleX(1)}}
+@keyframes bannPulse{100%{box-shadow:inset 0 0 0 1px rgba(255,160,140,.95),0 0 16px rgba(255,60,40,.45)}}
+body.cui #field.hasann .log{top:62px}
 </style>
 </head>
 <body>
@@ -2848,10 +2730,17 @@ function rollPoms(n, bonus){
 const SAVE_KEY = 'ffxiv_palais_des_morts_v1';
 const CH_NEXT = true; // v6.0 : version test (branche next, site séparé)
 const CUI = CH_NEXT && !/[?&]cui=0/.test(location.search); // v6.2 : proposition d'interface de combat (next uniquement)
-const CSKINS = {a:'FFXIV sobre', b:'Épuré plat', c:'Parchemin', d:'Cristal'}; // v6.2b : habillages au choix (next uniquement)
-let _cuiSkin = 'a'; try{ _cuiSkin = localStorage.getItem('pdm_skin')||'a'; }catch(e){}
-{ const m=location.search.match(/[?&]skin=([a-d0])/); if (m){ _cuiSkin=m[1]; try{ localStorage.setItem('pdm_skin', m[1]); }catch(e){} } }
-function cuiSkin(){ return _cuiSkin; }
+// v6.2c : couleur d'accent de l'interface de combat (12 thèmes, ni noir ni blanc), enregistrée dans la sauvegarde
+const CUI_THEMES = [['or','Or',[230,204,143]],['cramoisi','Cramoisi',[226,64,76]],['orange','Orange',[245,134,52]],['ambre','Ambre',[242,176,40]],
+  ['citron','Citron vert',[166,214,62]],['emeraude','Émeraude',[52,196,120]],['sarcelle','Sarcelle',[38,186,166]],['cyan','Cyan',[64,206,236]],
+  ['azur','Azur',[78,148,255]],['indigo','Indigo',[124,114,246]],['violet','Violet',[178,104,240]],['rose','Rose',[240,108,168]]];
+function cuiThemeVars(id){
+  const t=CUI_THEMES.find(x=>x[0]===id)||CUI_THEMES[0], c=t[2];
+  const mix=(o,k)=>c.map((v,i)=>Math.round(v+(o[i]-v)*k)).join(',');
+  if (t[0]==='or') return {ac:'230,204,143',acl:'255,231,168',act:'243,230,196',acm:'201,184,143',acd:'60,44,12',acb:'54,48,44'};
+  return {ac:c.join(','), acl:mix([255,255,255],.55), act:mix([255,255,255],.74), acm:mix([200,200,205],.45), acd:mix([8,8,12],.74), acb:mix([22,20,24],.8)};
+}
+function applyCuiTheme(){ const v=cuiThemeVars(S&&S.cuiTheme), st=document.documentElement.style; Object.entries(v).forEach(([k,x])=>st.setProperty('--'+k,x)); }
 /* v6.0 : code de sauvegarde (copier sur un site, coller sur l'autre). Simple JSON encodé, aucune donnée envoyée. */
 function saveCode(){ persist(); const t=localStorage.getItem(SAVE_KEY)||'{}'; return 'PDM1.'+btoa(unescape(encodeURIComponent(t))); }
 function readCode(c){ try{ c=String(c||'').trim().replace(/\s+/g,''); if(!c.startsWith('PDM1.')) return null; const o=JSON.parse(decodeURIComponent(escape(atob(c.slice(5))))); return (o && typeof o==='object' && !Array.isArray(o) && 'gils' in o) ? o : null; }catch(e){ return null; } }
@@ -3624,9 +3513,9 @@ SCREENS.settings = function(from){
       <button class="btn small" id="stMute" data-k="mute">${m?'Activer le son':'Couper le son'}</button>
     </section>
     ${CUI?`<section class="xsec">
-      <h3 class="xh">Style du combat (test)</h3>
-      <p class="muted">Quatre habillages de la nouvelle interface de combat. Choisis celui que tu préfères.</p>
-      <div class="row" style="flex-wrap:wrap;gap:6px">${Object.entries(CSKINS).map(([k,n])=>`<button class="btn small${cuiSkin()===k?' sel':''}" data-skin="${k}" data-k="skin-${k}">${k.toUpperCase()} · ${n}</button>`).join('')}</div>
+      <h3 class="xh">Couleur du combat</h3>
+      <p class="muted">Couleur des bordures et des reflets de l’interface de combat. Les PV et PM gardent leurs couleurs.</p>
+      <div class="thgrid">${CUI_THEMES.map(([k,n,c])=>`<button class="thb${(S.cuiTheme||'or')===k?' sel':''}" data-theme="${k}" data-k="theme-${k}" style="--tc:${c.join(',')}"><i></i><span>${n}</span></button>`).join('')}</div>
     </section>`:''}
     <section class="xsec">
       <h3 class="xh">Notes de patch</h3>
@@ -3661,7 +3550,7 @@ SCREENS.settings = function(from){
   const fxr=document.getElementById('stSfx'); fxr.oninput=()=>SND.setSfx(fxr.value/100); fxr.onchange=SND.test;
   document.getElementById('stMute').onclick=()=>{ const mu=SND.toggleMute(); document.getElementById('stMute').textContent=mu?'Activer le son':'Couper le son'; if (!mu) SND.test(); };
   document.getElementById('stPN').onclick=patchNotes;
-  app.querySelectorAll('[data-skin]').forEach(bt=>bt.onclick=()=>{ _cuiSkin=bt.dataset.skin; try{ localStorage.setItem('pdm_skin', bt.dataset.skin); }catch(e){} app.querySelectorAll('[data-skin]').forEach(x=>x.classList.toggle('sel', x===bt)); });
+  app.querySelectorAll('[data-theme]').forEach(bt=>bt.onclick=()=>{ S.cuiTheme=bt.dataset.theme; persist(); applyCuiTheme(); app.querySelectorAll('[data-theme]').forEach(x=>x.classList.toggle('sel', x===bt)); });
   document.getElementById('stCloud').onclick=()=>{ if (typeof Online!=='undefined' && Online.myUserId) cloudPush(true); else Online.open(from==='title'?'title':'hub','account'); };
   document.getElementById('stReset').onclick=()=>confirmBox('Recommencer à zéro ? Toute ta progression sur cet appareil sera effacée (Gils, cristaux, jobs, compagnons, améliorations). C’est définitif.', ()=>confirmBox('Vraiment tout effacer ?', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Tout effacer'), 'Continuer');
   backIcon(from==='title'?'title':'hub');
@@ -4290,7 +4179,7 @@ function startCombat(kind){
   if (R.comp) C.cp = { cd: Math.ceil(compCd()/2), uses:0 };
   if (R.nextPoison){ C.st.pdot=Math.max(1,Math.round(R.maxhp*0.04)); C.st.pdotT=3; R.nextPoison=0; }
   if (R.nextWeak){ C.st.weakT=2; R.nextWeak=0; }
-  C.msg = kind==='boss' ? `${ENEMIES[list[0]].name} se dresse devant toi !` : kind==='mimic' ? 'La Mimique attaque !' : kind==='elite' ? 'Des monstres maudits surgissent ! Ils s’enragent avec le temps.' : 'Des monstres surgissent !';
+  C.msg = CUI ? '' : kind==='boss' ? `${ENEMIES[list[0]].name} se dresse devant toi !` : kind==='mimic' ? 'La Mimique attaque !' : kind==='elite' ? 'Des monstres maudits surgissent ! Ils s’enragent avec le temps.' : 'Des monstres surgissent !'; // v6.2c : plus de phrase d'intro
   renderCombat();
   planIntents();
   updateCombat();
@@ -4346,8 +4235,9 @@ function renderCombat(){
     <div class="player" id="player">${spr(R.job,'idle')}</div>
     ${R.comp?`<div class="comp" id="comp"><div class="cbub" id="cbub">${C.cmsg||''}</div>${spr('c_'+R.comp.id,'idle')}<div class="cname">${COMPANIONS[R.comp.id].name}</div></div>`:''}
     <div id="banner"></div>
+    ${CUI?'<div class="log" id="log"></div>':''}
   </div>
-  <div class="log" id="log"></div>
+  ${CUI?'':'<div class="log" id="log"></div>'}
   <div id="ppw"></div>
   <div class="skills" id="skills"></div>`;
   document.getElementById('bHelp').onclick = helpModal;
@@ -4416,9 +4306,11 @@ function helpModal(){
    ${R.comp?`<div class="sklist"><div class="it"><b>Compagnon : ${COMPANIONS[R.comp.id].name}</b><br>${COMPANIONS[R.comp.id].sig} Il agit tout seul après toi, au bon moment.</div></div>`:''}
    <div class="sklist"><div class="it"><b>Lire les boutons</b><br>Appui long sur une action : détail avec les vrais chiffres (dégâts, soin, durée, cible). Pastille bleue = coût en PM, pastille de couleur = coût en jauge de job. Anneau vert autour de l’icône = la cible est faible à cet élément (×1,5). Chiffre sur l’icône = tours de recharge.<br>Chaque job a sa jauge (sous les PM) : appui long dessus pour savoir comment la remplir.<br>Sous ta barre de PV : tes effets actifs et les tours restants. Un même effet relancé remet sa durée à neuf, il ne s’additionne pas.</div>
    <div class="it"><b>Objets</b><br>Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM. Utiliser un objet prend le tour.</div>
-   <div class="it"><b>Lire les ennemis</b><br>Touche un ennemi pour le cibler (${ic('cursor')}). Au-dessus : sa prochaine action.<br>
+   <div class="it"><b>Lire les ennemis</b><br>Touche un ennemi pour le cibler (${ic('cursor')}).<br>
+   ${CUI?`Les monstres n’annoncent plus leurs actions. Un monstre qui <b>s’entoure d’une lueur orange</b> prépare une grosse attaque pour le tour suivant : défends-toi (Rempart, bouclier…), soigne-toi ou achève-le. Lueur <b>jaune pâle</b> = interruptible : un étourdissement (compétences ${ic('bolt')}) l’annule.<br>
+   Les boss, eux, annoncent leurs grands sorts : nom au-dessus de leur tête et barre d’incantation. ${ic('bolt')} sur l’annonce = interruptible.<br>`:`Au-dessus : sa prochaine action.<br>
    ${ic('hour')} = il prépare une grosse attaque. <span class="gold">${ic('warn')} rouge</span> = elle part ce tour-ci : défends-toi (Rempart, bouclier…), soigne-toi ou achève-le.<br>
-   ${ic('bolt')} = interruptible : un étourdissement (compétences ${ic('bolt')}) l’annule. Gardiens et boss ne sont interruptibles que sur les actions ${ic('bolt')}.<br>
+   ${ic('bolt')} = interruptible : un étourdissement (compétences ${ic('bolt')}) l’annule. Gardiens et boss ne sont interruptibles que sur les actions ${ic('bolt')}.<br>`}
    ${ic('cross')} soigneur, ${ic('horn')} renforce ses alliés : à éliminer ou interrompre en priorité.<br>
    ${ic('shield')} bouclier : à briser (certaines attaques doublent si le bouclier tient).<br>
    ${ic('clock')} compte à rebours avant la rage (dégâts ×2,5).<br>
@@ -4445,7 +4337,8 @@ function updateCombat(){
   const en = document.getElementById('enemies'); if(!en) return; en.dataset.n=C.enemies.length; en.dataset.b=C.enemies.some(e=>e.boss)?1:0;
   en.innerHTML = C.enemies.map((e,i)=>{
     let it='';
-    if (!e.dead && e.intent){
+    const annonce = x => x && (x.kind==='charge' || x.kind==='buffAll' || x.kind==='summon' || x.kind==='fly' || (x.kind==='atk' && x.big));
+    if (!e.dead && e.intent && e.boss && annonce(e.intent)){ // v6.2c : plus d'intentions au-dessus des monstres, seuls les sorts annoncés des boss restent
       const x=e.intent, icx=canInterrupt(e)?' '+ic('bolt')+'':'';
       if (x.kind==='stun') it=`<div class="intent stun">${ic('stun')} Étourdi</div>`;
       else if (x.kind==='interrupted') it=`<div class="intent stun">${ic('bolt')} Interrompu</div>`;
@@ -4458,6 +4351,7 @@ function updateCombat(){
       else if (x.kind==='fly') it=`<div class="intent charge">${ic('wing')} ${x.name}</div>`;
     }
     const sx=[]; const ar=!e.dead&&!e.boss&&archOf(e); if (ar) sx.push(`<span class="arch">${ar}</span>`);
+    if (!e.dead && e.intent && (e.intent.kind==='stun'||e.intent.kind==='interrupted')) sx.push(`<span class="stn">${e.intent.kind==='stun'?'Étourdi':'Interrompu'}</span>`);
     if (e.dots.length) sx.push(''+ic('poison')+''+e.dots.reduce((s,d)=>s+d.dmg,0));
     if (e.shield>0) sx.push(''+ic('shield')+''+Math.round(e.shield));
     if (e.buffT>0) sx.push(''+ic('rage')+'+'+Math.round(e.buff*100)+'%');
@@ -4466,15 +4360,23 @@ function updateCombat(){
     if (e.enrageAt){ const left=e.enrageAt-e.t; if (left<=0) sx.push('<b style="color:#ff80ff">ENRAGÉ</b>'); else if (left<=6) sx.push(''+ic('clock')+''+left); }
     const wind=!e.dead&&e.intent&&(e.intent.kind==='charge'||e.intent.big||e.intent.kind==='buffAll'||e.intent.kind==='summon');
     const sl=enSlot(i,C.enemies.length,C.enemies); return `<div style="--x:${sl[0]};--y:${sl[1]};--s:${sl[2]};z-index:${sl[3]}" class="en ${e.boss?'boss':''} ${e.boss&&isNamedBoss(e.key)?'named':''} ${e===tgt&&alive().length>1?'tgt':''} ${e.dead?'dead':''} ${wind?'winding':''} ${wind&&canInterrupt(e)?'cut':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
-      ${it}${bossCast(e)}<span class="esp">${spr(e.skin||e.key,'idle')}</span><div class="ename">${e.name}</div>${e.dead?'':elemChips(e)}${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
+      ${CUI?'':it+bossCast(e)}<span class="esp">${spr(e.skin||e.key,'idle')}</span><div class="ename">${e.name}</div>${e.dead?'':elemChips(e)}${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
   }).join('');
   { const fd=document.getElementById('field'); if (fd) fd.classList.toggle('crowd', C.enemies.length>=3); }
   en.querySelectorAll('[data-ei]').forEach(el=>el.onclick=()=>{ const i=+el.dataset.ei; if(!C.enemies[i].dead){ C.target=i; updateCombat(); } });
   const al = alive();
   const big = al.find(e=>e.intent && (e.intent.big || e.intent.kind==='charge'));
   document.getElementById('aoe').innerHTML = al.some(e=>e.intent&&e.intent.big&&e.intent.kind==='atk') ? '<div class="aoe"></div>' : '';
-  document.getElementById('banner').innerHTML = (false && big) ? `<div class="banner">${big.intent.kind==='charge' ? `${ic('hour')} ${big.name} prépare « ${big.intent.then.name} »${canInterrupt(big)?' — interromps-le '+ic('bolt')+'':''} !` : big.intent.meteor ? `${ic('meteor')} « ${big.intent.name} » ! Protège-toi ou c’est la fin !` : `${ic('warn')} « ${big.intent.name} » imminent ! Défends-toi !`}</div>` : '';
-  document.getElementById('log').innerHTML = C.msg || '&nbsp;';
+  if (CUI){ // v6.2c : sort annoncé du boss, en haut de la scène (nom + barre d'incantation)
+    const bo=al.find(e=>e.boss && e.intent && (e.intent.kind==='charge'||e.intent.kind==='buffAll'||e.intent.kind==='summon'||e.intent.kind==='fly'||(e.intent.kind==='atk'&&e.intent.big)));
+    const fd=document.getElementById('field'); if (fd) fd.classList.toggle('hasann', !!bo);
+    let h=''; if (bo){ const x=bo.intent, t=x.kind==='charge'?x.then:x, cut=canInterrupt(bo);
+      const icn = x.kind==='charge'?ic('hour'):x.kind==='summon'?ic('skull'):x.kind==='fly'?ic('wing'):x.kind==='buffAll'?ic('horn'):ic('warn');
+      h=`<div class="bann ${x.kind==='charge'?'charge':'now'}${cut?' cut':''}"><div class="bann-t">${icn}${t&&t.kind!=='buffAll'&&t.kind!=='summon'&&t.kind!=='fly'?elIc(atkEl(t)):''}<span>${esc(t.name||x.name)}</span>${cut?ic('bolt'):''}</div><div class="bann-s">${x.kind==='charge'?'au prochain tour':'ce tour-ci'}${cut?' · interruptible':''}</div>${x.kind==='charge'?'<i></i>':''}</div>`; }
+    document.getElementById('banner').innerHTML = h;
+  } else document.getElementById('banner').innerHTML = (false && big) ? `<div class="banner">${big.intent.kind==='charge' ? `${ic('hour')} ${big.name} prépare « ${big.intent.then.name} »${canInterrupt(big)?' — interromps-le '+ic('bolt')+'':''} !` : big.intent.meteor ? `${ic('meteor')} « ${big.intent.name} » ! Protège-toi ou c’est la fin !` : `${ic('warn')} « ${big.intent.name} » imminent ! Défends-toi !`}</div>` : '';
+  { const lg=document.getElementById('log'), m=C.msg||''; if (!CUI) lg.innerHTML = m || '&nbsp;';
+    else if (lg.dataset.m!==m){ lg.dataset.m=m; lg.innerHTML=m; lg.classList.remove('on'); if (m){ void lg.offsetWidth; lg.classList.add('on'); } } }
   document.getElementById('ppw').innerHTML = playerPanelHTML(true);
   renderSkills(); idleDesync(); bossTintSync();
 }
@@ -4486,6 +4388,12 @@ function skillState(s){
   if (s.req && C.st.sen < s.req) return {ok:false, why:(JOBS[R.job].gauge||'Sen')};
   return {ok:true};
 }
+// v6.2c : texte qui ne rentre pas = police réduite pas à pas (jamais coupé), quel que soit l'écran ou la police du téléphone
+function cuiFit(){ try{ document.querySelectorAll('#skills .skn,#skills .sk3v,#field .en .ename,#field .bcast span').forEach(el=>{
+  el.style.fontSize=''; if (el.scrollWidth<=el.clientWidth+1) return;
+  let f=parseFloat(getComputedStyle(el).fontSize); const min=Math.max(8.5, f*0.72);
+  while (el.scrollWidth>el.clientWidth+1 && f>min){ f-=0.5; el.style.fontSize=f+'px'; } }); }catch(e){} }
+{ const _rs=renderSkills; renderSkills=function(){ _rs.apply(this,arguments); if (CUI) cuiFit(); }; }
 function renderSkills(){
   const el=document.getElementById('skills'); if(!el) return;
   const g=mechOf(R.job).g, gs=gShort(g), gc=mechOf(R.job).col, tg=curTarget();
@@ -4498,7 +4406,7 @@ function renderSkills(){
     const why = st.cd ? `Prêt dans ${st.cd} tour${st.cd>1?'s':''}` : st.why==='PM' ? 'PM insuffisants' : st.why ? `${g} ${C.st.sen}/${s.req}` : '';
     return `<button class="btn sk sk3 ${st.ok?'':'na'}${st.cd?' oncd':''}${m>1?' weakon':m<1?' reson':''}" data-k="skill-${s.id}" data-sk="${s.id}" data-tip="${skillDetail(s).replace(/"/g,'&quot;')}" ${C.busy?'disabled':''}>`
       + `<span class="sk3i"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'">${s.el?elIc(s.el,'sk3el'):''}${m>1?'<b class="sk3x good">×1,5</b>':m<1?'<b class="sk3x bad">×0,5</b>':''}${st.cd?`<b class="sk3cd">${st.cd}</b>`:''}</span>`
-      + `<span class="sk3t"><span class="skn${s.name.length>14?' skn-l':''}">${s.name}</span><span class="sk3l"><span class="sk3v${why?' why':''}">${why||skMain(s)}</span>${why&&!st.cd?'':cost}</span></span></button>`; }).join('')
+      + `<span class="sk3t"><span class="skn${s.name.length>14?' skn-l':''}">${s.name}</span><span class="sk3l"><span class="sk3v${why?' why':''}${String(why||skMain(s)).replace(/<[^>]*>/g,'').length>13?' sk3v-l':''}">${why||skMain(s)}</span>${why&&!st.cd?'':cost}</span></span></button>`; }).join('')
     + `<button class="btn sk sk3 skit" data-k="item" id="bItem" data-tip="&lt;b&gt;Objets&lt;/b&gt;&lt;br&gt;Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM." ${C.busy?'disabled':''}><span class="sk3i icb">${ic('heal')}</span><span class="sk3t"><span class="skn">Objets</span><span class="sk3l"><span class="sk3v">Potion ${R.potions} · Éther ${R.ethers}</span></span></span></button>`;
   el.querySelectorAll('[data-sk]').forEach(b=>b.onclick=()=>playerAction(b.dataset.sk));
   document.getElementById('bItem').onclick=combatItems;
@@ -6438,7 +6346,7 @@ function logoSVG(v){
 }
 function scrEnter(k){
   const b=document.body; b.classList.toggle('modern', MODERN_SCR.test(k)); b.classList.toggle('home', k==='title'); b.dataset.scr=k; b.classList.toggle('cui', CUI && k==='combat');
-  { const sk = (CUI && k==='combat') ? cuiSkin() : ''; ['a','b','c','d'].forEach(x=>b.classList.toggle('sk-'+x, sk===x)); b.classList.toggle('skn', !!sk && sk!=='0'); }
+  if (CUI && k==='combat') applyCuiTheme();
   if (k==='title'||k==='hub') SND.music(k);
   try{ if (k==='title'||k==='map') setTimeout(PRE.forRun, k==='title'?400:0); if (k==='hub'||k==='gacha') PRE.forHub(); }catch(e){}
   if (k!=='rewards') app.classList.remove('rw-on');
