@@ -1,8 +1,17 @@
-# Rapport : A Godless Realm, branche next (v6.0a à v6.0f)
+# Rapport : A Godless Realm, branche next (v6.0a à v6.0i)
+
+## Résumé pour Salim
+- La version test est en ligne : https://a-godless-realm-next.onrender.com (v6.0i). La version stable n’a pas bougé (branche main, v5.5g2).
+- L’avant-poste tient sur un écran d’iPhone 12 : la barre du bas se voit sans défiler.
+- Les améliorations permanentes donnent un peu moins par niveau. Avec tout acheté, un bon joueur (bot) bat Bahamut environ 6 fois sur 10 (avant : 7 sur 10). Personne ne perd ce qu’il a acheté.
+- Chaos (étage 100) est un vrai boss final : il bat environ 1 bon joueur sur 6 qui arrive jusqu’à lui, en 12 à 15 tours, avec ses gros coups toujours annoncés et jamais mortels d’un seul coup si on a toute sa vie.
+- L’inscription depuis le site test ne marchait pas (le serveur refusait ce site). C’est réparé, sans toucher au site stable. Un vrai score a été envoyé puis effacé avec le compte de test.
+- Trio : la petite désynchronisation vue une fois ne s’est pas reproduite en 3 nouveaux essais (dont un en ligne). Si elle revient, le jeu se resynchronise tout seul.
+
 
 ## Site
 - Next (test) : https://a-godless-realm-next.onrender.com (Render static site srv-dbdv79ss728c738kpmpg, branche `next`, autodeploy).
-- Live vérifié : commit ab08ae7 (v6.0f), sw `pdm-next-06`, index.html servi identique au commit (md5). Lobby en ligne séparé : `pdm-next-lobby`, salons `pdm-next-room-`.
+- Live vérifié : commit 6f91636 (v6.0i), sw `pdm-next-09`, index.html servi identique au commit (md5). Lobby en ligne séparé : `pdm-next-lobby`, salons `pdm-next-room-`.
 - Stable : https://palais-des-morts.onrender.com, branche `main`, gelée à `stable-v5.5g2` (ad41a55). Rien poussé sur main.
 
 ## Stable et bascule
@@ -18,17 +27,25 @@
 - v6.0d : petits écrans : 2 ou 3 monstres côte à côte, intention d’un monstre seul ne sort plus du cadre ; titre Victoire finale ne se coupe plus en deux.
 - v6.0e : correctif de désynchronisation duo (l’hôte reprenait l’ancien état poison/faiblesse au début d’un combat : renderCombat ne sauvegardait pas le héros courant). Bouton Sans compagnon grisé si aucun choisi.
 - v6.0f : bouton Fermer collant en bas des fenêtres longues (l’aide des actions cachait Fermer sous le pli), 44 px.
+- v6.0g : avant-poste compacté, barre du bas visible sans défiler (iPhone 12 : fin à 636 px sur 664 ; iPhone SE : 527 sur 568).
+- v6.0h : améliorations par rang réduites (Force/Intelligence 0,2 %, Affûtage 0,4 %, Précision 0,2 %, Vitalité 0,3 %, Esprit 1,5 %, Rempart 0,2 %, Voile 0,3 %, Récupération 0,15 %). Rangs et prix inchangés, donc aucune sauvegarde touchée. Chaos : PV et attaque revus, grosses attaques annoncées plafonnées à 55 % des PV max, phases 3 et 4 frappent fort tous les 3 tours.
+- v6.0i : Chaos : coups normaux x1,3, grosses attaques annoncées plafonnées à 62 % des PV max (les autres boss restent à 40 %), hpK 2,7, atkK 2,0.
 
 ## Simulations (bot intelligent sauf mention, 40 parties, local)
 | Cas | F50 | Entrés acte II | F100 | Médianes tours |
 |---|---|---|---|---|
 | Acte I, 0 % améliorations (j6b) | 35 % | | | normal 2, boss 8, final 12 |
-| Acte I, 100 % améliorations (j6u) | 70 % | | | |
+| Acte I, 100 % améliorations (j6u, avant v6.0h) | 70 % | | | |
+| Acte I, 0 % (ubase, v6.0h) | 40 % | | | normal 2, boss 8, final 12,5 |
+| Acte I, 100 % améliorations (uf4a+uf4b, v6.0h, 80 parties) | 50/80 = 62 % | | | normal 2, boss 8, final 12 |
 | Bot spam (m6), 0 % | 0 % | | | normal 3, boss 7 ; morts 24 boss, 7 élites, 9 normaux |
 | Acte II, 0 % (k4b) | 15/40 (38 %) | 15 | 4/40 (10 % ; 27 % des entrants) | 51-75 : normal 1, boss 11 ; 76-100 : normal 2, élite 4, boss 14 |
 | Acte II, 100 % (k4u) | 28/40 (70 %) | 28 | 12/40 (30 % ; 43 % des entrants) | 51-75 : boss 10 ; 76-100 : normal 2, élite 4, boss 11 |
 - Morts acte II (k4u) : boss 5 (55, 60x2, 70, 80), élites 7, normaux 4. Coup max reçu 0,61 à 0,73 des PV max : pas de one-shot.
+- Chaos (v6.0i), rejeu de 22 arrivées réelles au F100 (instantanés pris dans les sims acte II k5u et k5b, 104 combats) : bots améliorés à 100 % : 18 % tués, médiane 12 tours ; bots sans amélioration : 15 % tués, médiane 15 tours ; total 16 %. Plus gros coup reçu 0,60 des PV max (pas de one-shot). Avant : 0 mort sur Chaos, 5 à 15 tours.
+- Analyse améliorations (40 parties chacune, avant le rabot) : stats Endurance seules 52 %, Puissance seules 42 %, Sacoche + Bénédiction seules 52 %, Bourse seule 38 %. Le gain venait du cumul, d’où un rabot de toutes les stats.
 - Duo/trio (sync) : avant v6.0e, duo local et live 11 à 29 désynchronisations (rattrapées par resync ; la stable v5.5g2 en a aussi 15 : bug ancien). Après v6.0e, duo local dnx3 et dnx4 : 0 écart, 0 désync (étages 25 et 20). Trio local tnx2 : 0 écart, étage 24. Live v6.0f (site next, vrai Supabase realtime) : duo dlive6 0 écart, 0 désync (étage 20) ; trio tlive6 étage 30, 1 désync (étape 99, l’hôte avait tiré un nombre aléatoire de plus, un héros KO), rattrapée par la resync, 7 contrôles en écart sur 268.
+- Trio, recherche du tirage en trop sur KO : relu tout le chemin (duoCombatTurn, enemyAct, enemyPhase, duoTick, duoCheckEnd/tryRevive, winCombat, duoVote, résolution des étapes en série dans Online.tryResolve) sans trouver de tirage dépendant du client. Trois nouveaux trios avec journal de chaque appel à rand() : local tr1 (paladin, mage blanc, mage noir) et tr2 jusqu’au F50, 250 et 381 contrôles, 0 écart, 0 désync ; live tlive8 sur le site next (vrai Supabase realtime) jusqu’au F50, 302 contrôles, 0 écart, 0 désync. Non reproduit, donc pas de correctif à l’aveugle. (Note : dans le relevé final du test, le héros 0 semble niveau 2 : c’est un artefact du test, qui lit R.party[0] alors que ce héros est chargé dans R ; l’état haché est correct.)
 
 ## Boss 55 à 100
 | Étage | Boss | Rôle | Faible | Résiste |
@@ -52,6 +69,7 @@ Chaos prend les affinités du Démon appelé : Marilith (faible glace, résiste 
 - Exemples : Flan faible feu ; Bombo faible glace/eau, résiste feu ; Squelette faible lumière/feu ; Bahamut faible glace, résiste feu.
 
 ## Supabase (ruuorgyqgtdgfpthanuq)
+- Test réel depuis next (v6.0h, 24/10 02:49 UTC) : la première inscription depuis https://a-godless-realm-next.onrender.com échouait (« Pas de connexion au serveur ») car la fonction pdm-signup n’autorisait que l’origine stable (CORS). Correctif : pdm-signup redéployée (version 2) avec une seule origine ajoutée (a-godless-realm-next.onrender.com), le reste identique, origine stable toujours acceptée (vérifié). Ensuite : compte zztest_ins8 créé par l’inscription du jeu, Online.submitRun, ligne pdm_runs id 19 (étage 50, seed `F100:11-22-33-44`, score 265000, solo) visible dans le classement. Supprimé dans l’ordre pdm_friendships, pdm_runs, pdm_profiles, auth.users : 0 ligne restante pour ce compte, 7 parties au total dans pdm_runs.
 - Vérification en lecture seule des contraintes pdm_runs (étage 1-50, score <= 2 000 000, seed <= 80, party 1-3, mode solo/duo) et de pdm_submit_run. Next reste dedans : étage borné à 50, victoire acte II envoyée comme victoire 50, seed préfixée `F{étage}:`, score borné à 2M. Aucune modification de schéma, la stable n’est pas touchée.
 
 ## Captures (/workspace/ffxiv-roguelite/screens/)
@@ -63,9 +81,8 @@ Chaos prend les affinités du Démon appelé : Marilith (faible glace, résiste 
 - Autres : v6_parametres_code.png, v6_ux_menus.png, v6_ux_partie.png
 
 ## Pas fait / limites
-- 100 % des améliorations donnent 70 % au F50 (cible 55-65 %).
-- Chaos n’a tué aucun bot dans les sims (les morts acte II sont sur les élites et les boss 55-80).
-- Aucune insertion réelle dans Supabase depuis next (vérification des contraintes en lecture seule uniquement).
-- Trio : une désync rare reste (l’hôte consomme un tirage aléatoire de plus quand un héros est KO, étape 99 du test live) ; la resync la corrige, cause exacte non trouvée.
-- Le correctif de désync (v6.0e) n’est que sur next ; la stable garde le bug ancien (rattrapé par resync).
-- Avant-poste : la barre du bas (Registre, Classement, Paramètres, Écran titre) est en partie sous le pli sur iPhone 12 (on y accède en défilant).
+- Trio : la désync unique vue en live (tlive6, héros KO) n’a pas été reproduite (3 trios propres) ; cause non trouvée, pas de correctif. La resync la rattrape.
+- Le correctif de désync duo (v6.0e) et les réglages v6.0h/v6.0i ne sont que sur next ; la stable garde l’ancien comportement.
+- Les sims de Chaos utilisent des instantanés pris à l’entrée du F100 (bots à 100 % et à 0 %) ; une sim acte II complète avec v6.0i n’a pas été relancée.
+- Améliorations : 62 % sur 80 parties (marge d’environ 5 points).
+- La fonction pdm-signup accepte maintenant aussi l’origine du site next ; à garder si next devient la prod via un autre domaine, sinon la ligne peut rester sans risque.
