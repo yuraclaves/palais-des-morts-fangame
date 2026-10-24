@@ -1459,6 +1459,145 @@ body[data-scr="hub"]::before{opacity:0}
 #field.crowd .en .elw2{margin-top:1px}
 #field .en .ename{white-space:nowrap;text-shadow:0 1px 2px #000,0 0 3px #000;position:relative;z-index:3}
 #field .en .elw2,#field .en .bar{position:relative;z-index:3}
+/* v6.2 (proposition, branche next) : interface de combat épurée, dans l'esprit du menu principal */
+body.cui{font-family:'Source Sans 3',system-ui,sans-serif;font-weight:500;background:#07080f}
+body.cui #app{background:radial-gradient(120% 60% at 50% 100%,rgba(40,32,22,.55),transparent 60%),linear-gradient(180deg,#0b0c14,#07080f)}
+body.cui .win{text-shadow:none}
+/* barre du haut */
+body.cui .win.topbar{background:linear-gradient(180deg,rgba(6,6,10,.92),rgba(6,6,10,.25));border:0;border-radius:0;box-shadow:none;padding:6px 10px 8px;position:relative;z-index:5}
+body.cui .win.topbar::after{content:"";position:absolute;left:6%;right:6%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(230,204,143,.7),transparent)}
+body.cui .topbar b.grow{font-family:'Cinzel',Georgia,serif;font-weight:600;letter-spacing:.08em;color:#f3e6c4;font-size:16px;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+body.cui .topbar .btn.small{min-height:32px!important;padding:0 14px!important;font-size:13px!important;border:1px solid rgba(230,204,143,.45);border-radius:999px;background:linear-gradient(180deg,rgba(70,64,56,.55),rgba(20,18,18,.8));box-shadow:inset 0 1px 0 rgba(255,240,200,.18),0 3px 10px rgba(0,0,0,.45);text-shadow:none;color:#f1ead8;font-family:'Source Sans 3',system-ui,sans-serif;font-weight:700;letter-spacing:.02em}
+body.cui .snd-btn{border:1px solid rgba(230,204,143,.35)!important;background:rgba(10,10,14,.55)!important;box-shadow:none!important}
+/* champ */
+body.cui #field::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(180deg,transparent,rgba(7,8,15,.55));pointer-events:none;z-index:1}
+body.cui .log{font-style:italic;color:#d8d2c2;font-size:12.5px;text-shadow:0 1px 3px #000;letter-spacing:.01em}
+/* plaques ennemies */
+body.cui #field .en .ename{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:10.5px;letter-spacing:.04em;color:#f1ead8;background:linear-gradient(90deg,transparent,rgba(6,6,10,.72) 18%,rgba(6,6,10,.72) 82%,transparent);padding:1px 12px;text-shadow:0 1px 2px #000}
+body.cui #field .en.tgt .ename{color:#ffe7a8;background:linear-gradient(90deg,transparent,rgba(60,44,12,.85) 18%,rgba(60,44,12,.85) 82%,transparent)}
+body.cui #field .en.tgt .ename::before,body.cui #field .en.tgt .ename::after{content:"";display:inline-block;width:0;height:0;border:3.5px solid transparent;vertical-align:1px}
+body.cui #field .en.tgt .ename::before{border-left-color:#e6cc8f;margin-right:4px}
+body.cui #field .en.tgt .ename::after{border-right-color:#e6cc8f;margin-left:4px}
+body.cui #field .en .bar{height:4px;border:0;border-radius:2px;background:rgba(0,0,0,.7);box-shadow:0 0 0 1px rgba(255,255,255,.14);margin:2px auto 0}
+body.cui #field .en .bar.ehp>i{background:linear-gradient(90deg,#c8302a,#ff7a5a);border-radius:2px}
+body.cui #field .en.boss .bar{width:150px;height:6px;box-shadow:0 0 0 1px rgba(230,204,143,.45)}
+body.cui #field .en.boss .ename{font-size:13.5px;letter-spacing:.1em;color:#f3e6c4;padding:1px 20px}
+body.cui #field .en .stx{color:#b9b3a4;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase}
+body.cui #field .en .stx .arch{background:none;border:0;padding:0;color:#b9b3a4}
+body.cui .elw2{gap:3px}
+body.cui .elw2 .elt{background:rgba(6,6,10,.7);border-radius:999px;padding:1px 3px;box-shadow:none;border:1px solid rgba(255,255,255,.18)}
+body.cui .elw2 .elt.w{border-color:rgba(125,255,154,.75);box-shadow:0 0 6px rgba(125,255,154,.35)}
+body.cui .elw2 .elt.r{opacity:.8}
+body.cui .intent{background:rgba(8,8,12,.78)!important;border:1px solid rgba(230,204,143,.4)!important;border-radius:999px;color:#f1ead8;font-family:'Source Sans 3',system-ui,sans-serif;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+body.cui .intent.big{border-color:#ff7a6a!important;background:linear-gradient(180deg,rgba(120,16,16,.92),rgba(60,6,6,.92))!important}
+body.cui .intent.charge{border-color:#ffc860!important;background:linear-gradient(180deg,rgba(90,60,10,.92),rgba(40,26,4,.92))!important}
+body.cui .intent.int{border-color:#8fff8f!important}
+/* panneau du héros */
+body.cui #ppw .win.ppanel{background:linear-gradient(180deg,rgba(22,20,28,.86),rgba(10,10,16,.92));border:0;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5),inset 0 1px 0 rgba(230,204,143,.35),inset 0 0 0 1px rgba(230,204,143,.12);padding:8px 12px 9px}
+body.cui .ppanel .nm{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:15px;color:#f3e6c4;letter-spacing:.04em}
+body.cui .ppanel .nm .muted{font-family:'Source Sans 3',system-ui,sans-serif;font-weight:600;font-size:12px;color:#aab3c4;letter-spacing:0}
+body.cui .ppanel .row>span[style*="width:24px"]{font-size:10.5px!important;font-weight:800;letter-spacing:.08em;color:#c9b88f}
+body.cui .ppanel .row>span[style*="width:74px"]{font-variant-numeric:tabular-nums;font-weight:700;color:#e8e4d8}
+body.cui .ppanel .bar{height:7px;border:0;border-radius:4px;background:rgba(0,0,0,.6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+body.cui .ppanel .bar>i{background:linear-gradient(90deg,#3fa86a,#9af0a8);border-radius:4px;box-shadow:0 0 8px rgba(130,240,160,.35);transition:width .35s ease}
+body.cui .ppanel .bar.mp>i{background:linear-gradient(90deg,#2a6ad8,#9fd4ff);box-shadow:0 0 8px rgba(120,190,255,.35)}
+body.cui .ppanel .status .bf{border-radius:999px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.18)}
+/* sorts */
+body.cui .skills{gap:7px}
+body.cui #app .btn.sk.sk3{border:0;border-radius:12px;background:linear-gradient(180deg,rgba(54,48,44,.9),rgba(20,18,22,.94));box-shadow:inset 0 1px 0 rgba(255,236,190,.22),inset 0 0 0 1px rgba(230,204,143,.22),0 4px 0 rgba(0,0,0,.45),0 6px 14px rgba(0,0,0,.35);text-shadow:none;color:#f1ead8;transition:transform .1s,box-shadow .1s,filter .1s}
+body.cui #app .btn.sk.sk3:active{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(255,236,190,.15),inset 0 0 0 1px rgba(230,204,143,.4),0 1px 0 rgba(0,0,0,.45);filter:brightness(1.15)}
+body.cui #app .btn.sk.sk3::after{content:"";position:absolute;right:7px;top:7px;width:5px;height:5px;border-top:1.5px solid rgba(230,204,143,.6);border-right:1.5px solid rgba(230,204,143,.6);transform:rotate(45deg);opacity:.8}
+body.cui #app .btn.sk.sk3.na:not(:disabled){filter:none;opacity:1;background:linear-gradient(180deg,rgba(30,28,32,.85),rgba(14,13,16,.9));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+body.cui #app .btn.sk.sk3.na:not(:disabled)::after{display:none}
+body.cui #app .btn.sk.sk3.na .ski{filter:grayscale(.8) brightness(.55)}
+body.cui #app .btn.sk.sk3.na .skn{color:#8c8878}
+body.cui #app .btn.sk.sk3[disabled]{filter:saturate(.6) brightness(.8);opacity:1}
+body.cui .sk3 .sk3i,body.cui .sk3 .sk3i .ski{border-radius:10px}
+body.cui .sk3 .sk3i{box-shadow:0 0 0 1px rgba(230,204,143,.55),0 2px 6px rgba(0,0,0,.6)}
+body.cui .sk3.weakon .sk3i{box-shadow:0 0 0 2px #7dff9a,0 0 10px rgba(125,255,154,.55)}
+body.cui .sk3 .skn{font-family:'Source Sans 3',system-ui,sans-serif;font-weight:700;font-size:14px;letter-spacing:.01em;color:#f6efdc}
+body.cui .sk3 .sk3v{font-size:12px;color:#c9c2b0;font-weight:600}
+body.cui .sk3 .skc.c-mp{background:rgba(60,120,230,.18);color:#b8d4ff;border:1px solid rgba(140,185,255,.55)}
+body.cui .sk3.skit .sk3i{background:radial-gradient(circle,rgba(80,200,120,.25),transparent 70%)}
+body.cui .tipbox{background:linear-gradient(180deg,rgba(26,24,32,.97),rgba(10,10,16,.98));border:0;border-radius:12px;box-shadow:inset 0 1px 0 rgba(230,204,143,.4),inset 0 0 0 1px rgba(230,204,143,.18),0 10px 30px rgba(0,0,0,.6);text-shadow:none;font-family:'Source Sans 3',system-ui,sans-serif}
+body.cui .tipbox .dt{color:#e6cc8f}
+/* jauges de job */
+.jg{display:flex;align-items:center;gap:8px;margin-top:6px;padding:3px 10px;height:40px;border-radius:9px;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,.2));box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);position:relative;overflow:hidden}
+.jg::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 120% at 60% 50%,var(--gc),transparent 70%);opacity:.08;transition:opacity .4s}
+.jg.full::before{opacity:.22;animation:jgBreath 2.4s ease-in-out infinite}
+.jg-l{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:11.5px;letter-spacing:.05em;color:var(--gc);white-space:nowrap;min-width:78px;text-shadow:0 0 8px rgba(0,0,0,.9)}
+.jg-a{flex:1;display:flex;justify-content:center;min-width:0}
+.jg-a svg.jgs{height:32px;width:100%;max-width:200px;overflow:visible}
+.jg-v{font-size:11px;font-weight:800;color:#cfc8b6;min-width:30px;text-align:right;font-variant-numeric:tabular-nums}
+.jgs .p{fill:rgba(255,255,255,.08);stroke:rgba(255,255,255,.38);stroke-width:1;transition:fill .3s,filter .3s}
+.jgs .p.on{stroke:#fff;filter:drop-shadow(0 0 3px var(--gc))}
+.jgs .p.nw{animation:jgPop .55s cubic-bezier(.3,1.6,.5,1)}
+.jgs .p.sp{animation:jgSpend .6s ease-out}
+.jgs .jg-line{stroke:rgba(255,255,255,.16);stroke-width:1;fill:none}
+@keyframes jgPop{0%{transform:scale(.2);opacity:.2;filter:brightness(3) drop-shadow(0 0 8px var(--gc))}100%{transform:scale(1);opacity:1}}
+@keyframes jgSpend{0%{filter:brightness(3) drop-shadow(0 0 10px var(--gc));transform:scale(1.25)}100%{transform:scale(1)}}
+@keyframes jgBreath{50%{opacity:.32}}
+@keyframes jgSpin{to{transform:rotate(360deg)}}
+@keyframes jgFlow{to{stroke-dashoffset:-24}}
+@keyframes jgFlick{0%,100%{filter:drop-shadow(0 0 3px #ff6a2a) brightness(1)}50%{filter:drop-shadow(0 0 7px #ffb04a) brightness(1.25)}}
+/* Mage noir : orbe de polarité */
+.jg-magenoir .orb{stroke:rgba(255,255,255,.5);stroke-width:1}
+.jg-magenoir .orb-halo{fill:none;stroke:rgba(255,255,255,.12);stroke-width:2}
+.jg-magenoir.fire .orb-halo{stroke:#ff8a3a;filter:drop-shadow(0 0 5px #ff6a2a);animation:jgBreath 1.6s infinite}
+.jg-magenoir.ice .orb-halo{stroke:#5cc0ff;filter:drop-shadow(0 0 5px #5cc0ff);animation:jgBreath 1.6s infinite}
+.jg-magenoir .orb-ring{fill:none;stroke:rgba(255,255,255,.55);stroke-width:1;stroke-dasharray:3 6;transform-box:fill-box;transform-origin:center;animation:jgSpin 9s linear infinite}
+.jg-magenoir .p.fire.on{fill:#ff8a3a;--gc:#ff6a2a}.jg-magenoir .p.ice.on{fill:#6cc8ff;--gc:#5cc0ff}
+.jg-magenoir.fire .jg-l{color:#ffa060}.jg-magenoir.ice .jg-l{color:#8fd6ff}.jg-magenoir.neu .jg-l{color:#c9d2e0}
+/* Mage blanc : lys */
+.jg-mageblanc .p.on{fill:url(#jgLys)}.jg-mageblanc .lys-c{fill:#e6cc8f}
+/* Mage rouge : cristaux blanc et noir */
+.jg-magerouge .cry{fill:rgba(255,255,255,.05);stroke:rgba(255,255,255,.35)}
+.jg-magerouge .cry-f.wh{fill:url(#jgW)}.jg-magerouge .cry-f.bk{fill:url(#jgB)}
+.jg-magerouge .lvl{transition:y .5s ease}
+.jg-magerouge .p.on.wht{fill:#eef4ff}.jg-magerouge .p.on.blk{fill:#d8264a}
+.jg-magerouge.full .cry{stroke:#fff;filter:drop-shadow(0 0 4px #ff8aa0)}
+/* Chevalier dragon : œil du dragon */
+.jg-dragoon .eye-w{fill:rgba(0,0,0,.5);stroke:rgba(255,255,255,.3);stroke-width:1}
+.jg-dragoon .eye-i{transform:scaleY(.12);opacity:.35;transition:transform .45s cubic-bezier(.3,1.5,.5,1),opacity .3s}
+.jg-dragoon .eye-p{fill:#140404}
+.jg-dragoon .on .eye-w{stroke:#ffb08a;filter:drop-shadow(0 0 4px #ff5a2a)}
+.jg-dragoon .on .eye-i{transform:scaleY(1);opacity:1}
+.jg-dragoon g.p{fill:none;stroke:none;filter:none}
+.jg-dragoon.full .eye-p{animation:jgBreath 1.2s infinite}
+/* Moine : chakras */
+.jg-moine .p.on{fill:url(#jgChk)}
+/* Samouraï : Sen */
+.jg-samourai .p circle{fill:rgba(0,0,0,.45);stroke:rgba(255,255,255,.25)}
+.jg-samourai .p text{font:700 13px 'Hiragino Mincho ProN','Yu Mincho','Noto Serif CJK JP',serif;fill:rgba(255,255,255,.22);stroke:none}
+.jg-samourai .p.on text{fill:#fff}
+.jg-samourai .p.on.setsu circle{fill:rgba(60,140,220,.55);stroke:#9fdcff}.jg-samourai .p.on.setsu{--gc:#7fd0ff}
+.jg-samourai .p.on.getsu circle{fill:rgba(90,70,200,.6);stroke:#b8a8ff}.jg-samourai .p.on.getsu{--gc:#9a8cff}
+.jg-samourai .p.on.ka circle{fill:rgba(200,50,60,.6);stroke:#ffb0b0}.jg-samourai .p.on.ka{--gc:#ff7a7a}
+.jg-samourai .p{fill:none;stroke:none}
+/* Paladin : bouclier du serment */
+.jg-paladin .sh-b{fill:rgba(0,0,0,.45)}.jg-paladin .sh-o{fill:none;stroke:#cfe6ff;stroke-width:1.2}
+.jg-paladin .sh-x{stroke:rgba(255,255,255,.55);stroke-width:1.4;fill:none}
+.jg-paladin rect.p{stroke:none;fill:transparent}.jg-paladin rect.p.on{fill:url(#jgOath);filter:none}
+.jg-paladin rect.p.nw{animation:jgRise .5s ease-out}
+@keyframes jgRise{0%{opacity:0;filter:brightness(3)}100%{opacity:1}}
+.jg-paladin .sw.on{fill:#cfe6ff}
+.jg-paladin.full .sh-o{stroke:#fff;filter:drop-shadow(0 0 5px #8fd0ff)}
+/* Guerrier : jauge de la bête */
+.jg-guerrier .rg-t{fill:rgba(0,0,0,.5)}.jg-guerrier .rg-o{fill:none;stroke:rgba(255,190,150,.5);stroke-width:1}
+.jg-guerrier .p{stroke:none;fill:rgba(255,255,255,.05)}.jg-guerrier .p.on{fill:url(#jgRage);filter:drop-shadow(0 0 3px #ff6a2a)}
+.jg-guerrier.full .p.on{animation:jgFlick .9s ease-in-out infinite}
+/* Barde : partition */
+.jg-barde .staff{stroke:rgba(255,255,255,.14);stroke-width:.8}
+.jg-barde .p .stem{fill:none;stroke-width:1.6}
+.jg-barde .p ellipse{fill:rgba(255,255,255,.08)}
+.jg-barde .p{stroke:rgba(255,255,255,.35)}
+.jg-barde .p.on{stroke:#e8ffd0}.jg-barde .p.on ellipse{fill:#b8f07a}
+.jg-barde .p.on.nw{animation:jgNote .7s ease-out}
+@keyframes jgNote{0%{transform:translateY(6px);opacity:0;filter:brightness(2.5)}100%{transform:none;opacity:1}}
+/* Érudit : flux d'éther */
+.jg-erudit .flow{fill:none;stroke:rgba(196,154,255,.35);stroke-width:1.2;stroke-dasharray:4 4;animation:jgFlow 2.4s linear infinite}
+.jg-erudit .p{fill:rgba(255,255,255,.05)}.jg-erudit .p .gem-h{fill:rgba(255,255,255,.06);stroke:none}
+.jg-erudit .p.on{fill:#8a5ad8;stroke:#e8d8ff}.jg-erudit .p.on .gem-h{fill:rgba(255,255,255,.45)}
 </style>
 </head>
 <body>
@@ -2524,6 +2663,7 @@ function rollPoms(n, bonus){
 /* ===================== SAUVEGARDE (localStorage) ===================== */
 const SAVE_KEY = 'ffxiv_palais_des_morts_v1';
 const CH_NEXT = true; // v6.0 : version test (branche next, site séparé)
+const CUI = CH_NEXT && !/[?&]cui=0/.test(location.search); // v6.2 : proposition d'interface de combat (next uniquement)
 /* v6.0 : code de sauvegarde (copier sur un site, coller sur l'autre). Simple JSON encodé, aucune donnée envoyée. */
 function saveCode(){ persist(); const t=localStorage.getItem(SAVE_KEY)||'{}'; return 'PDM1.'+btoa(unescape(encodeURIComponent(t))); }
 function readCode(c){ try{ c=String(c||'').trim().replace(/\s+/g,''); if(!c.startsWith('PDM1.')) return null; const o=JSON.parse(decodeURIComponent(escape(atob(c.slice(5))))); return (o && typeof o==='object' && !Array.isArray(o) && 'gils' in o) ? o : null; }catch(e){ return null; } }
@@ -3638,6 +3778,82 @@ function gaugeHTML(st){
   const pips = Array.from({length:m.max},(_,i)=>`<i class="gpi ${i<v?'on':''}"></i>`).join('');
   return `<div class="gauge ${v>=m.max?'full':''}" style="--gc:${m.col}" data-tip="${tip}"><span class="gl">${m.g}</span><span class="gp">${pips}</span><b class="gv">${v}/${m.max}</b></div>`;
 }
+/* v6.2 (proposition, branche next) : jauges de job stylisées, inspirées de FINAL FANTASY XIV */
+const JG_ROMAN = ['', 'I', 'II', 'III'];
+let _jgLast = {k:null, c:null, v:0, p:0, t:0};
+function gaugeHTML2(st){
+  const m=mechOf(R.job), k=R.job, v=st.sen||0, tip=`&lt;b&gt;${m.g}&lt;/b&gt;&lt;br&gt;${m.tip||''}`;
+  const now=Date.now(), L=_jgLast;
+  if (L.k!==k || L.c!==C){ _jgLast={k, c:C, v, p:v, t:0}; }
+  else if (L.v!==v){ _jgLast={k, c:C, v, p:L.v, t:now}; }
+  const p = (now-_jgLast.t<700) ? _jgLast.p : v;
+  const cl = (i, val, prev) => { const on=i<val, was=i<prev; return 'p'+(on?' on':'')+(on&&!was?' nw':'')+(!on&&was?' sp':''); };
+  const S = i => cl(i, v, p);
+  const tb = 'transform-box:fill-box;transform-origin:center';
+  let art='', lab=m.g, cnt=`${v}/${m.max}`, mod='';
+  if (k==='magenoir'){
+    const f=Math.max(0,v), pf=Math.max(0,p), ice=Math.max(0,-v), pi=Math.max(0,-p);
+    mod = v>0?'fire':v<0?'ice':'neu'; lab = v>0?`Feu astral ${JG_ROMAN[v]}`:v<0?`Glace ombrale ${JG_ROMAN[-v]}`:'Polarité';
+    cnt = v>0?`+${15*v} %`:v<0?'PM +':'';
+    const dia=(x,c)=>`<path class="${c}" style="${tb}" d="M${x} 6 l5 8 l-5 8 l-5 -8z"/>`;
+    art = `<svg viewBox="0 0 150 28" class="jgs"><defs>
+      <radialGradient id="jgOrbF" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#fff3c4"/><stop offset=".45" stop-color="#ff8a3a"/><stop offset="1" stop-color="#8a1a08"/></radialGradient>
+      <radialGradient id="jgOrbI" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#f2fbff"/><stop offset=".45" stop-color="#5cc0ff"/><stop offset="1" stop-color="#0a2a6a"/></radialGradient>
+      <radialGradient id="jgOrbN" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#cfd6e6"/><stop offset="1" stop-color="#2a3044"/></radialGradient></defs>
+      <path class="jg-line" d="M8 14 H142"/>
+      ${[2,1,0].map(i=>dia(55-i*17, 'ice '+cl(i,ice,pi))).join('')}
+      ${[0,1,2].map(i=>dia(95+i*17, 'fire '+cl(i,f,pf))).join('')}
+      <circle class="orb-halo" cx="75" cy="14" r="13"/>
+      <circle class="orb" cx="75" cy="14" r="10" fill="url(#${v>0?'jgOrbF':v<0?'jgOrbI':'jgOrbN'})"/>
+      <path class="orb-ring" d="M75 2 a12 12 0 1 1 -0.1 0" /></svg>`;
+  } else if (k==='mageblanc'){
+    const pet=(i,rot)=>`<g transform="rotate(${rot} 40 26)"><path class="${S(i)}" style="${tb}" d="M40 26 C33 18 33 8 40 2 C47 8 47 18 40 26Z"/></g>`;
+    art = `<svg viewBox="0 0 80 28" class="jgs"><defs><linearGradient id="jgLys" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#7ec6ff"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs>
+      ${pet(0,-48)}${pet(1,0)}${pet(2,48)}<circle class="lys-c" cx="40" cy="26" r="2.4"/></svg>`;
+  } else if (k==='magerouge'){
+    const lvl = 26 - 24*v/m.max;
+    const seg = i => `<path class="${S(i)} ${i%2?'blk':'wht'}" style="${tb}" d="M${52+i*16} 8 l6 6 l-6 6 l-6 -6z"/>`;
+    art = `<svg viewBox="0 0 150 28" class="jgs"><defs>
+      <clipPath id="jgRmL"><rect x="0" y="${lvl}" width="40" height="28" class="lvl"/></clipPath><clipPath id="jgRmR"><rect x="110" y="${lvl}" width="40" height="28" class="lvl"/></clipPath>
+      <linearGradient id="jgW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#9fc4ff"/></linearGradient>
+      <linearGradient id="jgB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6a86"/><stop offset="1" stop-color="#3a0614"/></linearGradient></defs>
+      <path class="cry" d="M22 1 l8 7 v12 l-8 7 l-8 -7 v-12z"/><path class="cry-f wh" clip-path="url(#jgRmL)" d="M22 1 l8 7 v12 l-8 7 l-8 -7 v-12z"/>
+      <path class="cry" d="M128 1 l8 7 v12 l-8 7 l-8 -7 v-12z"/><path class="cry-f bk" clip-path="url(#jgRmR)" d="M128 1 l8 7 v12 l-8 7 l-8 -7 v-12z"/>
+      <path class="jg-line" d="M34 14 H116"/>${[0,1,2].map(seg).join('')}</svg>`;
+  } else if (k==='dragoon'){
+    const eye=(i,x)=>{ const c=S(i); return `<g class="${c}"><path class="eye-w" d="M${x-22} 14 Q${x} -1 ${x+22} 14 Q${x} 29 ${x-22} 14Z"/>
+      <g class="eye-i" style="${tb}"><circle cx="${x}" cy="14" r="8" fill="url(#jgIris)"/><ellipse class="eye-p" cx="${x}" cy="14" rx="1.6" ry="6"/></g></g>`; };
+    art = `<svg viewBox="0 0 110 28" class="jgs"><defs><radialGradient id="jgIris"><stop offset="0" stop-color="#ffe08a"/><stop offset=".55" stop-color="#ff5a2a"/><stop offset="1" stop-color="#6a0a0a"/></radialGradient></defs>
+      ${eye(0,28)}${eye(1,82)}</svg>`;
+  } else if (k==='moine'){
+    const ys=[18,14,12,14,18];
+    art = `<svg viewBox="0 0 120 28" class="jgs"><defs><radialGradient id="jgChk" cx="40%" cy="35%" r="65%"><stop offset="0" stop-color="#fffbe0"/><stop offset=".5" stop-color="#ffc63a"/><stop offset="1" stop-color="#9a5a00"/></radialGradient></defs>
+      <path class="jg-line" d="M12 18 Q60 4 108 18"/>${ys.map((y,i)=>`<circle class="${S(i)}" style="${tb}" cx="${12+i*24}" cy="${y}" r="7.5"/>`).join('')}</svg>`;
+  } else if (k==='samourai'){
+    const K=[['雪','setsu'],['月','getsu'],['花','ka']];
+    art = `<svg viewBox="0 0 110 28" class="jgs">${K.map(([ch,c],i)=>`<g class="${S(i)} ${c}" style="${tb}"><circle cx="${19+i*36}" cy="14" r="12"/><text x="${19+i*36}" y="19" text-anchor="middle">${ch}</text></g>`).join('')}</svg>`;
+  } else if (k==='paladin'){
+    const sh='M20 1 L37 6 V15 C37 22 30 26 20 28 C10 26 3 22 3 15 V6 Z';
+    art = `<svg viewBox="0 0 120 28" class="jgs"><defs><clipPath id="jgSh"><path d="${sh}"/></clipPath><linearGradient id="jgOath" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2a6ad8"/><stop offset="1" stop-color="#d8f0ff"/></linearGradient></defs>
+      <path class="sh-b" d="${sh}"/><g clip-path="url(#jgSh)">${[0,1,2].map(i=>`<rect class="${S(i)}" x="0" y="${28-(i+1)*9.4}" width="40" height="9" />`).join('')}</g>
+      <path class="sh-o" d="${sh}"/><path class="sh-x" d="M20 6 V22 M14 11 H26"/>
+      ${[0,1,2].map(i=>`<path class="${S(i)} sw" style="${tb}" d="M${54+i*22} 4 l3 0 l0 14 l3 0 l-4.5 6 l-4.5 -6 l3 0z"/>`).join('')}</svg>`;
+  } else if (k==='guerrier'){
+    art = `<svg viewBox="0 0 150 28" class="jgs"><defs><linearGradient id="jgRage" x1="0" x2="1"><stop offset="0" stop-color="#ffd27a"/><stop offset=".5" stop-color="#ff6a2a"/><stop offset="1" stop-color="#b01010"/></linearGradient></defs>
+      <path class="rg-t" d="M4 22 L14 6 H146 L136 22Z"/>${Array.from({length:5},(_,i)=>`<path class="${S(i)}" style="${tb}" d="M${8+i*26} 20 L${16+i*26} 8 H${38+i*26} L${30+i*26} 20Z"/>`).join('')}
+      <path class="rg-o" d="M4 22 L14 6 H146 L136 22Z"/></svg>`;
+  } else if (k==='barde'){
+    const note=(i,x,y)=>`<g class="${S(i)}" style="${tb}"><ellipse cx="${x}" cy="${y}" rx="5" ry="3.6" transform="rotate(-22 ${x} ${y})"/><path class="stem" d="M${x+4.4} ${y-1} V${y-15} q6 3 7 9"/></g>`;
+    art = `<svg viewBox="0 0 120 28" class="jgs">${[5,10,15,20,25].map(y=>`<path class="staff" d="M2 ${y} H118"/>`).join('')}
+      ${note(0,26,20)}${note(1,58,15)}${note(2,90,10)}</svg>`;
+  } else if (k==='erudit'){
+    const gem=(i,x)=>`<g class="${S(i)}" style="${tb}"><path d="M${x} 3 l9 11 l-9 11 l-9 -11z"/><path class="gem-h" d="M${x} 3 l-9 11 h18z"/></g>`;
+    art = `<svg viewBox="0 0 120 28" class="jgs"><path class="flow" d="M2 14 C20 2 30 26 50 14 S80 2 100 14 S112 22 118 14"/>${gem(0,24)}${gem(1,60)}${gem(2,96)}</svg>`;
+  } else {
+    art = `<svg viewBox="0 0 120 28" class="jgs">${Array.from({length:m.max},(_,i)=>`<circle class="${S(i)}" cx="${12+i*24}" cy="14" r="7"/>`).join('')}</svg>`;
+  }
+  return `<div class="jg jg-${k} ${mod} ${v>=m.max&&!m.signed?'full':''}" style="--gc:${m.col}" data-tip="${tip}"><span class="jg-l">${lab}</span><span class="jg-a">${art}</span><b class="jg-v">${cnt}</b></div>`;
+}
 function playerPanelHTML(inCombat){
   const j=JOBS[R.job];
   const st = (inCombat && C) ? C.st : null;
@@ -3660,7 +3876,7 @@ function playerPanelHTML(inCombat){
     <div class="row"><span class="nm grow">${esc(R.pname||S.name)} <span class="muted">${j.name} · Niv. ${R.level}</span></span>${inCombat?'':`<span class="muted">Pot. ${R.potions} · Éth. ${R.ethers}</span>`}</div>
     <div class="row" style="gap:6px;margin-top:3px"><span style="width:24px;font-size:12px">PV</span><div class="grow">${bar(R.hp,R.maxhp,'',st?st.shield:0)}</div><span style="font-size:12px;width:74px;text-align:right">${Math.ceil(R.hp)}/${R.maxhp}</span></div>
     <div class="row" style="gap:6px;margin-top:3px"><span style="width:24px;font-size:12px">PM</span><div class="grow">${bar(R.mp,R.maxmp,'mp')}</div><span style="font-size:12px;width:74px;text-align:right">${Math.floor(R.mp)}/${R.maxmp}</span></div>
-    ${st?gaugeHTML(st):''}
+    ${st?(CUI?gaugeHTML2(st):gaugeHTML(st)):''}
     ${inCombat&&sts.length?`<div class="status" style="margin-top:4px">${sts.map(s=>`<span>${s}</span>`).join('')}</div>`:''}
   </div>`;
 }
@@ -6027,7 +6243,7 @@ function logoSVG(v){
   return `<svg class="lgsvg lg-${v}" viewBox="0 0 400 ${h}" role="img" aria-label="A Godless Realm">${defs}${body}</svg>`;
 }
 function scrEnter(k){
-  const b=document.body; b.classList.toggle('modern', MODERN_SCR.test(k)); b.classList.toggle('home', k==='title'); b.dataset.scr=k;
+  const b=document.body; b.classList.toggle('modern', MODERN_SCR.test(k)); b.classList.toggle('home', k==='title'); b.dataset.scr=k; b.classList.toggle('cui', CUI && k==='combat');
   if (k==='title'||k==='hub') SND.music(k);
   try{ if (k==='title'||k==='map') setTimeout(PRE.forRun, k==='title'?400:0); if (k==='hub'||k==='gacha') PRE.forHub(); }catch(e){}
   if (k!=='rewards') app.classList.remove('rw-on');
