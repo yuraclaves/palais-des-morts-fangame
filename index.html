@@ -1866,7 +1866,7 @@ const ENEMIES = {
     phases:[{at:0.7, line:'Ah, enfin un peu de divertissement.'},{at:0.35, line:'Le Fléau des astres coule dans mes veines.'}] },
   garland:{ hpK:2.7, atkK:0.85, name:'Garland', title:'Le Chevalier du temps', hp:290, atk:13, ai:'garland', res:{phys:0.2}, boss:true, guardian:true,
     phases:[{at:0.4, line:'Moi, Garland, je vais tous vous écraser !'}] },
-  chaos:{ hpK:2.75, atkK:1.8, name:'Chaos', title:'Dieu de la Discorde', hp:860, atk:15, ai:'chaos', res:{phys:0.1, mag:0.1}, boss:true,
+  chaos:{ hpK:2.7, atkK:2.0, name:'Chaos', title:'Dieu de la Discorde', hp:860, atk:15, ai:'chaos', res:{phys:0.1, mag:0.1}, boss:true,
     phases:[{at:0.8, line:'Marilith, prête-moi le feu de la terre !'},{at:0.6, line:'Kraken, que les eaux vous noient !'},{at:0.4, line:'Liche, que la terre se fende !'},{at:0.2, line:'Tiamat, que le ciel se déchaîne ! Tout recommence, encore et encore !'}] },
   enkidou:{ name:'Enkidou', hp:85, atk:10, ai:'enkidu', res:{mag:0.2} },
   dragonombre:{ name:'Dragon des ombres', hp:90, atk:12, ai:'shadowdragon', res:{mag:0.25} },
@@ -1888,7 +1888,7 @@ function floorPool(f){
    puis +hL/+aL par étage au-delà. La difficulté vient surtout des mécaniques. */
 const BAL = { lv:0.08, h0:0.55, a0:0.42, ramp:7, hL:0.045, aL:0.08, elite:{hp:1.3, atk:1.2, enrage:9},
   // v5.5 : combats plus courts mais plus percutants (PV ennemis réduits selon l'étage et le type, attaque relevée, plafond par coup)
-  duoBossHp:0.6, kh:{ n0:0.9, nk:0.07, boss:0.85, big:0.95, fin:0.35, late:0.06 }, ka:1.96, ea0:1.15, cap:0.28, capB:0.4, capChaos:0.55,
+  duoBossHp:0.6, kh:{ n0:0.9, nk:0.07, boss:0.85, big:0.95, fin:0.35, late:0.06 }, ka:1.96, ea0:1.15, cap:0.28, capB:0.4, capChaos:0.62,
   // v5.5d : un seul combat par étage, donc moins de récompenses : le héros gagne un peu de force à chaque étage
   pg:0.028, heal:0.2, mpw:0.4, gk:2.5, gf:6, dmgCap:2.2, perkCap:0.7, redCap:0.75 };
 function khMul(f, d, kind){ const b=BAL.kh, g=Math.min(f,ACT1_MAX), base=b.n0/(1+b.nk*(g-1)); if (!d.boss) return base; return base*(1+b.late*Math.max(0,g-35))*(f>=maxF()?b.big*b.fin:isBigBoss(f)?b.big:b.boss); }
@@ -2258,8 +2258,8 @@ const AI = {
     if (p===4 && hpr(e)<0.1 && !e.last){ e.last=1; return A('Big Bang',5,{windup:1, type:'mag', interruptible:true, el:'ten', fx:'chaos'}); }
     const c=(e.t-e.pt)%(p>=3?3:4); // v6.0h : les dernières phases frappent plus souvent (toujours annoncé)
     if (c===2) return F ? A(F[3],3.4,{windup:1, type:'mag', el:F[2], fx:'chaos'}) : A('Démolition',3.2,{windup:1, el:'ten', fx:'chaos'});
-    if (c===1) return F ? A('Écho de '+ENEMIES[F[0]].name,1.1,{type:'mag', el:F[2]}) : A('Rayon cosmique',1,{type:'mag', weaken:2, el:'ten'});
-    return A('Griffes du chaos',1.1); },
+    if (c===1) return F ? A('Écho de '+ENEMIES[F[0]].name,1.3,{type:'mag', el:F[2]}) : A('Rayon cosmique',1,{type:'mag', weaken:2, el:'ten'});
+    return A('Griffes du chaos',1.3); },
   // --- v5.5f : boss de légende (phases selon les PV, gros coups toujours annoncés un tour à l'avance) ---
   ifrit(e){ const p=bossPhase(e), c=(e.t-e.pt)%3;
     if (p===1 && op(e)) return {kind:'buffAll', name:'Rage infernale', pct:0.3, turns:3, windup:1, interruptible:true, fx:'fire'};
@@ -2634,6 +2634,10 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.0i', date:'24/10/2026', img:'assets/monsters/chaos.webp', title:'Chaos encore plus menaçant', notes:[
+    'Les coups normaux de Chaos font un peu plus mal.',
+    'Ses grandes attaques annoncées peuvent retirer jusqu’à un peu plus de la moitié de ta vie. Protège-toi ou interromps-le quand il prépare un gros coup.'
+  ]},
   {v:'v6.0h', date:'24/10/2026', img:'assets/monsters/chaos.webp', title:'Chaos, un vrai combat final', notes:[
     'Chaos a plus de force : ses grandes attaques sont toujours annoncées un tour avant, mais elles font plus mal.',
     'Dans ses deux dernières phases, il frappe fort plus souvent. Garde des soins et des protections pour la fin.',

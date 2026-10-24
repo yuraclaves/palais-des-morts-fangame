@@ -1,5 +1,9 @@
 # Notes de patch : A Godless Realm
 
+## v6.0i : Chaos encore plus menaçant (24/10/2026)
+- Les coups normaux de Chaos font un peu plus mal.
+- Ses grandes attaques annoncées peuvent retirer jusqu'à un peu plus de la moitié de ta vie. Protège-toi ou interromps-le quand il prépare un gros coup.
+
 ## v6.0h : Chaos, un vrai combat final (24/10/2026)
 - Chaos a plus de force : ses grandes attaques sont toujours annoncées un tour avant, mais elles font plus mal.
 - Dans ses deux dernières phases, il frappe fort plus souvent. Garde des soins et des protections pour la fin.
