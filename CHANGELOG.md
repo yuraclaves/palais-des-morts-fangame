@@ -1,5 +1,10 @@
 # Notes de patch : A Godless Realm
 
+## v6.0e : Duo et trio plus stables (24/10/2026)
+- Correction d'une désynchronisation en duo : au début d'un combat, l'hôte pouvait reprendre un ancien état (poison, faiblesse) au lieu du nouveau.
+- Les deux joueurs voient maintenant les mêmes effets dès le premier tour.
+- Compagnons : le bouton Sans compagnon est grisé quand aucun compagnon n'est choisi.
+
 ## v6.0d : Petits écrans, suite (24/10/2026)
 - Sur les petits écrans, deux ou trois monstres se placent côte à côte au lieu de se cacher l'un l'autre.
 - L'intention d'un monstre seul ne sort plus du haut de l'écran.

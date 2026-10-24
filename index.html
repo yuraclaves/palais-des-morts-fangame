@@ -2626,6 +2626,11 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.0e', date:'24/10/2026', img:'assets/icons/icon_combat.webp', title:'Duo et trio plus stables', notes:[
+    'Correction d’une désynchronisation en duo : au début d’un combat, l’hôte pouvait reprendre un ancien état (poison, faiblesse) au lieu du nouveau.',
+    'Les deux joueurs voient maintenant les mêmes effets dès le premier tour.',
+    'Compagnons : le bouton Sans compagnon est grisé quand aucun compagnon n’est choisi.'
+  ]},
   {v:'v6.0d', date:'24/10/2026', img:'assets/monsters/bombo.webp', title:'Petits écrans, suite', notes:[
     'Sur les petits écrans, deux ou trois monstres se placent côte à côte au lieu de se cacher l’un l’autre.',
     'L’intention d’un monstre seul ne sort plus du haut de l’écran.',
@@ -4571,7 +4576,7 @@ SCREENS.comps = function(back){
       ${COMP_ORDER.map(k=>{ const c=COMPANIONS[k], rk=S.comps[k]; return `<button class="btn card ${rk?'':'locked'} ${k===S.comp?'sel':''}" data-k="comp-${k}" data-comp="${k}">${spr('c_'+k,rk?'idle':'')}<span style="font-size:12px">${c.name}</span>${stars(c.star)}${rk?`<span class="muted" style="font-size:11px">Rang ${rk}</span>`:'<span class="lock">?</span>'}</button>`; }).join('')}
     </div>
   </div>
-  <div class="row"><button class="btn small grow" data-k="none" id="bNoComp">Sans compagnon</button><button class="btn grow" data-k="back" id="bCB">Retour</button></div>`;
+  <div class="row"><button class="btn grow" data-k="none" id="bNoComp" ${S.comp?'':'disabled'}>${S.comp?'Partir sans compagnon':'Aucun compagnon choisi'}</button><button class="btn grow" data-k="back" id="bCB">Retour</button></div>`;
   app.querySelectorAll('[data-comp]').forEach(b=>b.onclick=()=>compDetail(b.dataset.comp));
   document.getElementById('bNoComp').onclick=()=>{ S.comp=null; persist(); SCREENS.comps(); };
   document.getElementById('bCB').onclick=()=>SCREENS[compBack]();
@@ -5440,7 +5445,7 @@ function startDuoRun({seed, players, mySlot, startedAt}){
 const _renderCombat = renderCombat, _updateCombat = updateCombat;
 renderCombat = function(){
   if (!isDuo()) return _renderCombat();
-  const p=R.cur||0; heroIn(DUO.my); _renderCombat(); heroIn(p);
+  const p=R.cur||0; heroOut(); heroIn(DUO.my); try{ _renderCombat(); } finally { heroIn(p); } // v6.0e : sauve le héros courant avant l'affichage (sinon l'hôte reprenait un état ancien)
   const f=document.getElementById('field'); if(!f) return;
   f.classList.remove('solo'); f.classList.add('withc','duo'); f.classList.toggle('trio', NP()>2);
   others().forEach((i,n)=>{ const o=R.party[i];
@@ -5451,7 +5456,7 @@ renderCombat = function(){
 };
 updateCombat = function(){
   if (!isDuo()) return _updateCombat();
-  const p=R.cur||0; heroOut(); heroIn(DUO.my); _updateCombat(); heroIn(p);
+  const p=R.cur||0; heroOut(); heroIn(DUO.my); try{ _updateCombat(); } finally { heroIn(p); }
   others().forEach(i=>{ const o=R.party[i], pe=document.getElementById(pidOf(i));
     if (pe){ const b=pe.querySelector('.php i'); if(b) b.style.width=Math.max(0,Math.round(100*o.hp/Math.max(1,o.maxhp)))+'%'; pe.classList.toggle('ko', o.hp<=0); } });
   const me=document.getElementById('player'); if (me) me.classList.toggle('ko', R.party[DUO.my].hp<=0);
