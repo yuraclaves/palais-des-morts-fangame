@@ -1,5 +1,100 @@
 # Notes de patch : A Godless Realm
 
+## v6.1d : Une mécanique par job, sorts épurés et faiblesses visibles (24/10/2026)
+- Chaque job a maintenant sa propre jauge sous les PM, inspirée de FINAL FANTASY XIV. Appui long dessus pour savoir comment la remplir.
+- Paladin : Serment, gagné quand tu encaisses un coup, sert à lancer Rempart. Guerrier : Rage, gagnée en encaissant, pour Fendoir et Tourbillon.
+- Moine : Chakra, gagné à chaque coup et coup critique, jusqu'à 5 pour Chakra interdit qui soigne aussi.
+- Barde : Répertoire, gagné à chaque tour de poison et coup critique, pour Pluie de flèches.
+- Mage blanc : un Lys tous les trois tours. Un Lys rend Soin gratuit, trois Lys lancent Misère du lys sur tous.
+- Mage noir : Feu astral et Glace ombrale. Le Feu monte en puissance mais coûte plus de PM, la Glace rend plus de PM.
+- Érudit : commence avec 3 Flux d'éther, pour un Réconfort gratuit ou Drain d'énergie.
+- Chevalier dragon : Saut donne l'Œil du dragon, deux Œils lancent Plongeon draconique.
+- Les monstres ont un peu plus de PV et frappent un peu plus fort (sauf Chaos).
+- Moine, Barde et Samouraï ont plus de PV. Les sorts de base du Moine, du Barde, du Samouraï et du Mage rouge incluent maintenant une attaque sur tous les ennemis.
+- Boutons de sort épurés : icône, nom, effet principal et coût. Le détail complet reste sur l'appui long.
+- Un anneau vert autour d'une icône veut dire que la cible est faible à cet élément.
+- Sous chaque monstre : pastille verte pour ses faiblesses, pastille grise pour ses résistances. Un gros Faiblesse ! s'affiche à l'impact.
+
+## v6.1c : Nouveau menu principal (24/10/2026)
+- L'avant-poste devient un vrai menu principal : grand décor de FINAL FANTASY XIV en plein écran.
+- Ton personnage et ton compagnon sont mis en avant au centre, avec ton record et tes victoires.
+- Une liste verticale claire : Explorer le Palais, Jobs, Marchand, Invocation, Compagnons, En ligne et Paramètres.
+
+## v6.1b : En ligne simplifié et sauvegarde du compte (24/10/2026)
+- L'écran En ligne tient sur un seul écran avec quatre onglets en bas : Jouer, Classement, Amis et Compte.
+- Jouer à plusieurs : créer un salon ou entrer un code, tout est visible tout de suite.
+- Sauvegarde du compte : un seul bouton Sauvegarder, plus aucun code à copier.
+- Quand tu es connecté, ta progression est envoyée automatiquement et récupérée sur un autre appareil à la connexion.
+
+## v6.1a : Classement jusqu’à l’étage 100 (24/10/2026)
+- Le classement en ligne accepte maintenant les étages 51 à 100 : l'étage affiché est l'étage réel.
+- Une victoire contre Chaos s'affiche Victoire 100. Une chute dans le Néant s'affiche Néant et l'étage.
+- Un seul classement : il est dans En ligne. Le bouton Classement de l'avant-poste est retiré.
+
+## v6.0i : Chaos encore plus menaçant (24/10/2026)
+- Les coups normaux de Chaos font un peu plus mal.
+- Ses grandes attaques annoncées peuvent retirer jusqu'à un peu plus de la moitié de ta vie. Protège-toi ou interromps-le quand il prépare un gros coup.
+
+## v6.0h : Chaos, un vrai combat final (24/10/2026)
+- Chaos a plus de force : ses grandes attaques sont toujours annoncées un tour avant, mais elles font plus mal.
+- Dans ses deux dernières phases, il frappe fort plus souvent. Garde des soins et des protections pour la fin.
+- Aucune attaque ne peut te tuer d'un seul coup si tu as toute ta vie.
+- Le combat est un peu plus court et plus intense.
+- Les améliorations permanentes (Force, Vitalité, Voile, etc.) donnent un peu moins par niveau. Elles aident toujours, mais le jeu reste un défi.
+
+## v6.0g : Avant-poste sans défiler (24/10/2026)
+- L'avant-poste tient en entier sur l'écran : la barre du bas (En ligne, Classement, Paramètres, Écran titre) est visible tout de suite.
+- Sur les petits écrans aussi.
+
+## v6.0f : Fenêtres plus pratiques (24/10/2026)
+- Dans les fenêtres longues (aide, détails), le bouton Fermer reste visible en bas : plus besoin de défiler pour sortir.
+- Le bouton Fermer est plus facile à toucher.
+
+## v6.0e : Duo et trio plus stables (24/10/2026)
+- Correction d'une désynchronisation en duo : au début d'un combat, l'hôte pouvait reprendre un ancien état (poison, faiblesse) au lieu du nouveau.
+- Les deux joueurs voient maintenant les mêmes effets dès le premier tour.
+- Compagnons : le bouton Sans compagnon est grisé quand aucun compagnon n'est choisi.
+
+## v6.0d : Petits écrans, suite (24/10/2026)
+- Sur les petits écrans, deux ou trois monstres se placent côte à côte au lieu de se cacher l'un l'autre.
+- L'intention d'un monstre seul ne sort plus du haut de l'écran.
+- L'écran Victoire finale ne coupe plus le mot en deux.
+
+## v6.0c : Néant plus juste, petits écrans (24/10/2026)
+- Le Néant est mieux dosé : les monstres normaux tombent en 2 tours, les élites et les boss restent les vrais dangers.
+- Titan et le Nuage des ténèbres ont moins de PV : leurs combats sont moins longs.
+- Sur les petits écrans (iPhone SE), le combat tient en entier sans défiler.
+- Les boutons du haut (retour, son, aide, menu) sont plus faciles à toucher.
+- Le score envoyé au classement est limité pour les très longues parties.
+
+## v6.0b : Acte II : le Néant, étages 51 à 100 (24/10/2026)
+- Après Bahamut, un escalier s'ouvre sous le trône. Tu choisis : rentrer victorieux, ou descendre dans le Néant pour 50 étages de plus.
+- Ta victoire sur Bahamut est comptée tout de suite. Si tu tombes dans le Néant, tu gardes ta victoire et l'étage atteint.
+- Dix nouveaux boss légendaires, un tous les 5 étages : Garuda, Titan, Odin, Ultimecia, l'Empereur, le Nuage des ténèbres, Necron, Ardyn, Garland, et Chaos à l'étage 100.
+- Chaos appelle tour à tour les quatre Démons : Marilith, Kraken, Liche et Tiamat. À chaque appel, ses faiblesses et ses résistances changent. Regarde ses cristaux.
+- Dix nouveaux monstres dans le Néant : Tomberry, Malboro, Coeurl, Lamia, Ochu, Géant de fer, Dragon rouge, Dullahan, Flagelleur et Élémentaire sombre.
+- Nouveaux décors officiels pour les étages 51 à 100 et pour chaque boss.
+- Vaincre Chaos rapporte un gros bonus : 1500 Gils, 15 fragments et des points en plus au classement.
+- Le classement affiche Néant et l'étage atteint, ou Victoire 100.
+- Difficulté réglée : un peu plus dur au départ, et les améliorations du marchand sont moins fortes, pour que le jeu reste un défi même tout amélioré.
+- Dés : un seul niveau maintenant.
+- Nouveau dans Paramètres : copier et coller un code de sauvegarde, pour passer ta progression d'un site à l'autre.
+- Boutons Retour et menus de l'écran titre plus faciles à toucher.
+- Version test : ce site est séparé du jeu habituel, avec ses propres salons en ligne.
+
+## v6.0a : Les éléments et des combats plus malins (23/10/2026)
+- Chaque attaque a maintenant un élément : Feu, Glace, Foudre, Terre, Vent, Eau, Lumière, Ténèbres, ou Physique pour les coups d'arme.
+- Le petit cristal sur chaque action montre son élément. Il s'entoure de vert si l'ennemi visé y est faible.
+- Sous le nom de chaque ennemi, les cristaux verts sont ses faiblesses et les cristaux gris ses résistances. Une faiblesse fait une fois et demie plus de dégâts, une résistance moitié moins. Ifrit craint la Glace et l'Eau, Barbariccia craint la Terre.
+- Chaque job a au moins deux éléments dans ses actions : aucun boss ne te bloque complètement.
+- Les compagnons ont aussi leur élément.
+- Les intentions des ennemis sont de retour au dessus de leur tête : attaque, sort, soin, renfort ou bouclier, avec l'élément et les dégâts prévus.
+- Les ennemis ont un rôle affiché : Blindé (frappe-le avec la magie), Lanceur (interromps ses sorts), Soigneur et Soutien (à éliminer en premier), Explosif.
+- Une grosse attaque annoncée prise sans bouclier ni défense t'affaiblit pendant 2 tours. Protège-toi au bon moment !
+- Le jeu est un peu plus difficile : un peu moins de soin après chaque combat, élites un peu plus fortes. Les combats restent courts. Réglage en cours.
+- Les améliorations permanentes du marchand ont été rééquilibrées pour rester utiles sans rendre le jeu trop facile.
+- Trois nouvelles récompenses : Cristal de résonance, Prisme d'éther et Serment de verre (plus de dégâts mais moins de soin).
+
 ## v5.5g2 : Marchand plus clair (23/10/2026)
 - Les noms et les effets des améliorations sont plus courts et écrits de la même façon : la stat, puis la valeur.
 - Le niveau suivant est affiché pareil partout, avec la valeur en doré.

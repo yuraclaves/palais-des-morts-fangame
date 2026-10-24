@@ -370,3 +370,64 @@ Récompenses de combat (`assets/rew/`) :
 - `assets/rew/sang.webp` : Item « Berserker Betta », icône 029238
 - `assets/rew/fragment.webp` : Item « Fire Crystal », icône 020007
 - `assets/rew/benediction.webp` : Item « Holy Water », icône 022653
+- `assets/rew/resonance.webp` : Item « Lightning Cluster », icône 020017
+- `assets/rew/prisme.webp` : Item « Glamour Prism », icône 026235
+- `assets/rew/verre.webp` : Item « Cracked Crystal », icône 020019
+
+## Icônes d'éléments (v5.5h)
+
+Icônes officielles d'objets de FINAL FANTASY XIV (cristaux), via l'API publique documentée XIVAPI v2, converties en WebP 48 px. © SQUARE ENIX CO., LTD.
+
+- `assets/el/feu.webp` : Item « Fire Crystal », icône 020007
+- `assets/el/glace.webp` : Item « Ice Crystal », icône 020009
+- `assets/el/vent.webp` : Item « Wind Crystal », icône 020010
+- `assets/el/terre.webp` : Item « Earth Crystal », icône 020012
+- `assets/el/foudre.webp` : Item « Lightning Crystal », icône 020011
+- `assets/el/eau.webp` : Item « Water Crystal », icône 020008
+- `assets/el/lum.webp` : Item « Crystal of Divine Light », icône 020048
+- `assets/el/ten.webp` : Item « Crystal of Eternal Darkness », icône 020046
+- `assets/el/phys.webp` : Item « Whetstone », icône 021470 (attaques physiques, sans élément)
+
+## v6.0 : acte II (étages 51 à 100)
+
+Sprites d'ennemis officiels de FINAL FANTASY BRAVE EXVIUS (© SQUARE ENIX, développé par Alim), publiés sur le Final Fantasy Wiki (pages « File: … from FFBE enemy sprite »), recadrés et retournés pour regarder vers la gauche, convertis en WebP :
+- `assets/monsters/garuda.webp` : Garuda FFXIV from FFBE enemy sprite
+- `assets/monsters/titan.webp` : Titan FFXIV from FFBE enemy sprite 1
+- `assets/monsters/odin.webp` : Odin FFIII from FFBE enemy sprite
+- `assets/monsters/ultimecia.webp` : Ultimecia FFVIII from FFBE enemy sprite
+- `assets/monsters/empereur.webp` : Emperor FFII from FFBE enemy sprite 1
+- `assets/monsters/empereur2.webp` : Emperor FFII from FFBE enemy sprite 2
+- `assets/monsters/nuage.webp` : Cloud of Darkness FFIII from FFBE enemy sprite
+- `assets/monsters/necron.webp` : Necron FFIX from FFBE enemy sprite
+- `assets/monsters/ardyn.webp` : Ardyn FFXV from FFBE enemy sprite
+- `assets/monsters/garland.webp` : Garland FFI from FFBE enemy sprite
+- `assets/monsters/chaos.webp` : Chaos FFI from FFBE enemy sprite
+- `assets/monsters/marilith.webp` : Marilith FFI from FFBE enemy sprite
+- `assets/monsters/kraken.webp` : Kraken FFI from FFBE enemy sprite
+- `assets/monsters/liche.webp` : Lich from FFBE enemy sprite
+- `assets/monsters/tiamat.webp` : Tiamat FFI from FFBE enemy sprite
+- `assets/monsters/tomberry.webp` : Tonberry FFVIII from FFBE enemy sprite
+- `assets/monsters/malboro.webp` : Malboro FFVII from FFBE enemy sprite
+- `assets/monsters/coeurl.webp` : Coeurl FFVII from FFBE enemy sprite
+- `assets/monsters/geantdefer.webp` : Iron Giant FFVIII from FFBE enemy sprite
+- `assets/monsters/dragonrouge.webp` : Red Dragon FFIX from FFBE enemy sprite
+- `assets/monsters/ochu.webp` : Ochu from FFBE enemy sprite
+- `assets/monsters/elemsombre.webp` : Dark Elemental from FFBE enemy sprite
+- `assets/monsters/lamia.webp` : Lamia FFII from FFBE enemy sprite
+- `assets/monsters/dullahan.webp` : Dullahan FFVI from FFBE enemy sprite
+- `assets/monsters/flagelleur.webp` : Mindflayer from FFBE enemy sprite
+
+Décors de combat officiels de FINAL FANTASY BRAVE EXVIUS (même source que les autres décors), recadrés en 720×768, WebP :
+- `assets/bg/at5.webp` : Ghastly Valley
+- `assets/bg/at5b.webp` : Farplane BG 2
+- `assets/bg/at5c.webp` : Land of Fading Memories
+- `assets/bg/at6.webp` : Crystal Way
+- `assets/bg/at6b.webp` : Aldore Tower Zenith
+- `assets/bg/at6c.webp` : Clouds of Lasting Light
+- `assets/bg/e5.webp` : Lightshade Valley
+- `assets/bg/e6.webp` : Forbidden Land
+- `assets/bg/b60.webp` : Cave of the Titan
+- `assets/bg/b70.webp` : Emperor's Hall
+- `assets/bg/b80.webp` : Dark Symphony
+- `assets/bg/b90.webp` : Eternal Summit
+- `assets/bg/b100.webp` : Farplane BG 1

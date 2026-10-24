@@ -1,2 +1,2 @@
-https://palais-des-morts.onrender.com
-https://yuraclaves.github.io/palais-des-morts-fangame/
+https://a-godless-realm-next.onrender.com
+(version test, branche next ; la version stable reste sur https://palais-des-morts.onrender.com)
