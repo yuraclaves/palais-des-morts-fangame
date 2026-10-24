@@ -1664,6 +1664,73 @@ body.cui #field .bann.now{animation:bannIn .35s ease-out,bannPulse 1s ease-in-ou
 @keyframes bannBar{0%{transform:scaleX(.35)}100%{transform:scaleX(1)}}
 @keyframes bannPulse{100%{box-shadow:inset 0 0 0 1px rgba(255,160,140,.95),0 0 16px rgba(255,60,40,.45)}}
 body.cui #field.hasann .log{top:62px}
+/* v6.3 : HUD façon FFXIV (fenêtres plates gravées, liste de groupe, emplacements de barre d'actions, barres de cible) */
+body.cui{--ffw:#1c1b1f;--ffw2:#141317;--ffe1:rgba(255,255,255,.16);--ffe2:rgba(0,0,0,.85)}
+body.cui #app{background:linear-gradient(180deg,#0b0c12,#08080c)}
+/* fenêtre FFXIV : fond plat + grain, bord gravé (clair en haut, sombre en bas), petites équerres d'angle */
+body.cui .tipbox,body.cui #modal .win{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(180deg,var(--ffw),var(--ffw2))!important;border:1px solid #000!important;border-radius:5px!important;box-shadow:inset 0 1px 0 var(--ffe1),inset 0 0 0 1px rgba(var(--ac),.28),inset 0 -1px 0 var(--ffe2),0 6px 18px rgba(0,0,0,.7)!important;text-shadow:0 1px 1px #000}
+body.cui #modal .win::before{display:none}
+body.cui .tipbox::before,body.cui .tipbox::after,body.cui #modal .win::after{content:"";position:absolute;width:9px;height:9px;pointer-events:none}
+body.cui .tipbox::before{left:3px;top:3px;border-left:1px solid rgb(var(--ac));border-top:1px solid rgb(var(--ac))}
+body.cui .tipbox::after{right:3px;bottom:3px;border-right:1px solid rgb(var(--ac));border-bottom:1px solid rgb(var(--ac))}
+body.cui #modal .win::after{right:3px;top:3px;border-right:1px solid rgb(var(--ac));border-top:1px solid rgb(var(--ac))}
+body.cui #modal .win>h2:first-child{margin:-4px -4px 10px;padding:5px 10px 6px;font:600 15px/1.2 'Cinzel',Georgia,serif;letter-spacing:.06em;color:#eee6d2;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0));border-bottom:1px solid #000;box-shadow:0 1px 0 rgba(var(--ac),.45);text-align:left}
+body.cui .tipbox{padding-top:9px}
+/* barre du haut : bande sombre plate, filet gravé */
+body.cui .win.topbar{background:linear-gradient(180deg,#141318,#0e0d11)!important}
+body.cui .win.topbar::after{left:0;right:0;background:rgba(var(--ac),.5);box-shadow:0 1px 0 #000}
+body.cui .topbar .btn.small{border-radius:4px!important;border:1px solid #000!important;background:linear-gradient(180deg,#2c2a30,#1a191d)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 0 0 1px rgba(var(--ac),.3)!important}
+/* liste de groupe */
+body.cui #ppw{padding:0 2px}
+.ffpl{position:relative;padding:4px 4px 2px}
+.ffpl-row{display:flex;align-items:center;gap:8px;padding:5px 10px 6px 6px;background:linear-gradient(90deg,rgba(0,0,0,.62),rgba(0,0,0,.45) 70%,rgba(0,0,0,0));border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(0,0,0,.6);position:relative}
+.ffpl-row::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;background:rgb(var(--ac));opacity:.85}
+.ffpl-ic{flex:none;width:34px;height:34px;border-radius:5px;position:relative;border:1px solid #000;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -2px 3px rgba(0,0,0,.5),0 1px 2px rgba(0,0,0,.8)}
+.ffpl-ic.r-tank{background:linear-gradient(180deg,#4a6fc7,#253f86)}
+.ffpl-ic.r-heal{background:linear-gradient(180deg,#4f9a4f,#255c2a)}
+.ffpl-ic.r-dps{background:linear-gradient(180deg,#a94a4a,#632222)}
+.ffpl-ic i{position:absolute;inset:3px;background:#fff;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;filter:drop-shadow(0 1px 0 rgba(0,0,0,.6))}
+.ffpl-m{flex:1;min-width:0}
+.ffpl-top{display:flex;align-items:baseline;gap:6px;white-space:nowrap;overflow:hidden}
+.ffpl-lv{font:700 10.5px/1 'Source Sans 3',system-ui,sans-serif;color:#cfc6b0;letter-spacing:.03em}
+.ffpl-name{font:700 14.5px/1.1 'Source Sans 3',system-ui,sans-serif;color:#fff;text-shadow:0 0 2px #000,0 1px 1px #000;overflow:hidden;text-overflow:ellipsis}
+.ffpl-job{font:600 11px/1 'Source Sans 3',system-ui,sans-serif;color:#9a958a;margin-left:auto}
+.ffpl-bars{display:flex;gap:10px;margin-top:4px}
+.ffb{display:flex;flex-direction:column;gap:1px}
+.ffb.hp{flex:1.7}.ffb.mp{flex:1}
+.ffb-t{position:relative;height:5px;background:#0b0b0d;border:1px solid #000;border-radius:1px;box-shadow:0 1px 0 rgba(255,255,255,.08)}
+.ffb-t::before,.ffb-t::after{content:"";position:absolute;top:50%;width:5px;height:5px;margin-top:-2.5px;background:rgb(var(--acm));transform:rotate(45deg);box-shadow:0 0 0 1px #000;z-index:2}
+.ffb-t::before{left:-4px}.ffb-t::after{right:-4px}
+.ffb-t>i{position:absolute;left:0;top:0;bottom:0;transition:width .35s ease}
+.ffb.hp .ffb-t>i{background:linear-gradient(180deg,#b9f28a,#5cbf3a 55%,#3d8f26)}
+.ffb.mp .ffb-t>i{background:linear-gradient(180deg,#ffb6e2,#e05ab4 55%,#a83888)}
+.ffb-t>s{position:absolute;left:0;top:-1px;height:2px;background:#ffe27a;text-decoration:none}
+.ffpl-row.crit .ffb.hp .ffb-t>i{background:linear-gradient(180deg,#ffb07a,#e0602a)}
+.ffb-v{align-self:flex-end;font:700 12px/1.05 'Source Sans 3',system-ui,sans-serif;color:#fff;text-shadow:0 0 2px #000,0 1px 1px #000;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ffb-v em{font-style:normal;font-size:9px;color:#9a958a;margin-right:3px;letter-spacing:.06em}
+.ffb-v small{font-size:10px;color:#a8a296}
+body.cui .ffpl .jg{margin:5px 0 0 0;background:none;box-shadow:none;border-top:1px solid rgba(255,255,255,.04);border-radius:0;height:38px}
+body.cui .ffpl .jg::before{opacity:.05}
+.ffpl-st{margin-top:3px}
+/* sorts : emplacements de barre d'actions */
+body.cui #app .btn.sk.sk3{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(180deg,#1e1d21,#151418)!important;border:1px solid #000!important;border-radius:5px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.1),inset 0 0 0 1px rgba(var(--ac),.16),inset 0 -1px 0 rgba(0,0,0,.8),0 2px 0 rgba(0,0,0,.5)!important}
+body.cui #app .btn.sk.sk3:active{transform:translateY(1px);box-shadow:inset 0 0 0 1px rgba(var(--ac),.5),inset 0 2px 6px rgba(0,0,0,.6)!important}
+body.cui #app .btn.sk.sk3::after{border-color:rgba(var(--ac),.5)}
+body.cui #app .btn.sk.sk3.na:not(:disabled){background:linear-gradient(180deg,#18171a,#111013)!important}
+body.cui .sk3 .sk3i{border-radius:6px!important;padding:2px;background:linear-gradient(180deg,#4a4740,#1c1a17 45%,#2e2b26)!important;box-shadow:0 0 0 1px #000,inset 0 1px 0 rgba(255,255,255,.35),0 2px 3px rgba(0,0,0,.7)!important}
+body.cui .sk3 .sk3i .ski{border-radius:4px!important;box-shadow:inset 0 0 0 1px rgba(0,0,0,.6)}
+body.cui .sk3.weakon .sk3i{background:linear-gradient(180deg,#9df0a8,#2c7a3a)!important;box-shadow:0 0 0 1px #000,0 0 8px rgba(125,255,154,.45)!important}
+body.cui .sk3 .sk3cd{inset:2px;border-radius:4px;background:conic-gradient(rgba(0,0,0,.72) 0 calc(var(--cdp,1)*360deg),rgba(0,0,0,.22) 0);font:700 19px/1 'Source Sans 3',system-ui,sans-serif;text-shadow:0 0 3px #000,0 1px 1px #000}
+body.cui .sk3.skit .sk3i{background:linear-gradient(180deg,#4a4740,#1c1a17 45%,#2e2b26)!important}
+/* barres de cible ennemies */
+body.cui #field .en .ename{background:none!important;padding:0 2px!important;color:#fff;text-shadow:0 0 2px #000,0 1px 1px #000,0 0 6px rgba(0,0,0,.8)}
+body.cui #field .en.tgt .ename{color:rgb(var(--acl))}
+body.cui #field .en .bar.ehp{position:relative;height:4px;border:1px solid #000;border-radius:1px;background:#0b0b0d;box-shadow:0 1px 0 rgba(255,255,255,.1);margin:2px auto 3px;overflow:visible}
+body.cui #field .en .bar.ehp>i{background:linear-gradient(180deg,#ffb08a,#d8452e 55%,#9a2a1c);border-radius:0}
+body.cui #field .en .bar.ehp::before,body.cui #field .en .bar.ehp::after{content:"";position:absolute;top:50%;width:4px;height:4px;margin-top:-2px;background:rgb(var(--acm));transform:rotate(45deg);box-shadow:0 0 0 1px #000;z-index:2}
+body.cui #field .en .bar.ehp::before{left:-3px}body.cui #field .en .bar.ehp::after{right:-3px}
+body.cui #field .en.tgt .bar.ehp::before,body.cui #field .en.tgt .bar.ehp::after{background:rgb(var(--acl))}
+body.cui #field .en.boss .bar.ehp{height:6px;box-shadow:0 1px 0 rgba(255,255,255,.1)}
 </style>
 </head>
 <body>
@@ -3955,12 +4022,34 @@ function playerPanelHTML(inCombat){
     if (st.pdotT>0) bf('b-bad','poison',String(st.pdot),st.pdotT,`Poison : ${st.pdot} dégâts par tour`);
     if (C.cp) sts.push(`<span style="color:#ffe27a">${COMPANIONS[R.comp.id].name} : ${C.cp.cd>0?'recharge '+C.cp.cd:'prêt'}</span>`);
   }
+  if (CUI && inCombat) return ffPartyHTML(j, st, sts);
   return `<div class="win ppanel" id="pp">
     <div class="row"><span class="nm grow">${esc(R.pname||S.name)} <span class="muted">${j.name} · Niv. ${R.level}</span></span>${inCombat?'':`<span class="muted">Pot. ${R.potions} · Éth. ${R.ethers}</span>`}</div>
     <div class="row" style="gap:6px;margin-top:3px"><span style="width:24px;font-size:12px">PV</span><div class="grow">${bar(R.hp,R.maxhp,'',st?st.shield:0)}</div><span style="font-size:12px;width:74px;text-align:right">${Math.ceil(R.hp)}/${R.maxhp}</span></div>
     <div class="row" style="gap:6px;margin-top:3px"><span style="width:24px;font-size:12px">PM</span><div class="grow">${bar(R.mp,R.maxmp,'mp')}</div><span style="font-size:12px;width:74px;text-align:right">${Math.floor(R.mp)}/${R.maxmp}</span></div>
     ${st?(CUI?gaugeHTML2(st):gaugeHTML(st)):''}
     ${inCombat&&sts.length?`<div class="status" style="margin-top:4px">${sts.map(s=>`<span>${s}</span>`).join('')}</div>`:''}
+  </div>`;
+}
+// v6.3 : liste de groupe façon FFXIV (pas de grand cadre : une ligne par membre)
+const FF_JOBIC={paladin:'paladin',guerrier:'warrior',moine:'monk',dragoon:'dragoon',barde:'bard',mageblanc:'whitemage',magenoir:'blackmage',erudit:'scholar',samourai:'samurai',magerouge:'redmage'};
+const FF_ROLE={paladin:'tank',guerrier:'tank',mageblanc:'heal',erudit:'heal'};
+function ffPartyHTML(j, st, sts){
+  const hp=Math.ceil(R.hp), mp=Math.floor(R.mp), hpP=Math.max(0,Math.min(100,R.hp/R.maxhp*100)), mpP=Math.max(0,Math.min(100,R.mp/R.maxmp*100));
+  const sh=st&&st.shield>0?Math.min(100,st.shield/R.maxhp*100):0, ic2=FF_JOBIC[R.job], role=FF_ROLE[R.job]||'dps';
+  return `<div class="ffpl" id="pp">
+    <div class="ffpl-row${hpP<=25?' crit':''}">
+      <span class="ffpl-ic r-${role}">${ic2?`<i style="-webkit-mask-image:url(assets/ui/job_${ic2}.webp);mask-image:url(assets/ui/job_${ic2}.webp)"></i>`:''}</span>
+      <div class="ffpl-m">
+        <div class="ffpl-top"><span class="ffpl-lv">Niv. ${R.level}</span><b class="ffpl-name">${esc(R.pname||S.name)}</b><span class="ffpl-job">${j.name}</span></div>
+        <div class="ffpl-bars">
+          <div class="ffb hp"><div class="ffb-t"><i style="width:${hpP.toFixed(1)}%"></i>${sh?`<s style="width:${sh.toFixed(1)}%"></s>`:''}</div><span class="ffb-v"><em>PV</em>${hp}<small>/${R.maxhp}</small></span></div>
+          <div class="ffb mp"><div class="ffb-t"><i style="width:${mpP.toFixed(1)}%"></i></div><span class="ffb-v"><em>PM</em>${mp}</span></div>
+        </div>
+      </div>
+    </div>
+    ${st?gaugeHTML2(st):''}
+    ${sts.length?`<div class="status ffpl-st">${sts.map(x=>`<span>${x}</span>`).join('')}</div>`:''}
   </div>`;
 }
 function partyLevel(){
@@ -4360,7 +4449,7 @@ function updateCombat(){
     if (e.enrageAt){ const left=e.enrageAt-e.t; if (left<=0) sx.push('<b style="color:#ff80ff">ENRAGÉ</b>'); else if (left<=6) sx.push(''+ic('clock')+''+left); }
     const wind=!e.dead&&e.intent&&(e.intent.kind==='charge'||e.intent.big||e.intent.kind==='buffAll'||e.intent.kind==='summon');
     const sl=enSlot(i,C.enemies.length,C.enemies); return `<div style="--x:${sl[0]};--y:${sl[1]};--s:${sl[2]};z-index:${sl[3]}" class="en ${e.boss?'boss':''} ${e.boss&&isNamedBoss(e.key)?'named':''} ${e===tgt&&alive().length>1?'tgt':''} ${e.dead?'dead':''} ${wind?'winding':''} ${wind&&canInterrupt(e)?'cut':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
-      ${CUI?'':it+bossCast(e)}<span class="esp">${spr(e.skin||e.key,'idle')}</span><div class="ename">${e.name}</div>${e.dead?'':elemChips(e)}${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
+      ${CUI?'':it+bossCast(e)}<span class="esp">${spr(e.skin||e.key,'idle')}</span><div class="ename">${e.name}</div>${CUI?bar(e.hp,e.maxhp,'ehp',e.shield)+(e.dead?'':elemChips(e)):(e.dead?'':elemChips(e))+bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
   }).join('');
   { const fd=document.getElementById('field'); if (fd) fd.classList.toggle('crowd', C.enemies.length>=3); }
   en.querySelectorAll('[data-ei]').forEach(el=>el.onclick=()=>{ const i=+el.dataset.ei; if(!C.enemies[i].dead){ C.target=i; updateCombat(); } });
@@ -4405,7 +4494,7 @@ function renderSkills(){
     const m = (s.el && tg && s.target!=='self') ? elemMul(tg,s.el) : 1;
     const why = st.cd ? `Prêt dans ${st.cd} tour${st.cd>1?'s':''}` : st.why==='PM' ? 'PM insuffisants' : st.why ? `${g} ${C.st.sen}/${s.req}` : '';
     return `<button class="btn sk sk3 ${st.ok?'':'na'}${st.cd?' oncd':''}${m>1?' weakon':m<1?' reson':''}" data-k="skill-${s.id}" data-sk="${s.id}" data-tip="${skillDetail(s).replace(/"/g,'&quot;')}" ${C.busy?'disabled':''}>`
-      + `<span class="sk3i"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'">${s.el?elIc(s.el,'sk3el'):''}${m>1?'<b class="sk3x good">×1,5</b>':m<1?'<b class="sk3x bad">×0,5</b>':''}${st.cd?`<b class="sk3cd">${st.cd}</b>`:''}</span>`
+      + `<span class="sk3i"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'">${s.el?elIc(s.el,'sk3el'):''}${m>1?'<b class="sk3x good">×1,5</b>':m<1?'<b class="sk3x bad">×0,5</b>':''}${st.cd?`<b class="sk3cd" style="--cdp:${Math.min(1,st.cd/Math.max(st.cd,s.cd||1)).toFixed(3)}">${st.cd}</b>`:''}</span>`
       + `<span class="sk3t"><span class="skn${s.name.length>14?' skn-l':''}">${s.name}</span><span class="sk3l"><span class="sk3v${why?' why':''}${String(why||skMain(s)).replace(/<[^>]*>/g,'').length>13?' sk3v-l':''}">${why||skMain(s)}</span>${why&&!st.cd?'':cost}</span></span></button>`; }).join('')
     + `<button class="btn sk sk3 skit" data-k="item" id="bItem" data-tip="&lt;b&gt;Objets&lt;/b&gt;&lt;br&gt;Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM." ${C.busy?'disabled':''}><span class="sk3i icb">${ic('heal')}</span><span class="sk3t"><span class="skn">Objets</span><span class="sk3l"><span class="sk3v">Potion ${R.potions} · Éther ${R.ethers}</span></span></span></button>`;
   el.querySelectorAll('[data-sk]').forEach(b=>b.onclick=()=>playerAction(b.dataset.sk));
