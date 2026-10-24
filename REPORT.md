@@ -1,4 +1,56 @@
-# Rapport : A Godless Realm, branche next (v6.0a à v6.0i)
+# Rapport : A Godless Realm, branche next (v6.1a à v6.1d)
+
+## Résumé pour Salim (retours du 24/10)
+- Site test : https://a-godless-realm-next.onrender.com (v6.1d). Le site stable (main, v5.5g2) n'a pas bougé.
+- Classement : jusqu'à l'étage 100, et un seul classement, dans En ligne (v6.1a).
+- En ligne : un seul écran avec quatre onglets en bas (Jouer, Classement, Amis, Compte), plus de sous-menus (v6.1b).
+- Sauvegarde : un seul bouton Sauvegarder dans Compte ou Paramètres, plus de code. Sur un autre téléphone, il suffit de se connecter (v6.1b).
+- Menu principal : grand décor FFXIV, ton personnage au centre, liste claire (v6.1c).
+- Faiblesses : pastille verte sous le monstre pour ses faiblesses, grise pour ses résistances, et un gros « Faiblesse ! » à l'impact (v6.1d).
+- Sorts : boutons épurés avec icône, nom, une ligne d'effet et le coût. Anneau vert si la cible est faible. Appui long pour le détail (v6.1d).
+- Chaque job a sa jauge et sa façon de jouer (Serment, Chakra, Répertoire, Lys, Rage, Œil du dragon, Feu astral et Glace ombrale, Flux d'éther, Sen, Mana). Les monstres ont 10 % de PV et d'attaque en plus (sauf Chaos) (v6.1d).
+- Résultat des simulations (bot, 8 parties par job) : les jobs sont bien plus proches qu'avant (de 12 à 75 % de victoire contre Bahamut, avant de 0 à 100 %).
+- Pas possible : transférer la progression du site stable vers le site test en un geste (le site stable est gelé et n'a pas de sauvegarde en ligne).
+
+## v6.1 : détails
+| Version | Commit | Contenu |
+|---|---|---|
+| v6.1a | 65e78a0 | Classement F1 à F100, un seul classement (En ligne) |
+| v6.1b | 1c94c06 | En ligne à onglets, sauvegarde cloud en un bouton (table pdm_cloud_saves, RLS) |
+| v6.1c | 315f007 | Nouveau menu principal (hub) |
+| docs | f6f8ac4 | HUB_PREVIEW.txt, vérifications live |
+| v6.1d | 9a780cd | Jauges de job, sorts épurés, faiblesses visibles, difficulté +10 % |
+
+### Simulations v6.1d (bot « smart », 8 parties par job, % de victoire contre Bahamut F50)
+Avant = build v6.1c (base gelée) avec le même bot ; après = v6.1d.
+
+| Job | Avant | Après | Étage médian après | Tours combat normal / boss |
+|---|---|---|---|---|
+| Paladin | 38 % | 25 % | 30 | 4 / 10 |
+| Moine | 25 % | 12 % | 28.5 | 4 / 6 |
+| Barde | 25 % | 25 % | 29 | 4 / 7 |
+| Mage blanc | 100 % | 75 % | 50 | 2 / 13 |
+| Guerrier | 75 % | 50 % | 50 | 4 / 10 |
+| Chevalier dragon | 62 % | 75 % | 50 | 3 / 6 |
+| Mage noir | 38 % | 50 % | 50 | 1 / 6 |
+| Érudit | 88 % | 38 % | 41.5 | 3 / 10 |
+| Samouraï | 0 % | 50 % | 50 | 1 / 7 |
+| Mage rouge | 25 % | 50 % | 39 | 2 / 6 |
+| Moyenne | 48 % | 45 % | | |
+
+Mécaniques : voir le tableau MECH dans game.js et la note de patch v6.1d.
+Trio (barde, mage noir, moine, 3 clients, jusqu'à F20) : 69 vérifications, 0 écart, 0 désynchronisation.
+
+Note : le bot n'exploite pas les jauges aussi bien qu'un joueur (Feu astral, Lys gardés pour Misère, etc.). Un joueur qui joue la mécanique fera mieux. Les loadouts par défaut changent ; les joueurs qui ont déjà choisi leurs 4 sorts les gardent.
+
+### Captures iPhone 12 (390x844)
+- Hub : /workspace/ffxiv-roguelite/screens/v61c_hub_live.png
+- En ligne : /workspace/ffxiv-roguelite/screens/v61b_enligne_jouer_live.png, /workspace/ffxiv-roguelite/screens/v61b_enligne_classement_live.png, /workspace/ffxiv-roguelite/screens/v61b_enligne_compte_save_live.png
+- Combat (faiblesses, jauge, boutons) : /workspace/ffxiv-roguelite/screens/v61d_combat_faiblesse_live.png
+- Détail d'un sort (appui long) : /workspace/ffxiv-roguelite/screens/v61d_sort_detail_live.png
+- Jauge Chakra : /workspace/ffxiv-roguelite/screens/v61d_jauge_moine_live.png
+
+# Rapport précédent (v6.0a à v6.0i)
 
 ## Résumé pour Salim
 - La version test est en ligne : https://a-godless-realm-next.onrender.com (v6.0i). La version stable n’a pas bougé (branche main, v5.5g2).
