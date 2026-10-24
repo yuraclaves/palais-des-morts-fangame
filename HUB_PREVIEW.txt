@@ -1,0 +1,4 @@
+Hub / menu principal v6.1c (preview pour Salim)
+Live : https://a-godless-realm-next.onrender.com (cache pdm-next-12, commit 315f007)
+Capture live iPhone 12 (390x844) : /workspace/ffxiv-roguelite/screens/v61c_hub_live.png
+Capture locale : /workspace/ffxiv-roguelite/screens/v61c_hub.png
