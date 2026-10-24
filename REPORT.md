@@ -1,4 +1,54 @@
-# Rapport : A Godless Realm, branche next (v6.1a à v6.1d)
+# Rapport : bascule v6.1d en principal, v6.1e (textes des sorts), proposition v6.2 (next)
+
+## Résumé pour Salim (24/10)
+1. **Bascule faite.** https://palais-des-morts.onrender.com joue maintenant la nouvelle version (salons stables `pdm-lobby` / `pdm-room-`, pas de bandeau test, cache `pdm-assets-v61e` puis `v61f`). Sauvegarde de secours intacte : branche `stable` (ad41a55) et tag `stable-v5.5g2`.
+2. **Textes des sorts corrigés** (v6.1e), sur main et sur next.
+3. **Proposition d'interface de combat** (v6.2), uniquement sur https://a-godless-realm-next.onrender.com. Comparer avec l'ancienne en ajoutant `?cui=0` à l'adresse.
+
+## Versions
+| Branche | Commit | Contenu |
+|---|---|---|
+| main | 5c4bd18 | Bascule v6.1d (CH_NEXT=false, salons stables, cache pdm-assets-v61e) |
+| main | 5c8772b | v6.1e textes des sorts, cache pdm-assets-v61f |
+| next | 0003090 | v6.1e, cache pdm-next-14 |
+| next | b257959 | v6.2 proposition, cache pdm-next-15 |
+
+## Vérification en ligne (main, iPhone 12)
+Menu principal, En ligne, combat, sauvegarde du compte (création zz, envoi, chargement sur un 2e appareil : 12345 Gils, 3 jobs), classement : OK. Une sauvegarde v5.5g (version figée) se charge sur le nouveau main : nom, Gils, jobs, exploration en cours, aucune erreur. md5 index.html en ligne = local. pdm-signup accepte déjà l'origine main (lecture seule, rien modifié).
+
+## v6.1e : bugs de texte corrigés
+- Pastille ×1,5 / ×0,5 déplacée sur le coin de l'icône (ne serre plus le coût ni le texte), police système pour que le × ne ressemble plus à un x.
+- Une seule pastille à droite sur chaque bouton : coût (PM ou jauge), sinon gain de jauge (+1 Sen, +1 Mana, +1 Rage…), sinon gain de PM (Glace +20 PM), sinon recharge (horloge + tours), sinon « Libre ». Fini les boutons sans rien (Glace) à côté de boutons avec coût. Noms de jauge courts (Œil, Flux, Répert.).
+- Sorts de poison (Vent, Foudre, Bactérie, Higanbana, Morsure, Démolition) : le bouton montre les dégâts par tour (« 22/tour · 5 t ») au lieu du petit coup de départ.
+- Réconfort « +36 PV, bouclier » (avant : seulement Bouclier 19) ; Murmure « +13 PV/tour ».
+- Polarité réécrite : « passe en Feu astral 3 : dégâts de feu +45 % », et le coût dit « 25 PM (dont +10 dus au Feu astral) ». Glace : PM rendus réels selon la Glace ombrale.
+- Soin / Réconfort : « Coût 22 PM, ou 1 Lys (gratuit) » au lieu de la ligne redondante.
+- Étourdissement : « étourdit 1 tour. Boss et gardiens : seulement pendant une attaque marquée (éclair) ».
+- Élément : « Feu · Squelette est faible : ×1,5 » (plus de « faiblesse de Ahriman »).
+- Descriptions alignées sur les vrais chiffres : Esprit saint 12 % (pas 8), VerBrasier 15 % (pas 10), soins de Chakra interdit 12 %, Pluie de flèches 10 %, Midare 10 %, Fendoir 6 % ; coûts/gains de jauge écrits (Rempart 2 Serment, Fendoir/Tourbillon 2 Rage, Plongeon 2 Œil, Saut +1 Œil, Murmure +2 Flux, Drain 1 Flux, Misère 3 Lys, Chakra 5…).
+- Plaques ennemies : 2 monstres côte à côte, 3 en triangle, 4 en carré, sprites réduits quand ils sont 3 ou plus : plus de nom caché par les pastilles ni de badge d'intention sur un sprite.
+- Audit complet des 10 jobs (ligne du bouton + infobulle) : /tmp/p57/audit_after.txt.
+
+## v6.2 : proposition d'interface (next uniquement)
+- Activée par `CUI = CH_NEXT` (classe `body.cui` en combat) : un build main (CH_NEXT=false) garde l'ancienne interface même avec les mêmes sources.
+- Barre du haut sombre en dégradé, titre en Cinzel, filet doré, Aide / Menu en pilules.
+- Panneau du héros vitré (comme le menu principal), barres PV/PM fines en dégradé, chiffres alignés.
+- Plaques ennemies : nom en Cinzel sur bandeau sombre, flèches dorées sur la cible, barre fine, pastilles de faiblesse en capsule (verte qui brille), intentions en pilules sombres (rouge = grosse attaque, ambre = préparation).
+- Sorts : cartes sombres en relief (ombre, filet doré, petite flèche, enfoncement au toucher), sorts indisponibles plats et gris.
+- Jauges de job en SVG, une par job, avec animation quand une charge arrive (apparition) ou part (éclat), respiration quand la jauge est pleine :
+  Paladin bouclier du serment qui se remplit + 3 épées ; Moine 5 orbes de chakra en arc ; Barde 3 notes sur une portée ; Mage blanc 3 pétales de lys ; Guerrier jauge de la bête inclinée en 5 segments (flamme quand pleine) ; Chevalier dragon 2 yeux du dragon qui s'ouvrent ; Mage noir orbe de polarité feu/glace avec anneau tournant et 3 losanges de chaque côté ; Érudit 3 gemmes d'éther sur un flux animé ; Samouraï 3 Sen 雪 月 花 ; Mage rouge cristaux blanc et noir qui se remplissent + 3 losanges de mana.
+- Aucune image IA, aucun emoji : CSS/SVG seulement, sprites et icônes officiels déjà crédités.
+
+## Captures (/workspace/ffxiv-roguelite/screens/)
+- Textes avant/après : v61e_avant_sort.png, v61e_apres_sort.png, v61e_avant_4monstres.png, v61e_apres_4monstres.png, v61e_apres_3monstres.png, planche v61e_textes_avant_apres.png (avant d'origine de Salim : v61d_sort_detail_live.png).
+- Main en ligne : live_main/ (main_hub, main_enligne_jouer, main_combat, main_enligne_compte_save, main_appareil2_charge, main_enligne_classement, main_migration_v55g, main_v61e_sort(_tip), main_v61e_4monstres).
+- Proposition : v62_prop_combat.png, v62_prop_sorts.png, v62_prop_boss.png, v62_prop_4monstres.png, côte à côte v62_avant_apres.png, planche des jauges v62_jauges_planche.png, en ligne v62_*_live.png.
+
+## Pas fait / limites
+- Le combat en ligne (duo/trio) utilise le même écran de combat, donc reçoit aussi la proposition sur next ; à vérifier en partie réelle.
+- Pas de note de patch pour la v6.2 : c'est une proposition, à écrire si Salim la valide (puis passer CUI à true sur main).
+
+# Rapport précédent : branche next (v6.1a à v6.1d)
 
 ## Résumé pour Salim (retours du 24/10)
 - Site test : https://a-godless-realm-next.onrender.com (v6.1d). Le site stable (main, v5.5g2) n'a pas bougé.
