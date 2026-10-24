@@ -1868,6 +1868,31 @@ body.cui.kmx #field .en .bar.ehp::before,body.cui.kmx #field .en .bar.ehp::after
 body.cui.kmx #field .en .bar.ehp::before{left:-4px}body.cui.kmx #field .en .bar.ehp::after{right:-4px}
 body.cui.kmx #field .en.tgt .bar.ehp::before,body.cui.kmx #field .en.tgt .bar.ehp::after{background:rgb(var(--acl))}
 @media (max-height:700px){ body.cui.kmx .ffpl .jg{height:34px} body.cui.kmx .ffpl-row{padding:4px 9px 5px 7px} }
+
+/* v6.6 : HUD FFXIV (v6.3) par défaut + variantes de couleur et d'opacité (?hud=… ou Paramètres) */
+:root{--hw1:28,27,31;--hw2:20,19,23;--hwa:1;--hq1:20,19,24;--hq2:14,13,17;--hc1:30,29,33;--hc2:21,20,24;--hca:1;--hn1:24,23,26;--hn2:17,16,19;--hf1:74,71,64;--hf2:28,26,23;--hf3:46,43,38;--hr:0,0,0;--hra:.62;--hb1:44,42,48;--hb2:26,25,29;--hp1:11,12,18;--hp2:8,8,12;--hk:11,11,13;--ht1:207,198,176;--ht2:154,149,138;--he:.1;--hsd:.5}
+body.cui.k63 #app{background:linear-gradient(180deg,rgb(var(--hp1)),rgb(var(--hp2)))}
+html.htr body.cui.k63 #app{background:linear-gradient(180deg,rgba(4,5,10,var(--hsd)),rgba(4,5,10,calc(var(--hsd) + .2))),var(--scbg,none) center 18%/cover no-repeat,rgb(var(--hp2))}
+body.cui.k63 .tipbox,body.cui.k63 #modal .win{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(180deg,rgba(var(--hw1),var(--hwa)),rgba(var(--hw2),var(--hwa)))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,var(--he)),inset 0 0 0 1px rgba(var(--ac),.28),inset 0 -1px 0 rgba(0,0,0,.85),0 6px 18px rgba(0,0,0,.6)!important}
+html.htr body.cui.k63 .tipbox{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(180deg,rgba(var(--hw1),1),rgba(var(--hw2),1))!important}
+body.cui.k63 .win.topbar{background:linear-gradient(180deg,rgba(var(--hq1),var(--hwa)),rgba(var(--hq2),var(--hwa)))!important}
+body.cui.k63 .topbar .btn.small{background:linear-gradient(180deg,rgb(var(--hb1)),rgb(var(--hb2)))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,calc(var(--he) + .04)),inset 0 0 0 1px rgba(var(--ac),.3)!important}
+body.cui.k63 .ffpl-row{background:linear-gradient(90deg,rgba(var(--hr),var(--hra)),rgba(var(--hr),calc(var(--hra)*.72)) 70%,rgba(var(--hr),0));border-top-color:rgba(255,255,255,var(--he))}
+body.cui.k63 .ffpl-lv{color:rgb(var(--ht1))}
+body.cui.k63 .ffpl-job,body.cui.k63 .ffb-v em{color:rgb(var(--ht2))}
+body.cui.k63 .ffb-v small{color:rgb(var(--ht1));opacity:.8}
+body.cui.k63 .ffb-t,body.cui.k63 #field .en .bar.ehp{background:rgb(var(--hk))}
+body.cui.k63 #app .btn.sk.sk3{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(180deg,rgba(var(--hc1),var(--hca)),rgba(var(--hc2),var(--hca)))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,var(--he)),inset 0 0 0 1px rgba(var(--ac),.16),inset 0 -1px 0 rgba(0,0,0,.8),0 2px 0 rgba(0,0,0,.45)!important}
+body.cui.k63 #app .btn.sk.sk3.na:not(:disabled){background:linear-gradient(180deg,rgba(var(--hn1),var(--hca)),rgba(var(--hn2),var(--hca)))!important}
+body.cui.k63 .sk3 .sk3i,body.cui.k63 .sk3.skit .sk3i{background:linear-gradient(180deg,rgb(var(--hf1)),rgb(var(--hf2)) 45%,rgb(var(--hf3)))!important}
+body.cui.k63 .sk3.weakon .sk3i{background:linear-gradient(180deg,#9df0a8,#2c7a3a)!important}
+/* liste de groupe : cristal de job (icône officielle « Soul of … ») dans une alvéole couleur du rôle */
+.ffpl-ic.soul{--rc:200,70,70;width:40px;height:40px;border:1px solid #000;background:radial-gradient(circle at 50% 48%,color-mix(in srgb,var(--g) 50%,transparent),transparent 62%),linear-gradient(180deg,#24232a,#0d0d10)!important;box-shadow:inset 0 0 0 1.5px rgba(var(--rc),.95),inset 0 0 0 2.5px rgba(0,0,0,.7),inset 0 1px 6px rgba(var(--rc),.35),0 1px 2px rgba(0,0,0,.8)!important;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ffpl-ic.soul.r-tank{--rc:90,135,235}.ffpl-ic.soul.r-heal{--rc:96,190,104}
+.ffpl-ic.soul img{width:34px;height:34px;object-fit:contain;display:block;filter:brightness(1.12) saturate(1.1) drop-shadow(0 1px 1px rgba(0,0,0,.85))}
+.thgrid.hg{grid-template-columns:repeat(2,minmax(0,1fr))}
+.thgrid.hg .thb span{white-space:normal;line-height:1.1}
+html.htr body.cui.k63 #modal .win{background:linear-gradient(180deg,rgba(var(--hw1),1),rgba(var(--hw2),1))!important}
 </style>
 </head>
 <body>
@@ -2935,7 +2960,7 @@ function rollPoms(n, bonus){
 const SAVE_KEY = 'ffxiv_palais_des_morts_v1';
 const CH_NEXT = true; // v6.0 : version test (branche next, site séparé)
 const CUI = CH_NEXT && !/[?&]cui=0/.test(location.search);
-const CUI_V = CUI ? ((location.search.match(/[?&]cui=(63|64)\b/)||[])[1]||'mx') : ''; // v6.5 : mix par défaut, ?cui=63 / ?cui=64 pour comparer // v6.2 : proposition d'interface de combat (next uniquement)
+const CUI_V = CUI ? ({'65':'mx'}[(location.search.match(/[?&]cui=(63|64|65)\b/)||[])[1]]||(location.search.match(/[?&]cui=(63|64|65)\b/)||[])[1]||'63') : ''; // v6.6 : HUD FFXIV par défaut, ?cui=64 (cristal) / ?cui=65 (mix) pour comparer // v6.5 : mix par défaut, ?cui=63 / ?cui=64 pour comparer // v6.2 : proposition d'interface de combat (next uniquement)
 // v6.4 : couleur des fenêtres de combat (bleu royal FF par défaut, 12 thèmes, ni noir ni blanc), enregistrée dans la sauvegarde
 const CUI_THEMES = [['bleu','Bleu royal',[230,74]],['azur','Azur',[208,78]],['cyan','Cyan',[190,80]],['sarcelle','Sarcelle',[172,72]],
   ['emeraude','Émeraude',[148,62]],['citron','Citron vert',[86,62]],['or','Or',[44,70]],['orange','Orange',[24,78]],
@@ -2947,7 +2972,20 @@ function cuiThemeVars(id){
   return {w1:hslRgb(h,sat,44*y), w2:hslRgb(h,sat+4,30*y), w3:hslRgb(h,sat+6,16*y), wd:hslRgb(h,sat,7),
     ac:hslRgb(h,90,74), acl:hslRgb(h,95,84), act:hslRgb(h,60,92), acm:hslRgb(h,30,72), acd:hslRgb(h,sat,18), acb:hslRgb(h,sat,24)};
 }
-function applyCuiTheme(){ const v=cuiThemeVars(S&&S.cuiTheme), st=document.documentElement.style; Object.entries(v).forEach(([k,x])=>st.setProperty('--'+k,x)); }
+// v6.6 : variantes de couleur / d'opacité du HUD FFXIV. [id, nom, swatch, translucide, variables]
+const HUD_VARS=['hw1','hw2','hwa','hq1','hq2','hc1','hc2','hca','hn1','hn2','hf1','hf2','hf3','hr','hra','hb1','hb2','hp1','hp2','hk','ht1','ht2','he','hsd'];
+const CUI_HUDS=[
+ ['anthracite','Anthracite','58,56,62',0,['28,27,31','20,19,23',1,'20,19,24','14,13,17','30,29,33','21,20,24',1,'24,23,26','17,16,19','74,71,64','28,26,23','46,43,38','0,0,0',.62,'44,42,48','26,25,29','11,12,18','8,8,12','11,11,13','207,198,176','154,149,138',.1,.5]],
+ ['cristal','Bleu cristal','52,78,124',0,['26,36,58','15,22,40',1,'18,27,48','11,17,32','27,39,64','17,26,46',1,'20,28,46','13,19,34','150,180,220','34,50,80','70,96,140','10,22,48',.7,'40,58,94','22,32,56','9,14,28','6,9,18','6,10,22','190,214,240','140,165,200',.16,.5]],
+ ['nuit-translucide','Bleu nuit translucide','24,40,96',1,['12,20,48','8,13,34',.72,'12,20,48','8,13,34','14,22,52','9,15,38',.66,'11,18,42','7,12,30','120,140,190','24,32,60','50,64,104','6,12,34',.6,'30,44,84','16,24,50','8,12,26','5,7,16','4,8,20','184,200,236','128,146,190',.12,.64]],
+ ['cristal-translucide','Bleu cristal translucide','70,120,190',1,['40,70,120','22,42,80',.55,'40,70,120','22,42,80','44,76,128','24,44,84',.5,'34,58,100','20,36,68','200,225,255','50,80,130','100,140,200','20,44,90',.5,'60,96,150','30,52,96','10,16,30','6,9,18','6,12,28','214,232,255','160,190,230',.22,.58]],
+ ['azur-leger','Azur léger','84,136,196',0,['52,86,128','34,60,98',1,'44,74,114','30,54,90','50,84,126','33,58,94',1,'40,66,100','28,48,78','220,236,255','60,96,146','120,160,210','22,46,84',.62,'70,110,160','40,70,116','18,30,50','12,20,36','10,20,40','224,238,255','176,200,230',.25,.5]],
+ ['ombre-translucide','Ombre translucide','30,30,34',1,['10,10,12','6,6,8',.5,'10,10,12','6,6,8','14,14,16','8,8,10',.48,'12,12,14','6,6,8','74,71,64','28,26,23','46,43,38','0,0,0',.5,'40,40,44','22,22,26','8,8,10','5,5,7','8,8,10','207,198,176','154,149,138',.1,.58]]];
+const HUD_Q=(location.search.match(/[?&]hud=([a-z-]+)/)||[])[1]||'';
+let hudCur=HUD_Q;
+function cuiHudOf(id){ return CUI_HUDS.find(x=>x[0]===id)||CUI_HUDS[0]; }
+function applyHud(){ const h=cuiHudOf(hudCur||(S&&S.cuiHud)), d=document.documentElement; HUD_VARS.forEach((k,i)=>d.style.setProperty('--'+k,String(h[4][i]))); d.classList.toggle('htr', !!h[3]); }
+function applyCuiTheme(){ const v=cuiThemeVars(S&&S.cuiTheme), st=document.documentElement.style; Object.entries(v).forEach(([k,x])=>st.setProperty('--'+k,x));  applyHud(); }
 /* v6.0 : code de sauvegarde (copier sur un site, coller sur l'autre). Simple JSON encodé, aucune donnée envoyée. */
 function saveCode(){ persist(); const t=localStorage.getItem(SAVE_KEY)||'{}'; return 'PDM1.'+btoa(unescape(encodeURIComponent(t))); }
 function readCode(c){ try{ c=String(c||'').trim().replace(/\s+/g,''); if(!c.startsWith('PDM1.')) return null; const o=JSON.parse(decodeURIComponent(escape(atob(c.slice(5))))); return (o && typeof o==='object' && !Array.isArray(o) && 'gils' in o) ? o : null; }catch(e){ return null; } }
@@ -3719,9 +3757,14 @@ SCREENS.settings = function(from){
       <label class="setrow"><span>Effets sonores</span><input type="range" id="stSfx" min="0" max="100" step="5" value="${fx}"></label>
       <button class="btn small" id="stMute" data-k="mute">${m?'Activer le son':'Couper le son'}</button>
     </section>
+    ${CUI&&CUI_V==='63'?`<section class="xsec">
+      <h3 class="xh">Style du HUD</h3>
+      <p class="muted">Teinte et transparence des fenêtres de combat (anthracite par défaut). Les styles translucides laissent voir le décor derrière.</p>
+      <div class="thgrid hg">${CUI_HUDS.map(([k,n,c])=>`<button class="thb${cuiHudOf(hudCur||S.cuiHud)[0]===k?' sel':''}" data-hud="${k}" data-k="hud-${k}" style="--tc:${c}"><i></i><span>${n}</span></button>`).join('')}</div>
+    </section>`:''}
     ${CUI?`<section class="xsec">
       <h3 class="xh">Couleur du combat</h3>
-      <p class="muted">Couleur des fenêtres de l’interface de combat (bleu royal par défaut). Les PV et PM gardent leurs couleurs.</p>
+      <p class="muted">${CUI_V==='63'?'Couleur des liserés, des repères et de la cible (bleu royal par défaut).':'Couleur des fenêtres de l’interface de combat (bleu royal par défaut).'} Les PV et PM gardent leurs couleurs.</p>
       <div class="thgrid">${CUI_THEMES.map(([k,n,c])=>`<button class="thb${cuiThemeOf(S.cuiTheme)[0]===k?' sel':''}" data-theme="${k}" data-k="theme-${k}" style="--tc:${hslRgb(c[0],c[1],(c[0]>=30&&c[0]<=100)?50:58)}"><i></i><span>${n}</span></button>`).join('')}</div>
     </section>`:''}
     <section class="xsec">
@@ -3757,6 +3800,7 @@ SCREENS.settings = function(from){
   const fxr=document.getElementById('stSfx'); fxr.oninput=()=>SND.setSfx(fxr.value/100); fxr.onchange=SND.test;
   document.getElementById('stMute').onclick=()=>{ const mu=SND.toggleMute(); document.getElementById('stMute').textContent=mu?'Activer le son':'Couper le son'; if (!mu) SND.test(); };
   document.getElementById('stPN').onclick=patchNotes;
+  app.querySelectorAll('[data-hud]').forEach(bt=>bt.onclick=()=>{ S.cuiHud=hudCur=bt.dataset.hud; persist(); applyHud(); app.querySelectorAll('[data-hud]').forEach(x=>x.classList.toggle('sel', x===bt)); });
   app.querySelectorAll('[data-theme]').forEach(bt=>bt.onclick=()=>{ S.cuiTheme=bt.dataset.theme; persist(); applyCuiTheme(); app.querySelectorAll('[data-theme]').forEach(x=>x.classList.toggle('sel', x===bt)); });
   document.getElementById('stCloud').onclick=()=>{ if (typeof Online!=='undefined' && Online.myUserId) cloudPush(true); else Online.open(from==='title'?'title':'hub','account'); };
   document.getElementById('stReset').onclick=()=>confirmBox('Recommencer à zéro ? Toute ta progression sur cet appareil sera effacée (Gils, cristaux, jobs, compagnons, améliorations). C’est définitif.', ()=>confirmBox('Vraiment tout effacer ?', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Tout effacer'), 'Continuer');
@@ -4179,7 +4223,7 @@ function ffPartyHTML(j, st, sts){
   const sh=st&&st.shield>0?Math.min(100,st.shield/R.maxhp*100):0, ic2=FF_JOBIC[R.job], role=FF_ROLE[R.job]||'dps';
   return `<div class="ffpl" id="pp">
     <div class="ffpl-row${hpP<=25?' crit':''}">
-      <span class="ffpl-ic r-${role}">${ic2?`<i style="-webkit-mask-image:url(assets/ui/job_${ic2}.webp);mask-image:url(assets/ui/job_${ic2}.webp)"></i>`:''}</span>
+      <span class="ffpl-ic soul r-${role}" style="--g:${SOUL_GLOW[R.job]||'#fff'}">${JOBS[R.job]?`<img src="assets/soul/${R.job}.webp" alt="" draggable="false">`:(ic2?`<i style="-webkit-mask-image:url(assets/ui/job_${ic2}.webp);mask-image:url(assets/ui/job_${ic2}.webp)"></i>`:'')}</span>
       <div class="ffpl-m">
         <div class="ffpl-top"><span class="ffpl-lv">Niv. ${R.level}</span><b class="ffpl-name">${esc(R.pname||S.name)}</b><span class="ffpl-job">${j.name}</span></div>
         <div class="ffpl-bars">
@@ -4456,6 +4500,7 @@ function idleDesync(root){ (root||document).querySelectorAll('#field img.idle').
   const d=0.85+(h%7)*0.07, off=(h%1000)/1000*d; im.style.animationDuration=d.toFixed(2)+'s';
   im.style.animationDelay=(-((performance.now()/1000+off)%d)).toFixed(2)+'s'; }); }
 function renderCombat(){
+  if (CUI) try{ app.style.setProperty('--scbg', `url(${roomBG()})`); }catch(e){}
   app.innerHTML = `
   <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(R.floor===ACT2_MAX?'· COMBAT FINAL':isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto;margin-left:6px" data-k="menu" id="bMenu">Menu</button></div>
   <div class="field ${R.comp?'withc':'solo'}" id="field" style="background-image:url(${roomBG()}),url(${PH[floorBG(R.floor).slice(10,12)]||''})">

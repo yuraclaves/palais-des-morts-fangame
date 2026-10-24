@@ -153,6 +153,7 @@ Tous officiels, via le FINAL FANTASY Wiki (finalfantasy.fandom.com, API MediaWik
 ## Cristaux de job de la boutique (v5.4e)
 
 Icônes officielles des objets « Soul of the Paladin, Monk, Bard, White Mage, Warrior, Dragoon, Black Mage, Scholar, Samurai, Red Mage » de FINAL FANTASY XIV (© SQUARE ENIX), obtenues via l'API publique documentée XIVAPI (v2.xivapi.com, ui/icon/026000). Seul le fond gris d'icône a été retiré.
+Depuis v6.6 (branche next), ces mêmes icônes officielles servent aussi d'icône de job dans la liste de groupe du combat (HUD FFXIV), sans retouche.
 
 ## Décors de combat supplémentaires (v5.4f, `assets/bg/`)
 
