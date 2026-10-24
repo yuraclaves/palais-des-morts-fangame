@@ -1395,6 +1395,55 @@ body[data-scr="hub"]::before{opacity:0}
 .hub-menu{gap:6px}.hm-it{min-height:51px;padding:5px 12px 5px 7px}.hm-th{width:40px;height:40px}
 .hm-it.prime{min-height:62px}.hm-it.prime .hm-th{width:48px;height:48px}
 .hub-scroll{gap:8px}
+
+/* v6.1d : faiblesses, jauges de job, sorts épurés */
+#field .en .elw2{display:flex;align-items:center;justify-content:center;gap:4px;margin:2px 0 1px;height:17px}
+#field .en .elt{display:inline-flex;align-items:center;gap:2px;padding:1px 4px;border-radius:999px;height:17px;box-sizing:border-box}
+#field .en .elt .elic{width:13px;height:13px;border-radius:3px}
+#field .en .elt.w{background:rgba(30,120,60,.85);border:1px solid #7dff9a;box-shadow:0 0 6px rgba(125,255,154,.45)}
+#field .en .elt.r{background:rgba(40,44,56,.85);border:1px solid rgba(184,191,204,.6)}
+#field .en .elt.r .elic{filter:grayscale(.7) brightness(.8)}
+#field .en.boss .elt.w::before{content:'Faible';font-size:9.5px;font-weight:800;color:#d8ffe0;margin-right:2px}
+#field .en.boss .elt.r::before{content:'Résiste';font-size:9.5px;font-weight:800;color:#d0d4dc;margin-right:2px}
+.float.weak{color:#7dff9a;font-size:21px;margin-top:-34px;letter-spacing:.02em;animation:weakPop 1.1s ease-out forwards;text-shadow:0 0 8px rgba(40,200,90,.9),2px 2px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000}
+.float.resist{color:#c4c9d4;font-size:16px;margin-top:-30px}
+@keyframes weakPop{0%{transform:translate(-50%,0) scale(.4);opacity:0}18%{transform:translate(-50%,-6px) scale(1.25);opacity:1}35%{transform:translate(-50%,-8px) scale(1)}100%{transform:translate(-50%,-44px) scale(1);opacity:0}}
+.wkhit img{filter:drop-shadow(0 0 7px #5dff8a) drop-shadow(0 0 2px #fff) brightness(1.25)!important}
+.rshit img{filter:grayscale(.6) brightness(.8)!important}
+.gauge{display:flex;align-items:center;gap:6px;margin-top:5px;padding:3px 7px;border-radius:8px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);font-size:11.5px;line-height:14px}
+.gauge .gl{font-weight:800;color:var(--gc,#ffd56a);white-space:nowrap}
+.gauge .gp{display:flex;gap:3px;flex:1;align-items:center}
+.gauge .gpi{display:block;flex:1;max-width:22px;height:8px;border-radius:3px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);transition:background .2s}
+.gauge .gpi.on{background:var(--gc,#ffd56a);border-color:#fff;box-shadow:0 0 5px var(--gc,#ffd56a)}
+.gauge.full{border-color:var(--gc);box-shadow:0 0 8px var(--gc)}
+.gauge .gv{font-size:10.5px;color:#cfd3dc;font-weight:700}
+.gauge.sig .gpi.ice.on{background:#6cc8ff;--gc:#6cc8ff;border-color:#fff;box-shadow:0 0 5px #6cc8ff}
+.gauge.sig .gpi.fire.on{background:#ff8048;--gc:#ff8048;border-color:#fff;box-shadow:0 0 5px #ff8048}
+.gauge.sig .gmid{display:block;width:2px;height:12px;background:rgba(255,255,255,.5)}
+.gauge .gl.fire{color:#ff9a60}.gauge .gl.ice{color:#8fd6ff}
+#app .skills{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px}#app .skills .btn.sk3{min-width:0;width:auto}
+#app .btn.sk.sk3{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:7px;padding:6px 6px 6px 7px;min-height:54px;text-align:left;position:relative;line-height:1.15}
+.sk3 .sk3i{position:relative;flex:0 0 38px;width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.sk3 .sk3i .ski{width:38px;height:38px;border-radius:8px;display:block}
+.sk3 .sk3i.icb svg{width:24px;height:24px}
+.sk3 .sk3el{position:absolute;right:-4px;bottom:-4px;width:16px;height:16px;border-radius:4px;box-shadow:0 0 0 1.5px #10131c}
+.sk3.weakon .sk3i{box-shadow:0 0 0 2px #7dff9a,0 0 8px rgba(125,255,154,.6)}
+.sk3 .sk3cd{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.62);border-radius:8px;font-size:18px;color:#fff}
+.sk3 .sk3t{display:flex;flex-direction:column;min-width:0;flex:1;gap:3px}
+.sk3 .skn{font-size:13.5px;font-weight:800;line-height:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sk3 .sk3l{display:flex;align-items:center;gap:3px;min-width:0;font-size:11px;line-height:14px}
+.sk3 .sk3v{color:#d9dce4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+.sk3 .sk3v.why{color:#ffb4a0}
+.sk3 .sk3x{flex:0 0 auto;font-weight:800;font-size:10px;padding:0 2px;border-radius:4px}
+.sk3 .sk3x.good{color:#0d2a15;background:#7dff9a}.sk3 .sk3x.bad{color:#222;background:#b8bfcc}
+.sk3 .skc{flex:0 0 auto;font-size:10px;font-weight:800;padding:0 4px;margin-left:auto;border-radius:999px;line-height:15px;white-space:nowrap}
+.sk3 .skc.c-mp{background:rgba(70,140,255,.25);color:#a8c8ff;border:1px solid rgba(120,170,255,.5)}
+.sk3 .skc.c-g{background:rgba(0,0,0,.35);color:var(--gc,#ffd56a);border:1px solid var(--gc,#ffd56a)}
+.sk3 .skc.low{opacity:.55}
+.sk3.na:not(:disabled){filter:saturate(.35);opacity:.72}
+.sk3.oncd .skn{color:#aab}
+.sk3.reson .sk3i .ski{filter:grayscale(.75) brightness(.75)}.sk3.reson .sk3i{box-shadow:0 0 0 2px #8a90a0}
+#app .sk3 .skn.skn-l{font-size:12.5px}
 </style>
 </head>
 <body>
@@ -1702,52 +1751,52 @@ const JOBS = {
     desc:'Chevalier sacré. Très résistant, peut interrompre et devenir invincible.',
     basic:{id:'coup', name:'Coup rapide', target:'enemy', power:1.0, fx:'slash', desc:'Attaque à l’épée.'},
     opts:[
-      {id:'esprit', name:'Esprit saint', target:'enemy', power:1.8, stat:'mag', mp:20, fx:'holy', self:{healPct:0.08}, desc:'Magie sacrée. Soigne aussi 8 % des PV.'},
+      {id:'esprit', name:'Esprit saint', target:'enemy', power:1.8, stat:'mag', mp:20, fx:'holy', self:{healPct:0.12}, desc:'Magie sacrée. Soigne aussi 12 % des PV.'},
       {id:'cercle', name:'Cercle de foi', target:'all', power:0.7, cd:2, fx:'holy', desc:'Frappe tous les ennemis.'},
       {id:'bouclier', name:'Coup de bouclier', target:'enemy', power:0.6, stun:1, cd:4, fx:'shield', desc:'Étourdit 1 tour : interrompt les attaques en préparation.'},
-      {id:'rempart', name:'Rempart', target:'self', cd:5, self:{mitig:[0.5,2]}, fx:'shield', desc:'−50 % de dégâts subis pendant 2 tours.'},
-      {id:'invincible', name:'Invincible', target:'self', cd:10, self:{invuln:1}, fx:'holy', desc:'Immunité totale aux dégâts pendant 1 tour.'},
+      {id:'rempart', name:'Rempart', target:'self', cd:2, req:2, self:{mitig:[0.5,2]}, fx:'shield', desc:'Coûte 2 Serment. −50 % de dégâts subis pendant 2 tours.'},
+      {id:'invincible', name:'Invincible', target:'self', cd:9, self:{invuln:1}, fx:'holy', desc:'Immunité totale aux dégâts pendant 1 tour.'},
       {id:'clemence', name:'Clémence', target:'self', mp:25, cd:3, self:{healPct:0.3}, fx:'heal', desc:'Soigne 30 % des PV.'},
     ], def4:['esprit','cercle','bouclier','rempart']},
-  moine:{ name:'Moine', cls:'Pugiliste', role:'melee', start:true, price:1200, hp:135, mp:40, atk:21, mag:8, def:0.1, crit:0.15,
+  moine:{ name:'Moine', cls:'Pugiliste', role:'melee', start:true, price:1200, hp:155, mp:40, atk:21, mag:8, def:0.1, crit:0.15,
     desc:'Artiste martial. Gros dégâts et critiques, mais peu de défense.',
     basic:{id:'frappe', name:'Coup du dragon', target:'enemy', power:1.0, fx:'slash', desc:'Coup de poing rapide.'},
     opts:[
       {id:'demolition', name:'Démolition', target:'enemy', power:0.6, cd:3, dot:[0.55,3], fx:'slash', desc:'Coup + saignement (3 tours).'},
-      {id:'chakra', name:'Chakra interdit', target:'enemy', power:2.4, cd:3, fx:'chakra', desc:'Libère l’énergie du chakra.'},
+      {id:'chakra', name:'Chakra interdit', target:'enemy', power:3.1, req:5, self:{healPct:0.12}, fx:'chakra', desc:'Coûte 5 Chakra. Libère toute l’énergie du chakra et soigne 12 %.'},
       {id:'poingfeu', name:'Poings de feu', target:'self', cd:6, self:{buff:[0.4,3]}, fx:'fire', desc:'+40 % de dégâts pendant 3 tours.'},
       {id:'enigme', name:'Énigme de la terre', target:'self', cd:5, self:{mitig:[0.4,2], healPct:0.12}, fx:'shield', desc:'−40 % de dégâts (2 tours) et soigne 12 %.'},
       {id:'rosace', name:'Rosace', target:'all', power:0.8, cd:2, fx:'slash', desc:'Coup de pied circulaire sur tous.'},
       {id:'uppercut', name:'Uppercut', target:'enemy', power:0.6, stun:1, cd:4, fx:'chakra', desc:'Étourdit 1 tour : interrompt.'},
-    ], def4:['chakra','demolition','enigme','uppercut']},
-  barde:{ name:'Barde', cls:'Archer', role:'ranged', start:true, price:1200, hp:140, mp:50, atk:20, mag:10, def:0.12, crit:0.1,
+    ], def4:['chakra','rosace','demolition','enigme']},
+  barde:{ name:'Barde', cls:'Archer', role:'ranged', start:true, price:1200, hp:155, mp:50, atk:20, mag:10, def:0.14, crit:0.1,
     desc:'Archer-musicien. Polyvalent : zone, contrôle et soutien.',
     basic:{id:'tir', name:'Tir puissant', target:'enemy', power:1.0, fx:'arrow', desc:'Tir à l’arc.'},
     opts:[
       {id:'morsure', name:'Morsure venimeuse', target:'enemy', power:0.5, cd:3, dot:[0.55,4], fx:'poison', desc:'Flèche empoisonnée (4 tours).'},
-      {id:'salve', name:'Salve rapide', target:'all', power:0.75, cd:2, fx:'arrow', desc:'Volée de flèches sur tous les ennemis.'},
-      {id:'barrage', name:'Pluie de flèches', target:'enemy', power:0.65, hits:3, cd:4, fx:'arrow', desc:'Trois tirs sur une cible.'},
+      {id:'salve', name:'Salve rapide', target:'all', power:0.85, cd:2, fx:'arrow', desc:'Volée de flèches sur tous les ennemis.'},
+      {id:'barrage', name:'Pluie de flèches', target:'enemy', power:0.85, hits:3, req:3, self:{healPct:0.1}, fx:'arrow', desc:'Coûte 3 Répertoire. Trois tirs sur une cible, soigne 10 %.'},
       {id:'troubadour', name:'Troubadour', target:'self', cd:6, self:{mitig:[0.3,2], regen:[0.08,3]}, fx:'heal', desc:'−30 % de dégâts (2 tours) + régénération.'},
       {id:'tetanie', name:'Flèche tétanisante', target:'enemy', power:0.5, stun:1, cd:4, fx:'arrow', desc:'Étourdit 1 tour : interrompt.'},
       {id:'pean', name:'Péan de paix', target:'self', cd:5, self:{healPct:0.18, cleanse:1}, fx:'heal', desc:'Soigne 18 % et dissipe les altérations.'},
-    ], def4:['salve','barrage','troubadour','tetanie']},
+    ], def4:['morsure','barrage','salve','troubadour']},
   mageblanc:{ name:'Mage blanc', cls:'Élémentaliste', role:'heal', start:true, price:1200, hp:120, mp:120, atk:9, mag:20, def:0.06, crit:0.05,
     desc:'Soigneur sacré. Survit longtemps, mais gère bien tes PM.',
     basic:{id:'pierre', name:'Pierre', target:'enemy', power:1.0, stat:'mag', fx:'stone', desc:'Sort de terre (magique).'},
     opts:[
       {id:'vent', name:'Vent', target:'enemy', power:0.4, stat:'mag', mp:10, cd:2, dot:[0.6,4], fx:'wind', desc:'Dégâts de vent continus (4 tours).'},
-      {id:'soin', name:'Soin', target:'self', mp:22, self:{heal:2.6}, fx:'heal', desc:'Restaure des PV (selon la Magie).'},
-      {id:'miracle', name:'Miracle', target:'all', power:1.0, stat:'mag', mp:30, cd:2, fx:'holy', desc:'Lumière sacrée sur tous les ennemis.'},
+      {id:'soin', name:'Soin', target:'self', mp:22, gcost:1, self:{heal:2.3}, fx:'heal', desc:'Restaure des PV (selon la Magie). Utilise un Lys à la place des PM s’il y en a un.'},
+      {id:'miracle', name:'Misère du lys', target:'all', power:1.5, stat:'mag', req:3, fx:'holy', desc:'Coûte 3 Lys. Lumière sacrée sur tous les ennemis.'},
       {id:'bene', name:'Bénédiction', target:'self', cd:14, self:{healPct:1, cleanse:1}, fx:'heal', desc:'Restaure tous les PV.'},
       {id:'divine', name:'Bienveillance divine', target:'self', cd:5, self:{shield:0.3}, fx:'shield', desc:'Bouclier = 30 % des PV max.'},
       {id:'saintete', name:'Sainteté', target:'all', power:0.8, stat:'mag', mp:40, cd:6, stun:1, fx:'holy', desc:'Zone sacrée qui étourdit tous les ennemis.'},
     ], def4:['soin','miracle','saintete','divine']},
   guerrier:{ name:'Guerrier', cls:'Maraudeur', role:'tank', price:1200, hp:180, mp:40, atk:17, mag:8, def:0.2, crit:0.05,
     desc:'Colosse à la hache. Se soigne en encaissant, refuse de mourir.',
-    basic:{id:'brutal', name:'Coup brutal', target:'enemy', power:1.0, fx:'slash', desc:'Coup de hache.'},
+    basic:{id:'brutal', name:'Coup brutal', target:'enemy', power:1.0, fx:'slash', sen:1, desc:'Coup de hache. +1 Rage.'},
     opts:[
-      {id:'fendoir', name:'Fendoir', target:'enemy', power:2.0, cd:2, fx:'slash', desc:'Coup dévastateur.'},
-      {id:'tourbillon', name:'Tourbillon', target:'all', power:0.8, cd:2, fx:'slash', desc:'Frappe tous les ennemis.'},
+      {id:'fendoir', name:'Fendoir', target:'enemy', power:2.2, req:2, self:{healPct:0.06}, fx:'slash', desc:'Coûte 2 Rage. Coup dévastateur qui soigne 6 %.'},
+      {id:'tourbillon', name:'Tourbillon', target:'all', power:1.0, req:2, fx:'slash', desc:'Coûte 2 Rage. Frappe tous les ennemis.'},
       {id:'soif', name:'Soif de sang', target:'self', cd:5, self:{mitig:[0.25,2], regen:[0.07,3]}, fx:'fire', desc:'−25 % de dégâts + régénération.'},
       {id:'holmgang', name:'Holmgang', target:'self', cd:10, self:{holm:2}, fx:'shield', desc:'Les PV ne peuvent pas tomber sous 1 (2 tours).'},
       {id:'tete', name:'Coup de tête', target:'enemy', power:0.6, stun:1, cd:4, fx:'slash', desc:'Étourdit 1 tour : interrompt.'},
@@ -1759,18 +1808,18 @@ const JOBS = {
     opts:[
       {id:'chaos', name:'Percée chaotique', target:'enemy', power:0.8, cd:3, dot:[0.5,3], fx:'slash', desc:'Coup + saignement (3 tours).'},
       {id:'souffle', name:'Souffle de vie', target:'self', cd:4, self:{nextCrit:1, buff:[0.2,2]}, fx:'fire', desc:'Prochaine attaque critique, +20 % dégâts (2 tours).'},
-      {id:'saut', name:'Saut', target:'enemy', power:1.8, cd:5, self:{invuln:1}, fx:'jump', desc:'Bondit : dégâts et esquive les attaques de ce tour.'},
-      {id:'plongeon', name:'Plongeon draconique', target:'all', power:1.3, cd:5, fx:'fire', desc:'Frappe tous les ennemis.'},
+      {id:'saut', name:'Saut', target:'enemy', power:1.8, cd:4, sen:1, self:{invuln:1}, fx:'jump', desc:'Bondit : dégâts, esquive les attaques de ce tour. +1 Œil du dragon.'},
+      {id:'plongeon', name:'Plongeon draconique', target:'all', power:2.0, req:2, fx:'fire', desc:'Coûte 2 Œil du dragon. Frappe tous les ennemis.'},
       {id:'lance', name:'Lance tétanisante', target:'enemy', power:0.6, stun:1, cd:4, fx:'jump', desc:'Étourdit 1 tour : interrompt.'},
       {id:'second', name:'Second souffle', target:'self', cd:6, self:{healPct:0.2, cleanse:1}, fx:'heal', desc:'Soigne 20 % et dissipe les altérations.'},
-    ], def4:['saut','chaos','lance','second']},
+    ], def4:['saut','plongeon','chaos','lance']},
   magenoir:{ name:'Mage noir', cls:'Occultiste', role:'caster', price:1200, hp:105, mp:150, atk:8, mag:24, def:0.05, crit:0.06,
     desc:'Maître des éléments. Puissance brute, tout repose sur les PM.',
-    basic:{id:'glace', name:'Glace', target:'enemy', power:0.8, stat:'mag', self:{mpGain:20}, fx:'ice', desc:'Sort de glace. Rend 20 PM.'},
+    basic:{id:'glace', name:'Glace', target:'enemy', power:0.8, stat:'mag', umbral:1, self:{mpGain:20}, fx:'ice', desc:'Sort de glace. Passe en Glace ombrale et rend 20 PM (plus en Glace ombrale 2 et 3).'},
     opts:[
-      {id:'feu', name:'Feu', target:'enemy', power:1.3, stat:'mag', mp:15, fx:'fire', desc:'Sort de feu.'},
+      {id:'feu', name:'Feu', target:'enemy', power:1.3, stat:'mag', mp:15, astral:1, fx:'fire', desc:'Sort de feu. +1 Feu astral : plus fort, mais coûte plus de PM.'},
       {id:'foudre', name:'Foudre', target:'enemy', power:0.3, stat:'mag', mp:15, cd:2, dot:[0.8,4], fx:'thunder', desc:'Électrocution continue (4 tours).'},
-      {id:'brasier', name:'Brasier', target:'all', power:1.3, stat:'mag', mp:60, cd:3, fx:'fire', desc:'Explosion de feu sur tous.'},
+      {id:'brasier', name:'Brasier', target:'all', power:1.2, stat:'mag', mp:45, cd:3, astral:1, fx:'fire', desc:'Explosion de feu sur tous. +1 Feu astral.'},
       {id:'barriere', name:'Barrière de mana', target:'self', cd:6, self:{shield:0.35}, fx:'shield', desc:'Bouclier = 35 % des PV max.'},
       {id:'entrave', name:'Entrave', target:'enemy', power:0.5, stat:'mag', mp:15, cd:4, stun:1, fx:'ice', desc:'Étourdit 1 tour : interrompt.'},
       {id:'fontaine', name:'Fontaine de mana', target:'self', cd:9, self:{mpGain:70}, fx:'shield', desc:'Rend 70 PM.'},
@@ -1780,36 +1829,54 @@ const JOBS = {
     basic:{id:'ruine', name:'Ruine', target:'enemy', power:1.0, stat:'mag', fx:'dark', desc:'Sort d’ombre (magique).'},
     opts:[
       {id:'bacterie', name:'Bactérie', target:'all', power:0.2, stat:'mag', mp:15, cd:3, dot:[0.5,4], fx:'poison', desc:'Infecte tous les ennemis (4 tours).'},
-      {id:'reconfort', name:'Traité du réconfort', target:'self', mp:20, self:{heal:2.0, shield:0.15}, fx:'heal', desc:'Soin + bouclier.'},
-      {id:'murmure', name:'Murmure féerique', target:'self', cd:7, self:{regen:[0.1,4]}, fx:'heal', desc:'La fée régénère 10 % des PV par tour (4 tours).'},
-      {id:'drain', name:'Drain d’énergie', target:'enemy', power:0.9, stat:'mag', cd:2, self:{mpGain:15}, fx:'dark', desc:'Dégâts + rend 15 PM.'},
+      {id:'reconfort', name:'Traité du réconfort', target:'self', mp:20, gcost:1, self:{heal:2.0, shield:0.15}, fx:'heal', desc:'Soin + bouclier. Utilise 1 Flux d’éther à la place des PM s’il y en a.'},
+      {id:'murmure', name:'Murmure féerique', target:'self', cd:7, sen:2, self:{regen:[0.1,4]}, fx:'heal', desc:'La fée régénère 10 % des PV par tour (4 tours). +2 Flux d’éther.'},
+      {id:'drain', name:'Drain d’énergie', target:'enemy', power:1.2, stat:'mag', req:1, self:{mpGain:15}, fx:'dark', desc:'Coûte 1 Flux d’éther. Dégâts + rend 15 PM.'},
       {id:'eclat', name:'Éclat féerique', target:'enemy', power:0.6, stat:'mag', cd:4, stun:1, fx:'holy', desc:'Étourdit 1 tour : interrompt.'},
       {id:'solsacre', name:'Sol sacré', target:'self', cd:6, self:{mitig:[0.25,3], regen:[0.05,3]}, fx:'shield', desc:'−25 % de dégâts (3 tours) + régénération.'},
     ], def4:['bacterie','reconfort','eclat','solsacre']},
-  samourai:{ name:'Samouraï', cls:'Rōnin', role:'melee', price:1200, hp:135, mp:30, atk:24, mag:8, def:0.12, crit:0.12,
+  samourai:{ name:'Samouraï', cls:'Rōnin', role:'melee', price:1200, hp:155, mp:30, atk:24, mag:8, def:0.15, crit:0.12,
     desc:'Lame légendaire. Accumule les Sen pour un Midare Setsugekka.',
     basic:{id:'hakaze', name:'Hakaze', target:'enemy', power:1.0, fx:'slash', sen:1, desc:'Coup de katana. +1 Sen.'},
     opts:[
       {id:'higanbana', name:'Higanbana', target:'enemy', power:0.6, req:1, dot:[0.9,5], fx:'fire', desc:'Coûte 1 Sen. Brûlure (5 tours).'},
-      {id:'midare', name:'Midare Setsugekka', target:'enemy', power:4.2, req:3, fx:'chakra', desc:'Coûte 3 Sen. Coup ultime.'},
+      {id:'midare', name:'Midare Setsugekka', target:'enemy', power:4.2, req:3, self:{healPct:0.1}, fx:'chakra', desc:'Coûte 3 Sen. Coup ultime, soigne 10 %.'},
       {id:'oeil', name:'Troisième œil', target:'self', cd:3, sen:1, self:{mitig:[0.4,1]}, fx:'shield', desc:'−40 % de dégâts (1 tour). +1 Sen.'},
-      {id:'guren', name:'Hissatsu : Guren', target:'all', power:1.5, cd:5, fx:'slash', desc:'Onde tranchante sur tous.'},
+      {id:'guren', name:'Hissatsu : Guren', target:'all', power:1.3, cd:5, fx:'slash', desc:'Onde tranchante sur tous.'},
       {id:'gyoten', name:'Hissatsu : Gyoten', target:'enemy', power:0.7, stun:1, cd:4, fx:'slash', desc:'Étourdit 1 tour : interrompt.'},
       {id:'meditation', name:'Méditation', target:'self', cd:6, sen:2, self:{healPct:0.12}, fx:'heal', desc:'+2 Sen et soigne 12 %.'},
-    ], def4:['midare','oeil','gyoten','higanbana']},
+    ], def4:['midare','higanbana','guren','oeil']},
   magerouge:{ name:'Mage rouge', cls:'', role:'caster', price:1200, hp:140, mp:90, atk:19, mag:20, def:0.12, crit:0.08, gauge:'Mana',
     desc:'Escrimeur et mage. Alterne épée et magie noire et blanche, puis libère son mana.',
     basic:{id:'riposte', name:'Riposte', target:'enemy', power:1.0, fx:'slash', sen:1, desc:'Coup de rapière. +1 Mana.'},
     opts:[
       {id:'verfoudre', name:'VerFoudre', target:'enemy', power:1.35, stat:'mag', mp:12, sen:1, fx:'thunder', desc:'Magie noire. +1 Mana.'},
-      {id:'vervent', name:'VerVent', target:'all', power:0.7, stat:'mag', mp:18, cd:2, sen:1, fx:'wind', desc:'Magie blanche sur tous les ennemis. +1 Mana.'},
-      {id:'verbrasier', name:'VerBrasier', target:'enemy', power:3.4, stat:'mag', req:3, self:{healPct:0.1}, fx:'fire', desc:'Coûte 3 Mana. Coup final : grosse explosion et soigne 10 %.'},
+      {id:'vervent', name:'VerVent', target:'all', power:0.8, stat:'mag', mp:18, cd:2, sen:1, fx:'wind', desc:'Magie blanche sur tous les ennemis. +1 Mana.'},
+      {id:'verbrasier', name:'VerBrasier', target:'enemy', power:3.4, stat:'mag', req:3, self:{healPct:0.15}, fx:'fire', desc:'Coûte 3 Mana. Coup final : grosse explosion et soigne 15 %.'},
       {id:'versoin', name:'VerSoin', target:'self', mp:20, cd:3, self:{heal:1.9}, fx:'heal', desc:'Petit soin (selon la Magie).'},
       {id:'contresixte', name:'Contre de sixte', target:'enemy', power:0.6, stun:1, cd:4, fx:'slash', desc:'Étourdit 1 tour : interrompt.'},
       {id:'manafication', name:'Manafication', target:'self', cd:7, sen:2, self:{buff:[0.2,2], mpGain:20}, fx:'shield', desc:'+2 Mana, +20 % de dégâts (2 tours) et rend 20 PM.'},
-    ], def4:['verfoudre','verbrasier','contresixte','versoin']},
+    ], def4:['verfoudre','verbrasier','vervent','versoin']},
 };
+/* v6.1e : une mécanique propre à chaque job, inspirée de FFXIV, avec une petite jauge en combat.
+   hit : gain quand on encaisse un coup ; land : par coup porté ; crit : par critique ; tick : quand tes poisons agissent ;
+   every : 1 point tous les N tours ; start : points au début du combat ; signed : jauge à deux pôles (Mage noir). */
+const MECH = {
+  paladin:{g:'Serment', max:3, col:'#8fd0ff', hit:1, tip:'Chaque coup encaissé donne 1 Serment. Rempart coûte 2 Serment : encaisse pour te protéger.'},
+  moine:{g:'Chakra', max:5, col:'#ffcf5a', land:1, crit:1, tip:'Chaque coup porté donne 1 Chakra, 2 sur un critique. À 5, Chakra interdit frappe fort et soigne.'},
+  barde:{g:'Répertoire', max:3, col:'#b8f07a', tick:1, crit:1, tip:'Chaque tour où tes poisons agissent et chaque critique donnent 1 Répertoire. Pluie de flèches coûte 3.'},
+  mageblanc:{g:'Lys', max:3, col:'#d8f4ff', every:3, tip:'Un Lys pousse tous les 3 tours. Soin utilise un Lys au lieu des PM. Misère du lys coûte 3 Lys.'},
+  guerrier:{g:'Rage', max:5, col:'#ff7a4a', hit:1, tip:'Coup brutal et chaque coup encaissé donnent 1 Rage. Fendoir et Tourbillon coûtent 2 Rage.'},
+  dragoon:{g:'Œil du dragon', max:2, col:'#8aa8ff', tip:'Saut donne 1 Œil du dragon. À 2, Plongeon draconique frappe tous les ennemis.'},
+  magenoir:{g:'Polarité', max:3, col:'#ff7a3a', col2:'#6ab8ff', signed:1, tip:'Feu et Brasier montent le Feu astral : +15 % de dégâts de feu par niveau, mais +5 PM par niveau. Glace passe en Glace ombrale et rend plus de PM.'},
+  erudit:{g:'Flux d’éther', max:3, col:'#c49aff', start:3, tip:'Tu commences chaque combat avec 3 Flux. Drain coûte 1 Flux ; Traité du réconfort en utilise 1 au lieu des PM. Murmure féerique en rend 2.'},
+  samourai:{g:'Sen', max:3, col:'#ffe27a', tip:'Hakaze, Troisième œil et Méditation donnent des Sen. Higanbana coûte 1 Sen, Midare Setsugekka 3.'},
+  magerouge:{g:'Mana', max:3, col:'#ff8aa0', tip:'Riposte et tes sorts Ver donnent 1 Mana. VerBrasier coûte 3 Mana.'},
+};
+const mechOf = k => MECH[k] || {g:'Sen', max:3, col:'#ffe27a'};
+function gGain(n){ const m=mechOf(R.job), st=C&&C.st; if(!st||!n) return; if (m.signed) return; st.sen=Math.max(0, Math.min(m.max, (st.sen||0)+n)); }
 const JOB_ORDER = ['paladin','moine','barde','mageblanc','guerrier','dragoon','magenoir','erudit','samourai','magerouge'];
+Object.keys(MECH).forEach(k=>{ if (JOBS[k]) JOBS[k].gauge=MECH[k].g; });
 const allSkills = k => [JOBS[k].basic].concat(JOBS[k].opts);
 const JOB_PRICE = 1200, JOB_PROMO = 400;
 const promoOK = () => !S.promoUsed && (S.unlocked||[]).length<=1;
@@ -1954,7 +2021,7 @@ function floorPool(f){
 /* Courbe de difficulté : joueur ET monstres progressent avec l'étage (niveau d'aether = étage).
    h0/a0 = force relative des monstres à l'étage 1 (très faciles), atteint 1.0 à l'étage 10,
    puis +hL/+aL par étage au-delà. La difficulté vient surtout des mécaniques. */
-const BAL = { lv:0.08, h0:0.55, a0:0.42, ramp:7, hL:0.045, aL:0.08, elite:{hp:1.3, atk:1.2, enrage:9},
+const BAL = { dfH:1.10, dfA:1.10, lv:0.08, h0:0.55, a0:0.42, ramp:7, hL:0.045, aL:0.08, elite:{hp:1.3, atk:1.2, enrage:9},
   // v5.5 : combats plus courts mais plus percutants (PV ennemis réduits selon l'étage et le type, attaque relevée, plafond par coup)
   duoBossHp:0.6, kh:{ n0:0.9, nk:0.07, boss:0.85, big:0.95, fin:0.35, late:0.06 }, ka:1.96, ea0:1.15, cap:0.28, capB:0.4, capChaos:0.62,
   // v5.5d : un seul combat par étage, donc moins de récompenses : le héros gagne un peu de force à chaque étage
@@ -2153,9 +2220,9 @@ const COMP_EL = { yshtola:'glace', thancred:'phys', alphinaud:'vent', alisaie:'f
   auron:'phys', lightning:'foudre', terra:'lum', cecil:'lum', kain:'vent', bartz:'phys', noctis:'ten', rosa:'lum', locke:'phys' };
 /* multiplicateur élémentaire : ×1,5 sur une faiblesse, ×0,5 sur une résistance */
 function elemMul(e, el){ if (!e || !el || el==='phys') return 1; const t=elOfE(e); return t.w.includes(el) ? EL_WEAK + ((R&&R.perk)?pk('elWeak'):0) : t.r.includes(el) ? EL_RES : 1; }
-function elemPop(e, m){ if (m>1) floatAt(enEl(e),'Faiblesse !','weak'); else if (m<1) floatAt(enEl(e),'Résiste','resist'); }
+function elemPop(e, m){ if (m>1){ floatAt(enEl(e),'Faiblesse !','weak'); anim(enEl(e),'wkhit',520); } else if (m<1){ floatAt(enEl(e),'Résiste','resist'); anim(enEl(e),'rshit',420); } }
 function elemChips(e){ const t=elOfE(e); if (!t.w.length && !t.r.length) return '';
-  return `<div class="elw">${t.w.map(k=>elIc(k,'w')).join('')}${t.r.length?`<span class="elsep"></span>${t.r.map(k=>elIc(k,'r')).join('')}`:''}</div>`; }
+  return `<div class="elw2">${t.w.length?`<span class="elt w" title="Faible">${t.w.map(k=>elIc(k)).join('')}</span>`:''}${t.r.length?`<span class="elt r" title="Résiste">${t.r.map(k=>elIc(k)).join('')}</span>`:''}</div>`; }
 const AI = {
   flan(e){ if (hpr(e)<0.5 && !e.healed){ e.healed=true; return {kind:'heal', name:'Absorption', pct:0.3}; } return A('Coup gélatineux',1); },
   bomb(e){ if (!e.used && (e.t>=2 || hpr(e)<0.5)){ e.used=true; return A('Explosion',4,{windup:1, selfDestruct:true, type:'mag'}); } return A('Charge',1); },
@@ -2648,7 +2715,7 @@ function skEst(s){
   const tg_ = inC && C.enemies ? curTarget() : null, em_ = (tg_ && s.target!=='all') ? elemMul(tg_, s.el) : 1;
   const bon = (inC ? dmgBonus() : Math.max(0.2, 1+softCap(R.mods.dmg,0.15))) * em_;
   const o={};
-  if (s.power){ o.hit=Math.max(1,Math.round(stat*s.power*bon)); o.hits=s.hits||1; }
+  if (s.power){ o.hit=Math.max(1,Math.round(stat*s.power*bon*(inC?astralMul(s):1))); o.hits=s.hits||1; }
   if (s.dot) o.dot=Math.max(1,Math.round(stat*s.dot[0]*bon*(1+pk('dotUp'))));
   if (sf.heal) o.heal=Math.round(R.mag*sf.heal);
   if (sf.healPct) o.heal=(o.heal||0)+Math.round(R.maxhp*sf.healPct);
@@ -2688,6 +2755,9 @@ function skillDetail(s){
   if (sf.mpGain) L.push(`<span class="dt">PM</span> rend <b>${sf.mpGain} PM</b>`);
   if (sf.cleanse) L.push(`<span class="dt">Purifie</span> retire poison et affaiblissement`);
   if (s.sen) L.push(`<span class="dt">${g}</span> +${s.sen}`);
+  if (s.astral) L.push(`<span class="dt">Polarité</span> Feu astral +1 (dégâts de feu +15 % par niveau, coût +5 PM par niveau). Efface la Glace.`);
+  if (s.umbral) L.push(`<span class="dt">Polarité</span> Glace ombrale +1 (PM rendus +50 % par niveau au-delà du premier). Efface le Feu.`);
+  if (s.gcost) L.push(`<span class="dt">${g}</span> gratuit avec 1 ${g} (sinon PM)`);
   const cost = s.mp ? `${mpCost(s)} PM` : s.req ? `${s.req} ${g}` : 'Aucun';
   L.push(`<span class="dt">Coût</span> ${cost}${s.cd?` · <span class="dt">Recharge</span> ${Math.max(1,s.cd-(R.mods.cdr||0))} tours`:''}`);
   return `<b>${s.name}</b> <span class="rtag ${skillRole(s)[1]}">${skillRole(s)[0]}</span><div class="tdesc">${s.desc||''}</div><div class="tlines">${L.map(x=>`<div>${x}</div>`).join('')}</div>`;
@@ -2730,6 +2800,21 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.1d', date:'24/10/2026', img:'assets/skills/midare.webp', title:'Une mécanique par job, sorts épurés et faiblesses visibles', notes:[
+    'Chaque job a maintenant sa propre jauge sous les PM, inspirée de FINAL FANTASY XIV. Appui long dessus pour savoir comment la remplir.',
+    'Paladin : Serment, gagné quand tu encaisses un coup, sert à lancer Rempart. Guerrier : Rage, gagnée en encaissant, pour Fendoir et Tourbillon.',
+    'Moine : Chakra, gagné à chaque coup et coup critique, jusqu\'à 5 pour Chakra interdit qui soigne aussi.',
+    'Barde : Répertoire, gagné à chaque tour de poison et coup critique, pour Pluie de flèches.',
+    'Mage blanc : un Lys tous les trois tours. Un Lys rend Soin gratuit, trois Lys lancent Misère du lys sur tous.',
+    'Mage noir : Feu astral et Glace ombrale. Le Feu monte en puissance mais coûte plus de PM, la Glace rend plus de PM.',
+    'Érudit : commence avec 3 Flux d\'éther, pour un Réconfort gratuit ou Drain d\'énergie.',
+    'Chevalier dragon : Saut donne l\'Œil du dragon, deux Œils lancent Plongeon draconique.',
+    'Les monstres ont un peu plus de PV et frappent un peu plus fort (sauf Chaos).',
+    'Moine, Barde et Samouraï ont plus de PV. Les sorts de base du Moine, du Barde, du Samouraï et du Mage rouge incluent maintenant une attaque sur tous les ennemis.',
+    'Boutons de sort épurés : icône, nom, effet principal et coût. Le détail complet reste sur l\'appui long.',
+    'Un anneau vert autour d\'une icône veut dire que la cible est faible à cet élément.',
+    'Sous chaque monstre : pastille verte pour ses faiblesses, pastille grise pour ses résistances. Un gros Faiblesse ! s\'affiche à l\'impact.'
+  ]},
   {v:'v6.1c', date:'24/10/2026', img:'assets/bg/title_amaurot.webp', title:'Nouveau menu principal', notes:[
     'L\'avant-poste devient un vrai menu principal : grand décor de FINAL FANTASY XIV en plein écran.',
     'Ton personnage et ton compagnon sont mis en avant au centre, avec ton record et tes victoires.',
@@ -3515,6 +3600,16 @@ function itemsMenuMap(){
   document.getElementById('uE').onclick=()=>{ R.ethers--; R.mp=Math.min(R.maxmp,R.mp+Math.round(R.maxmp*0.5)); saveRun(); back(); };
   document.getElementById('uC').onclick=closeModal;
 }
+function gaugeHTML(st){
+  const m=mechOf(R.job), v=st.sen||0, tip=`&lt;b&gt;${m.g}&lt;/b&gt;&lt;br&gt;${m.tip||''}`;
+  if (m.signed){
+    const lab = v>0 ? `Feu astral ${v}` : v<0 ? `Glace ombrale ${-v}` : 'Polarité neutre';
+    const pips = [3,2,1].map(i=>`<i class="gpi ice ${v<=-i?'on':''}"></i>`).join('') + '<i class="gmid"></i>' + [1,2,3].map(i=>`<i class="gpi fire ${v>=i?'on':''}"></i>`).join('');
+    return `<div class="gauge sig" data-tip="${tip}"><span class="gl ${v>0?'fire':v<0?'ice':''}">${lab}</span><span class="gp">${pips}</span></div>`;
+  }
+  const pips = Array.from({length:m.max},(_,i)=>`<i class="gpi ${i<v?'on':''}"></i>`).join('');
+  return `<div class="gauge ${v>=m.max?'full':''}" style="--gc:${m.col}" data-tip="${tip}"><span class="gl">${m.g}</span><span class="gp">${pips}</span><b class="gv">${v}/${m.max}</b></div>`;
+}
 function playerPanelHTML(inCombat){
   const j=JOBS[R.job];
   const st = (inCombat && C) ? C.st : null;
@@ -3531,15 +3626,14 @@ function playerPanelHTML(inCombat){
     if (st.nextCrit) bf('b-buff','up','Crit.',0,'Ton prochain coup sera critique');
     if (st.weakT>0) bf('b-bad','','Affaibli',st.weakT,'Affaibli : −25 % de dégâts');
     if (st.pdotT>0) bf('b-bad','poison',String(st.pdot),st.pdotT,`Poison : ${st.pdot} dégâts par tour`);
-    if (R.job==='samourai') sts.push(`Sen ${'●'.repeat(st.sen)}${'○'.repeat(3-st.sen)}`);
-    if (R.job==='magerouge') sts.push(`<span style="color:#ff8aa0">Mana ${'◆'.repeat(st.sen)}${'◇'.repeat(3-st.sen)}</span>`);
     if (C.cp) sts.push(`<span style="color:#ffe27a">${COMPANIONS[R.comp.id].name} : ${C.cp.cd>0?'recharge '+C.cp.cd:'prêt'}</span>`);
   }
   return `<div class="win ppanel" id="pp">
     <div class="row"><span class="nm grow">${esc(R.pname||S.name)} <span class="muted">${j.name} · Niv. ${R.level}</span></span>${inCombat?'':`<span class="muted">Pot. ${R.potions} · Éth. ${R.ethers}</span>`}</div>
     <div class="row" style="gap:6px;margin-top:3px"><span style="width:24px;font-size:12px">PV</span><div class="grow">${bar(R.hp,R.maxhp,'',st?st.shield:0)}</div><span style="font-size:12px;width:74px;text-align:right">${Math.ceil(R.hp)}/${R.maxhp}</span></div>
     <div class="row" style="gap:6px;margin-top:3px"><span style="width:24px;font-size:12px">PM</span><div class="grow">${bar(R.mp,R.maxmp,'mp')}</div><span style="font-size:12px;width:74px;text-align:right">${Math.floor(R.mp)}/${R.maxmp}</span></div>
-    ${inCombat?`<div class="status" style="margin-top:4px">${sts.map(s=>`<span>${s}</span>`).join('')}</div>`:''}
+    ${st?gaugeHTML(st):''}
+    ${inCombat&&sts.length?`<div class="status" style="margin-top:4px">${sts.map(s=>`<span>${s}</span>`).join('')}</div>`:''}
   </div>`;
 }
 function partyLevel(){
@@ -3731,9 +3825,10 @@ function endRun(victory, abandoned){
 function makeEnemy(key, kind){
   const d=ENEMIES[key], f=R.floor, el=kind==='elite', m=eMul(f);
   const a2=Math.max(0,f-ACT1_MAX); // v6.0 : acte II, les monstres suivent la puissance du héros
-  const hp=Math.max(1,Math.round(d.hp*(d.hpK||1)*m.h*(el?BAL.elite.hp:1)*khMul(f,d,kind)*(d.boss?1:1+0.03*a2)));
+  const dfH=key==='chaos'?1:BAL.dfH, dfA=key==='chaos'?1:BAL.dfA; // v6.1e : difficulté un peu relevée (hors Chaos)
+  const hp=Math.max(1,Math.round(d.hp*(d.hpK||1)*m.h*(el?BAL.elite.hp:1)*khMul(f,d,kind)*(d.boss?1:1+0.03*a2)*dfH));
   const gils = d.boss ? (d.guardian? 20+2*f : 60+4*f) : Math.round(BAL.gk*(2+0.5*f)*(el?2:1)*(d.gilMul||1)*(f<=5?2:f<=10?1.5:1));
-  return { key, name:d.name+(el?' +':''), hp, maxhp:hp, atk:d.atk*(d.atkK||1)*m.a*(el?BAL.elite.atk:1)*BAL.ka*(1+(BAL.ea0-BAL.a0)*Math.max(0,1-(f-1)/BAL.ramp)/Math.max(0.1,(BAL.a0+(1-BAL.a0)*Math.min(1,(f-1)/BAL.ramp))))*(1+0.006*a2), res:Object.assign({phys:0,mag:0},d.res||{}),
+  return { key, name:d.name+(el?' +':''), hp, maxhp:hp, atk:dfA*d.atk*(d.atkK||1)*m.a*(el?BAL.elite.atk:1)*BAL.ka*(1+(BAL.ea0-BAL.a0)*Math.max(0,1-(f-1)/BAL.ramp)/Math.max(0.1,(BAL.a0+(1-BAL.a0)*Math.min(1,(f-1)/BAL.ramp))))*(1+0.006*a2), res:Object.assign({phys:0,mag:0},d.res||{}),
     gils, ai:d.ai, boss:!!d.boss, support:!!d.support, t:0, dots:[], stunT:0, shield:0, buff:0, buffT:0, rage:0, flyT:0,
     enrageAt: (d.boss ? ENRAGE_AT[key] : (el ? BAL.elite.enrage : 0)) ? (d.boss ? ENRAGE_AT[key] : BAL.elite.enrage) + pk('enrageDelay') : 0, pending:null, intent:null, dead:false,
     uid:'e'+(++R.uidn||(R.uidn=1)) };
@@ -3753,6 +3848,7 @@ function startCombat(kind){
   C = { kind, g0:R.gilsEarned||0, enemies:list.map(k=>makeEnemy(k,kind)), target:0, busy:false, cds:{}, turn:0,
         st:{mitig:0,mitigT:0,invulnT:0,holmT:0,shield:0,regen:0,regenT:0,buff:0,buffT:0,nextCrit:0,weakT:0,pdot:0,pdotT:0,sen:0,absorb:0}, msg:'' };
   if (pk('shieldStart')>0) C.st.shield = Math.round(R.maxhp*Math.min(0.2,pk('shieldStart')));
+  C.st.sen = mechOf(R.job).start||0;
   if (R.comp) C.cp = { cd: Math.ceil(compCd()/2), uses:0 };
   if (R.nextPoison){ C.st.pdot=Math.max(1,Math.round(R.maxhp*0.04)); C.st.pdotT=3; R.nextPoison=0; }
   if (R.nextWeak){ C.st.weakT=2; R.nextWeak=0; }
@@ -3877,7 +3973,7 @@ function floorTransition(f, kind){
 function helpModal(){
   showModal(`<h2>${JOBS[R.job].name} — Actions</h2>${skillListHTML(R.job, R.loadout)}
    ${R.comp?`<div class="sklist"><div class="it"><b>Compagnon : ${COMPANIONS[R.comp.id].name}</b><br>${COMPANIONS[R.comp.id].sig} Il agit tout seul après toi, au bon moment.</div></div>`:''}
-   <div class="sklist"><div class="it"><b>Lire les boutons</b><br>Appui long sur une action : détail avec les vrais chiffres (dégâts, soin, durée, cible). Étiquette de couleur = rôle (Dégâts, Soin, Bouclier, Buff, Contrôle). Pastille bleue = coût en PM. Bouton grisé avec une horloge = encore en recharge.<br>Sous ta barre de PV : tes effets actifs et les tours restants. Un même effet relancé remet sa durée à neuf, il ne s’additionne pas.</div>
+   <div class="sklist"><div class="it"><b>Lire les boutons</b><br>Appui long sur une action : détail avec les vrais chiffres (dégâts, soin, durée, cible). Pastille bleue = coût en PM, pastille de couleur = coût en jauge de job. Anneau vert autour de l’icône = la cible est faible à cet élément (×1,5). Chiffre sur l’icône = tours de recharge.<br>Chaque job a sa jauge (sous les PM) : appui long dessus pour savoir comment la remplir.<br>Sous ta barre de PV : tes effets actifs et les tours restants. Un même effet relancé remet sa durée à neuf, il ne s’additionne pas.</div>
    <div class="it"><b>Objets</b><br>Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM. Utiliser un objet prend le tour.</div>
    <div class="it"><b>Lire les ennemis</b><br>Touche un ennemi pour le cibler (${ic('cursor')}). Au-dessus : sa prochaine action.<br>
    ${ic('hour')} = il prépare une grosse attaque. <span class="gold">${ic('warn')} rouge</span> = elle part ce tour-ci : défends-toi (Rempart, bouclier…), soigne-toi ou achève-le.<br>
@@ -3944,20 +4040,21 @@ function combatSkills(){ const j=JOBS[R.job]; return [j.basic].concat(R.loadout.
 function skillState(s){
   const cd=C.cds[s.id]||0;
   if (cd>0) return {ok:false, cd};
-  if (s.mp && R.mp < mpCost(s)) return {ok:false, why:'PM'};
+  if (s.mp && R.mp < mpCost(s) && !gPay(s)) return {ok:false, why:'PM'};
   if (s.req && C.st.sen < s.req) return {ok:false, why:(JOBS[R.job].gauge||'Sen')};
   return {ok:true};
 }
 function renderSkills(){
   const el=document.getElementById('skills'); if(!el) return;
+  const g=mechOf(R.job).g, tg=curTarget();
   el.innerHTML = combatSkills().map(s=>{ const st=skillState(s);
-    const ro=skillRole(s), g=JOBS[R.job].gauge||'Sen', cost = s.mp ? `<span class="skc c-mp${R.mp<mpCost(s)?' low':''}">${mpCost(s)} PM</span>` : s.req ? `<span class="skc c-g${C.st.sen<s.req?' low':''}">${s.req} ${g}</span>` : '';
-    const why = st.cd ? '' : st.why==='PM' ? 'PM insuffisants' : st.why ? `${g} ${C.st.sen}/${s.req}` : '';
-    return `<button class="btn sk sk2 ${st.ok?'':'na'}${st.cd?' oncd':''}" data-k="skill-${s.id}" data-sk="${s.id}" data-tip="${skillDetail(s).replace(/"/g,'&quot;')}" ${C.busy?'disabled':''}>`
-      + `<span class="skt"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'"><span class="skn${Math.max(...s.name.split(' ').map(w=>w.length))>=11?' skn-l':''}">${s.name}</span></span>`
-      + `<span class="skb">${s.el?(()=>{ const tg=curTarget(), m=tg?elemMul(tg,s.el):1; return elIc(s.el,'skel'+(m>1?' good':m<1?' bad':'')); })():''}<span class="rtag ${ro[1]}">${ro[0]}</span><span class="skr">${cost}${s.cd?`<span class="skc c-cd">${ic('clock')}${Math.max(1,s.cd-(R.mods.cdr||0))}</span>`:''}</span></span><span class="skv">${why?`<span class="why">${why}</span>`:skMain(s)}</span>`
-      + (st.cd?`<span class="cdv"><b>${ic('clock')}${st.cd}</b><small>tour${st.cd>1?'s':''}</small></span>`:'') + `</button>`; }).join('')
-    + `<button class="btn sk sk2 skit" data-k="item" id="bItem" data-tip="&lt;b&gt;Objets&lt;/b&gt;&lt;br&gt;Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM." ${C.busy?'disabled':''}><span class="skt"><span class="ski icb">${ic('heal')}</span><span class="skn">Objets</span></span><span class="skb"><span class="rtag r-item">Sac</span></span><span class="skv"><span class="chips">${chip('heal',R.potions)}${chip('drop',R.ethers,'mp')}</span></span></button>`;
+    const free=gPay(s), cost = s.mp ? (free ? `<span class="skc c-g" style="--gc:${mechOf(R.job).col}">1 ${g}</span>` : `<span class="skc c-mp${R.mp<mpCost(s)?' low':''}">${mpCost(s)} PM</span>`) : s.req ? `<span class="skc c-g${C.st.sen<s.req?' low':''}" style="--gc:${mechOf(R.job).col}">${s.req} ${g}</span>` : '';
+    const m = (s.el && tg && s.target!=='self') ? elemMul(tg,s.el) : 1;
+    const why = st.cd ? `Prêt dans ${st.cd} tour${st.cd>1?'s':''}` : st.why==='PM' ? 'PM insuffisants' : st.why ? `${g} ${C.st.sen}/${s.req}` : '';
+    return `<button class="btn sk sk3 ${st.ok?'':'na'}${st.cd?' oncd':''}${m>1?' weakon':m<1?' reson':''}" data-k="skill-${s.id}" data-sk="${s.id}" data-tip="${skillDetail(s).replace(/"/g,'&quot;')}" ${C.busy?'disabled':''}>`
+      + `<span class="sk3i"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'">${s.el?elIc(s.el,'sk3el'):''}${st.cd?`<b class="sk3cd">${st.cd}</b>`:''}</span>`
+      + `<span class="sk3t"><span class="skn${s.name.length>14?' skn-l':''}">${s.name}</span><span class="sk3l"><span class="sk3v${why?' why':''}">${why||skMain(s)}</span>${m>1?'<span class="sk3x good">×1,5</span>':''}${why&&!st.cd?'':cost}</span></span></button>`; }).join('')
+    + `<button class="btn sk sk3 skit" data-k="item" id="bItem" data-tip="&lt;b&gt;Objets&lt;/b&gt;&lt;br&gt;Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM." ${C.busy?'disabled':''}><span class="sk3i icb">${ic('heal')}</span><span class="sk3t"><span class="skn">Objets</span><span class="sk3l"><span class="sk3v">Potion ${R.potions} · Éther ${R.ethers}</span></span></span></button>`;
   el.querySelectorAll('[data-sk]').forEach(b=>b.onclick=()=>playerAction(b.dataset.sk));
   document.getElementById('bItem').onclick=combatItems;
 }
@@ -3996,7 +4093,9 @@ function anim(el, cls, ms=350){ if(FAST||!el) return; el.classList.remove(cls); 
 const enEl = e => document.getElementById('en-'+e.uid);
 let plEl = () => document.getElementById('player');
 /* --- calculs --- */
-const mpCost = s => Math.round((s.mp||0)*(1-pk('mpSave')));
+const mpCost = s => Math.round(((s.mp||0) + ((s.astral && typeof C!=='undefined' && C && C.st && C.st.sen>0) ? 5*C.st.sen : 0))*(1-pk('mpSave')));
+const gPay = s => !!(s.gcost && typeof C!=='undefined' && C && C.st && C.st.sen>=s.gcost);
+const astralMul = s => (s.astral && typeof C!=='undefined' && C && C.st && R.job==='magenoir') ? 1+0.15*(C.st.sen>0 ? Math.min(3, C.st.sen+1) : 1) : 1;
 const softCap = (x, k, m=0.5) => x<=k ? x : k + (x-k)*m; /* rendements décroissants */
 const dmgBonus = () => clamp(1 + softCap(R.mods.dmg, 0.15) + (C.st.buffT>0?C.st.buff:0) - (C.st.weakT>0?0.25:0), 0.2, BAL.dmgCap);
 const skType = s => s.type || (s.stat==='mag'?'mag':'phys');
@@ -4043,6 +4142,7 @@ function damagePlayer(raw, x){
   if (st.invulnT>0){ floatAt(pel,'Esquive !','info'); return 0; }
   if (x && x.big && st.absorb>0){ st.absorb=0; floatAt(pel,'Absorbé !','info'); fxAt(pel,'shield'); return 0; }
   const red = Math.min(BAL.redCap, 1 - (1-effDef()) * (1-(st.mitigT>0?st.mitig:0)) * (1-(x&&x.big?pk('bigRed'):0)) * (1-(x&&x.type==='mag'?pk('magRed'):0)));
+  { const m=mechOf(R.job); if (m.hit) gGain(m.hit); }
   let d = Math.max(1, Math.round(raw * (1-red))); // v5.5d : réduction totale des dégâts plafonnée
   d = Math.min(d, Math.max(1, Math.round(R.maxhp*((C.enemies||[]).some(e=>e.boss&&!e.dead)?((x&&x.big&&(C.enemies||[]).some(e=>e.key==='chaos'&&!e.dead))?BAL.capChaos:BAL.capB):BAL.cap)))); // jamais tué d'un seul coup
   if (st.shield>0){ const a=Math.min(st.shield,d); st.shield-=a; d-=a; if(a>0) floatAt(pel,`Bouclier −${a}`,'mp'); }
@@ -4090,9 +4190,12 @@ async function playerAction(id){
 }
 async function useSkill(s){
   const st=C.st, pel=plEl();
-  if (s.mp) R.mp-=mpCost(s);
+  const am = astralMul(s), M = mechOf(R.job);
+  if (s.mp){ if (gPay(s)) st.sen -= s.gcost; else R.mp-=mpCost(s); }
   if (s.cd) C.cds[s.id] = Math.max(1, s.cd - R.mods.cdr);
   if (s.req) st.sen -= s.req;
+  if (s.astral) st.sen = st.sen<0 ? 1 : Math.min(3, st.sen+1);
+  if (s.umbral) st.sen = st.sen>0 ? -1 : Math.max(-3, st.sen-1);
   C.msg = `${esc(R.pname||S.name)} utilise <b>${s.name}</b> !`;
   updateCombat();
   anim(plEl(), (s.target==='self' || s.stat==='mag') ? 'cast' : 'lunge', 400);
@@ -4103,16 +4206,17 @@ async function useSkill(s){
     for (let h=0; h<hits; h++){
       for (const e of targets){
         if (e.dead) continue;
-        const r = playerHit(s, e);
+        const r = playerHit(s, e); if (am>1) r.d=Math.round(r.d*am);
+        if (r.d>0){ if (M.land) gGain(M.land); if (r.crit && M.crit) gGain(M.crit); }
         fxAt(enEl(e), s.fx); damageEnemy(e, r.d, r.crit); if (h===0){ elemPop(e, r.em); if (r.em>1 && pk('elMp') && R.maxmp) R.mp=Math.min(R.maxmp, R.mp+pk('elMp')); }
-        if (s.dot && !e.dead && h===0){ const stat=s.stat==='mag'?R.mag:R.atk; e.dots=e.dots.filter(d=>d.src!==s.id); e.dots.push({src:s.id, dmg:Math.max(1,Math.round(stat*s.dot[0]*dmgBonus()*(1+pk('dotUp'))*Math.max(0.5,1-(e.res[skType(s)]||0)*0.5)*elemMul(e, s.el))), t:s.dot[1]}); }
+        if (s.dot && !e.dead && h===0){ const stat=s.stat==='mag'?R.mag:R.atk; e.dots=e.dots.filter(d=>d.src!==s.id); e.dots.push({src:s.id, by:R.cur||0, dmg:Math.max(1,Math.round(stat*s.dot[0]*dmgBonus()*(1+pk('dotUp'))*Math.max(0.5,1-(e.res[skType(s)]||0)*0.5)*elemMul(e, s.el))), t:s.dot[1]}); }
         if (s.stun && !e.dead && h===0) applyStun(e, s.stun);
       }
       if (hits>1){ updateCombat(); await sleep(200); }
     }
     st.nextCrit=0;
   }
-  if (s.sen) st.sen = Math.min(3, st.sen + s.sen);
+  if (s.sen) gGain(s.sen);
   const x = s.self;
   if (x){
     if (x.heal){ const h=Math.round(R.mag*x.heal*rnd(0.95,1.05)); const b=R.hp; healR(h); fxAt(pel,'heal'); floatAt(pel,'+'+Math.round(R.hp-b),'heal'); }
@@ -4125,19 +4229,21 @@ async function useSkill(s){
     if (x.regen){ st.regen=Math.max(st.regenT>0?st.regen:0, x.regen[0]); st.regenT=Math.max(st.regenT, x.regen[1]); }
     if (x.buff){ st.buff=Math.max(st.buffT>0?st.buff:0, x.buff[0]); st.buffT=Math.max(st.buffT, x.buff[1]); fxAt(pel,'fire'); floatAt(pel,'Puissance !','info'); }
     if (x.nextCrit){ st.nextCrit=1; }
-    if (x.mpGain){ R.mp=Math.min(R.maxmp, R.mp+x.mpGain); floatAt(pel,'+'+x.mpGain+' PM','mp'); }
+    if (x.mpGain){ const g=Math.round(x.mpGain*(s.umbral && st.sen<0 ? 1+0.5*(-st.sen-1) : 1)); R.mp=Math.min(R.maxmp, R.mp+g); floatAt(pel,'+'+g+' PM','mp'); }
     if (x.cleanse){ st.weakT=0; st.pdotT=0; }
   }
   updateCombat();
   await sleep(420);
 }
 async function enemyPhase(){
+  const ticked=new Set();
   for (const e of alive()){ // dégâts continus
     if (!e.dots.length) continue;
-    let tot=0; e.dots.forEach(d=>{ tot+=d.dmg; d.t--; }); e.dots=e.dots.filter(d=>d.t>0);
+    let tot=0; e.dots.forEach(d=>{ tot+=d.dmg; d.t--; ticked.add(d.by||0); }); e.dots=e.dots.filter(d=>d.t>0);
     e.hp=Math.max(0,e.hp-tot); floatAt(enEl(e), String(tot), 'dot');
     if (e.hp<=0) killEnemy(e);
   }
+  ticked.forEach(i=>{ try{ withHero(i, ()=>{ const m=mechOf(R.job); if (m.tick) gGain(m.tick); }); }catch(_){} });
   updateCombat();
   if (alive().length===0) return;
   await sleep(300);
@@ -4203,6 +4309,7 @@ function startPlayerTurn(){
   C.turn++;
   Object.keys(C.cds).forEach(k=>{ if(C.cds[k]>0) C.cds[k]--; });
   R.mp = Math.min(R.maxmp, R.mp + Math.round((2 + R.maxmp*0.04)*(1+R.mods.mpr)));
+  { const m=mechOf(R.job); if (m.every && C.turn%m.every===0) gGain(1); }
   if (st.regenT>0){ const h=Math.round(R.maxhp*st.regen); healR(h); st.regenT--; floatAt(pel,'+'+h,'heal'); }
   if (pk('regen')>0 && R.hp>0) healR(R.maxhp*pk('regen'));
   if (st.pdotT>0){ R.hp-=st.pdot; st.pdotT--; floatAt(pel,String(st.pdot),'bad'); if(R.hp<1 && st.holmT>0) R.hp=1; }
@@ -5656,7 +5763,7 @@ startCombat = function(kind){
   if (kind==='boss'){ const k=1+BAL.duoBossHp*(NP()-1); C.enemies.forEach(e=>{ if (e.boss){ e.hp=e.maxhp=Math.round(e.maxhp*k); } }); updateCombat(); } // v5.5f : PV des boss selon le nombre de joueurs
   const tmpl=JSON.stringify(C.st);
   R.party.forEach((h,i)=>{ h.st = i===0 ? C.st : JSON.parse(tmpl); h.cds = i===0 ? C.cds : {};
-    const ss=(h.perk&&h.perk.shieldStart)||0; h.st.shield = ss>0 ? Math.round(h.maxhp*Math.min(0.2,ss)) : 0; }); // v5.5g : bouclier de départ propre à chaque héros
+    h.st.sen=mechOf(h.job).start||0; const ss=(h.perk&&h.perk.shieldStart)||0; h.st.shield = ss>0 ? Math.round(h.maxhp*Math.min(0.2,ss)) : 0; }); // v5.5g : bouclier de départ propre à chaque héros
 };
 /* ennemis : chaque attaque vise un héros encore debout (tirage rand() commun) */
 const _enemyAct = enemyAct;
@@ -5678,6 +5785,7 @@ function duoTick(i){ // début de tour pour le héros i (copie de startPlayerTur
   heroIn(i); const st=C.st; if (R.hp<=0) return;
   Object.keys(C.cds).forEach(k=>{ if(C.cds[k]>0) C.cds[k]--; });
   R.mp = Math.min(R.maxmp, R.mp + Math.round((2 + R.maxmp*0.04)*(1+R.mods.mpr)));
+  { const m=mechOf(R.job); if (m.every && C.turn%m.every===0) gGain(1); }
   if (st.regenT>0){ healR(Math.round(R.maxhp*st.regen)); st.regenT--; }
   if (pk('regen')>0) healR(R.maxhp*pk('regen'));
   if (st.pdotT>0){ R.hp-=st.pdot; st.pdotT--; if(R.hp<1 && st.holmT>0) R.hp=1; if (R.hp<0) R.hp=0; }

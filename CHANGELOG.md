@@ -1,5 +1,20 @@
 # Notes de patch : A Godless Realm
 
+## v6.1d : Une mécanique par job, sorts épurés et faiblesses visibles (24/10/2026)
+- Chaque job a maintenant sa propre jauge sous les PM, inspirée de FINAL FANTASY XIV. Appui long dessus pour savoir comment la remplir.
+- Paladin : Serment, gagné quand tu encaisses un coup, sert à lancer Rempart. Guerrier : Rage, gagnée en encaissant, pour Fendoir et Tourbillon.
+- Moine : Chakra, gagné à chaque coup et coup critique, jusqu'à 5 pour Chakra interdit qui soigne aussi.
+- Barde : Répertoire, gagné à chaque tour de poison et coup critique, pour Pluie de flèches.
+- Mage blanc : un Lys tous les trois tours. Un Lys rend Soin gratuit, trois Lys lancent Misère du lys sur tous.
+- Mage noir : Feu astral et Glace ombrale. Le Feu monte en puissance mais coûte plus de PM, la Glace rend plus de PM.
+- Érudit : commence avec 3 Flux d'éther, pour un Réconfort gratuit ou Drain d'énergie.
+- Chevalier dragon : Saut donne l'Œil du dragon, deux Œils lancent Plongeon draconique.
+- Les monstres ont un peu plus de PV et frappent un peu plus fort (sauf Chaos).
+- Moine, Barde et Samouraï ont plus de PV. Les sorts de base du Moine, du Barde, du Samouraï et du Mage rouge incluent maintenant une attaque sur tous les ennemis.
+- Boutons de sort épurés : icône, nom, effet principal et coût. Le détail complet reste sur l'appui long.
+- Un anneau vert autour d'une icône veut dire que la cible est faible à cet élément.
+- Sous chaque monstre : pastille verte pour ses faiblesses, pastille grise pour ses résistances. Un gros Faiblesse ! s'affiche à l'impact.
+
 ## v6.1c : Nouveau menu principal (24/10/2026)
 - L'avant-poste devient un vrai menu principal : grand décor de FINAL FANTASY XIV en plein écran.
 - Ton personnage et ton compagnon sont mis en avant au centre, avec ton record et tes victoires.
