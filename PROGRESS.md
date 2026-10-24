@@ -4,3 +4,4 @@
 - v6.0d (3d81f4b) : placement des monstres sur petits écrans, titre Victoire finale. Live vérifié (pdm-next-04, index.html identique au commit).
 - En cours : v6.0e, correctif de désynchronisation duo (renderCombat sauvegarde le héros courant avant affichage). Test duo local en cours.
 - v6.0e : correctif désync duo (renderCombat/updateCombat sauvegardent le héros courant, try/finally). Tests duo locaux dnx3/dnx4 : 0 écart, 0 désync (floors 25 et 20), contre 11 à 29 désyncs avant (et 15 sur la stable). Bouton Sans compagnon grisé si aucun choisi.
+- v6.0f : bouton Fermer collant en bas des fenêtres longues (aide des actions coupait le bouton sous le pli), 44 px. Test faux boutons : écrans titre, avant-poste, jobs, marchand, invocation, classement, paramètres, menu combat, objets : aucun bouton mort (sauf Sans compagnon, corrigé en v6.0e).

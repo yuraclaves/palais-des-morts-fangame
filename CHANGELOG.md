@@ -1,5 +1,9 @@
 # Notes de patch : A Godless Realm
 
+## v6.0f : Fenêtres plus pratiques (24/10/2026)
+- Dans les fenêtres longues (aide, détails), le bouton Fermer reste visible en bas : plus besoin de défiler pour sortir.
+- Le bouton Fermer est plus facile à toucher.
+
 ## v6.0e : Duo et trio plus stables (24/10/2026)
 - Correction d'une désynchronisation en duo : au début d'un combat, l'hôte pouvait reprendre un ancien état (poison, faiblesse) au lieu du nouveau.
 - Les deux joueurs voient maintenant les mêmes effets dès le premier tour.
