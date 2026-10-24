@@ -8,7 +8,7 @@
 ## Stable et bascule
 - Sauvegarde : tag `stable-v5.5g2` et branche `stable` (ad41a55).
 - Passer next en prod : fusionner `next` dans `main` (le site stable déploie main). Avant : remettre `CFG.lobby`/`roomPrefix` aux valeurs stables, `CH_NEXT=false`, et un nom de cache SW non `pdm-next-*`.
-- Revenir en arrière : `git reset` de main sur `stable-v5.5g2` via un commit de revert (pas de force-push), ou redéployer la branche `stable` sur Render.
+- Revenir en arrière après une fusion : `git revert` du commit de fusion sur main (pas de force-push), ou pointer le service Render stable sur la branche `stable` (= tag `stable-v5.5g2`).
 - Joueurs : le code de sauvegarde (Paramètres > Copier mon code / Coller un code) passe la progression d’un site à l’autre.
 
 ## Changelog
@@ -28,7 +28,7 @@
 | Acte II, 0 % (k4b) | 15/40 (38 %) | 15 | 4/40 (10 % ; 27 % des entrants) | 51-75 : normal 1, boss 11 ; 76-100 : normal 2, élite 4, boss 14 |
 | Acte II, 100 % (k4u) | 28/40 (70 %) | 28 | 12/40 (30 % ; 43 % des entrants) | 51-75 : boss 10 ; 76-100 : normal 2, élite 4, boss 11 |
 - Morts acte II (k4u) : boss 5 (55, 60x2, 70, 80), élites 7, normaux 4. Coup max reçu 0,61 à 0,73 des PV max : pas de one-shot.
-- Duo/trio (sync) : avant v6.0e, duo local et live 11 à 29 désynchronisations (rattrapées par resync ; la stable v5.5g2 en a aussi 15 : bug ancien). Après v6.0e, duo local dnx3 et dnx4 : 0 écart, 0 désync (étages 25 et 20). Trio local tnx2 : 0 écart, étage 24. Live v6.0f : voir plus bas.
+- Duo/trio (sync) : avant v6.0e, duo local et live 11 à 29 désynchronisations (rattrapées par resync ; la stable v5.5g2 en a aussi 15 : bug ancien). Après v6.0e, duo local dnx3 et dnx4 : 0 écart, 0 désync (étages 25 et 20). Trio local tnx2 : 0 écart, étage 24. Live v6.0f (site next, vrai Supabase realtime) : duo dlive6 0 écart, 0 désync (étage 20) ; trio tlive6 étage 30, 1 désync (étape 99, l’hôte avait tiré un nombre aléatoire de plus, un héros KO), rattrapée par la resync, 7 contrôles en écart sur 268.
 
 ## Boss 55 à 100
 | Étage | Boss | Rôle | Faible | Résiste |
@@ -66,5 +66,6 @@ Chaos prend les affinités du Démon appelé : Marilith (faible glace, résiste 
 - 100 % des améliorations donnent 70 % au F50 (cible 55-65 %).
 - Chaos n’a tué aucun bot dans les sims (les morts acte II sont sur les élites et les boss 55-80).
 - Aucune insertion réelle dans Supabase depuis next (vérification des contraintes en lecture seule uniquement).
+- Trio : une désync rare reste (l’hôte consomme un tirage aléatoire de plus quand un héros est KO, étape 99 du test live) ; la resync la corrige, cause exacte non trouvée.
 - Le correctif de désync (v6.0e) n’est que sur next ; la stable garde le bug ancien (rattrapé par resync).
 - Avant-poste : la barre du bas (Registre, Classement, Paramètres, Écran titre) est en partie sous le pli sur iPhone 12 (on y accède en défilant).
