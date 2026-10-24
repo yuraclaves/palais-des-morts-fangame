@@ -1,5 +1,12 @@
 # Notes de patch : A Godless Realm
 
+## v6.0c : Néant plus juste, petits écrans (24/10/2026)
+- Le Néant est mieux dosé : les monstres normaux tombent en 2 tours, les élites et les boss restent les vrais dangers.
+- Titan et le Nuage des ténèbres ont moins de PV : leurs combats sont moins longs.
+- Sur les petits écrans (iPhone SE), le combat tient en entier sans défiler.
+- Les boutons du haut (retour, son, aide, menu) sont plus faciles à toucher.
+- Le score envoyé au classement est limité pour les très longues parties.
+
 ## v6.0b : Acte II : le Néant, étages 51 à 100 (24/10/2026)
 - Après Bahamut, un escalier s'ouvre sous le trône. Tu choisis : rentrer victorieux, ou descendre dans le Néant pour 50 étages de plus.
 - Ta victoire sur Bahamut est comptée tout de suite. Si tu tombes dans le Néant, tu gardes ta victoire et l'étage atteint.

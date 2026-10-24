@@ -1314,6 +1314,11 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 .tb-back{min-width:44px;min-height:44px!important;margin:-8px 2px -8px -6px;padding:0 8px;justify-content:center}
 body.home .tm{padding:11px 26px;min-height:44px}
 #bRules{min-height:44px}
+.topbar .btn.small,.snd-btn{position:relative}
+.topbar .btn.small::after,.snd-btn::after{content:"";position:absolute;inset:-5px -3px}
+/* v6.0 : petits écrans (iPhone SE, mini) : le combat tient sans défiler */
+@media (max-height:700px){ #field.field{min-height:200px} }
+@media (max-height:600px){ #field.field{min-height:168px} #ppw .bar{height:9px} }
 </style>
 </head>
 <body>
@@ -1835,25 +1840,25 @@ const ENEMIES = {
   liche:{ name:'Liche', hp:115, atk:13, ai:'lichfiend', res:{phys:0.2} },
   tiamat:{ name:'Tiamat', hp:125, atk:13, ai:'tiamat', res:{mag:0.1} },
   // boss de l'acte II (gardiens = étages impairs ×5, boss = ×10)
-  garuda:{ hpK:2.3, atkK:0.85, name:'Garuda', title:'Dame des vents', hp:290, atk:13, ai:'garuda', res:{mag:0.1}, boss:true, guardian:true, fem:true,
+  garuda:{ hpK:2.2, atkK:0.85, name:'Garuda', title:'Dame des vents', hp:290, atk:13, ai:'garuda', res:{mag:0.1}, boss:true, guardian:true, fem:true,
     phases:[{at:0.5, line:'Mes plumes vont vous lacérer !'}] },
-  titan:{ hpK:2.2, atkK:0.82, name:'Titan', title:'Seigneur des roches', hp:820, atk:15, ai:'titan', res:{phys:0.15}, boss:true,
+  titan:{ hpK:1.0, atkK:0.82, name:'Titan', title:'Seigneur des roches', hp:820, atk:15, ai:'titan', res:{phys:0.15}, boss:true,
     phases:[{at:0.7, line:'La montagne se dresse contre vous !'},{at:0.35, line:'Sentez la colère de la terre !'}] },
-  odin:{ hpK:2.3, atkK:0.85, name:'Odin', title:'Le Seigneur des Ténèbres', hp:290, atk:13, ai:'odin', res:{phys:0.15}, boss:true, guardian:true,
+  odin:{ hpK:2.4, atkK:0.85, name:'Odin', title:'Le Seigneur des Ténèbres', hp:290, atk:13, ai:'odin', res:{phys:0.15}, boss:true, guardian:true,
     phases:[{at:0.5, line:'Gungnir ne manque jamais sa cible.'}] },
-  ultimecia:{ hpK:2.2, atkK:0.82, name:'Ultimecia', title:'La Sorcière du futur', hp:820, atk:15, ai:'ultimecia', res:{mag:0.15}, boss:true, fem:true,
+  ultimecia:{ hpK:1.5, atkK:0.82, name:'Ultimecia', title:'La Sorcière du futur', hp:820, atk:15, ai:'ultimecia', res:{mag:0.15}, boss:true, fem:true,
     phases:[{at:0.7, line:'Le temps m’appartient. Je le comprime.'},{at:0.35, line:'Contemplez la fin de toute existence !'}] },
-  empereur:{ hpK:2.3, atkK:0.85, name:'L’Empereur', title:'Souverain de Palamecia', hp:290, atk:13, ai:'emperor', res:{mag:0.1}, boss:true, guardian:true,
+  empereur:{ hpK:2.4, atkK:0.85, name:'L’Empereur', title:'Souverain de Palamecia', hp:290, atk:13, ai:'emperor', res:{mag:0.1}, boss:true, guardian:true,
     phases:[{at:0.5, skin:'empereur2', line:'Même l’enfer m’obéit ! Admirez ma vraie forme !'}] },
-  nuage:{ hpK:2.2, atkK:0.82, name:'Nuage des ténèbres', title:'Gardienne du Néant', hp:820, atk:15, ai:'cloudofdarkness', res:{phys:0.1, mag:0.1}, boss:true, fem:true,
+  nuage:{ hpK:0.95, atkK:0.82, name:'Nuage des ténèbres', title:'Gardienne du Néant', hp:820, atk:15, ai:'cloudofdarkness', res:{phys:0.1, mag:0.1}, boss:true, fem:true,
     phases:[{at:0.65, line:'Le Néant engloutira votre lumière.'},{at:0.3, line:'Rien ne survit à l’onde de particules.'}] },
-  necron:{ hpK:2.4, atkK:0.85, name:'Necron', title:'L’Éternelle ténèbre', hp:290, atk:13, ai:'necron', res:{phys:0.15, mag:0.15}, boss:true, guardian:true,
+  necron:{ hpK:1.5, atkK:0.85, name:'Necron', title:'L’Éternelle ténèbre', hp:290, atk:13, ai:'necron', res:{phys:0.15, mag:0.15}, boss:true, guardian:true,
     phases:[{at:0.5, line:'Vivre, c’est craindre la mort. Je vous en libère.'}] },
-  ardyn:{ hpK:2.3, atkK:0.82, name:'Ardyn Izunia', title:'Le Roi maudit', hp:820, atk:15, ai:'ardyn', res:{mag:0.1}, boss:true,
+  ardyn:{ hpK:1.6, atkK:0.82, name:'Ardyn Izunia', title:'Le Roi maudit', hp:820, atk:15, ai:'ardyn', res:{mag:0.1}, boss:true,
     phases:[{at:0.7, line:'Ah, enfin un peu de divertissement.'},{at:0.35, line:'Le Fléau des astres coule dans mes veines.'}] },
-  garland:{ hpK:2.4, atkK:0.85, name:'Garland', title:'Le Chevalier du temps', hp:290, atk:13, ai:'garland', res:{phys:0.2}, boss:true, guardian:true,
+  garland:{ hpK:2.7, atkK:0.85, name:'Garland', title:'Le Chevalier du temps', hp:290, atk:13, ai:'garland', res:{phys:0.2}, boss:true, guardian:true,
     phases:[{at:0.4, line:'Moi, Garland, je vais tous vous écraser !'}] },
-  chaos:{ hpK:2.6, atkK:0.8, name:'Chaos', title:'Dieu de la Discorde', hp:860, atk:15, ai:'chaos', res:{phys:0.1, mag:0.1}, boss:true,
+  chaos:{ hpK:2.4, atkK:0.95, name:'Chaos', title:'Dieu de la Discorde', hp:860, atk:15, ai:'chaos', res:{phys:0.1, mag:0.1}, boss:true,
     phases:[{at:0.8, line:'Marilith, prête-moi le feu de la terre !'},{at:0.6, line:'Kraken, que les eaux vous noient !'},{at:0.4, line:'Liche, que la terre se fende !'},{at:0.2, line:'Tiamat, que le ciel se déchaîne ! Tout recommence, encore et encore !'}] },
   enkidou:{ name:'Enkidou', hp:85, atk:10, ai:'enkidu', res:{mag:0.2} },
   dragonombre:{ name:'Dragon des ombres', hp:90, atk:12, ai:'shadowdragon', res:{mag:0.25} },
@@ -1878,7 +1883,7 @@ const BAL = { lv:0.08, h0:0.55, a0:0.42, ramp:7, hL:0.045, aL:0.08, elite:{hp:1.
   duoBossHp:0.6, kh:{ n0:0.9, nk:0.07, boss:0.85, big:0.95, fin:0.35, late:0.06 }, ka:1.96, ea0:1.15, cap:0.28, capB:0.4,
   // v5.5d : un seul combat par étage, donc moins de récompenses : le héros gagne un peu de force à chaque étage
   pg:0.028, heal:0.2, mpw:0.4, gk:2.5, gf:6, dmgCap:2.2, perkCap:0.7, redCap:0.75 };
-function khMul(f, d, kind){ const b=BAL.kh, base=b.n0/(1+b.nk*(f-1)); if (!d.boss) return base; return base*(1+b.late*Math.max(0,f-35))*(f>=maxF()?b.big*b.fin:isBigBoss(f)?b.big:b.boss); }
+function khMul(f, d, kind){ const b=BAL.kh, g=Math.min(f,ACT1_MAX), base=b.n0/(1+b.nk*(g-1)); if (!d.boss) return base; return base*(1+b.late*Math.max(0,g-35))*(f>=maxF()?b.big*b.fin:isBigBoss(f)?b.big:b.boss); }
 const Lf = lv => 1 + BAL.lv*(lv-1);
 function eMul(f){ const r=Math.min(1,(f-1)/BAL.ramp), late=Math.max(0,f-10); return { h:Lf(f)*(BAL.h0+(1-BAL.h0)*r+BAL.hL*late), a:Lf(f)*(BAL.a0+(1-BAL.a0)*r+BAL.aL*late) }; }
 const FLOOR_TIPS = {
@@ -2189,8 +2194,8 @@ const AI = {
     if (p===2 && op(e)) return A('Colère de la montagne',4.6,{windup:1, el:'terre', fx:'meteor'});
     if (p===0){ const c=e.t%4; return c===3 ? A('Glissement de terrain',3.4,{windup:1, el:'terre', fx:'meteor'}) : c===1 ? A('Poing de granite',1.2) : A('Écrasement',1); }
     const c=(e.t-e.pt)%5;
-    if (c===0) return {kind:'shield', name:'Peau de granite', pct:0.2, fx:'meteor'};
-    if (c===2) return A('Bond titanesque',2.8,{windup:1, shieldAmp:true, el:'terre', fx:'meteor'});
+    if (c===0) return {kind:'shield', name:'Peau de granite', pct:0.1, fx:'meteor'};
+    if (c===2) return A('Bond titanesque',2.3,{windup:1, shieldAmp:true, el:'terre', fx:'meteor'});
     if (c===4) return A('Glissement de terrain',3.6,{windup:1, el:'terre', fx:'meteor'});
     return p===2 ? A('Séisme',1.2,{weaken:2}) : A('Poing de granite',1.1); },
   odin(e){ const p=bossPhase(e);
@@ -2216,12 +2221,12 @@ const AI = {
     if (p===1 && op(e)) return {kind:'summon', name:'Appel du Néant', key:'elemsombre', n:2};
     if (p===2 && op(e)) return A('Onde de particules',4.6,{windup:1, type:'mag', el:'ten', fx:'void'});
     const c=(e.t-e.pt)%5;
-    if (c===0) return {kind:'shield', name:'Voile des ténèbres', pct:0.18, fx:'void'};
+    if (c===0) return {kind:'shield', name:'Voile des ténèbres', pct:0.1, fx:'void'};
     if (c===2) return A('Flot de ténèbres',2.8,{windup:1, type:'mag', shieldAmp:true, el:'ten', fx:'void'});
     if (c===4) return A('Onde de particules',3.6,{windup:1, type:'mag', el:'ten', fx:'void'});
     return A('Tentacules',1.1,{el:'ten'}); },
   necron(e){ const p=bossPhase(e);
-    if (p===1 && op(e)) return {kind:'shield', name:'Absolu', pct:0.2, fx:'light'};
+    if (p===1 && op(e)) return {kind:'shield', name:'Absolu', pct:0.12, fx:'light'};
     const c=e.t%4;
     if (c===1) return A('Choc bleu',p?1.4:1.2,{type:'mag', weaken:3, el:'eau'});
     if (c===3) return A(p?'Grand-Croix':'Anneau de neutrons',p?3.6:3.4,{windup:1, type:'mag', el:p?'lum':'ten', fx:'light'});
@@ -2621,6 +2626,13 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.0c', date:'24/10/2026', img:'assets/monsters/titan.webp', title:'Néant plus juste, petits écrans', notes:[
+    'Le Néant est mieux dosé : les monstres normaux tombent en 2 tours, les élites et les boss restent les vrais dangers.',
+    'Titan et le Nuage des ténèbres ont moins de PV : leurs combats sont moins longs.',
+    'Sur les petits écrans (iPhone SE), le combat tient en entier sans défiler.',
+    'Les boutons du haut (retour, son, aide, menu) sont plus faciles à toucher.',
+    'Le score envoyé au classement est limité pour les très longues parties.'
+  ]},
   {v:'v6.0b', date:'24/10/2026', img:'assets/monsters/chaos.webp', title:'Acte II : le Néant, étages 51 à 100', notes:[
     'Après Bahamut, un escalier s’ouvre sous le trône. Tu choisis : rentrer victorieux, ou descendre dans le Néant pour 50 étages de plus.',
     'Ta victoire sur Bahamut est comptée tout de suite. Si tu tombes dans le Néant, tu gardes ta victoire et l’étage atteint.',
@@ -3541,7 +3553,7 @@ function endRun(victory, abandoned){
    <div class="endart ${victory?'win':'ko'}" style="background-image:url(assets/bg/t5.webp)"></div>
    <div class="win col center fanfare end ${victory?'':'ko'}" style="align-items:center;padding:22px 12px">
     ${victory?`<div class="end-sp">${spr(runRef.job,'idle')}</div>`:''}
-    <div class="ff-title">${[...(ko2?'K.O.':victory?'Victoire':abandoned?'Retraite':'K.O.')].map((c,i)=>`<i style="animation-delay:${i*50}ms">${c}</i>`).join('')}</div><div class="ff-line"></div>
+    <div class="ff-title">${[...(ko2?'K.O.':final100?'Victoire finale':victory?'Victoire':abandoned?'Retraite':'K.O.')].map((c,i)=>`<i style="animation-delay:${i*50}ms">${c}</i>`).join('')}</div><div class="ff-line"></div>
     ${victory?'':spr(job,'','width:80px;filter:grayscale(1) brightness(.6);transform:rotate(90deg);margin:10px')}
     <p>${final100?'Chaos est vaincu. La boucle du temps est brisée, le Néant se referme.':ko2?'Tu tombes dans le Néant, mais ta victoire sur Bahamut reste gravée.':runRef.act2&&victory?'Tu remontes du Néant, victorieux.':victory?'Bahamut, Roi des dragons, s’incline. Le Palais des Morts est purifié !':abandoned?'Tu quittes le palais par un passage secret.':'Ton aventurier a succombé dans les profondeurs…'}</p>
     <div class="col stagger" style="width:100%;gap:2px;margin-top:6px">
@@ -3551,7 +3563,7 @@ function endRun(victory, abandoned){
       <div class="stat"><span>Étage atteint</span><b>${fl} / ${runRef.act2?ACT2_MAX:ACT1_MAX}</b></div>
       <div class="stat"><span>Record</span><b>${S.stats.best}</b></div>
       <div class="stat"><span>Monstres vaincus</span><b>${kills}</b></div>
-      ${victory?'<div class="stat"><span>Bonus de victoire</span><b class="gold">500</b></div>':''}
+      ${victory?`<div class="stat"><span>Bonus de victoire</span><b class="gold">${final100?'500 + 1500':'500'}</b></div>`:''}
       <div class="stat"><span>Gils conservés</span><b class="gold">+${earned}</b></div>
       <div class="stat"><span>Fragments de cristal</span><b class="frag">+${frags} ${ic('gem')}</b></div>
       ${fcB?`<div class="stat"><span>dont premières victoires sur un gardien</span><b class="frag">+${fcB}</b></div>`:''}
@@ -3567,9 +3579,10 @@ function endRun(victory, abandoned){
 /* ===================== COMBAT (tour par tour) ===================== */
 function makeEnemy(key, kind){
   const d=ENEMIES[key], f=R.floor, el=kind==='elite', m=eMul(f);
-  const hp=Math.max(1,Math.round(d.hp*(d.hpK||1)*m.h*(el?BAL.elite.hp:1)*khMul(f,d,kind)));
+  const a2=Math.max(0,f-ACT1_MAX); // v6.0 : acte II, les monstres suivent la puissance du héros
+  const hp=Math.max(1,Math.round(d.hp*(d.hpK||1)*m.h*(el?BAL.elite.hp:1)*khMul(f,d,kind)*(d.boss?1:1+0.03*a2)));
   const gils = d.boss ? (d.guardian? 20+2*f : 60+4*f) : Math.round(BAL.gk*(2+0.5*f)*(el?2:1)*(d.gilMul||1)*(f<=5?2:f<=10?1.5:1));
-  return { key, name:d.name+(el?' +':''), hp, maxhp:hp, atk:d.atk*(d.atkK||1)*m.a*(el?BAL.elite.atk:1)*BAL.ka*(1+(BAL.ea0-BAL.a0)*Math.max(0,1-(f-1)/BAL.ramp)/Math.max(0.1,(BAL.a0+(1-BAL.a0)*Math.min(1,(f-1)/BAL.ramp)))), res:Object.assign({phys:0,mag:0},d.res||{}),
+  return { key, name:d.name+(el?' +':''), hp, maxhp:hp, atk:d.atk*(d.atkK||1)*m.a*(el?BAL.elite.atk:1)*BAL.ka*(1+(BAL.ea0-BAL.a0)*Math.max(0,1-(f-1)/BAL.ramp)/Math.max(0.1,(BAL.a0+(1-BAL.a0)*Math.min(1,(f-1)/BAL.ramp))))*(1+0.006*a2), res:Object.assign({phys:0,mag:0},d.res||{}),
     gils, ai:d.ai, boss:!!d.boss, support:!!d.support, t:0, dots:[], stunT:0, shield:0, buff:0, buffT:0, rage:0, flyT:0,
     enrageAt: (d.boss ? ENRAGE_AT[key] : (el ? BAL.elite.enrage : 0)) ? (d.boss ? ENRAGE_AT[key] : BAL.elite.enrage) + pk('enrageDelay') : 0, pending:null, intent:null, dead:false,
     uid:'e'+(++R.uidn||(R.uidn=1)) };
@@ -4740,7 +4753,7 @@ const Online = (function(){
   /* run = { job, companion, floor, score, duration_s, victory, mode:'solo'|'duo', partner_pseudo, partner_job, seed } */
   function cleanRun(r){
     return { p_job:String(r.job||'').toLowerCase(), p_companion: r.companion ? String(r.companion).toLowerCase() : null,
-      p_floor: Math.max(1, Math.min(50, Math.round(r.floor||1))), p_score: Math.max(0, Math.round(r.score||0)),
+      p_floor: Math.max(1, Math.min(50, Math.round(r.floor||1))), p_score: Math.max(0, Math.min(2000000, Math.round(r.score||0))),
       p_duration_s: Math.max(5, Math.min(86400, Math.round(r.duration_s||0))), p_victory: !!r.victory,
       p_mode: r.mode === 'duo' ? 'duo' : 'solo', p_partner_pseudo: r.mode==='duo' ? (r.partner_pseudo||null) : null,
       p_partner_job: r.mode==='duo' && r.partner_job ? String(r.partner_job).toLowerCase() : null,
