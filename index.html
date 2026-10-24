@@ -1444,6 +1444,21 @@ body[data-scr="hub"]::before{opacity:0}
 .sk3.oncd .skn{color:#aab}
 .sk3.reson .sk3i .ski{filter:grayscale(.75) brightness(.75)}.sk3.reson .sk3i{box-shadow:0 0 0 2px #8a90a0}
 #app .sk3 .skn.skn-l{font-size:12.5px}
+/* v6.1e : sorts lisibles, une seule pastille par bouton, plaques ennemies aérées */
+#app .sk3 .sk3x{position:absolute;left:-5px;top:-6px;z-index:2;font:800 9px/13px system-ui,-apple-system,"Segoe UI",sans-serif!important;padding:0 3px;border-radius:5px;letter-spacing:0;box-shadow:0 0 0 1.5px #10131c}
+.sk3 .skc{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:700;letter-spacing:0}
+.sk3 .skc.c-gain{background:transparent;color:var(--gc,#ffd56a);border:1px dashed var(--gc,#ffd56a)}
+.sk3 .skc.c-cd{background:rgba(0,0,0,.3);color:#c9d4ec;border:1px solid rgba(201,212,236,.35);display:inline-flex;align-items:center;gap:2px}
+.sk3 .skc.c-cd .ic{width:9px;height:9px}
+.sk3 .skc.c-free{background:transparent;color:#9aa6bf;border:1px solid rgba(154,166,191,.35)}
+.sk3 .sk3l{gap:4px;min-width:0}.sk3 .sk3v{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.elgood,.elbad{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+#field.crowd .en img.spr.art{max-height:min(84px,11vh);width:auto;max-width:24vw}
+#field.crowd .en.boss img.spr.art{max-height:min(150px,22vh)}
+#field.crowd .en .stx{font-size:9px;line-height:11px}
+#field.crowd .en .elw2{margin-top:1px}
+#field .en .ename{white-space:nowrap;text-shadow:0 1px 2px #000,0 0 3px #000;position:relative;z-index:3}
+#field .en .elw2,#field .en .bar{position:relative;z-index:3}
 </style>
 </head>
 <body>
@@ -1874,6 +1889,8 @@ const MECH = {
   magerouge:{g:'Mana', max:3, col:'#ff8aa0', tip:'Riposte et tes sorts Ver donnent 1 Mana. VerBrasier coûte 3 Mana.'},
 };
 const mechOf = k => MECH[k] || {g:'Sen', max:3, col:'#ffe27a'};
+const G_SHORT = {'Œil du dragon':'Œil', 'Flux d’éther':'Flux', 'Répertoire':'Répert.'};
+const gShort = g => G_SHORT[g] || g;
 function gGain(n){ const m=mechOf(R.job), st=C&&C.st; if(!st||!n) return; if (m.signed) return; st.sen=Math.max(0, Math.min(m.max, (st.sen||0)+n)); }
 const JOB_ORDER = ['paladin','moine','barde','mageblanc','guerrier','dragoon','magenoir','erudit','samourai','magerouge'];
 Object.keys(MECH).forEach(k=>{ if (JOBS[k]) JOBS[k].gauge=MECH[k].g; });
@@ -2677,26 +2694,26 @@ function skillTag(s){
 /* v5.5d : textes des compétences réécrits (courts, concrets, même style pour les 10 jobs) */
 const STUN_TXT='Frappe et étourdit 1 tour : annule l’attaque qu’il prépare.', STUN_MAG='Sort qui étourdit 1 tour : annule l’attaque qu’il prépare.';
 const SK_DESC = {
-  coup:'Coup d’épée simple sur un ennemi.', esprit:'Sort sacré sur un ennemi. Te soigne de 8 % de tes PV max.', cercle:'Frappe tous les ennemis.', bouclier:STUN_TXT,
-  rempart:'Tu subis 50 % de dégâts en moins pendant 2 tours.', invincible:'Tu ne subis aucun dégât pendant 1 tour.', clemence:'Te soigne de 30 % de tes PV max.',
-  frappe:'Coup de poing simple sur un ennemi.', demolition:'Frappe et fait saigner l’ennemi pendant 3 tours.', chakra:'Gros coup sur un ennemi.',
+  coup:'Coup d’épée simple sur un ennemi.', esprit:'Sort sacré sur un ennemi. Te soigne de 12 % de tes PV max.', cercle:'Frappe tous les ennemis.', bouclier:STUN_TXT,
+  rempart:'Utilise 2 Serment. Tu subis 50 % de dégâts en moins pendant 2 tours.', invincible:'Tu ne subis aucun dégât pendant 1 tour.', clemence:'Te soigne de 30 % de tes PV max.',
+  frappe:'Coup de poing simple sur un ennemi.', demolition:'Frappe et fait saigner l’ennemi pendant 3 tours.', chakra:'Utilise 5 Chakra. Gros coup sur un ennemi. Te soigne de 12 %.',
   poingfeu:'Tes dégâts augmentent de 40 % pendant 3 tours.', enigme:'Tu subis 40 % de dégâts en moins pendant 2 tours. Te soigne de 12 %.', rosace:'Frappe tous les ennemis.', uppercut:STUN_TXT,
-  tir:'Tir simple sur un ennemi.', morsure:'Tir qui empoisonne l’ennemi pendant 4 tours.', salve:'Tir sur tous les ennemis.', barrage:'Trois tirs de suite sur un ennemi.',
+  tir:'Tir simple sur un ennemi.', morsure:'Tir qui empoisonne l’ennemi pendant 4 tours.', salve:'Tir sur tous les ennemis.', barrage:'Utilise 3 Répertoire. Trois tirs de suite sur un ennemi. Te soigne de 10 %.',
   troubadour:'Tu subis 30 % de dégâts en moins pendant 2 tours. Te soigne un peu à chaque tour pendant 3 tours.', tetanie:STUN_TXT, pean:'Te soigne de 18 % et retire poison et affaiblissement.',
-  pierre:'Sort simple sur un ennemi.', vent:'Sort qui blesse l’ennemi à chaque tour pendant 4 tours.', soin:'Te soigne. Plus ta Magie est haute, plus tu soignes.',
-  miracle:'Sort sacré sur tous les ennemis.', bene:'Te soigne entièrement et retire poison et affaiblissement.', divine:'Bouclier égal à 30 % de tes PV max.', saintete:'Sort sacré sur tous les ennemis. Les étourdit 1 tour.',
-  brutal:'Coup de hache simple sur un ennemi.', fendoir:'Gros coup sur un ennemi.', tourbillon:'Frappe tous les ennemis.',
+  pierre:'Sort simple sur un ennemi.', vent:'Sort qui blesse l’ennemi à chaque tour pendant 4 tours.', soin:'Te soigne selon ta Magie. Gratuit si tu as un Lys.',
+  miracle:'Utilise 3 Lys. Sort sacré sur tous les ennemis.', bene:'Te soigne entièrement et retire poison et affaiblissement.', divine:'Bouclier égal à 30 % de tes PV max.', saintete:'Sort sacré sur tous les ennemis. Les étourdit 1 tour.',
+  brutal:'Coup de hache simple. Donne 1 Rage.', fendoir:'Utilise 2 Rage. Gros coup sur un ennemi. Te soigne de 6 %.', tourbillon:'Utilise 2 Rage. Frappe tous les ennemis.',
   soif:'Tu subis 25 % de dégâts en moins pendant 2 tours. Te soigne un peu à chaque tour pendant 3 tours.', holmgang:'Pendant 2 tours, tes PV ne peuvent pas descendre sous 1.', tete:STUN_TXT, equilibre:'Te soigne de 30 % de tes PV max.',
   percee:'Coup de lance simple sur un ennemi.', chaos:'Frappe et fait saigner l’ennemi pendant 3 tours.', souffle:'Ton prochain coup est critique. Tes dégâts augmentent de 20 % pendant 2 tours.',
-  saut:'Gros coup sur un ennemi. Tu esquives les attaques de ce tour.', plongeon:'Gros coup sur tous les ennemis.', lance:STUN_TXT, second:'Te soigne de 20 % et retire poison et affaiblissement.',
-  glace:'Sort simple sur un ennemi. Te rend 20 PM.', feu:'Sort de feu puissant sur un ennemi.', foudre:'Sort qui blesse l’ennemi à chaque tour pendant 4 tours.', brasier:'Gros sort de feu sur tous les ennemis.',
+  saut:'Gros coup sur un ennemi. Tu esquives les attaques de ce tour. Donne 1 Œil du dragon.', plongeon:'Utilise 2 Œil du dragon. Gros coup sur tous les ennemis.', lance:STUN_TXT, second:'Te soigne de 20 % et retire poison et affaiblissement.',
+  glace:'Sort de glace sur un ennemi. Te rend des PM. Passe en Glace ombrale.', feu:'Sort de feu sur un ennemi. Monte le Feu astral.', foudre:'Sort qui blesse l’ennemi à chaque tour pendant 4 tours.', brasier:'Sort de feu sur tous les ennemis. Monte le Feu astral.',
   barriere:'Bouclier égal à 35 % de tes PV max.', entrave:STUN_MAG, fontaine:'Te rend 70 PM.',
-  ruine:'Sort simple sur un ennemi.', bacterie:'Infecte tous les ennemis : dégâts à chaque tour pendant 4 tours.', reconfort:'Te soigne (selon ta Magie) et te donne un bouclier de 15 % de tes PV max.',
-  murmure:'Ta fée te soigne de 10 % de tes PV max à chaque tour pendant 4 tours.', drain:'Sort sur un ennemi. Te rend 15 PM.', eclat:STUN_MAG, solsacre:'Tu subis 25 % de dégâts en moins pendant 3 tours. Te soigne un peu à chaque tour.',
-  hakaze:'Coup de katana simple. Donne 1 Sen.', higanbana:'Utilise 1 Sen. Brûle l’ennemi pendant 5 tours.', midare:'Utilise 3 Sen. Coup très puissant sur un ennemi.',
+  ruine:'Sort simple sur un ennemi.', bacterie:'Infecte tous les ennemis : dégâts à chaque tour pendant 4 tours.', reconfort:'Te soigne selon ta Magie et te donne un bouclier de 15 % de tes PV max. Gratuit si tu as un Flux d’éther.',
+  murmure:'Ta fée te soigne de 10 % de tes PV max à chaque tour pendant 4 tours. Donne 2 Flux d’éther.', drain:'Utilise 1 Flux d’éther. Sort sur un ennemi, te rend 15 PM.', eclat:STUN_MAG, solsacre:'Tu subis 25 % de dégâts en moins pendant 3 tours. Te soigne un peu à chaque tour.',
+  hakaze:'Coup de katana simple. Donne 1 Sen.', higanbana:'Utilise 1 Sen. Brûle l’ennemi pendant 5 tours.', midare:'Utilise 3 Sen. Coup très puissant sur un ennemi. Te soigne de 10 %.',
   oeil:'Tu subis 40 % de dégâts en moins pendant 1 tour. Donne 1 Sen.', guren:'Gros coup sur tous les ennemis.', gyoten:STUN_TXT, meditation:'Donne 2 Sen. Te soigne de 12 %.',
   riposte:'Coup de rapière simple. Donne 1 Mana.', verfoudre:'Sort de foudre sur un ennemi. Donne 1 Mana.', vervent:'Sort de vent sur tous les ennemis. Donne 1 Mana.',
-  verbrasier:'Utilise 3 Mana. Très gros sort sur un ennemi. Te soigne de 10 %.', versoin:'Te soigne. Plus ta Magie est haute, plus tu soignes.', contresixte:STUN_TXT,
+  verbrasier:'Utilise 3 Mana. Très gros sort sur un ennemi. Te soigne de 15 %.', versoin:'Te soigne selon ta Magie.', contresixte:STUN_TXT,
   manafication:'Donne 2 Mana. Tes dégâts augmentent de 20 % pendant 2 tours. Te rend 20 PM.' };
 Object.values(JOBS).forEach(j=>[j.basic].concat(j.opts).forEach(s=>{ if (SK_DESC[s.id]) s.desc=SK_DESC[s.id]; }));
 /* Rôle court affiché sur le bouton */
@@ -2723,17 +2740,20 @@ function skEst(s){
   if (sf.regen) o.regen=Math.round(R.maxhp*sf.regen[0]);
   return o;
 }
+function mpGainOf(s){ const sf=s.self||{}; if(!sf.mpGain) return 0; const v=(typeof C!=='undefined'&&C&&C.st)?C.st.sen||0:0; if(!s.umbral) return sf.mpGain; const nx=v>0?-1:Math.max(-3,v-1); return Math.round(sf.mpGain*(1+0.5*(-nx-1))); }
 function skMain(s){
   const sf=s.self||{}, e=skEst(s);
-  if (e.hit) return (e.hits>1?e.hits+'×':'')+e.hit+(s.target==='all'?' à tous':' dég.');
+  if (e.dot && (!e.hit || e.dot*s.dot[1] > e.hit*2)) return e.dot+'/tour'+(s.target==='all'?' à tous':' · '+s.dot[1]+' t');
+  if (e.hit) return (e.hits>1?e.hits+' × ':'')+e.hit+(s.target==='all'?' à tous':' dég.');
   if (sf.mitig) return '−'+Math.round(sf.mitig[0]*100)+' % · '+sf.mitig[1]+' t';
+  if (e.heal && e.shield) return '+'+e.heal+' PV, bouclier';
   if (e.shield) return 'Bouclier '+e.shield;
   if (e.heal) return '+'+e.heal+' PV';
   if (sf.invuln) return 'Immunité · '+sf.invuln+' t';
   if (sf.holm) return 'PV ≥ 1 · '+sf.holm+' t';
   if (sf.buff) return '+'+Math.round(sf.buff[0]*100)+' % · '+sf.buff[1]+' t';
-  if (e.regen) return '+'+e.regen+'/t';
-  if (sf.mpGain) return '+'+sf.mpGain+' PM';
+  if (e.regen) return '+'+e.regen+' PV/tour';
+  if (sf.mpGain) return '+'+mpGainOf(s)+' PM';
   return '';
 }
 function skillDetail(s){
@@ -2741,9 +2761,9 @@ function skillDetail(s){
   const tgt = s.target==='all' ? 'Tous les ennemis' : s.target==='self' ? 'Toi' : 'Un ennemi';
   L.push(`<span class="dt">Cible</span> ${tgt}`);
   if (e.hit) L.push(`<span class="dt">Dégâts</span> environ <b>${e.hit}</b>${e.hits>1?` × ${e.hits} coups`:''}${s.target==='all'?' sur chaque ennemi':''} (${s.stat==='mag'?'magiques':'physiques'})`);
-  if (s.el){ const tg=C&&curTarget(), m=tg?elemMul(tg,s.el):1; L.push(`<span class="dt">Élément</span> ${elIc(s.el)} ${ELEM[s.el]}${m>1?` <b class="elgood">faiblesse de ${tg.name} : ×1,5</b>`:m<1?` <b class="elbad">${tg.name} résiste : ×0,5</b>`:''}`); }
+  if (s.el){ const tg=C&&curTarget(), m=tg?elemMul(tg,s.el):1; L.push(`<span class="dt">Élément</span> ${elIc(s.el)?elIc(s.el)+' ':''}${ELEM[s.el]}${m>1?` · <b class="elgood">${tg.name} est faible : ×1,5</b>`:m<1?` · <b class="elbad">${tg.name} résiste : ×0,5</b>`:''}`); }
   if (e.dot) L.push(`<span class="dt">Sur la durée</span> <b>${e.dot}</b> par tour pendant ${s.dot[1]} tours`);
-  if (s.stun) L.push(`<span class="dt">Contrôle</span> étourdit ${s.stun} tour (sauf gardiens et boss, sauf sorts ${ic('bolt')})`);
+  if (s.stun) L.push(`<span class="dt">Contrôle</span> étourdit ${s.stun} tour. Boss et gardiens : seulement pendant une attaque marquée ${ic('bolt')}`);
   if (e.heal) L.push(`<span class="dt">Soin</span> <b>+${e.heal} PV</b>`);
   if (e.regen) L.push(`<span class="dt">Régénération</span> <b>+${e.regen} PV</b> par tour pendant ${sf.regen[1]} tours`);
   if (e.shield) L.push(`<span class="dt">Bouclier</span> absorbe <b>${e.shield} PV</b> de dégâts`);
@@ -2752,13 +2772,13 @@ function skillDetail(s){
   if (sf.holm) L.push(`<span class="dt">Défense</span> PV jamais sous 1 pendant ${sf.holm} tours`);
   if (sf.buff) L.push(`<span class="dt">Bonus</span> <b>+${Math.round(sf.buff[0]*100)} %</b> de dégâts pendant ${sf.buff[1]} tours`);
   if (sf.nextCrit) L.push(`<span class="dt">Bonus</span> prochain coup critique`);
-  if (sf.mpGain) L.push(`<span class="dt">PM</span> rend <b>${sf.mpGain} PM</b>`);
+  if (sf.mpGain) L.push(`<span class="dt">PM</span> rend <b>${mpGainOf(s)} PM</b>`);
   if (sf.cleanse) L.push(`<span class="dt">Purifie</span> retire poison et affaiblissement`);
   if (s.sen) L.push(`<span class="dt">${g}</span> +${s.sen}`);
-  if (s.astral) L.push(`<span class="dt">Polarité</span> Feu astral +1 (dégâts de feu +15 % par niveau, coût +5 PM par niveau). Efface la Glace.`);
-  if (s.umbral) L.push(`<span class="dt">Polarité</span> Glace ombrale +1 (PM rendus +50 % par niveau au-delà du premier). Efface le Feu.`);
-  if (s.gcost) L.push(`<span class="dt">${g}</span> gratuit avec 1 ${g} (sinon PM)`);
-  const cost = s.mp ? `${mpCost(s)} PM` : s.req ? `${s.req} ${g}` : 'Aucun';
+  if (s.astral || s.umbral){ const v=(typeof C!=='undefined'&&C&&C.st)?C.st.sen||0:0, nx = s.astral ? (v<0?1:Math.min(3,v+1)) : (v>0?-1:Math.max(-3,v-1));
+    L.push(`<span class="dt">Polarité</span> ${s.astral?`passe en Feu astral ${nx} : dégâts de feu +${15*nx} %`:`passe en Glace ombrale ${-nx}`}`); }
+  const extra = (s.astral && s.mp) ? mpCost(s)-Math.round(s.mp*(1-pk('mpSave'))) : 0;
+  const cost = s.mp ? (s.gcost ? `${mpCost(s)} PM, ou 1 ${g} (gratuit)` : `${mpCost(s)} PM${extra>0?` (dont +${extra} dus au Feu astral)`:''}`) : s.req ? `${s.req} ${g}` : 'Aucun';
   L.push(`<span class="dt">Coût</span> ${cost}${s.cd?` · <span class="dt">Recharge</span> ${Math.max(1,s.cd-(R.mods.cdr||0))} tours`:''}`);
   return `<b>${s.name}</b> <span class="rtag ${skillRole(s)[1]}">${skillRole(s)[0]}</span><div class="tdesc">${s.desc||''}</div><div class="tlines">${L.map(x=>`<div>${x}</div>`).join('')}</div>`;
 }
@@ -2800,6 +2820,14 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.1e', date:'24/10/2026', img:'assets/skills/feu.webp', title:'Textes des sorts corrigés', notes:[
+    'Chaque bouton de sort a maintenant une seule pastille à droite : son coût, ce qu\'il te fait gagner, sa recharge, ou Libre.',
+    'Le bonus de faiblesse ×1,5 se place sur le coin de l\'icône et ne cache plus le texte.',
+    'Les sorts de poison affichent leurs dégâts par tour au lieu du petit coup de départ.',
+    'Les descriptions donnent les vrais chiffres : Esprit saint soigne 12 %, VerBrasier 15 %, et les soins de Chakra interdit, Pluie de flèches et Midare sont indiqués.',
+    'Le Feu astral est plus clair : le coût total s\'affiche avec la part due au Feu astral.',
+    'Les noms et pastilles des monstres ne se chevauchent plus quand ils sont trois ou quatre.'
+  ]},
   {v:'v6.1d', date:'24/10/2026', img:'assets/skills/midare.webp', title:'Une mécanique par job, sorts épurés et faiblesses visibles', notes:[
     'Chaque job a maintenant sa propre jauge sous les PM, inspirée de FINAL FANTASY XIV. Appui long dessus pour savoir comment la remplir.',
     'Paladin : Serment, gagné quand tu encaisses un coup, sert à lancer Rempart. Guerrier : Rage, gagnée en encaissant, pour Fendoir et Tourbillon.',
@@ -3884,6 +3912,9 @@ function enSlot(i,n,list){
     return [p[0], (j>=fr && adds-fr<fr) ? [16,48][j-fr] : p[1], p[2]*0.75, p[3]+(j<fr?25:20)];
   }
   let p;
+  if (n===2) return [[27,0,0.95,40],[73,20,0.9,30]][i];
+  if (n===3) return [[22,0,0.88,40],[78,0,0.88,40],[50,58,0.8,20]][i];
+  if (n===4) return [[24,0,0.88,40],[76,0,0.88,40],[24,58,0.78,20],[76,58,0.78,20]][i];
   if (n<=3) p=colPlace(n,52)[i];
   else { const front=Math.ceil(n/2), back=n-front;
     p = i<front ? colPlace(front,28)[i] : colPlace(back,76)[i-front];
@@ -4027,6 +4058,7 @@ function updateCombat(){
     const sl=enSlot(i,C.enemies.length,C.enemies); return `<div style="--x:${sl[0]};--y:${sl[1]};--s:${sl[2]};z-index:${sl[3]}" class="en ${e.boss?'boss':''} ${e.boss&&isNamedBoss(e.key)?'named':''} ${e===tgt&&alive().length>1?'tgt':''} ${e.dead?'dead':''} ${wind?'winding':''} ${wind&&canInterrupt(e)?'cut':''}" id="en-${e.uid}" data-ei="${i}" data-k="enemy-${i}">
       ${it}${bossCast(e)}<span class="esp">${spr(e.skin||e.key,'idle')}</span><div class="ename">${e.name}</div>${e.dead?'':elemChips(e)}${bar(e.hp,e.maxhp,'ehp',e.shield)}<div class="stx">${sx.join(' ')}</div></div>`;
   }).join('');
+  { const fd=document.getElementById('field'); if (fd) fd.classList.toggle('crowd', C.enemies.length>=3); }
   en.querySelectorAll('[data-ei]').forEach(el=>el.onclick=()=>{ const i=+el.dataset.ei; if(!C.enemies[i].dead){ C.target=i; updateCombat(); } });
   const al = alive();
   const big = al.find(e=>e.intent && (e.intent.big || e.intent.kind==='charge'));
@@ -4046,14 +4078,17 @@ function skillState(s){
 }
 function renderSkills(){
   const el=document.getElementById('skills'); if(!el) return;
-  const g=mechOf(R.job).g, tg=curTarget();
-  el.innerHTML = combatSkills().map(s=>{ const st=skillState(s);
-    const free=gPay(s), cost = s.mp ? (free ? `<span class="skc c-g" style="--gc:${mechOf(R.job).col}">1 ${g}</span>` : `<span class="skc c-mp${R.mp<mpCost(s)?' low':''}">${mpCost(s)} PM</span>`) : s.req ? `<span class="skc c-g${C.st.sen<s.req?' low':''}" style="--gc:${mechOf(R.job).col}">${s.req} ${g}</span>` : '';
+  const g=mechOf(R.job).g, gs=gShort(g), gc=mechOf(R.job).col, tg=curTarget();
+  el.innerHTML = combatSkills().map(s=>{ const st=skillState(s), sf=s.self||{};
+    const free=gPay(s), cost = s.mp ? (free ? `<span class="skc c-g" style="--gc:${gc}">1 ${gs}</span>` : `<span class="skc c-mp${R.mp<mpCost(s)?' low':''}">${mpCost(s)} PM</span>`) : s.req ? `<span class="skc c-g${C.st.sen<s.req?' low':''}" style="--gc:${gc}">${s.req} ${gs}</span>`
+      : s.sen>0 ? `<span class="skc c-gain" style="--gc:${gc}">+${s.sen} ${gs}</span>`
+      : (sf.mpGain && (s.power||sf.buff)) ? `<span class="skc c-gain" style="--gc:#a8c8ff">+${mpGainOf(s)} PM</span>`
+      : s.cd ? `<span class="skc c-cd">${ic('clock')}${s.cd} t</span>` : `<span class="skc c-free">Libre</span>`;
     const m = (s.el && tg && s.target!=='self') ? elemMul(tg,s.el) : 1;
     const why = st.cd ? `Prêt dans ${st.cd} tour${st.cd>1?'s':''}` : st.why==='PM' ? 'PM insuffisants' : st.why ? `${g} ${C.st.sen}/${s.req}` : '';
     return `<button class="btn sk sk3 ${st.ok?'':'na'}${st.cd?' oncd':''}${m>1?' weakon':m<1?' reson':''}" data-k="skill-${s.id}" data-sk="${s.id}" data-tip="${skillDetail(s).replace(/"/g,'&quot;')}" ${C.busy?'disabled':''}>`
-      + `<span class="sk3i"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'">${s.el?elIc(s.el,'sk3el'):''}${st.cd?`<b class="sk3cd">${st.cd}</b>`:''}</span>`
-      + `<span class="sk3t"><span class="skn${s.name.length>14?' skn-l':''}">${s.name}</span><span class="sk3l"><span class="sk3v${why?' why':''}">${why||skMain(s)}</span>${m>1?'<span class="sk3x good">×1,5</span>':''}${why&&!st.cd?'':cost}</span></span></button>`; }).join('')
+      + `<span class="sk3i"><img class="ski" src="assets/skills/${s.id}.webp" alt="" draggable="false" onerror="this.style.visibility='hidden'">${s.el?elIc(s.el,'sk3el'):''}${m>1?'<b class="sk3x good">×1,5</b>':m<1?'<b class="sk3x bad">×0,5</b>':''}${st.cd?`<b class="sk3cd">${st.cd}</b>`:''}</span>`
+      + `<span class="sk3t"><span class="skn${s.name.length>14?' skn-l':''}">${s.name}</span><span class="sk3l"><span class="sk3v${why?' why':''}">${why||skMain(s)}</span>${why&&!st.cd?'':cost}</span></span></button>`; }).join('')
     + `<button class="btn sk sk3 skit" data-k="item" id="bItem" data-tip="&lt;b&gt;Objets&lt;/b&gt;&lt;br&gt;Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM." ${C.busy?'disabled':''}><span class="sk3i icb">${ic('heal')}</span><span class="sk3t"><span class="skn">Objets</span><span class="sk3l"><span class="sk3v">Potion ${R.potions} · Éther ${R.ethers}</span></span></span></button>`;
   el.querySelectorAll('[data-sk]').forEach(b=>b.onclick=()=>playerAction(b.dataset.sk));
   document.getElementById('bItem').onclick=combatItems;

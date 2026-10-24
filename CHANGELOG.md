@@ -1,5 +1,13 @@
 # Notes de patch : A Godless Realm
 
+## v6.1e : Textes des sorts corrigés (24/10/2026)
+- Chaque bouton de sort a maintenant une seule pastille à droite : son coût, ce qu'il te fait gagner, sa recharge, ou Libre.
+- Le bonus de faiblesse ×1,5 se place sur le coin de l'icône et ne cache plus le texte.
+- Les sorts de poison affichent leurs dégâts par tour au lieu du petit coup de départ.
+- Les descriptions donnent les vrais chiffres : Esprit saint soigne 12 %, VerBrasier 15 %, et les soins de Chakra interdit, Pluie de flèches et Midare sont indiqués.
+- Le Feu astral est plus clair : le coût total s'affiche avec la part due au Feu astral.
+- Les noms et pastilles des monstres ne se chevauchent plus quand ils sont trois ou quatre.
+
 ## v6.1d : Une mécanique par job, sorts épurés et faiblesses visibles (24/10/2026)
 - Chaque job a maintenant sa propre jauge sous les PM, inspirée de FINAL FANTASY XIV. Appui long dessus pour savoir comment la remplir.
 - Paladin : Serment, gagné quand tu encaisses un coup, sert à lancer Rempart. Guerrier : Rage, gagnée en encaissant, pour Fendoir et Tourbillon.
