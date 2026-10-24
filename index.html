@@ -844,7 +844,7 @@ body[data-scr="map"] .paths::before{display:none}
 .htile .ht-fig{position:absolute;right:8px;top:8px;z-index:1;display:flex;filter:drop-shadow(0 3px 6px rgba(0,0,0,.7))}
 .htile .ht-fig img.spr{width:52px}
 .ht-souls{display:flex;gap:2px}.ht-souls img{width:32px;height:32px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,255,255,.35))}
-.hminis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 14px}
+.hminis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 14px}
 .hmini{all:unset;display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 2px;border-radius:12px;cursor:pointer;color:#e6cc8f;font-size:12px;text-align:center;
  background:radial-gradient(ellipse at 50% 30%,rgba(230,204,143,.13),transparent 70%);transition:transform .12s,background .12s}
 .hmini span{color:#dfe3ee}
@@ -2634,6 +2634,11 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.1a', date:'24/10/2026', img:'assets/monsters/chaos.webp', title:'Classement jusqu’à l’étage 100', notes:[
+    'Le classement en ligne accepte maintenant les étages 51 à 100 : l’étage affiché est l’étage réel.',
+    'Une victoire contre Chaos s’affiche Victoire 100. Une chute dans le Néant s’affiche Néant et l’étage.',
+    'Un seul classement : il est dans En ligne. Le bouton Classement de l’avant-poste est retiré.'
+  ]},
   {v:'v6.0i', date:'24/10/2026', img:'assets/monsters/chaos.webp', title:'Chaos encore plus menaçant', notes:[
     'Les coups normaux de Chaos font un peu plus mal.',
     'Ses grandes attaques annoncées peuvent retirer jusqu’à un peu plus de la moitié de ta vie. Protège-toi ou interromps-le quand il prépare un gros coup.'
@@ -3002,7 +3007,6 @@ SCREENS.hub = function(){
     </div>
     <div class="hminis">
       ${mini('online','online','En ligne','id="bOnlineH" onclick="Online.open(\'hub\')"')}
-      ${mini('ranking','scores','Classement','data-go="ranking"')}
       ${mini('settings','settings','Paramètres','data-go="settings"')}
       ${mini('title','door','Écran titre','data-go="title"')}
     </div>
@@ -3198,7 +3202,7 @@ SCREENS.shop = function(glow){
 /* étage réel d'une partie du classement (acte II : « F87: » en tête de la graine) */
 function rkFloor(r, html){ const m=/^F(\d+):/.exec(r.seed||''), f=m?+m[1]:r.floor;
   if (r.victory && f>=100) return html?'<span class="gold">Victoire 100</span>':'Victoire 100';
-  if (r.victory && f>50) return html?`<span class="gold">Néant ${f}</span>`:'Néant '+f;
+  if (f>50) return html?`<span class="gold">Néant ${f}</span>`:'Néant '+f; // acte II : Bahamut déjà vaincu
   if (r.victory) return html?'<span class="gold">Victoire</span>':'Victoire';
   return 'Étage '+f; }
 function scoresModal(){
@@ -3558,14 +3562,14 @@ function runScore(r, victory){
     sansKO:(r.revives||0)===0 ? fl*150 : 0, temps:victory?Math.max(0,10000-dur*3):0,
     malediction:(r.curseTaken||0)*400, gils:Math.floor((r.gilsEarned||0)/10) };
   let tot=Object.values(parts).reduce((a,b)=>a+b,0);
-  tot=Math.min(tot, 5000+40000*fl-1, 2000000);
+  tot=Math.min(tot, 5000+40000*fl-1, 4000000);
   return { score:Math.round(tot), parts, dur, floor:fl };
 }
 function endRun(victory, abandoned){
   if (!R) return; // une seule fin (et un seul envoi au classement) par exploration
   const final100 = !!(victory && R.act2 && R.floor>=ACT2_MAX), ko2 = !victory && !abandoned && !!R.won50; if (R.won50) victory = true;
   const SC = runScore(R, victory), runRef = R;
-  if (final100){ SC.parts.neant=60000; SC.score=Math.min(2000000, SC.score+60000); }
+  if (final100){ SC.parts.neant=60000; SC.score=Math.min(4000000, 5000+40000*SC.floor-1, SC.score+60000); }
   const earned = R.gilsEarned + (victory?500:0) + (final100?1500:0);
   S.firstClear=S.firstClear||{}; let fcB=0; (R.bossFloors||[]).forEach(f=>{ if(!S.firstClear[f]){ S.firstClear[f]=1; fcB+=1; } });
   const frags = (R.frags||0) + (victory?5:0) + (final100?15:0) + fcB;
@@ -4795,12 +4799,12 @@ const Online = (function(){
   /* run = { job, companion, floor, score, duration_s, victory, mode:'solo'|'duo', partner_pseudo, partner_job, seed } */
   function cleanRun(r){
     return { p_job:String(r.job||'').toLowerCase(), p_companion: r.companion ? String(r.companion).toLowerCase() : null,
-      p_floor: Math.max(1, Math.min(50, Math.round(r.floor||1))), p_score: Math.max(0, Math.min(2000000, Math.round(r.score||0))),
-      p_duration_s: Math.max(5, Math.min(86400, Math.round(r.duration_s||0))), p_victory: !!r.victory,
+      p_floor: Math.max(1, Math.min(100, Math.round(r.floor||1))), p_score: Math.max(0, Math.min(4000000, Math.round(r.score||0))),
+      p_duration_s: Math.max(5, Math.min(86400, Math.round(r.duration_s||0))), p_victory: !!r.victory && (Math.round(r.floor||1)===50 || Math.round(r.floor||1)>=100), // v6.1a : victoire = Bahamut (50) ou Chaos (100) ; un K.O. dans le Néant garde l’étage réel
       p_mode: r.mode === 'duo' ? 'duo' : 'solo', p_partner_pseudo: r.mode==='duo' ? (r.partner_pseudo||null) : null,
       p_partner_job: r.mode==='duo' && r.partner_job ? String(r.partner_job).toLowerCase() : null,
       p_party_size: r.mode==='duo' ? Math.max(2, Math.min(3, r.party_size||2)) : 1,
-      p_seed: ((r.floor>50?'F'+Math.min(100,Math.round(r.floor))+':':'') + (r.seed == null ? '' : (Array.isArray(r.seed) ? r.seed.join('-') : String(r.seed)))).slice(0,80) || null };
+      p_seed: (r.seed == null ? '' : (Array.isArray(r.seed) ? r.seed.join('-') : String(r.seed))).slice(0,80) || null };
   }
   async function submitRun(r){
     if (r && r.mode === 'duo' && room.active && !room.host) return { ok:false, skipped:'guest' }; // en duo, seul l'hôte publie

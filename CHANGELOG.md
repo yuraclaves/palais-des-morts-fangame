@@ -1,5 +1,10 @@
 # Notes de patch : A Godless Realm
 
+## v6.1a : Classement jusqu’à l’étage 100 (24/10/2026)
+- Le classement en ligne accepte maintenant les étages 51 à 100 : l'étage affiché est l'étage réel.
+- Une victoire contre Chaos s'affiche Victoire 100. Une chute dans le Néant s'affiche Néant et l'étage.
+- Un seul classement : il est dans En ligne. Le bouton Classement de l'avant-poste est retiré.
+
 ## v6.0i : Chaos encore plus menaçant (24/10/2026)
 - Les coups normaux de Chaos font un peu plus mal.
 - Ses grandes attaques annoncées peuvent retirer jusqu'à un peu plus de la moitié de ta vie. Protège-toi ou interromps-le quand il prépare un gros coup.
