@@ -1,5 +1,20 @@
 # Notes de patch : A Godless Realm
 
+## v6.0b : Acte II : le Néant, étages 51 à 100 (24/10/2026)
+- Après Bahamut, un escalier s'ouvre sous le trône. Tu choisis : rentrer victorieux, ou descendre dans le Néant pour 50 étages de plus.
+- Ta victoire sur Bahamut est comptée tout de suite. Si tu tombes dans le Néant, tu gardes ta victoire et l'étage atteint.
+- Dix nouveaux boss légendaires, un tous les 5 étages : Garuda, Titan, Odin, Ultimecia, l'Empereur, le Nuage des ténèbres, Necron, Ardyn, Garland, et Chaos à l'étage 100.
+- Chaos appelle tour à tour les quatre Démons : Marilith, Kraken, Liche et Tiamat. À chaque appel, ses faiblesses et ses résistances changent. Regarde ses cristaux.
+- Dix nouveaux monstres dans le Néant : Tomberry, Malboro, Coeurl, Lamia, Ochu, Géant de fer, Dragon rouge, Dullahan, Flagelleur et Élémentaire sombre.
+- Nouveaux décors officiels pour les étages 51 à 100 et pour chaque boss.
+- Vaincre Chaos rapporte un gros bonus : 1500 Gils, 15 fragments et des points en plus au classement.
+- Le classement affiche Néant et l'étage atteint, ou Victoire 100.
+- Difficulté réglée : un peu plus dur au départ, et les améliorations du marchand sont moins fortes, pour que le jeu reste un défi même tout amélioré.
+- Dés : un seul niveau maintenant.
+- Nouveau dans Paramètres : copier et coller un code de sauvegarde, pour passer ta progression d'un site à l'autre.
+- Boutons Retour et menus de l'écran titre plus faciles à toucher.
+- Version test : ce site est séparé du jeu habituel, avec ses propres salons en ligne.
+
 ## v6.0a : Les éléments et des combats plus malins (23/10/2026)
 - Chaque attaque a maintenant un élément : Feu, Glace, Foudre, Terre, Vent, Eau, Lumière, Ténèbres, ou Physique pour les coups d'arme.
 - Le petit cristal sur chaque action montre son élément. Il s'entoure de vert si l'ennemi visé y est faible.

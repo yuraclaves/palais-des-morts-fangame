@@ -1287,6 +1287,33 @@ body.modern .gside{animation:bobF 3.4s ease-in-out .9s infinite}
 .scard .snow.none{color:#9aa1ae}
 .scard .snext{font-size:12px;color:#aeb5c8}
 .scard .snext.max{color:#8fd88f}
+/* v6.0 : porte de l'acte II */
+.a2gate h2{margin:6px 0 4px;font-size:22px;color:#f3d58d;text-align:center;letter-spacing:.5px}
+.a2gate p{text-align:center;max-width:330px;margin:6px auto;line-height:1.4}
+.a2tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#9fe3b0;border:1px solid rgba(159,227,176,.4);border-radius:12px;padding:3px 10px}
+.a2spr{position:relative;width:200px;height:200px;margin:8px auto;display:flex;align-items:center;justify-content:center}
+.a2spr::before{content:"";position:absolute;inset:10px;border-radius:50%;background:radial-gradient(circle,rgba(200,40,30,.45),rgba(20,0,0,0) 70%);animation:a2pulse 2.6s ease-in-out infinite}
+.a2spr img{position:relative;max-width:190px;max-height:190px;filter:brightness(.35) drop-shadow(0 0 14px rgba(255,80,50,.7))}
+@keyframes a2pulse{0%,100%{transform:scale(.9);opacity:.6}50%{transform:scale(1.08);opacity:1}}
+.a2rules{display:flex;flex-direction:column;gap:6px;width:100%;max-width:340px;margin-top:6px}
+.a2rules>div{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;font-size:13px}
+.a2rules b{color:#f3d58d}
+.svcode{width:100%;height:96px;font:12px/1.3 monospace;background:rgba(0,0,0,.35);color:#e8e2d0;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px;margin-bottom:10px;word-break:break-all;resize:none}
+.nexttag{align-self:center;margin-top:4px;font-size:12px;letter-spacing:1px;color:#ffd98a;background:rgba(40,10,10,.55);border:1px solid rgba(255,200,120,.45);border-radius:12px;padding:4px 12px;position:relative;z-index:2}
+/* v6.0 : mise en scène de Chaos (étage 100) */
+.bint.f100 .bi-bg{background:radial-gradient(circle at 50% 40%,rgba(140,0,0,.6),rgba(30,0,0,.2) 45%,#000 75%),#000;animation-duration:7.4s}
+.bint.f100 .bi-spr img{animation-delay:2.1s,3.7s;filter:drop-shadow(0 0 22px rgba(255,60,30,.85))}
+.bint.f100 .bi-tag{animation-delay:2.7s}.bint.f100 .bi-ln{animation-delay:2.8s}.bint.f100 .bi-title{animation-delay:2.9s}.bint.f100 .bi-name{animation-delay:3.1s;color:#ff9a7a}
+.bi-fiends{position:absolute;inset:0;pointer-events:none}
+.bi-fiends img{position:absolute;height:21vh;opacity:0;filter:brightness(.2) drop-shadow(0 0 10px rgba(255,80,40,.9));animation:bfIn 2.2s ease-out both}
+.bi-fiends .bf0{left:3%;top:7%}.bi-fiends .bf1{right:3%;top:7%}.bi-fiends .bf2{left:3%;top:33%}.bi-fiends .bf3{right:3%;top:33%}
+@keyframes bfIn{0%{opacity:0;transform:scale(.7)}40%{opacity:.95;transform:scale(1)}75%{opacity:.8}100%{opacity:0;transform:scale(1.2)}}
+.bint.f100{animation:biIn .4s both,f100sh .45s 2s 3}
+@keyframes f100sh{0%,100%{transform:none}25%{transform:translate(5px,-3px)}75%{transform:translate(-5px,3px)}}
+/* v6.0 : zones tactiles d'au moins 44 px (iPhone) */
+.tb-back{min-width:44px;min-height:44px!important;margin:-8px 2px -8px -6px;padding:0 8px;justify-content:center}
+body.home .tm{padding:11px 26px;min-height:44px}
+#bRules{min-height:44px}
 </style>
 </head>
 <body>
@@ -1502,19 +1529,20 @@ const BG_ELITE=['e0','e1','e2','e3','e4'];
 const bgTier = f => Math.min(4, Math.floor((Math.max(1,f)-1)/10));
 function roomBG(){
   const f=R.floor, kind=C&&C.kind, t=bgTier(f);
-  if (kind==='boss' && isBigBoss(f)) return 'assets/bg/b'+Math.min(50,f)+'.webp';
+  if (kind==='boss' && isBigBoss(f)) return 'assets/bg/b'+Math.min(100,f)+'.webp';
+  if (f>50){ const a=f>75?6:5; if (kind==='elite') return 'assets/bg/e'+a+'.webp'; const L2=['at'+a,'at'+a+'b','at'+a+'c']; return 'assets/bg/'+L2[(f+((R.plan&&R.plan.i)||0))%3]+'.webp'; }
   if (kind==='elite') return 'assets/bg/'+BG_ELITE[t]+'.webp';
   let h=2166136261; const key=(R.seed||[]).join(',')+'|'+f+'|'+((R.plan&&R.plan.i)||0);
   for (const c of key) h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;
   const L=BG_TIER[t]; return 'assets/bg/'+L[h%L.length]+'.webp';
 }
-const bgsNear = f => { const t=bgTier(f), out=BG_TIER[t].concat([BG_ELITE[t]]).map(k=>'assets/bg/'+k+'.webp'); const nb=Math.ceil(f/10)*10; if(nb<=50) out.push('assets/bg/b'+nb+'.webp'); return out; };
+const bgsNear = f => { const t=bgTier(f), out=BG_TIER[t].concat([BG_ELITE[t]]).map(k=>'assets/bg/'+k+'.webp'); const nb=Math.ceil(f/10)*10; if(nb<=100) out.push('assets/bg/b'+nb+'.webp'); if (f>50){ const a=f>75?6:5; ['at'+a,'at'+a+'b','at'+a+'c','e'+a].forEach(k=>out.push('assets/bg/'+k+'.webp')); } return out; };
 function floorBG(f){
   const tier = f>=50 ? 5 : Math.min(4, Math.floor((f-1)/10));
   return 'assets/bg/t'+tier+'.webp';
 }
 /* Pixel art libre (voir CREDITS.md) : assets/ */
-const ASSET = {"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":47,"h":55,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"ifrit":{"src":"assets/monsters/ifrit.webp","w":193,"h":156,"smooth":1,"named":1},"barbariccia":{"src":"assets/monsters/barbariccia.webp","w":123,"h":152,"smooth":1,"named":1},"barbariccia2":{"src":"assets/monsters/barbariccia2.webp","w":127,"h":193,"smooth":1,"named":1},"gilgamesh":{"src":"assets/monsters/gilgamesh.webp","w":117,"h":154,"smooth":1,"named":1},"enkidou":{"src":"assets/monsters/enkidou.webp","w":129,"h":226,"smooth":1,"named":1},"golbez":{"src":"assets/monsters/golbez.webp","w":140,"h":206,"smooth":1,"named":1},"dragonombre":{"src":"assets/monsters/dragonombre.webp","w":96,"h":209,"smooth":1,"named":1},"exdeath":{"src":"assets/monsters/exdeath.webp","w":157,"h":227,"smooth":1,"named":1},"armeultima":{"src":"assets/monsters/armeultima.webp","w":234,"h":243,"smooth":1,"named":1},"sephiroth":{"src":"assets/monsters/sephiroth.webp","w":191,"h":199,"smooth":1,"named":1},"sephiroth2":{"src":"assets/monsters/sephiroth2.webp","w":242,"h":327,"smooth":1,"named":1},"kefka":{"src":"assets/monsters/kefka.webp","w":118,"h":141,"smooth":1,"named":1},"kefka2":{"src":"assets/monsters/kefka2.webp","w":228,"h":234,"smooth":1,"named":1},"zeromus":{"src":"assets/monsters/zeromus.webp","w":305,"h":253,"smooth":1,"named":1},"bahamut":{"src":"assets/monsters/bahamut.webp","w":404,"h":355,"smooth":1,"named":1},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"assets/chars/c_alphinaud.webp","w":48,"h":69,"ko":"assets/chars/c_alphinaud_ko.webp"},"c_alisaie":{"src":"assets/chars/c_alisaie.webp","w":48,"h":69,"ko":"assets/chars/c_alisaie_ko.webp"},"c_urianger":{"src":"assets/chars/c_urianger.webp","w":42,"h":72,"ko":"assets/chars/c_urianger_ko.webp"},"c_graha":{"src":"assets/chars/c_graha.webp","w":26,"h":70,"ko":"assets/chars/c_graha_ko.webp","smooth":1},"c_estinien":{"src":"assets/chars/c_estinien.webp","w":48,"h":72,"ko":"assets/chars/c_estinien_ko.webp"},"c_haurchefant":{"src":"assets/chars/c_haurchefant.webp","w":45,"h":72,"ko":"assets/chars/c_haurchefant_ko.webp"},"c_tataru":{"src":"assets/chars/c_tataru.webp","w":37,"h":54,"ko":"assets/chars/c_tataru_ko.webp","smooth":1},"c_lyse":{"src":"assets/chars/c_lyse.webp","w":45,"h":72,"ko":"assets/chars/c_lyse_ko.webp"},"c_krile":{"src":"assets/chars/c_krile.webp","w":34,"h":60,"ko":"assets/chars/c_krile_ko.webp","smooth":1},"c_cid":{"src":"assets/chars/c_cid.webp","w":45,"h":72,"ko":"assets/chars/c_cid_ko.webp"},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/ui/emotes.webp","w":64,"h":64,"glyph":1},"icon_combat":{"src":"assets/ui/stance.webp","w":64,"h":64,"glyph":1},"icon_elite":{"src":"assets/ui/pvp_profile.webp","w":64,"h":64,"glyph":1},"icon_coffre":{"src":"assets/ui/armoury_chest.webp","w":64,"h":64,"glyph":1},"icon_cristal":{"src":"assets/ui/aether_currents.webp","w":64,"h":64,"glyph":1},"icon_autel":{"src":"assets/ui/challenge_log.webp","w":64,"h":64,"glyph":1},"icon_marchand":{"src":"assets/ui/currency.webp","w":64,"h":64,"glyph":1},"icon_maudite":{"src":"assets/ui/blacklist.webp","w":64,"h":64,"glyph":1},"icon_piege":{"src":"assets/ui/waymarks.webp","w":64,"h":64,"glyph":1},"icon_pomandre":{"src":"assets/ui/key_items.webp","w":64,"h":64,"glyph":1},"icon_repos":{"src":"assets/ui/housing.webp","w":64,"h":64,"glyph":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
+const ASSET = {"garuda":{"src":"assets/monsters/garuda.webp","w":415,"h":249,"smooth":1,"named":1},"titan":{"src":"assets/monsters/titan.webp","w":217,"h":240,"smooth":1,"named":1},"odin":{"src":"assets/monsters/odin.webp","w":212,"h":274,"smooth":1,"named":1},"ultimecia":{"src":"assets/monsters/ultimecia.webp","w":206,"h":204,"smooth":1,"named":1},"empereur":{"src":"assets/monsters/empereur.webp","w":146,"h":234,"smooth":1,"named":1},"empereur2":{"src":"assets/monsters/empereur2.webp","w":293,"h":230,"smooth":1,"named":1},"nuage":{"src":"assets/monsters/nuage.webp","w":271,"h":209,"smooth":1,"named":1},"necron":{"src":"assets/monsters/necron.webp","w":306,"h":367,"smooth":1,"named":1},"ardyn":{"src":"assets/monsters/ardyn.webp","w":130,"h":221,"smooth":1,"named":1},"garland":{"src":"assets/monsters/garland.webp","w":181,"h":147,"smooth":1,"named":1},"chaos":{"src":"assets/monsters/chaos.webp","w":309,"h":316,"smooth":1,"named":1},"marilith":{"src":"assets/monsters/marilith.webp","w":191,"h":247,"smooth":1,"named":1},"kraken":{"src":"assets/monsters/kraken.webp","w":188,"h":255,"smooth":1,"named":1},"liche":{"src":"assets/monsters/liche.webp","w":221,"h":286,"smooth":1,"named":1},"tiamat":{"src":"assets/monsters/tiamat.webp","w":233,"h":273,"smooth":1,"named":1},"tomberry":{"src":"assets/monsters/tomberry.webp","w":66,"h":57},"malboro":{"src":"assets/monsters/malboro.webp","w":136,"h":126,"smooth":1},"coeurl":{"src":"assets/monsters/coeurl.webp","w":91,"h":69},"geantdefer":{"src":"assets/monsters/geantdefer.webp","w":198,"h":237,"smooth":1},"dragonrouge":{"src":"assets/monsters/dragonrouge.webp","w":223,"h":274,"smooth":1},"ochu":{"src":"assets/monsters/ochu.webp","w":284,"h":219,"smooth":1},"elemsombre":{"src":"assets/monsters/elemsombre.webp","w":51,"h":95},"lamia":{"src":"assets/monsters/lamia.webp","w":114,"h":120,"smooth":1},"dullahan":{"src":"assets/monsters/dullahan.webp","w":206,"h":135,"smooth":1},"flagelleur":{"src":"assets/monsters/flagelleur.webp","w":81,"h":96},"paladin":{"src":"assets/chars/paladin.webp","w":51,"h":60,"ko":"assets/chars/paladin_ko.webp"},"guerrier":{"src":"assets/chars/guerrier.webp","w":70,"h":66,"ko":"assets/chars/guerrier_ko.webp"},"moine":{"src":"assets/chars/moine.webp","w":57,"h":62,"ko":"assets/chars/moine_ko.webp"},"dragoon":{"src":"assets/chars/dragoon.webp","w":98,"h":79,"ko":"assets/chars/dragoon_ko.webp"},"barde":{"src":"assets/chars/barde.webp","w":38,"h":68,"ko":"assets/chars/barde_ko.webp"},"mageblanc":{"src":"assets/chars/mageblanc.webp","w":40,"h":59,"ko":"assets/chars/mageblanc_ko.webp"},"magenoir":{"src":"assets/chars/magenoir.webp","w":46,"h":43,"ko":"assets/chars/magenoir_ko.webp"},"erudit":{"src":"assets/chars/erudit.webp","w":50,"h":53,"ko":"assets/chars/erudit_ko.webp"},"samourai":{"src":"assets/chars/samourai.webp","w":50,"h":60,"ko":"assets/chars/samourai_ko.webp"},"magerouge":{"src":"assets/chars/magerouge.webp","w":47,"h":55,"ko":"assets/chars/magerouge_ko.webp"},"c_yshtola":{"src":"assets/chars/c_yshtola.webp","w":44,"h":56,"ko":"assets/chars/c_yshtola_ko.webp"},"c_thancred":{"src":"assets/chars/c_thancred.webp","w":47,"h":65,"ko":"assets/chars/c_thancred_ko.webp"},"c_minfilia":{"src":"assets/chars/c_minfilia.webp","w":42,"h":60,"ko":"assets/chars/c_minfilia_ko.webp"},"c_cloud":{"src":"assets/chars/c_cloud.webp","w":76,"h":59,"ko":"assets/chars/c_cloud_ko.webp"},"c_tifa":{"src":"assets/chars/c_tifa.webp","w":42,"h":56,"ko":"assets/chars/c_tifa_ko.webp"},"c_aerith":{"src":"assets/chars/c_aerith.webp","w":51,"h":56,"ko":"assets/chars/c_aerith_ko.webp"},"c_squall":{"src":"assets/chars/c_squall.webp","w":50,"h":67,"ko":"assets/chars/c_squall_ko.webp"},"c_zidane":{"src":"assets/chars/c_zidane.webp","w":50,"h":53,"ko":"assets/chars/c_zidane_ko.webp"},"c_vivi":{"src":"assets/chars/c_vivi.webp","w":50,"h":55,"ko":"assets/chars/c_vivi_ko.webp"},"c_tidus":{"src":"assets/chars/c_tidus.webp","w":85,"h":57,"ko":"assets/chars/c_tidus_ko.webp"},"c_yuna":{"src":"assets/chars/c_yuna.webp","w":62,"h":57,"ko":"assets/chars/c_yuna_ko.webp"},"c_auron":{"src":"assets/chars/c_auron.webp","w":60,"h":65,"ko":"assets/chars/c_auron_ko.webp"},"c_lightning":{"src":"assets/chars/c_lightning.webp","w":44,"h":60,"ko":"assets/chars/c_lightning_ko.webp"},"c_terra":{"src":"assets/chars/c_terra.webp","w":40,"h":59,"ko":"assets/chars/c_terra_ko.webp"},"c_cecil":{"src":"assets/chars/c_cecil.webp","w":62,"h":65,"ko":"assets/chars/c_cecil_ko.webp"},"c_kain":{"src":"assets/chars/c_kain.webp","w":96,"h":91,"ko":"assets/chars/c_kain_ko.webp"},"c_bartz":{"src":"assets/chars/c_bartz.webp","w":58,"h":58,"ko":"assets/chars/c_bartz_ko.webp"},"c_noctis":{"src":"assets/chars/c_noctis.webp","w":44,"h":58,"ko":"assets/chars/c_noctis_ko.webp"},"c_rosa":{"src":"assets/chars/c_rosa.webp","w":41,"h":59,"ko":"assets/chars/c_rosa_ko.webp"},"c_locke":{"src":"assets/chars/c_locke.webp","w":52,"h":54,"ko":"assets/chars/c_locke_ko.webp"},"neant":{"src":"assets/monsters/neant.webp","w":62,"h":93},"ifrit":{"src":"assets/monsters/ifrit.webp","w":193,"h":156,"smooth":1,"named":1},"barbariccia":{"src":"assets/monsters/barbariccia.webp","w":123,"h":152,"smooth":1,"named":1},"barbariccia2":{"src":"assets/monsters/barbariccia2.webp","w":127,"h":193,"smooth":1,"named":1},"gilgamesh":{"src":"assets/monsters/gilgamesh.webp","w":117,"h":154,"smooth":1,"named":1},"enkidou":{"src":"assets/monsters/enkidou.webp","w":129,"h":226,"smooth":1,"named":1},"golbez":{"src":"assets/monsters/golbez.webp","w":140,"h":206,"smooth":1,"named":1},"dragonombre":{"src":"assets/monsters/dragonombre.webp","w":96,"h":209,"smooth":1,"named":1},"exdeath":{"src":"assets/monsters/exdeath.webp","w":157,"h":227,"smooth":1,"named":1},"armeultima":{"src":"assets/monsters/armeultima.webp","w":234,"h":243,"smooth":1,"named":1},"sephiroth":{"src":"assets/monsters/sephiroth.webp","w":191,"h":199,"smooth":1,"named":1},"sephiroth2":{"src":"assets/monsters/sephiroth2.webp","w":242,"h":327,"smooth":1,"named":1},"kefka":{"src":"assets/monsters/kefka.webp","w":118,"h":141,"smooth":1,"named":1},"kefka2":{"src":"assets/monsters/kefka2.webp","w":228,"h":234,"smooth":1,"named":1},"zeromus":{"src":"assets/monsters/zeromus.webp","w":305,"h":253,"smooth":1,"named":1},"bahamut":{"src":"assets/monsters/bahamut.webp","w":404,"h":355,"smooth":1,"named":1},"flan":{"src":"assets/monsters/flan.webp","w":80,"h":64},"flannoir":{"src":"assets/monsters/flannoir.webp","w":80,"h":64},"roiflan":{"src":"assets/monsters/roiflan.webp","w":115,"h":66},"bombo":{"src":"assets/monsters/bombo.webp","w":69,"h":94},"grenade":{"src":"assets/monsters/grenade.webp","w":55,"h":72},"reinebombo":{"src":"assets/monsters/reinebombo.webp","w":69,"h":94},"diablotin":{"src":"assets/monsters/diablotin.webp","w":66,"h":84},"squelette":{"src":"assets/monsters/squelette.webp","w":57,"h":103},"squelettemaudit":{"src":"assets/monsters/squelettemaudit.webp","w":60,"h":68},"chevalier":{"src":"assets/monsters/chevalier.webp","w":80,"h":85},"ahriman":{"src":"assets/monsters/ahriman.webp","w":87,"h":91},"grandahriman":{"src":"assets/monsters/grandahriman.webp","w":126,"h":119},"gobelin":{"src":"assets/monsters/gobelin.webp","w":55,"h":63},"sylphe":{"src":"assets/monsters/sylphe.webp","w":42,"h":56},"sentinelle":{"src":"assets/monsters/sentinelle.webp","w":52,"h":74},"sentinelleprime":{"src":"assets/monsters/sentinelleprime.webp","w":87,"h":92},"golem":{"src":"assets/monsters/golem.webp","w":84,"h":107},"spectre":{"src":"assets/monsters/spectre.webp","w":61,"h":70},"dragonnet":{"src":"assets/monsters/dragonnet.webp","w":125,"h":86},"wyverne":{"src":"assets/monsters/wyverne.webp","w":121,"h":124},"behemoth":{"src":"assets/monsters/behemoth.webp","w":169,"h":126},"seigneur":{"src":"assets/monsters/seigneur.webp","w":187,"h":160},"c_alphinaud":{"src":"assets/chars/c_alphinaud.webp","w":48,"h":69,"ko":"assets/chars/c_alphinaud_ko.webp"},"c_alisaie":{"src":"assets/chars/c_alisaie.webp","w":48,"h":69,"ko":"assets/chars/c_alisaie_ko.webp"},"c_urianger":{"src":"assets/chars/c_urianger.webp","w":42,"h":72,"ko":"assets/chars/c_urianger_ko.webp"},"c_graha":{"src":"assets/chars/c_graha.webp","w":26,"h":70,"ko":"assets/chars/c_graha_ko.webp","smooth":1},"c_estinien":{"src":"assets/chars/c_estinien.webp","w":48,"h":72,"ko":"assets/chars/c_estinien_ko.webp"},"c_haurchefant":{"src":"assets/chars/c_haurchefant.webp","w":45,"h":72,"ko":"assets/chars/c_haurchefant_ko.webp"},"c_tataru":{"src":"assets/chars/c_tataru.webp","w":37,"h":54,"ko":"assets/chars/c_tataru_ko.webp","smooth":1},"c_lyse":{"src":"assets/chars/c_lyse.webp","w":45,"h":72,"ko":"assets/chars/c_lyse_ko.webp"},"c_krile":{"src":"assets/chars/c_krile.webp","w":34,"h":60,"ko":"assets/chars/c_krile_ko.webp","smooth":1},"c_cid":{"src":"assets/chars/c_cid.webp","w":45,"h":72,"ko":"assets/chars/c_cid_ko.webp"},"mimique":{"src":"assets/monsters/mimique.webp","w":38,"h":38,"tile":1},"icon_rencontre":{"src":"assets/ui/emotes.webp","w":64,"h":64,"glyph":1},"icon_combat":{"src":"assets/ui/stance.webp","w":64,"h":64,"glyph":1},"icon_elite":{"src":"assets/ui/pvp_profile.webp","w":64,"h":64,"glyph":1},"icon_coffre":{"src":"assets/ui/armoury_chest.webp","w":64,"h":64,"glyph":1},"icon_cristal":{"src":"assets/ui/aether_currents.webp","w":64,"h":64,"glyph":1},"icon_autel":{"src":"assets/ui/challenge_log.webp","w":64,"h":64,"glyph":1},"icon_marchand":{"src":"assets/ui/currency.webp","w":64,"h":64,"glyph":1},"icon_maudite":{"src":"assets/ui/blacklist.webp","w":64,"h":64,"glyph":1},"icon_piege":{"src":"assets/ui/waymarks.webp","w":64,"h":64,"glyph":1},"icon_pomandre":{"src":"assets/ui/key_items.webp","w":64,"h":64,"glyph":1},"icon_repos":{"src":"assets/ui/housing.webp","w":64,"h":64,"glyph":1},"icon_curseur":{"src":"assets/icons/icon_curseur.webp","w":32,"h":32,"tile":1,"icon":1}};
 /* Icônes pixel maison (SVG 8x8) — aucun emoji dans le jeu */
 const IC_PAL = { w:'#ffffff', k:'#101018', y:'#ffd84a', o:'#ff8a2a', r:'#ff4a4a', g:'#5aff6a', G:'#1f9a3a', b:'#6ab8ff', B:'#2a5adf', p:'#c070ff', s:'#c8d0e0', S:'#7a8298', n:'#a0662a', c:'#9ff0ff' };
 const IC_GRID = {
@@ -1709,24 +1737,24 @@ const jobPrice = () => promoOK() ? JOB_PROMO : JOB_PRICE;
    cat = rubrique de la boutique ; per = gain par rang ; costs = prix de chaque rang (Gils). */
 const UP_CATS = [['force','Puissance'],['garde','Endurance'],['res','Ressources'],['grace','Bénédictions']];
 const UPGRADES = {
-  atk:{ cat:'force', name:'Force', icon:'atk', per:1, costs:[450,900,1500], st:'Attaque', fmt:v=>'+'+v+' %' },
-  mag:{ cat:'force', name:'Intelligence', icon:'mag', per:1, costs:[450,900,1500], st:'Magie', fmt:v=>'+'+v+' %' },
-  dmg:{ cat:'force', name:'Affûtage', icon:'dmg', per:2, costs:[500,900,1400], st:'Dégâts infligés', fmt:v=>'+'+v+' %' },
-  crit:{ cat:'force', name:'Précision', icon:'crit', per:1, costs:[500,1000,1600], st:'Coups critiques', fmt:v=>'+'+v+' %' },
-  hp:{ cat:'garde', name:'Vitalité', icon:'hp', per:2, costs:[400,800,1200,1800], st:'PV max', fmt:v=>'+'+v+' %' },
-  mp:{ cat:'garde', name:'Esprit', icon:'mp', per:6, costs:[300,600,1000], st:'PM max', fmt:v=>'+'+v+' %' },
-  def:{ cat:'garde', name:'Rempart', icon:'def', per:1, costs:[450,900,1400], st:'Dégâts subis', fmt:v=>'−'+v+' %' },
-  shield:{ cat:'garde', name:'Voile', icon:'shield', per:2, costs:[400,800,1300], st:'Bouclier au départ', fmt:v=>'+'+v+' % des PV' },
-  heal:{ cat:'garde', name:'Récupération', icon:'heal', per:1, costs:[350,700,1100], st:'Soin après combat', fmt:v=>'+'+v+' %' },
+  atk:{ cat:'force', name:'Force', icon:'atk', per:0.5, costs:[450,900,1500], st:'Attaque', fmt:v=>'+'+v+' %' },
+  mag:{ cat:'force', name:'Intelligence', icon:'mag', per:0.5, costs:[450,900,1500], st:'Magie', fmt:v=>'+'+v+' %' },
+  dmg:{ cat:'force', name:'Affûtage', icon:'dmg', per:1, costs:[500,900,1400], st:'Dégâts infligés', fmt:v=>'+'+v+' %' },
+  crit:{ cat:'force', name:'Précision', icon:'crit', per:0.5, costs:[500,1000,1600], st:'Coups critiques', fmt:v=>'+'+v+' %' },
+  hp:{ cat:'garde', name:'Vitalité', icon:'hp', per:1, costs:[400,800,1200,1800], st:'PV max', fmt:v=>'+'+v+' %' },
+  mp:{ cat:'garde', name:'Esprit', icon:'mp', per:4, costs:[300,600,1000], st:'PM max', fmt:v=>'+'+v+' %' },
+  def:{ cat:'garde', name:'Rempart', icon:'def', per:0.5, costs:[450,900,1400], st:'Dégâts subis', fmt:v=>'−'+v+' %' },
+  shield:{ cat:'garde', name:'Voile', icon:'shield', per:1, costs:[400,800,1300], st:'Bouclier au départ', fmt:v=>'+'+v+' % des PV' },
+  heal:{ cat:'garde', name:'Récupération', icon:'heal', per:0.5, costs:[350,700,1100], st:'Soin après combat', fmt:v=>'+'+v+' %' },
   potion:{ cat:'res', name:'Sacoche', icon:'potion', per:1, costs:[600], st:'Potions au départ', fmt:v=>'+'+v },
   ether:{ cat:'res', name:'Fiole', icon:'ether', per:1, costs:[700], st:'Éthers au départ', fmt:v=>'+'+v },
-  gil:{ cat:'res', name:'Bourse', icon:'gil', per:15, costs:[500,1000], st:'Gils gagnés', fmt:v=>'+'+v+' %' },
-  reroll:{ cat:'res', name:'Dés', icon:'reroll', per:1, costs:[600,1200], st:'Relances gratuites', fmt:v=>'+'+v },
+  gil:{ cat:'res', name:'Bourse', icon:'gil', per:10, costs:[500,1000], st:'Gils gagnés', fmt:v=>'+'+v+' %' },
+  reroll:{ cat:'res', name:'Dés', icon:'reroll', per:1, costs:[900], st:'Relances gratuites', fmt:v=>'+'+v },
   hyd:{ cat:'grace', name:'Bénédiction', icon:'hyd', per:1, costs:[2000], st:'Survit une fois à un coup fatal', fmt:null },
 };
 const UP_KEYS = Object.keys(UPGRADES);
 /* v5.5g2 : textes uniformes « Stat +valeur » ; fx = texte simple, fxh = valeur mise en avant */
-UP_KEYS.forEach(k=>{ const u=UPGRADES[k]; u.fx = v => u.fmt ? `${u.st} ${u.fmt(v)}` : u.st; u.fxh = v => u.fmt ? `${u.st} <b class="sv">${u.fmt(v)}</b>` : u.st; });
+UP_KEYS.forEach(k=>{ const u=UPGRADES[k], F=v=>String(u.fmt(+(+v).toFixed(2))).replace('.',','); u.fv = F; u.fx = v => u.fmt ? `${u.st} ${F(v)}` : u.st; u.fxh = v => u.fmt ? `${u.st} <b class="sv">${F(v)}</b>` : u.st; });
 const upZero = () => Object.fromEntries(UP_KEYS.map(k=>[k,0]));
 /* nettoie un objet d'améliorations (sauvegarde ou joueur distant) : entiers bornés par le nombre de rangs */
 const cleanUp = u => Object.fromEntries(UP_KEYS.map(k=>[k, Math.max(0, Math.min(UPGRADES[k].costs.length, Math.floor(+((u||{})[k])||0)))]));
@@ -1790,11 +1818,51 @@ const ENEMIES = {
     phases:[{at:0.5, line:'Je suis la haine même. Tout retournera au néant !'}] },
   bahamut:{ hpK:2.4, atkK:0.8, name:'Bahamut', title:'Roi des dragons', hp:820, atk:15, ai:'bahamut', res:{phys:0.1, mag:0.1}, boss:true,
     phases:[{at:0.75, line:'Prouvez votre valeur, mortels.'},{at:0.45, line:'Mes enfants, venez à moi !'},{at:0.2, line:'Que tout soit réduit en cendres !'}] },
+  // v6.0 : acte II (étages 51 à 100). Monstres légendaires de toute la série (sprites officiels Brave Exvius).
+  tomberry:{ name:'Tomberry', hp:85, atk:12, ai:'tonberry', res:{phys:0.2} },
+  malboro:{ name:'Malboro', hp:100, atk:11, ai:'malboro' },
+  coeurl:{ name:'Coeurl', hp:75, atk:12, ai:'coeurl', res:{mag:0.2} },
+  geantdefer:{ name:'Géant de fer', hp:125, atk:13, ai:'irongiant', res:{phys:0.35} },
+  dragonrouge:{ name:'Dragon rouge', hp:115, atk:13, ai:'reddragon', res:{mag:0.2} },
+  ochu:{ name:'Ochu', hp:120, atk:11, ai:'ochu' },
+  elemsombre:{ name:'Élémentaire sombre', hp:62, atk:12, ai:'darkelem', res:{phys:0.4, mag:-0.2} },
+  lamia:{ name:'Lamia', hp:72, atk:10, ai:'lamia', support:true },
+  dullahan:{ name:'Dullahan', hp:115, atk:13, ai:'dullahan', res:{phys:0.2} },
+  flagelleur:{ name:'Flagelleur', hp:78, atk:12, ai:'mindflayer', res:{mag:0.2} },
+  // les quatre Démons de FINAL FANTASY I, appelés par Chaos
+  marilith:{ name:'Marilith', hp:120, atk:13, ai:'marilith', res:{phys:0.1} },
+  kraken:{ name:'Kraken', hp:120, atk:13, ai:'kraken', res:{mag:0.1} },
+  liche:{ name:'Liche', hp:115, atk:13, ai:'lichfiend', res:{phys:0.2} },
+  tiamat:{ name:'Tiamat', hp:125, atk:13, ai:'tiamat', res:{mag:0.1} },
+  // boss de l'acte II (gardiens = étages impairs ×5, boss = ×10)
+  garuda:{ hpK:2.3, atkK:0.85, name:'Garuda', title:'Dame des vents', hp:290, atk:13, ai:'garuda', res:{mag:0.1}, boss:true, guardian:true, fem:true,
+    phases:[{at:0.5, line:'Mes plumes vont vous lacérer !'}] },
+  titan:{ hpK:2.2, atkK:0.82, name:'Titan', title:'Seigneur des roches', hp:820, atk:15, ai:'titan', res:{phys:0.15}, boss:true,
+    phases:[{at:0.7, line:'La montagne se dresse contre vous !'},{at:0.35, line:'Sentez la colère de la terre !'}] },
+  odin:{ hpK:2.3, atkK:0.85, name:'Odin', title:'Le Seigneur des Ténèbres', hp:290, atk:13, ai:'odin', res:{phys:0.15}, boss:true, guardian:true,
+    phases:[{at:0.5, line:'Gungnir ne manque jamais sa cible.'}] },
+  ultimecia:{ hpK:2.2, atkK:0.82, name:'Ultimecia', title:'La Sorcière du futur', hp:820, atk:15, ai:'ultimecia', res:{mag:0.15}, boss:true, fem:true,
+    phases:[{at:0.7, line:'Le temps m’appartient. Je le comprime.'},{at:0.35, line:'Contemplez la fin de toute existence !'}] },
+  empereur:{ hpK:2.3, atkK:0.85, name:'L’Empereur', title:'Souverain de Palamecia', hp:290, atk:13, ai:'emperor', res:{mag:0.1}, boss:true, guardian:true,
+    phases:[{at:0.5, skin:'empereur2', line:'Même l’enfer m’obéit ! Admirez ma vraie forme !'}] },
+  nuage:{ hpK:2.2, atkK:0.82, name:'Nuage des ténèbres', title:'Gardienne du Néant', hp:820, atk:15, ai:'cloudofdarkness', res:{phys:0.1, mag:0.1}, boss:true, fem:true,
+    phases:[{at:0.65, line:'Le Néant engloutira votre lumière.'},{at:0.3, line:'Rien ne survit à l’onde de particules.'}] },
+  necron:{ hpK:2.4, atkK:0.85, name:'Necron', title:'L’Éternelle ténèbre', hp:290, atk:13, ai:'necron', res:{phys:0.15, mag:0.15}, boss:true, guardian:true,
+    phases:[{at:0.5, line:'Vivre, c’est craindre la mort. Je vous en libère.'}] },
+  ardyn:{ hpK:2.3, atkK:0.82, name:'Ardyn Izunia', title:'Le Roi maudit', hp:820, atk:15, ai:'ardyn', res:{mag:0.1}, boss:true,
+    phases:[{at:0.7, line:'Ah, enfin un peu de divertissement.'},{at:0.35, line:'Le Fléau des astres coule dans mes veines.'}] },
+  garland:{ hpK:2.4, atkK:0.85, name:'Garland', title:'Le Chevalier du temps', hp:290, atk:13, ai:'garland', res:{phys:0.2}, boss:true, guardian:true,
+    phases:[{at:0.4, line:'Moi, Garland, je vais tous vous écraser !'}] },
+  chaos:{ hpK:2.6, atkK:0.8, name:'Chaos', title:'Dieu de la Discorde', hp:860, atk:15, ai:'chaos', res:{phys:0.1, mag:0.1}, boss:true,
+    phases:[{at:0.8, line:'Marilith, prête-moi le feu de la terre !'},{at:0.6, line:'Kraken, que les eaux vous noient !'},{at:0.4, line:'Liche, que la terre se fende !'},{at:0.2, line:'Tiamat, que le ciel se déchaîne ! Tout recommence, encore et encore !'}] },
   enkidou:{ name:'Enkidou', hp:85, atk:10, ai:'enkidu', res:{mag:0.2} },
   dragonombre:{ name:'Dragon des ombres', hp:90, atk:12, ai:'shadowdragon', res:{mag:0.25} },
 };
-const GUARDIAN_OF = {5:'ifrit',10:'barbariccia',15:'gilgamesh',20:'golbez',25:'exdeath',30:'armeultima',35:'sephiroth',40:'kefka',45:'zeromus',50:'bahamut'};
+const GUARDIAN_OF = {5:'ifrit',10:'barbariccia',15:'gilgamesh',20:'golbez',25:'exdeath',30:'armeultima',35:'sephiroth',40:'kefka',45:'zeromus',50:'bahamut',
+  55:'garuda',60:'titan',65:'odin',70:'ultimecia',75:'empereur',80:'nuage',85:'necron',90:'ardyn',95:'garland',100:'chaos'};
 function floorPool(f){
+  if (f>75) return ['geantdefer','dragonrouge','dullahan','flagelleur','malboro','tomberry','elemsombre','lamia'];
+  if (f>50) return ['tomberry','malboro','coeurl','lamia','elemsombre','ochu','sentinelle','spectre'];
   if (f<=3) return ['flan','bombo','diablotin'];
   if (f<=9) return ['flan','bombo','diablotin','squelette','ahriman'].concat(f>=7?['grenade']:[]);
   if (f<=19) return ['diablotin','squelette','ahriman','grenade','gobelin','sylphe'].concat(f>=15?['sentinelle']:[]);
@@ -1807,10 +1875,10 @@ function floorPool(f){
    puis +hL/+aL par étage au-delà. La difficulté vient surtout des mécaniques. */
 const BAL = { lv:0.08, h0:0.55, a0:0.42, ramp:7, hL:0.045, aL:0.08, elite:{hp:1.3, atk:1.2, enrage:9},
   // v5.5 : combats plus courts mais plus percutants (PV ennemis réduits selon l'étage et le type, attaque relevée, plafond par coup)
-  duoBossHp:0.6, kh:{ n0:0.9, nk:0.07, boss:0.85, big:0.95, fin:0.35, late:0.06 }, ka:1.85, ea0:1.15, cap:0.28, capB:0.4,
+  duoBossHp:0.6, kh:{ n0:0.9, nk:0.07, boss:0.85, big:0.95, fin:0.35, late:0.06 }, ka:1.96, ea0:1.15, cap:0.28, capB:0.4,
   // v5.5d : un seul combat par étage, donc moins de récompenses : le héros gagne un peu de force à chaque étage
   pg:0.028, heal:0.2, mpw:0.4, gk:2.5, gf:6, dmgCap:2.2, perkCap:0.7, redCap:0.75 };
-function khMul(f, d, kind){ const b=BAL.kh, base=b.n0/(1+b.nk*(f-1)); if (!d.boss) return base; return base*(1+b.late*Math.max(0,f-35))*(f>=MAX_FLOOR?b.big*b.fin:isBigBoss(f)?b.big:b.boss); }
+function khMul(f, d, kind){ const b=BAL.kh, base=b.n0/(1+b.nk*(f-1)); if (!d.boss) return base; return base*(1+b.late*Math.max(0,f-35))*(f>=maxF()?b.big*b.fin:isBigBoss(f)?b.big:b.boss); }
 const Lf = lv => 1 + BAL.lv*(lv-1);
 function eMul(f){ const r=Math.min(1,(f-1)/BAL.ramp), late=Math.max(0,f-10); return { h:Lf(f)*(BAL.h0+(1-BAL.h0)*r+BAL.hL*late), a:Lf(f)*(BAL.a0+(1-BAL.a0)*r+BAL.aL*late) }; }
 const FLOOR_TIPS = {
@@ -1859,6 +1927,18 @@ const BOSS_FX = {
   zeromus:{ p:'cosmic', c1:'120,140,255', c2:'255,90,140', tint:'rgba(30,20,90,.30)', lines:['Zeromus…','La haine de tout un peuple a pris forme.'] },
   bahamut:{ p:'flare', c1:'140,200,255', c2:'255,255,255', tint:'rgba(90,150,255,.20)', lines:['Mortels, vous voici devant le Roi des dragons.','Méga-flare va tout purifier.'] },
 };
+Object.assign(BOSS_FX, {
+  garuda:{ p:'wind', c1:'120,255,170', c2:'220,255,235', tint:'rgba(60,200,130,.18)', lines:['Insectes ! Vous osez troubler mon ciel ?','Le vent va vous arracher à cette terre !'] },
+  titan:{ p:'meteor', c1:'230,170,90', c2:'120,80,40', tint:'rgba(150,100,40,.22)', lines:['Qui ose fouler la montagne ?','Je vais vous enterrer vivants !'] },
+  odin:{ p:'blade', c1:'200,210,255', c2:'60,60,120', tint:'rgba(40,40,110,.24)', lines:['Ma lame tranche jusqu’au destin.','Zantetsuken attend son heure.'] },
+  ultimecia:{ p:'void', c1:'200,120,255', c2:'40,10,60', tint:'rgba(90,30,140,.24)', lines:['Les SeeD… non, des aventuriers. Peu importe.','Le temps va s’arrêter pour vous.'] },
+  empereur:{ p:'chaos', c1:'255,210,90', c2:'160,60,200', tint:'rgba(140,60,160,.22)', lines:['Je suis l’Empereur de Palamecia.','Le monde entier se prosternera.'] },
+  nuage:{ p:'void', c1:'90,255,160', c2:'20,40,40', tint:'rgba(10,60,40,.30)', lines:['Je suis le Nuage des ténèbres.','Tout retournera au Néant.'] },
+  necron:{ p:'light', c1:'170,200,255', c2:'30,30,70', tint:'rgba(40,50,120,.26)', lines:['Je suis l’éternelle ténèbre.','Je viens effacer la vie elle-même.'] },
+  ardyn:{ p:'feather', c1:'200,60,90', c2:'30,10,20', tint:'rgba(120,20,40,.24)', lines:['Ardyn Izunia, pour vous servir.','Le spectacle peut commencer.'] },
+  garland:{ p:'fire', c1:'255,140,60', c2:'90,90,160', tint:'rgba(150,60,30,.20)', lines:['Je suis Garland, chevalier de Cornelia.','Le cycle se refermera sur vous.'] },
+  chaos:{ p:'chaos', c1:'255,90,60', c2:'255,220,120', tint:'rgba(150,20,20,.28)', lines:['Deux mille ans… la boucle du temps m’a conduit jusqu’ici.','Je suis Chaos. Tout finit et tout recommence en moi.','Venez. Votre fin sera mon commencement.'] },
+});
 const isNamedBoss = k => !!BOSS_FX[k];
 function bfxParts(type, n, seed){
   return Array.from({length:n},(_,i)=>{ const h=bandH(seed+'#'+i);
@@ -1869,15 +1949,16 @@ function bossIntro(f, key){
   if (FAST) return;
   const fx=BOSS_FX[key], d0=ENEMIES[key]; if (!fx||!d0) return;
   ['ftr','bint'].forEach(id=>{ const o=document.getElementById(id); if (o) o.remove(); });
-  const big=isBigBoss(f), hold=3900;
-  const d=document.createElement('div'); d.id='bint'; d.className='bint p-'+fx.p+(big?' big':'');
+  const big=isBigBoss(f), f100=key==='chaos', hold=f100?7400:3900;
+  const d=document.createElement('div'); d.id='bint'; d.className='bint p-'+fx.p+(big?' big':'')+(f100?' f100':'');
   d.style.cssText=`--c1:${fx.c1};--c2:${fx.c2};--hold:${hold}ms`;
   const src=(ASSET[key]||{}).src||'';
   d.innerHTML=`<div class="bi-bg"></div><div class="bi-parts">${bfxParts(fx.p,24,'bi'+key)}</div>
    <div class="bi-spr"><div class="bi-aura"></div><img src="${src}" alt="" style="height:min(40vh,${Math.round(((ASSET[key]||{}).h||150)*1.7)}px)"></div>
-   <div class="bi-card"><div class="bi-tag">Étage ${f} · ${big?'Boss':'Gardien'}</div><div class="bi-ln"></div>
+   ${f100?`<div class="bi-fiends">${['marilith','kraken','liche','tiamat'].map((k,i)=>`<img class="bf${i}" src="${ASSET[k].src}" alt="" style="animation-delay:${200+i*350}ms">`).join('')}</div>`:''}
+   <div class="bi-card"><div class="bi-tag">Étage ${f} · ${f100?'Combat final':big?'Boss':'Gardien'}</div><div class="bi-ln"></div>
     <div class="bi-title">${esc(d0.title||'')}</div><div class="bi-name">${esc(d0.name)}</div><div class="bi-ln"></div>
-    ${fx.lines.map((l,i)=>`<div class="bi-q" style="animation-delay:${1700+i*750}ms">« ${esc(l)} »</div>`).join('')}</div>
+    ${fx.lines.map((l,i)=>`<div class="bi-q" style="animation-delay:${(f100?3500:1700)+i*(f100?1000:750)}ms">« ${esc(l)} »</div>`).join('')}</div>
    <div class="bi-skip">Touche pour passer</div>`;
   document.body.appendChild(d);
   const field=document.getElementById('field'); if (field) field.classList.add('fin');
@@ -1962,9 +2043,15 @@ const EN_EL = {
   seigneur:{w:['lum','feu'],r:['ten','glace']}, wyverne:{w:['lum'],r:['ten','terre']}, behemoth:{w:['glace'],r:['foudre']}, neant:{w:['lum'],r:['ten']},
   ifrit:{w:['glace','eau'],r:['feu']}, barbariccia:{w:['terre'],r:['vent']}, gilgamesh:{w:['foudre'],r:['glace']}, golbez:{w:['lum'],r:['ten']},
   exdeath:{w:['feu'],r:['ten']}, armeultima:{w:['foudre'],r:['vent']}, sephiroth:{w:['lum'],r:['ten']}, kefka:{w:['ten'],r:['lum']},
-  zeromus:{w:['lum'],r:['ten']}, bahamut:{w:['glace'],r:['feu']}, enkidou:{w:['feu'],r:['glace']}, dragonombre:{w:['lum'],r:['ten']},
+  zeromus:{w:['lum'],r:['ten']}, bahamut:{w:['glace'],r:['feu']},
+  tomberry:{w:['glace'],r:['feu']}, malboro:{w:['feu'],r:['terre']}, coeurl:{w:['terre'],r:['foudre']}, geantdefer:{w:['foudre'],r:['terre']}, dragonrouge:{w:['glace'],r:['feu']},
+  ochu:{w:['feu'],r:['terre','eau']}, elemsombre:{w:['lum'],r:['ten']}, lamia:{w:['glace'],r:['feu']}, dullahan:{w:['lum'],r:['ten','glace']}, flagelleur:{w:['foudre'],r:['glace']},
+  marilith:{w:['glace'],r:['feu']}, kraken:{w:['foudre'],r:['eau','glace']}, liche:{w:['feu','lum'],r:['terre','ten']}, tiamat:{w:['terre'],r:['vent','foudre']},
+  garuda:{w:['glace'],r:['vent']}, titan:{w:['vent'],r:['terre']}, odin:{w:['ten'],r:['foudre']}, ultimecia:{w:['lum'],r:['glace']}, empereur:{w:['glace'],r:['feu','foudre']},
+  nuage:{w:['foudre'],r:['ten']}, necron:{w:['feu'],r:['lum']}, ardyn:{w:['lum'],r:['ten']}, garland:{w:['glace'],r:['feu']}, chaos:{w:[],r:['ten']}, enkidou:{w:['feu'],r:['glace']}, dragonombre:{w:['lum'],r:['ten']},
 };
 const elOf = k => EN_EL[k] || {w:[],r:[]};
+const elOfE = e => (e && e.elx) || elOf(e && e.key);
 /* élément des attaques ennemies et des attaques de boss */
 const EN_ATK_EL = {
   'Aile du chaos':'ten','Ailes noires':'ten','Aile noire':'ten','Atterrissage':'terre','Autodestruction':'feu','Big Bang':'ten','Choeur de l’enfer':'ten','Chœur du néant':'ten',
@@ -1984,9 +2071,9 @@ const COMP_EL = { yshtola:'glace', thancred:'phys', alphinaud:'vent', alisaie:'f
   tataru:'phys', lyse:'phys', krile:'terre', cid:'foudre', cloud:'phys', tifa:'phys', aerith:'lum', squall:'phys', zidane:'phys', vivi:'feu', tidus:'eau', yuna:'lum',
   auron:'phys', lightning:'foudre', terra:'lum', cecil:'lum', kain:'vent', bartz:'phys', noctis:'ten', rosa:'lum', locke:'phys' };
 /* multiplicateur élémentaire : ×1,5 sur une faiblesse, ×0,5 sur une résistance */
-function elemMul(e, el){ if (!e || !el || el==='phys') return 1; const t=elOf(e.key); return t.w.includes(el) ? EL_WEAK + ((R&&R.perk)?pk('elWeak'):0) : t.r.includes(el) ? EL_RES : 1; }
+function elemMul(e, el){ if (!e || !el || el==='phys') return 1; const t=elOfE(e); return t.w.includes(el) ? EL_WEAK + ((R&&R.perk)?pk('elWeak'):0) : t.r.includes(el) ? EL_RES : 1; }
 function elemPop(e, m){ if (m>1) floatAt(enEl(e),'Faiblesse !','weak'); else if (m<1) floatAt(enEl(e),'Résiste','resist'); }
-function elemChips(e){ const t=elOf(e.key); if (!t.w.length && !t.r.length) return '';
+function elemChips(e){ const t=elOfE(e); if (!t.w.length && !t.r.length) return '';
   return `<div class="elw">${t.w.map(k=>elIc(k,'w')).join('')}${t.r.length?`<span class="elsep"></span>${t.r.map(k=>elIc(k,'r')).join('')}`:''}</div>`; }
 const AI = {
   flan(e){ if (hpr(e)<0.5 && !e.healed){ e.healed=true; return {kind:'heal', name:'Absorption', pct:0.3}; } return A('Coup gélatineux',1); },
@@ -2075,6 +2162,91 @@ const AI = {
       return A('Lame du néant',1.1); }
     return e.t%2===0 ? A('Néant absolu',3.8,{windup:1, type:'mag'}) : A('Lame du néant',1.2,{weaken:2});
   },
+  // --- v6.0 : monstres de l'acte II ---
+  tonberry(e){ return e.t%3===2 ? A('Couteau du chef',3.6,{windup:1}) : A('Lanterne',0.8,{type:'mag', el:'feu'}); },
+  malboro(e){ return e.t%4===2 ? A('Mauvaise haleine',2.2,{windup:1, type:'mag', weaken:2, dot:[0.3,3], el:'terre'}) : A('Tentacules',1); },
+  coeurl(e){ return e.t%3===1 ? A('Fil éclair',2.6,{windup:1, type:'mag', el:'foudre'}) : A('Fouet',1.1); },
+  irongiant(e){ return e.t%3===2 ? A('Grande épée',3.6,{windup:1}) : A('Coup de garde',1); },
+  reddragon(e){ return e.t%3===2 ? A('Souffle de feu',3,{windup:1, type:'mag', dot:[0.35,3]}) : A('Griffes',1.1); },
+  ochu(e){ if (hpr(e)<0.5 && !e.healed){ e.healed=true; return {kind:'heal', name:'Photosynthèse', pct:0.3}; } return e.t%3===1 ? A('Danse d’Ochu',0.8,{type:'mag', dot:[0.4,3], el:'terre'}) : A('Fouet de lianes',1); },
+  darkelem(e){ return e.t%3===1 ? A('Ténèbres',2.8,{windup:1, type:'mag'}) : A('Éclat noir',0.9,{type:'mag', el:'ten'}); },
+  lamia(e){ if (alive().length>1 && e.t%4===1) return {kind:'buffAll', name:'Chant envoûtant', pct:0.4, turns:3, windup:1}; return A('Baiser glacé',0.8,{type:'mag', weaken:2, el:'glace'}); },
+  dullahan(e){ return e.t%4===3 ? A('Faux d’outre-tombe',3.4,{windup:1, drain:0.15, el:'ten'}) : A('Charge du cavalier',1.1); },
+  mindflayer(e){ return e.t%3===2 ? A('Onde psychique',2.6,{windup:1, type:'mag', interruptible:true, el:'ten'}) : A('Fouet mental',0.7,{type:'mag', weaken:3, el:'ten'}); },
+  marilith(e){ return e.t%3===2 ? A('Six lames',2.8,{windup:1, el:'feu'}) : A('Brasier',0.9,{type:'mag', dot:[0.35,3], el:'feu'}); },
+  kraken(e){ return e.t%3===2 ? A('Raz-de-marée',2.8,{windup:1, type:'mag', el:'eau'}) : A('Encre',0.7,{type:'mag', weaken:2, el:'eau'}); },
+  lichfiend(e){ return e.t%3===2 ? A('Séisme',2.8,{windup:1, el:'terre'}) : A('Toucher glacé',0.9,{type:'mag'}); },
+  tiamat(e){ return e.t%3===2 ? A('Cyclone',2.8,{windup:1, type:'mag', el:'vent'}) : A('Morsures',1,{el:'vent'}); },
+  // --- v6.0 : boss de l'acte II (gros coups toujours annoncés un tour à l'avance, jamais de coup fatal sans avertissement) ---
+  garuda(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return A('Souffle aérien',4.2,{windup:1, type:'mag', interruptible:true, el:'vent', fx:'wind'});
+    const c=(e.t-e.pt)%4;
+    if (c===0 && p) return {kind:'shield', name:'Œil du cyclone', pct:0.18, fx:'wind'};
+    if (c===2) return A('Lame de vent',p?3.4:3.2,{windup:1, type:'mag', el:'vent', fx:'wind'});
+    if (c===3 && p) return A('Plumes tranchantes',1.1,{dot:[0.35,3], el:'vent'});
+    return A('Serres',1); },
+  titan(e){ const p=bossPhase(e);
+    if (p===2 && op(e)) return A('Colère de la montagne',4.6,{windup:1, el:'terre', fx:'meteor'});
+    if (p===0){ const c=e.t%4; return c===3 ? A('Glissement de terrain',3.4,{windup:1, el:'terre', fx:'meteor'}) : c===1 ? A('Poing de granite',1.2) : A('Écrasement',1); }
+    const c=(e.t-e.pt)%5;
+    if (c===0) return {kind:'shield', name:'Peau de granite', pct:0.2, fx:'meteor'};
+    if (c===2) return A('Bond titanesque',2.8,{windup:1, shieldAmp:true, el:'terre', fx:'meteor'});
+    if (c===4) return A('Glissement de terrain',3.6,{windup:1, el:'terre', fx:'meteor'});
+    return p===2 ? A('Séisme',1.2,{weaken:2}) : A('Poing de granite',1.1); },
+  odin(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return A('Gungnir',3.6,{windup:1, type:'mag', el:'foudre', fx:'blade'});
+    const c=(e.t-e.pt)%5;
+    if (c===1) return {kind:'buffAll', name:'Galop de Sleipnir', pct:0.4, turns:3, windup:1, interruptible:true, fx:'blade'};
+    if (c===3) return A('Zantetsuken',p?3.8:3.4,{windup:1, interruptible:true, fx:'blade'});
+    return A('Taille céleste',1.1); },
+  ultimecia(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return {kind:'summon', name:'Échos du temps', key:'elemsombre', n:2};
+    if (p===2 && (e.t-(e.lastJ??-99))>=6){ e.lastJ=e.t; return A('Jugement infernal',5,{windup:1, type:'mag', meteor:true, el:'ten', fx:'void'}); }
+    const c=e.t%5;
+    if (c===1) return {kind:'atk', name:'Compression temporelle', power:1.6, type:'mag', drain:0.15, windup:1, interruptible:true, el:'ten', fx:'void'};
+    if (c===3) return A('Apocalypse',3.4,{windup:1, type:'mag', el:'lum', fx:'void'});
+    return e.t%2 ? A('Glacier',1.1,{type:'mag', el:'glace'}) : A('Rayon du temps',1,{type:'mag', weaken:2, el:'ten'}); },
+  emperor(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return A('Onde Ultima',4.2,{windup:1, type:'mag', interruptible:true, el:'lum', fx:'chaos'});
+    const c=e.t%4;
+    if (c===1) return A('Pluie d’étoiles',0.9,{type:'mag', dot:[0.4,3], el:'lum'});
+    if (c===3) return A(p?'Flare':'Foudre suprême',3.4,{windup:1, type:'mag', el:p?'feu':'foudre', fx:'chaos'});
+    return A('Sceptre',1); },
+  cloudofdarkness(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return {kind:'summon', name:'Appel du Néant', key:'elemsombre', n:2};
+    if (p===2 && op(e)) return A('Onde de particules',4.6,{windup:1, type:'mag', el:'ten', fx:'void'});
+    const c=(e.t-e.pt)%5;
+    if (c===0) return {kind:'shield', name:'Voile des ténèbres', pct:0.18, fx:'void'};
+    if (c===2) return A('Flot de ténèbres',2.8,{windup:1, type:'mag', shieldAmp:true, el:'ten', fx:'void'});
+    if (c===4) return A('Onde de particules',3.6,{windup:1, type:'mag', el:'ten', fx:'void'});
+    return A('Tentacules',1.1,{el:'ten'}); },
+  necron(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return {kind:'shield', name:'Absolu', pct:0.2, fx:'light'};
+    const c=e.t%4;
+    if (c===1) return A('Choc bleu',p?1.4:1.2,{type:'mag', weaken:3, el:'eau'});
+    if (c===3) return A(p?'Grand-Croix':'Anneau de neutrons',p?3.6:3.4,{windup:1, type:'mag', el:p?'lum':'ten', fx:'light'});
+    return A('Sainteté',1,{type:'mag', el:'lum'}); },
+  ardyn(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return {kind:'buffAll', name:'Arsenal royal', pct:0.5, turns:3, windup:1, interruptible:true, fx:'feather'};
+    if (p===2 && op(e)) return {kind:'summon', name:'Démons du Fléau', key:'flagelleur', n:1};
+    const c=(e.t-e.pt)%4;
+    if (c===2) return A(p===2?'Lame du Fléau':'Lame royale',p===2?3.8:3.4,{windup:1, el:'ten', fx:'feather'});
+    if (c===1) return A('Miasme',1,{type:'mag', dot:[0.4,3], el:'ten'});
+    return A('Coup d’épée',1.1); },
+  garland(e){ const p=bossPhase(e);
+    if (p===1 && op(e)) return {kind:'buffAll', name:'Rage du chevalier', pct:0.5, turns:3, windup:1, interruptible:true, fx:'fire'};
+    const c=e.t%4;
+    if (c===1) return A('Feu 3',1.2,{type:'mag', dot:[0.3,3], el:'feu'});
+    if (c===3) return A('Épée de flammes',p?3.8:3.4,{windup:1, el:'feu', fx:'fire'});
+    return A('Taille du chevalier',1.1); },
+  chaos(e){ const p=bossPhase(e);
+    const F=[null,['marilith',{w:['glace'],r:['feu']},'feu','Inferno'],['kraken',{w:['foudre'],r:['eau','glace']},'eau','Raz-de-marée'],['liche',{w:['feu','lum'],r:['terre','ten']},'terre','Séisme'],['tiamat',{w:['terre'],r:['vent','foudre']},'vent','Cyclone']][p];
+    if (F){ e.elx=F[1]; if (op(e)) return {kind:'summon', name:'Appel de '+ENEMIES[F[0]].name, key:F[0], n:1}; }
+    if (p===4 && hpr(e)<0.1 && !e.last){ e.last=1; return A('Big Bang',5,{windup:1, type:'mag', interruptible:true, el:'ten', fx:'chaos'}); }
+    const c=(e.t-e.pt)%4;
+    if (c===2) return F ? A(F[3],3.4,{windup:1, type:'mag', el:F[2], fx:'chaos'}) : A('Démolition',3.2,{windup:1, el:'ten', fx:'chaos'});
+    if (c===1) return F ? A('Écho de '+ENEMIES[F[0]].name,1.1,{type:'mag', el:F[2]}) : A('Rayon cosmique',1,{type:'mag', weaken:2, el:'ten'});
+    return A('Griffes du chaos',1.1); },
   // --- v5.5f : boss de légende (phases selon les PV, gros coups toujours annoncés un tour à l'avance) ---
   ifrit(e){ const p=bossPhase(e), c=(e.t-e.pt)%3;
     if (p===1 && op(e)) return {kind:'buffAll', name:'Rage infernale', pct:0.3, turns:3, windup:1, interruptible:true, fx:'fire'};
@@ -2153,7 +2325,7 @@ const AI = {
       return A('Griffes',1.1); }
     const c=(e.t-e.pt)%3; return c===2 ? A('Méga-flare',3.8,{windup:1, type:'mag', fx:'flare'}) : c===1 ? A('Souffle sacré',0.9,{type:'mag', dot:[0.4,3]}) : A('Griffes',1.2,{weaken:2}); },
 };
-const ENRAGE_AT = { ifrit:28, gilgamesh:30, exdeath:30, sephiroth:32, zeromus:32, barbariccia:32, golbez:34, armeultima:40, kefka:42, bahamut:46, roiflan:28, chevalier:30, grandahriman:30, reinebombo:32, sentinelleprime:32, golem:32, seigneur:34, wyverne:40, behemoth:42, neant:46 };
+const ENRAGE_AT = { garuda:34, titan:46, odin:34, ultimecia:46, empereur:34, nuage:46, necron:36, ardyn:48, garland:36, chaos:56, ifrit:28, gilgamesh:30, exdeath:30, sephiroth:32, zeromus:32, barbariccia:32, golbez:34, armeultima:40, kefka:42, bahamut:46, roiflan:28, chevalier:30, grandahriman:30, reinebombo:32, sentinelleprime:32, golem:32, seigneur:34, wyverne:40, behemoth:42, neant:46 };
 
 /* ===================== POMANDRES / RÉCOMPENSES ===================== */
 const POMS = [
@@ -2186,6 +2358,10 @@ function rollPoms(n, bonus){
 
 /* ===================== SAUVEGARDE (localStorage) ===================== */
 const SAVE_KEY = 'ffxiv_palais_des_morts_v1';
+const CH_NEXT = true; // v6.0 : version test (branche next, site séparé)
+/* v6.0 : code de sauvegarde (copier sur un site, coller sur l'autre). Simple JSON encodé, aucune donnée envoyée. */
+function saveCode(){ persist(); const t=localStorage.getItem(SAVE_KEY)||'{}'; return 'PDM1.'+btoa(unescape(encodeURIComponent(t))); }
+function readCode(c){ try{ c=String(c||'').trim().replace(/\s+/g,''); if(!c.startsWith('PDM1.')) return null; const o=JSON.parse(decodeURIComponent(escape(atob(c.slice(5))))); return (o && typeof o==='object' && !Array.isArray(o) && 'gils' in o) ? o : null; }catch(e){ return null; } }
 function defaultSave(){ return { created:false, name:'Aventurier', gils:0, unlocked:[], job:'paladin', upgrades:upZero(),
   loadouts:{}, stats:{runs:0, best:0, kills:0, wins:0, totalGils:0, pulls:0, fragsTotal:0}, run:null,
   frag:10, comps:{}, pity:0, comp:null }; }
@@ -2445,6 +2621,21 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.0b', date:'24/10/2026', img:'assets/monsters/chaos.webp', title:'Acte II : le Néant, étages 51 à 100', notes:[
+    'Après Bahamut, un escalier s’ouvre sous le trône. Tu choisis : rentrer victorieux, ou descendre dans le Néant pour 50 étages de plus.',
+    'Ta victoire sur Bahamut est comptée tout de suite. Si tu tombes dans le Néant, tu gardes ta victoire et l’étage atteint.',
+    'Dix nouveaux boss légendaires, un tous les 5 étages : Garuda, Titan, Odin, Ultimecia, l’Empereur, le Nuage des ténèbres, Necron, Ardyn, Garland, et Chaos à l’étage 100.',
+    'Chaos appelle tour à tour les quatre Démons : Marilith, Kraken, Liche et Tiamat. À chaque appel, ses faiblesses et ses résistances changent. Regarde ses cristaux.',
+    'Dix nouveaux monstres dans le Néant : Tomberry, Malboro, Coeurl, Lamia, Ochu, Géant de fer, Dragon rouge, Dullahan, Flagelleur et Élémentaire sombre.',
+    'Nouveaux décors officiels pour les étages 51 à 100 et pour chaque boss.',
+    'Vaincre Chaos rapporte un gros bonus : 1500 Gils, 15 fragments et des points en plus au classement.',
+    'Le classement affiche Néant et l’étage atteint, ou Victoire 100.',
+    'Difficulté réglée : un peu plus dur au départ, et les améliorations du marchand sont moins fortes, pour que le jeu reste un défi même tout amélioré.',
+    'Dés : un seul niveau maintenant.',
+    'Nouveau dans Paramètres : copier et coller un code de sauvegarde, pour passer ta progression d’un site à l’autre.',
+    'Boutons Retour et menus de l’écran titre plus faciles à toucher.',
+    'Version test : ce site est séparé du jeu habituel, avec ses propres salons en ligne.'
+  ]},
   {v:'v6.0a', date:'23/10/2026', img:'assets/el/feu.webp', title:'Les éléments et des combats plus malins', notes:[
     'Chaque attaque a maintenant un élément : Feu, Glace, Foudre, Terre, Vent, Eau, Lumière, Ténèbres, ou Physique pour les coups d’arme.',
     'Le petit cristal sur chaque action montre son élément. Il s’entoure de vert si l’ennemi visé y est faible.',
@@ -2692,7 +2883,7 @@ SCREENS.title = function(){
   document.body.classList.add('home');
   app.innerHTML = `
   <div class="home-bg" aria-hidden="true"></div><div class="motes" aria-hidden="true">${Array.from({length:18},(_,i)=>`<i style="left:${(i*53)%100}%;animation-delay:${(i*0.7)%9}s;animation-duration:${9+(i%5)*2}s"></i>`).join('')}</div>
-  <h1 class="tlogo lg" aria-label="A Godless Realm">${logoSVG(S.logoV)}</h1>
+  <h1 class="tlogo lg" aria-label="A Godless Realm">${logoSVG(S.logoV)}</h1>${CH_NEXT?'<div class="nexttag">Version test : acte II, étages 51 à 100</div>':''}
   <div style="flex:1"></div>
   <nav class="tmenu">
     ${S.created ? `<button class="tm main" data-k="continue" id="bCont">${S.run?'Reprendre l’exploration':'Continuer'}</button>` : `<button class="tm main" data-k="new" data-go="create">Nouvelle aventure</button>`}
@@ -2750,7 +2941,7 @@ SCREENS.hub = function(){
     <div class="hero hframe">
       <div class="hero-sp">${spr(S.job,'idle')}</div>
       <div class="hero-t"><h2>${esc(S.name)}</h2><div class="hero-j">${jgi(S.job)} ${j.name} ${roleTag(S.job)}</div>
-      <div class="muted">Record : étage ${S.stats.best||'—'} / 50 · Victoires : ${S.stats.wins}</div></div>
+      <div class="muted">Record : étage ${S.stats.best||'—'} / ${(S.stats.best||0)>50?100:50} · Victoires : ${S.stats.wins}</div></div>
     </div>
     ${S.run && !S.run.duo ? `<button class="btn goldb" data-k="resume" id="bResume" style="width:100%;margin:6px 0">Reprendre la partie (${runLabel(S.run)})</button>` : ''}
     <button class="htile wide" data-k="enter" id="bEnter" style="--img:url(assets/hub/prep.webp)"><span class="ht-tx"><b>Préparer l’exploration</b><small>Entrer dans le Palais des Morts</small></span><span class="ht-go">${rsym('up')}</span></button>
@@ -2805,7 +2996,7 @@ SCREENS.ranking = function(){
         <span class="rk-n">${ri===0?pi+1:''}</span>
         <span class="rk-sp">${spr(JOBS[r.job]?r.job:'paladin','')}</span>
         <span class="rk-t"><b>${esc(r.pseudo||'?')}${L[0].user_id===me&&ri===0?' <i class="rk-you">toi</i>':''}</b><small>${JOBS[r.job]?JOBS[r.job].name:esc(r.job)}${r.mode==='duo'?` · ${r.party_size===3?'Trio':'Duo'}`:''}</small></span>
-        <span class="rk-f"><b>${r.victory&&r.floor>=50?'Victoire':'Étage '+r.floor}</b><small>${(r.score||0).toLocaleString('fr-FR')} pts · ${fmtD(r.duration_s)}</small></span>
+        <span class="rk-f"><b>${rkFloor(r)}</b><small>${(r.score||0).toLocaleString('fr-FR')} pts · ${fmtD(r.duration_s)}</small></span>
       </div>`).join('')}</div>`).join('');
   }).catch(()=>{ if (document.body.contains(box)) box.innerHTML='<p class="muted center">Classement indisponible pour le moment. Vérifie ta connexion.</p>'; });
 };
@@ -2827,7 +3018,8 @@ SCREENS.settings = function(from){
     </section>
     <section class="xsec">
       <h3 class="xh">Sauvegarde</h3>
-      <p class="muted">Ta progression est enregistrée automatiquement sur cet appareil.</p>
+      <p class="muted">Ta progression est enregistrée automatiquement sur cet appareil. Pour la copier vers un autre site ou appareil, utilise le code de sauvegarde.</p>
+      <div class="row"><button class="btn small grow" id="stExp" data-k="sexp">Copier mon code</button><button class="btn small grow" id="stImp" data-k="simp">Coller un code</button></div>
       <button class="btn small danger" id="stReset" data-k="reset">Recommencer à zéro</button>
     </section>
     <section class="xsec credits">
@@ -2852,6 +3044,16 @@ SCREENS.settings = function(from){
   const fxr=document.getElementById('stSfx'); fxr.oninput=()=>SND.setSfx(fxr.value/100); fxr.onchange=SND.test;
   document.getElementById('stMute').onclick=()=>{ const mu=SND.toggleMute(); document.getElementById('stMute').textContent=mu?'Activer le son':'Couper le son'; if (!mu) SND.test(); };
   document.getElementById('stPN').onclick=patchNotes;
+  document.getElementById('stExp').onclick=()=>{ const c=saveCode();
+    showModal(`<p style="margin-bottom:8px">Ton code de sauvegarde. Copie-le, puis colle-le dans Paramètres sur l’autre site.</p><textarea id="svCode" class="svcode" readonly>${c}</textarea><div class="row"><button class="btn small grow" data-k="no" id="svX">Fermer</button><button class="btn small goldb grow" data-k="yes" id="svC">Copier</button></div>`);
+    const ta=document.getElementById('svCode'); ta.onclick=()=>ta.select();
+    document.getElementById('svX').onclick=closeModal;
+    document.getElementById('svC').onclick=()=>{ ta.select(); const ok=()=>{ toast('Code copié'); closeModal(); }; if (navigator.clipboard) navigator.clipboard.writeText(c).then(ok,()=>{ document.execCommand('copy'); ok(); }); else { document.execCommand('copy'); ok(); } }; };
+  document.getElementById('stImp').onclick=()=>{
+    showModal(`<p style="margin-bottom:8px">Colle ici un code de sauvegarde. Il remplacera la progression de cet appareil.</p><textarea id="svIn" class="svcode" placeholder="PDM1..."></textarea><div class="row"><button class="btn small grow" data-k="no" id="svX">Annuler</button><button class="btn small goldb grow" data-k="yes" id="svOk">Charger</button></div>`);
+    document.getElementById('svX').onclick=closeModal;
+    document.getElementById('svOk').onclick=()=>{ const o=readCode(document.getElementById('svIn').value); if(!o){ toast('Code invalide'); return; }
+      closeModal(); confirmBox(`Remplacer ta progression par celle du code (${Math.round(+o.gils||0)} Gils, ${(o.unlocked||[]).length} jobs) ?`, ()=>{ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(o)); }catch(e){} S=loadSave(); R=null; C=null; toast('Sauvegarde chargée'); SCREENS.title(); }, 'Remplacer'); }; };
   document.getElementById('stReset').onclick=()=>confirmBox('Recommencer à zéro ? Toute ta progression sur cet appareil sera effacée (Gils, cristaux, jobs, compagnons, améliorations). C’est définitif.', ()=>confirmBox('Vraiment tout effacer ?', ()=>{ S=defaultSave(); R=null; persist(); SCREENS.title(); }, 'Tout effacer'), 'Continuer');
   backIcon(from==='title'?'title':'hub');
 };
@@ -2914,7 +3116,7 @@ SCREENS.shop = function(glow){
       <img class="sico" src="assets/up/${u.icon}.webp" alt="">
       <div class="sbody"><div class="stop"><b>${u.name}</b>${pips(lv,max)}</div>
         <div class="snow">${u.fxh(u.per)}</div>
-        <div class="snext${done?' max':''}">${done?`Niv. max → <b class="sv">${u.fmt?u.fmt(lv*u.per):'actif'}</b>`:`Niv. ${lv+1} → <b class="sv">${u.fmt?u.fmt((lv+1)*u.per):'actif'}</b>`}</div></div>
+        <div class="snext${done?' max':''}">${done?`Niv. max → <b class="sv">${u.fmt?u.fv(lv*u.per):'actif'}</b>`:`Niv. ${lv+1} → <b class="sv">${u.fmt?u.fv((lv+1)*u.per):'actif'}</b>`}</div></div>
       ${done?'<span class="smax">Max</span>':buyBtn(`data-k="up-${k}" data-up="${k}"`, cost, ok)}</div>`; };
   const cats = UP_CATS.map(([c,t])=>{ const ks=UP_KEYS.filter(k=>UPGRADES[k].cat===c).sort((a,b)=>{ const ca=UPGRADES[a].costs[S.upgrades[a]]??1e9, cb=UPGRADES[b].costs[S.upgrades[b]]??1e9; return ca-cb; });
     return `<h4 class="ssub">${t}</h4>${ks.map(upCard).join('')}`; }).join('');
@@ -2944,6 +3146,12 @@ SCREENS.shop = function(glow){
     confirmBox(`<img class="cfi" src="assets/up/${u.icon}.webp" alt="">Acheter <b>${u.name}</b> niv. ${lv+1} pour <span class="gold">${cost} Gils</span> ?<br><span class="muted">${u.fx((lv+1)*u.per)}</span>`, ()=>{ if(S.gils<cost || (S.upgrades[k]||0)!==lv) return; S.gils-=cost; S.upgrades[k]=lv+1; bought(k, `${u.name} : niveau ${lv+1}`); }, 'Acheter'); });
 };
 
+/* étage réel d'une partie du classement (acte II : « F87: » en tête de la graine) */
+function rkFloor(r, html){ const m=/^F(\d+):/.exec(r.seed||''), f=m?+m[1]:r.floor;
+  if (r.victory && f>=100) return html?'<span class="gold">Victoire 100</span>':'Victoire 100';
+  if (r.victory && f>50) return html?`<span class="gold">Néant ${f}</span>`:'Néant '+f;
+  if (r.victory) return html?'<span class="gold">Victoire</span>':'Victoire';
+  return 'Étage '+f; }
 function scoresModal(){
   const L=S.scores||[];
   showModal(`<h2>Meilleurs scores (local)</h2><div class="col" style="gap:2px;margin-top:6px">${L.length?L.map((x,i)=>`<div class="stat"><span>${i+1}. ${JOBS[x.job]?JOBS[x.job].name:x.job} · étage ${x.floor}${x.victory?' · victoire':''}</span><b class="gold">${x.score.toLocaleString('fr-FR')}</b></div>`).join(''):'<p class="muted">Aucune exploration terminée.</p>'}</div>
@@ -2952,7 +3160,9 @@ function scoresModal(){
 }
 
 /* ===================== EXPLORATION (RUN) ===================== */
-const MAX_FLOOR = 50;
+/* v6.0 : acte II (étages 51 à 100) après la victoire sur Bahamut */
+const ACT1_MAX = 50, ACT2_MAX = 100;
+const maxF = () => (R && R.act2) ? ACT2_MAX : ACT1_MAX;
 /* Bus d'événements pour modules externes (en ligne, classement…) : HOOKS.on('runStart'|'runEnd'|'score', fn) */
 const HOOKS = { l:{}, on(n,f){ (this.l[n]=this.l[n]||[]).push(f); }, emit(n,d){ (this.l[n]||[]).forEach(f=>{ try{ f(d); }catch(e){ console.error(e); } }); } };
 let UIDN = 0;
@@ -3115,7 +3325,7 @@ SCREENS.map = function(){
   const dots=P.steps.map((s,i)=>`<i class="${s[0]==='boss'?'boss ':''}${i<P.i?'done':i===P.i?'cur':''}"></i>`);
   const bossKey = GUARDIAN_OF[R.floor];
   app.innerHTML = `
-  ${topbarRun(`Étage ${R.floor} / ${MAX_FLOOR} · salle ${P.i+1}/${P.steps.length}`)}
+  ${topbarRun(`Étage ${R.floor} / ${maxF()} · salle ${P.i+1}/${P.steps.length}`)}
   ${playerPanelHTML()}
   <div class="scroll">
     <div class="center"><h3>${step[0]==='boss'?'La salle du gardien':step.length>1?'Choisis ton chemin':'Une seule voie'}</h3><div class="prog2">${dots.join('')}</div></div>
@@ -3177,7 +3387,7 @@ function partyLevel(){
 function nextFloor(){
   if (R.floor>=3 && rand()<0.1){ R.frags=(R.frags||0)+1; }
   R.floor++;
-  if (R.floor>MAX_FLOOR) return endRun(true);
+  if (R.floor>maxF()) return endRun(true);
   R.level=R.floor+(R.lvB||0); recalcStats();
   gainGils(BAL.gf*(R.floor-1));
   if (R.curse && R.curse.until<R.floor) R.curse=null;
@@ -3294,7 +3504,7 @@ function showRewards(){
 }
 /* Score de fin d'exploration (borné par le serveur : 5 000 + 40 000 × étage) */
 function runScore(r, victory){
-  const fl=Math.min(r.floor,MAX_FLOOR), dur=Math.max(1,Math.round((Date.now()-(r.startedAt||Date.now()))/1000));
+  const fl=Math.min(r.floor,maxF()), dur=Math.max(1,Math.round((Date.now()-(r.startedAt||Date.now()))/1000));
   const parts = { etages:fl*1000, monstres:(r.kills||0)*20, boss:(r.bosses||0)*1500, victoire:victory?25000:0,
     sansKO:(r.revives||0)===0 ? fl*150 : 0, temps:victory?Math.max(0,10000-dur*3):0,
     malediction:(r.curseTaken||0)*400, gils:Math.floor((r.gilsEarned||0)/10) };
@@ -3304,14 +3514,16 @@ function runScore(r, victory){
 }
 function endRun(victory, abandoned){
   if (!R) return; // une seule fin (et un seul envoi au classement) par exploration
+  const final100 = !!(victory && R.act2 && R.floor>=ACT2_MAX), ko2 = !victory && !abandoned && !!R.won50; if (R.won50) victory = true;
   const SC = runScore(R, victory), runRef = R;
-  const earned = R.gilsEarned + (victory?500:0);
+  if (final100){ SC.parts.neant=60000; SC.score=Math.min(2000000, SC.score+60000); }
+  const earned = R.gilsEarned + (victory?500:0) + (final100?1500:0);
   S.firstClear=S.firstClear||{}; let fcB=0; (R.bossFloors||[]).forEach(f=>{ if(!S.firstClear[f]){ S.firstClear[f]=1; fcB+=1; } });
-  const frags = (R.frags||0) + (victory?5:0) + fcB;
+  const frags = (R.frags||0) + (victory?5:0) + (final100?15:0) + fcB;
   S.gils += earned; S.stats.totalGils += earned; S.stats.kills += R.kills;
   S.frag = (S.frag||0) + frags; S.stats.fragsTotal = (S.stats.fragsTotal||0) + frags;
   if (victory) S.stats.wins++;
-  const fl = Math.min(R.floor,MAX_FLOOR), job=R.job, kills=R.kills;
+  const fl = Math.min(R.floor,maxF()), job=R.job, kills=R.kills;
   S.stats.best=Math.max(S.stats.best,fl);
   S.scores = (S.scores||[]).concat([{score:SC.score, floor:fl, job, victory:!!victory, date:Date.now()}]).sort((a,b)=>b.score-a.score).slice(0,10);
   const bestScore = S.scores[0].score;
@@ -3329,14 +3541,14 @@ function endRun(victory, abandoned){
    <div class="endart ${victory?'win':'ko'}" style="background-image:url(assets/bg/t5.webp)"></div>
    <div class="win col center fanfare end ${victory?'':'ko'}" style="align-items:center;padding:22px 12px">
     ${victory?`<div class="end-sp">${spr(runRef.job,'idle')}</div>`:''}
-    <div class="ff-title">${[...(victory?'Victoire':abandoned?'Retraite':'K.O.')].map((c,i)=>`<i style="animation-delay:${i*50}ms">${c}</i>`).join('')}</div><div class="ff-line"></div>
+    <div class="ff-title">${[...(ko2?'K.O.':victory?'Victoire':abandoned?'Retraite':'K.O.')].map((c,i)=>`<i style="animation-delay:${i*50}ms">${c}</i>`).join('')}</div><div class="ff-line"></div>
     ${victory?'':spr(job,'','width:80px;filter:grayscale(1) brightness(.6);transform:rotate(90deg);margin:10px')}
-    <p>${victory?'Bahamut, Roi des dragons, s’incline. Le Palais des Morts est purifié !':abandoned?'Tu quittes le palais par un passage secret.':'Ton aventurier a succombé dans les profondeurs…'}</p>
+    <p>${final100?'Chaos est vaincu. La boucle du temps est brisée, le Néant se referme.':ko2?'Tu tombes dans le Néant, mais ta victoire sur Bahamut reste gravée.':runRef.act2&&victory?'Tu remontes du Néant, victorieux.':victory?'Bahamut, Roi des dragons, s’incline. Le Palais des Morts est purifié !':abandoned?'Tu quittes le palais par un passage secret.':'Ton aventurier a succombé dans les profondeurs…'}</p>
     <div class="col stagger" style="width:100%;gap:2px;margin-top:6px">
       <div class="stat"><span>Score</span><b class="gold" style="font-size:20px">${SC.score.toLocaleString('fr-FR')}</b></div>
       <div class="stat"><span>Meilleur score</span><b>${bestScore.toLocaleString('fr-FR')}</b></div>
       <div class="stat" id="olRank" style="display:none"></div>
-      <div class="stat"><span>Étage atteint</span><b>${fl} / ${MAX_FLOOR}</b></div>
+      <div class="stat"><span>Étage atteint</span><b>${fl} / ${runRef.act2?ACT2_MAX:ACT1_MAX}</b></div>
       <div class="stat"><span>Record</span><b>${S.stats.best}</b></div>
       <div class="stat"><span>Monstres vaincus</span><b>${kills}</b></div>
       ${victory?'<div class="stat"><span>Bonus de victoire</span><b class="gold">500</b></div>':''}
@@ -3421,7 +3633,7 @@ function idleDesync(root){ (root||document).querySelectorAll('#field img.idle').
   im.style.animationDelay=(-((performance.now()/1000+off)%d)).toFixed(2)+'s'; }); }
 function renderCombat(){
   app.innerHTML = `
-  <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto;margin-left:6px" data-k="menu" id="bMenu">Menu</button></div>
+  <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(R.floor===ACT2_MAX?'· COMBAT FINAL':isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto;margin-left:6px" data-k="menu" id="bMenu">Menu</button></div>
   <div class="field ${R.comp?'withc':'solo'}" id="field" style="background-image:url(${roomBG()}),url(${PH[floorBG(R.floor).slice(10,12)]||''})">
     <div class="enemies" id="enemies"></div>
     <div id="aoe"></div>
@@ -3437,7 +3649,7 @@ function renderCombat(){
 }
 /* Menu de l'exploration (v5.5e) : bonus, objets hors combat, aide, abandon (avec confirmation) */
 function runMenu(){
-  showModal(`<h2>Menu</h2><p class="muted">Étage ${R.floor} / ${MAX_FLOOR} · ${R.gilsEarned} Gils${R.frags?' · '+R.frags+' fragments':''}</p>
+  showModal(`<h2>Menu</h2><p class="muted">Étage ${R.floor} / ${maxF()} · ${R.gilsEarned} Gils${R.frags?' · '+R.frags+' fragments':''}</p>
    <div class="col" style="margin-top:8px">
    <button class="btn" id="mO">Objets et bonus</button>
    <button class="btn" id="mH">Aide des actions</button>
@@ -3506,6 +3718,7 @@ function helpModal(){
    ${ic('clock')} compte à rebours avant la rage (dégâts ×2,5).<br>
    Résistances : « Phys− » = résiste aux coups physiques, « Mag+ » = faible à la magie (${ic('magic')}).<br>
    Éléments : sous le nom de l’ennemi, les cristaux entourés de vert sont ses faiblesses (×1,5), les cristaux gris ses résistances (×0,5). Le petit cristal sur chaque action montre son élément ; il s’allume en vert si la cible y est faible.<br>
+   Certains boss changent d’éléments en plein combat (Chaos à l’étage 100) : regarde à nouveau leurs cristaux.<br>
    Blindé = résiste aux coups, frappe-le avec la magie. Lanceur = interromps ses sorts. Soigneur et Soutien = à éliminer en premier.<br>
    Une grosse attaque ${ic('warn')} prise sans bouclier ni défense t’affaiblit 2 tours.</div></div>
    <button class="btn small" style="width:100%;margin-top:8px" id="hC">Fermer</button>`);
@@ -3517,7 +3730,7 @@ const eAtk = e => e.atk*(1+(e.buffT>0?e.buff:0))*(1+0.15*e.rage)*(enraged(e)?2.5
 function intentPower(e, x){ let p=x.power||1; if (x.shieldAmp) p *= (e.shield>0?2:0.6); return p; }
 const intentEst = (e, it) => Math.max(1, Math.round(eAtk(e)*intentPower(e,it)*(1-effDef())));
 const canInterrupt = e => { const x=e.intent; if(!x) return false; const t = x.kind==='charge'?x.then:x; if(!(x.kind==='charge'||x.big)) return false; return !e.boss || !!t.interruptible; };
-const ARCH_AI = { fairy:'Soigneur', goblin:'Soutien', imp:'Lanceur', ghost:'Lanceur', ahriman:'Lanceur', bomb:'Explosif', grenade:'Explosif' };
+const ARCH_AI = { fairy:'Soigneur', goblin:'Soutien', imp:'Lanceur', ghost:'Lanceur', ahriman:'Lanceur', bomb:'Explosif', grenade:'Explosif', lamia:'Soutien', mindflayer:'Lanceur', darkelem:'Lanceur', coeurl:'Lanceur' };
 const archOf = e => ARCH_AI[ENEMIES[e.key]&&ENEMIES[e.key].ai] || ((e.res&&e.res.phys>=0.3) ? 'Blindé' : '');
 function resTags(e){ const t=[]; const r=e.res; if(r.phys>=0.3) t.push('Phys−'); else if(r.phys<0) t.push('Phys+'); if(r.mag>=0.25) t.push('Mag−'); else if(r.mag<0) t.push('Mag+'); return t; }
 function updateCombat(){
@@ -3851,7 +4064,7 @@ function tryRevive(){
   return false;
 }
 function fragDrop(kind){
-  let n = kind==='boss' ? (R.floor===MAX_FLOOR?5:isBigBoss(R.floor)?3:2) : kind==='elite' ? (rand()<0.4?1:0) : kind==='mimic' ? (rand()<0.4?1:0) : (rand()<0.06?1:0);
+  let n = kind==='boss' ? (R.floor===maxF()?5:isBigBoss(R.floor)?3:2) : kind==='elite' ? (rand()<0.4?1:0) : kind==='mimic' ? (rand()<0.4?1:0) : (rand()<0.06?1:0);
   if (kind==='boss') (R.bossFloors=R.bossFloors||[]).push(R.floor);
   if (R.comp && R.comp.id==='zidane' && rand()<0.06*compPot()) n++;
   R.frags=(R.frags||0)+n; return n;
@@ -3875,12 +4088,31 @@ function winCombat(){
   if (!R.lvB){ R.lvB=1; partyLevel(); } // premier combat gagné : niveau +1 (progression rapide au début)
   healR(R.maxhp*(R.curse&&R.curse.noHeal?0:postHeal())); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*BAL.mpw));
   const fr=fragDrop(kind);
-  if (kind==='boss' && R.floor===MAX_FLOOR) return endRun(true);
+  if (kind==='boss' && R.floor===ACT1_MAX && !R.act2) return act2Gate(victoryHTML(kind, R.gilsEarned-(g0==null?R.gilsEarned:g0), fr));
+  if (kind==='boss' && R.floor===maxF()) return endRun(true);
   const extra = victoryHTML(kind, R.gilsEarned-(g0==null?R.gilsEarned:g0), fr);
   if (kind==='boss'){ healR(R.maxhp*(isBigBoss(R.floor)?1:0.5)); R.mp=R.maxmp; return fightRewards('boss', isBigBoss(R.floor)?'Boss vaincu !':'Gardien vaincu !', extra); }
   fightRewards(kind, 'Combat terminé', extra);
 }
 
+/* v6.0 : le seuil du Néant. Bahamut vaincu = victoire acquise ; on peut rentrer, ou descendre jusqu'à l'étage 100. */
+function act2Gate(extra){
+  saveRun();
+  app.innerHTML = `${topbarRun('Étage '+R.floor)}
+   <div class="scroll a2gate"><div class="win col center" style="align-items:center;padding:16px 12px">
+    <div class="a2tag">Victoire acquise</div>
+    <h2>Bahamut est vaincu</h2>
+    <div class="a2spr"><img src="assets/monsters/chaos.webp" alt=""></div>
+    <p>Le palais est purifié. Ta victoire compte déjà : Gils, fragments et classement.</p>
+    <p class="muted">Sous le trône, un escalier s’enfonce dans le Néant. Cinquante étages de plus, des ennemis légendaires, et Chaos qui attend tout en bas.</p>
+    <div class="a2rules"><div><b>Si tu descends</b><span>Soins complets, récompense de boss, puis étage 51.</span></div><div><b>Si tu tombes</b><span>Ta victoire reste comptée, avec l’étage atteint.</span></div></div>
+   </div></div>
+   <button class="btn goldb" data-k="act2-go" id="bA2go">Descendre dans le Néant</button>
+   <button class="btn" data-k="act2-end" id="bA2end">Rentrer victorieux</button>`;
+  document.getElementById('bA2end').onclick=()=>endRun(true);
+  document.getElementById('bA2go').onclick=()=>{ R.act2=1; R.won50=1; R.bossFloors=(R.bossFloors||[]);
+    healR(R.maxhp); R.mp=R.maxmp; fightRewards('boss', 'Bahamut vaincu !', extra); };
+}
 /* ===================== ÉVÉNEMENTS D’ÉTAGE ===================== */
 const hpPct = () => R.hp/R.maxhp;
 const fmtPct = x => Math.round(x*100)+' %';
@@ -4347,7 +4579,7 @@ const Online = (function(){
     signupFn: 'pdm-signup',
     emailDomain: 'joueurs.palaisdesmorts.app', // e-mail interne dérivé du pseudo (aucun e-mail réel)
     authKey: 'pdm-auth',            // clé de session dédiée (n'écrase pas celle d'un autre jeu sur le même domaine)
-    lobby: 'pdm-lobby', roomPrefix: 'pdm-room-',
+    lobby: 'pdm-next-lobby', roomPrefix: 'pdm-next-room-', // v6.0 : salons séparés de la version stable
     turnTimeoutMs: 45000,           // délai avant action automatique du partenaire (hôte uniquement)
     graceMs: 90000,                 // délai de reconnexion avant de continuer sans le partenaire
     resendMs: 2500, protocol: 1,
@@ -4497,7 +4729,7 @@ const Online = (function(){
   }
   async function fetchLeaderboard(f){
     await init(); f = f || {};
-    let q = st.sb.from('pdm_runs').select('id,user_id,pseudo,job,companion,floor,score,duration_s,victory,mode,partner_pseudo,partner_job,party_size,created_at').order('score', { ascending:false }).order('created_at', { ascending:true }).limit(f.limit || 50);
+    let q = st.sb.from('pdm_runs').select('id,user_id,pseudo,job,companion,floor,score,duration_s,victory,mode,partner_pseudo,partner_job,party_size,created_at,seed').order('score', { ascending:false }).order('created_at', { ascending:true }).limit(f.limit || 50);
     if (f.mode && f.mode !== 'all') q = q.eq('mode', f.mode);
     if (f.job && f.job !== 'all') q = q.eq('job', f.job);
     if (f.mine && st.user) q = q.eq('user_id', st.user.id);
@@ -4513,7 +4745,7 @@ const Online = (function(){
       p_mode: r.mode === 'duo' ? 'duo' : 'solo', p_partner_pseudo: r.mode==='duo' ? (r.partner_pseudo||null) : null,
       p_partner_job: r.mode==='duo' && r.partner_job ? String(r.partner_job).toLowerCase() : null,
       p_party_size: r.mode==='duo' ? Math.max(2, Math.min(3, r.party_size||2)) : 1,
-      p_seed: r.seed == null ? null : (Array.isArray(r.seed) ? r.seed.join('-') : String(r.seed)).slice(0,80) };
+      p_seed: ((r.floor>50?'F'+Math.min(100,Math.round(r.floor))+':':'') + (r.seed == null ? '' : (Array.isArray(r.seed) ? r.seed.join('-') : String(r.seed)))).slice(0,80) || null };
   }
   async function submitRun(r){
     if (r && r.mode === 'duo' && room.active && !room.host) return { ok:false, skipped:'guest' }; // en duo, seul l'hôte publie
@@ -4976,7 +5208,7 @@ const Online = (function(){
             <div class="ol-rk">${i+1}</div>
             <div class="ol-sp">${sprite(r.job,34)}${r.mode==='duo'&&r.partner_job?`<span class="ol-sp2">${sprite(r.partner_job,26)}</span>`:''}</div>
             <div class="grow ol-who"><b>${E(r.pseudo)}${r.mode==='duo'?` <span class="muted">&amp;</span> ${E(r.partner_pseudo||'?')}`:''}</b>
-              <small>${E(jobName(r.job))}${r.companion?' · '+E(compName(r.companion)):''} · ${r.victory?'<span class="gold">Victoire</span>':'Étage '+r.floor}${r.mode==='duo'?' · <span class="ol-duo">'+(r.party_size===3?'Trio':'Duo')+'</span>':''}</small>
+              <small>${E(jobName(r.job))}${r.companion?' · '+E(compName(r.companion)):''} · ${rkFloor(r,1)}${r.mode==='duo'?' · <span class="ol-duo">'+(r.party_size===3?'Trio':'Duo')+'</span>':''}</small>
               <small class="muted">${fmtDur(r.duration_s)} · ${fmtDate(r.created_at)}</small></div>
             <div class="ol-sc"><b>${fmtNum(r.score)}</b><small>Ét. ${r.floor}</small></div>
           </div>`).join('')}</div>`;
@@ -5227,7 +5459,7 @@ winCombat = function(){
   heroOut();
   const bk=C&&C.kind==='boss';
   for (let i=1;i<NP();i++){ heroIn(i); if (R.hp<=0) R.hp=1; healR(R.maxhp*(R.curse&&R.curse.noHeal?0:postHeal())); R.mp=Math.min(R.maxmp, R.mp+Math.round(R.maxmp*BAL.mpw));
-    if (bk && R.floor!==MAX_FLOOR){ healR(R.maxhp*(isBigBoss(R.floor)?1:0.5)); R.mp=R.maxmp; } heroOut(); }
+    if (bk && (R.floor!==maxF() || R.floor===ACT1_MAX)){ healR(R.maxhp*(isBigBoss(R.floor)?1:0.5)); R.mp=R.maxmp; } heroOut(); }
   heroIn(0); if (R.hp<=0) R.hp=1;
   return _winCombat();
 };
@@ -5310,7 +5542,7 @@ function duoClick(k){
   return false;
 }
 /* en groupe : tous les héros montent de niveau ensemble à chaque étage */
-{ const _nf=nextFloor; nextFloor=function(){ if (isDuo() && R.floor<MAX_FLOOR){ heroOut(); const c=R.cur||0; R.party.forEach((h,i)=>{ if (i===c) return; heroIn(i); R.level=R.floor+1+(R.lvB||0); recalcStats(); heroOut(); }); heroIn(c); } return _nf.apply(this, arguments); }; }
+{ const _nf=nextFloor; nextFloor=function(){ if (isDuo() && R.floor<maxF()){ heroOut(); const c=R.cur||0; R.party.forEach((h,i)=>{ if (i===c) return; heroIn(i); R.level=R.floor+1+(R.lvB||0); recalcStats(); heroOut(); }); heroIn(c); } return _nf.apply(this, arguments); }; }
 /* vote : la majorité l'emporte ; en cas d'égalité, tirage commun (même graine des deux côtés) */
 function duoVote(K){
   const n={}; K.forEach(k=>{ if (k) n[k]=(n[k]||0)+1; });
@@ -5582,7 +5814,7 @@ if ('serviceWorker' in navigator && (location.protocol==='https:'||location.host
 window.addEventListener('error', e=>{ window.__errors=(window.__errors||[]); window.__errors.push(String(e.message)); });
 function setFast(v){ FAST=!!v; }
 window.GAME = { get S(){return S;}, get R(){return R;}, get C(){return C;}, SCREENS, JOBS, ENEMIES, BAL, POMS, playerAction, startRun, setFast, alive, skillState, getLoadout,
-  combatSkills, canInterrupt, intentEst, eMul, Lf, enterRoom, advanceNode, endRun, REWARDS, REW, COMPANIONS, EVENTS, doPull, planFloor, drawRewards, get RS(){return RS;}, rand, showRewards };
+  combatSkills, canInterrupt, intentEst, eMul, Lf, enterRoom, startCombat, act2Gate, nextFloor, advanceNode, endRun, REWARDS, REW, COMPANIONS, EVENTS, doPull, planFloor, drawRewards, get RS(){return RS;}, rand, showRewards };
 loadCustomSprites();
 SCREENS.title();
 
