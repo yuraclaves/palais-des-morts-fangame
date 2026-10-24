@@ -2506,7 +2506,7 @@ function rollPoms(n, bonus){
 
 /* ===================== SAUVEGARDE (localStorage) ===================== */
 const SAVE_KEY = 'ffxiv_palais_des_morts_v1';
-const CH_NEXT = true; // v6.0 : version test (branche next, site séparé)
+const CH_NEXT = false; // v6.0 : version test (branche next, site séparé)
 /* v6.0 : code de sauvegarde (copier sur un site, coller sur l'autre). Simple JSON encodé, aucune donnée envoyée. */
 function saveCode(){ persist(); const t=localStorage.getItem(SAVE_KEY)||'{}'; return 'PDM1.'+btoa(unescape(encodeURIComponent(t))); }
 function readCode(c){ try{ c=String(c||'').trim().replace(/\s+/g,''); if(!c.startsWith('PDM1.')) return null; const o=JSON.parse(decodeURIComponent(escape(atob(c.slice(5))))); return (o && typeof o==='object' && !Array.isArray(o) && 'gils' in o) ? o : null; }catch(e){ return null; } }
@@ -4855,7 +4855,7 @@ const Online = (function(){
     signupFn: 'pdm-signup',
     emailDomain: 'joueurs.palaisdesmorts.app', // e-mail interne dérivé du pseudo (aucun e-mail réel)
     authKey: 'pdm-auth',            // clé de session dédiée (n'écrase pas celle d'un autre jeu sur le même domaine)
-    lobby: 'pdm-next-lobby', roomPrefix: 'pdm-next-room-', // v6.0 : salons séparés de la version stable
+    lobby: 'pdm-lobby', roomPrefix: 'pdm-room-', // v6.0 : salons séparés de la version stable
     turnTimeoutMs: 45000,           // délai avant action automatique du partenaire (hôte uniquement)
     graceMs: 90000,                 // délai de reconnexion avant de continuer sans le partenaire
     resendMs: 2500, protocol: 1,
