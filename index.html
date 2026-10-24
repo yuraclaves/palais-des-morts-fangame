@@ -1319,6 +1319,11 @@ body.home .tm{padding:11px 26px;min-height:44px}
 /* v6.0 : petits écrans (iPhone SE, mini) : le combat tient sans défiler */
 @media (max-height:700px){ #field.field{min-height:200px} }
 @media (max-height:600px){ #field.field{min-height:168px} #ppw .bar{height:9px} #field .enemies:not([data-n="1"]) .en:not(.boss) img.spr.art{max-height:min(60px,10.5vh)} #field .enemies:not([data-n="1"]) .ename{font-size:9.5px} }
+body.home .hero.hframe,.hero.hframe{margin:2px 0 8px;padding:8px 12px 6px}
+.htile{min-height:122px}
+.htile.wide{min-height:106px;margin:0 0 8px}
+.htiles{gap:8px;margin:0 0 8px}
+@media (max-height:600px){ .hero.hframe{padding:4px 10px 2px} .hero .hero-sp img.spr{max-height:72px} .htile{min-height:90px} .htile.wide{min-height:80px} .hmini{padding:4px 2px;gap:3px} }
 #modal .win>.btn:last-child,#modal .win>.row:last-child{position:sticky;bottom:-10px;z-index:3;box-shadow:0 -8px 16px 4px rgba(0,0,20,.55)}
 #modal .win>.btn:last-child{min-height:44px}
 #modal .win>.row:last-child{background:inherit;padding-bottom:10px;margin-bottom:-10px}
@@ -2629,6 +2634,10 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.0g', date:'24/10/2026', img:'assets/icons/icon_repos.webp', title:'Avant-poste sans défiler', notes:[
+    'L’avant-poste tient en entier sur l’écran : la barre du bas (En ligne, Classement, Paramètres, Écran titre) est visible tout de suite.',
+    'Sur les petits écrans aussi.'
+  ]},
   {v:'v6.0f', date:'24/10/2026', img:'assets/icons/icon_curseur.webp', title:'Fenêtres plus pratiques', notes:[
     'Dans les fenêtres longues (aide, détails), le bouton Fermer reste visible en bas : plus besoin de défiler pour sortir.',
     'Le bouton Fermer est plus facile à toucher.'

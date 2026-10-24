@@ -7,3 +7,4 @@
 - v6.0f : bouton Fermer collant en bas des fenêtres longues (aide des actions coupait le bouton sous le pli), 44 px. Test faux boutons : écrans titre, avant-poste, jobs, marchand, invocation, classement, paramètres, menu combat, objets : aucun bouton mort (sauf Sans compagnon, corrigé en v6.0e).
 - Live ab08ae7 (pdm-next-06) : index.html identique au commit ; F55 Garuda et F100 Chaos forcés OK, 0 erreur. Duo et trio live lancés (dlive6, tlive6).
 - REPORT.md écrit. Live duo dlive6 : 0 écart ; trio tlive6 : 1 désync rattrapée (étape 99).
+- v6.0g : avant-poste compacté, barre du bas visible sans défiler (iPhone 12 : bas 636/664 ; SE : 527/568).

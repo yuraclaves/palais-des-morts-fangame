@@ -1,5 +1,9 @@
 # Notes de patch : A Godless Realm
 
+## v6.0g : Avant-poste sans défiler (24/10/2026)
+- L'avant-poste tient en entier sur l'écran : la barre du bas (En ligne, Classement, Paramètres, Écran titre) est visible tout de suite.
+- Sur les petits écrans aussi.
+
 ## v6.0f : Fenêtres plus pratiques (24/10/2026)
 - Dans les fenêtres longues (aide, détails), le bouton Fermer reste visible en bas : plus besoin de défiler pour sortir.
 - Le bouton Fermer est plus facile à toucher.

@@ -1,5 +1,5 @@
 /* A Godless Realm : cache des images et sons du jeu (assets/ uniquement). */
-const V = 'pdm-next-06';
+const V = 'pdm-next-07';
 self.addEventListener('install', e => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil(
   caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('pdm-assets-') && k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())
