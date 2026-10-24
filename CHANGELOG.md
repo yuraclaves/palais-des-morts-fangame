@@ -1,5 +1,10 @@
 # Notes de patch : A Godless Realm
 
+## v6.0d : Petits écrans, suite (24/10/2026)
+- Sur les petits écrans, deux ou trois monstres se placent côte à côte au lieu de se cacher l'un l'autre.
+- L'intention d'un monstre seul ne sort plus du haut de l'écran.
+- L'écran Victoire finale ne coupe plus le mot en deux.
+
 ## v6.0c : Néant plus juste, petits écrans (24/10/2026)
 - Le Néant est mieux dosé : les monstres normaux tombent en 2 tours, les élites et les boss restent les vrais dangers.
 - Titan et le Nuage des ténèbres ont moins de PV : leurs combats sont moins longs.

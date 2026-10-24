@@ -1318,7 +1318,7 @@ body.home .tm{padding:11px 26px;min-height:44px}
 .topbar .btn.small::after,.snd-btn::after{content:"";position:absolute;inset:-5px -3px}
 /* v6.0 : petits écrans (iPhone SE, mini) : le combat tient sans défiler */
 @media (max-height:700px){ #field.field{min-height:200px} }
-@media (max-height:600px){ #field.field{min-height:168px} #ppw .bar{height:9px} }
+@media (max-height:600px){ #field.field{min-height:168px} #ppw .bar{height:9px} #field .enemies:not([data-n="1"]) .en:not(.boss) img.spr.art{max-height:min(60px,10.5vh)} #field .enemies:not([data-n="1"]) .ename{font-size:9.5px} }
 </style>
 </head>
 <body>
@@ -2626,6 +2626,11 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.0d', date:'24/10/2026', img:'assets/monsters/bombo.webp', title:'Petits écrans, suite', notes:[
+    'Sur les petits écrans, deux ou trois monstres se placent côte à côte au lieu de se cacher l’un l’autre.',
+    'L’intention d’un monstre seul ne sort plus du haut de l’écran.',
+    'L’écran Victoire finale ne coupe plus le mot en deux.'
+  ]},
   {v:'v6.0c', date:'24/10/2026', img:'assets/monsters/titan.webp', title:'Néant plus juste, petits écrans', notes:[
     'Le Néant est mieux dosé : les monstres normaux tombent en 2 tours, les élites et les boss restent les vrais dangers.',
     'Titan et le Nuage des ténèbres ont moins de PV : leurs combats sont moins longs.',
@@ -3553,7 +3558,7 @@ function endRun(victory, abandoned){
    <div class="endart ${victory?'win':'ko'}" style="background-image:url(assets/bg/t5.webp)"></div>
    <div class="win col center fanfare end ${victory?'':'ko'}" style="align-items:center;padding:22px 12px">
     ${victory?`<div class="end-sp">${spr(runRef.job,'idle')}</div>`:''}
-    <div class="ff-title">${[...(ko2?'K.O.':final100?'Victoire finale':victory?'Victoire':abandoned?'Retraite':'K.O.')].map((c,i)=>`<i style="animation-delay:${i*50}ms">${c}</i>`).join('')}</div><div class="ff-line"></div>
+    <div class="ff-title">${(()=>{let n=0; return (ko2?'K.O.':final100?'Victoire finale':victory?'Victoire':abandoned?'Retraite':'K.O.').split(' ').map(w=>`<span style="white-space:nowrap">${[...w].map(c=>`<i style="animation-delay:${(n++)*50}ms">${c}</i>`).join('')}</span>`).join(' ');})()}</div><div class="ff-line"></div>
     ${victory?'':spr(job,'','width:80px;filter:grayscale(1) brightness(.6);transform:rotate(90deg);margin:10px')}
     <p>${final100?'Chaos est vaincu. La boucle du temps est brisée, le Néant se referme.':ko2?'Tu tombes dans le Néant, mais ta victoire sur Bahamut reste gravée.':runRef.act2&&victory?'Tu remontes du Néant, victorieux.':victory?'Bahamut, Roi des dragons, s’incline. Le Palais des Morts est purifié !':abandoned?'Tu quittes le palais par un passage secret.':'Ton aventurier a succombé dans les profondeurs…'}</p>
     <div class="col stagger" style="width:100%;gap:2px;margin-top:6px">
@@ -3623,6 +3628,11 @@ const rowScale = (j,k) => k<=1 ? 1 : [1,0.9,0.8][j]||0.8;
 function colPlace(k, x){ const ys=COL_ROWS(k); return ys.map((y,j)=>[x, y, rowScale(j,k), 50-j*10]); }
 function enSlot(i,n,list){
   const b=list.findIndex(z=>z.boss);
+  if (b<0 && n===1 && window.innerHeight<=600) return [52,8,1,40];
+  if (b<0 && n>=2 && n<=3 && window.innerHeight<=600){
+    const P = n===2 ? [[28,4,0.9,30],[72,32,0.9,20]] : [[18,4,0.82,30],[50,36,0.82,20],[82,4,0.82,30]];
+    return P[i];
+  }
   if (b>=0){
     if (n===1) return [52,8,1,40];
     if (i===b) return [n>=5?77:64,10,1,20];
