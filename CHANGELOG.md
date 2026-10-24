@@ -1,5 +1,12 @@
 # Notes de patch : A Godless Realm
 
+## v6.0h : Chaos, un vrai combat final (24/10/2026)
+- Chaos a plus de force : ses grandes attaques sont toujours annoncées un tour avant, mais elles font plus mal.
+- Dans ses deux dernières phases, il frappe fort plus souvent. Garde des soins et des protections pour la fin.
+- Aucune attaque ne peut te tuer d'un seul coup si tu as toute ta vie.
+- Le combat est un peu plus court et plus intense.
+- Les améliorations permanentes (Force, Vitalité, Voile, etc.) donnent un peu moins par niveau. Elles aident toujours, mais le jeu reste un défi.
+
 ## v6.0g : Avant-poste sans défiler (24/10/2026)
 - L'avant-poste tient en entier sur l'écran : la barre du bas (En ligne, Classement, Paramètres, Écran titre) est visible tout de suite.
 - Sur les petits écrans aussi.
