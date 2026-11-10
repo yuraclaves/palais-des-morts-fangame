@@ -1,3 +1,6 @@
+## 10/11/2026 v6.7 (next, sw pdm-next-22)
+Bouton Auto en combat (et sur l’écran des récompenses) : joue les tours du joueur (cible les faiblesses, soigne si les PV baissent, dépense la jauge, interrompt les sorts annoncés des boss), prend toujours la 1re récompense / le 1er choix de chemin, laisse jouer l’animation d’étage et enchaîne, y compris les boss. S’arrête si on retouche Auto (pastille AUTO au-dessus des transitions), en cas de défaite ou de victoire, au seuil du Néant (étage 50), ou devant un marchand. Mémorisé pendant la run, éteint au départ d’une nouvelle. Animations un peu plus rapides. En ligne : seulement tes tours, vote pour l’option 1. Tests : auto solo FAST étages 1 à 12 (dont boss 5 et 10) sans saisie ; arrêt au bouton et à la mort ; duo lockstep (décisions Auto + duoApply) étages 1 à 6, 24 étapes, 0 écart. Captures iPhone 12 : /workspace/ffxiv-roguelite/screens/v67_auto_combat.png, v67_auto_recompense.png. main intact.
+
 # Progression (branche next)
 
 - v6.0c (d663f16) : acte II mieux dosé, petits écrans, zones tactiles, score borné. Live vérifié (pdm-next-03).

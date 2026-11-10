@@ -1893,6 +1893,14 @@ body.cui.k63 .sk3.weakon .sk3i{background:linear-gradient(180deg,#9df0a8,#2c7a3a
 .thgrid.hg{grid-template-columns:repeat(2,minmax(0,1fr))}
 .thgrid.hg .thb span{white-space:normal;line-height:1.1}
 html.htr body.cui.k63 #modal .win{background:linear-gradient(180deg,rgba(var(--hw1),1),rgba(var(--hw2),1))!important}
+
+/* v6.7 : bouton Auto (combat + pastille toujours accessible) */
+#bAuto,.auto-btn{min-width:52px;font-weight:700;letter-spacing:.04em}
+#bAuto.on,.auto-btn.on{background:linear-gradient(180deg,#3a5a2a,#1c2c16)!important;border-color:#8fbf62!important;color:#e8ffd0!important;box-shadow:inset 0 1px 0 rgba(200,255,150,.25)}
+body.cui #bAuto.on,body.cui .auto-btn.on{border-color:#9dcc6e!important;background:linear-gradient(180deg,#3d5c28,#1a2814)!important;color:#eaffd4!important}
+#autoFab{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);left:8px;z-index:980;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:56px;min-height:44px;padding:6px 10px;border-radius:8px;border:1px solid #8fbf62;background:linear-gradient(180deg,#2a3c1e,#141c10);color:#e8ffd0;font-family:'Source Sans 3',system-ui,sans-serif;font-weight:800;font-size:13px;letter-spacing:.08em;line-height:1.1;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.55);text-transform:uppercase}
+#autoFab span{display:block;margin-top:2px;font-size:9px;font-weight:600;letter-spacing:.06em;opacity:.85;text-transform:none}
+#autoFab:active{transform:scale(.96)}
 </style>
 </head>
 <body>
@@ -1926,7 +1934,7 @@ const SPRITES = {
 
 /* ===================== OUTILS ===================== */
 let FAST = false;
-const sleep = ms => FAST ? Promise.resolve() : new Promise(r => setTimeout(r, ms));
+const sleep = ms => FAST ? Promise.resolve() : new Promise(r => setTimeout(r, Math.max(1, Math.round(ms * ((typeof R!=='undefined' && R && R.auto) ? 0.62 : 1)))));
 /* Aléatoire : générateur sfc32, graine tirée de crypto.getRandomValues à chaque exploration */
 let RS = [0,0,0,0];
 function newSeed(){ const a=new Uint32Array(4); try{ crypto.getRandomValues(a); }catch(e){ for(let i=0;i<4;i++) a[i]=(Math.random()*4294967296)>>>0; } return Array.from(a); }
@@ -2549,7 +2557,7 @@ function bossIntro(f, key){
   if (FAST) return;
   const fx=BOSS_FX[key], d0=ENEMIES[key]; if (!fx||!d0) return;
   ['ftr','bint'].forEach(id=>{ const o=document.getElementById(id); if (o) o.remove(); });
-  const big=isBigBoss(f), f100=key==='chaos', hold=f100?7400:3900;
+  const big=isBigBoss(f), f100=key==='chaos', hold=Math.round((f100?7400:3900)*((R&&R.auto)?0.72:1));
   const d=document.createElement('div'); d.id='bint'; d.className='bint p-'+fx.p+(big?' big':'')+(f100?' f100':'');
   d.style.cssText=`--c1:${fx.c1};--c2:${fx.c2};--hold:${hold}ms`;
   const src=(ASSET[key]||{}).src||'';
@@ -3282,6 +3290,12 @@ function jobStatsHTML(k){
 const SCREENS = {};
 /* ===================== NOTES DE PATCH (plus récentes en premier) ===================== */
 const CHANGELOG = [
+  {v:'v6.7', date:'10/11/2026', img:'assets/skills/coup.webp', title:'Mode Auto', notes:[
+    'Nouveau bouton Auto en combat : le jeu joue tes tours tout seul, vise les faiblesses, soigne si tes PV baissent et interrompt les sorts annoncés des boss.',
+    'Après chaque combat, Auto prend toujours la première récompense, laisse passer l’animation d’étage, puis enchaîne le combat suivant, y compris les gardiens et les boss.',
+    'Auto s’arrête si tu retouches le bouton, en cas de défaite ou de victoire, au choix de descendre dans le Néant, ou devant un marchand et les décisions importantes.',
+    'En ligne, Auto ne joue que tes propres tours et vote pour la première récompense. Les animations restent visibles, un peu plus rapides.'
+  ]},
   {v:'v6.1e', date:'24/10/2026', img:'assets/skills/feu.webp', title:'Textes des sorts corrigés', notes:[
     'Chaque bouton de sort a maintenant une seule pastille à droite : son coût, ce qu\'il te fait gagner, sa recharge, ou Libre.',
     'Le bonus de faiblesse ×1,5 se place sur le coin de l\'icône et ne cache plus le texte.',
@@ -4334,8 +4348,9 @@ function showRewardsOverlay(w, opts, cost, can){
     <div class="rw-h">Choisis une récompense</div>
     <div class="bands rw-bands">${withSp(w, opts.slice(0,3).map((x,i)=>bandHTML({cls:'b-rew rw-b '+RARITY[x.r].cls, col:REW_COL[x.r]||'#c8d2e6', name:`<img class="rw-ic" src="${rewImg(x)}" alt="" aria-hidden="true"><span class="rw-n">${x.name}</span><span class="rar">${RARITY[x.r].n}</span>`,
       sub:`${x.desc}${x.max>1?` ${rwPips(rewCount(x.id),x.max)}`:''}`, d:120+i*90, attrs:`data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"`})), 'rw-b')}</div>
-    <div class="rw-act"><button class="lbtn" data-k="menu" id="bRwItems">Menu</button><button class="lbtn grow" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>Relancer <b>${cost?cost+' Gils':'gratuit'}</b>${w.rr?`<small>relance ${w.rr+1}</small>`:''}</button></div></div>`;
+    <div class="rw-act"><button class="lbtn auto-btn" data-k="auto" id="bAuto" aria-pressed="false">Auto</button><button class="lbtn" data-k="menu" id="bRwItems">Menu</button><button class="lbtn grow" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>Relancer <b>${cost?cost+' Gils':'gratuit'}</b>${w.rr?`<small>relance ${w.rr+1}</small>`:''}</button></div></div>`;
   ov.querySelector('#bRwItems').onclick=runMenu;
+  if (typeof bindAutoBtn==='function') bindAutoBtn(ov);
 }
 function showRewards(){
   const w=R.rew; saveRun();
@@ -4347,8 +4362,8 @@ function showRewards(){
     <div class="bands">${(()=>{ const arts=bandArts(opts.slice(0,3).map(x=>bandArt('rew',x.id))); return withSp(w, opts.slice(0,3).map((x,i)=>bandHTML({art:arts[i], cls:'b-rew '+RARITY[x.r].cls, col:REW_COL[x.r]||'#c8d2e6', sym:EV_SYM[rewIcon(x)]||'autel', name:`${x.name} <span class="rar">${RARITY[x.r].n}</span>`,
       sub:`${x.desc}${x.max?` <span class="gold">(${rewCount(x.id)}/${x.max})</span>`:''}`, d:300+i*140, attrs:`data-k="rew-${i}" data-rew="${i}" data-rid="${x.id}"`})), ''); })()}</div>
     ${w.fixed?'':`<button class="btn small" style="width:100%" data-k="reroll" id="bReroll" data-cost="${cost}" ${can?'':'disabled'}>${ic('dice')} Relancer — ${cost?cost+' Gils':'gratuit'}${w.rr?` (relance n°${w.rr+1})`:''}</button>`}
-   </div>${playerPanelHTML()}<button class="btn small" style="width:100%" data-k="menu" id="bRwMenu">Menu</button>`;
-  { const bm=document.getElementById('bRwMenu'); if (bm) bm.onclick=runMenu; }
+   </div>${playerPanelHTML()}<div class="row" style="gap:8px"><button class="btn small auto-btn" style="width:auto" data-k="auto" id="bAuto" aria-pressed="false">Auto</button><button class="btn small" style="width:100%" data-k="menu" id="bRwMenu">Menu</button></div>`;
+  { const bm=document.getElementById('bRwMenu'); if (bm) bm.onclick=runMenu; if (typeof bindAutoBtn==='function') bindAutoBtn(); }
   app.querySelectorAll('[data-rew]').forEach(b=>b.onclick=()=>{ const x=opts[+b.dataset.rew]; R.rew=null; takeReward(x); advanceNode(); });
   const bSp=app.querySelector('[data-sp]'); if (bSp) bSp.onclick=()=>{ const t=w.sp; R.rew=null; if (R.plan) R.plan.spUsed=1; app.classList.remove('rw-on'); saveRun(); (EVENTS[t]||advanceNode)(); };
   const bRr=document.getElementById('bReroll'); if (bRr) bRr.onclick=()=>{
@@ -4502,7 +4517,7 @@ function idleDesync(root){ (root||document).querySelectorAll('#field img.idle').
 function renderCombat(){
   if (CUI) try{ app.style.setProperty('--scbg', `url(${roomBG()})`); }catch(e){}
   app.innerHTML = `
-  <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(R.floor===ACT2_MAX?'· COMBAT FINAL':isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto;margin-left:6px" data-k="menu" id="bMenu">Menu</button></div>
+  <div class="win topbar"><b class="grow">Étage ${R.floor} ${C.kind==='boss'?(R.floor===ACT2_MAX?'· COMBAT FINAL':isBigBoss(R.floor)?'· BOSS':'· GARDIEN'):C.kind==='elite'?'· Salle maudite':''}</b><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto" data-k="help" id="bHelp">Aide</button><button class="btn small auto-btn" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto;margin-left:6px" data-k="auto" id="bAuto" aria-pressed="false">Auto</button><button class="btn small" style="min-height:36px;padding:2px 10px;font-size:13px;width:auto;margin-left:6px" data-k="menu" id="bMenu">Menu</button></div>
   <div class="field ${R.comp?'withc':'solo'}" id="field" style="background-image:url(${roomBG()}),url(${PH[floorBG(R.floor).slice(10,12)]||''})">
     <div class="enemies" id="enemies"></div>
     <div id="aoe"></div>
@@ -4516,6 +4531,7 @@ function renderCombat(){
   <div class="skills" id="skills"></div>`;
   document.getElementById('bHelp').onclick = helpModal;
   document.getElementById('bMenu').onclick = runMenu;
+  if (typeof bindAutoBtn==='function') bindAutoBtn();
 }
 /* Menu de l'exploration (v5.5e) : bonus, objets hors combat, aide, abandon (avec confirmation) */
 function runMenu(){
@@ -4562,7 +4578,7 @@ function floorTransition(f, kind){
   const old=document.getElementById('ftr'); if (old) old.remove();
   const boss = kind==='boss', big = boss && isBigBoss(f), g=GUARDIAN_OF[f];
   if (boss && g && isNamedBoss(g)) return bossIntro(f, g);
-  const hold = boss ? 2100 : 1500;
+  const hold = Math.round((boss ? 2100 : 1500) * ((R&&R.auto)?0.72:1));
   const d=document.createElement('div'); d.id='ftr'; d.className='ftr'+(boss?' boss':'')+(big?' big':'')+(kind==='elite'?' elite':'');
   d.style.setProperty('--hold', hold+'ms');
   const motes=Array.from({length:18},(_,i)=>{ const h=bandH('m'+f+'#'+i); return `<i style="left:${h%100}%;animation-delay:${(h>>>8)%900}ms;animation-duration:${1400+(h>>>4)%900}ms;--s:${0.5+((h>>>12)%10)/10}"></i>`; }).join('');
@@ -4580,6 +4596,7 @@ function helpModal(){
    ${R.comp?`<div class="sklist"><div class="it"><b>Compagnon : ${COMPANIONS[R.comp.id].name}</b><br>${COMPANIONS[R.comp.id].sig} Il agit tout seul après toi, au bon moment.</div></div>`:''}
    <div class="sklist"><div class="it"><b>Lire les boutons</b><br>Appui long sur une action : détail avec les vrais chiffres (dégâts, soin, durée, cible). Pastille bleue = coût en PM, pastille de couleur = coût en jauge de job. Anneau vert autour de l’icône = la cible est faible à cet élément (×1,5). Chiffre sur l’icône = tours de recharge.<br>Chaque job a sa jauge (sous les PM) : appui long dessus pour savoir comment la remplir.<br>Sous ta barre de PV : tes effets actifs et les tours restants. Un même effet relancé remet sa durée à neuf, il ne s’additionne pas.</div>
    <div class="it"><b>Objets</b><br>Potion : soigne ${Math.round(potionPct()*100)} % des PV. Éther : rend 50 % des PM. Utiliser un objet prend le tour.</div>
+   <div class="it"><b>Auto</b><br>Le bouton Auto joue tes tours tout seul, prend toujours la première récompense et enchaîne les combats. Touche-le à nouveau pour arrêter, même pendant une animation.</div>
    <div class="it"><b>Lire les ennemis</b><br>Touche un ennemi pour le cibler (${ic('cursor')}).<br>
    ${CUI?`Les monstres n’annoncent plus leurs actions. Un monstre qui <b>s’entoure d’une lueur orange</b> prépare une grosse attaque pour le tour suivant : défends-toi (Rempart, bouclier…), soigne-toi ou achève-le. Lueur <b>jaune pâle</b> = interruptible : un étourdissement (compétences ${ic('bolt')}) l’annule.<br>
    Les boss, eux, annoncent leurs grands sorts : nom au-dessus de leur tête et barre d’incantation. ${ic('bolt')} sur l’annonce = interruptible.<br>`:`Au-dessus : sa prochaine action.<br>
@@ -6463,7 +6480,7 @@ async function duoCombatTurn(acts){
   await duoCheckEnd();
 }
 /* ---- interception des choix : en duo, un clic = une proposition envoyée au partenaire ---- */
-const DUO_LOCAL = /^(help|menu|item|items|enemy-|online|scores|atelier)/;
+const DUO_LOCAL = /^(help|menu|item|items|enemy-|online|scores|atelier|auto)/;
 function duoKeyOf(el){ const b=el && el.closest && el.closest('[data-k]'); return b ? b : null; }
 document.addEventListener('click', e=>{
   if (!isDuo() || DUO.applying || typeof Online==='undefined' || !Online.isDuo) return;
@@ -6763,8 +6780,242 @@ const SND = (()=>{
 if ('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost')) window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 window.addEventListener('error', e=>{ window.__errors=(window.__errors||[]); window.__errors.push(String(e.message)); });
 function setFast(v){ FAST=!!v; }
+
+/* ===================== v6.7 : MODE AUTO =====================
+   Joue tes tours, prend la 1re récompense / le 1er choix de chemin,
+   enchaîne les combats. S'arrête sur défaite, victoire, seuil du Néant,
+   marchand, ou si tu retouches le bouton. En ligne : tes tours seulement. */
+const AUTO = { t:null, lock:false, gen:0 };
+const autoOn = () => !!(typeof R!=='undefined' && R && R.auto);
+function bindAutoBtn(root){
+  (root||document).querySelectorAll('#bAuto,.auto-btn').forEach(b=>{
+    b.onclick = ev => { ev.preventDefault(); ev.stopPropagation(); toggleAuto(); };
+  });
+  paintAuto();
+}
+function autoFabNeeded(){
+  if (!autoOn()) return false;
+  if (document.getElementById('ftr') || document.getElementById('bint')) return true;
+  if (typeof modalEl!=='undefined' && modalEl && modalEl.classList.contains('show')) return true;
+  const b=document.getElementById('bAuto');
+  if (!b) return true;
+  const r=b.getBoundingClientRect();
+  return !(r.width>8 && r.height>8 && r.top>=0 && r.bottom<= (window.innerHeight||0)+2 && r.right>0);
+}
+function paintAuto(){
+  const on=autoOn();
+  document.querySelectorAll('#bAuto,.auto-btn').forEach(b=>{
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on?'true':'false');
+    b.textContent = 'Auto';
+  });
+  let fab=document.getElementById('autoFab');
+  const need=autoFabNeeded();
+  if (need){
+    if (!fab){
+      fab=document.createElement('button');
+      fab.id='autoFab'; fab.type='button';
+      fab.setAttribute('aria-label','Arrêter l’auto');
+      fab.innerHTML='<b>AUTO</b><span>Touche pour arrêter</span>';
+      fab.addEventListener('click', ev=>{ ev.preventDefault(); ev.stopPropagation(); setAuto(false); });
+      fab.addEventListener('pointerdown', ev=>{ ev.stopPropagation(); }, true);
+      document.body.appendChild(fab);
+    }
+  } else if (fab) fab.remove();
+}
+function setAuto(on){
+  on=!!on;
+  if (on && !R) return;
+  if (R) R.auto=on;
+  AUTO.gen++;
+  AUTO.lock=false;
+  if (AUTO.t){ clearTimeout(AUTO.t); AUTO.t=null; }
+  if (R && !R.duo) try{ saveRun(); }catch(e){}
+  paintAuto();
+  if (on){ queueAuto(FAST?0:50); if (!AUTO.vis) AUTO.vis=setInterval(()=>{ try{ paintAuto(); }catch(e){} }, 250); }
+  else if (AUTO.vis){ clearInterval(AUTO.vis); AUTO.vis=null; }
+}
+function toggleAuto(){ setAuto(!autoOn()); }
+function queueAuto(ms){
+  if (AUTO.t){ clearTimeout(AUTO.t); AUTO.t=null; }
+  if (!autoOn()) return;
+  AUTO.t=setTimeout(()=>{ AUTO.t=null; autoTick(); }, FAST?0:Math.max(0,ms==null?180:ms));
+}
+function autoIsHeal(s){ const x=s&&s.self; return !!(s&&(s.heal||(x&&(x.heal||x.healPct||x.regen)))); }
+function autoIsDef(s){ const x=s&&s.self; return !!(x&&(x.shield||x.invuln||x.mitig||x.holm)); }
+function autoIncoming(){
+  try{ return alive().some(e=>e.intent && (e.intent.kind==='charge' || e.intent.big)); }catch(e){ return false; }
+}
+function autoPickTarget(s){
+  const al=alive(); if (!al.length) return null;
+  let best=al[0], bv=-1e9;
+  for (const e of al){
+    let sc=1-e.hp/Math.max(1,e.maxhp);
+    if (s && s.el){ try{ sc += (elemMul(e,s.el)-1)*1.6; }catch(_){ } }
+    const arch=archOf(e);
+    if (arch==='Soigneur') sc+=0.75;
+    else if (arch==='Soutien') sc+=0.45;
+    if (e.support) sc+=0.4;
+    if (s && s.stun){ try{ if (canInterrupt(e)) sc+=3; }catch(_){ } }
+    if (sc>bv){ bv=sc; best=e; }
+  }
+  C.target=C.enemies.indexOf(best);
+  return best;
+}
+function autoScore(s, al, tgt){
+  const hp=R.hp/Math.max(1,R.maxhp), inc=autoIncoming();
+  let v=0;
+  if (autoIsHeal(s)) v = hp<0.38?92 : hp<0.52?55 : hp<0.7?16 : 3;
+  if (autoIsDef(s)) v = Math.max(v, inc?(68+(1-hp)*28):(hp<0.45?18:2));
+  if (s.stun){ try{ if (al.some(e=>canInterrupt(e))) v=Math.max(v,110); }catch(_){ } }
+  if (s.power){
+    const ts = s.target==='all' ? al : (tgt?[tgt]:al.slice(0,1));
+    let d=0;
+    for (const e of ts){
+      if (!e||e.dead) continue;
+      let em=1; try{ if (s.el) em=elemMul(e,s.el); }catch(_){}
+      const arch=archOf(e);
+      d += (s.power||0)*(s.hits||1)*em*(1+(arch==='Soigneur'?0.4:arch==='Soutien'?0.2:0))*(0.85+0.3*(1-e.hp/Math.max(1,e.maxhp)));
+    }
+    v=Math.max(v, d*14);
+    if (s.dot) v += s.dot[0]*s.dot[1]*8*(s.target==='all'?al.length:1);
+  }
+  if (s.req && C.st && C.st.sen>=s.req) v += 20;
+  if (s.sen && C.st && C.st.sen < (mechOf(R.job).max||3)) v += 8;
+  if (s.astral) v += (C.st && C.st.sen>=0 ? 16+8*Math.max(0,C.st.sen) : 3);
+  if (s.umbral) v += (R.mp<R.maxmp*0.35 || (C.st&&C.st.sen>0 && R.mp<R.maxmp*0.65) ? 42 : 7);
+  if (s.gcost && C.st && C.st.sen>=s.gcost && autoIsHeal(s) && hp<0.75) v += 12;
+  if (s.cd) v += 2;
+  return v;
+}
+function autoDecide(){
+  if (!C || !R) return null;
+  const back=(typeof isDuo==='function' && isDuo()) ? (R.cur||0) : null;
+  if (back!=null) try{ heroIn(DUO.my); }catch(_){}
+  try { return autoDecideInner(); } finally { if (back!=null) try{ heroIn(back); }catch(_){} }
+}
+function autoDecideInner(){
+  if (!C || !R) return null;
+  const al=alive(); if (!al.length) return null;
+  const hp=R.hp/Math.max(1,R.maxhp);
+  if (hp<0.32 && R.potions) return {id:'__potion'};
+  if (R.maxmp && R.mp<R.maxmp*0.14 && R.ethers) return {id:'__ether'};
+  const sk=(combatSkills()||[]).filter(s=>s && skillState(s).ok);
+  if (!sk.length){
+    if (R.potions && hp<0.5) return {id:'__potion'};
+    if (R.ethers) return {id:'__ether'};
+    return null;
+  }
+  const heal=sk.find(autoIsHeal);
+  if (heal && hp<0.42) return {id:heal.id};
+  const intr=(()=>{ try{ return al.find(e=>canInterrupt(e)); }catch(_){ return null; } })();
+  const st=sk.find(s=>s.stun);
+  if (intr && st){ C.target=C.enemies.indexOf(intr); return {id:st.id, tgt:intr.uid}; }
+  const def=sk.find(autoIsDef);
+  if (def && autoIncoming() && hp<0.85) return {id:def.id};
+  let best=sk[0], bv=-1e9, bt=autoPickTarget(best);
+  for (const s of sk){
+    const tg = s.target==='self' ? bt : autoPickTarget(s);
+    const v=autoScore(s, al, tg);
+    if (v>bv){ bv=v; best=s; bt=tg; }
+  }
+  if (best.target!=='self' && bt){ C.target=C.enemies.indexOf(bt); }
+  return {id:best.id, tgt:bt&&best.target!=='self'?bt.uid:null};
+}
+function autoSubmitCombat(d){
+  if (!d||!d.id) return Promise.resolve();
+  if (d.tgt){ const ix=C.enemies.findIndex(e=>e.uid===d.tgt && !e.dead); if (ix>=0) C.target=ix; }
+  const tgt = (C && C.enemies[C.target] && !C.enemies[C.target].dead) ? C.enemies[C.target].uid : (d.tgt||null);
+  if (typeof isDuo==='function' && isDuo()){
+    // jamais playerAction en duo (désync) : on envoie notre seul tour via Online
+    if (typeof Online==='undefined' || !Online || !Online.submit || !Online.isDuo) return Promise.resolve();
+    const k = d.id==='__potion'?'potion':d.id==='__ether'?'ether':('skill-'+d.id);
+    if (DUO.waiting) return Promise.resolve();
+    const st0 = Online.roomInfo ? Online.roomInfo().step : -1;
+    DUO.waiting=true;
+    let ok=false;
+    try{ ok=Online.submit({t:'k', k, tgt}); }catch(e){ ok=false; }
+    const resolved = Online.roomInfo && Online.roomInfo().step !== st0;
+    if (ok===false || resolved) DUO.waiting=false;
+    return Promise.resolve();
+  }
+  return playerAction(d.id);
+}
+function autoStopReason(){
+  if (!R) return 'end';
+  if (document.getElementById('bCamp')) return 'end';
+  if (document.getElementById('bA2go') || document.getElementById('bA2end')) return 'act2';
+  const h=((document.querySelector('#app h2')||{}).textContent||'');
+  const more=document.getElementById('bMore');
+  if (/Marchand/.test(h) || (more && /Partir/.test(more.textContent||''))) return 'shop';
+  return null;
+}
+function autoFirstBand(){
+  const root=document.querySelector('#app .rw-bands') || document.querySelector('#app .bands') || document.getElementById('app');
+  if (!root) return null;
+  const bands=[...root.querySelectorAll('[data-rew],[data-sp],[data-ch]')];
+  const ok=bands.filter(b=>!b.disabled && b.getAttribute('aria-disabled')!=='true' && !b.classList.contains('dis') && !b.hasAttribute('disabled'));
+  return ok[0]||null;
+}
+function autoClickEl(el){
+  if (!el) return false;
+  try{ el.click(); return true; }catch(e){ return false; }
+}
+function autoPickScreen(){
+  const band=autoFirstBand();
+  const el=band || (document.getElementById('bOk') && !document.getElementById('bOk').disabled ? document.getElementById('bOk') : null)
+           || (document.getElementById('bN') && !document.getElementById('bN').disabled ? document.getElementById('bN') : null);
+  if (!el) return false;
+  if (typeof isDuo==='function' && isDuo() && typeof Online!=='undefined' && Online && Online.isDuo && Online.submit){
+    if (DUO.waiting) return false;
+    const k=el.dataset.k || (el.id==='bOk'?'ok':el.id==='bN'?'next':'');
+    if (!k) return false;
+    const st0=Online.roomInfo ? Online.roomInfo().step : -1;
+    DUO.waiting=true;
+    let ok=false;
+    try{ ok=Online.submit({t:'k', k}); }catch(e){ ok=false; }
+    const resolved=Online.roomInfo && Online.roomInfo().step !== st0;
+    if (ok===false || resolved) DUO.waiting=false;
+    return true;
+  }
+  return autoClickEl(el);
+}
+async function autoTick(){
+  if (!autoOn() || AUTO.lock) return;
+  if (document.getElementById('ftr') || document.getElementById('bint')){ queueAuto(120); return; }
+  if (typeof modalEl!=='undefined' && modalEl && modalEl.classList.contains('show')){ queueAuto(220); return; }
+  const why=autoStopReason();
+  if (why){ setAuto(false); return; }
+  AUTO.lock=true;
+  const gen=AUTO.gen;
+  try{
+    if (C && !C.ending){
+      if (C.busy || (typeof isDuo==='function' && isDuo() && DUO.waiting)) { AUTO.lock=false; queueAuto(120); return; }
+      const d=autoDecide();
+      if (d) await autoSubmitCombat(d);
+    } else if (!C){
+      autoPickScreen();
+    }
+  }catch(e){ try{ console.warn('[auto]', e); }catch(_){ } }
+  finally {
+    if (AUTO.gen===gen) AUTO.lock=false;
+    if (autoOn()) queueAuto(FAST?0:240);
+  }
+}
+
+
+{ const _spt=startPlayerTurn; startPlayerTurn=function(){ const r=_spt.apply(this,arguments); if (autoOn()) queueAuto(FAST?0:80); return r; };
+  const _er=endRun; endRun=function(){ if (R) R.auto=false; const r=_er.apply(this,arguments); try{ if (AUTO.t){ clearTimeout(AUTO.t); AUTO.t=null; } AUTO.lock=false; paintAuto(); }catch(e){} return r; };
+  const _sr=startRun; startRun=function(){ const r=_sr.apply(this,arguments); if (R) R.auto=false; paintAuto(); return r; };
+  const _sdr=typeof startDuoRun==='function'?startDuoRun:null; if (_sdr) startDuoRun=function(){ const r=_sdr.apply(this,arguments); if (R) R.auto=false; paintAuto(); return r; };
+  const _sw=showRewards; showRewards=function(){ const r=_sw.apply(this,arguments); if (typeof bindAutoBtn==='function') bindAutoBtn(); if (autoOn()) queueAuto(FAST?0:700); return r; };
+  const _es=eventScreen; eventScreen=function(){ const r=_es.apply(this,arguments); if (autoOn()) queueAuto(FAST?0:500); return r; };
+  const _cs=choiceScreen; choiceScreen=function(){ const r=_cs.apply(this,arguments); if (autoOn()) queueAuto(FAST?0:500); return r; };
+  const _a2=act2Gate; act2Gate=function(){ const r=_a2.apply(this,arguments); if (autoOn()) setAuto(false); return r; };
+  const _fi=floorIntro; floorIntro=function(){ const r=_fi.apply(this,arguments); if (autoOn()) queueAuto(FAST?0:200); return r; };
+}
 window.GAME = { get S(){return S;}, get R(){return R;}, get C(){return C;}, SCREENS, JOBS, ENEMIES, BAL, POMS, playerAction, startRun, setFast, alive, skillState, getLoadout,
-  combatSkills, canInterrupt, intentEst, eMul, Lf, enterRoom, startCombat, act2Gate, nextFloor, advanceNode, endRun, REWARDS, REW, COMPANIONS, EVENTS, doPull, planFloor, drawRewards, get RS(){return RS;}, rand, showRewards };
+  combatSkills, canInterrupt, intentEst, eMul, Lf, enterRoom, startCombat, act2Gate, nextFloor, advanceNode, endRun, REWARDS, REW, COMPANIONS, EVENTS, doPull, planFloor, drawRewards, get RS(){return RS;}, rand, showRewards, setAuto, toggleAuto, autoOn, autoDecide, autoTick, get AUTO(){return AUTO;}, startDuoRun, duoApply, duoGetState, duoDefault, get DUO(){return DUO;}, isDuo };
 loadCustomSprites();
 SCREENS.title();
 

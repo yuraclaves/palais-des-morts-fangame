@@ -1,5 +1,11 @@
 # Notes de patch : A Godless Realm
 
+## v6.7 : Mode Auto (10/11/2026)
+- Nouveau bouton Auto en combat : le jeu joue tes tours tout seul, vise les faiblesses, soigne si tes PV baissent et interrompt les sorts annoncés des boss.
+- Après chaque combat, Auto prend toujours la première récompense, laisse passer l’animation d’étage, puis enchaîne le combat suivant, y compris les gardiens et les boss.
+- Auto s’arrête si tu retouches le bouton, en cas de défaite ou de victoire, au choix de descendre dans le Néant, ou devant un marchand et les décisions importantes.
+- En ligne, Auto ne joue que tes propres tours et vote pour la première récompense. Les animations restent visibles, un peu plus rapides.
+
 ## v6.1e : Textes des sorts corrigés (24/10/2026)
 - Chaque bouton de sort a maintenant une seule pastille à droite : son coût, ce qu'il te fait gagner, sa recharge, ou Libre.
 - Le bonus de faiblesse ×1,5 se place sur le coin de l'icône et ne cache plus le texte.
